@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IdentificationTreasures</string>
+	<string name="information">知识学堂</string>
+	<string name="home">首页</string>
+	<string name="identiy">鉴定大厅</string>
+	<string name="my">我的</string>
+
+</resources>

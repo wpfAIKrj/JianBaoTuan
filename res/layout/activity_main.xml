@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.it.ui.activity.MainActivity" xmlns:app="http://schemas.android.com/apk/res/com.it">
+
+
+
+       <LinearLayout 
+        android:id="@+id/viewSnsLayout" 
+        android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+          android:layout_weight="1.0"
+         android:layout_above="@+id/tab_widget"
+        >
+            <FrameLayout 
+                
+         android:id="@+id/center_layout" 
+        android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+          android:layout_weight="1.0"
+          />
+    </LinearLayout>
+
+   <com.it.view.MyTabWidget android:id="@+id/tab_widget"
+         android:layout_width="fill_parent" 
+         android:layout_height="wrap_content" 
+         android:layout_alignParentLeft="true"
+          android:layout_alignParentBottom="true"
+       
+         />
+
+   <Button     
+    android:id="@+id/circle_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:text="我要\n鉴定"
+        android:textSize="12sp"
+        android:textColor="@color/wite"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:background="@drawable/selector_btn_bk"
+        />
+
+</RelativeLayout>
