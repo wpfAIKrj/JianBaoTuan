@@ -54,12 +54,12 @@ OnTabSelectedListener{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
-        }
-		mTintManager = new SystemBarTintManager(this); 
-		mTintManager.setStatusBarTintEnabled(true);
-		mTintManager.setNavigationBarTintEnabled(true);
-		int color=getResources().getColor(R.color.blacground_color);
-		mTintManager.setTintColor(color);
+            mTintManager = new SystemBarTintManager(this); 
+    		mTintManager.setStatusBarTintEnabled(true);
+    		mTintManager.setNavigationBarTintEnabled(true);
+    		int color=getResources().getColor(R.color.blacground_color);
+    		mTintManager.setTintColor(color);
+		}
         setContentView(R.layout.activity_main);  
 		init();
 		initEvents();

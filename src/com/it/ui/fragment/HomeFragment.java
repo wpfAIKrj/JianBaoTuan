@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.it.R;
 import com.it.ui.base.BaseFragment;
 
 public class HomeFragment extends BaseFragment {
 
+	private RelativeLayout mtitle;
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
@@ -21,7 +23,7 @@ public class HomeFragment extends BaseFragment {
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
-		
+		mtitle=(RelativeLayout)view.findViewById(R.id.layout_home_title);
 	}
 
 	@Override
