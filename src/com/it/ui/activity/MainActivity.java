@@ -6,9 +6,12 @@ import com.it.ui.fragment.HomeFragment;
 import com.it.ui.fragment.IdentiyFragment;
 import com.it.ui.fragment.InformationFragment;
 import com.it.ui.fragment.MyFragment;
+import com.it.utils.SystemBarTintManager;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.widget.LinearLayout;
 
@@ -42,17 +47,39 @@ OnTabSelectedListener,OnTouchListener, OnGestureListener{
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
+	private SystemBarTintManager mTintManager;
 	 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
+		mTintManager = new SystemBarTintManager(this); 
+		mTintManager.setStatusBarTintEnabled(true);
+		mTintManager.setNavigationBarTintEnabled(true);
+		int color=getResources().getColor(R.color.blacground_color);
+		mTintManager.setTintColor(color);
         setContentView(R.layout.activity_main);
         mGestureDetector = new GestureDetector((OnGestureListener) this);  
 		init();
 		initEvents();
     }
 
-
+    @TargetApi(19)
+	private void setTranslucentStatus(boolean b) {
+		// TODO Auto-generated method stub
+			Window win = getWindow();
+	        WindowManager.LayoutParams winParams = win.getAttributes();
+	        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+	        if (b) {
+	            winParams.flags |= bits;
+	        } else {
+	            winParams.flags &= ~bits;
+	        }
+	        win.setAttributes(winParams);
+	}
 
 	private void init() {
 		// TODO Auto-generated method stub

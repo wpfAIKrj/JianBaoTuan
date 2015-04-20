@@ -8,6 +8,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="鉴宝大厅" />
+        android:text="鉴宝大厅" 
+       	android:textColor="@color/blacground_color"/>
 
 </LinearLayout>
