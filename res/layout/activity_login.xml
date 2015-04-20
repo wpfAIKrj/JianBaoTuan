@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.it">
 
     <include
         android:id="@+id/include1"
@@ -15,7 +15,17 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1"
         android:layout_marginTop="10dp"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:gravity="center_horizontal">
+
+        <com.it.view.CircleImageView
+            android:id="@+id/circleImageView1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher" 
+            app:border_width="2dp"
+            app:border_color="@color/wite"/>
+        
     </LinearLayout>
 
 </RelativeLayout>
