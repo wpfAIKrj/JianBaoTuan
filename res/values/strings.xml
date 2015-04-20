@@ -6,5 +6,6 @@
 	<string name="home">首页</string>
 	<string name="identiy">鉴定大厅</string>
 	<string name="my">我的</string>
-
+	<string name="guide_text_01">专家在线鉴定宝贝</string>
+	<string name="guide_text_02">让你宝贝更放心</string>
 </resources>

@@ -2,4 +2,5 @@
 <resources>
     <color name="wite">#ffffff</color>
     <color name="blacground_color">#FF4C00</color>
+    <color name="text_color">#333333</color>
 </resources>

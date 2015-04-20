@@ -34,7 +34,7 @@ import android.widget.LinearLayout;
  *
  */
 public class MainActivity extends FragmentActivity implements 
-OnTabSelectedListener,OnTouchListener, OnGestureListener{
+OnTabSelectedListener{
 	
 	
 	private FragmentManager mFragmentManager;
@@ -43,7 +43,6 @@ OnTabSelectedListener,OnTouchListener, OnGestureListener{
 	private InformationFragment mInformationFragment;
 	private MyFragment mMyFragment;
 	
-	private GestureDetector mGestureDetector;
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
@@ -61,8 +60,7 @@ OnTabSelectedListener,OnTouchListener, OnGestureListener{
 		mTintManager.setNavigationBarTintEnabled(true);
 		int color=getResources().getColor(R.color.blacground_color);
 		mTintManager.setTintColor(color);
-        setContentView(R.layout.activity_main);
-        mGestureDetector = new GestureDetector((OnGestureListener) this);  
+        setContentView(R.layout.activity_main);  
 		init();
 		initEvents();
     }
@@ -85,8 +83,7 @@ OnTabSelectedListener,OnTouchListener, OnGestureListener{
 		// TODO Auto-generated method stub
 		mFragmentManager = getSupportFragmentManager();
 		mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
-	     LinearLayout viewSnsLayout = (LinearLayout)findViewById(R.id.viewSnsLayout);    
-	     viewSnsLayout.setOnTouchListener(this);    
+	     LinearLayout viewSnsLayout = (LinearLayout)findViewById(R.id.viewSnsLayout);      
 	     viewSnsLayout.setLongClickable(true);
 	}
 	private void initEvents() {
@@ -132,77 +129,7 @@ OnTabSelectedListener,OnTouchListener, OnGestureListener{
 
 	
 	
-	
-	@Override
-	public boolean onDown(MotionEvent e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public void onShowPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void onLongPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-    private int verticalMinDistance = 40;
-    private int minVelocity         = 0;
-
-	@Override
-	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {
-		// TODO Auto-generated method stub
-		 if (e1.getX() - e2.getX() > verticalMinDistance && Math.abs(velocityX) > minVelocity) {
-
-
-	            if(mIndex>=2){
-	            	
-	            }else{
-	            	mIndex=mIndex+1;
-	            onTabSelected(mIndex);
-	    		mTabWidget.setTabsDisplay(this, mIndex);
-	    		mTabWidget.setIndicateDisplay(this, mIndex, true);
-	            }
-	        } else if (e2.getX() - e1.getX() > verticalMinDistance && Math.abs(velocityX) > minVelocity) {
-
-	   
-	        	   if(mIndex>0){
-	        		   mIndex=mIndex-1;
-	        		      onTabSelected(mIndex);
-	        	       		mTabWidget.setTabsDisplay(this, mIndex);
-	        	       		mTabWidget.setIndicateDisplay(this, mIndex, true);
-	               }else{
-	               
-	               }
-	        }
-
-	        return false;
-	}
-
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
-		 return mGestureDetector.onTouchEvent(event); 
-	}
 
 	@Override
 	public void onTabSelected(int index) {
