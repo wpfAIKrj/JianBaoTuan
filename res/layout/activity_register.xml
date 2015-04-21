@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+ <include
+        android:id="@+id/include1"
+        layout="@layout/layout_activity_head" />
+
+   
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginLeft="@dimen/layout_margin_size"
+        android:layout_marginRight="@dimen/layout_margin_size"
+        android:layout_marginTop="23dp"
+        android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/layout_margin_size"
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/register_edit_phone"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword"
+                android:singleLine="true"
+                android:textSize="16sp" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/layout_margin_size"
+         
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/register_edit_code"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword"
+                android:singleLine="true"
+                android:textSize="16sp" 
+                android:background="@color/wite"
+                android:alpha="10"
+                >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/register_send_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="发送短信" />
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/layout_margin_size"
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/register_edit_password"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword"
+                android:singleLine="true"
+                android:textSize="16sp" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/layout_margin_size"
+        android:layout_marginRight="@dimen/layout_margin_size"
+        android:layout_marginTop="48dp"
+  
+        android:text="注册" />
+
+</LinearLayout>
