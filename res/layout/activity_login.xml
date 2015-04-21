@@ -1,31 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.it"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     android:fitsSystemWindows="true"
-    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.it">
+    android:orientation="vertical" >
 
     <include
         android:id="@+id/include1"
         layout="@layout/layout_activity_head" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1"
         android:layout_marginTop="10dp"
-        android:orientation="vertical" 
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
         <com.it.view.CircleImageView
-            android:id="@+id/circleImageView1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_launcher" 
-            app:border_width="2dp"
-            app:border_color="@color/wite"/>
-        
+            android:id="@+id/login_user_head"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher"
+            app:border_color="@color/wite"
+            app:border_width="1dp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginLeft="@dimen/layout_margin_size"
+        android:layout_marginRight="@dimen/layout_margin_size"
+        android:layout_marginTop="23dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:alpha="150"
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/login_edit_name"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textSize="16sp" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/login_bt_clear"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_marginRight="8dip"
+                android:background="@drawable/login_input_arrow"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/layout_margin_size"
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/login_edit_password"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ems="10"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword"
+                android:singleLine="true"
+                android:textSize="16sp" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+     
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" >
+
+        <Button
+            android:id="@+id/login_bt_forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="忘记密码" />
+
+        <Button
+            android:id="@+id/login_bt_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="注册账号" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="@dimen/layout_margin_size"
+        android:layout_marginRight="@dimen/layout_margin_size"
+        android:text="登 录" />
 
 </RelativeLayout>
