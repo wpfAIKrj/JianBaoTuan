@@ -24,16 +24,6 @@ public class GuidePageActivity extends BaseActivity {
 			int color=getResources().getColor(R.color.wite);
     		mTintManager.setTintColor(color);
 		}
-		initView();
-	}
-
-	private void initView() {
-		// TODO Auto-generated method stub
-		TextView tv=(TextView)findViewById(R.id.guide_tv1);
-		Animation animation=AnimationUtils.loadAnimation(this, R.anim.guide_text_show);
-		tv.startAnimation(animation);
-		tv=(TextView)findViewById(R.id.guide_tv2);
-		tv.startAnimation(animation);
 		mHandler.postDelayed(new Runnable() {
 			
 			@Override
@@ -43,6 +33,7 @@ public class GuidePageActivity extends BaseActivity {
 				startActivity(intent);
 				finish();
 			}
-		}, 4000);
+		}, 5000);
 	}
+
 }
