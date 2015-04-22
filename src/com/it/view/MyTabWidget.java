@@ -2,8 +2,10 @@ package com.it.view;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.it.R;
 import com.it.utils.LogUtils;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,6 +15,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +36,6 @@ public class MyTabWidget extends LinearLayout {
 	private List<ImageView> mIndicateImgs = new ArrayList<ImageView>();
 	private CharSequence[] mLabels;
 	private View fatherview;
-	
 	@TargetApi(11)
 	public MyTabWidget(Context context, AttributeSet attrs, int defStyle ) {
 		super(context, attrs, defStyle);
@@ -73,7 +75,7 @@ public class MyTabWidget extends LinearLayout {
 		//父类
 		fatherview=LinearLayout.inflate(context, R.layout.tab_layout, this);
 		
-		
+
 
 		int size = mLabels.length;
 		for (int i = 0; i < size; i++) {	
@@ -83,7 +85,7 @@ public class MyTabWidget extends LinearLayout {
 			final CheckedTextView itemName = (CheckedTextView) view
 					.findViewById(R.id.item_name);
 	
-				itemName.setCompoundDrawablesWithIntrinsicBounds(null, context
+			itemName.setCompoundDrawablesWithIntrinsicBounds(null, context
 					.getResources().getDrawable(mDrawableIds[i]), null, null);
 			
 			itemName.setText(mLabels[i]);
@@ -122,6 +124,8 @@ public class MyTabWidget extends LinearLayout {
 				view.setBackgroundColor(Color.rgb(255, 255, 255));
 			}
 			}
+			
+				
 		
 	}
 
@@ -154,8 +158,7 @@ public class MyTabWidget extends LinearLayout {
 		}
 	}
 
-	
-	
+
 	
 	private OnTabSelectedListener mTabListener;
 

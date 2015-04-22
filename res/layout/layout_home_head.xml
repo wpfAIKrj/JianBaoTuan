@@ -7,15 +7,19 @@
     android:padding="2dp"
     >
 
-    <TextView
-        android:id="@+id/topTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/home_title"
-        android:textColor="@color/wite"
-        android:textSize="21sp"
-        android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/button_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/menu_category" />
+
+        <TextView
+            android:id="@+id/home_title"
+            style="@style/home_title"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="鉴定大厅" />
 
 </RelativeLayout>

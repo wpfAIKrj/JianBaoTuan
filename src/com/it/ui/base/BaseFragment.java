@@ -59,6 +59,8 @@ public abstract class BaseFragment extends Fragment {
         }
     }
      
+	
+
      
 	/**
 	 * fragment中填充新的布局
@@ -102,7 +104,7 @@ public abstract class BaseFragment extends Fragment {
      * 延迟加载
      * 子类必须重写此方法
      */
-    protected abstract void lazyLoad();
+    public abstract void lazyLoad();
 	
     
 }

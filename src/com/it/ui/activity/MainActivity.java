@@ -134,6 +134,10 @@ OnTabSelectedListener{
 	@Override
 	public void onTabSelected(int index) {
 		// TODO Auto-generated method stub
+		//
+		if(index==4){//判断用户是否登陆
+			
+		}
 		FragmentTransaction transaction = mFragmentManager.beginTransaction();
 		hideFragments(transaction);
 		switch (index) {
@@ -143,6 +147,9 @@ OnTabSelectedListener{
 				transaction.add(R.id.center_layout, mHomeFragment);
 			} else {
 				transaction.show(mHomeFragment);
+				transaction.hide(mIdentiyFragment);
+				transaction.hide(mInformationFragment);
+				transaction.hide(mMyFragment);
 			}
 			break;
 		case 1:
@@ -151,6 +158,9 @@ OnTabSelectedListener{
 				transaction.add(R.id.center_layout, mIdentiyFragment);
 			} else {
 				transaction.show(mIdentiyFragment);
+				transaction.hide(mHomeFragment);
+				transaction.hide(mInformationFragment);
+				transaction.hide(mMyFragment);
 			}
 			break;
 		case 2:
@@ -159,13 +169,20 @@ OnTabSelectedListener{
 				transaction.add(R.id.center_layout, mInformationFragment);
 			} else {
 				transaction.show(mInformationFragment);
+				transaction.hide(mHomeFragment);
+				transaction.hide(mIdentiyFragment);
+				transaction.hide(mMyFragment);
 			}
 			break;
-		case 3:if (null == mMyFragment) {
+		case 3:
+			if (null == mMyFragment) {
 				mMyFragment = new MyFragment();
 				transaction.add(R.id.center_layout, mMyFragment);
 			} else {
 				transaction.show(mMyFragment);
+				transaction.hide(mHomeFragment);
+				transaction.hide(mIdentiyFragment);
+				transaction.hide(mInformationFragment);
 			}
 			break;
 

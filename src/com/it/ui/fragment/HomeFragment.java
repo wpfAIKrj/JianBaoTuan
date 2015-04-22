@@ -23,7 +23,7 @@ public class HomeFragment extends BaseFragment {
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
-		mtitle=(RelativeLayout)view.findViewById(R.id.layout_home_title);
+	
 	}
 
 	@Override
@@ -33,9 +33,10 @@ public class HomeFragment extends BaseFragment {
 	}
 
 	@Override
-	protected void lazyLoad() {
+	public void lazyLoad() {
 		// TODO Auto-generated method stub
 		
+
 	}
 
 }

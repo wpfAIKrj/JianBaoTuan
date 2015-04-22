@@ -30,9 +30,9 @@ public class MyFragment extends BaseFragment {
 	}
 
 	@Override
-	protected void lazyLoad() {
+	public void lazyLoad() {
 		// TODO Auto-generated method stub
-		
+		System.out.println(getClass().getName()+"正在加载数据");
 	}
 
 	

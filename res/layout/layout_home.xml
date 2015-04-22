@@ -3,14 +3,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <ScrollView
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/home_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         >
+        android:orientation="vertical" >
 
-        <include layout="@layout/layout_home_head" android:id="@+id/layout_home_title"/>
-        
-        
-    </ScrollView>
+        <LinearLayout
+            android:id="@+id/linearlayout_search_x"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffff4401"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/home_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:text="鉴定师"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edittext_search_x"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/bg_search_x" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_pash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/push_page" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_object"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textview_goot_object"
+                style="@style/home_textview_item_title"
+                android:text="精品藏品" />
+        </FrameLayout>
+
+        <GridView
+            android:id="@+id/gridview_object"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2" >
+        </GridView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_object"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textview_hot_object"
+                style="@style/home_textview_item_title"
+                android:text="热门鉴定" />
+        </FrameLayout>
+
+        <GridView
+            android:id="@+id/gridview_hot_x"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2" >
+        </GridView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_object"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textview_mix_object"
+                style="@style/home_textview_item_title"
+                android:text="文玩杂学" />
+        </FrameLayout>
+
+        <ListView
+            android:id="@+id/listview_mix_object"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_object"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textview_well_know"
+                style="@style/home_textview_item_title"
+                android:text="知名专家" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_well_know"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+        </FrameLayout>
+    </LinearLayout>
+
+</ScrollView>
 
 </LinearLayout>
