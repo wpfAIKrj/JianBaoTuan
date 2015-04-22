@@ -9,6 +9,7 @@
       android:layout_height="139dp" >
 
       <LinearLayout
+          android:id="@+id/linearLayout1"
           android:layout_width="200dp"
           android:layout_height="wrap_content"
           android:layout_centerHorizontal="true"
@@ -24,19 +25,18 @@
               <com.it.view.CircleImageView
                   android:id="@+id/circleImageView1"
                   android:layout_width="wrap_content"
-                  android:layout_height="wrap_content" 
-                  app:border_width="1dp"
+                  android:layout_height="wrap_content"
+                  android:background="@drawable/ic_launcher"
                   app:border_color="@color/wite"
-                  android:background="@drawable/ic_launcher"/>
-              
+                  app:border_width="1dp" />
           </LinearLayout>
-          <LinearLayout 
-		       android:layout_width="match_parent"
-		      android:layout_height="match_parent"
-		      android:layout_weight="1"
-		      android:orientation="vertical"
-		      android:gravity="center_vertical"
-              >
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:gravity="center_vertical"
+              android:orientation="vertical" >
 
               <TextView
                   android:id="@+id/textView1"
@@ -53,23 +53,21 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="新手上路" />
-
               </LinearLayout>
-              
           </LinearLayout>
       </LinearLayout>
 
       <ImageView
-          android:id="@+id/imageView1"
+          android:id="@+id/my_bt_showmenu"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"
-          android:layout_alignParentTop="true"
-          android:layout_marginLeft="30dp"
-          android:layout_marginTop="27dp"
+          android:layout_above="@+id/linearLayout1"
+          android:layout_marginBottom="20dp"
+          android:layout_marginLeft="39dp"
+          android:layout_toRightOf="@+id/linearLayout1"
           android:src="@drawable/login_input_arrow" />
-      
   </RelativeLayout>
+
     <LinearLayout 
       android:layout_width="match_parent"
       android:layout_height="match_parent"

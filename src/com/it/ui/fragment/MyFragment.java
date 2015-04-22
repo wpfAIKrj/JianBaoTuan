@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.it.R;
 import com.it.ui.base.BaseFragment;
 
 public class MyFragment extends BaseFragment {
-
+	private OnClickListener listener;
+	
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -20,7 +24,17 @@ public class MyFragment extends BaseFragment {
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
-		
+		ImageView bt=(ImageView)view.findViewById(R.id.my_bt_showmenu);
+		bt.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(listener!=null){
+					listener.onClick(v);
+				}
+			}
+		});
 	}
 
 	@Override
@@ -37,7 +51,9 @@ public class MyFragment extends BaseFragment {
 
 	
 	
-	
+	public void  setPopMenuListener(OnClickListener lis){
+		listener=lis;
+	}
 	
 	
 

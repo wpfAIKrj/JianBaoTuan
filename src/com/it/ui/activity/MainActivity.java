@@ -9,6 +9,8 @@ import com.it.ui.fragment.MyFragment;
 import com.it.utils.SystemBarTintManager;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
+import com.it.view.menu.ResideMenu;
+import com.it.view.menu.ResideMenuItem;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
@@ -34,7 +37,7 @@ import android.widget.LinearLayout;
  *
  */
 public class MainActivity extends FragmentActivity implements 
-OnTabSelectedListener{
+OnTabSelectedListener ,OnClickListener{
 	
 	
 	private FragmentManager mFragmentManager;
@@ -47,6 +50,8 @@ OnTabSelectedListener{
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
 	private SystemBarTintManager mTintManager;
+	private ResideMenu resideMenu;
+	private ResideMenuItem item1,item2,item3,item4,item5,item6;
 	 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +68,37 @@ OnTabSelectedListener{
         setContentView(R.layout.activity_main);  
 		init();
 		initEvents();
+		setUpMenu();
     }
 
-    @TargetApi(19)
+    private void setUpMenu() {
+		// TODO Auto-generated method stub
+    	 resideMenu = new ResideMenu(this);
+         resideMenu.setBackground(R.drawable.menu_background);
+         resideMenu.attachToActivity(this);
+      // create menu items;
+         item1   = new ResideMenuItem(this, "个人资料",     null);
+         item2  = new ResideMenuItem(this, "修改密码",  null);
+         item3 = new ResideMenuItem(this, "意见反馈", null);
+         item4 = new ResideMenuItem(this,"检测更新", null);
+         item5 = new ResideMenuItem(this,"清理缓存", "25.6K");
+         item6 = new ResideMenuItem(this,"清理缓存", null);
+         item1.setOnClickListener(this);
+         item2.setOnClickListener(this);
+         item3.setOnClickListener(this);
+         item4.setOnClickListener(this);
+         item5.setOnClickListener(this);
+         item6.setOnClickListener(this);
+         resideMenu.addMenuItem(item1, ResideMenu.DIRECTION_RIGHT);
+         resideMenu.addMenuItem(item2, ResideMenu.DIRECTION_RIGHT);
+         resideMenu.addMenuItem(item3, ResideMenu.DIRECTION_RIGHT);
+         resideMenu.addMenuItem(item4, ResideMenu.DIRECTION_RIGHT);
+         resideMenu.addMenuItem(item5, ResideMenu.DIRECTION_RIGHT);
+         resideMenu.addMenuItem(item6, ResideMenu.DIRECTION_RIGHT);
+
+	}
+
+	@TargetApi(19)
 	private void setTranslucentStatus(boolean b) {
 		// TODO Auto-generated method stub
 			Window win = getWindow();
@@ -177,6 +210,7 @@ OnTabSelectedListener{
 		case 3:
 			if (null == mMyFragment) {
 				mMyFragment = new MyFragment();
+				mMyFragment.setPopMenuListener(this);
 				transaction.add(R.id.center_layout, mMyFragment);
 			} else {
 				transaction.show(mMyFragment);
@@ -209,6 +243,17 @@ OnTabSelectedListener{
 		if(null !=mMyFragment){
 			transaction.hide(mMyFragment);
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v.getId()==R.id.my_bt_showmenu){
+			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
+			return;	
+		}
+	
+		   resideMenu.closeMenu();
 	}
 
 
