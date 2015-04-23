@@ -74,7 +74,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="发送短信" />
+                android:text="发送短信" 
+                style="@style/bt_smart_style"
+                android:textColor="@color/bt_color"/>
             
         </LinearLayout>
 
@@ -114,13 +116,12 @@
         android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/layout_margin_size"
         android:layout_marginRight="@dimen/layout_margin_size"
         android:layout_marginTop="48dp"
-  
+  		style="@style/bt_login_style"
         android:text="注册" />
 
 </LinearLayout>

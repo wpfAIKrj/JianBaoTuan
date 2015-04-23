@@ -5,4 +5,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 	<dimen name="text_size_big">20sp</dimen>
 	<dimen name="layout_margin_size">10dp</dimen>
+	<dimen name="login_bt_size">20sp</dimen>
+	<dimen name="login_smart_size">16sp</dimen>
 </resources>

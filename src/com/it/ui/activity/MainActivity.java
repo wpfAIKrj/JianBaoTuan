@@ -95,8 +95,11 @@ OnTabSelectedListener ,OnClickListener{
          resideMenu.addMenuItem(item4, ResideMenu.DIRECTION_RIGHT);
          resideMenu.addMenuItem(item5, ResideMenu.DIRECTION_RIGHT);
          resideMenu.addMenuItem(item6, ResideMenu.DIRECTION_RIGHT);
-
+        
+         
 	}
+    
+   
 
 	@TargetApi(19)
 	private void setTranslucentStatus(boolean b) {
@@ -168,7 +171,7 @@ OnTabSelectedListener ,OnClickListener{
 	public void onTabSelected(int index) {
 		// TODO Auto-generated method stub
 		//
-		if(index==4){//判断用户是否登陆
+		if(index==3){//我的页面
 			
 		}
 		FragmentTransaction transaction = mFragmentManager.beginTransaction();
@@ -180,9 +183,6 @@ OnTabSelectedListener ,OnClickListener{
 				transaction.add(R.id.center_layout, mHomeFragment);
 			} else {
 				transaction.show(mHomeFragment);
-				transaction.hide(mIdentiyFragment);
-				transaction.hide(mInformationFragment);
-				transaction.hide(mMyFragment);
 			}
 			break;
 		case 1:
@@ -191,9 +191,6 @@ OnTabSelectedListener ,OnClickListener{
 				transaction.add(R.id.center_layout, mIdentiyFragment);
 			} else {
 				transaction.show(mIdentiyFragment);
-				transaction.hide(mHomeFragment);
-				transaction.hide(mInformationFragment);
-				transaction.hide(mMyFragment);
 			}
 			break;
 		case 2:
@@ -202,9 +199,6 @@ OnTabSelectedListener ,OnClickListener{
 				transaction.add(R.id.center_layout, mInformationFragment);
 			} else {
 				transaction.show(mInformationFragment);
-				transaction.hide(mHomeFragment);
-				transaction.hide(mIdentiyFragment);
-				transaction.hide(mMyFragment);
 			}
 			break;
 		case 3:
@@ -214,9 +208,6 @@ OnTabSelectedListener ,OnClickListener{
 				transaction.add(R.id.center_layout, mMyFragment);
 			} else {
 				transaction.show(mMyFragment);
-				transaction.hide(mHomeFragment);
-				transaction.hide(mIdentiyFragment);
-				transaction.hide(mInformationFragment);
 			}
 			break;
 

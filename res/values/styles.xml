@@ -38,4 +38,13 @@
         <item name="android:layout_gravity">center</item>
     </style>
 
+    <style name="bt_login_style">
+        <item name="android:textSize">@dimen/login_bt_size</item>
+        <item name="android:textColor">@color/wite</item>
+        <item name="android:background">@drawable/login_bt</item>
+    </style>
+      <style name="bt_smart_style">
+        <item name="android:textSize">@dimen/login_smart_size</item>
+        <item name="android:textColor">@color/wite</item>
+    </style>
 </resources>
