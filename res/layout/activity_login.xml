@@ -25,7 +25,7 @@
             android:id="@+id/login_user_head"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/user_logo"
             app:border_color="@color/wite"
             app:border_width="1dp" />
     </LinearLayout>
@@ -65,8 +65,8 @@
 
             <Button
                 android:id="@+id/login_bt_clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="8dip"
                 android:background="@drawable/login_input_arrow"
                 android:visibility="visible" />
@@ -137,7 +137,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/layout_margin_size"
         android:layout_marginRight="@dimen/layout_margin_size"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/login_bt"
         android:text="登 录" />
 
