@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="@drawable/main_background">
+    android:background="@drawable/main_background"
+    android:fitsSystemWindows="true">
     
  <include
         android:id="@+id/include1"
@@ -17,15 +18,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginLeft="@dimen/layout_margin_size"
-        android:layout_marginRight="@dimen/layout_margin_size"
+        android:layout_marginLeft="@dimen/layout_padding"
+        android:layout_marginRight="@dimen/layout_padding"
         android:layout_marginTop="23dp"
         android:orientation="vertical" >
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_margin_size"
-            android:background="@color/wite"
+            android:layout_marginTop="@dimen/layout_padding"
+            android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -36,10 +37,13 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:ems="10"
+                android:inputType="phone"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword"
+          		
                 android:singleLine="true"
-                android:textSize="16sp" >
+                 style="@style/edit_login_style"
+                 android:hint="@string/register_name_hint"
+                 >
 
                 <requestFocus />
             </EditText>
@@ -47,8 +51,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_margin_size"
-         
+            android:layout_marginTop="@dimen/layout_margin_top"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -57,14 +60,14 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                
+                android:background="@drawable/ed_code_bg"
                 android:ems="10"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword"
+                android:inputType="number"
                 android:singleLine="true"
-                android:textSize="16sp" 
-                android:background="@color/wite"
+                style="@style/edit_login_style"
                 android:alpha="10"
+                android:hint="@string/register_code_ed_hint"
                 >
 
                 <requestFocus />
@@ -73,10 +76,13 @@
             <Button
                 android:id="@+id/register_send_code"
                 android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="发送短信" 
-                style="@style/bt_smart_style"
+                android:text="@string/register_code_bt_hint" 
+                android:textSize="@dimen/login_bt_smart_size"
+                android:gravity="center"
+                android:background="@drawable/bt_code_bg"
                 android:textColor="@color/bt_color"/>
             
         </LinearLayout>
@@ -84,8 +90,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_margin_size"
-            android:background="@color/wite"
+            android:layout_marginTop="@dimen/layout_margin_top"
+            android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -99,7 +105,8 @@
                 android:imeOptions="actionDone"
                 android:inputType="numberPassword"
                 android:singleLine="true"
-                android:textSize="16sp" >
+                style="@style/edit_login_style" 
+                android:hint="@string/login_pwd_hint">
 
                 <requestFocus />
             </EditText>
@@ -119,10 +126,10 @@
         android:layout_height="50dp"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/layout_margin_size"
-        android:layout_marginRight="@dimen/layout_margin_size"
-        android:layout_marginTop="48dp"
+        android:layout_marginLeft="@dimen/layout_padding"
+        android:layout_marginRight="@dimen/layout_padding"
+        android:layout_marginTop="@dimen/edit_bt_padding"
   		style="@style/bt_login_style"
-        android:text="注册" />
+        android:text="@string/regitster_bt" />
 
 </LinearLayout>

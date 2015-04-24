@@ -7,7 +7,7 @@ import android.view.View.OnClickListener;
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 
-public class RegisterActivity extends BaseActivity implements OnClickListener{
+public class ForgotActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +35,9 @@ public class RegisterActivity extends BaseActivity implements OnClickListener{
 			
 			break;
 		case R.id.register_send_code://发送短信
-			
 			break;
 		default:
 			break;
 		}
 	}
-	
-	
-	
 }

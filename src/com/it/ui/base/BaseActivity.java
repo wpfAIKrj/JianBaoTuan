@@ -25,8 +25,8 @@ public class BaseActivity extends Activity {
             mTintManager = new SystemBarTintManager(this);
     		mTintManager.setStatusBarTintEnabled(true);
     		mTintManager.setNavigationBarTintEnabled(true);
-    		int color=getResources().getColor(R.color.blacground_color);
-    		mTintManager.setTintColor(color);
+//    		int color=getResources().getColor(R.color.blacground_color);
+//    		mTintManager.setTintColor(color);
         }
 	}
 	

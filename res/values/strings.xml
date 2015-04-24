@@ -9,10 +9,25 @@
 	<string name="guide_text_01">专家在线鉴定宝贝</string>
 	<string name="guide_text_02">让你宝贝更放心</string>
 	<string name="home_title">鉴定师</string>
+	
+	
 	 <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    
+    <!-- 登陆页面 -->
+    <string name="login_name_hint">手机号</string>
+    <string name="login_pwd_hint">密码</string>
+    <string name="login_forgeot">忘记密码</string>
+    <string name="login_register">注册账号</string>
+    
+    <!-- 注册页面 -->
+      <string name="register_name_hint">请输入手机号</string>
+      <string name="register_code_ed_hint">验证码</string>
+      <string name="register_code_bt_hint">获取验证码</string>
+      <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
+      <string name="regitster_bt">确定</string>
 </resources>

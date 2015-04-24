@@ -6,6 +6,8 @@
     <color name="text_color">#333333</color>
     <color name="blacground_color_light">#84BBCA</color>
     <color name="light_blue">#BBE4E7</color>
-    <color name="bt_color">#FFA133</color>
-    
+    <color name="bt_color">#ffa333</color>
+    <color name="hint_color">#ababab</color>
+    <color name="cricle_color">#d8d8d8</color>
+    <color name="ed_login_color">#262626</color>
 </resources>
