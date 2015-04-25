@@ -19,7 +19,7 @@
     
     <style name="text_style">
         <item name="android:textColor">@color/text_color</item>
-        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="android:textSize">@dimen/login_bt_big_size</item>
        <item name="android:animationDuration">5000</item>
       
     </style>

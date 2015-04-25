@@ -60,9 +60,6 @@
                 android:singleLine="true"
                	style="@style/edit_login_style"
                 android:hint="@string/login_name_hint"
-          
-   
-            
                 >
 
                 <requestFocus />
