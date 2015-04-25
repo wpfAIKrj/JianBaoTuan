@@ -3,11 +3,14 @@ package com.it.ui.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 
 public class ForgotActivity extends BaseActivity implements OnClickListener{
+
+	private ImageView iv_back;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +22,8 @@ public class ForgotActivity extends BaseActivity implements OnClickListener{
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		
+		iv_back=(ImageView)findViewById(R.id.back_activity);
+		iv_back.setOnClickListener(this);
 	}
 
 	@Override
