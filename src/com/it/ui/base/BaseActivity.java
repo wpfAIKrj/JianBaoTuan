@@ -20,23 +20,25 @@ public class BaseActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(true);
-            mTintManager = new SystemBarTintManager(this);
-    		mTintManager.setStatusBarTintEnabled(true);
-    		mTintManager.setNavigationBarTintEnabled(true);
-//    		int color=getResources().getColor(R.color.blacground_color);
-//    		mTintManager.setTintColor(color);
-        }
+			setWindowStyle();
 	}
 	
-	
+    @TargetApi(19)
+    private void setWindowStyle() {
+		// TODO Auto-generated method stub
+    	if (Build.VERSION.SDK_INT >= 19) {
+            setTranslucentStatus(true);
+            mTintManager = new SystemBarTintManager(this); 
+    		mTintManager.setStatusBarTintEnabled(true);
+    		mTintManager.setNavigationBarTintEnabled(true);
+		}
+	}
 	@TargetApi(19)
 	private void setTranslucentStatus(boolean b) {
 		// TODO Auto-generated method stub
 			Window win = getWindow();
 	        WindowManager.LayoutParams winParams = win.getAttributes();
-	        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+	        final int bits = 0x4000000;//WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
 	        if (b) {
 	            winParams.flags |= bits;
 	        } else {

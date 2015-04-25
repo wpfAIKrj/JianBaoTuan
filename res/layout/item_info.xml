@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:orientation="horizontal" 
-    android:background="@color/wite">
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+  	>
 
-    <LinearLayout
-        android:layout_width="82dp"
-        android:layout_height="match_parent"
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+            <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp" >
+        android:src="@color/cricle_color"
+         >
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher" 
+            android:padding="1dp"/>
         
     </LinearLayout>
   	<RelativeLayout 
@@ -24,15 +32,17 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
         >
 
   		<TextView
   		    android:id="@+id/textView1"
-  		    style="@style/text_style"
+  		    style="@style/item_text_style"
   		    android:layout_width="wrap_content"
   		    android:layout_height="wrap_content"
   		    android:layout_alignParentLeft="true"
   		    android:layout_centerVertical="true"
+  		   
   		    android:text="何为三界偷拍" />
 
   		<TextView
@@ -42,15 +52,22 @@
   		    android:layout_alignBottom="@+id/textView1"
   		    android:layout_alignParentRight="true"
   		    android:text="1024" 
+  		    android:textColor="@color/number_color"
   		    android:layout_marginRight="5dp"/>
 
   		<ImageView
   		    android:id="@+id/imageView2"
   		    android:layout_width="wrap_content"
   		    android:layout_height="wrap_content"
-  		    android:layout_centerVertical="true"
+  		    android:layout_alignTop="@+id/textView2"
   		    android:layout_toLeftOf="@+id/textView2"
-  		    android:src="@drawable/back_botton" />
+  		    android:src="@drawable/point_bg" />
         
     </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_space_color"
+        />
 </LinearLayout>

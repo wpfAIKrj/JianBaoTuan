@@ -17,12 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
-    <style name="text_style">
-        <item name="android:textColor">@color/text_color</item>
-        <item name="android:textSize">@dimen/login_bt_big_size</item>
-       <item name="android:animationDuration">5000</item>
-      
-    </style>
+  
        <style name="home_textview_item_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -31,10 +26,8 @@
         <item name="android:layout_gravity">center</item>
     </style>
     <style name="home_title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#FFFFFFFF</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/wite</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
@@ -58,4 +51,19 @@
     </style>
     
       
+      <style name="item_text_style">
+          <item name="android:textSize">@dimen/item_text_size</item>
+          <item name="android:textColor">@color/ed_login_color</item>
+      </style>
+      
+      
+      <style name="detail_title_style">
+          <item name="android:textColor">@color/dialog_title_color</item>
+          <item name="android:textSize">@dimen/item_text_size</item>
+      </style>
+	   <style name="detail_info_style">
+	          <item name="android:textColor">@color/ed_login_color</item>
+	          <item name="android:textSize">@dimen/item_text_size</item>
+	          <item name="android:lineSpacingExtra">@dimen/detail_info_spacing</item>
+	      </style>
 </resources>

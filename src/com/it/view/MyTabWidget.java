@@ -114,13 +114,13 @@ public class MyTabWidget extends LinearLayout {
 			if (i == 0) {
 				itemName.setChecked(true);
 //				修改点击颜色
-				itemName.setTextColor(Color.rgb(255, 76, 0));
+				itemName.setTextColor(Color.rgb(255, 68, 0));
 				view.setBackgroundColor(Color.rgb(255, 255, 255));
 			} else {
 				
 				itemName.setChecked(false);
 				//没有选择的颜色
-				itemName.setTextColor(Color.rgb(106, 106, 106));
+				itemName.setTextColor(Color.rgb(99,98,98));
 				view.setBackgroundColor(Color.rgb(255, 255, 255));
 			}
 			}
@@ -148,11 +148,11 @@ public class MyTabWidget extends LinearLayout {
 			if ((Integer) (checkedTextView.getTag()) == index) {
 				LogUtils.i(TAG, mLabels[index] + " is selected...");
 				checkedTextView.setChecked(true);
-				checkedTextView.setTextColor(Color.rgb(0, 181, 238));
+				checkedTextView.setTextColor(Color.rgb(255, 68, 0));
 				mViewList.get(i).setBackgroundColor(Color.rgb(255, 255, 255));
 			} else {
 				checkedTextView.setChecked(false);
-				checkedTextView.setTextColor(Color.rgb(106, 106, 106));
+				checkedTextView.setTextColor(Color.rgb(99,98,98));
 				mViewList.get(i).setBackgroundColor(Color.rgb(255, 255, 255));
 			}
 		}

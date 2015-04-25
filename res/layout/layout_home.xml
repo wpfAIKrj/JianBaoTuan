@@ -12,7 +12,7 @@
 	    android:layout_height="match_parent"
 	    android:orientation="vertical"
 	    >
-	   	<include layout="@layout/layout_article_head"/>
+	   	<include layout="@layout/layout_home_head"/>
 	    
 	    
 	</LinearLayout>

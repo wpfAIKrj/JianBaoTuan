@@ -13,4 +13,17 @@
 	<dimen name="layout_margin_top">10dp</dimen>
 	<dimen name="login_bt_big_size">20sp</dimen>
 	<dimen name="login_bt_smart_size">15sp</dimen>
+	
+	<dimen name="smart_text_size">10sp</dimen>
+	
+	
+	<dimen name="title_text_size">19sp</dimen>
+	
+	<dimen name="home_layout_ml">23dp</dimen>
+	<dimen name="home_layout_mr">11dp</dimen>
+	
+	<dimen name="item_text_size">12sp</dimen>
+	
+	<dimen name="detail_text_padd">7dp</dimen>
+	<dimen name="detail_info_spacing">18dp</dimen>
 </resources>

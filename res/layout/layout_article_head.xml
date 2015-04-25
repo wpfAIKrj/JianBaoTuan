@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="45dp"
     android:orientation="vertical" 
-    android:background="@color/blacground_color"
-    android:padding="2dp"
+    android:background="@color/dialog_title_color"
+    
     >
-
-
-
-        <Button
-            android:id="@+id/button_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/menu_category" />
 
         <TextView
             android:id="@+id/home_title"
             style="@style/home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="鉴定大厅" />
+            android:text="@string/identiy" />
+
+        <ImageView
+            android:id="@+id/button_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/menu_category" />
 
 </RelativeLayout>

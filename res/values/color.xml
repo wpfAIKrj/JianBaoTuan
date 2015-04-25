@@ -4,7 +4,6 @@
     <color name="black">#000000</color>
     <color name="dialog_bg_color">#D8DAD9</color>
     <color name="dialog_title_color">#ff4400</color>
-    <color name="blacground_color">#FF4C00</color>
     <color name="text_color">#333333</color>
     <color name="blacground_color_light">#84BBCA</color>
     <color name="light_blue">#BBE4E7</color>
@@ -12,4 +11,7 @@
     <color name="hint_color">#ababab</color>
     <color name="cricle_color">#d8d8d8</color>
     <color name="ed_login_color">#262626</color>
+    
+    <color name="item_space_color">#d5d5d5</color>
+    <color name="number_color">#8d8d8d</color>
 </resources>

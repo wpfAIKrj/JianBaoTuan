@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/wite"
+    android:fitsSystemWindows="true">
+    
+    
+    <include layout="@layout/layout_detail_head"/>
+    
+	<ScrollView 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    >
+	    <LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical"
+	        >
+
+	        <TextView
+	            android:id="@+id/textView1"
+	            android:layout_width="match_parent"
+	            android:layout_height="42dp"
+	            android:gravity="center_vertical"
+	            android:text="找寻你自己的佛珠" 
+	            style="@style/detail_title_style"
+	            android:layout_marginLeft="@dimen/detail_text_padd"
+	            />
+
+	        <View 
+	            android:layout_width="match_parent"
+	            android:layout_height="1dp"
+	            android:background="@color/item_space_color"
+	            />
+	        <ImageView
+	            android:id="@+id/imageView1"
+	            android:layout_width="match_parent"
+	            android:layout_height="250dp"
+	            android:src="@drawable/ic_launcher" />
+	         <View 
+	            android:layout_width="match_parent"
+	            android:layout_height="1dp"
+	            android:background="@color/item_space_color"
+	            />
+
+	         <TextView
+	             android:id="@+id/textView2"
+	             android:layout_width="match_parent"
+	             android:layout_height="wrap_content"
+	             android:text="TextView" 
+	             style="@style/detail_info_style"
+	              android:layout_marginLeft="@dimen/detail_text_padd"
+	               android:layout_marginRight="@dimen/detail_text_padd"
+	             />
+	         
+	    </LinearLayout>
+	</ScrollView>
+</LinearLayout>
