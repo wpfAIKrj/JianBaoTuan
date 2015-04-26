@@ -9,21 +9,26 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 
-public class InformationDetailsActivity extends BaseActivity implements OnClickListener{
+public class PublishedActivity extends BaseActivity implements OnClickListener {
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_informationdetail);
+		setContentView(R.layout.activity_feedback);
 		initView();
 	}
+
+	
+	
 	private void initView() {
 		// TODO Auto-generated method stub
-		ImageView bt=(ImageView)findViewById(R.id.detail_back);
+		ImageView bt=(ImageView)findViewById(R.id.button_category);
 		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
+		TextView tv=(TextView)findViewById(R.id.home_title);
+		tv.setText(R.string.feednack_title);
 	}
 
 
@@ -32,7 +37,7 @@ public class InformationDetailsActivity extends BaseActivity implements OnClickL
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.detail_back://返回上层
+		case R.id.button_category://返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;

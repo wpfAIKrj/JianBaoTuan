@@ -1,5 +1,6 @@
 package com.it.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,16 +8,20 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.it.R;
+import com.it.ui.activity.AuthenticateActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.listview.HorizontalListView;
 
-public class MyFragment extends BaseFragment {
+public class MyFragment extends BaseFragment implements OnClickListener{
 	private OnClickListener listener;
 	private HorizontalListView listView;
-	
+	private TextView tv_name,tv_authenticate,tv_collect_number;
+	private ImageView iv_authenticate;
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -41,6 +46,16 @@ public class MyFragment extends BaseFragment {
 		listView = (HorizontalListView) view.findViewById(R.id.horizontalListView1);
 		MyLoveAdapter adapter=new MyLoveAdapter(mActivity);
 		listView.setAdapter(adapter);
+		tv_name=(TextView)view.findViewById(R.id.my_tv_name);
+		tv_authenticate=(TextView)view.findViewById(R.id.my_tv_authenticate);
+		tv_authenticate.setOnClickListener(this);
+		iv_authenticate=(ImageView)view.findViewById(R.id.my_iv_authenticate);
+		iv_authenticate.setOnClickListener(this);
+		
+		tv_collect_number=(TextView)view.findViewById(R.id.my_tv_collect_number);
+		LinearLayout layout=(LinearLayout)view.findViewById(R.id.my_layout_collect);
+		layout.setOnClickListener(this);
+	
 	}
 
 	@Override
@@ -59,6 +74,23 @@ public class MyFragment extends BaseFragment {
 	
 	public void  setPopMenuListener(OnClickListener lis){
 		listener=lis;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.my_tv_authenticate://跳转到认证鉴定师
+			mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
+			break;
+		case R.id.my_iv_authenticate://跳转到等级介绍
+			
+			break;
+		case R.id.my_layout_collect://跳转收集宝贝页面
+			break;
+		default:
+			break;
+		}
 	}
 	
 	

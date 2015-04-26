@@ -30,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 /**
@@ -52,7 +53,6 @@ OnTabSelectedListener ,OnClickListener{
 	private int mIndex=0;
 	private SystemBarTintManager mTintManager;
 	private ResideMenu resideMenu;
-	 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +110,15 @@ OnTabSelectedListener ,OnClickListener{
 		mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
 	     LinearLayout viewSnsLayout = (LinearLayout)findViewById(R.id.viewSnsLayout);      
 	     viewSnsLayout.setLongClickable(true);
+	     Button bt=(Button)findViewById(R.id.circle_btn);
+	     bt.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(MainActivity.this, PublishedActivity.class));
+			}
+		});
 	}
 	private void initEvents() {
 			// TODO Auto-generated method stub

@@ -62,7 +62,7 @@
               app:border_width="1dp" />
 
           <TextView
-              android:id="@+id/textView1"
+              android:id="@+id/my_tv_name"
               style="@style/my_name_style"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -86,14 +86,14 @@
               android:background="@drawable/ed_code_bg">
 
               <TextView
-                  android:id="@+id/textView3"
+                  android:id="@+id/my_tv_authenticate"
                   style="@style/my_up_style"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="成为网络鉴定师" />
 
               <ImageView
-                  android:id="@+id/imageView1"
+                  android:id="@+id/my_iv_authenticate"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_marginLeft="5dp"
@@ -110,6 +110,7 @@
           android:orientation="horizontal" >
 
           <LinearLayout 
+              android:id="@+id/my_layout_collect"
                android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -127,7 +128,7 @@
                   style="@style/my_title_style1"
                   />
               <TextView
-       
+       				android:id="@+id/my_tv_collect_number"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center" 
