@@ -44,4 +44,10 @@
       <string name="profile_qq">QQ号:</string>
       <string name="profile_email">邮箱:</string>
       <string name="profile_bt_save">保存修改</string>
+      
+       <!-- 修改密码 -->
+      <string name="password_title">修改密码</string>
+      <string name="password_old">旧密码:</string>
+      <string name="password_new">新密码:</string>
+      <string name="password_renew">确认新密码:</string>
 </resources>

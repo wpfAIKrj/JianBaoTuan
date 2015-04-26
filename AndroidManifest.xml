@@ -46,6 +46,9 @@
            <activity android:name="com.it.ui.activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
+            <activity android:name="com.it.ui.activity.PasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
      <supports-screens
