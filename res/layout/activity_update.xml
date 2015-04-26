@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layout_bg_color"
+    
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    
+     >
+
+    <include layout="@layout/layout_article_head"/>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/update_icon" 
+        android:layout_marginTop="50dp"
+        />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v1.0.1" 
+        android:textColor="@color/number_color"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已是最新版本" 
+        android:textColor="@color/number_color"
+        android:layout_marginTop="@dimen/layout_margin_top"
+        android:textSize="13sp"
+        />
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_space_color"
+        android:layout_marginTop="@dimen/user_logo_width"
+        />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/wite"
+        android:text="@string/update_bt" 
+        style="@style/my_title_style1"
+        />
+		<View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_space_color"
+        />
+</LinearLayout>

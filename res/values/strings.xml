@@ -55,4 +55,10 @@
       <string name="feednack_title">意见反馈</string>
       <string name="feednack_hint">请尽量详细描述反馈，鉴定师平台会尽快帮你解决...</string>
        <string name="feednack_bt">提交</string>
+       
+       
+      <!-- 检测更新 -->
+      <string name="update_title">检测更新</string>
+      <string name="update_bt">版本更新</string>
+
 </resources>

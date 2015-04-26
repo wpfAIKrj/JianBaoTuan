@@ -242,7 +242,7 @@ OnTabSelectedListener ,OnClickListener{
 			startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
 		}
 		if(v.getId()==R.id.layout_item4){//检测更新
-	
+			startActivity(new Intent(MainActivity.this, UpdaateActivity.class));
 		}
 		if(v.getId()==R.id.layout_item5){//清楚缓存
 
