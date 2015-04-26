@@ -13,6 +13,7 @@ import com.it.view.menu.ResideMenu;
 import com.it.view.menu.ResideMenuItem;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -81,8 +82,9 @@ OnTabSelectedListener ,OnClickListener{
     	 resideMenu = new ResideMenu(this);
          resideMenu.setBackground(R.drawable.menu_background);
          resideMenu.attachToActivity(this);
-      // create menu items;
-     
+         resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_LEFT);
+         resideMenu.setShadowVisible(false);
+         resideMenu.setButtonOnClickListener(this);
          
 	}
     
@@ -230,8 +232,25 @@ OnTabSelectedListener ,OnClickListener{
 			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
 			return;	
 		}
+		if(v.getId()==R.id.layout_item1){//跳转到个人资料
+			startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+		}
+		if(v.getId()==R.id.layout_item2){//修改密码
+		
+		}
+		if(v.getId()==R.id.layout_item3){//意见反馈
+		
+		}
+		if(v.getId()==R.id.layout_item4){//检测更新
 	
-		   resideMenu.closeMenu();
+		}
+		if(v.getId()==R.id.layout_item5){//清楚缓存
+
+		}
+		if(v.getId()==R.id.layout_item1){//退出登陆
+		
+		}
+		resideMenu.closeMenu();
 	}
 
 

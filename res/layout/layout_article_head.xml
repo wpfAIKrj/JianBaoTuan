@@ -23,6 +23,6 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/menu_category" />
+            android:background="@drawable/menu_category" />
 
 </RelativeLayout>

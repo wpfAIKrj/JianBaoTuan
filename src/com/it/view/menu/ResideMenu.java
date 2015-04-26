@@ -10,7 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.it.R;
 import com.nineoldandroids.animation.Animator;
@@ -27,7 +29,7 @@ import java.util.List;
  * Time: 下午10:44
  * Mail: specialcyci@gmail.com
  */
-public class ResideMenu extends FrameLayout{
+public class ResideMenu extends FrameLayout {
 
     public  static final int DIRECTION_LEFT  = 0;
     public  static final int DIRECTION_RIGHT = 1;
@@ -38,6 +40,7 @@ public class ResideMenu extends FrameLayout{
 
     private ImageView imageViewShadow;
     private ImageView imageViewBackground;
+    private TextView cache_number;
     private LinearLayout layoutLeftMenu;
     private LinearLayout layoutRightMenu;
     private ScrollView scrollViewLeftMenu;
@@ -81,6 +84,19 @@ public class ResideMenu extends FrameLayout{
         layoutLeftMenu = (LinearLayout) findViewById(R.id.layout_left_menu);
         layoutRightMenu = (LinearLayout) findViewById(R.id.layout_right_menu);
         imageViewBackground = (ImageView) findViewById(R.id.iv_background);
+        RelativeLayout layout=(RelativeLayout)findViewById(R.id.layout_item1);
+        layout.setOnClickListener(listener2);
+        layout=(RelativeLayout)findViewById(R.id.layout_item2);
+        layout.setOnClickListener(listener2);
+        layout=(RelativeLayout)findViewById(R.id.layout_item3);
+        layout.setOnClickListener(listener2);
+        layout=(RelativeLayout)findViewById(R.id.layout_item4);
+        layout.setOnClickListener(listener2);
+        layout=(RelativeLayout)findViewById(R.id.layout_item5);
+        layout.setOnClickListener(listener2);
+        layout=(RelativeLayout)findViewById(R.id.layout_item6);
+        layout.setOnClickListener(listener2);
+        cache_number=(TextView)findViewById(R.id.cache_number);
     }
 
     @Override
@@ -605,5 +621,26 @@ public class ResideMenu extends FrameLayout{
         if (scrollViewMenu != null && scrollViewMenu.getParent() != null){
             removeView(scrollViewMenu);
         }
+    }
+    private OnClickListener listener2=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if(listener!=null){
+				listener.onClick(v);
+			}
+		}
+	};
+    private OnClickListener listener=null;
+    
+    public void setButtonOnClickListener(OnClickListener lis){
+    	listener=lis;
+    }
+    
+    public void setCacheNumber(String number){
+    	if(cache_number!=null){
+    		cache_number.setText(number+"k");
+    	}
     }
 }

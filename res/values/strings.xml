@@ -38,4 +38,10 @@
       <string name="my_title_collect">我的宝物</string>
       <string name="my_title_footprint">我的足迹</string>
       <string name="my_title_appraisal">我的鉴定</string>
+      
+      <!-- 个人资料 -->
+      <string name="profile_title">个人资料</string>
+      <string name="profile_qq">QQ号:</string>
+      <string name="profile_email">邮箱:</string>
+      <string name="profile_bt_save">保存修改</string>
 </resources>

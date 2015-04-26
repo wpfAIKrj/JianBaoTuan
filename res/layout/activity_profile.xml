@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/wite"
+    
+    android:fitsSystemWindows="true"
+    
+     >
+
+    	<include layout="@layout/layout_article_head"/>
+
+    	<EditText
+    	    android:id="@+id/editText1"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="47dp"
+    	    android:ems="10"
+    	    android:background="@color/layout_bg_color"
+    	    android:inputType="number" 
+    	    android:gravity="center_vertical|left"
+    	    android:hint="@string/profile_qq"
+    	    style="@style/my_title_style3"
+    	    android:paddingLeft="@dimen/layout_padding"
+    	    android:layout_marginTop="@dimen/layout_padding"
+    	    >
+
+    	    <requestFocus />
+    	</EditText>
+		<EditText
+		    	    android:id="@+id/editText2"
+		    	    android:layout_width="match_parent"
+		    	    android:layout_height="47dp"
+		    	    android:ems="10"
+		    	    android:background="@color/layout_bg_color"
+		    	    android:inputType="number" 
+		    	    android:gravity="center_vertical|left"
+		    	    android:hint="@string/profile_email"
+		    	    style="@style/my_title_style3"
+		    	    android:paddingLeft="@dimen/layout_padding"
+		    	    android:layout_marginTop="@dimen/layout_padding"
+		    	    >
+		
+		    	    <requestFocus />
+		    	</EditText>
+
+		<Button
+		    android:id="@+id/button1"
+		    android:layout_width="match_parent"
+		    android:layout_height="50dp"
+		    android:text="@string/profile_bt_save"
+		    style="@style/bt_login_style"
+		    android:layout_marginLeft="@dimen/detail_text_padd"
+		    android:layout_marginRight="@dimen/detail_text_padd"
+		    android:layout_marginTop="100dp" />
+
+</LinearLayout>

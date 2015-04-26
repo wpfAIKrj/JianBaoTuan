@@ -13,7 +13,7 @@
             android:id="@+id/iv_shadow"
             android:background="@drawable/shadow"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:scaleType="fitXY"/>
 
     <ScrollView
@@ -224,7 +224,7 @@
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
-	    android:id="@+id/layout_item6"
+	    android:id="@+id/layout_item5"
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
@@ -277,6 +277,8 @@
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
+	      android:id="@+id/layout_item6"
+		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="50dp"
