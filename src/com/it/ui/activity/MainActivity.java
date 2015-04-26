@@ -239,7 +239,7 @@ OnTabSelectedListener ,OnClickListener{
 			startActivity(new Intent(MainActivity.this, PasswordActivity.class));
 		}
 		if(v.getId()==R.id.layout_item3){//意见反馈
-		
+			startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
 		}
 		if(v.getId()==R.id.layout_item4){//检测更新
 	

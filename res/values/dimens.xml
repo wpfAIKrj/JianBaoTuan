@@ -29,4 +29,7 @@
 	
 	
 	<dimen name="my_up_size">13sp</dimen>
+	
+	
+	<dimen name="bt_margintop_layout">50dp</dimen>
 </resources>

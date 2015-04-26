@@ -15,19 +15,24 @@
     	    android:layout_width="match_parent"
     	    android:layout_height="1dp"
     	     android:layout_marginTop="@dimen/layout_padding"
+    	         android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
     	     android:background="@color/item_space_color"
     	    />
     	<EditText
     	    android:id="@+id/editText1"
     	    android:layout_width="match_parent"
-    	    android:layout_height="47dp"
+    	    android:layout_height="200dp"
     	    android:ems="10"
     	    android:background="@color/layout_bg_color"
     	    android:inputType="number" 
-    	    android:gravity="center_vertical|left"
-    	    android:hint="@string/profile_qq"
+    	    android:gravity="left"
+    	    android:hint="@string/feednack_hint"
+    	    
     	    style="@style/my_title_style3"
-    	    android:paddingLeft="@dimen/layout_padding"
+    	    android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
+    	    
     	    >
 
     	    <requestFocus />
@@ -35,37 +40,8 @@
     	<View
     	    android:layout_width="match_parent"
     	    android:layout_height="1dp"
-    	 
-    	     android:background="@color/item_space_color"
-    	    />
-    	
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	     android:layout_marginTop="@dimen/layout_padding"
-    	     android:background="@color/item_space_color"
-    	    
-    	    />
-		<EditText
-		    	    android:id="@+id/editText2"
-		    	    android:layout_width="match_parent"
-		    	    android:layout_height="47dp"
-		    	    android:ems="10"
-		    	    android:background="@color/layout_bg_color"
-		    	    android:inputType="number" 
-		    	    android:gravity="center_vertical|left"
-		    	    android:hint="@string/profile_email"
-		    	    style="@style/my_title_style3"
-		    	    android:paddingLeft="@dimen/layout_padding"
-		    	
-		    	    >
-		
-		    	    <requestFocus />
-		    	</EditText>
-<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	 
+    	     android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
     	     android:background="@color/item_space_color"
     	    />
     	
@@ -73,10 +49,10 @@
 		    android:id="@+id/button1"
 		    android:layout_width="match_parent"
 		    android:layout_height="50dp"
-		    android:text="@string/profile_bt_save"
+		    android:text="@string/feednack_bt"
 		    style="@style/bt_login_style"
 		    android:layout_marginLeft="@dimen/detail_text_padd"
 		    android:layout_marginRight="@dimen/detail_text_padd"
-		    android:layout_marginTop="@dimen/bt_margintop_layout" />
+		   android:layout_marginTop="@dimen/bt_margintop_layout"/>
 
 </LinearLayout>

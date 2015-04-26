@@ -50,4 +50,9 @@
       <string name="password_old">旧密码:</string>
       <string name="password_new">新密码:</string>
       <string name="password_renew">确认新密码:</string>
+      
+      <!-- 意见反馈 -->
+      <string name="feednack_title">意见反馈</string>
+      <string name="feednack_hint">请尽量详细描述反馈，鉴定师平台会尽快帮你解决...</string>
+       <string name="feednack_bt">提交</string>
 </resources>
