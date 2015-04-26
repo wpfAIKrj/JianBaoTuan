@@ -183,6 +183,9 @@ public class ResideMenu extends FrameLayout{
             layoutRightMenu.addView(menuItem);
         }
     }
+    
+    
+    
 
     /**
      * WARNING: It will be removed from v2.0.
@@ -310,7 +313,7 @@ public class ResideMenu extends FrameLayout{
             pivotX  = screenWidth * 1.5f;
         }else{
             scrollViewMenu = scrollViewRightMenu;
-            pivotX  = screenWidth * -0.5f;
+            pivotX  = screenWidth * -0.6f;
         }
 
         ViewHelper.setPivotX(viewActivity, pivotX);

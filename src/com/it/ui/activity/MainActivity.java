@@ -51,7 +51,6 @@ OnTabSelectedListener ,OnClickListener{
 	private int mIndex=0;
 	private SystemBarTintManager mTintManager;
 	private ResideMenu resideMenu;
-	private ResideMenuItem item1,item2,item3,item4,item5,item6;
 	 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,25 +82,7 @@ OnTabSelectedListener ,OnClickListener{
          resideMenu.setBackground(R.drawable.menu_background);
          resideMenu.attachToActivity(this);
       // create menu items;
-         item1   = new ResideMenuItem(this, "个人资料",     null);
-         item2  = new ResideMenuItem(this, "修改密码",  null);
-         item3 = new ResideMenuItem(this, "意见反馈", null);
-         item4 = new ResideMenuItem(this,"检测更新", null);
-         item5 = new ResideMenuItem(this,"清理缓存", "25.6K");
-         item6 = new ResideMenuItem(this,"清理缓存", null);
-         item1.setOnClickListener(this);
-         item2.setOnClickListener(this);
-         item3.setOnClickListener(this);
-         item4.setOnClickListener(this);
-         item5.setOnClickListener(this);
-         item6.setOnClickListener(this);
-         resideMenu.addMenuItem(item1, ResideMenu.DIRECTION_RIGHT);
-         resideMenu.addMenuItem(item2, ResideMenu.DIRECTION_RIGHT);
-         resideMenu.addMenuItem(item3, ResideMenu.DIRECTION_RIGHT);
-         resideMenu.addMenuItem(item4, ResideMenu.DIRECTION_RIGHT);
-         resideMenu.addMenuItem(item5, ResideMenu.DIRECTION_RIGHT);
-         resideMenu.addMenuItem(item6, ResideMenu.DIRECTION_RIGHT);
-        
+     
          
 	}
     

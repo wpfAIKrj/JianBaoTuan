@@ -28,11 +28,12 @@ public class ResideMenuItem extends LinearLayout{
         initViews(context);
     }
 
-    public ResideMenuItem(Context context, int title,String number) {
+    public ResideMenuItem(Context context, int title,String number,int type) {
         super(context);
         initViews(context);
 //        iv_icon.setImageResource(icon);
         tv_title.setText(title);
+        
         if(number!=null){
         	tv_number.setText(number);
         }else{
@@ -40,7 +41,7 @@ public class ResideMenuItem extends LinearLayout{
         }
     }
 
-    public ResideMenuItem(Context context,String title,String number) {
+    public ResideMenuItem(Context context,String title,String number,int type) {
         super(context);
         initViews(context);
 //        iv_icon.setImageResource(icon);
@@ -53,11 +54,11 @@ public class ResideMenuItem extends LinearLayout{
     }
 
     private void initViews(Context context){
-        LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.residemenu_item, this);
-        iv_icon = (ImageView) findViewById(R.id.iv_icon);
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_number=(TextView) findViewById(R.id.tv_number);
+//        LayoutInflater inflater=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        inflater.inflate(R.layout.residemenu_item, this);
+//        iv_icon = (ImageView) findViewById(R.id.iv_icon);
+//        tv_title = (TextView) findViewById(R.id.tv_title);
+//        tv_number=(TextView) findViewById(R.id.tv_number);
     }
 
     /**
