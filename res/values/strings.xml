@@ -31,4 +31,11 @@
       <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
       <string name="regitster_bt">确定</string>
       <string name="register_result_succes">注册成功</string>
+      
+      
+      <!-- 我的页面 -->
+      
+      <string name="my_title_collect">我的宝物</string>
+      <string name="my_title_footprint">我的足迹</string>
+      <string name="my_title_appraisal">我的鉴定</string>
 </resources>

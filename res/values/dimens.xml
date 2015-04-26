@@ -26,4 +26,7 @@
 	
 	<dimen name="detail_text_padd">7dp</dimen>
 	<dimen name="detail_info_spacing">18dp</dimen>
+	
+	
+	<dimen name="my_up_size">13sp</dimen>
 </resources>

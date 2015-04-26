@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.it.R;
+import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
+import com.it.view.listview.HorizontalListView;
 
 public class MyFragment extends BaseFragment {
 	private OnClickListener listener;
+	private HorizontalListView listView;
 	
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +38,9 @@ public class MyFragment extends BaseFragment {
 				}
 			}
 		});
+		listView = (HorizontalListView) view.findViewById(R.id.horizontalListView1);
+		MyLoveAdapter adapter=new MyLoveAdapter(mActivity);
+		listView.setAdapter(adapter);
 	}
 
 	@Override

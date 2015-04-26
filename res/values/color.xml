@@ -2,6 +2,7 @@
 <resources>
     <color name="wite">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="layout_bg_color">#EEEEEE</color>
     <color name="dialog_bg_color">#D8DAD9</color>
     <color name="dialog_title_color">#ff4400</color>
     <color name="text_color">#333333</color>
@@ -14,4 +15,5 @@
     
     <color name="item_space_color">#d5d5d5</color>
     <color name="number_color">#8d8d8d</color>
+    
 </resources>
