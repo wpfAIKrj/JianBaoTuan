@@ -6,7 +6,6 @@ import com.it.ui.fragment.HomeFragment;
 import com.it.ui.fragment.IdentiyFragment;
 import com.it.ui.fragment.InformationFragment;
 import com.it.ui.fragment.MyFragment;
-import com.it.utils.SystemBarTintManager;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
 import com.it.view.menu.ResideMenu;
@@ -51,31 +50,31 @@ OnTabSelectedListener ,OnClickListener{
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
-	private SystemBarTintManager mTintManager;
+	//private SystemBarTintManager mTintManager;
 	private ResideMenu resideMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setWindowStyle();
+		//setWindowStyle();
         setContentView(R.layout.activity_main);  
 		init();
 		initEvents();
 		setUpMenu();
     }
 
-    @TargetApi(19)
-    private void setWindowStyle() {
-		// TODO Auto-generated method stub
-    	if (Build.VERSION.SDK_INT >= 19) {
-            setTranslucentStatus(true);
-            mTintManager = new SystemBarTintManager(this); 
-    		mTintManager.setStatusBarTintEnabled(true);
-    		mTintManager.setNavigationBarTintEnabled(true);
-    		int color=getResources().getColor(R.color.dialog_title_color);
-    		mTintManager.setTintColor(color);
-		}
-	}
+//    @TargetApi(19)
+//    private void setWindowStyle() {
+//		// TODO Auto-generated method stub
+//    	if (Build.VERSION.SDK_INT >= 19) {
+//            setTranslucentStatus(true);
+//            mTintManager = new SystemBarTintManager(this); 
+//    		mTintManager.setStatusBarTintEnabled(true);
+//    		mTintManager.setNavigationBarTintEnabled(true);
+//    		int color=getResources().getColor(R.color.dialog_title_color);
+//    		mTintManager.setTintColor(color);
+//		}
+//	}
 
 	private void setUpMenu() {
 		// TODO Auto-generated method stub

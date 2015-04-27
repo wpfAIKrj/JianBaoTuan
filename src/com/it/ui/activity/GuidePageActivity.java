@@ -20,10 +20,10 @@ public class GuidePageActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
-		if(mTintManager!=null){
-			int color=getResources().getColor(R.color.wite);
-    		mTintManager.setTintColor(color);
-		}
+//		if(mTintManager!=null){
+//			int color=getResources().getColor(R.color.wite);
+//    		mTintManager.setTintColor(color);
+//		}
 		mHandler.postDelayed(new Runnable() {
 			
 			@Override
