@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/wite"
+    
+    android:fitsSystemWindows="true"
+    
+     >
+
+    	<include layout="@layout/layout_article_head"/>
+
+    	<TextView
+    	    android:id="@+id/textView1"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:textColor="@color/ed_login_color"
+    	    android:text="宝贝说明" 
+    	    android:textSize="@dimen/login_bt_smart_size"
+    	    android:paddingTop="10dp"
+    	    android:layout_marginLeft="@dimen/detail_text_padd"/>
+
+    	<View
+    	    android:layout_width="match_parent"
+    	    android:layout_height="1dp"
+    	     android:layout_marginTop="@dimen/layout_padding"
+    	         android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
+    	     android:background="@color/item_space_color"
+    	    />
+
+    	<EditText
+    	    android:id="@+id/editText1"
+    	    style="@style/my_title_style3"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="116dp"
+    	    android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
+    	    android:background="@color/layout_bg_color"
+    	    android:ems="10"
+    	    android:gravity="left"
+    	    android:hint="请尽量说明你的宝贝信息，如何获得时间，价格，途径等"
+    	    android:inputType="number" >
+
+    	    <requestFocus />
+    	</EditText>
+    	<View
+    	    android:layout_width="match_parent"
+    	    android:layout_height="1dp"
+    	     android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
+    	     android:background="@color/item_space_color"
+    	    />
+		<TextView
+    
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:textColor="@color/ed_login_color"
+    	    android:text="选择鉴定师" 
+    	    android:textSize="@dimen/login_bt_smart_size"
+    	    android:paddingTop="10dp"
+    	    android:layout_marginLeft="@dimen/detail_text_padd"/>
+
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/test1" />
+    	
+		<Button
+		    android:id="@+id/button1"
+		    android:layout_width="match_parent"
+		    android:layout_height="50dp"
+		    android:text="@string/feednack_bt"
+		    style="@style/bt_login_style"
+		    android:layout_marginLeft="@dimen/detail_text_padd"
+		    android:layout_marginRight="@dimen/detail_text_padd"
+		    android:layout_marginTop="20dp"
+		 />
+
+</LinearLayout>

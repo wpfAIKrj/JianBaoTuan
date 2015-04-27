@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/wite"
+    
+    android:fitsSystemWindows="true"
+    
+     >
+
+    	<include layout="@layout/layout_article_head"/>
+
+    	<TextView
+    	    android:id="@+id/textView1"
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:text="为了确保鉴定的准确性，请你按照要求分享宝贝照片及信息"
+    	    android:textSize="@dimen/item_text_size"
+    	    android:textColor="@color/number_color" 
+    	    android:background="@color/layout_bg_color"
+    	    android:paddingLeft="@dimen/detail_text_padd"
+    	    android:gravity="center_vertical|left"
+    	    android:paddingTop="15dp"
+    	    android:paddingBottom="15dp"/>
+
+    	<View
+    	    android:layout_width="match_parent"
+    	    android:layout_height="1dp"
+    	     android:background="@color/item_space_color"
+    	    />
+
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical"
+    	    android:layout_marginLeft="@dimen/detail_text_padd"
+  
+    	     >
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:orientation="vertical"
+    		     android:layout_marginTop="5dp"
+    		     >
+
+    			<TextView
+    			    android:layout_width="match_parent"
+    			    android:layout_height="match_parent"
+    			    android:text="请判断宝贝类型"
+    			    android:gravity="center_vertical"
+    			    android:textSize="@dimen/login_bt_smart_size"
+    	    		android:textColor="@color/ed_login_color" 
+    	   
+    	
+    			     />
+
+    		</LinearLayout>
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:orientation="horizontal"
+    		    android:gravity="center_vertical"
+   				android:layout_marginTop="5dp"
+    		     >
+
+    			<ImageView
+    			    android:id="@+id/published_bt"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content"
+    			    android:src="@drawable/published_bt_bg" />
+
+    			<TextView
+    			
+    			    android:layout_width="38dp"
+    			    android:layout_height="match_parent"
+    			    android:text="木"
+    			    android:layout_marginLeft="16dp" 
+    			    android:gravity="center"
+    			    android:textColor="@color/wite"
+    			    android:background="@color/number_color"
+    			    android:layout_marginTop="5dp"
+    			    android:layout_marginBottom="5dp"
+    			    />
+				<TextView
+    			  
+    			    android:layout_width="38dp"
+    			    android:layout_height="match_parent"
+    			    android:text="沉香"
+    			    android:layout_marginLeft="10dp" 
+    			    android:gravity="center"
+    			    android:textColor="@color/wite"
+    			    android:background="@color/bt_color"
+    			    android:layout_marginTop="5dp"
+    			    android:layout_marginBottom="5dp"
+    			    />
+				
+				<TextView
+    			  
+    			    android:layout_width="62dp"
+    			    android:layout_height="match_parent"
+    			    android:text="小叶紫檀"
+    			    android:layout_marginLeft="10dp" 
+    			    android:gravity="center"
+    			    android:textColor="@color/wite"
+    			    android:background="@color/number_color"
+    			    android:layout_marginTop="5dp"
+    			    android:layout_marginBottom="5dp"
+    			    />
+    		</LinearLayout>
+
+    	</LinearLayout>
+    	<View
+    	    android:layout_width="match_parent"
+    	    android:layout_height="1dp"
+    	     android:background="@color/item_space_color"
+    	     android:layout_marginTop="5dp"
+    	    />
+
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical" >
+
+    		<TextView
+    		
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:text="宝贝全景(建议与参照物一起拍照,如烟盒,硬币,尺子等)"
+    	    	android:textSize="@dimen/item_text_size"
+    	   	 	android:textColor="@color/ed_login_color" 
+    	    	android:paddingLeft="@dimen/detail_text_padd"
+    	    	android:gravity="center_vertical|left" 
+    	    	android:layout_marginTop="10dp"/>
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content" 
+    		    android:orientation="horizontal"
+    		    android:layout_marginTop="10dp"
+    		    >
+				<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView01"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+					<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView02"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+					<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView03"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+				
+    		</LinearLayout>
+
+    	</LinearLayout>
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical" 
+    	    android:layout_marginTop="5dp">
+
+    		<TextView
+    		   
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:text="宝贝特写"
+    	    	android:textSize="@dimen/item_text_size"
+    	   	 	android:textColor="@color/ed_login_color" 
+    	    	android:paddingLeft="@dimen/detail_text_padd"
+    	    	android:gravity="center_vertical|left" 
+    	    	/>
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content" 
+    		    android:orientation="horizontal"
+    		    android:layout_marginTop="5dp"
+    		    >
+				<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView04"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+					<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView05"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+					<LinearLayout 
+				    android:layout_width="0dp"
+				    android:layout_height="match_parent"
+				    android:layout_weight="1"
+				    android:orientation="horizontal"
+				    android:gravity="center"
+				    >
+
+					<com.it.view.CircleImageView
+						android:id="@+id/imageView06"
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:src="@drawable/add_image_bg" />
+				    
+				</LinearLayout>
+				
+    		</LinearLayout>
+
+    	</LinearLayout>
+		<Button
+		    android:id="@+id/button1"
+		    android:layout_width="match_parent"
+		    android:layout_height="50dp"
+		    android:text="下一步"
+		    style="@style/bt_login_style"
+		    android:layout_marginLeft="@dimen/detail_text_padd"
+		    android:layout_marginRight="@dimen/detail_text_padd"
+		   android:layout_marginTop="@dimen/bt_margintop_layout"/>
+
+</LinearLayout>
