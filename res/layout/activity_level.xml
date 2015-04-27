@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   	android:layout_gravity="center_horizontal"
+    android:fitsSystemWindows="true"
+	android:background="@color/wite"
+    
+     >
+
+   	<include layout="@layout/layout_article_head"/>
+
+    	<LinearLayout
+    	    android:layout_width="match_parent"
+    	    android:layout_height="match_parent" 
+    	    android:orientation="vertical"
+    	    >
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:orientation="vertical" 
+    		    android:layout_margin="@dimen/detail_text_padd">
+
+    			<TextView
+    			    android:id="@+id/textView1"
+    			    android:layout_width="match_parent"
+    			    android:layout_height="wrap_content"
+    			    android:text="TextView"
+    			    style="@style/my_title_style3" />
+
+    		</LinearLayout>
+
+    		<LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="150dp"
+    		    android:orientation="vertical"
+    		    
+    		    android:layout_marginTop="20dp" >
+
+    			<LinearLayout
+    			    android:layout_width="match_parent"
+    			    android:layout_height="0dp"
+    			    android:layout_weight="1"
+    			    android:orientation="horizontal" >
+
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="1级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="2级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="3级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="4级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="5级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="6级鉴定师" 
+    					    android:textColor="@color/dialog_title_color"
+    					    android:textSize="10sp"/>
+
+    					<ImageView
+    					    
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:src="@drawable/level01"
+    					    android:layout_marginTop="2dp" />
+
+    				</LinearLayout>
+
+    				
+    			</LinearLayout>
+				<LinearLayout
+    			    android:layout_width="match_parent"
+    			    android:layout_height="0dp"
+    			    android:layout_weight="1"
+    			    android:orientation="horizontal" >
+    				<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="5个" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    					<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="20" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    					<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="50" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    					<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="100" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    				
+    						<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="500" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    					<LinearLayout
+    				    android:layout_width="match_parent"
+    				    android:layout_height="match_parent"
+    				    android:layout_weight="1"
+    				    android:orientation="vertical"
+    				    android:background="@drawable/layout_bg"
+    				    android:gravity="center" >
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="收藏宝贝" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    					<TextView
+    					
+    					    android:layout_width="wrap_content"
+    					    android:layout_height="wrap_content"
+    					    android:text="1000" 
+    					    android:textColor="@color/ed_login_color"
+    					    android:textSize="10sp"/>
+
+    				</LinearLayout>
+    			</LinearLayout>
+    		</LinearLayout>
+
+    	</LinearLayout>
+
+</LinearLayout>

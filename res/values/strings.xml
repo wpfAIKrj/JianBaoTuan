@@ -56,6 +56,11 @@
       <string name="feednack_hint">请尽量详细描述反馈，鉴定师平台会尽快帮你解决...</string>
        <string name="feednack_bt">提交</string>
        
+       <!--  认证鉴定师-->
+       <string name="authenticate_title">认证鉴定师</string>
+       <!--  成长体系-->
+       <string name="level_title">成长体系</string>
+       
        <!-- 发布鉴定 -->
        <string name="publish_title">添加宝贝信息</string>
        

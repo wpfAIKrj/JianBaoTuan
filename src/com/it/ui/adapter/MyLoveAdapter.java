@@ -57,7 +57,7 @@ public class MyLoveAdapter extends BaseAdapter{
 			holderView = (HolderView) view.getTag();
 		}
 		
-		holderView.imageView.setBackgroundColor(Color.BLACK);
+		holderView.imageView.setBackgroundResource(R.drawable.test3);
 		
 		return view;
 	}

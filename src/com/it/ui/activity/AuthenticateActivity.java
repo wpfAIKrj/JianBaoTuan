@@ -17,7 +17,7 @@ public class AuthenticateActivity extends BaseActivity implements OnClickListene
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_authenticate);
-		//initView();
+		initView();
 	}
 
 	
@@ -28,7 +28,7 @@ public class AuthenticateActivity extends BaseActivity implements OnClickListene
 		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		TextView tv=(TextView)findViewById(R.id.home_title);
-		tv.setText(R.string.feednack_title);
+		tv.setText(R.string.authenticate_title);
 	}
 
 

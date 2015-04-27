@@ -64,7 +64,7 @@
 	   <style name="detail_info_style">
 	          <item name="android:textColor">@color/ed_login_color</item>
 	          <item name="android:textSize">@dimen/item_text_size</item>
-	          <item name="android:lineSpacingExtra">@dimen/detail_info_spacing</item>
+	          <item name="android:lineSpacingExtra">8dp</item>
 	      </style>
 	      
 	   <style name="my_name_style">

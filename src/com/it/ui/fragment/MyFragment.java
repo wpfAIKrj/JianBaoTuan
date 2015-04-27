@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.activity.AuthenticateActivity;
+import com.it.ui.activity.LevelActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.listview.HorizontalListView;
@@ -55,7 +56,8 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 		tv_collect_number=(TextView)view.findViewById(R.id.my_tv_collect_number);
 		LinearLayout layout=(LinearLayout)view.findViewById(R.id.my_layout_collect);
 		layout.setOnClickListener(this);
-	
+		layout=(LinearLayout)view.findViewById(R.id.my_layout_authenticate);
+		layout.setOnClickListener(this);
 	}
 
 	@Override
@@ -84,9 +86,12 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 			mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
 			break;
 		case R.id.my_iv_authenticate://跳转到等级介绍
-			
+			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
 			break;
 		case R.id.my_layout_collect://跳转收集宝贝页面
+			break;
+		case R.id.my_layout_authenticate://跳转到认证鉴定师
+			mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
 			break;
 		default:
 			break;
