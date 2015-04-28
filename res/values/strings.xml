@@ -79,5 +79,9 @@
        <string name="str_hot_precious">热门鉴定</string>
        <string name="str_article">文玩杂学</string>
        <string name="str_know_people">知名专家</string>
+       <string name="str_my_foot">我的足迹</string>
+       <string name="str_similar">同类鉴定</string>
+       <string name="str_identify_result">鉴定结果</string>
+       <string name="str_hot_discuss">藏友热议</string>
 
 </resources>

@@ -5,12 +5,15 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,10 +43,6 @@ public class ActivityKindOfPrecious extends Activity {
 		list.add("玉");
 		list.add("石");
 		list.add("金");
-		list.add("金");
-		list.add("金");
-		list.add("金");
-		list.add("陶");
 		list.add("书");
 		list.add("瓷");
 
@@ -57,6 +56,21 @@ public class ActivityKindOfPrecious extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				onBackPressed();
+			}
+		});
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				if (position == 0) {
+					startActivity(new Intent(ActivityKindOfPrecious.this,
+							ActivitySearch.class));
+				} else if (position == 1) {
+					onBackPressed();
+				}
+
 			}
 		});
 	}
@@ -117,7 +131,8 @@ public class ActivityKindOfPrecious extends Activity {
 					vh = (ViewHolder) convertView.getTag();
 				}
 
-				vh.tv.setText(list.get(position)==null?"":list.get(position));
+				vh.tv.setText(list.get(position) == null ? "" : list
+						.get(position));
 
 				return convertView;
 			}

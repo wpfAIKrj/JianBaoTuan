@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ public class ActivitySearch extends Activity {
 	ListView lv;
 	ArrayList<String> list;
 	MyAdapter adapter;
+	View home_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,15 @@ public class ActivitySearch extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
+			}
+		});
+		home_title = findViewById(R.id.home_title);
+		home_title.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onBackPressed();
 			}
 		});
 	}
@@ -94,7 +105,10 @@ public class ActivitySearch extends Activity {
 			} else {
 				vh = (ViewHolder) convertView.getTag();
 			}
-			vh.tv.setText(list.get(position));
+			if (list.get(position) != null) {
+
+				vh.tv.setText(list.get(position));
+			}
 			return convertView;
 		}
 

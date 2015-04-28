@@ -29,26 +29,34 @@
         android:layout_marginTop="10dp" >
 
         <ImageView
+            android:id="@+id/iv_home_item0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:src="@drawable/test_xc0" />
 
         <ImageView
+            android:id="@+id/iv_home_item1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|right"
+            android:clickable="true"
             android:src="@drawable/test_xc0" />
 
         <ImageView
+            android:id="@+id/iv_home_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
+            android:clickable="true"
             android:src="@drawable/test_xc0" />
 
         <ImageView
+            android:id="@+id/iv_home_item3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:clickable="true"
             android:src="@drawable/test_xc0" />
     </FrameLayout>
 
