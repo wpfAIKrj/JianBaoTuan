@@ -1,6 +1,8 @@
 package com.it.ui.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.activity.AuthenticateActivity;
+import com.it.ui.activity.FavoriteArticlesActivity;
+import com.it.ui.activity.IMListActivity;
 import com.it.ui.activity.LevelActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
@@ -50,13 +54,26 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 		tv_name=(TextView)view.findViewById(R.id.my_tv_name);
 		tv_authenticate=(TextView)view.findViewById(R.id.my_tv_authenticate);
 		tv_authenticate.setOnClickListener(this);
-		iv_authenticate=(ImageView)view.findViewById(R.id.my_iv_authenticate);
-		iv_authenticate.setOnClickListener(this);
+	
 		
 		tv_collect_number=(TextView)view.findViewById(R.id.my_tv_collect_number);
 		LinearLayout layout=(LinearLayout)view.findViewById(R.id.my_layout_collect);
 		layout.setOnClickListener(this);
-		layout=(LinearLayout)view.findViewById(R.id.my_layout_authenticate);
+		layout=(LinearLayout)view.findViewById(R.id.my_layout_foot);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_layout_identif);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab1);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab2);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab3);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab4);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab5);
+		layout.setOnClickListener(this);
+		layout=(LinearLayout)view.findViewById(R.id.my_tab6);
 		layout.setOnClickListener(this);
 	}
 
@@ -83,15 +100,38 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.my_tv_authenticate://跳转到认证鉴定师
-			mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
-			break;
-		case R.id.my_iv_authenticate://跳转到等级介绍
 			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
 			break;
+		
 		case R.id.my_layout_collect://跳转收集宝贝页面
+			
 			break;
-		case R.id.my_layout_authenticate://跳转到认证鉴定师
+		case R.id.my_layout_foot://跳转到足迹
+			
+			break;
+		case R.id.my_layout_identif://跳转到鉴定页面
+			break;
+		case R.id.my_tab1://跳转到收藏宝物
+			
+			break;
+		case R.id.my_tab2://跳转到收藏文章
+			mActivity.startActivity(new Intent(mActivity, FavoriteArticlesActivity.class));
+			break;
+		case R.id.my_tab3://跳转我的私信
+			mActivity.startActivity(new Intent(mActivity, IMListActivity.class));
+			break;
+		case R.id.my_tab4://跳转到系统通知
+			mActivity.startActivity(new Intent(mActivity, FavoriteArticlesActivity.class));
+			break;
+		case R.id.my_tab5://跳转到认证鉴定师
 			mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
+			break;
+		case R.id.my_tab6://跳转到人工客服
+		    String strMobile = "10086";
+		    //此处应该对电话号码进行验证。。
+		     Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+strMobile));
+		     
+		     mActivity.startActivity(intent);
 			break;
 		default:
 			break;

@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:orientation="horizontal" 
-    android:gravity="center_vertical"
-    android:background="@color/dialog_title_color"
-    
-    >
+    android:layout_height="@dimen/head_hight"
+    android:background="@color/home_head_color"
+    android:gravity="center_vertical" >
+
+    <TextView
+        style="@style/w_wrap_h_wrap"
+        android:layout_marginLeft="23dp"
+        android:text="@string/home_title"
+        android:textColor="@color/wite"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="23dp"
+        android:background="@drawable/home_search_background"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/home_title"
-            style="@style/home_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/app_name"
-            android:textSize="@dimen/login_bt_big_size"
-            android:layout_marginLeft="@dimen/home_layout_ml"
-             />
+            android:id="@+id/btn_search"
+            style="@style/w_weight_h_wrap"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1.0"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:textSize="18sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/home_selected_bg" 
-            android:layout_marginLeft="@dimen/home_layout_ml"
-            android:layout_marginRight="@dimen/home_layout_mr"
-            android:gravity="center_vertical|right">
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/home_selecteiv" 
-                android:layout_marginRight="@dimen/home_layout_mr"/>
-
-        </LinearLayout>
+        <ImageView
+            style="@style/w_wrap_h_wrap"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/icon_search" />
+    </LinearLayout>
 
 </LinearLayout>

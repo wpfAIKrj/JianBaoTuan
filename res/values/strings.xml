@@ -67,5 +67,17 @@
       <!-- 检测更新 -->
       <string name="update_title">检测更新</string>
       <string name="update_bt">版本更新</string>
+      
+      
+       <string name="str_kind">请判别宝贝类别</string>
+      <string name="str_idenify_declare">鉴定说明</string>
+      <string name="str_kind_of_precious">宝贝类别</string>
+      <string name="str_first_item_kind_of_precious">找不到分类，试试搜一搜</string>
+      <string name="str_second_item_kind_of_precious">全部分类</string>
+       <string name="identiy_by_me">我来鉴定</string>
+       <string name="str_good_precious">精品藏品</string>
+       <string name="str_hot_precious">热门鉴定</string>
+       <string name="str_article">文玩杂学</string>
+       <string name="str_know_people">知名专家</string>
 
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wite"
+    android:orientation="vertical" >
+
+    <include layout="@layout/kind_of_precious_head" />
+
+    <ListView
+        android:id="@+id/lv_kind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/item_space_color"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>

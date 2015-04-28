@@ -148,6 +148,7 @@
               android:background="@color/wite"
               />
             <LinearLayout 
+                 android:id="@+id/my_layout_identif"
                android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -156,7 +157,7 @@
               >
 
               <TextView
-       
+       	
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:gravity="center" 
@@ -185,6 +186,7 @@
               android:background="@color/wite"
               />
             <LinearLayout 
+                 android:id="@+id/my_layout_foot"
                android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -234,6 +236,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
               <LinearLayout 
+                android:id="@+id/my_tab1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -256,6 +259,7 @@
                       />
               </LinearLayout>
                  <LinearLayout 
+                     android:id="@+id/my_tab2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -278,6 +282,7 @@
                       />
               </LinearLayout>
                <LinearLayout 
+                   android:id="@+id/my_tab3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -307,6 +312,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
                 <LinearLayout 
+                android:id="@+id/my_tab4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -329,7 +335,7 @@
                       />
               </LinearLayout>
                <LinearLayout 
-                  android:id="@+id/my_layout_authenticate"
+                   android:id="@+id/my_tab5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -352,6 +358,7 @@
                       />
               </LinearLayout>
                <LinearLayout 
+                   android:id="@+id/my_tab6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

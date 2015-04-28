@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:background="@color/wite"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/float_head"
+        style="@style/w_full_h_wrap"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/home_menu_back" >
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/w_wrap_h_wrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/str_know_people"
+            android:textColor="@color/black_2"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="92dp"
+            android:src="@drawable/test_xc3" />
+
+        <HorizontalScrollView
+            android:id="@+id/hs_people"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_gravity="bottom"
+            android:scrollbars="none" >
+        </HorizontalScrollView>
+    </FrameLayout>
+
+</LinearLayout>

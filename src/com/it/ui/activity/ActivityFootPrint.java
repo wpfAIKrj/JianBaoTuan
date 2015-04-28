@@ -1,23 +1,20 @@
-package com.it.ui.fragment;
+package com.it.ui.activity;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
-import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 
 import com.it.R;
-import com.it.ui.activity.ActivityKindOfPrecious;
-import com.it.ui.base.BaseFragment;
 
-public class IdentiyFragment extends BaseFragment {
+public class ActivityFootPrint extends Activity implements OnClickListener {
 
-	ImageView button_category;
+	private View btn_back;
 
 	ViewGroup btn_identifing, btn_identified;
 	ViewGroup fl_identify;
@@ -40,18 +37,20 @@ public class IdentiyFragment extends BaseFragment {
 					return;
 				currentView = 0;
 				if (view_identifing == null) {
-					view_identifing = LayoutInflater.from(getActivity())
-							.inflate(R.layout.item_identified_test, null);
+					view_identifing = LayoutInflater.from(
+							ActivityFootPrint.this).inflate(
+							R.layout.item_identified_test, null);
 				}
 				if (view_identified == null) {
-					view_identified = LayoutInflater.from(getActivity())
-							.inflate(R.layout.item_identified_test, null);
+					view_identified = LayoutInflater.from(
+							ActivityFootPrint.this).inflate(
+							R.layout.item_identified_test, null);
 				}
 				view_identified.startAnimation(AnimationUtils.loadAnimation(
-						getActivity(), R.anim.left_out));
+						ActivityFootPrint.this, R.anim.left_out));
 				fl_identify.removeView(view_identified);
 				view_identifing.startAnimation(AnimationUtils.loadAnimation(
-						getActivity(), R.anim.right_in));
+						ActivityFootPrint.this, R.anim.right_in));
 				fl_identify.addView(view_identifing);
 			}
 
@@ -63,19 +62,21 @@ public class IdentiyFragment extends BaseFragment {
 				}
 				currentView = 1;
 				if (view_identifing == null) {
-					view_identifing = LayoutInflater.from(getActivity())
-							.inflate(R.layout.item_identified_test, null);
+					view_identifing = LayoutInflater.from(
+							ActivityFootPrint.this).inflate(
+							R.layout.item_identified_test, null);
 				}
 				if (view_identified == null) {
-					view_identified = LayoutInflater.from(getActivity())
-							.inflate(R.layout.item_identified_test, null);
+					view_identified = LayoutInflater.from(
+							ActivityFootPrint.this).inflate(
+							R.layout.item_identified_test, null);
 				}
 				view_identifing.startAnimation(AnimationUtils.loadAnimation(
-						getActivity(), R.anim.left_out));
+						ActivityFootPrint.this, R.anim.left_out));
 				fl_identify.removeView(view_identifing);
 
 				view_identified.startAnimation(AnimationUtils.loadAnimation(
-						getActivity(), R.anim.right_in));
+						ActivityFootPrint.this, R.anim.right_in));
 				fl_identify.addView(view_identified);
 			}
 
@@ -86,56 +87,44 @@ public class IdentiyFragment extends BaseFragment {
 	};
 
 	@Override
-	protected View createView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.layout_identiy, container, false);
-	}
-
-	@Override
-	protected void initViews(View view) {
-		// TODO Auto-generated method stub
-		button_category = (ImageView) view.findViewById(R.id.button_category);
-		button_category.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				startActivity(new Intent(getActivity(),
-						ActivityKindOfPrecious.class));
-			}
-		});
-		fl_identify = (ViewGroup) view.findViewById(R.id.fl_identify);
-		btn_identifing = (ViewGroup) view.findViewById(R.id.btn_identifing);
-		btn_identified = (ViewGroup) view.findViewById(R.id.btn_identified);
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.layout_first_page_user);
+		btn_back = findViewById(R.id.btn_back);
+		btn_back.setOnClickListener(this);
+		fl_identify = (ViewGroup) findViewById(R.id.fl_identify);
+		btn_identifing = (ViewGroup) findViewById(R.id.btn_identifing);
+		btn_identified = (ViewGroup) findViewById(R.id.btn_identified);
 
 		btn_identifing.setOnClickListener(identifyListener);
 		btn_identified.setOnClickListener(identifyListener);
-		
+
 		if (view_identifing == null) {
-			view_identifing = LayoutInflater.from(getActivity())
-					.inflate(R.layout.item_identified_test, null);
+			view_identifing = LayoutInflater.from(this).inflate(
+					R.layout.item_identified_test, null);
 		}
 		if (view_identified == null) {
-			view_identified = LayoutInflater.from(getActivity())
-					.inflate(R.layout.item_identified_test, null);
+			view_identified = LayoutInflater.from(this).inflate(
+					R.layout.item_identified_test, null);
 		}
-		
+
 		fl_identify.addView(view_identifing);
-	
 
 	}
 
 	@Override
-	protected void initDisplay() {
+	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.btn_back:
+			onBackPressed();
+			break;
 
-	}
-
-	@Override
-	public void lazyLoad() {
-		// TODO Auto-generated method stub
-		System.out.println(getClass().getName() + "正在加载数据");
+		default:
+			break;
+		}
 	}
 
 	public void setIdentifyBackground(int id) {

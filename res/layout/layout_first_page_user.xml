@@ -5,11 +5,12 @@
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_identification_head" />
+    <include layout="@layout/layout_first_page_user_head" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="#ababab"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -29,8 +30,8 @@
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="已鉴定"
-                android:textColor="@color/bt_color" />
+                android:text="他的宝物"
+                android:textColor="@color/dialog_title_color" />
 
             <View
                 android:layout_width="match_parent"
@@ -56,8 +57,8 @@
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="鉴定中"
-                android:textColor="@color/black" />
+                android:text="他的鉴定"
+                android:textColor="@color/ed_login_color" />
 
             <View
                 android:layout_width="match_parent"
@@ -67,17 +68,16 @@
                 android:background="@color/wite" />
         </LinearLayout>
     </LinearLayout>
-<ScrollView 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
 
-    <FrameLayout
-        android:id="@+id/fl_identify"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/fl_identify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
     </ScrollView>
 
     <LinearLayout
