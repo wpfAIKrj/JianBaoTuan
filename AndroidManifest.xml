@@ -91,7 +91,10 @@
          ></activity>    
           <activity android:name="com.it.ui.activity.IMListActivity"
             android:screenOrientation="portrait"
-         ></activity>                  
+         ></activity>        
+             <activity android:name="com.it.ui.activity.SystemInfoActivity"
+            android:screenOrientation="portrait"
+         ></activity>          
     </application>
 
      <supports-screens

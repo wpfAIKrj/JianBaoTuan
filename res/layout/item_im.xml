@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+  	>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+            <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:src="@color/cricle_color"
+         >
+
+        <com.it.view.CircleImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/test3" 
+            android:padding="1dp"/>
+        
+    </LinearLayout>
+  	<RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        >
+        <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_space_color"
+        android:layout_alignParentBottom="true"
+        />
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/my_title_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="19dp"
+            android:text="你的宝贝已经鉴定完成" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/number_color"
+            android:textSize="@dimen/item_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:text="你的宝贝不错，准备出吗?" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView1"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_alignParentRight="true"
+            android:text="2015-040-1 16:52"
+            android:textColor="@color/number_color"
+            android:textSize="@dimen/item_text_size" />
+
+    </RelativeLayout>
+    </LinearLayout>
+    
+</LinearLayout>

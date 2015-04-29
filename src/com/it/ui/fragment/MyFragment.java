@@ -19,6 +19,7 @@ import com.it.ui.activity.AuthenticateActivity;
 import com.it.ui.activity.FavoriteArticlesActivity;
 import com.it.ui.activity.IMListActivity;
 import com.it.ui.activity.LevelActivity;
+import com.it.ui.activity.SystemInfoActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.listview.HorizontalListView;
@@ -126,7 +127,7 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 			break;
 		case R.id.my_tab4:// 跳转到系统通知
 			mActivity.startActivity(new Intent(mActivity,
-					FavoriteArticlesActivity.class));
+					SystemInfoActivity.class));
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
 			mActivity.startActivity(new Intent(mActivity,

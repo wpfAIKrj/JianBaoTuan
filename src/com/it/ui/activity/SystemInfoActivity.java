@@ -1,6 +1,5 @@
 package com.it.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +10,13 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.it.R;
-import com.it.ui.adapter.ArticleAdapter;
 import com.it.ui.adapter.IMAdapter;
+import com.it.ui.adapter.SystemInfoAdapter;
 import com.it.ui.base.BaseActivity;
 import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
 
-public class IMListActivity extends BaseActivity implements OnClickListener,IXListViewListener,OnItemClickListener{
+public class SystemInfoActivity extends BaseActivity implements OnClickListener,IXListViewListener,OnItemClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -27,7 +26,7 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 		initData();
 	}
 	private XListView mlistview;
-	private IMAdapter madapter;
+	private SystemInfoAdapter madapter;
 
 
 	protected void initView() {
@@ -40,13 +39,13 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 		bt.setOnClickListener(this);
 
 		TextView tv=(TextView)findViewById(R.id.home_title);
-		tv.setText("聊天");
+		tv.setText("系统通知");
 		
 	}
 
 	protected void initData() {
 		// TODO Auto-generated method stub
-		madapter=new IMAdapter(LayoutInflater.from(this));
+		madapter=new SystemInfoAdapter(LayoutInflater.from(this));
 		mlistview.setAdapter(madapter);
 		mlistview.setXListViewListener(this);
 		mlistview.setOnItemClickListener(this);
