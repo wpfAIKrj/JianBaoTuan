@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.it.R;
+import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.ui.activity.ActivityKindOfPrecious;
 import com.it.ui.base.BaseFragment;
 
@@ -23,6 +24,8 @@ public class IdentiyFragment extends BaseFragment {
 	ViewGroup fl_identify;
 
 	View view_identifing, view_identified;
+
+	View item0, item1, item2, item3;
 
 	private int currentView = 0;
 
@@ -80,6 +83,13 @@ public class IdentiyFragment extends BaseFragment {
 			}
 
 				break;
+			case R.id.iv_01:
+			case R.id.iv_02:
+			case R.id.iv_03:
+			case R.id.iv_04:
+				startActivity(new Intent(getActivity(),
+						ActivityHotIdentiy.class));
+				break;
 			}
 
 		}
@@ -111,18 +121,26 @@ public class IdentiyFragment extends BaseFragment {
 
 		btn_identifing.setOnClickListener(identifyListener);
 		btn_identified.setOnClickListener(identifyListener);
-		
+
 		if (view_identifing == null) {
-			view_identifing = LayoutInflater.from(getActivity())
-					.inflate(R.layout.item_identified_test, null);
+			view_identifing = LayoutInflater.from(getActivity()).inflate(
+					R.layout.item_identified_test, null);
 		}
 		if (view_identified == null) {
-			view_identified = LayoutInflater.from(getActivity())
-					.inflate(R.layout.item_identified_test, null);
+			view_identified = LayoutInflater.from(getActivity()).inflate(
+					R.layout.item_identified_test, null);
 		}
-		
+
 		fl_identify.addView(view_identifing);
-	
+
+		item0 = view_identifing.findViewById(R.id.iv_01);
+		item1 = view_identifing.findViewById(R.id.iv_02);
+		item2 = view_identifing.findViewById(R.id.iv_03);
+		item3 = view_identifing.findViewById(R.id.iv_04);
+		item0.setOnClickListener(identifyListener);
+		item1.setOnClickListener(identifyListener);
+		item2.setOnClickListener(identifyListener);
+		item3.setOnClickListener(identifyListener);
 
 	}
 

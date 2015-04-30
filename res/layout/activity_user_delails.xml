@@ -32,7 +32,8 @@
                 android:src="@drawable/test_xc8" />
 
             <include layout="@layout/layout_user_delais_similar_item" />
-            <include layout="@layout/layout_user_delais_identify_result" />
+
+            <include layout="@layout/layout_user_delais_identify_result" />
         </LinearLayout>
     </ScrollView>
 
@@ -63,6 +64,7 @@
             android:textSize="15dp" />
 
         <Button
+            android:id="@+id/btn_goto"
             android:layout_width="84dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"

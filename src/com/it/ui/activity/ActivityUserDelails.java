@@ -1,6 +1,7 @@
 package com.it.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,7 +11,7 @@ import com.it.R;
 
 public class ActivityUserDelails extends Activity {
 
-	private View detail_back;
+	private View detail_back, btn_goto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,16 @@ public class ActivityUserDelails extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				onBackPressed();
+			}
+		});
+		btn_goto = findViewById(R.id.btn_goto);
+		btn_goto.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(ActivityUserDelails.this,
+						ActivityIdentifyByMe.class));
 			}
 		});
 	}

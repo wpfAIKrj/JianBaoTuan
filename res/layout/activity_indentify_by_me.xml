@@ -5,7 +5,7 @@
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_identification_by_me_head" />
+    <include layout="@layout/layout_common_head" />
 
     <TextView
         android:id="@+id/tv_kind"
@@ -29,28 +29,37 @@
             android:id="@+id/imageView1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/menu_category" />
+            android:src="@drawable/published_bt_bg" />
 
         <Button
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@color/number_color"
-            android:text="木" />
+            android:gravity="center"
+            android:text="木"
+            android:textColor="@color/wite"
+            android:textSize="15sp" />
 
         <Button
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@color/bt_color"
-            android:text="沉香" />
+            android:gravity="center"
+            android:text="沉香"
+            android:textColor="@color/wite"
+            android:textSize="15sp" />
 
         <Button
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
             android:background="@color/number_color"
-            android:text="小叶紫檀" />
+            android:gravity="center"
+            android:text="小叶紫檀"
+            android:textColor="@color/wite"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
@@ -79,10 +88,12 @@
         android:background="@drawable/edit_declare_bg" />
 
     <Button
+        android:id="@+id/btn_publish"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="5dp"
         android:background="@color/bt_color"
+        android:gravity="center"
         android:text="发布"
         android:textColor="@color/wite"
         android:textSize="20sp" />

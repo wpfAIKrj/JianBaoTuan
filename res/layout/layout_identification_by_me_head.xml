@@ -14,8 +14,8 @@
         android:layout_centerVertical="true"
         android:text="@string/identiy_by_me" />
 
-    <ImageView
-        android:id="@+id/button_category"
+    <Button
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

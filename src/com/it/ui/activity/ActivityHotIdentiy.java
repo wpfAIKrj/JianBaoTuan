@@ -1,6 +1,7 @@
 package com.it.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	ViewGroup fl_identify;
 
 	View view_identifing, view_identified;
+	View btn_msg;
 
 	private int currentView = 0;
 
@@ -111,6 +113,16 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		}
 
 		fl_identify.addView(view_identifing);
+		btn_msg = findViewById(R.id.btn_msg);
+		btn_msg.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				startActivity(new Intent(ActivityHotIdentiy.this,
+						IMListActivity.class));
+			}
+		});
 
 	}
 

@@ -13,26 +13,34 @@
         android:paddingRight="7dp" >
 
         <ImageView
+            android:id="@+id/iv_01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:src="@drawable/test_xc1" />
 
         <ImageView
+            android:id="@+id/iv_02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|right"
+            android:clickable="true"
             android:src="@drawable/test_xc1" />
 
         <ImageView
+            android:id="@+id/iv_03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
+            android:clickable="true"
             android:src="@drawable/test_xc1" />
 
         <ImageView
+            android:id="@+id/iv_04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:clickable="true"
             android:src="@drawable/test_xc1" />
     </FrameLayout>
 

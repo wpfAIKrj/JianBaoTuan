@@ -82,7 +82,7 @@
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>              
-          <activity android:name="com.it.ui.activity.ActivityFootPrint"
+          <activity android:name="com.it.ui.activity.ActivityHotIdentiy"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity> 
@@ -91,10 +91,22 @@
          ></activity>    
           <activity android:name="com.it.ui.activity.IMListActivity"
             android:screenOrientation="portrait"
-         ></activity>        
-             <activity android:name="com.it.ui.activity.SystemInfoActivity"
+         ></activity>                  
+          <activity android:name="com.it.ui.activity.ActivityFootPrint"
             android:screenOrientation="portrait"
-         ></activity>          
+         ></activity>                  
+          <activity android:name="com.it.ui.activity.ActivityUserDelails"
+            android:screenOrientation="portrait"
+         ></activity>  
+	   <activity android:name="com.it.ui.activity.SystemInfoActivity"
+            android:screenOrientation="portrait"
+         ></activity>                  
+	   <activity android:name="com.it.ui.activity.ActivityMyPrecious"
+            android:screenOrientation="portrait"
+         ></activity>                  
+	   <activity android:name="com.it.ui.activity.ActivityIdentifyByMe"
+            android:screenOrientation="portrait"
+         ></activity>                  
     </application>
 
      <supports-screens

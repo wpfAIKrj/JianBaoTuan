@@ -14,7 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.config.Const;
 import com.it.ui.activity.ActivityFootPrint;
+import com.it.ui.activity.ActivityMyPrecious;
 import com.it.ui.activity.AuthenticateActivity;
 import com.it.ui.activity.FavoriteArticlesActivity;
 import com.it.ui.activity.IMListActivity;
@@ -107,15 +109,22 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 			break;
 
 		case R.id.my_layout_collect:// 跳转收集宝贝页面
-
+			{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
+			mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
+			startActivity(mIntent);}
 			break;
 		case R.id.my_layout_foot:// 跳转到足迹
 			startActivity(new Intent(mActivity, ActivityFootPrint.class));
 			break;
 		case R.id.my_layout_identif:// 跳转到鉴定页面
+		{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
+		mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.IDENTIFY);
+		startActivity(mIntent);}
 			break;
 		case R.id.my_tab1:// 跳转到收藏宝物
-
+		{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
+		mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.COLLECT);
+		startActivity(mIntent);}
 			break;
 		case R.id.my_tab2:// 跳转到收藏文章
 			mActivity.startActivity(new Intent(mActivity,
