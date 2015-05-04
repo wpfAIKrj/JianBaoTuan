@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.it.R;
-import com.it.model.HomeItem0;
+import com.it.bean.HomeItem0;
 import com.it.view.HomeItemView;
 import com.it.view.ViewHomeItem0;
 

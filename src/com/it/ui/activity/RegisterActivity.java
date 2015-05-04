@@ -22,7 +22,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener{
 
 	private void initView() {
 		// TODO Auto-generated method stub
-		iv_back=(ImageView)findViewById(R.id.back_activity);
+		iv_back=(ImageView)findViewById(R.id.title_back);
 		iv_back.setOnClickListener(this);
 	}
 
@@ -30,7 +30,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.back_activity://返回登陆页面
+		case R.id.title_back://返回登陆页面
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			

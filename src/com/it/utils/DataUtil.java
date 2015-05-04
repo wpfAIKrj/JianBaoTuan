@@ -2,9 +2,9 @@ package com.it.utils;
 
 import java.util.List;
 
-import com.it.model.DaoMaster;
-import com.it.model.DaoMaster.DevOpenHelper;
-import com.it.model.DaoSession;
+import com.it.bean.DaoMaster;
+import com.it.bean.DaoSession;
+import com.it.bean.DaoMaster.DevOpenHelper;
 
 import android.content.Context;
 

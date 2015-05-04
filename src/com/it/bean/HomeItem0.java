@@ -1,4 +1,4 @@
-package com.it.model;
+package com.it.bean;
 
 public class HomeItem0 {
 	public int imageUrl;
