@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.it.R;
-import com.it.utils.LogUtils;
+import com.lidroid.xutils.util.LogUtils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -50,7 +50,7 @@ public class MyTabWidget extends LinearLayout {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				LogUtils.i(TAG, MyTabWidget.class.getSimpleName() + "类名");
+				LogUtils.i( MyTabWidget.class.getSimpleName() + "类名");
 			}
 			a.recycle();
 			return;
@@ -146,7 +146,7 @@ public class MyTabWidget extends LinearLayout {
 		for (int i = 0; i < size; i++) {
 			CheckedTextView checkedTextView = mCheckedList.get(i);
 			if ((Integer) (checkedTextView.getTag()) == index) {
-				LogUtils.i(TAG, mLabels[index] + " is selected...");
+				LogUtils.d( mLabels[index] + " is selected...");
 				checkedTextView.setChecked(true);
 				checkedTextView.setTextColor(Color.rgb(255, 68, 0));
 				mViewList.get(i).setBackgroundColor(Color.rgb(255, 255, 255));

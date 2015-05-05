@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.utils.LogUtils;
+import com.lidroid.xutils.util.LogUtils;
 
 /**
  * @author ytmfdw 主页 [精品藏品]下的选项 根据屏幕宽高来计算图片大小
@@ -87,7 +87,7 @@ public class ViewHomeItem0 extends LinearLayout {
 		screen_w = mDisplayMetrics.widthPixels;
 		screen_h = mDisplayMetrics.heightPixels;
 
-		LogUtils.i("ytmfdw", "屏幕宽高：w=" + screen_w + ":h=" + screen_h);
+		LogUtils.d("屏幕宽高：w=" + screen_w + ":h=" + screen_h);
 
 	}
 
