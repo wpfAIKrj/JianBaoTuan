@@ -17,7 +17,7 @@ public class RegisterPresenter implements OnBasicDataLoadListener<UserInfo> {
 		mModel=new LoginModel();
 	}
 
-	public void startLogin(String name,String pwd){
+	public void startRegister(String name,String pwd){
 		mModel.setUserInfo(name, pwd, this);
 		mModel.addRequestParams();
 		mModel.sendHttp();
@@ -30,16 +30,16 @@ public class RegisterPresenter implements OnBasicDataLoadListener<UserInfo> {
 	public void onBaseDataLoaded(UserInfo data) {
 		// TODO Auto-generated method stub
 		if(data==null){
-			mview.loginFail("-1", "服务器异常");
+			mview.RegisterFail("-1", "服务器异常");
 		}else{
-			mview.loginSucess(data);
+			mview.RegisterSucess(data);
 		}
 	}
 
 	@Override
 	public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
-		mview.loginFail(errorCode,errorMsg);
+		mview.RegisterFail(errorCode,errorMsg);
 	}
 	
 

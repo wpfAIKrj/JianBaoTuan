@@ -9,7 +9,7 @@ import com.it.bean.UserInfo;
  */
 public interface RegisterView {
 	
-	public void loginSucess(UserInfo user);
+	public void RegisterSucess(UserInfo user);
 	
-	public void loginFail(String errorCode, String errorMsg);
+	public void RegisterFail(String errorCode, String errorMsg);
 }
