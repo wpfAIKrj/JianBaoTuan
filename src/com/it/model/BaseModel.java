@@ -8,7 +8,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 public abstract class BaseModel {
-	private String url;
+	private String url="www.baidu.com";
 	private int connTimeout=10000;
 	protected RequestParams params;
 	private HttpMethod httpmodel;

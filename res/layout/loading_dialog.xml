@@ -10,12 +10,12 @@
     android:padding="10dp"  
     android:background="@drawable/dialog">  
 
-    <ImageView
+    <ProgressBar
         android:id="@+id/img"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/show_loading" />
-  
+         />
+
     <TextView   
         android:id="@+id/tipTextView"  
         android:layout_width="wrap_content"   

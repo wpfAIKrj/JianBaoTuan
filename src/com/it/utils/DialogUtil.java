@@ -19,12 +19,12 @@ public class DialogUtil {
 	        LayoutInflater inflater = LayoutInflater.from(context);  
 	        View v = inflater.inflate(R.layout.loading_dialog, null);
 	        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
-	        ImageView spaceshipImage = (ImageView) v.findViewById(R.id.img);  
+	       // ImageView spaceshipImage = (ImageView) v.findViewById(R.id.img);  
 	        TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
-	        AnimationDrawable animationDrawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.show_loading);
-	        spaceshipImage.setBackgroundDrawable(animationDrawable);
+//	        AnimationDrawable animationDrawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.show_loading);
+//	        spaceshipImage.setBackgroundDrawable(animationDrawable);
 	        
-	        animationDrawable.start();
+	      //  animationDrawable.start();
 	        tipTextView.setText(msg); 
 	        tipTextView.setTextColor(0xffffffff);
 	        Dialog loadingDialog = new Dialog(context, R.style.loading_dialog);
