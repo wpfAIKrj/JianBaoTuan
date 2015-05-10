@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -116,16 +117,13 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 	}
 
 
-
-
-
 	/**
 	 * 登陆
 	 */
 	private void startLogin() {
 		// TODO Auto-generated method stub
-		String name=ed_name.getText().toString();
-		String pwd=ed_pwd.getText().toString();
+		final String name=ed_name.getText().toString();
+		final String pwd=ed_pwd.getText().toString();
 		 if(TelNumMath.isMobileNO(name)){
 			 if(!pwd.isEmpty()&&pwd.length()>5){
 				 dialog=DialogUtil.createLoadingDialog(this, "登陆中.....");

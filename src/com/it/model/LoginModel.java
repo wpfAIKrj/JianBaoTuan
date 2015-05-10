@@ -6,6 +6,7 @@ import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.presenter.OnBasicDataLoadListener;
 import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
  * 登录操作
  * @author Administrator
@@ -53,6 +54,15 @@ public class LoginModel extends BaseModel{
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
 		lisntenr.onBaseDataLoadErrorHappened(error, msg);
+	}
+
+
+
+
+	@Override
+	public void setHTTPMODE(HttpMethod httpmodel) {
+		// TODO Auto-generated method stub
+		this.httpmodel=httpmodel;
 	}
 
 

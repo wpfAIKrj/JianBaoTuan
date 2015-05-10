@@ -191,7 +191,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
              
            }else{                                                                 
               ((Throwable)data).printStackTrace(); 
-              new ToastUtils(RegisterActivity.this, "验证失败，请重新获取验证码");
            }
          } 
 	};

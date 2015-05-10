@@ -6,8 +6,9 @@ import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.presenter.OnBasicDataLoadListener;
 import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
- * 登录操作
+ * 注册操作
  * @author Administrator
  *
  */
@@ -21,6 +22,9 @@ public class RegisterModel extends BaseModel{
 		user.setNickname(name);
 		user.setPassword(pwd);
 		this.lisntenr=lis;
+		StringBuffer sb=new StringBuffer(url);
+		sb.append(NetConst.REGISTER_URL);
+		url=sb.toString();
 	}
 	
 	
@@ -40,9 +44,7 @@ public class RegisterModel extends BaseModel{
 	public void onSuccessForString(String jsonstring) {
 		// TODO Auto-generated method stub
 		try {
-			JSONObject jsob=new JSONObject(jsonstring);
-			
-			
+			JSONObject jsob=new JSONObject(jsonstring);			
 		} catch (Exception e) {
 			// TODO: handle exception
 			lisntenr.onBaseDataLoadErrorHappened(HTTP_ERROR,e.getMessage());
@@ -53,6 +55,15 @@ public class RegisterModel extends BaseModel{
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
 		lisntenr.onBaseDataLoadErrorHappened(error, msg);
+	}
+
+
+
+
+	@Override
+	public void setHTTPMODE(HttpMethod httpmodel) {
+		// TODO Auto-generated method stub
+		this.httpmodel=httpmodel;
 	}
 
 

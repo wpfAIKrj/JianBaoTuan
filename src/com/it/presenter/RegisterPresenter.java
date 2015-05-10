@@ -2,6 +2,7 @@ package com.it.presenter;
 
 import com.it.bean.UserInfo;
 import com.it.model.LoginModel;
+import com.it.model.RegisterModel;
 import com.it.view.inter.LoginView;
 import com.it.view.inter.RegisterView;
 
@@ -9,12 +10,12 @@ public class RegisterPresenter implements OnBasicDataLoadListener<UserInfo> {
 	
 	
 	private RegisterView mview;
-	private LoginModel mModel;
+	private RegisterModel mModel;
 	
 	public RegisterPresenter(RegisterView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
-		mModel=new LoginModel();
+		mModel=new RegisterModel();
 	}
 
 	public void startRegister(String name,String pwd){
