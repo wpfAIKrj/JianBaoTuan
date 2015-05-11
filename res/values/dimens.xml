@@ -34,4 +34,6 @@
 	<dimen name="bt_margintop_layout">50dp</dimen>
 	
 	<dimen name="head_hight">45dp</dimen>
+	
+	<dimen name="title_msg_top">30dp</dimen>
 </resources>

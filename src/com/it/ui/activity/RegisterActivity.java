@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract.DataUsageFeedback;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.presenter.RegisterPresenter;
 import com.it.ui.base.BaseActivity;
+import com.it.utils.DataUtil;
 import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
@@ -61,7 +63,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 			// TODO Auto-generated method stub
 			switch (msg.what) {
 			case 0:
-				 reSendSMS();
+				reSendSMS();
 				break;
 			case 1:
 				register();
@@ -190,7 +192,15 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
             }
              
            }else{                                                                 
-              ((Throwable)data).printStackTrace(); 
+              try {
+				((Throwable)data).printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally{
+				new ToastUtils(RegisterActivity.this, "验证失败，请重新获取验证码");
+			}
+              
            }
          } 
 	};
@@ -227,6 +237,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 			dialog.dismiss();
 		}
 		((ItApplication)getApplication()).setCurrnUser(user);
+		DataUtil.getInstance(getApplicationContext()).saveUserInfo(user);
+		
 		Intent intent=new Intent(RegisterActivity.this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);

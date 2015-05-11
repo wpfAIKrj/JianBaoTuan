@@ -21,10 +21,6 @@ public class DialogUtil {
 	        LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
 	       // ImageView spaceshipImage = (ImageView) v.findViewById(R.id.img);  
 	        TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
-//	        AnimationDrawable animationDrawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.show_loading);
-//	        spaceshipImage.setBackgroundDrawable(animationDrawable);
-	        
-	      //  animationDrawable.start();
 	        tipTextView.setText(msg); 
 	        tipTextView.setTextColor(0xffffffff);
 	        Dialog loadingDialog = new Dialog(context, R.style.loading_dialog);

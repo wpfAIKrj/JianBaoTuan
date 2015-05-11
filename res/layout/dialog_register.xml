@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     android:layout_marginLeft="@dimen/layout_padding"
     android:layout_marginRight="@dimen/layout_padding"
-    android:src="@color/dialog_bg_color"
+    android:src="@color/dialog_bg"
     android:alpha="200"
     >
 
@@ -15,9 +15,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_padding"
-        android:text="@string/register_result_succes"
+        android:text="@string/register_result_succes_title"
         
         android:textColor="@color/dialog_title_color"
         android:textSize="@dimen/login_bt_smart_size" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_result_succes_msg"
+        android:layout_marginTop="@dimen/title_msg_top"
+        style="@style/my_title_style1" />
 
 </LinearLayout>

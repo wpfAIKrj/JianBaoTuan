@@ -3,6 +3,7 @@ package com.it.bean;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
@@ -32,7 +33,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Personal_data = new Property(7, String.class, "personal_data", false, "PERSONAL_DATA");
         public final static Property Is_valid = new Property(8, Integer.class, "is_valid", false, "IS_VALID");
         public final static Property Is_famous_expert = new Property(9, Integer.class, "is_famous_expert", false, "IS_FAMOUS_EXPERT");
-        public final static Property Insert_time = new Property(10, java.util.Date.class, "insert_time", false, "INSERT_TIME");
+        public final static Property Is_system = new Property(10, Integer.class, "is_system", false, "IS_SYSTEM");
+        public final static Property Is_bind = new Property(11, Integer.class, "is_bind", false, "IS_BIND");
+        public final static Property Insert_time = new Property(12, Integer.class, "insert_time", false, "INSERT_TIME");
+        public final static Property Session_id = new Property(13, String.class, "session_id", false, "SESSION_ID");
     };
 
 
@@ -58,7 +62,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "'PERSONAL_DATA' TEXT," + // 7: personal_data
                 "'IS_VALID' INTEGER," + // 8: is_valid
                 "'IS_FAMOUS_EXPERT' INTEGER," + // 9: is_famous_expert
-                "'INSERT_TIME' INTEGER);"); // 10: insert_time
+                "'IS_SYSTEM' INTEGER," + // 10: is_system
+                "'IS_BIND' INTEGER," + // 11: is_bind
+                "'INSERT_TIME' INTEGER," + // 12: insert_time
+                "'SESSION_ID' TEXT);"); // 13: session_id
     }
 
     /** Drops the underlying database table. */
@@ -122,9 +129,24 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             stmt.bindLong(10, is_famous_expert);
         }
  
-        java.util.Date insert_time = entity.getInsert_time();
+        Integer is_system = entity.getIs_system();
+        if (is_system != null) {
+            stmt.bindLong(11, is_system);
+        }
+ 
+        Integer is_bind = entity.getIs_bind();
+        if (is_bind != null) {
+            stmt.bindLong(12, is_bind);
+        }
+ 
+        Integer insert_time = entity.getInsert_time();
         if (insert_time != null) {
-            stmt.bindLong(11, insert_time.getTime());
+            stmt.bindLong(13, insert_time);
+        }
+ 
+        String session_id = entity.getSession_id();
+        if (session_id != null) {
+            stmt.bindString(14, session_id);
         }
     }
 
@@ -148,7 +170,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // personal_data
             cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8), // is_valid
             cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9), // is_famous_expert
-            cursor.isNull(offset + 10) ? null : new java.util.Date(cursor.getLong(offset + 10)) // insert_time
+            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // is_system
+            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // is_bind
+            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // insert_time
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // session_id
         );
         return entity;
     }
@@ -166,7 +191,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setPersonal_data(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setIs_valid(cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8));
         entity.setIs_famous_expert(cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9));
-        entity.setInsert_time(cursor.isNull(offset + 10) ? null : new java.util.Date(cursor.getLong(offset + 10)));
+        entity.setIs_system(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
+        entity.setIs_bind(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
+        entity.setInsert_time(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
+        entity.setSession_id(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     /** @inheritdoc */

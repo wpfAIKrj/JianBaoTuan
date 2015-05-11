@@ -2,6 +2,8 @@ package com.it.model;
 
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.presenter.OnBasicDataLoadListener;
@@ -14,13 +16,13 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
  */
 public class RegisterModel extends BaseModel{
 	
-	private UserInfo user;
+	private String name;
+	private String pwd;
 	private OnBasicDataLoadListener<UserInfo> lisntenr;
 	
 	public void setUserInfo(String name,String pwd,OnBasicDataLoadListener<UserInfo> lis){
-		user=new UserInfo();
-		user.setNickname(name);
-		user.setPassword(pwd);
+		this.name=name;
+		this.pwd=pwd;
 		this.lisntenr=lis;
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.REGISTER_URL);
@@ -34,8 +36,8 @@ public class RegisterModel extends BaseModel{
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
 		params=new RequestParams();
-		params.addBodyParameter(NetConst.LOGIN_NAME, user.getNickname());
-		params.addBodyParameter(NetConst.LOGIN_PWD, user.getPassword());
+		params.addBodyParameter(NetConst.LOGIN_NAME, name);
+		params.addBodyParameter(NetConst.LOGIN_PWD, pwd);
 	}
 	
 	
@@ -44,7 +46,19 @@ public class RegisterModel extends BaseModel{
 	public void onSuccessForString(String jsonstring) {
 		// TODO Auto-generated method stub
 		try {
-			JSONObject jsob=new JSONObject(jsonstring);			
+			JSONObject json=new JSONObject(jsonstring);	
+			int code=json.getInt(NetConst.CODE);
+			String message=json.getString(NetConst.MESSAGE);
+			if(code==NetConst.CODE_SUCCESS){
+				String data = json.getString(NetConst.DATA);
+				Gson gson=new Gson();
+				UserInfo user=gson.fromJson(data, UserInfo.class);
+				lisntenr.onBaseDataLoaded(user);
+				NetConst.SESSIONID=user.getSession_id();
+			}else{
+				lisntenr.onBaseDataLoadErrorHappened(String.valueOf(code),message);
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			lisntenr.onBaseDataLoadErrorHappened(HTTP_ERROR,e.getMessage());

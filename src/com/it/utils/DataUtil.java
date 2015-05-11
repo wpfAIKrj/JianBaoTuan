@@ -4,15 +4,20 @@ import java.util.List;
 
 import com.it.bean.DaoMaster;
 import com.it.bean.DaoSession;
+import com.it.bean.UserInfo;
+import com.it.bean.UserInfoDao;
 import com.it.bean.DaoMaster.DevOpenHelper;
 
+import de.greenrobot.dao.query.QueryBuilder;
 import android.content.Context;
 
 public class DataUtil {
 
 	private static DataUtil mInstance=null;
-	private  DaoMaster daoMaster=null;
-	private  DaoSession daoSession=null;
+	private static DaoMaster daoMaster=null;
+	private static DaoSession daoSession=null;
+	private static UserInfoDao userdao=null;
+	
 	private DataUtil(){
 		
 	}
@@ -22,7 +27,7 @@ public class DataUtil {
 	 * @param context
 	 * @return
 	 */
-	public DataUtil getInstance(Context context){
+	public static DataUtil getInstance(Context context){
 		if(mInstance==null){
 			mInstance=new DataUtil();
 			if(mInstance.daoMaster==null){
@@ -31,6 +36,9 @@ public class DataUtil {
 					mInstance.daoMaster=new DaoMaster(helper.getWritableDatabase());
 					if(mInstance.daoSession==null){
 						mInstance.daoSession=mInstance.daoMaster.newSession();
+					}
+					if(userdao==null){
+						userdao=mInstance.daoSession.getUserInfoDao();
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -42,6 +50,13 @@ public class DataUtil {
 		return mInstance;
 	}
 	
+	/**
+	 * 保存用户信息
+	 * @param user
+	 */
+	public void saveUserInfo(UserInfo user){
+		userdao.insertOrReplace(user);
+	}
 	
 
 }
