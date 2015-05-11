@@ -29,9 +29,9 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 
 	private View btn_search;
 	HorizontalScrollView hsv;
-	private View iv_home_item0, iv_home_item1, iv_home_item2, iv_home_item3;
-	private View iv_home_item1_0, iv_home_item1_1, iv_home_item1_2,
-			iv_home_item1_3;
+//	private View iv_home_item0, iv_home_item1, iv_home_item2, iv_home_item3;
+//	private View iv_home_item1_0, iv_home_item1_1, iv_home_item1_2,
+//			iv_home_item1_3;
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
@@ -64,22 +64,18 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 			}
 		});
 
-		iv_home_item0 = view.findViewById(R.id.iv_home_item0);
-		iv_home_item1 = view.findViewById(R.id.iv_home_item1);
-		iv_home_item2 = view.findViewById(R.id.iv_home_item2);
-		iv_home_item3 = view.findViewById(R.id.iv_home_item3);
-		iv_home_item0.setOnClickListener(this);
-		iv_home_item1.setOnClickListener(this);
-		iv_home_item2.setOnClickListener(this);
-		iv_home_item3.setOnClickListener(this);
-		iv_home_item1_0 = view.findViewById(R.id.iv_home_item1_0);
-		iv_home_item1_1 = view.findViewById(R.id.iv_home_item1_1);
-		iv_home_item1_2 = view.findViewById(R.id.iv_home_item1_2);
-		iv_home_item1_3 = view.findViewById(R.id.iv_home_item1_3);
-		iv_home_item1_0.setOnClickListener(this);
-		iv_home_item1_1.setOnClickListener(this);
-		iv_home_item1_2.setOnClickListener(this);
-		iv_home_item1_3.setOnClickListener(this);
+//		iv_home_item0.setOnClickListener(this);
+//		iv_home_item1.setOnClickListener(this);
+//		iv_home_item2.setOnClickListener(this);
+//		iv_home_item3.setOnClickListener(this);
+//		iv_home_item1_0 = view.findViewById(R.id.iv_home_item1_0);
+//		iv_home_item1_1 = view.findViewById(R.id.iv_home_item1_1);
+//		iv_home_item1_2 = view.findViewById(R.id.iv_home_item1_2);
+//		iv_home_item1_3 = view.findViewById(R.id.iv_home_item1_3);
+//		iv_home_item1_0.setOnClickListener(this);
+//		iv_home_item1_1.setOnClickListener(this);
+//		iv_home_item1_2.setOnClickListener(this);
+//		iv_home_item1_3.setOnClickListener(this);
 
 	}
 
@@ -124,20 +120,20 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.iv_home_item0:
-		case R.id.iv_home_item1:
-		case R.id.iv_home_item2:
-		case R.id.iv_home_item3:
+//		case R.id.iv_home_item0:
+//		case R.id.iv_home_item1:
+//		case R.id.iv_home_item2:
+//		case R.id.iv_home_item3:
+//
+//			startActivity(new Intent(getActivity(), ActivityUserDelails.class));
+//			break;
 
-			startActivity(new Intent(getActivity(), ActivityUserDelails.class));
-			break;
-
-		case R.id.iv_home_item1_0:
-		case R.id.iv_home_item1_1:
-		case R.id.iv_home_item1_2:
-		case R.id.iv_home_item1_3:
-			startActivity(new Intent(getActivity(), ActivityHotIdentiy.class));
-			break;
+//		case R.id.iv_home_item1_0:
+//		case R.id.iv_home_item1_1:
+//		case R.id.iv_home_item1_2:
+//		case R.id.iv_home_item1_3:
+//			startActivity(new Intent(getActivity(), ActivityHotIdentiy.class));
+//			break;
 		}
 
 	}

@@ -1,13 +1,14 @@
 package com.it.bean;
 
 public class HomeItem0 {
-	public int imageUrl;
-	public int iconUrl;
+	public String imageUrl;
+	public String iconUrl;
 	public int grade;
 	public String name;
 	public int num;
 
-	public HomeItem0(int imageUrl, int iconUrl, int grade, String name, int num) {
+	public HomeItem0(String imageUrl, String iconUrl, int grade, String name,
+			int num) {
 		super();
 		this.imageUrl = imageUrl;
 		this.iconUrl = iconUrl;

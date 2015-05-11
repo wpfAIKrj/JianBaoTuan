@@ -25,40 +25,37 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="560dp"
-        android:layout_marginTop="10dp" >
+        android:layout_height="@dimen/y1174"
+        android:layout_marginBottom="@dimen/y20"
+        android:paddingTop="@dimen/y20" >
 
-        <ImageView
-            android:clickable="true"
-            android:id="@+id/iv_home_item1_0"
+        <com.it.view.home.ViewHomeItem1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/test_xc1" />
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_marginRight="@dimen/x6" />
 
-        <ImageView
-            android:clickable="true"
-            android:id="@+id/iv_home_item1_1"
+        <com.it.view.home.ViewHomeItem1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|right"
-            android:src="@drawable/test_xc1" />
+            android:layout_marginLeft="@dimen/x6"
+            android:layout_marginRight="@dimen/x14" />
 
-        <ImageView
-            android:clickable="true"
-            android:id="@+id/iv_home_item1_2"
+        <com.it.view.home.ViewHomeItem1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:src="@drawable/test_xc1" />
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_marginRight="@dimen/x6" />
 
-        <ImageView
-            android:id="@+id/iv_home_item1_3"
+        <com.it.view.home.ViewHomeItem1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:clickable="true"
-            android:src="@drawable/test_xc1" />
-
+            android:layout_marginLeft="@dimen/x6"
+            android:layout_marginRight="@dimen/x14" />
     </FrameLayout>
 
 </LinearLayout>

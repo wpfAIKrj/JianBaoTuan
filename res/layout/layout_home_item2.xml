@@ -23,22 +23,21 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginTop="10dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:orientation="vertical" >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/test_xc2" />
+        <com.it.view.home.ViewHomeItem2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <com.it.view.home.ViewHomeItem2
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/test_xc2" />
-    </FrameLayout>
+            android:layout_marginBottom="@dimen/y20"
+            android:layout_marginTop="@dimen/y20" />
+    </LinearLayout>
 
 </LinearLayout>

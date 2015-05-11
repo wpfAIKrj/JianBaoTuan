@@ -1,4 +1,4 @@
-package com.it.view;
+package com.it.view.home;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.bean.HomeItem0;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.util.LogUtils;
 
 /**
@@ -29,12 +31,12 @@ import com.lidroid.xutils.util.LogUtils;
 public class ViewHomeItem0 extends LinearLayout {
 
 	// screen height,and width,in px
-	int screen_h, screen_w;
-	// iv_big-w:h=348:240
-	// iv_small-w:h=1:1
-	// iv_grade-w:h=1:1
-	protected ImageView iv_big, iv_small, iv_grade;
-	protected TextView tv_name, tv_num;
+	private ImageView iv_big;
+	private ImageView iv_small;
+	private ImageView iv_grade;
+	private TextView tv_name, tv_num;
+
+	BitmapUtils bitmapUtils;
 
 	public ViewHomeItem0(Context context) {
 		super(context);
@@ -45,6 +47,7 @@ public class ViewHomeItem0 extends LinearLayout {
 	public ViewHomeItem0(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
+		init(context);
 	}
 
 	public ViewHomeItem0(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -56,7 +59,6 @@ public class ViewHomeItem0 extends LinearLayout {
 	protected void onAttachedToWindow() {
 		// TODO Auto-generated method stub
 		super.onAttachedToWindow();
-		setViewsHW(getContext());
 	}
 
 	@Override
@@ -76,38 +78,21 @@ public class ViewHomeItem0 extends LinearLayout {
 
 	}
 
-	private void setViewsHW(Context context) {
-		// TODO Auto-generated method stub
-		if (!(context instanceof Activity)) {
-			return;
+	public void setItem(HomeItem0 item) {
+		if (bitmapUtils == null) {
+			bitmapUtils = new BitmapUtils(getContext());
 		}
-		DisplayMetrics mDisplayMetrics = new DisplayMetrics();// 屏幕分辨率容器
-		((Activity) context).getWindowManager().getDefaultDisplay()
-				.getMetrics(mDisplayMetrics);
-		screen_w = mDisplayMetrics.widthPixels;
-		screen_h = mDisplayMetrics.heightPixels;
+		// 设置大图片
+		bitmapUtils.display(iv_big, item.imageUrl);
+		// 设置头像
+		bitmapUtils.display(iv_small, item.iconUrl);
+		// 设置等级
+		setGradeImage(item.grade);
+		// 设置名字
+		setName(item.name);
+		// 设置浏览量
+		setNum(item.num + "");
 
-		LogUtils.d("屏幕宽高：w=" + screen_w + ":h=" + screen_h);
-
-	}
-
-	/**
-	 * 设置大图片，有两种：网络地址，本地
-	 * */
-	public void setBigImage(String url) {
-
-	}
-
-	public void setBigImage(Drawable drawable) {
-		iv_big.setImageDrawable(drawable);
-	}
-
-	public void setSmallImage(String url) {
-
-	}
-
-	public void setSmallImage(Drawable drawable) {
-		iv_small.setImageDrawable(drawable);
 	}
 
 	public void setGradeImage(int grade) {

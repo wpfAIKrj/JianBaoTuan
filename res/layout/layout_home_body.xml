@@ -7,6 +7,6 @@
     <com.it.view.ImageViewPage
         android:id="@+id/imageViewpage"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="@dimen/y300" />
 
 </LinearLayout>

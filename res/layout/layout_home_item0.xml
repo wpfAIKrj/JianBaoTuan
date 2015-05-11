@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/y20"
     android:background="@color/wite"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingTop="@dimen/y20" >
 
     <RelativeLayout
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/y20"
         android:background="@drawable/home_menu_back" >
 
         <TextView
@@ -24,40 +25,39 @@
     </RelativeLayout>
 
     <FrameLayout
+        android:id="@+id/layout_home_item0"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
-        android:layout_marginTop="10dp" >
+        android:layout_height="@dimen/y976"
+        android:layout_marginBottom="@dimen/y20"
+        android:paddingTop="@dimen/y20" >
 
-        <ImageView
-            android:id="@+id/iv_home_item0"
+        <com.it.view.home.ViewHomeItem0
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/test_xc0" />
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_marginRight="@dimen/x6" />
 
-        <ImageView
-            android:id="@+id/iv_home_item1"
+        <com.it.view.home.ViewHomeItem0
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|right"
-            android:clickable="true"
-            android:src="@drawable/test_xc0" />
+            android:layout_marginLeft="@dimen/x6"
+            android:layout_marginRight="@dimen/x14" />
 
-        <ImageView
-            android:id="@+id/iv_home_item2"
+        <com.it.view.home.ViewHomeItem0
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|left"
-            android:clickable="true"
-            android:src="@drawable/test_xc0" />
+            android:layout_marginLeft="@dimen/x14"
+            android:layout_marginRight="@dimen/x6" />
 
-        <ImageView
-            android:id="@+id/iv_home_item3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.it.view.home.ViewHomeItem0
+            android:layout_width="@dimen/x340"
+            android:layout_height="@dimen/y468"
             android:layout_gravity="bottom|right"
-            android:clickable="true"
-            android:src="@drawable/test_xc0" />
+            android:layout_marginLeft="@dimen/x6"
+            android:layout_marginRight="@dimen/x14" />
     </FrameLayout>
 
 </LinearLayout>
