@@ -17,7 +17,7 @@ import com.it.app.ItApplication;
 import com.it.bean.UserInfo;
 import com.it.presenter.LoginPresenter;
 import com.it.ui.base.BaseActivity;
-import com.it.utils.DataUtil;
+import com.it.utils.SqlDataUtil;
 import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
@@ -152,7 +152,7 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 			dialog.dismiss();
 		}
 		((ItApplication)getApplication()).setCurrnUser(user);
-		DataUtil.getInstance(getApplicationContext()).saveUserInfo(user);
+		SqlDataUtil.getInstance().saveUserInfo(user);
 		
 		Intent intent=new Intent(LoginAcitivity.this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

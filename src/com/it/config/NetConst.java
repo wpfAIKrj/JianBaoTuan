@@ -42,5 +42,9 @@ public class NetConst {
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
+	
+	
+	public static String DOWNLOADUPLOADSID=null;//默认为空 当登陆注册后冲服务器获取的下载上传凭证
+	
 
 }

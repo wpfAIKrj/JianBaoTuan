@@ -53,8 +53,9 @@ public class RegisterModel extends BaseModel{
 				String data = json.getString(NetConst.DATA);
 				Gson gson=new Gson();
 				UserInfo user=gson.fromJson(data, UserInfo.class);
-				lisntenr.onBaseDataLoaded(user);
 				NetConst.SESSIONID=user.getSession_id();
+				NetConst.DOWNLOADUPLOADSID=user.getPassword();
+				lisntenr.onBaseDataLoaded(user);
 			}else{
 				lisntenr.onBaseDataLoadErrorHappened(String.valueOf(code),message);
 			}
