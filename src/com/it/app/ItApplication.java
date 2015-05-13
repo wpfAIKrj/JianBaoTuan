@@ -3,6 +3,8 @@ package com.it.app;
 import io.rong.imkit.RongIM;
 
 import com.it.bean.UserInfo;
+import com.it.im.RongCloudEvent;
+import com.it.im.RongImUtils;
 import com.it.utils.SqlDataUtil;
 
 import android.app.Application;
@@ -25,6 +27,8 @@ public class ItApplication extends Application {
 		super.onCreate();
 		RongIM.init(this);
 		SqlDataUtil.initSql(this);
+		RongCloudEvent.init(this);
+		RongImUtils.init(this);
 	}
 	
 }

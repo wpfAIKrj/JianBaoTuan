@@ -53,7 +53,6 @@ public class LoginModel extends BaseModel{
 				Gson gson=new Gson();
 				UserInfo user=gson.fromJson(data, UserInfo.class);
 				NetConst.SESSIONID=user.getSession_id();
-				NetConst.DOWNLOADUPLOADSID=user.getPassword();
 				lisntenr.onBaseDataLoaded(user);
 			}else{
 				lisntenr.onBaseDataLoadErrorHappened(String.valueOf(code),message);

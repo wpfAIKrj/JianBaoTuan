@@ -2,7 +2,11 @@ package com.it.utils;
 
 import java.util.List;
 
+import com.it.bean.DaoMaster;
+import com.it.bean.DaoMaster.DevOpenHelper;
+import com.it.bean.DaoSession;
 import com.it.bean.UserInfo;
+import com.it.bean.UserInfoDao;
 import com.it.config.Const;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.DbUtils.DbUpgradeListener;
@@ -18,26 +22,28 @@ import android.content.Context;
 public class SqlDataUtil {
 
 	private static SqlDataUtil mInstance=null;
-	private DbUtils db;
+	private  DaoMaster daoMaster=null;
+	private  DaoSession daoSession=null;
+	private  UserInfoDao userdao=null;
+	
 	
 	private SqlDataUtil(Context context){
-		db =DbUtils.create(context, Const.DATABASE_NAME, Const.DATABASE_VERSION, new DbUpgradeListener() {
-			
-			@Override
-			public void onUpgrade(DbUtils arg0, int arg1, int arg2) {
-				// TODO Auto-generated method stub
-				if(arg2!=arg1){
-					try {
-						db.dropDb();
-					} catch (DbException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			if(daoMaster==null){
+				DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "if", null);
+				try {
+					daoMaster=new DaoMaster(helper.getWritableDatabase());
+					if(daoSession==null){
+						daoSession=daoMaster.newSession();
 					}
+					if(userdao==null){
+						userdao=daoSession.getUserInfoDao();
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
 			}
-		});
-		db.configAllowTransaction(true);
-        db.configDebug(true);
 	}
 	
 	/**
@@ -63,8 +69,8 @@ public class SqlDataUtil {
 	 */
 	public void saveUserInfo(UserInfo user){
 		try {
-			db.saveOrUpdate(user);
-		} catch (DbException e) {
+			userdao.insertOrReplace(user);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -77,12 +83,17 @@ public class SqlDataUtil {
 	public List<UserInfo> getUserList(){
 		List<UserInfo> list =null;
 		try {
-			list= db.findAll(UserInfo.class);
-		} catch (DbException e) {
+			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
+			list=qb.list();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
 	}
+	
+	
+	
+
 
 }

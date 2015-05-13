@@ -1,5 +1,7 @@
 package com.it.ui.activity;
 
+import io.rong.imkit.RongIM;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -24,8 +26,10 @@ import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
+import com.it.im.RongImUtils;
 import com.it.presenter.RegisterPresenter;
 import com.it.ui.base.BaseActivity;
+import com.it.ui.dialog.RegisterDialog;
 import com.it.utils.SqlDataUtil;
 import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
@@ -205,6 +209,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
          } 
 	};
 
+	private RegisterDialog registerdialog;
+
 	protected void reSendSMS() {
 		// TODO Auto-generated method stub
 		 System.out.println("获取验证码成功");
@@ -238,11 +244,23 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 		}
 		((ItApplication)getApplication()).setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
-		
-		Intent intent=new Intent(RegisterActivity.this, MainActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		startActivity(intent);
-		finish();
+		registerdialog=new RegisterDialog(this);
+		registerdialog.show();
+		RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
+		mhandler.postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(registerdialog!=null){
+					registerdialog.dismiss();
+				}
+				Intent intent=new Intent(RegisterActivity.this, MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(intent);
+				finish();
+			}
+		}, 5000);
 	}
 
 	@Override

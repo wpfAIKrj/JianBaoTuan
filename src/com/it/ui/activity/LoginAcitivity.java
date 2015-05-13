@@ -1,5 +1,7 @@
 package com.it.ui.activity;
 
+import java.util.List;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +9,18 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.UserInfo;
+import com.it.im.RongImUtils;
 import com.it.presenter.LoginPresenter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.SqlDataUtil;
@@ -22,6 +28,7 @@ import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
 import com.it.view.CircleImageView;
+import com.it.view.SelectMoilbWindow;
 import com.it.view.inter.LoginView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -32,7 +39,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * @author Administrator
  *
  */
-public class LoginAcitivity extends BaseActivity implements LoginView{
+public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClickListener{
 
 	
 	@ViewInject(R.id.login_user_head)
@@ -49,6 +56,12 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 	
 	private boolean isShow=false;
 	
+	private SelectMoilbWindow popwindow;
+	
+	@ViewInject(R.id.name_layout)
+	private LinearLayout namelayout;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -56,6 +69,11 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 		setContentView(R.layout.activity_login);
 		ViewUtils.inject(this);
 		mpresenter=new LoginPresenter(this);
+		List<UserInfo> list = SqlDataUtil.getInstance().getUserList();
+		if(list==null){
+			isShow=true;
+		}
+		popwindow=new SelectMoilbWindow(this, this);
 		
 	}
 
@@ -103,7 +121,7 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 	 */
 	private void disPopWinddos() {
 		// TODO Auto-generated method stub
-		
+		popwindow.showPopupWindow(namelayout);
 	}
 
 
@@ -153,7 +171,7 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 		}
 		((ItApplication)getApplication()).setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
-		
+		RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
 		Intent intent=new Intent(LoginAcitivity.this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(intent);
@@ -168,5 +186,18 @@ public class LoginAcitivity extends BaseActivity implements LoginView{
 			dialog.dismiss();
 		}
 		new ToastUtils(this, errorCode+","+errorMsg);
+	}
+
+
+
+
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		UserInfo user= popwindow.getUserInfo(position);
+		ed_name.setText(user.getMobile());
+		popwindow.showPopupWindow(namelayout);
 	}
 }

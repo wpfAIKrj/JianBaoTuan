@@ -18,7 +18,7 @@
     	     android:background="@color/item_space_color"
     	    />
     	<EditText
-    	    android:id="@+id/editText1"
+    	    android:id="@+id/et_qq"
     	    android:layout_width="match_parent"
     	    android:layout_height="47dp"
     	    android:ems="10"
@@ -46,8 +46,8 @@
     	     android:background="@color/item_space_color"
     	    
     	    />
-		<EditText
-		    	    android:id="@+id/editText2"
+		<com.it.view.EmailAutoCompleteTextView
+		    	    android:id="@+id/et_email"
 		    	    android:layout_width="match_parent"
 		    	    android:layout_height="47dp"
 		    	    android:ems="10"
@@ -58,10 +58,8 @@
 		    	    style="@style/my_title_style3"
 		    	    android:paddingLeft="@dimen/layout_padding"
 		    	
-		    	    >
-		
-		    	    <requestFocus />
-		    	</EditText>
+		    	    />
+
 <View
     	    android:layout_width="match_parent"
     	    android:layout_height="1dp"
@@ -70,7 +68,7 @@
     	    />
     	
 		<Button
-		    android:id="@+id/button1"
+		    android:id="@+id/bt_save"
 		    android:layout_width="match_parent"
 		    android:layout_height="50dp"
 		    android:text="@string/profile_bt_save"
@@ -78,5 +76,7 @@
 		    android:layout_marginLeft="@dimen/detail_text_padd"
 		    android:layout_marginRight="@dimen/detail_text_padd"
 		    android:layout_marginTop="@dimen/bt_margintop_layout" />
+
+
 
 </LinearLayout>

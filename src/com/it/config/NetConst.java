@@ -11,7 +11,7 @@ public class NetConst {
 	
 	public static final String CODE="code";
 	
-	public static final int CODE_SUCCESS=10000;
+	public static final int CODE_SUCCESS=100000;
 	
 	public static final int CODE_ERROR1=10000;
 	public static final int CODE_ERROR2=10002;//登陆失败
@@ -43,8 +43,10 @@ public class NetConst {
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
 	
-	
-	public static String DOWNLOADUPLOADSID=null;//默认为空 当登陆注册后冲服务器获取的下载上传凭证
+	/**
+	 * 七牛的下载凭证
+	 */
+	public static String DOWNLOADUPLOADSID="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:Io92Dp92BYEeSPnb3EfSBaavUhw=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMxNTIyODk2fQ==";//默认为空 当登陆注册后冲服务器获取的下载上传凭证
 	
 
 }
