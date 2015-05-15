@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
-        android:layout_marginTop="10dp" >
+        android:layout_marginTop="@dimen/y20" >
 
         <TextView
             android:id="@+id/title"
@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:text="@string/str_identify_result"
             android:textColor="@color/black_2"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x30" />
     </RelativeLayout>
 
     <LinearLayout
@@ -28,14 +28,13 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/test_xc10" />
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/test_xc10" />
+        <com.it.view.home.ViewUserDelaisIdentifyResult
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.it.view.home.ViewUserDelaisIdentifyResult
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>

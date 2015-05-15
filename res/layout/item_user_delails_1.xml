@@ -2,11 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/layout_bg_color"
     android:orientation="vertical" >
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/test_xc7" />
+        android:orientation="horizontal" >
+
+        <com.it.view.CircleImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y100"
+            android:layout_marginBottom="@dimen/y20"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/y20"
+            android:src="@drawable/test_x6" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginTop="@dimen/y56"
+            android:text="@string/authenticate_title"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/x30" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:layout_marginLeft="@dimen/x30"
+        android:background="@color/item_space_color" />
+
+    <LinearLayout
+        android:id="@+id/layout_kind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/y20"
+        android:paddingLeft="@dimen/x30"
+        android:paddingTop="@dimen/y20" >
+
+        <Button
+            android:layout_width="@dimen/x76"
+            android:layout_height="@dimen/y40"
+            android:background="@color/bt_color"
+            android:gravity="center"
+            android:text="木"
+            android:textColor="@color/wite"
+            android:textSize="@dimen/x24" />
+
+        <Button
+            android:layout_width="@dimen/x76"
+            android:layout_height="@dimen/y40"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@color/bt_color"
+            android:gravity="center"
+            android:text="沉香"
+            android:textColor="@color/wite"
+            android:textSize="@dimen/x24" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y20"
+        android:layout_marginLeft="@dimen/x30"
+        android:text="刚刚入手的21克多，帮忙看看怎么样，谢谢"
+        android:textColor="@color/black_2"
+        android:textSize="@dimen/x24" />
 
 </LinearLayout>

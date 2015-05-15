@@ -20,15 +20,19 @@
 
             <include layout="@layout/item_user_delails_1" />
 
-            <ImageView
+            <com.it.view.ImageViewWithBorder
+                android:id="@+id/iv_0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/y500"
+                android:scaleType="fitXY"
                 android:src="@drawable/test_xc8" />
 
-            <ImageView
+            <com.it.view.ImageViewWithBorder
+                android:id="@+id/iv_1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/y500"
+                android:layout_marginTop="@dimen/y20"
+                android:scaleType="fitXY"
                 android:src="@drawable/test_xc8" />
 
             <include layout="@layout/layout_user_delais_similar_item" />
@@ -40,40 +44,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/y20"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="horizontal" >
 
         <EditText
             android:layout_width="0dp"
-            android:layout_height="47dp"
-            android:layout_marginLeft="7dp"
+            android:layout_height="@dimen/y94"
+            android:layout_marginLeft="@dimen/x14"
             android:layout_weight="1.0"
             android:background="@color/wite"
             android:gravity="center_vertical" />
 
         <Button
-            android:layout_width="64dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_width="@dimen/x128"
+            android:layout_height="@dimen/y94"
+            android:layout_marginLeft="@dimen/x10"
             android:background="@color/bt_color"
             android:gravity="center"
             android:text="评 论"
             android:textColor="@color/wite"
-            android:textSize="15dp" />
+            android:textSize="@dimen/x30" />
 
         <Button
             android:id="@+id/btn_goto"
-            android:layout_width="84dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="7dp"
+            android:layout_width="@dimen/x128"
+            android:layout_height="@dimen/y94"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x14"
             android:background="@color/dialog_title_color"
             android:gravity="center"
             android:text="@string/identiy_by_me"
             android:textColor="@color/wite"
-            android:textSize="15dp" />
+            android:textSize="@dimen/x30" />
     </LinearLayout>
 
 </LinearLayout>
