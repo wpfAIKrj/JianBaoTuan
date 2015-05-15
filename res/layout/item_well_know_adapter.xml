@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/match_league_roung_item_ll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:minWidth="@dimen/x120"
+    android:orientation="vertical" >
+
+    <com.it.view.CircleImageView
+        android:id="@+id/iv"
+        android:layout_width="@dimen/x102"
+        android:layout_height="@dimen/y102" />
+
+</LinearLayout>

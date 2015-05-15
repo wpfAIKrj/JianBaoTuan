@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y168"
+    android:orientation="horizontal" >
+
+    <com.it.view.CircleImageView
+        android:id="@+id/iv_head"
+        android:layout_width="@dimen/x168"
+        android:layout_height="@dimen/y168"
+        android:src="@drawable/test_x6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/x20"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y32"
+            android:text="凌子枫"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/x30" />
+
+        <TextView
+            android:id="@+id/tv_identify_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y7"
+            android:text="权威机构鉴定师"
+            android:textColor="@color/home_head_color"
+            android:textSize="@dimen/x26" />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y7"
+            android:text="擅长海南黄花梨，小叶紫檀，翡翠玉石等鉴定"
+            android:textColor="@color/black_2"
+            android:textSize="@dimen/x22" />
+    </LinearLayout>
+
+</LinearLayout>

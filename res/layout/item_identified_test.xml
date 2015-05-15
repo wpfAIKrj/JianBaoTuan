@@ -7,41 +7,33 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="560dp"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="7dp"
-        android:paddingRight="7dp" >
+        android:layout_height="@dimen/y1154"
+        android:layout_marginTop="@dimen/y20"
+        android:paddingLeft="@dimen/x14"
+        android:paddingRight="@dimen/x14" >
 
-        <ImageView
+        <com.it.view.home.ViewHomeItem1
             android:id="@+id/iv_01"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/test_xc1" />
+            android:layout_height="wrap_content" />
 
-        <ImageView
+        <com.it.view.home.ViewHomeItem1
             android:id="@+id/iv_02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|right"
-            android:clickable="true"
-            android:src="@drawable/test_xc1" />
+            android:layout_gravity="top|right" />
 
-        <ImageView
+        <com.it.view.home.ViewHomeItem1
             android:id="@+id/iv_03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:clickable="true"
-            android:src="@drawable/test_xc1" />
+            android:layout_gravity="bottom|left" />
 
-        <ImageView
+        <com.it.view.home.ViewHomeItem1
             android:id="@+id/iv_04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:clickable="true"
-            android:src="@drawable/test_xc1" />
+            android:layout_gravity="bottom|right" />
     </FrameLayout>
 
 </LinearLayout>
