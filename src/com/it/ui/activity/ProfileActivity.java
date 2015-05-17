@@ -22,7 +22,11 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-
+/**
+ * 个人信息完善
+ * @author Administrator
+ *
+ */
 public class ProfileActivity extends BaseActivity implements ProfileView{
 
 	@ViewInject(R.id.button_category)

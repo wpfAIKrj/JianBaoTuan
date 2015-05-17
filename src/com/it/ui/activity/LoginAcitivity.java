@@ -166,15 +166,15 @@ public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClic
 	@Override
 	public void loginSucess(UserInfo user) {//登陆成功
 		// TODO Auto-generated method stub
+		((ItApplication)getApplication()).setCurrnUser(user);
+		SqlDataUtil.getInstance().saveUserInfo(user);
+	//	RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
+		Intent intent=new Intent(LoginAcitivity.this, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 		if(dialog!=null){
 			dialog.dismiss();
 		}
-		((ItApplication)getApplication()).setCurrnUser(user);
-		SqlDataUtil.getInstance().saveUserInfo(user);
-		RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
-		Intent intent=new Intent(LoginAcitivity.this, MainActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		startActivity(intent);
 		finish();
 	}
 
@@ -199,5 +199,13 @@ public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClic
 		UserInfo user= popwindow.getUserInfo(position);
 		ed_name.setText(user.getMobile());
 		popwindow.showPopupWindow(namelayout);
+	}
+	
+	
+	@Override
+	public void startActivity(Intent intent) {
+		// TODO Auto-generated method stub
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 }

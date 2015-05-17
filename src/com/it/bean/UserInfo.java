@@ -1,5 +1,7 @@
 package com.it.bean;
 
+import java.io.Serializable;
+
 import com.google.gson.annotations.SerializedName;
 import com.lidroid.xutils.db.annotation.Unique;
 
@@ -7,15 +9,8 @@ import com.lidroid.xutils.db.annotation.Unique;
 /**
  * Entity mapped to table USER_INFO.
  */
-public class UserInfo {
+public class UserInfo implements Serializable{
 
-	public String getSession_id() {
-		return session_id;
-	}
-
-	public void setSession_id(String session_id) {
-		this.session_id = session_id;
-	}
 
 	@SerializedName("id")
 	private Long id;
@@ -186,5 +181,14 @@ public class UserInfo {
     public void setIs_bind(Boolean is_bind) {
         this.is_bind = is_bind;
     }
+    
+	public String getSession_id() {
+		return session_id;
+	}
+
+	public void setSession_id(String session_id) {
+		this.session_id = session_id;
+	}
+
 
 }

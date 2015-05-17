@@ -2,6 +2,10 @@ package com.it.ui.activity;
 
 
 import com.it.R;
+import com.it.app.ItApplication;
+import com.it.bean.UserInfo;
+import com.it.config.Const;
+import com.it.config.NetConst;
 import com.it.ui.fragment.HomeFragment;
 import com.it.ui.fragment.IdentiyFragment;
 import com.it.ui.fragment.InformationFragment;
@@ -45,36 +49,21 @@ OnTabSelectedListener ,OnClickListener{
 	private HomeFragment mHomeFragment;
 	private IdentiyFragment mIdentiyFragment;
 	private InformationFragment mInformationFragment;
-	private MyFragment mMyFragment;
-	
+	private MyFragment mMyFragment;	
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
-	//private SystemBarTintManager mTintManager;
 	private ResideMenu resideMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSave(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//setWindowStyle();
         setContentView(R.layout.activity_main);  
 		init();
 		initEvents();
 		setUpMenu();
     }
-
-//    @TargetApi(19)
-//    private void setWindowStyle() {
-//		// TODO Auto-generated method stub
-//    	if (Build.VERSION.SDK_INT >= 19) {
-//            setTranslucentStatus(true);
-//            mTintManager = new SystemBarTintManager(this); 
-//    		mTintManager.setStatusBarTintEnabled(true);
-//    		mTintManager.setNavigationBarTintEnabled(true);
-//    		int color=getResources().getColor(R.color.dialog_title_color);
-//    		mTintManager.setTintColor(color);
-//		}
-//	}
 
 	private void setUpMenu() {
 		// TODO Auto-generated method stub
@@ -118,6 +107,7 @@ OnTabSelectedListener ,OnClickListener{
 				startActivity(new Intent(MainActivity.this, PublishedActivity.class));
 			}
 		});
+	    
 	}
 	private void initEvents() {
 			// TODO Auto-generated method stub
@@ -134,15 +124,25 @@ OnTabSelectedListener ,OnClickListener{
     
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putInt("index", mIndex);
+		outState.putInt(Const.MINDEX, mIndex);
+		outState.putSerializable(Const.USER, ((ItApplication)getApplication()).getCurrnUser());
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		mIndex = savedInstanceState.getInt("index");
+		getSave(savedInstanceState);
 	}
 
     
+	private void getSave(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		if(savedInstanceState!=null){
+		   	mIndex=savedInstanceState.getInt(Const.MINDEX,0);
+	    	UserInfo user = (UserInfo) savedInstanceState.getSerializable(Const.USER);
+	    	((ItApplication)getApplication()).setCurrnUser(user);
+		}
+	}
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
@@ -169,7 +169,11 @@ OnTabSelectedListener ,OnClickListener{
 		// TODO Auto-generated method stub
 		//
 		if(index==3){//我的页面
-			
+			if(((ItApplication)getApplication()).getCurrnUser()==null){
+				Intent intent=new Intent(MainActivity.this, LoginAcitivity.class);
+				startActivity(intent);
+				return;
+			}
 		}
 		FragmentTransaction transaction = mFragmentManager.beginTransaction();
 		hideFragments(transaction);
@@ -261,6 +265,12 @@ OnTabSelectedListener ,OnClickListener{
 		resideMenu.closeMenu();
 	}
 
-
+	
+	@Override
+	public void startActivity(Intent intent) {
+		// TODO Auto-generated method stub
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
   
 }

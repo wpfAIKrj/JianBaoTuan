@@ -1,5 +1,6 @@
 package com.it.ui.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
@@ -11,7 +12,11 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
-
+/**
+ * 用户等级说明
+ * @author Administrator
+ *
+ */
 public class LevelActivity extends BaseActivity implements OnClickListener {
 	
 	@Override
@@ -27,7 +32,6 @@ public class LevelActivity extends BaseActivity implements OnClickListener {
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		TextView tv=(TextView)findViewById(R.id.home_title);
 		tv.setText(R.string.authenticate_title);
@@ -57,6 +61,7 @@ public class LevelActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.button_category://返回上层
 			setResult(RESULT_CANCELED, getIntent());
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			finish();
 			break;
 
@@ -64,4 +69,6 @@ public class LevelActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
+	
+
 }

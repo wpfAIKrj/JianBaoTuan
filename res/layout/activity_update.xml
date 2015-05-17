@@ -53,6 +53,7 @@
         android:background="@color/wite"
         android:text="@string/update_bt" 
         style="@style/my_title_style1"
+        android:gravity="center"
         />
 		<View 
         android:layout_width="match_parent"

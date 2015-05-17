@@ -16,6 +16,11 @@ import com.it.ui.base.BaseActivity;
 import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
 
+/**
+ * 系统信息提示
+ * @author Administrator
+ *
+ */
 public class SystemInfoActivity extends BaseActivity implements OnClickListener,IXListViewListener,OnItemClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,6 @@ public class SystemInfoActivity extends BaseActivity implements OnClickListener,
 		// TODO Auto-generated method stub
 		mlistview=(XListView) findViewById(R.id.article_listview);
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		bt=(ImageView)findViewById(R.id.button_delect);
 		bt.setOnClickListener(this);

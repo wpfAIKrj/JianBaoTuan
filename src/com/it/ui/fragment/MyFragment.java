@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.app.ItApplication;
+import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.ui.activity.ActivityFootPrint;
 import com.it.ui.activity.ActivityMyPrecious;
@@ -24,14 +26,53 @@ import com.it.ui.activity.LevelActivity;
 import com.it.ui.activity.SystemInfoActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
+import com.it.utils.ToastUtils;
+import com.it.view.CircleImageView;
 import com.it.view.listview.HorizontalListView;
-
-public class MyFragment extends BaseFragment implements OnClickListener {
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+/**
+ * 我的设置页面
+ * @author Administrator
+ *
+ */
+public class MyFragment extends BaseFragment{
+	
 	private OnClickListener listener;
+	@ViewInject(R.id.horizontalListView1)
 	private HorizontalListView listView;
-	private TextView tv_name, tv_authenticate, tv_collect_number;
-	private ImageView iv_authenticate;
+	
+	@ViewInject(R.id.my_tv_name)
+	private TextView tv_name;
+	
+	@ViewInject(R.id.my_tv_authenticate)
+	private TextView tv_authenticate;
+	
+	@ViewInject(R.id.my_tv_collect_number)
+	private TextView tv_collect_number;
+	
+	@ViewInject(R.id.my_identiy_number)
+	private TextView tv_identiy_number;
+	
+	@ViewInject(R.id.my_fooler_number)
+	private TextView tv_fooler_number;
+	
+	@ViewInject(R.id.my_iv_level)
+	private ImageView iv_level;
+	
 
+	
+	@ViewInject(R.id.login_user_head)
+	private CircleImageView user_logo;
+	
+	@ViewInject(R.id.my_type_msg)
+	private TextView my_type_msg;
+	
+	private UserInfo user=null;
+	
+	private int[] levels={R.drawable.level01,R.drawable.level02,R.drawable.level03,
+			R.drawable.level04,R.drawable.level05,R.drawable.level06};
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -39,56 +80,23 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 		return inflater.inflate(R.layout.layout_my, container, false);
 	}
 
+	
+	
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
-		ImageView bt = (ImageView) view.findViewById(R.id.my_bt_showmenu);
-		bt.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (listener != null) {
-					listener.onClick(v);
-				}
-			}
-		});
-		listView = (HorizontalListView) view
-				.findViewById(R.id.horizontalListView1);
-		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
-		listView.setAdapter(adapter);
-		tv_name = (TextView) view.findViewById(R.id.my_tv_name);
-		tv_authenticate = (TextView) view.findViewById(R.id.my_tv_authenticate);
-		tv_authenticate.setOnClickListener(this);
-
-		tv_collect_number = (TextView) view
-				.findViewById(R.id.my_tv_collect_number);
-		LinearLayout layout = (LinearLayout) view
-				.findViewById(R.id.my_layout_collect);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_layout_foot);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_layout_identif);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab1);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab2);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab3);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab4);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab5);
-		layout.setOnClickListener(this);
-		layout = (LinearLayout) view.findViewById(R.id.my_tab6);
-		layout.setOnClickListener(this);
+		ViewUtils.inject(this,view);
 	}
 
 	@Override
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
-
+		user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
+		initData();
 	}
+
+
+
 
 	@Override
 	public void lazyLoad() {
@@ -100,12 +108,24 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 		listener = lis;
 	}
 
-	@Override
+	@OnClick({R.id.my_iv_level,R.id.my_bt_showmenu,R.id.my_tv_authenticate,R.id.my_layout_collect,R.id.my_layout_foot,R.id.my_layout_identif
+		,R.id.my_tab1,R.id.my_tab2,R.id.my_tab3,R.id.my_tab4,R.id.my_tab5,R.id.my_tab6})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.my_iv_level://跳转到等级说明
+			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));	
+			break;
+		case R.id.my_bt_showmenu://右侧菜单
+			if (listener != null) {
+				listener.onClick(v);
+			}
+			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
-			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
+			if(user.getUser_type()==0){
+				mActivity.startActivity(new Intent(mActivity,
+						AuthenticateActivity.class));
+			}
 			break;
 
 		case R.id.my_layout_collect:// 跳转收集宝贝页面
@@ -139,8 +159,12 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 					SystemInfoActivity.class));
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
-			mActivity.startActivity(new Intent(mActivity,
-					AuthenticateActivity.class));
+			if(user.getUser_type()==0){
+				mActivity.startActivity(new Intent(mActivity,
+						AuthenticateActivity.class));
+			}else{
+				new ToastUtils(mActivity,R.string.help_msg_01);
+			}
 			break;
 		case R.id.my_tab6:// 跳转到人工客服
 			String strMobile = "10086";
@@ -154,5 +178,15 @@ public class MyFragment extends BaseFragment implements OnClickListener {
 			break;
 		}
 	}
-
+	
+	
+	private void initData() {
+		// TODO Auto-generated method stub
+		tv_name.setText(user.getNickname());
+		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[user.getUser_type()]);
+		iv_level.setImageResource(levels[user.getUser_type()]);
+		
+		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
+		listView.setAdapter(adapter);
+	}
 }

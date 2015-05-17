@@ -9,9 +9,6 @@
         android:id="@+id/imageview_big_icon"
         android:layout_width="@dimen/x339"
         android:layout_height="@dimen/y347"
-        android:layout_marginLeft="@dimen/x1"
-        android:layout_marginRight="@dimen/x1"
-        android:layout_marginTop="@dimen/y1"
         android:scaleType="fitXY"
         android:src="@drawable/test2" />
 
@@ -34,32 +31,29 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/x10"
             android:layout_weight="1.0" >
 
             <ImageView
                 android:id="@+id/imageview_grade"
                 android:layout_width="@dimen/x40"
                 android:layout_height="@dimen/y40"
-                android:layout_gravity="left|bottom"
+                android:layout_gravity="start"
                 android:src="@drawable/level01" />
 
             <TextView
                 android:id="@+id/textview_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
+                android:layout_gravity="left|bottom"
                 android:text="品位人生享受生活"
-                android:textColor="@color/black_2"
                 android:textSize="@dimen/x22" />
 
             <TextView
                 android:id="@+id/textview_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|bottom"
+                android:layout_gravity="right|top"
                 android:text="456人浏览"
-                android:textColor="@color/number_color"
                 android:textSize="@dimen/x14" />
         </FrameLayout>
     </LinearLayout>

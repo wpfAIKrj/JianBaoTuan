@@ -11,7 +11,11 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 import com.it.ui.dialog.SelectPhotoDialog;
-
+/**
+ * 发布藏品
+ * @author Administrator
+ *
+ */
 public class PublishedActivity extends BaseActivity implements OnClickListener {
 
 	private SelectPhotoDialog dialog;

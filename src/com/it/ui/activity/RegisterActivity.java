@@ -2,6 +2,7 @@ package com.it.ui.activity;
 
 import io.rong.imkit.RongIM;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -39,6 +40,11 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
+/**
+ * 注册页面
+ * @author Administrator
+ *
+ */
 public class RegisterActivity extends BaseActivity implements RegisterView{
 
 	@ViewInject(R.id.register_edit_phone)
@@ -71,6 +77,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 				break;
 			case 1:
 				register();
+				break;
+			case 2:
+				new ToastUtils(RegisterActivity.this, msg.obj.toString());
+				break;
 			default:
 				break;
 			}
@@ -192,19 +202,19 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
             	mhandler.obtainMessage(0).sendToTarget();
              }
             }else{
-            	 new ToastUtils(RegisterActivity.this, "验证失败，请重新获取验证码");
+            	mhandler.obtainMessage(2,"验证失败，请重新获取验证码").sendToTarget();
             }
              
-           }else{                                                                 
-              try {
-				((Throwable)data).printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally{
-				new ToastUtils(RegisterActivity.this, "验证失败，请重新获取验证码");
-			}
-              
+           }
+           if(result==0){
+        	   if(data instanceof Throwable){
+              	   Throwable msg=(Throwable)data;
+              	   mhandler.obtainMessage(2,"验证失败，请重新获取验证码").sendToTarget();
+        	   }
+        	   if(data instanceof UnknownHostException){
+        		   mhandler.obtainMessage(2,"请打开网络").sendToTarget();
+              	   
+        	   }
            }
          } 
 	};
@@ -246,7 +256,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		registerdialog=new RegisterDialog(this);
 		registerdialog.show();
-		RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
 		mhandler.postDelayed(new Runnable() {
 			
 			@Override
@@ -256,7 +265,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 					registerdialog.dismiss();
 				}
 				Intent intent=new Intent(RegisterActivity.this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				finish();
 			}
@@ -272,4 +281,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 		new ToastUtils(this, errorCode+","+errorMsg);
 	} 
 	
+	
+	@Override
+	public void startActivity(Intent intent) {
+		// TODO Auto-generated method stub
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
 }

@@ -1,7 +1,7 @@
 package com.it.config;
 
 /**
- * 基本网络参数
+ * 基本参数
  * 
  * @author Gong
  *
@@ -14,4 +14,6 @@ public class Const {
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
 	
+	public static final String MINDEX="index";
+	public static final String USER="user";
 }

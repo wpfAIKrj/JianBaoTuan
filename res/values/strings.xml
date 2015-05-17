@@ -2,16 +2,16 @@
 <resources>
 
     <string name="app_name">鉴定师</string>
-	<string name="information">知识学堂</string>
-	<string name="home">首页</string>
-	<string name="identiy">鉴定大厅</string>
-	<string name="my">我的</string>
-	<string name="guide_text_01">专家在线鉴定宝贝</string>
-	<string name="guide_text_02">让你宝贝更放心</string>
-	<string name="home_title">鉴定师</string>
-	
-	
-	 <string name="xlistview_header_hint_normal">下拉刷新</string>
+  <string name="information">知识学堂</string>
+  <string name="home">首页</string>
+  <string name="identiy">鉴定大厅</string>
+  <string name="my">我的</string>
+  <string name="guide_text_01">专家在线鉴定宝贝</string>
+  <string name="guide_text_02">让你宝贝更放心</string>
+  <string name="home_title">鉴定师</string>
+  
+  
+   <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
     <string name="xlistview_header_last_time">上次更新时间：</string>
@@ -84,5 +84,10 @@
        <string name="str_similar">同类鉴定</string>
        <string name="str_identify_result">鉴定结果</string>
        <string name="str_hot_discuss">藏友热议</string>
-
+  
+       
+       <string name="type_collect">成为网络鉴定师</string>
+       <string name="type_identiy">网络鉴定师</string>
+       
+      <string name="help_msg_01">你已经为网络鉴定师</string>
 </resources>

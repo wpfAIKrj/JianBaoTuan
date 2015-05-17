@@ -17,7 +17,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		this.mActivity = activity;	
+		this.mActivity = activity;
 	}
 
     

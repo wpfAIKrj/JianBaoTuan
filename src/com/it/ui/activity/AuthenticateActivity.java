@@ -9,6 +9,11 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 
+/**
+ * 认证鉴定师页面
+ * @author Administrator
+ *
+ */
 public class AuthenticateActivity extends BaseActivity implements OnClickListener{
 
 	
@@ -25,7 +30,6 @@ public class AuthenticateActivity extends BaseActivity implements OnClickListene
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		TextView tv=(TextView)findViewById(R.id.home_title);
 		tv.setText(R.string.authenticate_title);
@@ -39,9 +43,9 @@ public class AuthenticateActivity extends BaseActivity implements OnClickListene
 		switch (v.getId()) {
 		case R.id.button_category://返回上层
 			setResult(RESULT_CANCELED, getIntent());
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			finish();
 			break;
-
 		default:
 			break;
 		}

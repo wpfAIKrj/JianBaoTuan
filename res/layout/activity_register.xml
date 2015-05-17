@@ -38,8 +38,7 @@
                 android:background="@null"
                 android:ems="10"
                 android:inputType="phone"
-                android:imeOptions="actionDone"
-          		
+          		android:imeOptions="actionNext"
                 android:singleLine="true"
                  style="@style/edit_login_style"
                  android:hint="@string/register_name_hint"
@@ -62,7 +61,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/ed_code_bg"
                 android:ems="10"
-                android:imeOptions="actionDone"
+              	android:imeOptions="actionNext"
                 android:inputType="number"
                 android:singleLine="true"
                 style="@style/edit_login_style"

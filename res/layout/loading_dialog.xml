@@ -8,7 +8,7 @@
     android:minWidth="180dp"  
     android:gravity="center"  
     android:padding="10dp"  
-    android:background="@drawable/dialog">  
+    android:background="@color/dialog_bg">  
 
     <ProgressBar
         android:id="@+id/img"

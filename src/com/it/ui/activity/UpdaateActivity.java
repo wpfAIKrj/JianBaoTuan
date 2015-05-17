@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
-
+/**
+ * 更新软件
+ * @author Administrator
+ *
+ */
 public class UpdaateActivity extends BaseActivity implements OnClickListener{
 	
 	

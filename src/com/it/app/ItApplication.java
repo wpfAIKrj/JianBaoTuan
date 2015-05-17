@@ -25,10 +25,10 @@ public class ItApplication extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-//		RongIM.init(this);
+		//RongIM.init(this);
 		SqlDataUtil.initSql(this);
-//		RongCloudEvent.init(this);
-//		RongImUtils.init(this);
+		//RongCloudEvent.init(this);
+		//RongImUtils.init(this);
 	}
 	
 }

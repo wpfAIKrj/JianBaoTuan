@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
-
+/**
+ * 修改密码
+ * @author Administrator
+ *
+ */
 public class PasswordActivity extends BaseActivity implements OnClickListener{
 
 	

@@ -9,7 +9,7 @@
     
      >
 
-   	<include layout="@layout/layout_article_head"/>
+   	<include layout="@layout/layout_head"/>
 
     	<RelativeLayout
     	    android:layout_width="match_parent"

@@ -11,6 +11,11 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.ui.base.BaseActivity;
 
+/**
+ * 发布藏品的第二步
+ * @author Administrator
+ *
+ */
 public class PublishedNextActivity extends BaseActivity implements OnClickListener {
 
 	@Override

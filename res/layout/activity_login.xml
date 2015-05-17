@@ -51,28 +51,30 @@
 
             <EditText
                 android:id="@+id/login_edit_name"
+                style="@style/edit_login_style"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-            	android:background="@null"
+                android:layout_weight="1.11"
+                android:background="@null"
                 android:ems="11"
-                android:imeOptions="actionDone"
-                android:inputType="phone"
-                android:singleLine="true"
-               	style="@style/edit_login_style"
                 android:hint="@string/login_name_hint"
-                >
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:singleLine="true" >
 
                 <requestFocus />
             </EditText>
 
-            <Button
+            <ImageView
                 android:id="@+id/login_bt_clear"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="@dimen/layout_margin_top"
-                android:background="@drawable/login_input_arrow"
-                android:visibility="visible" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+               
+                android:src="@drawable/login_input_arrow"
+                android:padding="@dimen/button_padd"
+                 />
+
         </LinearLayout>
 
         <LinearLayout

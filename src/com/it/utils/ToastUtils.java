@@ -20,5 +20,13 @@ public class ToastUtils {
 		// toast.setGravity(Gravity.CENTER, 0, 0);
 		toast.show();
 	}
+	public ToastUtils(Context context, int id) {
+		super();
+		this.context = context;
+		this.str = context.getResources().getString(id);
+		Toast toast = Toast.makeText(context, str, Toast.LENGTH_LONG);
+		// toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
+	}
 
 }

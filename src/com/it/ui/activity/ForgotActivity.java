@@ -7,7 +7,11 @@ import android.widget.ImageView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
-
+/**
+ * 找回密码
+ * @author Administrator
+ *
+ */
 public class ForgotActivity extends BaseActivity implements OnClickListener{
 
 	private ImageView iv_back;

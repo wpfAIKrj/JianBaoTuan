@@ -23,26 +23,23 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y334"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/x15" >
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp" >
 
-        <com.it.view.home.ViewHomeWhoWellKnow
+        <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y22" />
+            android:layout_height="92dp"
+            android:src="@drawable/test_xc3" />
 
-        <com.it.view.listview.HorizontalListView
+        <HorizontalScrollView
             android:id="@+id/hs_people"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y102"
-            android:layout_marginRight="@dimen/x15"
-            android:layout_marginTop="@dimen/y32"
-            android:background="@color/wite"
+            android:layout_height="51dp"
+            android:layout_gravity="bottom"
             android:scrollbars="none" >
-        </com.it.view.listview.HorizontalListView>
-    </LinearLayout>
+        </HorizontalScrollView>
+    </FrameLayout>
 
 </LinearLayout>
