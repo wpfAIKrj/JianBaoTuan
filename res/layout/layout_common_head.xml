@@ -16,31 +16,29 @@
 
     <ImageView
         android:id="@+id/btn_back"
-           android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="5dp"
         android:paddingLeft="@dimen/layout_padding"
         android:paddingRight="@dimen/layout_padding"
-        android:paddingTop="@dimen/button_padd"
-        android:paddingBottom="@dimen/button_padd"
-            android:src="@drawable/back_botton"
-        android:clickable="true" />
+        android:paddingTop="5dp"
+        android:src="@drawable/back_botton" />
 
     <ImageView
         android:id="@+id/btn_delete"
-                  android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-          
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-             android:paddingLeft="@dimen/layout_padding"
+        android:clickable="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/layout_padding"
         android:paddingRight="@dimen/layout_padding"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-            android:src="@drawable/delect_bg"
-        android:clickable="true" />
+        android:src="@drawable/delect_bg" />
 
 </RelativeLayout>

@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.HomeItem0;
-import com.it.ui.activity.ActivityUserDelails;
+import com.it.ui.activity.ActivityHotIdentiy;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
@@ -86,15 +86,15 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 			bitmapUtils = new BitmapUtils(getContext());
 		}
 		// 设置大图片
-		bitmapUtils.display(iv_big, item.imageUrl);
+		bitmapUtils.display(iv_big, item.image);
 		// 设置头像
-		bitmapUtils.display(iv_small, item.iconUrl);
+		bitmapUtils.display(iv_small, item.authImage);
 		// 设置等级
-		setGradeImage(item.grade);
+		// setGradeImage(item.grade);
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
-		setNum(item.num + "");
+		setNum(item.viewTimes);
 
 	}
 
@@ -140,8 +140,8 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-//		mIntent.putExtra("", "");
+		Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+		// mIntent.putExtra("", "");
 		getContext().startActivity((mIntent));
 	}
 }
