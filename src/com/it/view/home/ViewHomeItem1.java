@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.HomeItem0;
-import com.it.ui.activity.ActivityUserDelails;
+import com.it.ui.activity.ActivityHotIdentiy;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
@@ -140,8 +140,8 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-//		mIntent.putExtra("", "");
+		Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+		// mIntent.putExtra("", "");
 		getContext().startActivity((mIntent));
 	}
 }

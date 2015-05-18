@@ -3,32 +3,31 @@ package com.it.view.home;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.provider.MediaStore.Video;
+import android.content.Intent;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.HomeItem0;
+import com.it.ui.activity.ActivityUserDelails;
 import com.lidroid.xutils.BitmapUtils;
-import com.lidroid.xutils.util.LogUtils;
 
 /**
  * @author ytmfdw 主页 [精品藏品]下的选项 根据屏幕宽高来计算图片大小
  *
  */
 
-public class ViewHomeItem0 extends LinearLayout {
+public class ViewHomeItem0 extends LinearLayout implements OnClickListener {
 
 	// screen height,and width,in px
 	private ImageView iv_big;
@@ -75,6 +74,8 @@ public class ViewHomeItem0 extends LinearLayout {
 
 		tv_name = (TextView) findViewById(R.id.textview_name);
 		tv_num = (TextView) findViewById(R.id.textview_num);
+		iv_small.setClickable(true);
+		iv_small.setOnClickListener(this);
 
 	}
 
@@ -132,6 +133,13 @@ public class ViewHomeItem0 extends LinearLayout {
 					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		return spannable;
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+		getContext().startActivity(mIntent);
 	}
 
 }
