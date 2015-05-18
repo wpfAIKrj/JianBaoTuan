@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.app.ItApplication;
+import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.ui.activity.ActivityFootPrint;
@@ -26,12 +29,18 @@ import com.it.ui.activity.LevelActivity;
 import com.it.ui.activity.SystemInfoActivity;
 import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.base.BaseFragment;
+import com.it.ui.dialog.SelectPhotoDialog;
+import com.it.utils.BitmapsUtils;
+import com.it.utils.ImageUtils;
 import com.it.utils.ToastUtils;
 import com.it.view.CircleImageView;
 import com.it.view.listview.HorizontalListView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lidroid.xutils.view.annotation.event.OnLongClick;
+
+import de.greenrobot.event.EventBus;
 /**
  * 我的设置页面
  * @author Administrator
@@ -39,6 +48,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  */
 public class MyFragment extends BaseFragment{
 	
+
 	private OnClickListener listener;
 	@ViewInject(R.id.horizontalListView1)
 	private HorizontalListView listView;
@@ -71,8 +81,12 @@ public class MyFragment extends BaseFragment{
 	
 	private UserInfo user=null;
 	
+	
+
+	
 	private int[] levels={R.drawable.level01,R.drawable.level02,R.drawable.level03,
 			R.drawable.level04,R.drawable.level05,R.drawable.level06};
+	private OnLongClickListener onlongListner;
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -81,11 +95,36 @@ public class MyFragment extends BaseFragment{
 	}
 
 	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		EventBus.getDefault().register(this);
+	}
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+	}
+	
+	public void onEventMainThread(MyEvent event){
+		switch (event.type) {
+		case 0://更新人物头像
+		
+			break;
+
+		default:
+			break;
+		}
+	}
 	
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
 		ViewUtils.inject(this,view);
+	
 	}
 
 	@Override
@@ -107,7 +146,26 @@ public class MyFragment extends BaseFragment{
 	public void setPopMenuListener(OnClickListener lis) {
 		listener = lis;
 	}
+	public void setLogoListener(OnLongClickListener onlongListner){
+		this.onlongListner=onlongListner;
+	}
 
+	@OnLongClick(R.id.login_user_head)
+	public boolean onLongClick(View v){
+		switch (v.getId()) {
+		case R.id.login_user_head://更新头像
+			if(onlongListner!=null){
+				onlongListner.onLongClick(v);
+			}
+			break;
+
+		default:
+			break;
+		}
+		return false;
+	}
+	
+	
 	@OnClick({R.id.my_iv_level,R.id.my_bt_showmenu,R.id.my_tv_authenticate,R.id.my_layout_collect,R.id.my_layout_foot,R.id.my_layout_identif
 		,R.id.my_tab1,R.id.my_tab2,R.id.my_tab3,R.id.my_tab4,R.id.my_tab5,R.id.my_tab6})
 	public void onClick(View v) {
@@ -185,8 +243,10 @@ public class MyFragment extends BaseFragment{
 		tv_name.setText(user.getNickname());
 		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[user.getUser_type()]);
 		iv_level.setImageResource(levels[user.getUser_type()]);
-		
+		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
 		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
 		listView.setAdapter(adapter);
 	}
+	
+
 }

@@ -38,15 +38,27 @@ public class NetConst {
 	public static final String IM_SECRET="aWFuJg2Rl0O";
 	
 	public static final String REGISTER_URL="/Users/registAction";
+	
 	public static final String LOGIN_URL="/Users/loginAction";
+	
+	public static final String EXTRAUSR="/Users/extraAction";
+	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
 	
-	/**
-	 * 七牛的下载凭证
-	 */
-	public static String DOWNLOADUPLOADSID="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:Io92Dp92BYEeSPnb3EfSBaavUhw=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMxNTIyODk2fQ==";//默认为空 当登陆注册后冲服务器获取的下载上传凭证
+	
+	
+	
+	public static final  String EXTRA_LOGO="portrait";
+
+	public static final String EXTRA_QQ="qq";
+	
+	
+	public static final String EXTRA_EMAIL="email";
+	
+
+	public static final String UPKEY="key";
 	
 
 }

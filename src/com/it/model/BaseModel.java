@@ -58,6 +58,11 @@ public abstract class BaseModel {
 	
     public abstract void onFailureForString(String error,String msg);
     
-    public abstract void setHTTPMODE(HttpMethod httpmodel);
+    public  void setHTTPMODE(HttpMethod httpmodel){
+    	if(httpmodel==null){
+    		return;
+    	}
+    	this.httpmodel=httpmodel;
+    }
 	
 }

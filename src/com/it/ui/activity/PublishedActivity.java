@@ -31,13 +31,13 @@ public class PublishedActivity extends BaseActivity implements OnClickListener {
 	
 	private void initView() {
 		// TODO Auto-generated method stub
-		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
-		bt.setOnClickListener(this);
-		TextView tv=(TextView)findViewById(R.id.home_title);
-		tv.setText(R.string.publish_title);
-		 bt=(ImageView)findViewById(R.id.published_bt);
-		bt.setOnClickListener(this);
+	 ImageView bt=(ImageView)findViewById(R.id.button_category);
+	 bt.setBackgroundResource(R.drawable.back_botton);
+	 bt.setOnClickListener(this);
+	 TextView tv=(TextView)findViewById(R.id.home_title);
+	 tv.setText(R.string.publish_title);
+	 bt=(ImageView)findViewById(R.id.published_bt);
+	 bt.setOnClickListener(this);
 	 bt=(ImageView)findViewById(R.id.imageView01);
 	 bt.setOnClickListener(this);
 	 bt=(ImageView)findViewById(R.id.imageView02);
@@ -69,27 +69,27 @@ public class PublishedActivity extends BaseActivity implements OnClickListener {
 			
 			break;
 		case R.id.imageView01:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.imageView02:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.imageView03:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.imageView04:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.imageView05:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.imageView06:
-			dialog=new SelectPhotoDialog(this);
+			dialog=new SelectPhotoDialog(this,this);
 			dialog.show();
 			break;
 		case R.id.button1:

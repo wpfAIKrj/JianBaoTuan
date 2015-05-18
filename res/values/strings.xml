@@ -90,4 +90,5 @@
        <string name="type_identiy">网络鉴定师</string>
        
       <string name="help_msg_01">你已经为网络鉴定师</string>
+       <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
 </resources>

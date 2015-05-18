@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_head" android:id="@+id/layout_top"/>
+    <com.it.view.CutView
+        android:id="@+id/myCutView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layout_top" 
+        android:layout_above="@+id/layout_bottom"/>
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cut_save"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bt_margintop_layout"
+            android:layout_weight="1"
+            android:text="保存"
+            android:gravity="center"
+		style="@style/my_title_style2" />
+
+        <Button
+            android:id="@+id/cut_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bt_margintop_layout"
+            android:layout_weight="1"
+            android:text="取消"
+            android:gravity="center"
+            style="@style/my_title_style2"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

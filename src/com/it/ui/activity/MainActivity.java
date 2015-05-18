@@ -3,19 +3,31 @@ package com.it.ui.activity;
 
 import com.it.R;
 import com.it.app.ItApplication;
+import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.config.NetConst;
+import com.it.presenter.UploadLogoPresenter;
+import com.it.ui.dialog.SelectPhotoDialog;
 import com.it.ui.fragment.HomeFragment;
 import com.it.ui.fragment.IdentiyFragment;
 import com.it.ui.fragment.InformationFragment;
 import com.it.ui.fragment.MyFragment;
+import com.it.utils.DialogUtil;
+import com.it.utils.ImageUtils;
+import com.it.utils.ToastUtils;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
+import com.it.view.inter.UploadLogoView;
 import com.it.view.menu.ResideMenu;
 import com.it.view.menu.ResideMenuItem;
+import com.lidroid.xutils.util.LogUtils;
 
+import de.greenrobot.event.EventBus;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +42,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
@@ -42,7 +55,7 @@ import android.widget.LinearLayout;
  *
  */
 public class MainActivity extends FragmentActivity implements 
-OnTabSelectedListener ,OnClickListener{
+OnTabSelectedListener ,OnClickListener,UploadLogoView{
 	
 	
 	private FragmentManager mFragmentManager;
@@ -54,6 +67,10 @@ OnTabSelectedListener ,OnClickListener{
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
 	private ResideMenu resideMenu;
+	private UploadLogoPresenter uplogopresenter;
+	private SelectPhotoDialog photodialog;
+	private ImageUtils imageUtils;
+	private Dialog Logodialong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,10 +121,16 @@ OnTabSelectedListener ,OnClickListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(new Intent(MainActivity.this, PublishedActivity.class));
+				if(((ItApplication)getApplication()).getCurrnUser()!=null){
+					Intent intent=new Intent(MainActivity.this, PublishedActivity.class);
+					startActivityForResult(intent, Const.TO_SEND_IDENTIY);
+				}else{
+					new ToastUtils(MainActivity.this, R.string.help_msg_02);
+				}
 			}
 		});
-	    
+	     uplogopresenter=new UploadLogoPresenter(this);
+	     imageUtils=new ImageUtils(this);
 	}
 	private void initEvents() {
 			// TODO Auto-generated method stub
@@ -206,6 +229,20 @@ OnTabSelectedListener ,OnClickListener{
 			if (null == mMyFragment) {
 				mMyFragment = new MyFragment();
 				mMyFragment.setPopMenuListener(this);
+				mMyFragment.setLogoListener(new OnLongClickListener() {
+					
+					@Override
+					public boolean onLongClick(View v) {
+						// TODO Auto-generated method stub
+						if(photodialog==null){
+							photodialog=new SelectPhotoDialog(MainActivity.this, ImageListner);
+						}
+						if(!photodialog.isShowing()){
+							photodialog.show();
+						}
+						return false;
+					}
+				});
 				transaction.add(R.id.center_layout, mMyFragment);
 			} else {
 				transaction.show(mMyFragment);
@@ -239,7 +276,8 @@ OnTabSelectedListener ,OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
+		
 		if(v.getId()==R.id.my_bt_showmenu){
 			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
 			return;	
@@ -273,4 +311,118 @@ OnTabSelectedListener ,OnClickListener{
 		overridePendingTransition(R.anim.left_in, R.anim.left_out);
 	}
   
+	
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(arg0, arg1, arg2);
+		if (arg1 == RESULT_CANCELED) {
+			disshowPhoto();
+			return;
+		}
+		if(arg0==Const.TO_SEND_IDENTIY&&arg1==RESULT_OK){//发布成功
+			
+			
+		}
+		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
+			if(imageUtils.PICPATH!=null){
+				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+			}
+		}
+		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE&&arg1==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
+			if(arg2 != null && arg2.getData() != null) {
+				imageUtils.doPhoto( arg2);
+				if(imageUtils.PICPATH!=null){
+					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+				}
+			}
+		}
+		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE_KITKAT&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相册）4.4系统，用谷歌的相册
+			if(arg2 != null && arg2.getData() != null) {
+				imageUtils.doPhotoKIKAT(arg2);
+				if(imageUtils.PICPATH!=null){
+					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+				}
+			}
+		}
+		if(arg0==ImageUtils.CROP_IMAGE&&arg1==RESULT_OK){//获取剪切好的人物头像
+			if(arg2!=null){
+				String path=arg2.getStringExtra(Const.PICPATH);
+				LogUtils.d("获取的头像路径："+path);
+				disshowPhoto();
+				UserInfo user=((ItApplication)getApplication()).getCurrnUser();
+				if(user!=null){
+					String qq=user.getQQ();
+					String email=user.getEmail();
+					uplogopresenter.startUpLoadLogo(path,email,qq);
+					Logodialong=DialogUtil.createLoadingDialog(this, "正在更新头像中");
+					Logodialong.show();
+				}
+			}
+		}
+	
+	}
+
+	
+	
+	private void disshowPhoto() {
+		// TODO Auto-generated method stub
+		if(photodialog!=null){
+			if(photodialog.isShowing()){
+				photodialog.dismiss();
+			}
+		}
+	}
+
+	@Override
+	public void UploadLogoSucess(UserInfo user) {
+		// TODO Auto-generated method stub
+		disshowPhoto();
+		if(Logodialong!=null){
+			Logodialong.dismiss();
+		}
+		UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
+		cunnt.setAvatar(user.getAvatar());
+		
+		EventBus.getDefault().post(new MyEvent(0,user));
+	}
+
+	@Override
+	public void UploadLogoFail(String errorCode, String errorMsg) {
+		// TODO Auto-generated method stub
+		disshowPhoto();
+		if(Logodialong!=null){
+			Logodialong.dismiss();
+		}
+		new ToastUtils(this, errorMsg);
+	}
+	
+	private OnClickListener ImageListner = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+			case R.id.btn_take_photo://相机获取
+				imageUtils.openCameraImage();
+				break;
+			case R.id.btn_pick_photo://相册获取
+				imageUtils.openLocalImage();
+				break;
+			case R.id.btn_cancel://取消
+				if(photodialog!=null){
+					photodialog.dismiss();
+				}
+				break;
+			default:
+				break;
+			}
+		}
+	};
 }
