@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
+import com.it.ui.server.HomeService;
 /**
  * 引导页面
  * @author Administrator
@@ -28,6 +29,7 @@ public class GuidePageActivity extends BaseActivity {
 //			int color=getResources().getColor(R.color.wite);
 //    		mTintManager.setTintColor(color);
 //		}
+		startService(new Intent(this,HomeService.class));
 		mHandler.postDelayed(new Runnable() {
 			
 			@Override
@@ -38,6 +40,7 @@ public class GuidePageActivity extends BaseActivity {
 				finish();
 			}
 		}, 5000);
+		
 	}
 
 	@Override

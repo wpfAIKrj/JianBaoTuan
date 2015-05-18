@@ -1,27 +1,27 @@
 package com.it.bean;
 
 public class HomeItem0 {
-	public String imageUrl;
-	public String iconUrl;
-	public int grade;
+	public String image;
+	public String authImage;
+	public String viewTimes;
 	public String name;
-	public int num;
+	public String linkAddress;
 
-	public HomeItem0(String imageUrl, String iconUrl, int grade, String name,
-			int num) {
+	public HomeItem0(String imageUrl, String iconUrl, String grade,
+			String name, String num) {
 		super();
-		this.imageUrl = imageUrl;
-		this.iconUrl = iconUrl;
-		this.grade = grade;
+		this.image = imageUrl;
+		this.authImage = iconUrl;
+		this.linkAddress = grade;
 		this.name = name;
-		this.num = num;
+		this.viewTimes = num;
 	}
 
-	public HomeItem0(int grade, String name, int num) {
+	public HomeItem0(String grade, String name, String num) {
 		super();
-		this.grade = grade;
+		this.linkAddress = grade;
 		this.name = name;
-		this.num = num;
+		this.viewTimes = num;
 	}
 
 	public HomeItem0() {

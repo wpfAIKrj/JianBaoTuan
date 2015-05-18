@@ -86,15 +86,15 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 			bitmapUtils = new BitmapUtils(getContext());
 		}
 		// 设置大图片
-		bitmapUtils.display(iv_big, item.imageUrl);
+		bitmapUtils.display(iv_big, item.image);
 		// 设置头像
-		bitmapUtils.display(iv_small, item.iconUrl);
+		bitmapUtils.display(iv_small, item.authImage);
 		// 设置等级
-		setGradeImage(item.grade);
+		// setGradeImage(item.grade);
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
-		setNum(item.num + "");
+		setNum(item.viewTimes);
 
 	}
 
