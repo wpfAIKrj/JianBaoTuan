@@ -29,7 +29,6 @@ public class UpdaateActivity extends BaseActivity implements OnClickListener{
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		TextView tv=(TextView)findViewById(R.id.home_title);
 		tv.setText(R.string.feednack_title);

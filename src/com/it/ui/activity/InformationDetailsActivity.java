@@ -26,7 +26,6 @@ public class InformationDetailsActivity extends BaseActivity implements OnClickL
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView bt=(ImageView)findViewById(R.id.detail_back);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 	}
 

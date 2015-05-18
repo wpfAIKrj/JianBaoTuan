@@ -29,7 +29,6 @@ public class PublishedNextActivity extends BaseActivity implements OnClickListen
 	private void initView() {
 		// TODO Auto-generated method stub
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setBackgroundResource(R.drawable.back_botton);
 		bt.setOnClickListener(this);
 		TextView tv=(TextView)findViewById(R.id.home_title);
 		tv.setText(R.string.publish_title);

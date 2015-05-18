@@ -74,6 +74,8 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}else{
+			mview.UploadLogoFail("-2", "图片上传失败");
 		}
 	}
 
