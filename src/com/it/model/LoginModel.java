@@ -42,30 +42,6 @@ public class LoginModel extends BaseModel{
 	
 
 	@Override
-	public void onSuccessForString(String jsonstring) {
-		// TODO Auto-generated method stub
-		try {
-			JSONObject json=new JSONObject(jsonstring);	
-			int code=json.getInt(NetConst.CODE);
-			String message=json.getString(NetConst.MESSAGE);
-			if(code==NetConst.CODE_SUCCESS){
-				String data = json.getString(NetConst.DATA);
-				Gson gson=new Gson();
-				UserInfo user=gson.fromJson(data, UserInfo.class);
-				NetConst.SESSIONID=user.getSession_id();
-				lisntenr.onBaseDataLoaded(user);
-			}else{
-				lisntenr.onBaseDataLoadErrorHappened(String.valueOf(code),message);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			lisntenr.onBaseDataLoadErrorHappened(HTTP_ERROR,e.getMessage());
-		}
-	}
-
-	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
 		lisntenr.onBaseDataLoadErrorHappened(error, msg);
@@ -78,6 +54,18 @@ public class LoginModel extends BaseModel{
 	public void setHTTPMODE(HttpMethod httpmodel) {
 		// TODO Auto-generated method stub
 		this.httpmodel=httpmodel;
+	}
+
+
+
+
+	@Override
+	public void analyzeData(String data) {
+		// TODO Auto-generated method stub
+		Gson gson=new Gson();
+		UserInfo user=gson.fromJson(data, UserInfo.class);
+		NetConst.SESSIONID=user.getSession_id();
+		lisntenr.onBaseDataLoaded(user);
 	}
 
 

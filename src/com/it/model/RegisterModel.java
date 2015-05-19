@@ -51,10 +51,7 @@ public class RegisterModel extends BaseModel{
 			String message=json.getString(NetConst.MESSAGE);
 			if(code==NetConst.CODE_SUCCESS){
 				String data = json.getString(NetConst.DATA);
-				Gson gson=new Gson();
-				UserInfo user=gson.fromJson(data, UserInfo.class);
-				NetConst.SESSIONID=user.getSession_id();
-				lisntenr.onBaseDataLoaded(user);
+			
 			}else{
 				lisntenr.onBaseDataLoadErrorHappened(String.valueOf(code),message);
 			}
@@ -78,6 +75,18 @@ public class RegisterModel extends BaseModel{
 	public void setHTTPMODE(HttpMethod httpmodel) {
 		// TODO Auto-generated method stub
 		this.httpmodel=httpmodel;
+	}
+
+
+
+
+	@Override
+	public void analyzeData(String data) {
+		// TODO Auto-generated method stub
+		Gson gson=new Gson();
+		UserInfo user=gson.fromJson(data, UserInfo.class);
+		NetConst.SESSIONID=user.getSession_id();
+		lisntenr.onBaseDataLoaded(user);
 	}
 
 

@@ -29,7 +29,7 @@ import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
 import com.it.view.CircleImageView;
 import com.it.view.SelectMoilbWindow;
-import com.it.view.inter.LoginView;
+import com.it.view.inter.onBasicView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnChildClick;
@@ -39,7 +39,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * @author Administrator
  *
  */
-public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClickListener{
+public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo>,OnItemClickListener{
 
 	
 	@ViewInject(R.id.login_user_head)
@@ -160,11 +160,8 @@ public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClic
 	}
 
 
-
-
-
 	@Override
-	public void loginSucess(UserInfo user) {//登陆成功
+	public void onSucess(UserInfo user) {
 		// TODO Auto-generated method stub
 		((ItApplication)getApplication()).setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
@@ -178,9 +175,8 @@ public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClic
 		finish();
 	}
 
-	
 	@Override
-	public void loginFail(String errorCode, String errorMsg) {//登陆失败
+	public void onFail(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
 		if(dialog!=null){
 			dialog.dismiss();
@@ -188,6 +184,7 @@ public class LoginAcitivity extends BaseActivity implements LoginView,OnItemClic
 		new ToastUtils(this, errorCode+","+errorMsg);
 	}
 
+	
 
 
 

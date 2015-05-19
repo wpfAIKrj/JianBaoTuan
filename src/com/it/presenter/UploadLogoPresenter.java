@@ -9,21 +9,20 @@ import com.it.inter.UpLoadFileInterface;
 import com.it.model.LoginModel;
 import com.it.model.UpLoadLogoModel;
 import com.it.utils.UploadUtils;
-import com.it.view.inter.LoginView;
-import com.it.view.inter.UploadLogoView;
+import com.it.view.inter.onBasicView;
 import com.lidroid.xutils.util.LogUtils;
 import com.qiniu.android.http.ResponseInfo;
 
 public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,UpLoadFileInterface {
 	
 	
-	private UploadLogoView mview;
+	private onBasicView<UserInfo> mview;
 	private UpLoadLogoModel mModel;
 	private String filepath;
 	private String qq;
 	private String email;
 	private String key;
-	public UploadLogoPresenter(UploadLogoView iview) {
+	public UploadLogoPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
 		mModel=new UpLoadLogoModel();
@@ -50,16 +49,16 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 	public void onBaseDataLoaded(UserInfo data) {
 		// TODO Auto-generated method stub
 		if(data==null){
-			mview.UploadLogoFail("-1", "服务器异常");
+			mview.onFail("-1", "服务器异常");
 		}else{
-			mview.UploadLogoSucess(data);
+			mview.onSucess(data);
 		}
 	}
 
 	@Override
 	public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
-		mview.UploadLogoFail(errorCode,errorMsg);
+		mview.onFail(errorCode,errorMsg);
 	}
 
 	
@@ -75,7 +74,7 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 				e.printStackTrace();
 			}
 		}else{
-			mview.UploadLogoFail("-2", "图片上传失败");
+			mview.onFail("-2", "图片上传失败");
 		}
 	}
 

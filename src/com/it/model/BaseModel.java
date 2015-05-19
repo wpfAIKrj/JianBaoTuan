@@ -6,7 +6,10 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -50,10 +53,28 @@ public abstract class BaseModel {
 		});
 	}
 	
+    public  void onSuccessForString(String jsonstring){
+    	try {
+			JSONObject json=new JSONObject(jsonstring);	
+			int code=json.getInt(NetConst.CODE);
+			String message=json.getString(NetConst.MESSAGE);
+			if(code==NetConst.CODE_SUCCESS){
+				analyzeData(json.getString(NetConst.DATA));
+			}else{
+				onFailureForString(String.valueOf(code),message);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			onFailureForString(HTTP_ERROR,e.getMessage());
+		}
+    }
 	
-    public 	abstract void addRequestParams();
+    public abstract void analyzeData(String data);
+
+
+	public 	abstract void addRequestParams();
 	
-    public abstract void onSuccessForString(String jsonstring);
 	
 	
     public abstract void onFailureForString(String error,String msg);

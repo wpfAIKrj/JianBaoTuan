@@ -45,32 +45,17 @@ public class UpLoadLogoModel extends BaseModel {
 	}
 
 	@Override
-	public void onSuccessForString(String jsonstring) {
-		// TODO Auto-generated method stub
-		try {
-			JSONObject json=new JSONObject(jsonstring);	
-			int code=json.getInt(NetConst.CODE);
-			String message=json.getString(NetConst.MESSAGE);
-			if(code==NetConst.CODE_SUCCESS){
-				String data = json.getString(NetConst.DATA);
-				Gson gson=new Gson();
-				UserInfo user=gson.fromJson(data, UserInfo.class);
-				listener.onBaseDataLoaded(user);
-			}else{
-				listener.onBaseDataLoadErrorHappened(String.valueOf(code),message);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			listener.onBaseDataLoadErrorHappened(HTTP_ERROR,e.getMessage());
-		}
-	}
-
-	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
 		listener.onBaseDataLoadErrorHappened(error, msg);
+	}
+
+	@Override
+	public void analyzeData(String data) {
+		// TODO Auto-generated method stub
+		Gson gson=new Gson();
+		UserInfo user=gson.fromJson(data, UserInfo.class);
+		listener.onBaseDataLoaded(user);
 	}
 
 	

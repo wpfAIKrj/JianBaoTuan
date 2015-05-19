@@ -18,7 +18,7 @@ import com.it.utils.ImageUtils;
 import com.it.utils.ToastUtils;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
-import com.it.view.inter.UploadLogoView;
+import com.it.view.inter.onBasicView;
 import com.it.view.menu.ResideMenu;
 import com.it.view.menu.ResideMenuItem;
 import com.lidroid.xutils.util.LogUtils;
@@ -55,7 +55,7 @@ import android.widget.LinearLayout;
  *
  */
 public class MainActivity extends FragmentActivity implements 
-OnTabSelectedListener ,OnClickListener,UploadLogoView{
+OnTabSelectedListener ,OnClickListener{
 	
 	
 	private FragmentManager mFragmentManager;
@@ -95,19 +95,6 @@ OnTabSelectedListener ,OnClickListener,UploadLogoView{
     
    
 
-	@TargetApi(19)
-	private void setTranslucentStatus(boolean b) {
-		// TODO Auto-generated method stub
-			Window win = getWindow();
-	        WindowManager.LayoutParams winParams = win.getAttributes();
-	        final int bits = 0x4000000;//WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-	        if (b) {
-	            winParams.flags |= bits;
-	        } else {
-	            winParams.flags &= ~bits;
-	        }
-	        win.setAttributes(winParams);
-	}
 
 	private void init() {
 		// TODO Auto-generated method stub
@@ -129,7 +116,7 @@ OnTabSelectedListener ,OnClickListener,UploadLogoView{
 				}
 			}
 		});
-	     uplogopresenter=new UploadLogoPresenter(this);
+	     uplogopresenter=new UploadLogoPresenter(listener);
 	     imageUtils=new ImageUtils(this);
 	}
 	private void initEvents() {
@@ -380,28 +367,32 @@ OnTabSelectedListener ,OnClickListener,UploadLogoView{
 		}
 	}
 
-	@Override
-	public void UploadLogoSucess(UserInfo user) {
-		// TODO Auto-generated method stub
-		disshowPhoto();
-		if(Logodialong!=null){
-			Logodialong.dismiss();
-		}
-		UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
-		cunnt.setAvatar(user.getAvatar());
+	private onBasicView<UserInfo> listener=new onBasicView<UserInfo>() {
 		
-		EventBus.getDefault().post(new MyEvent(0,user));
-	}
-
-	@Override
-	public void UploadLogoFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
-		disshowPhoto();
-		if(Logodialong!=null){
-			Logodialong.dismiss();
+		@Override
+		public void onSucess(UserInfo user) {
+			// TODO Auto-generated method stub
+			disshowPhoto();
+			if(Logodialong!=null){
+				Logodialong.dismiss();
+			}
+			UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
+			cunnt.setAvatar(user.getAvatar());
+			
+			EventBus.getDefault().post(new MyEvent(0,user));
 		}
-		new ToastUtils(this, errorMsg);
-	}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			disshowPhoto();
+			if(Logodialong!=null){
+				Logodialong.dismiss();
+			}
+			new ToastUtils(MainActivity.this, errorMsg);
+		}
+	};
+
 	
 	private OnClickListener ImageListner = new OnClickListener() {
 		

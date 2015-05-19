@@ -20,7 +20,7 @@ import com.it.ui.base.BaseActivity;
 import com.it.utils.DialogUtil;
 import com.it.utils.ToastUtils;
 import com.it.view.EmailAutoCompleteTextView;
-import com.it.view.inter.UploadLogoView;
+import com.it.view.inter.onBasicView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -32,7 +32,7 @@ import de.greenrobot.event.EventBus;
  * @author Administrator
  *
  */
-public class ProfileActivity extends BaseActivity implements UploadLogoView{
+public class ProfileActivity extends BaseActivity implements onBasicView<UserInfo>{
 
 	@ViewInject(R.id.button_category)
 	private ImageView ivBack;
@@ -121,10 +121,9 @@ public class ProfileActivity extends BaseActivity implements UploadLogoView{
 	}
 
 
-
-
+	
 	@Override
-	public void UploadLogoSucess(UserInfo user) {
+	public void onSucess(UserInfo user) {
 		// TODO Auto-generated method stub
 		if(Logodialong!=null){
 			Logodialong.dismiss();
@@ -138,7 +137,7 @@ public class ProfileActivity extends BaseActivity implements UploadLogoView{
 
 
 	@Override
-	public void UploadLogoFail(String errorCode, String errorMsg) {
+	public void onFail(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
 		if(Logodialong!=null){
 			Logodialong.dismiss();

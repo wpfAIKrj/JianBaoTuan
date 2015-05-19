@@ -35,7 +35,7 @@ import com.it.utils.SqlDataUtil;
 import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
-import com.it.view.inter.RegisterView;
+import com.it.view.inter.onBasicView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -45,7 +45,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * @author Administrator
  *
  */
-public class RegisterActivity extends BaseActivity implements RegisterView{
+public class RegisterActivity extends BaseActivity implements onBasicView<UserInfo>{
 
 	@ViewInject(R.id.register_edit_phone)
 	private EditText ed_phone;
@@ -246,8 +246,18 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 		timer.start();
 	}
 
+	
+	
 	@Override
-	public void RegisterSucess(UserInfo user) {
+	public void startActivity(Intent intent) {
+		// TODO Auto-generated method stub
+		super.startActivity(intent);
+		overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
+
+
+	@Override
+	public void onSucess(UserInfo user) {
 		// TODO Auto-generated method stub
 		if(dialog!=null){
 			dialog.dismiss();
@@ -272,20 +282,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 		}, 5000);
 	}
 
+
 	@Override
-	public void RegisterFail(String errorCode, String errorMsg) {
+	public void onFail(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
 		if(dialog!=null){
 			dialog.dismiss();
 		}
 		new ToastUtils(this, errorCode+","+errorMsg);
-	} 
-	
-	
-	@Override
-	public void startActivity(Intent intent) {
-		// TODO Auto-generated method stub
-		super.startActivity(intent);
-		overridePendingTransition(R.anim.left_in, R.anim.left_out);
 	}
 }

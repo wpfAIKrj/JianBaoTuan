@@ -2,15 +2,15 @@ package com.it.presenter;
 
 import com.it.bean.UserInfo;
 import com.it.model.LoginModel;
-import com.it.view.inter.LoginView;
+import com.it.view.inter.onBasicView;
 
 public class LoginPresenter implements OnBasicDataLoadListener<UserInfo> {
 	
 	
-	private LoginView mview;
+	private onBasicView<UserInfo> mview;
 	private LoginModel mModel;
 	
-	public LoginPresenter(LoginView iview) {
+	public LoginPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
 		mModel=new LoginModel();
@@ -29,16 +29,16 @@ public class LoginPresenter implements OnBasicDataLoadListener<UserInfo> {
 	public void onBaseDataLoaded(UserInfo data) {
 		// TODO Auto-generated method stub
 		if(data==null){
-			mview.loginFail("-1", "服务器异常");
+			mview.onFail("-1", "服务器异常");
 		}else{
-			mview.loginSucess(data);
+			mview.onSucess(data);
 		}
 	}
 
 	@Override
 	public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
-		mview.loginFail(errorCode,errorMsg);
+		mview.onFail(errorCode,errorMsg);
 	}
 	
 
