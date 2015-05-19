@@ -14,6 +14,7 @@ import com.it.utils.ImageUtils;
 import com.it.utils.SystemUtils;
 import com.it.view.CutView;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -82,8 +83,8 @@ public class GetUserLogoActivity extends BaseActivity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_logo);
 		ViewUtils.inject(this);
-		reqHeight=SystemUtils.getDisplaysHeight(this);
-		reqWidth=SystemUtils.getDisplaysWidth(this);
+		reqHeight=this.getWindowManager().getDefaultDisplay().getHeight();
+		reqWidth=this.getWindowManager().getDefaultDisplay().getWidth();
 		path=getIntent().getStringExtra(Const.PICPATH);
 		init();
 		
@@ -92,7 +93,7 @@ public class GetUserLogoActivity extends BaseActivity  {
 	private void init() {
 		// TODO Auto-generated method stub
 		try {
-
+			LogUtils.d("压缩的宽："+reqWidth+"压缩的高："+reqHeight);
 			bitmap =BitmapCompressor.decodeSampledBitmapFromFile(path, reqWidth, reqHeight);
 			if (bitmap != null) {
 				cutView.setBitmap(bitmap);

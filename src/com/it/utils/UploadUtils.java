@@ -27,8 +27,7 @@ import com.qiniu.android.utils.UrlSafeBase64;
 public class UploadUtils {
 
 
-	public static  String TOKEN="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:6xisYTxVYnrPBk0G3lb21tubj50=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMxOTY0Njg2fQ==";
-
+	public static  String TOKEN="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:znsaLMBio4R7jj5s7M9GxhSLwu8=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMyMDAyMzI0fQ==";
 	/**
 	 * 上传文件
 	 * @param filePath 文件路径

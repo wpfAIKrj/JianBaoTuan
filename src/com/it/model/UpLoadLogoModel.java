@@ -27,7 +27,7 @@ public class UpLoadLogoModel extends BaseModel {
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.EXTRAUSR);
 		if(NetConst.SESSIONID!=null){
-			sb.append("?sid=").append(NetConst.SESSIONID);
+			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
 		url=sb.toString();
 	}
@@ -39,6 +39,9 @@ public class UpLoadLogoModel extends BaseModel {
 		params.addBodyParameter(NetConst.EXTRA_LOGO, portrait);
 		params.addBodyParameter(NetConst.EXTRA_QQ, qq);
 		params.addBodyParameter(NetConst.EXTRA_EMAIL, qq);
+		if(NetConst.SESSIONID!=null){
+			params.addBodyParameter(NetConst.SID,NetConst.SESSIONID);
+		}
 	}
 
 	@Override

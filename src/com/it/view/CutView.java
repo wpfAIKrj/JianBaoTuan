@@ -276,15 +276,7 @@ public class CutView extends View {
 		return FloatMath.sqrt(x * x + y * y);
 	}
 
-	private String saveTu(Bitmap bm) {
-		boolean hasSD = Environment.getExternalStorageState().equals(
-				android.os.Environment.MEDIA_MOUNTED);
-		if (!hasSD) {
-			Toast.makeText(getContext(), "sdcard_not_exist!",
-					Toast.LENGTH_SHORT).show();
-			return null;
-		}
-	
+	private String saveTu(Bitmap bm) {	
 		File file = new File(FileUtils.getInstance().NewUploadImagePath());
 		FileOutputStream fos = null;
 		try {

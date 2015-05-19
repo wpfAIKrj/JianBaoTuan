@@ -289,13 +289,17 @@ public class FileUtils {
 			File newPath = new File(fileName);
 			checker.checkDelete(newPath.toString());
 			if (newPath.isFile()) {
-				try {
-					LogUtils.d("DirectoryManager deleteFile"+fileName);
-					newPath.delete();
-					status = true;
-				} catch (SecurityException se) {
-					se.printStackTrace();
-					status = false;
+				if(newPath.getParent().equals(getUpImage())){//自己上传文件可以删除
+					try {
+						LogUtils.d("DirectoryManager deleteFile"+fileName);
+						newPath.delete();
+						status = true;
+					} catch (SecurityException se) {
+						se.printStackTrace();
+						status = false;
+					}	
+				}else{//相册不允许删除
+					status=true;
 				}
 			} else
 				status = false;
