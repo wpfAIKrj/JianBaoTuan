@@ -122,10 +122,12 @@ public class GetUserLogoActivity extends BaseActivity  {
 			cutView.setSave(true);
 			break;
 		case R.id.cut_cancel:
+			FileUtils.getInstance().deleteFile(path);
 			setResult(RESULT_CANCELED);
 			finish();
 			break;
 		case R.id.button_category:
+			FileUtils.getInstance().deleteFile(path);
 			setResult(RESULT_CANCELED);
 			finish();
 			break;

@@ -208,7 +208,7 @@ public class FileUtils {
 	 * 
 	 * @return 返回-1，说明没有安装sd卡
 	 */
-	public static long getFreeDiskSpace() {
+	public  long getFreeDiskSpace() {
 		String status = Environment.getExternalStorageState();
 		long freeSpace = 0;
 		if (status.equals(Environment.MEDIA_MOUNTED)) {
@@ -351,8 +351,8 @@ public class FileUtils {
 		String path=null;
 		try {
 			path=NewUploadImagePath();
-			int reqWidth=SystemUtils.getDisplaysWidth(mContext);
-			int reqHeight=SystemUtils.getDisplaysHeight(mContext);
+			int reqWidth=SystemUtils.getDisplaysWidth(mContext)/2;
+			int reqHeight=SystemUtils.getDisplaysHeight(mContext)/2;
 			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
 			saveImageToSD(mContext, path, bitmap, 100);
 			deleteFile(picpath);
@@ -382,9 +382,6 @@ public class FileUtils {
             bitmap.compress(CompressFormat.JPEG, quality, bos);
             bos.flush();
             bos.close();
-            if (ctx != null) {
-                scanPhoto(ctx, filePath);
-            }
         }
     }
     

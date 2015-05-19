@@ -23,13 +23,13 @@ public class BitmapCompressor {
      * @param maxkb
      * @return
      */
-    public static Bitmap compressBitmap(Bitmap image,int maxkb) {
+    public static Bitmap compressBitmap(Bitmap image) {
         //L.showlog(压缩图片);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 50, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
 //      Log.i(test,原始大小 + baos.toByteArray().length);
-        while (baos.toByteArray().length / 1024 > maxkb) { // 循环判断如果压缩后图片是否大于(maxkb)50kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > 128) { // 循环判断如果压缩后图片是否大于(maxkb)50kb,大于继续压缩
 //          Log.i(test,压缩一次!);
             baos.reset();// 重置baos即清空baos
             options -= 10;// 每次都减少10
@@ -85,7 +85,7 @@ public class BitmapCompressor {
         options.inSampleSize = calculateInSampleSize(options, reqWidth,
                 reqHeight);
         options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeFile(filepath, options);
+        return  compressBitmap(BitmapFactory.decodeFile(filepath, options));
     }
  
     public static Bitmap decodeSampledBitmapFromBitmap(Bitmap bitmap,
@@ -100,7 +100,7 @@ public class BitmapCompressor {
         options.inSampleSize = calculateInSampleSize(options, reqWidth,
                 reqHeight);
         options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeByteArray(data, 0, data.length, options);
+        return compressBitmap(BitmapFactory.decodeByteArray(data, 0, data.length, options));
     }
  
     

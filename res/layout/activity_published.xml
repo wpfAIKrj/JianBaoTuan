@@ -21,8 +21,8 @@
     	    android:background="@color/layout_bg_color"
     	    android:paddingLeft="@dimen/detail_text_padd"
     	    android:gravity="center_vertical|left"
-    	    android:paddingTop="15dp"
-    	    android:paddingBottom="15dp"/>
+    	    android:paddingTop="@dimen/layout_padding"
+    	    android:paddingBottom="@dimen/layout_padding"/>
 
     	<View
     	    android:layout_width="match_parent"
@@ -63,7 +63,7 @@
     		    android:layout_height="wrap_content"
     		    android:orientation="horizontal"
     		    android:gravity="center_vertical"
-   				android:layout_marginTop="5dp"
+   				android:layout_marginTop="@dimen/button_padd"
     		     >
 
     			<ImageView
@@ -73,8 +73,8 @@
     			    android:src="@drawable/published_bt_bg" />
 
     			<TextView
-    			
-    			    android:layout_width="38dp"
+    				android:id="@+id/tv_tag1"
+    			    android:layout_width="@dimen/text_layout_width"
     			    android:layout_height="match_parent"
     			    android:text="木"
     			    android:layout_marginLeft="16dp" 
@@ -85,8 +85,8 @@
     			    android:layout_marginBottom="5dp"
     			    />
 				<TextView
-    			  
-    			    android:layout_width="38dp"
+    			  	android:id="@+id/tv_tag2"
+    			    android:layout_width="@dimen/text_layout_width"
     			    android:layout_height="match_parent"
     			    android:text="沉香"
     			    android:layout_marginLeft="10dp" 
@@ -98,8 +98,8 @@
     			    />
 				
 				<TextView
-    			  
-    			    android:layout_width="62dp"
+    			  	android:id="@+id/tv_tag3"
+    			    android:layout_width="@dimen/text_big_layout_width"
     			    android:layout_height="match_parent"
     			    android:text="小叶紫檀"
     			    android:layout_marginLeft="10dp" 
@@ -137,7 +137,7 @@
 
     		<LinearLayout
     		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content" 
+    		    android:layout_height="@dimen/published_layout_height" 
     		    android:orientation="horizontal"
     		    android:layout_marginTop="10dp"
     		    >
@@ -209,7 +209,7 @@
 
     		<LinearLayout
     		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content" 
+    		    android:layout_height="@dimen/published_layout_height" 
     		    android:orientation="horizontal"
     		    android:layout_marginTop="5dp"
     		    >
@@ -263,7 +263,7 @@
 
     	</LinearLayout>
 		<Button
-		    android:id="@+id/button1"
+		    android:id="@+id/bt_next"
 		    android:layout_width="match_parent"
 		    android:layout_height="50dp"
 		    android:text="下一步"

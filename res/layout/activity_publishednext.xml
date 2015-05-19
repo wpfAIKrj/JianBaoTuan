@@ -24,24 +24,24 @@
     	<View
     	    android:layout_width="match_parent"
     	    android:layout_height="1dp"
-    	     android:layout_marginTop="@dimen/layout_padding"
+    	     android:layout_marginTop="@dimen/layout_margin_top"
     	         android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
     	     android:background="@color/item_space_color"
     	    />
 
     	<EditText
-    	    android:id="@+id/editText1"
+    	    android:id="@+id/ed_info"
     	    style="@style/my_title_style3"
     	    android:layout_width="match_parent"
-    	    android:layout_height="116dp"
+    	    android:layout_height="@dimen/identy_edit_height"
     	    android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
     	    android:background="@color/layout_bg_color"
     	    android:ems="10"
     	    android:gravity="left"
     	    android:hint="请尽量说明你的宝贝信息，如何获得时间，价格，途径等"
-    	    android:inputType="number" >
+    	    android:inputType="text" >
 
     	    <requestFocus />
     	</EditText>
@@ -62,14 +62,77 @@
     	    android:paddingTop="10dp"
     	    android:layout_marginLeft="@dimen/detail_text_padd"/>
 
-		<ImageView
-		    android:id="@+id/imageView1"
-		    android:layout_width="wrap_content"
+		<LinearLayout
+	 		android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginRight="@dimen/detail_text_padd"
+		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:src="@drawable/test1" />
+		    android:orientation="vertical"
+		  	 >
+    	    <include layout="@layout/item_identy_people" android:id="@+id/people01"/>
+    	     <include layout="@layout/item_identy_people" android:id="@+id/people02"/>
+    	      <include layout="@layout/item_identy_people" android:id="@+id/people03"/>
+		 <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+  	>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+            <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:src="@color/cricle_color"
+         >
+
+        
+    </LinearLayout>
+  	<RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        >
+
+  		<TextView
+  		    android:id="@+id/other_people"
+  		    style="@style/my_title_style3"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="match_parent"
+  		    android:layout_alignParentLeft="true"
+  		    android:layout_alignParentTop="true"
+  		    android:gravity="center"
+  		    android:paddingTop="@dimen/layout_margin_top"
+  		    android:text="何为三界偷拍" />
+
+  		<CheckBox
+  		    android:id="@+id/checkBox1"
+  		    style="@style/checkbox_identy_style"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_alignParentRight="true"
+  		    android:layout_centerVertical="true" />
+        
+    </RelativeLayout>
+    </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_space_color"
+        />
+</LinearLayout>
+    	    </LinearLayout>
     	
 		<Button
-		    android:id="@+id/button1"
+		    android:id="@+id/send_identy"
 		    android:layout_width="match_parent"
 		    android:layout_height="50dp"
 		    android:text="@string/feednack_bt"

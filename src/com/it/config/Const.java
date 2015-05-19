@@ -13,6 +13,14 @@ public class Const {
 	public static final int IDENTIFY = 0x03;
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
+	/**
+	 * 发布鉴定的图片路径
+	 */
+	public static final String IMAGEPATH="imagepath";
+
+	/**
+	 * 单张图片
+	 */
 	public static final String PICPATH="picpath";
 	
 	/**
@@ -28,4 +36,8 @@ public class Const {
 	 * 跳转我要鉴定
 	 */
 	public static final int TO_SEND_IDENTIY=0;
+	/**
+	 * 我要鉴定的第二步
+	 */
+	public static final int TO_IDENTY_NEXT=1;
 }
