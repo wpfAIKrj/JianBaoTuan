@@ -10,15 +10,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.it.R;
+import com.it.bean.AuthorsEntity;
 import com.it.ui.adapter.MyLoveAdapter.HolderView;
+import com.it.utils.BitmapsUtils;
 import com.it.view.CircleImageView;
 
 public class WellKnowPeopleAdapter extends BaseAdapter {
 
 	Context mContext;
-	List<String> list;
+	List<AuthorsEntity> list;
 
-	public WellKnowPeopleAdapter(Context context, List<String> strs) {
+	public WellKnowPeopleAdapter(Context context, List<AuthorsEntity> strs) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
 		this.list = strs;
@@ -31,7 +33,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public AuthorsEntity getItem(int position) {
 		// TODO Auto-generated method stub
 		return list.get(position);
 	}
@@ -55,8 +57,9 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
-		holder.iv.setImageResource(R.drawable.test_x2);
+		BitmapsUtils bitmapsUtils=BitmapsUtils.getInstance();
+		bitmapsUtils.display(holder.iv, list.get(position).authImage);
+//		holder.iv.setImageResource(R.drawable.user_logo);
 
 		return convertView;
 	}

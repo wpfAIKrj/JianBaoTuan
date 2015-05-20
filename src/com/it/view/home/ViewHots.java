@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.bean.HomeItem0;
+import com.it.bean.HotsEntity;
 import com.it.ui.activity.ActivityHotIdentiy;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -27,7 +27,7 @@ import com.lidroid.xutils.BitmapUtils;
  *
  */
 
-public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
+public class ViewHots extends LinearLayout implements OnClickListener {
 
 	// screen height,and width,in px
 	private ImageView iv_big;
@@ -37,19 +37,19 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 
 	BitmapUtils bitmapUtils;
 
-	public ViewHomeItem1(Context context) {
+	public ViewHots(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
-	public ViewHomeItem1(Context context, AttributeSet attrs) {
+	public ViewHots(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
-	public ViewHomeItem1(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ViewHots(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		// TODO Auto-generated constructor stub
 	}
@@ -81,7 +81,7 @@ public class ViewHomeItem1 extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(HomeItem0 item) {
+	public void setItem(HotsEntity item) {
 		if (bitmapUtils == null) {
 			bitmapUtils = new BitmapUtils(getContext());
 		}

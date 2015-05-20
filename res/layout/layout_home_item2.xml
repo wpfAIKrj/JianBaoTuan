@@ -29,11 +29,13 @@
         android:layout_marginTop="@dimen/y20"
         android:orientation="vertical" >
 
-        <com.it.view.home.ViewHomeItem2
+        <com.it.view.home.ViewArticles
+            android:id="@+id/articles_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.it.view.home.ViewHomeItem2
+        <com.it.view.home.ViewArticles
+            android:id="@+id/articles_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/y20"

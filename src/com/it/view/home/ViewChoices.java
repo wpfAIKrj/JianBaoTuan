@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.bean.HomeItem0;
+import com.it.bean.ChoicesEntity;
 import com.it.ui.activity.ActivityUserDelails;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -27,7 +27,7 @@ import com.lidroid.xutils.BitmapUtils;
  *
  */
 
-public class ViewHomeItem0 extends LinearLayout implements OnClickListener {
+public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	// screen height,and width,in px
 	private ImageView iv_big;
@@ -37,19 +37,19 @@ public class ViewHomeItem0 extends LinearLayout implements OnClickListener {
 
 	BitmapUtils bitmapUtils;
 
-	public ViewHomeItem0(Context context) {
+	public ViewChoices(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
-	public ViewHomeItem0(Context context, AttributeSet attrs) {
+	public ViewChoices(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
-	public ViewHomeItem0(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ViewChoices(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		// TODO Auto-generated constructor stub
 	}
@@ -79,7 +79,7 @@ public class ViewHomeItem0 extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(HomeItem0 item) {
+	public void setItem(ChoicesEntity item) {
 		if (bitmapUtils == null) {
 			bitmapUtils = new BitmapUtils(getContext());
 		}
@@ -88,7 +88,7 @@ public class ViewHomeItem0 extends LinearLayout implements OnClickListener {
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage);
 		// 设置等级
-//		setGradeImage(item.linkAddress);
+		// setGradeImage(item.linkAddress);
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
