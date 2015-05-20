@@ -38,10 +38,7 @@ public class UpLoadLogoModel extends BaseModel {
 		params=new RequestParams();
 		params.addBodyParameter(NetConst.EXTRA_LOGO, portrait);
 		params.addBodyParameter(NetConst.EXTRA_QQ, qq);
-		params.addBodyParameter(NetConst.EXTRA_EMAIL, qq);
-		if(NetConst.SESSIONID!=null){
-			params.addBodyParameter(NetConst.SID,NetConst.SESSIONID);
-		}
+		params.addBodyParameter(NetConst.EXTRA_EMAIL, email);
 	}
 
 	@Override

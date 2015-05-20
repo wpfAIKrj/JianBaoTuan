@@ -19,5 +19,5 @@ public interface OnListDataLoadListener<T> {
 	 * @param errorCode	错误码
 	 * @param errorMsg	错误信息
 	 */
-	public void onListDataLoadErrorHappened(int errorCode, String errorMsg);
+	public void onListDataLoadErrorHappened(String errorCode, String errorMsg);
 }

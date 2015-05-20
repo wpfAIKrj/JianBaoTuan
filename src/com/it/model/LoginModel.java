@@ -60,7 +60,7 @@ public class LoginModel extends BaseModel{
 
 
 	@Override
-	public void analyzeData(String data) {
+	public void analyzeData(String data) throws Exception  {
 		// TODO Auto-generated method stub
 		Gson gson=new Gson();
 		UserInfo user=gson.fromJson(data, UserInfo.class);

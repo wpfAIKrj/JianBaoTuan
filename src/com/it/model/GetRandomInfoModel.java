@@ -1,31 +1,35 @@
 package com.it.model;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.presenter.OnBasicDataLoadListener;
+import com.it.presenter.OnListDataLoadListener;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
- * 注册操作
+ * 获取3个随机鉴定师
  * @author Administrator
  *
  */
-public class RegisterModel extends BaseModel{
+public class GetRandomInfoModel extends BaseModel{
 	
-	private String name;
-	private String pwd;
-	private OnBasicDataLoadListener<UserInfo> lisntenr;
+
+	private OnListDataLoadListener<UserInfo> lisntenr;
 	
-	public void setUserInfo(String name,String pwd,OnBasicDataLoadListener<UserInfo> lis){
-		this.name=name;
-		this.pwd=pwd;
+	public void startGet(OnListDataLoadListener<UserInfo> lis){
 		this.lisntenr=lis;
 		StringBuffer sb=new StringBuffer(url);
-		sb.append(NetConst.REGISTER_URL);
+		sb.append(NetConst.RAMDOMAPPRAISER);
+		if(NetConst.SESSIONID!=null){
+			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}
 		url=sb.toString();
 	}
 	
@@ -36,17 +40,14 @@ public class RegisterModel extends BaseModel{
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
 		params=new RequestParams();
-		params.addBodyParameter(NetConst.LOGIN_NAME, name);
-		params.addBodyParameter(NetConst.LOGIN_PWD, pwd);
 	}
 	
 	
 
-
 	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
-		lisntenr.onBaseDataLoadErrorHappened(error, msg);
+		lisntenr.onListDataLoadErrorHappened(error, msg);
 	}
 
 
@@ -65,12 +66,14 @@ public class RegisterModel extends BaseModel{
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
 		Gson gson=new Gson();
-		UserInfo user=gson.fromJson(data, UserInfo.class);
-		NetConst.SESSIONID=user.getSession_id();
-		lisntenr.onBaseDataLoaded(user);
+		ArrayList<UserInfo> users=new ArrayList<UserInfo>();
+			JSONArray array=new JSONArray(data);
+			for (int i = 0; i < array.length(); i++) {
+				UserInfo user=gson.fromJson(array.getString(0), UserInfo.class);
+				users.add(user);
+			lisntenr.onListDataLoaded(users);
+			}
 	}
-
-
 
 
 

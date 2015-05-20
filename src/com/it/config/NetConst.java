@@ -37,17 +37,19 @@ public class NetConst {
 	public static final String IM_KEY="3argexb6r9p1e";
 	public static final String IM_SECRET="aWFuJg2Rl0O";
 	
-	public static final String REGISTER_URL="/Users/registAction";
+	public static final String REGISTER_URL="Users/registAction";
 	
-	public static final String LOGIN_URL="/Users/loginAction";
+	public static final String LOGIN_URL="Users/loginAction";
 	
-	public static final String EXTRAUSR="/Users/extraAction";
+	public static final String EXTRAUSR="Users/extraAction";
+	
+	public static final String RAMDOMAPPRAISER="Material/randomAppraiserAction";
 	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
 	
-	public static final String SID="session_id";
+	public static final String SID="sid";
 	
 	
 	public static final  String EXTRA_LOGO="portrait";

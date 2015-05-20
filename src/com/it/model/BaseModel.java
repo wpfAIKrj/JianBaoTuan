@@ -19,7 +19,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 public abstract class BaseModel {
-	protected String url="http://123.57.251.101";
+	protected String url="http://123.57.251.101/";
 	protected int connTimeout=10000;
 	protected RequestParams params;
 	protected HttpMethod httpmodel;
@@ -70,7 +70,7 @@ public abstract class BaseModel {
 		}
     }
 	
-    public abstract void analyzeData(String data);
+    public abstract void analyzeData(String data) throws Exception;
 
 
 	public 	abstract void addRequestParams();
