@@ -69,60 +69,18 @@
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical"
 		  	 >
-    	    <include layout="@layout/item_identy_people" android:id="@+id/people01"/>
-    	     <include layout="@layout/item_identy_people" android:id="@+id/people02"/>
-    	      <include layout="@layout/item_identy_people" android:id="@+id/people03"/>
 		 <LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
   	>
 
-    <LinearLayout 
+    <android.support.v7.widget.RecyclerView 
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        >
-            <LinearLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:src="@color/cricle_color"
-         >
-
-        
-    </LinearLayout>
-  	<RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
-        >
-
-  		<TextView
-  		    android:id="@+id/other_people"
-  		    style="@style/my_title_style3"
-  		    android:layout_width="wrap_content"
-  		    android:layout_height="match_parent"
-  		    android:layout_alignParentLeft="true"
-  		    android:layout_alignParentTop="true"
-  		    android:gravity="center"
-  		    android:paddingTop="@dimen/layout_margin_top"
-  		    android:text="何为三界偷拍" />
-
-  		<CheckBox
-  		    android:id="@+id/checkBox1"
-  		    style="@style/checkbox_identy_style"
-  		    android:layout_width="wrap_content"
-  		    android:layout_height="wrap_content"
-  		    android:layout_alignParentRight="true"
-  		    android:layout_centerVertical="true" />
-        
-    </RelativeLayout>
-    </LinearLayout>
+        android:id="@+id/recyclerview1"
+        />
     <View 
         android:layout_width="match_parent"
         android:layout_height="1dp"

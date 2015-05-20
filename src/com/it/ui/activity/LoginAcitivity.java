@@ -2,6 +2,7 @@ package com.it.ui.activity;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.UserInfo;
+import com.it.config.Const;
 import com.it.im.RongImUtils;
 import com.it.presenter.LoginPresenter;
 import com.it.ui.base.BaseActivity;
@@ -87,9 +89,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		Intent intent=null;
 		switch (v.getId()) {
 		case R.id.title_back://返回主界面
-			intent=new Intent(LoginAcitivity.this, MainActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
+			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;
 		case R.id.login_bt_clear://显示下拉用户框
@@ -103,11 +103,13 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			startLogin();
 			break;
 		case R.id.login_bt_register://跳转到注册页面
-			startActivity(new Intent(LoginAcitivity.this, RegisterActivity.class));
+			intent=new Intent(LoginAcitivity.this, RegisterActivity.class);
+			startActivityForResult(intent, Const.TO_REGISTER);
 			
 			break;
 		case R.id.login_bt_forgot://找回密码界面
-			startActivity(new Intent(LoginAcitivity.this, ForgotActivity.class));
+			intent=new Intent(LoginAcitivity.this, ForgotActivity.class);
+			startActivityForResult(intent, Const.TO_FOGOT);
 			break;
 		default:
 			break;
@@ -166,12 +168,10 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		((ItApplication)getApplication()).setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
 	//	RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
-		Intent intent=new Intent(LoginAcitivity.this, MainActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
 		if(dialog!=null){
 			dialog.dismiss();
 		}
+		setResult(Activity.RESULT_OK, getIntent());
 		finish();
 	}
 
@@ -204,5 +204,21 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		// TODO Auto-generated method stub
 		super.startActivity(intent);
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==Const.TO_REGISTER){
+			if(resultCode==RESULT_OK){//注册成功
+				setResult(Activity.RESULT_OK, getIntent());
+				finish();
+			}
+		}
+		if(requestCode==Const.TO_FOGOT){
+			
+		}
+		
 	}
 }

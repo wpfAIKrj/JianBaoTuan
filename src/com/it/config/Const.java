@@ -13,6 +13,8 @@ public class Const {
 	public static final int IDENTIFY = 0x03;
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
+
+	
 	/**
 	 * 发布鉴定的图片路径
 	 */
@@ -40,4 +42,17 @@ public class Const {
 	 * 我要鉴定的第二步
 	 */
 	public static final int TO_IDENTY_NEXT=1;
+	
+	/**
+	 * 跳转到注册页面
+	 */
+	public static final int TO_REGISTER=2;
+	/**
+	 * 跳转到找回密码页面
+	 */
+	public static final int TO_FOGOT=3;
+	/**
+	 * 登陆
+	 */
+	public static final int TO_LOGIN=4;
 }

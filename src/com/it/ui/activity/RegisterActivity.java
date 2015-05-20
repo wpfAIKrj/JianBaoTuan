@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -274,9 +275,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 				if(registerdialog!=null){
 					registerdialog.dismiss();
 				}
-				Intent intent=new Intent(RegisterActivity.this, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				setResult(Activity.RESULT_OK, getIntent());
 				finish();
 			}
 		}, 5000);

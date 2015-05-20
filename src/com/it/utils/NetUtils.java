@@ -1,5 +1,7 @@
 package com.it.utils;
 
+import com.lidroid.xutils.util.LogUtils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -19,7 +21,7 @@ public class NetUtils {
 				context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netWorkInfo = manager.getActiveNetworkInfo();
 		if(netWorkInfo == null ){
-			Log.i("info", "没有网络连接");
+			LogUtils.d("info"+"没有网络连接");
 			AlertDialog.Builder builder = new Builder(context)
 			.setTitle("没有网络！")
 			.setMessage("dakaiw")
@@ -37,7 +39,7 @@ public class NetUtils {
 			builder.show();
 			return false;
 		}else{
-			Log.i("info", "有网络连接！");
+			LogUtils.d("info"+"有网络连接！");
 			return true;
 		}
 	}

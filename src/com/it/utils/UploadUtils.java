@@ -1,12 +1,15 @@
 package com.it.utils;
 
 import java.io.File;
+import java.util.Calendar;
 
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.json.JSONObject;
+
+import android.text.format.DateFormat;
 
 import com.it.inter.UpLoadFileInterface;
 import com.lidroid.xutils.util.LogUtils;
@@ -27,17 +30,16 @@ import com.qiniu.android.utils.UrlSafeBase64;
 public class UploadUtils {
 
 
-	public static  String TOKEN="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:TOXc2-DhDmZYKTFLCzmzvQdbNdw=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMyMDQ4MzE1fQ==";
-			
-			
-			
-	/**
+	public static final String TOKEN="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:KK_duDxa7wLOU-LQF2hIcjUxv8s=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMyMTMxOTc0fQ==";
+
+			/**
 	 * 上传文件
 	 * @param filePath 文件路径
 	 * @param listener 回调接口
 	 */
 	public static void UploadPortrait(String filePath,final UpLoadFileInterface listener){
 		UploadManager uploadManager=new UploadManager();
+		String key=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+"";
 		uploadManager.put(filePath, null, TOKEN, new UpCompletionHandler() {
 			
 			@Override
@@ -52,7 +54,7 @@ public class UploadUtils {
 			}
 			
 			
-		}, new UploadOptions(null, "image/jpeg", true, new UpProgressHandler() {
+		}, new UploadOptions(null, "", true, new UpProgressHandler() {
 			
 			@Override
 			public void progress(String arg0, double arg1) {

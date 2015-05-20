@@ -25,7 +25,6 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 	public UploadLogoPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
-		mModel=new UpLoadLogoModel();
 	}
 
 	public void startUpLoadLogo(String path, String email, String qq){
@@ -40,6 +39,7 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 		this.key=key;
 		this.email=email;
 		this.qq=qq;
+		mModel=new UpLoadLogoModel();
 		mModel.startUpload(key,qq,email,this);
 		mModel.addRequestParams();
 		mModel.sendHttp();

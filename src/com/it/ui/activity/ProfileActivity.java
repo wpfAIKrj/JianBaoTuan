@@ -109,9 +109,9 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		if(!qq.isEmpty()&&(qq.length()>=6)){
 			String email=edEmail.getText().toString();
 			if(!email.isEmpty()){
-				mpresenter.startExtra(key, email, qq);
 				Logodialong=DialogUtil.createLoadingDialog(this, "正在更新个人信息中");
 				Logodialong.show();
+				mpresenter.startExtra(key, email, qq);
 			}else{
 				new ToastUtils(this, "请输入正确的email号码！");
 			}

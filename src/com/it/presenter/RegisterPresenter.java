@@ -14,10 +14,10 @@ public class RegisterPresenter implements OnBasicDataLoadListener<UserInfo> {
 	public RegisterPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
-		mModel=new RegisterModel();
 	}
 
 	public void startRegister(String name,String pwd){
+		mModel=new RegisterModel();
 		mModel.setUserInfo(name, pwd, this);
 		mModel.addRequestParams();
 		mModel.sendHttp();

@@ -13,10 +13,10 @@ public class LoginPresenter implements OnBasicDataLoadListener<UserInfo> {
 	public LoginPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
-		mModel=new LoginModel();
 	}
 
 	public void startLogin(String name,String pwd){
+		mModel=new LoginModel();
 		mModel.setUserInfo(name, pwd, this);
 		mModel.addRequestParams();
 		mModel.sendHttp();

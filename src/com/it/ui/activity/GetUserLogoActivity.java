@@ -109,9 +109,14 @@ public class GetUserLogoActivity extends BaseActivity  {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		if (bitmap != null && !bitmap.isRecycled())
-			bitmap.recycle();
-		System.gc();
+		try {
+			if (bitmap != null && !bitmap.isRecycled())
+				bitmap.recycle();
+			System.gc();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@OnClick({R.id.cut_save,R.id.cut_cancel,R.id.button_category})

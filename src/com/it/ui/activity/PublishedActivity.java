@@ -16,6 +16,8 @@ import com.it.ui.dialog.SelectPhotoDialog;
 import com.it.utils.BitmapsUtils;
 import com.it.utils.FileUtils;
 import com.it.utils.ImageUtils;
+import com.it.utils.NetUtils;
+import com.it.utils.ToastUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -118,9 +120,13 @@ public class PublishedActivity extends BaseActivity{
 			showGetPhotoDialog(5);
 			break;
 		case R.id.bt_next:
-			Intent intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
-			intent.putExtra(Const.IMAGEPATH, imagePath);
-			startActivityForResult(intent, Const.TO_IDENTY_NEXT);
+			if(NetUtils.checkNetWork(this)){
+				Intent intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
+				intent.putExtra(Const.IMAGEPATH, imagePath);
+				startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
+			}else{
+				new ToastUtils(this, R.string.help_msg_03);
+			}
 			break;
 		default:
 			break;
@@ -154,7 +160,7 @@ public class PublishedActivity extends BaseActivity{
 			}
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
-			imageUtils.doPhotoCamera();
+		
 			if(imageUtils.PICPATH!=null){
 				saveImage();
 			}

@@ -46,7 +46,6 @@ public class BitmapsUtils {
 				return key;
 			}
 		});
-		
 		config=new BitmapDisplayConfig();
 		config.setLoadingDrawable(context.getResources().getDrawable(R.drawable.test3));
 		config.setLoadFailedDrawable(context.getResources().getDrawable(R.drawable.test3));

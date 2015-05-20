@@ -51,4 +51,7 @@
 	<dimen name="layout_logo_width">50dp</dimen>
 	
 	<dimen name="checkboxheight">20dp</dimen>
+	
+	<dimen name="layout_item_height">60dp</dimen>
+	
 </resources>

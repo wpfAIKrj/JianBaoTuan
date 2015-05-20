@@ -20,7 +20,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 public abstract class BaseModel {
 	protected String url="http://123.57.251.101/";
-	protected int connTimeout=10000;
+	protected int connTimeout=50000;
 	protected RequestParams params;
 	protected HttpMethod httpmodel;
 	
@@ -42,6 +42,7 @@ public abstract class BaseModel {
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				// TODO Auto-generated method stub
 				onSuccessForString(responseInfo.result);
+				
 			}
 
 			@Override

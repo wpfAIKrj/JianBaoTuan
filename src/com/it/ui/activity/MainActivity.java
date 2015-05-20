@@ -181,7 +181,7 @@ OnTabSelectedListener ,OnClickListener{
 		if(index==3){//我的页面
 			if(((ItApplication)getApplication()).getCurrnUser()==null){
 				Intent intent=new Intent(MainActivity.this, LoginAcitivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, Const.TO_LOGIN);
 				return;
 			}
 		}
@@ -307,24 +307,32 @@ OnTabSelectedListener ,OnClickListener{
 			disshowPhoto();
 			return;
 		}
+		if(arg0==Const.TO_LOGIN&&arg1==RESULT_OK){//登陆成功
+			mIndex=3;
+			onTabSelected(mIndex);
+		}
 		if(arg0==Const.TO_SEND_IDENTIY&&arg1==RESULT_OK){//发布成功
 			
 			
 		}
 		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
-				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+				if(imageUtils.PICPATH!=null){
+//				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+//				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+//				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					uploadLogo(imageUtils.PICPATH);
+				}
 			}
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE&&arg1==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.doPhoto( arg2);
 				if(imageUtils.PICPATH!=null){
-					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					uploadLogo(imageUtils.PICPATH);
 				}
 			}
 		}
@@ -332,30 +340,34 @@ OnTabSelectedListener ,OnClickListener{
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.doPhotoKIKAT(arg2);
 				if(imageUtils.PICPATH!=null){
-					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-				}
+//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					uploadLogo(imageUtils.PICPATH);
 			}
+		}
 		}
 		if(arg0==ImageUtils.CROP_IMAGE&&arg1==RESULT_OK){//获取剪切好的人物头像
 			if(arg2!=null){
 				String path=arg2.getStringExtra(Const.PICPATH);
-				LogUtils.d("获取的头像路径："+path);
-				disshowPhoto();
-				UserInfo user=((ItApplication)getApplication()).getCurrnUser();
-				if(user!=null){
-					String qq=user.getQQ();
-					String email=user.getEmail();
-					uplogopresenter.startUpLoadLogo(path,email,qq);
-					Logodialong=DialogUtil.createLoadingDialog(this, "正在更新头像中");
-					Logodialong.show();
-				}
+				uploadLogo(path);
 			}
 		}
 	
 	}
 
+	public void uploadLogo(String path){
+		LogUtils.d("获取的头像路径："+path);
+		disshowPhoto();
+		UserInfo user=((ItApplication)getApplication()).getCurrnUser();
+		if(user!=null){
+			String qq=user.getQQ();
+			String email=user.getEmail();
+			uplogopresenter.startUpLoadLogo(path,email,qq);
+			Logodialong=DialogUtil.createLoadingDialog(this, "正在更新头像中");
+			Logodialong.show();
+		}
+	}
 	
 	
 	private void disshowPhoto() {
@@ -366,6 +378,7 @@ OnTabSelectedListener ,OnClickListener{
 			}
 		}
 	}
+	
 
 	private onBasicView<UserInfo> listener=new onBasicView<UserInfo>() {
 		

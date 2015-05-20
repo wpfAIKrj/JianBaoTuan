@@ -354,7 +354,7 @@ public class FileUtils {
 			int reqWidth=SystemUtils.getDisplaysWidth(mContext)/2;
 			int reqHeight=SystemUtils.getDisplaysHeight(mContext)/2;
 			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
-			saveImageToSD(mContext, path, bitmap, 100);
+			saveImageToSD(mContext, path, bitmap, 50);
 			deleteFile(picpath);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -403,7 +403,7 @@ public class FileUtils {
 	public  String NewUploadImagePath() {
 		// TODO Auto-generated method stub
 		String root = FileUtils.getInstance().getUpImage();
-		String imagename=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+".webp";
+		String imagename=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+".jpg";
 		root=root+File.separator+imagename;
 		return root;
 	}

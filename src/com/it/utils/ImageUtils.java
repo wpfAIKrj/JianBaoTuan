@@ -91,7 +91,6 @@ public class ImageUtils {
 		if (PICPATH != null
 				&& (PICPATH.endsWith(".png") || PICPATH.endsWith(".PNG")
 						|| PICPATH.endsWith(".jpg") || PICPATH.endsWith(".JPG")|| PICPATH.endsWith(".WEBP")|| PICPATH.endsWith(".webp"))) {
-			PICPATH=FileUtils.getInstance().saveUpImageForPhone(PICPATH);
 		} else {
 			Toast.makeText(activity, "选择图片文件不正确",
 					Toast.LENGTH_SHORT).show();
@@ -139,21 +138,13 @@ public class ImageUtils {
 		if (PICPATH != null
 				&& (PICPATH.endsWith(".png") || PICPATH.endsWith(".PNG")
 						|| PICPATH.endsWith(".jpg") || PICPATH.endsWith(".JPG")|| PICPATH.endsWith(".WEBP")|| PICPATH.endsWith(".webp"))) {
-			PICPATH=FileUtils.getInstance().saveUpImageForPhone(PICPATH);
 		} else {
 			Toast.makeText(activity, "选择图片文件不正确",
 					Toast.LENGTH_SHORT).show();
 		}
 	}
 	
-	/**
-	 * 讲摄像头获取的照片压缩，以便上传
-	 */
-	public void doPhotoCamera(){
-		if(PICPATH!=null){
-			PICPATH=FileUtils.getInstance().saveUpImageForPhone(PICPATH);
-		}
-	}
+	
 	
 	
 	/**

@@ -6,6 +6,7 @@ import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.model.GetRandomInfoModel;
 import com.it.view.inter.onListView;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
  * 获取随机3个鉴定师
  * @author xy418
@@ -17,12 +18,14 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 	private onListView<UserInfo> mView;
 	public RamdomAdasiterPresenter(onListView<UserInfo> view) {
 		// TODO Auto-generated constructor stub
-		this.model=new GetRandomInfoModel();
 		this.mView=view;
 	}
 	
 	public void startGet(){
+		this.model=new GetRandomInfoModel();
+		model.setHTTPMODE(HttpMethod.GET);
 		model.startGet(this);
+		model.sendHttp();
 	}
 	
 	@Override

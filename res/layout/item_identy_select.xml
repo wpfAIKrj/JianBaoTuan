@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_item_height"
+    android:orientation="vertical" 
+    android:background="@color/wite">
+      	<RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        >
+
+  		<TextView
+  		    android:id="@+id/other_people"
+  		    style="@style/my_title_style3"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="match_parent"
+  		    android:layout_alignParentLeft="true"
+  		    android:layout_alignParentTop="true"
+  		    android:gravity="center"
+  		    android:paddingTop="@dimen/layout_margin_top"
+  		    android:text="其他鉴定师" />
+
+  		<CheckBox
+  		    android:id="@+id/checkBox1"
+  		    style="@style/checkbox_identy_style"
+  		    android:layout_width="wrap_content"
+  		    android:layout_height="wrap_content"
+  		    android:layout_alignParentRight="true"
+  		    android:layout_centerVertical="true" 
+  		    android:layout_marginRight="@dimen/detail_text_padd"
+  		    />
+        
+    </RelativeLayout>
+
+</LinearLayout>
