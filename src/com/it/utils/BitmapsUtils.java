@@ -52,6 +52,7 @@ public class BitmapsUtils {
 		config.setLoadFailedDrawable(context.getResources().getDrawable(R.drawable.test3));
 		config.setAnimation(AnimationUtils.loadAnimation(context, R.anim.bitmap_show));
 		config.setShowOriginal(true);
+
 		
 	}
 	

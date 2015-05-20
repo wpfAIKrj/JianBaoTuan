@@ -379,7 +379,7 @@ public class FileUtils {
             }
             BufferedOutputStream bos = new BufferedOutputStream(
                     new FileOutputStream(filePath));
-            bitmap.compress(CompressFormat.JPEG, quality, bos);
+            bitmap.compress(CompressFormat.PNG, quality, bos);
             bos.flush();
             bos.close();
         }
@@ -403,7 +403,7 @@ public class FileUtils {
 	public  String NewUploadImagePath() {
 		// TODO Auto-generated method stub
 		String root = FileUtils.getInstance().getUpImage();
-		String imagename=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+".jpg";
+		String imagename=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+".webp";
 		root=root+File.separator+imagename;
 		return root;
 	}
@@ -422,6 +422,7 @@ public class FileUtils {
 			int reqHeight=SystemUtils.getDisplaysHeight(mContext);
 			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
 			saveImageToSD(mContext, path, bitmap, 100);
+			deleteFile(picpath);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

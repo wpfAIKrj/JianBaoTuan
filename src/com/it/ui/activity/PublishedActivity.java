@@ -154,6 +154,7 @@ public class PublishedActivity extends BaseActivity{
 			}
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
+			imageUtils.doPhotoCamera();
 			if(imageUtils.PICPATH!=null){
 				saveImage();
 			}
