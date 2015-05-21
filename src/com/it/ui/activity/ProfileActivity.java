@@ -72,15 +72,8 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		title.setText(R.string.profile_title);
 		String string = user.getPersonal_data();
 		key=user.getPortrait();
-		try {
-			JSONObject json=new JSONObject(string);
-			edQQ.setText(json.getString("qq"));
-			edEmail.setText(json.getString("email"));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		edQQ.setText(user.getQQ());
+		edEmail.setText(user.getEmail());
 	}
 
 

@@ -38,6 +38,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Insert_time = new Property(12, Integer.class, "insert_time", false, "INSERT_TIME","USER_INFO");
         public final static Property Session_id = new Property(13, String.class, "session_id", false, "SESSION_ID","USER_INFO");
         public final static Property Avatar = new Property(14, String.class, "avatar", false, "AVATAR","USER_INFO");
+        public final static Property Image_token = new Property(15, String.class, "image_token", false, "IMAGE_TOKEN","USER_INFO");
+        public final static Property Message_token = new Property(16, String.class, "message_token", false, "MESSAGE_TOKEN","USER_INFO");
     };
 
 
@@ -67,7 +69,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "'IS_BIND' INTEGER," + // 11: is_bind
                 "'INSERT_TIME' INTEGER," + // 12: insert_time
                 "'SESSION_ID' TEXT," + // 13: session_id
-                "'AVATAR' TEXT);"); // 14: avatar
+                "'AVATAR' TEXT," + // 14: avatar
+                "'IMAGE_TOKEN' TEXT," + // 15: image_token
+                "'MESSAGE_TOKEN' TEXT);"); // 16: message_token
     }
 
     /** Drops the underlying database table. */
@@ -155,6 +159,16 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (avatar != null) {
             stmt.bindString(15, avatar);
         }
+ 
+        String image_token = entity.getImage_token();
+        if (image_token != null) {
+            stmt.bindString(16, image_token);
+        }
+ 
+        String message_token = entity.getMessage_token();
+        if (message_token != null) {
+            stmt.bindString(17, message_token);
+        }
     }
 
     /** @inheritdoc */
@@ -181,7 +195,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // is_bind
             cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // insert_time
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // session_id
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14) // avatar
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // avatar
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // image_token
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16) // message_token
         );
         return entity;
     }
@@ -204,6 +220,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setInsert_time(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
         entity.setSession_id(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
         entity.setAvatar(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setImage_token(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setMessage_token(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
      }
     
     /** @inheritdoc */

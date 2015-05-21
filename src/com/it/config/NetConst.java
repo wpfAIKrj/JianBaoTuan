@@ -48,6 +48,9 @@ public class NetConst {
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
+	public static String UPTOKEN=null;//上传的token
+	
+	public static String IMTOKEN=null;//聊天的token
 	
 	public static final String SID="sid";
 	
@@ -61,6 +64,8 @@ public class NetConst {
 	
 
 	public static final String UPKEY="key";
+	
+
 	
 
 }

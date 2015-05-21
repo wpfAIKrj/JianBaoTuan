@@ -126,7 +126,8 @@
          ></activity>    
           <activity android:name="com.it.ui.activity.GetUserLogoActivity"
             android:screenOrientation="portrait"
-         ></activity>                        
+         ></activity> 
+         <service android:name="com.it.ui.server.HomeService"></service>                       
     </application>
 
      <supports-screens

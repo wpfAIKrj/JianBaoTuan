@@ -13,6 +13,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class UserInfo implements Serializable{
 
+
 	@SerializedName("id")
 	private Long id;
 	
@@ -57,6 +58,11 @@ public class UserInfo implements Serializable{
     
     @SerializedName("avatar")
     private String avatar;
+    
+    @SerializedName("image_token")
+    private String image_token;
+    @SerializedName("message_token")
+    private String message_token;
 
     public UserInfo() {
     }
@@ -65,7 +71,7 @@ public class UserInfo implements Serializable{
         this.id = id;
     }
 
-    public UserInfo(Long id, String nickname, String password, String mobile, String portrait, Integer user_type, Integer user_level, String personal_data, Integer is_valid, Integer is_famous_expert, Integer is_system, Integer is_bind, Integer insert_time, String session_id, String avatar) {
+    public UserInfo(Long id, String nickname, String password, String mobile, String portrait, Integer user_type, Integer user_level, String personal_data, Integer is_valid, Integer is_famous_expert, Integer is_system, Integer is_bind, Integer insert_time, String session_id, String avatar, String image_token, String message_token) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
@@ -81,6 +87,8 @@ public class UserInfo implements Serializable{
         this.insert_time = insert_time;
         this.session_id = session_id;
         this.avatar = avatar;
+        this.image_token = image_token;
+        this.message_token = message_token;
     }
 
     public Long getId() {
@@ -203,27 +211,48 @@ public class UserInfo implements Serializable{
         this.avatar = avatar;
     }
 
-    public String getQQ(){
-    	String string = "";
+    public String getImage_token() {
+        return image_token;
+    }
+
+    public void setImage_token(String image_token) {
+        this.image_token = image_token;
+    }
+
+    public String getMessage_token() {
+        return message_token;
+    }
+
+    public void setMessage_token(String message_token) {
+        this.message_token = message_token;
+    }
+
+	public String getQQ() {
+		// TODO Auto-generated method stub
+		String string = getPersonal_data();
+		JSONObject json;
 		try {
-			JSONObject json=new JSONObject(personal_data);
-			string=json.getString("qq");
+			json = new JSONObject(string);
+			return json.getString("qq");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return string;
-    }
-    
-    public String getEmail(){
-    	String string = "";
+		return "";
+	}
+
+	public String getEmail() {
+		// TODO Auto-generated method stub
+		String string = getPersonal_data();
+		JSONObject json;
 		try {
-			JSONObject json=new JSONObject(personal_data);
-			string=json.getString("email");
+			json = new JSONObject(string);
+			return json.getString("email");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return string;
-    }
+		return "";
+	}
+
 }

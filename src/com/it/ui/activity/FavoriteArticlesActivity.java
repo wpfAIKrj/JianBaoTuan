@@ -1,5 +1,7 @@
 package com.it.ui.activity;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.it.R;
+import com.it.bean.ContentInfo;
 import com.it.ui.adapter.ArticleAdapter;
 import com.it.ui.base.BaseActivity;
 import com.it.view.listview.XListView;
@@ -33,7 +36,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements OnClickLis
 	}
 	private XListView mlistview;
 	private ArticleAdapter madapter;
-
+	private ArrayList<ContentInfo> list;
 
 	protected void initView() {
 		// TODO Auto-generated method stub
@@ -45,12 +48,12 @@ public class FavoriteArticlesActivity extends BaseActivity implements OnClickLis
 
 		TextView tv=(TextView)findViewById(R.id.home_title);
 		tv.setText("收藏文章");
-		
+		list=new ArrayList<ContentInfo>();
 	}
 
 	protected void initData() {
 		// TODO Auto-generated method stub
-		madapter=new ArticleAdapter(LayoutInflater.from(this));
+		madapter=new ArticleAdapter(this,list);
 		mlistview.setAdapter(madapter);
 		mlistview.setXListViewListener(this);
 		mlistview.setOnItemClickListener(this);

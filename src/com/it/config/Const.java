@@ -13,6 +13,11 @@ public class Const {
 	public static final int IDENTIFY = 0x03;
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
+	
+	/**
+	 * 文章id
+	 */
+	public static final String ArticleId="article_id";
 
 	
 	/**
@@ -55,4 +60,8 @@ public class Const {
 	 * 登陆
 	 */
 	public static final int TO_LOGIN=4;
+	/**
+	 * 去查看文章详情
+	 */
+	public static final int TO_ARTICLE=5;
 }

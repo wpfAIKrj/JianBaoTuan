@@ -65,6 +65,8 @@ public class LoginModel extends BaseModel{
 		Gson gson=new Gson();
 		UserInfo user=gson.fromJson(data, UserInfo.class);
 		NetConst.SESSIONID=user.getSession_id();
+		NetConst.UPTOKEN=user.getImage_token();
+		NetConst.IMTOKEN=user.getMessage_token();
 		lisntenr.onBaseDataLoaded(user);
 	}
 
