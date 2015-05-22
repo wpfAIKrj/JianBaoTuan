@@ -10,11 +10,16 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.ArticlesEntity;
+import com.it.utils.BitmapsUtils;
 import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
  * @author ytmfdw 主页 [热门鉴定]下的选项 根据屏幕宽高来计算图片大小
@@ -25,7 +30,14 @@ public class ViewArticles extends LinearLayout {
 
 	// screen height,and width,in px
 
-	BitmapUtils bitmapUtils;
+	BitmapsUtils bitmapUtils;
+
+	@ViewInject(R.id.iv_item3)
+	ImageView iv;
+	@ViewInject(R.id.tv_msg)
+	TextView tv_msg;
+	@ViewInject(R.id.tv_num)
+	TextView tv_num;
 
 	public ViewArticles(Context context) {
 		super(context);
@@ -58,13 +70,16 @@ public class ViewArticles extends LinearLayout {
 
 	private void init(Context context) {
 		LayoutInflater.from(context).inflate(R.layout.item_home_3, this);
-
+		ViewUtils.inject(this);
 	}
 
 	public void setItem(ArticlesEntity item) {
 		if (bitmapUtils == null) {
-			bitmapUtils = new BitmapUtils(getContext());
+			bitmapUtils = BitmapsUtils.getInstance();
 		}
+		bitmapUtils.display(iv, item.image);
+		tv_msg.setText(item.name);
+		tv_num.setText(item.viewTimes);
 
 	}
 

@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.bean.ChoicesEntity;
 import com.it.ui.activity.ActivityUserDelails;
-import com.lidroid.xutils.BitmapUtils;
+import com.it.utils.BitmapsUtils;
 
 /**
  * @author ytmfdw 主页 [精品藏品]下的选项 根据屏幕宽高来计算图片大小
@@ -35,7 +35,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 	private ImageView iv_grade;
 	private TextView tv_name, tv_num;
 
-	BitmapUtils bitmapUtils;
+	BitmapsUtils bitmapUtils;
 
 	public ViewChoices(Context context) {
 		super(context);
@@ -81,7 +81,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	public void setItem(ChoicesEntity item) {
 		if (bitmapUtils == null) {
-			bitmapUtils = new BitmapUtils(getContext());
+			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
 		bitmapUtils.display(iv_big, item.image);

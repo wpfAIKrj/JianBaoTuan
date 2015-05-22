@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.it.R;
 import com.it.app.ItApplication;
@@ -21,10 +23,12 @@ import com.it.ui.base.BaseFragment;
 import com.it.view.ImageViewPage;
 import com.it.view.home.ViewArticles;
 import com.it.view.home.ViewChoices;
+import com.it.view.home.ViewHomeWhoWellKnow;
 import com.it.view.home.ViewHots;
 import com.it.view.listview.HorizontalListView;
 
-public class HomeFragment extends BaseFragment implements OnClickListener {
+public class HomeFragment extends BaseFragment implements OnClickListener,
+		OnItemClickListener {
 
 	private ImageViewPage head;
 
@@ -38,6 +42,8 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 	ViewChoices choices_0, choices_1, choices_2, choices_3;
 	ViewHots viewhots_0, viewhots_1, viewhots_2, viewhots_3;
 	ViewArticles articles_0, articles_1;
+
+	ViewHomeWhoWellKnow wellKnow;
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
@@ -59,9 +65,11 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 		viewhots_3 = (ViewHots) view.findViewById(R.id.viewhots_3);
 		articles_0 = (ViewArticles) view.findViewById(R.id.articles_0);
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
+		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
 
 		head = (ImageViewPage) view.findViewById(R.id.imageViewpage);
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
+		hsv.setOnItemClickListener(this);
 		// for test
 		List<Drawable> list = new ArrayList<Drawable>();
 		list.add(getResources().getDrawable(R.drawable.test_1));
@@ -103,22 +111,6 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 			hsv.setAdapter(adapter);
 		}
 
-		// ArrayList<String> strs = new ArrayList<String>();
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// strs.add("");
-		// adapter = new WellKnowPeopleAdapter(getActivity(), strs);
-		// MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
-		// hsv.setAdapter(adapter);
-
 	}
 
 	@Override
@@ -152,6 +144,16 @@ public class HomeFragment extends BaseFragment implements OnClickListener {
 		// break;
 		}
 
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		if (adapter != null) {
+
+			wellKnow.setItem(adapter.getItem(position));
+		}
 	}
 
 }

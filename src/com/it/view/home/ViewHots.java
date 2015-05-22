@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.bean.HotsEntity;
 import com.it.ui.activity.ActivityHotIdentiy;
+import com.it.utils.BitmapsUtils;
 import com.lidroid.xutils.BitmapUtils;
 
 /**
@@ -35,7 +36,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 	private ImageView iv_grade;
 	private TextView tv_name, tv_num;
 
-	BitmapUtils bitmapUtils;
+	BitmapsUtils bitmapUtils;
 
 	public ViewHots(Context context) {
 		super(context);
@@ -83,7 +84,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	public void setItem(HotsEntity item) {
 		if (bitmapUtils == null) {
-			bitmapUtils = new BitmapUtils(getContext());
+			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
 		bitmapUtils.display(iv_big, item.image);
