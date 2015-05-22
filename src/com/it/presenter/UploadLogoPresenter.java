@@ -22,25 +22,28 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 	private String qq;
 	private String email;
 	private String key;
+	private String name;
 	public UploadLogoPresenter(onBasicView iview) {
 		// TODO Auto-generated constructor stub
 		mview=iview;
 	}
 
-	public void startUpLoadLogo(String path, String email, String qq){
+	public void startUpLoadLogo(String path, String email, String qq, String name){
 		this.filepath=path;
 		this.qq=qq;
 		this.email=email;
+		this.name=name;
 		UploadUtils.UploadPortrait(filepath, this);
 	}
 	
 	
-	public void startExtra(String key, String email, String qq){
+	public void startExtra(String key, String name,String email, String qq){
 		this.key=key;
 		this.email=email;
 		this.qq=qq;
+		this.name=name;
 		mModel=new UpLoadLogoModel();
-		mModel.startUpload(key,qq,email,this);
+		mModel.startUpload(key,name,qq,email,this);
 		mModel.addRequestParams();
 		mModel.sendHttp();
 	}
@@ -68,7 +71,7 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 		if(arg2!=null){
 			try {
 				key=arg2.getString(NetConst.UPKEY);
-				startExtra(key, email, qq);
+				startExtra(key, name,email, qq);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

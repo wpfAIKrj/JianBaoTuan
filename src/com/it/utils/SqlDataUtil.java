@@ -69,6 +69,14 @@ public class SqlDataUtil {
 	 */
 	public void saveUserInfo(UserInfo user){
 		try {
+			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
+			List<UserInfo> list = qb.list();
+			for (UserInfo userInfo : list) {
+				
+				if(userInfo.getMobile().equals(user.getMobile())){
+					user.setId(userInfo.getId());
+				}
+			}
 			userdao.insertOrReplace(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

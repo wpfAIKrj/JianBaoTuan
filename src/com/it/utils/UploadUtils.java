@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.text.format.DateFormat;
 
+import com.it.config.NetConst;
 import com.it.inter.UpLoadFileInterface;
 import com.lidroid.xutils.util.LogUtils;
 import com.qiniu.android.http.ResponseInfo;
@@ -30,7 +31,6 @@ import com.qiniu.android.utils.UrlSafeBase64;
 public class UploadUtils {
 
 
-	public static final String TOKEN="FY-HDEuyfCjn4dYxmGQi77OdNPdC3d5-2R0g1Gwz:KK_duDxa7wLOU-LQF2hIcjUxv8s=:eyJzY29wZSI6ImFwcHJhaXNlciIsImRlYWRsaW5lIjoxNDMyMTMxOTc0fQ==";
 
 			/**
 	 * 上传文件
@@ -40,7 +40,7 @@ public class UploadUtils {
 	public static void UploadPortrait(String filePath,final UpLoadFileInterface listener){
 		UploadManager uploadManager=new UploadManager();
 		String key=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+"";
-		uploadManager.put(filePath, null, TOKEN, new UpCompletionHandler() {
+		uploadManager.put(filePath, null, NetConst.UPTOKEN, new UpCompletionHandler() {
 			
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {

@@ -53,6 +53,8 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	private String key;
 
 	private Dialog Logodialong;
+
+	private String name;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,8 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		title.setText(R.string.profile_title);
 		String string = user.getPersonal_data();
 		key=user.getPortrait();
-		edQQ.setText(user.getQQ());
+		name=user.getNickname();
+		edQQ.setText(user.getQq());
 		edEmail.setText(user.getEmail());
 	}
 
@@ -104,7 +107,7 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 			if(!email.isEmpty()){
 				Logodialong=DialogUtil.createLoadingDialog(this, "正在更新个人信息中");
 				Logodialong.show();
-				mpresenter.startExtra(key, email, qq);
+				mpresenter.startExtra(key, name,email, qq);
 			}else{
 				new ToastUtils(this, "请输入正确的email号码！");
 			}
@@ -121,9 +124,10 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		if(Logodialong!=null){
 			Logodialong.dismiss();
 		}
-		UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
-		cunnt.setAvatar(user.getAvatar());
-
+		((ItApplication)getApplication()).getCurrnUser().setAvatar(user.getAvatar());
+		((ItApplication)getApplication()).getCurrnUser().setQq(user.getQq());
+		((ItApplication)getApplication()).getCurrnUser().setEmail(user.getEmail());
+		
 		EventBus.getDefault().post(new MyEvent(0,user));
 	}
 

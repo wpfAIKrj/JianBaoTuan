@@ -16,13 +16,15 @@ public class UpLoadLogoModel extends BaseModel {
 	private String portrait;
 	private String qq;
 	private String email;
+	private String name;
 	private OnBasicDataLoadListener<UserInfo> listener;
 
-	public void startUpload(String key, String qq, String email, OnBasicDataLoadListener<UserInfo> listener) {
+	public void startUpload(String key, String qq, String email, String name, OnBasicDataLoadListener<UserInfo> listener) {
 		// TODO Auto-generated method stub
 		this.portrait=key;
 		this.qq=qq;
 		this.email=email;
+		this.name=name;
 		this.listener=listener;
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.EXTRAUSR);
@@ -37,6 +39,7 @@ public class UpLoadLogoModel extends BaseModel {
 		// TODO Auto-generated method stub
 		params=new RequestParams();
 		params.addBodyParameter(NetConst.EXTRA_LOGO, portrait);
+		params.addBodyParameter(NetConst.EXTRA_NAME, name);
 		params.addBodyParameter(NetConst.EXTRA_QQ, qq);
 		params.addBodyParameter(NetConst.EXTRA_EMAIL, email);
 	}

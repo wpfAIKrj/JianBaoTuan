@@ -40,6 +40,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Avatar = new Property(14, String.class, "avatar", false, "AVATAR","USER_INFO");
         public final static Property Image_token = new Property(15, String.class, "image_token", false, "IMAGE_TOKEN","USER_INFO");
         public final static Property Message_token = new Property(16, String.class, "message_token", false, "MESSAGE_TOKEN","USER_INFO");
+        public final static Property Qq = new Property(17, String.class, "qq", false, "QQ","USER_INFO");
+        public final static Property Email = new Property(18, String.class, "email", false, "EMAIL","USER_INFO");
     };
 
 
@@ -71,7 +73,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "'SESSION_ID' TEXT," + // 13: session_id
                 "'AVATAR' TEXT," + // 14: avatar
                 "'IMAGE_TOKEN' TEXT," + // 15: image_token
-                "'MESSAGE_TOKEN' TEXT);"); // 16: message_token
+                "'MESSAGE_TOKEN' TEXT," + // 16: message_token
+                "'QQ' TEXT," + // 17: qq
+                "'EMAIL' TEXT);"); // 18: email
     }
 
     /** Drops the underlying database table. */
@@ -169,6 +173,16 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (message_token != null) {
             stmt.bindString(17, message_token);
         }
+ 
+        String qq = entity.getQq();
+        if (qq != null) {
+            stmt.bindString(18, qq);
+        }
+ 
+        String email = entity.getEmail();
+        if (email != null) {
+            stmt.bindString(19, email);
+        }
     }
 
     /** @inheritdoc */
@@ -197,7 +211,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // session_id
             cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // avatar
             cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // image_token
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16) // message_token
+            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // message_token
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // qq
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18) // email
         );
         return entity;
     }
@@ -222,6 +238,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setAvatar(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
         entity.setImage_token(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
         entity.setMessage_token(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
+        entity.setQq(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setEmail(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
      }
     
     /** @inheritdoc */

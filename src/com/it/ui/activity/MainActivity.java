@@ -362,9 +362,10 @@ OnTabSelectedListener ,OnClickListener{
 		disshowPhoto();
 		UserInfo user=((ItApplication)getApplication()).getCurrnUser();
 		if(user!=null){
-			String qq=user.getQQ();
+			String qq=user.getQq();
 			String email=user.getEmail();
-			uplogopresenter.startUpLoadLogo(path,email,qq);
+			String name=user.getNickname();
+			uplogopresenter.startUpLoadLogo(path,email,qq,name);
 			Logodialong=DialogUtil.createLoadingDialog(this, "正在更新头像中");
 			Logodialong.show();
 		}

@@ -112,7 +112,9 @@ public class MyFragment extends BaseFragment{
 	public void onEventMainThread(MyEvent event){
 		switch (event.type) {
 		case 0://更新人物头像
-		
+			user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
+			tv_name.setText(user.getNickname());
+			BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
 			break;
 
 		default:
@@ -131,7 +133,11 @@ public class MyFragment extends BaseFragment{
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
 		user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
-		initData();
+		tv_name.setText(user.getNickname());
+		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
+		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
+		listView.setAdapter(adapter);
+		//initData();
 	}
 
 
@@ -241,11 +247,9 @@ public class MyFragment extends BaseFragment{
 	private void initData() {
 		// TODO Auto-generated method stub
 		tv_name.setText(user.getNickname());
+		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
 		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[user.getUser_type()]);
 		iv_level.setImageResource(levels[user.getUser_type()]);
-		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
-		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
-		listView.setAdapter(adapter);
 	}
 	
 

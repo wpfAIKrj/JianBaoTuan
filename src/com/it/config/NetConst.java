@@ -51,6 +51,7 @@ public class NetConst {
 	public static String UPTOKEN=null;//上传的token
 	
 	public static String IMTOKEN=null;//聊天的token
+	public static final String EXTRA_NAME="nickname";
 	
 	public static final String SID="sid";
 	
