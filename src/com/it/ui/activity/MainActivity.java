@@ -209,7 +209,6 @@ OnTabSelectedListener ,OnClickListener{
 				mInformationFragment = new InformationFragment();
 				transaction.add(R.id.center_layout, mInformationFragment);
 			} else {
-				mInformationFragment.lazyLoad();
 				transaction.show(mInformationFragment);
 			}
 			break;
