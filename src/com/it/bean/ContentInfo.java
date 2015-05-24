@@ -41,7 +41,7 @@ public class ContentInfo implements Serializable{
     private String insert_time;
 	@SerializedName("image")
     private String image;
-	@SerializedName("view_times")
+	@SerializedName("viewTimes")
     private Integer view_times;
 
     public ContentInfo() {
