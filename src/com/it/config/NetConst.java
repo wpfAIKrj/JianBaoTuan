@@ -43,7 +43,7 @@ public class NetConst {
 	
 	public static final String EXTRAUSR="Users/extraAction";
 	
-	public static final String RAMDOMAPPRAISER="Material/randomAppraiserAction";
+	public static final String RAMDOMAPPRAISER="Contents/listAction";
 	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
@@ -51,6 +51,7 @@ public class NetConst {
 	public static String UPTOKEN=null;//上传的token
 	
 	public static String IMTOKEN=null;//聊天的token
+	public static final String LISTSDATA="lists";
 	public static final String EXTRA_NAME="nickname";
 	
 	public static final String SID="sid";

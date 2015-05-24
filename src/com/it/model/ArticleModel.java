@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -72,13 +73,20 @@ public class ArticleModel extends BaseModel{
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
+		JSONObject jason=new JSONObject(data);
+		String lists=jason.getString(NetConst.LISTSDATA);
+		if(lists.equals("null")){
+			lisntenr.onListDataLoaded(new ArrayList<ContentInfo>());	
+		}else{
 		Gson gson=new Gson();
 		ArrayList<ContentInfo> infos=new ArrayList<ContentInfo>();
-			JSONArray array=new JSONArray(data);
+			JSONArray array=new JSONArray(lists);
 			for (int i = 0; i < array.length(); i++) {
-				
-		}
+				ContentInfo info=gson.fromJson(array.getString(i), ContentInfo.class);
+				infos.add(info);
+			}
 			lisntenr.onListDataLoaded(infos);
+		}
 	}
 
 

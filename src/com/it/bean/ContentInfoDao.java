@@ -24,12 +24,17 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id","CONTENT_INFO");
-        public final static Property Content_data = new Property(1, String.class, "content_data", false, "CONTENT_DATA","CONTENT_INFO");
-        public final static Property Content_type = new Property(2, Integer.class, "content_type", false, "CONTENT_TYPE","CONTENT_INFO");
-        public final static Property Content_classify_name = new Property(3, String.class, "content_classify_name", false, "CONTENT_CLASSIFY_NAME","CONTENT_INFO");
-        public final static Property Is_valid = new Property(4, Integer.class, "is_valid", false, "IS_VALID","CONTENT_INFO");
-        public final static Property Is_hot = new Property(5, String.class, "is_hot", false, "IS_HOT","CONTENT_INFO");
-        public final static Property Insert_time = new Property(6, java.util.Date.class, "insert_time", false, "INSERT_TIME","CONTENT_INFO");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE","CONTENT_INFO");
+        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT","CONTENT_INFO");
+        public final static Property Content_type = new Property(3, Integer.class, "content_type", false, "CONTENT_TYPE","CONTENT_INFO");
+        public final static Property Content_classify_id = new Property(4, Integer.class, "content_classify_id", false, "CONTENT_CLASSIFY_ID","CONTENT_INFO");
+        public final static Property Admin_name = new Property(5, String.class, "admin_name", false, "ADMIN_NAME","CONTENT_INFO");
+        public final static Property Admin_id = new Property(6, Long.class, "admin_id", false, "ADMIN_ID","CONTENT_INFO");
+        public final static Property Is_valid = new Property(7, Integer.class, "is_valid", false, "IS_VALID","CONTENT_INFO");
+        public final static Property Is_hot = new Property(8, String.class, "is_hot", false, "IS_HOT","CONTENT_INFO");
+        public final static Property Insert_time = new Property(9, String.class, "insert_time", false, "INSERT_TIME","CONTENT_INFO");
+        public final static Property Image = new Property(10, String.class, "image", false, "IMAGE","CONTENT_INFO");
+        public final static Property View_times = new Property(11, Integer.class, "view_times", false, "VIEW_TIMES","CONTENT_INFO");
     };
 
 
@@ -46,12 +51,17 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'CONTENT_INFO' (" + //
                 "'_id' INTEGER PRIMARY KEY ," + // 0: id
-                "'CONTENT_DATA' TEXT," + // 1: content_data
-                "'CONTENT_TYPE' INTEGER," + // 2: content_type
-                "'CONTENT_CLASSIFY_NAME' TEXT," + // 3: content_classify_name
-                "'IS_VALID' INTEGER," + // 4: is_valid
-                "'IS_HOT' TEXT," + // 5: is_hot
-                "'INSERT_TIME' INTEGER);"); // 6: insert_time
+                "'TITLE' TEXT," + // 1: title
+                "'CONTENT' TEXT," + // 2: content
+                "'CONTENT_TYPE' INTEGER," + // 3: content_type
+                "'CONTENT_CLASSIFY_ID' INTEGER," + // 4: content_classify_id
+                "'ADMIN_NAME' TEXT," + // 5: admin_name
+                "'ADMIN_ID' INTEGER," + // 6: admin_id
+                "'IS_VALID' INTEGER," + // 7: is_valid
+                "'IS_HOT' TEXT," + // 8: is_hot
+                "'INSERT_TIME' TEXT," + // 9: insert_time
+                "'IMAGE' TEXT," + // 10: image
+                "'VIEW_TIMES' INTEGER);"); // 11: view_times
     }
 
     /** Drops the underlying database table. */
@@ -70,34 +80,59 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
             stmt.bindLong(1, id);
         }
  
-        String content_data = entity.getContent_data();
-        if (content_data != null) {
-            stmt.bindString(2, content_data);
+        String title = entity.getTitle();
+        if (title != null) {
+            stmt.bindString(2, title);
+        }
+ 
+        String content = entity.getContent();
+        if (content != null) {
+            stmt.bindString(3, content);
         }
  
         Integer content_type = entity.getContent_type();
         if (content_type != null) {
-            stmt.bindLong(3, content_type);
+            stmt.bindLong(4, content_type);
         }
  
-        String content_classify_name = entity.getContent_classify_name();
-        if (content_classify_name != null) {
-            stmt.bindString(4, content_classify_name);
+        Integer content_classify_id = entity.getContent_classify_id();
+        if (content_classify_id != null) {
+            stmt.bindLong(5, content_classify_id);
+        }
+ 
+        String admin_name = entity.getAdmin_name();
+        if (admin_name != null) {
+            stmt.bindString(6, admin_name);
+        }
+ 
+        Long admin_id = entity.getAdmin_id();
+        if (admin_id != null) {
+            stmt.bindLong(7, admin_id);
         }
  
         Integer is_valid = entity.getIs_valid();
         if (is_valid != null) {
-            stmt.bindLong(5, is_valid);
+            stmt.bindLong(8, is_valid);
         }
  
         String is_hot = entity.getIs_hot();
         if (is_hot != null) {
-            stmt.bindString(6, is_hot);
+            stmt.bindString(9, is_hot);
         }
  
-        java.util.Date insert_time = entity.getInsert_time();
+        String insert_time = entity.getInsert_time();
         if (insert_time != null) {
-            stmt.bindLong(7, insert_time.getTime());
+            stmt.bindString(10, insert_time);
+        }
+ 
+        String image = entity.getImage();
+        if (image != null) {
+            stmt.bindString(11, image);
+        }
+ 
+        Integer view_times = entity.getView_times();
+        if (view_times != null) {
+            stmt.bindLong(12, view_times);
         }
     }
 
@@ -112,12 +147,17 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
     public ContentInfo readEntity(Cursor cursor, int offset) {
         ContentInfo entity = new ContentInfo( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // content_data
-            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // content_type
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // content_classify_name
-            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // is_valid
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // is_hot
-            cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)) // insert_time
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // content
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // content_type
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // content_classify_id
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // admin_name
+            cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // admin_id
+            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // is_valid
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // is_hot
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // insert_time
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // image
+            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11) // view_times
         );
         return entity;
     }
@@ -126,12 +166,17 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
     @Override
     public void readEntity(Cursor cursor, ContentInfo entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setContent_data(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setContent_type(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
-        entity.setContent_classify_name(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setIs_valid(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setIs_hot(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setInsert_time(cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)));
+        entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setContent_type(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setContent_classify_id(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setAdmin_name(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setAdmin_id(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
+        entity.setIs_valid(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setIs_hot(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setInsert_time(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setImage(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
+        entity.setView_times(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
      }
     
     /** @inheritdoc */

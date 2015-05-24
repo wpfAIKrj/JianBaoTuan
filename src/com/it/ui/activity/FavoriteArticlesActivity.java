@@ -53,10 +53,10 @@ public class FavoriteArticlesActivity extends BaseActivity implements OnClickLis
 
 	protected void initData() {
 		// TODO Auto-generated method stub
-		madapter=new ArticleAdapter(this,list);
-		mlistview.setAdapter(madapter);
-		mlistview.setXListViewListener(this);
-		mlistview.setOnItemClickListener(this);
+//		madapter=new ArticleAdapter(this,list);
+//		mlistview.setAdapter(madapter);
+//		mlistview.setXListViewListener(this);
+//		mlistview.setOnItemClickListener(this);
 	}
 
 

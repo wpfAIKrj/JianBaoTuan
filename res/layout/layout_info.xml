@@ -6,9 +6,17 @@
     android:background="@color/wite" >
 
   <include layout="@layout/layout_article_head"/>
-  	<com.it.view.listview.XListView 
-  	    android:id="@+id/article_listview"
-  	    android:layout_width="match_parent"
-  	    android:layout_height="match_parent"
-  	    ></com.it.view.listview.XListView>
+  <android.support.v4.widget.SwipeRefreshLayout
+	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh_widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:scrollbars="vertical" />
+
+</android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

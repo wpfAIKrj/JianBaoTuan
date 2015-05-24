@@ -17,6 +17,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.lidroid.xutils.util.LogUtils;
 
 public abstract class BaseModel {
 	protected String url="http://123.57.251.101/";
@@ -60,7 +61,9 @@ public abstract class BaseModel {
 			int code=json.getInt(NetConst.CODE);
 			String message=json.getString(NetConst.MESSAGE);
 			if(code==NetConst.CODE_SUCCESS){
+				LogUtils.d(json.getString(NetConst.DATA));
 				analyzeData(json.getString(NetConst.DATA));
+				
 			}else{
 				onFailureForString(String.valueOf(code),message);
 			}
