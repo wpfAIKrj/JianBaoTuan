@@ -175,7 +175,10 @@ public class MyFragment extends BaseFragment{
 	@Override
 	public void lazyLoad() {
 		// TODO Auto-generated method stub
-		System.out.println(getClass().getName() + "正在加载数据");
+		if(isFirst){
+			isFirst=false;
+			initDisplay();
+		}
 	}
 
 	public void setPopMenuListener(OnClickListener lis) {
