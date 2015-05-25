@@ -53,5 +53,8 @@
 	<dimen name="checkboxheight">20dp</dimen>
 	
 	<dimen name="layout_item_height">60dp</dimen>
+	<dimen name="layout_scorll_height">85dp</dimen>
+	
+	<dimen name="layout_love_width">85dp</dimen>
 	
 </resources>

@@ -51,7 +51,8 @@ public class ArticleViewHolder extends ViewHolder {
 	public void showData(ContentInfo contentinfo){
 		this.contentinfo=contentinfo;
 		title.setText(contentinfo.getTitle());
-		BitmapsUtils.getInstance().display(logo, contentinfo.getImage());
+		
+		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
 		number.setText(""+contentinfo.getView_times());
 	}
 	

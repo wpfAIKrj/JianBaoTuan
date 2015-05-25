@@ -45,12 +45,23 @@ public class NetConst {
 	
 	public static final String RAMDOMAPPRAISER="Contents/listAction";
 	
+	public static final String MINEACTION="home/mineAction";
+	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
 	public static String UPTOKEN=null;//上传的token
 	
 	public static String IMTOKEN=null;//聊天的token
+	
+	
+	
+	public static final String LIKES="likes";
+	
+	
+	public static final String FOOT_NUMBER="foot_number";
+	public static final String TREASURE_RECORD_NUMBER="treasure_record_number";
+	public static final String TREASURE_NUMBER="treasure_number";
 	public static final String LISTSDATA="lists";
 	public static final String EXTRA_NAME="nickname";
 	

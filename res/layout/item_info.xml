@@ -17,12 +17,13 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:src="@color/cricle_color"
+        android:layout_marginLeft="@dimen/detail_text_padd"
          >
 
         <ImageView
             android:id="@+id/acticle_logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/layout_logo_width"
+            android:layout_height="@dimen/layout_logo_width"
             android:src="@drawable/test3" 
             android:padding="1dp"/>
         

@@ -17,7 +17,6 @@ import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.HomeEntity;
 import com.it.ui.activity.ActivitySearch;
-import com.it.ui.adapter.MyLoveAdapter;
 import com.it.ui.adapter.WellKnowPeopleAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.ImageViewPage;
@@ -94,21 +93,21 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 		if (homeEntity == null) {
 			// 说明没有下载数据，就要去联网加载
 		} else {
-			choices_0.setItem(homeEntity.getChoices().get(0));
-			choices_1.setItem(homeEntity.getChoices().get(1));
-			choices_2.setItem(homeEntity.getChoices().get(2));
-			choices_3.setItem(homeEntity.getChoices().get(3));
-			viewhots_0.setItem(homeEntity.getHots().get(0));
-			viewhots_1.setItem(homeEntity.getHots().get(1));
-			viewhots_2.setItem(homeEntity.getHots().get(2));
-			viewhots_3.setItem(homeEntity.getHots().get(3));
-			articles_0.setItem(homeEntity.getArticles().get(0));
-			articles_1.setItem(homeEntity.getArticles().get(1));
-
-			adapter = new WellKnowPeopleAdapter(getActivity(),
-					homeEntity.getAuthors());
-
-			hsv.setAdapter(adapter);
+//			choices_0.setItem(homeEntity.getChoices().get(0));
+//			choices_1.setItem(homeEntity.getChoices().get(1));
+//			choices_2.setItem(homeEntity.getChoices().get(2));
+//			choices_3.setItem(homeEntity.getChoices().get(3));
+//			viewhots_0.setItem(homeEntity.getHots().get(0));
+//			viewhots_1.setItem(homeEntity.getHots().get(1));
+//			viewhots_2.setItem(homeEntity.getHots().get(2));
+//			viewhots_3.setItem(homeEntity.getHots().get(3));
+//			articles_0.setItem(homeEntity.getArticles().get(0));
+//			articles_1.setItem(homeEntity.getArticles().get(1));
+//
+//			adapter = new WellKnowPeopleAdapter(getActivity(),
+//					homeEntity.getAuthors());
+//
+//			hsv.setAdapter(adapter);
 		}
 
 	}

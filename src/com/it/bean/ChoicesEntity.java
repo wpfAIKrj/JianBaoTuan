@@ -4,6 +4,7 @@ package com.it.bean;
  * @author ytmfdw 精选藏品实体类
  */
 public class ChoicesEntity {
+	public long id;
 	public String authName;
 	public String authImage;
 	public String name;

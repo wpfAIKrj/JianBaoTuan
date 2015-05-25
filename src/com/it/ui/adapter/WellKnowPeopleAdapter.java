@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import com.it.R;
 import com.it.bean.AuthorsEntity;
-import com.it.ui.adapter.MyLoveAdapter.HolderView;
 import com.it.utils.BitmapsUtils;
 import com.it.view.CircleImageView;
 

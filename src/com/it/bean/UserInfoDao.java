@@ -42,6 +42,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Message_token = new Property(16, String.class, "message_token", false, "MESSAGE_TOKEN","USER_INFO");
         public final static Property Qq = new Property(17, String.class, "qq", false, "QQ","USER_INFO");
         public final static Property Email = new Property(18, String.class, "email", false, "EMAIL","USER_INFO");
+        public final static Property Treasure_number = new Property(19, Integer.class, "treasure_number", false, "TREASURE_NUMBER","USER_INFO");
+        public final static Property Treasure_record_number = new Property(20, Integer.class, "treasure_record_number", false, "TREASURE_RECORD_NUMBER","USER_INFO");
+        public final static Property Foot_number = new Property(21, Integer.class, "foot_number", false, "FOOT_NUMBER","USER_INFO");
     };
 
 
@@ -75,7 +78,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "'IMAGE_TOKEN' TEXT," + // 15: image_token
                 "'MESSAGE_TOKEN' TEXT," + // 16: message_token
                 "'QQ' TEXT," + // 17: qq
-                "'EMAIL' TEXT);"); // 18: email
+                "'EMAIL' TEXT," + // 18: email
+                "'TREASURE_NUMBER' INTEGER," + // 19: treasure_number
+                "'TREASURE_RECORD_NUMBER' INTEGER," + // 20: treasure_record_number
+                "'FOOT_NUMBER' INTEGER);"); // 21: foot_number
     }
 
     /** Drops the underlying database table. */
@@ -183,6 +189,21 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (email != null) {
             stmt.bindString(19, email);
         }
+ 
+        Integer treasure_number = entity.getTreasure_number();
+        if (treasure_number != null) {
+            stmt.bindLong(20, treasure_number);
+        }
+ 
+        Integer treasure_record_number = entity.getTreasure_record_number();
+        if (treasure_record_number != null) {
+            stmt.bindLong(21, treasure_record_number);
+        }
+ 
+        Integer foot_number = entity.getFoot_number();
+        if (foot_number != null) {
+            stmt.bindLong(22, foot_number);
+        }
     }
 
     /** @inheritdoc */
@@ -213,7 +234,10 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // image_token
             cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // message_token
             cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // qq
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18) // email
+            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // email
+            cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19), // treasure_number
+            cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20), // treasure_record_number
+            cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21) // foot_number
         );
         return entity;
     }
@@ -240,6 +264,9 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setMessage_token(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
         entity.setQq(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
         entity.setEmail(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
+        entity.setTreasure_number(cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19));
+        entity.setTreasure_record_number(cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20));
+        entity.setFoot_number(cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21));
      }
     
     /** @inheritdoc */

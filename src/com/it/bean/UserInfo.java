@@ -10,7 +10,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class UserInfo implements Serializable{
 
-
 	@SerializedName("id")
 	private Long id;
 	
@@ -66,6 +65,14 @@ public class UserInfo implements Serializable{
     
     @SerializedName("email")
     private String email;
+    
+    
+    @SerializedName("treasure_number")
+    private Integer treasure_number;
+    @SerializedName("treasure_record_number")
+    private Integer treasure_record_number;
+    @SerializedName("foot_number")
+    private Integer foot_number;
 
     public UserInfo() {
     }
@@ -74,7 +81,7 @@ public class UserInfo implements Serializable{
         this.id = id;
     }
 
-    public UserInfo(Long id, String nickname, String password, String mobile, String portrait, Integer user_type, Integer user_level, String personal_data, Integer is_valid, Integer is_famous_expert, Integer is_system, Integer is_bind, Integer insert_time, String session_id, String avatar, String image_token, String message_token, String qq, String email) {
+    public UserInfo(Long id, String nickname, String password, String mobile, String portrait, Integer user_type, Integer user_level, String personal_data, Integer is_valid, Integer is_famous_expert, Integer is_system, Integer is_bind, Integer insert_time, String session_id, String avatar, String image_token, String message_token, String qq, String email, Integer treasure_number, Integer treasure_record_number, Integer foot_number) {
         this.id = id;
         this.nickname = nickname;
         this.password = password;
@@ -94,6 +101,9 @@ public class UserInfo implements Serializable{
         this.message_token = message_token;
         this.qq = qq;
         this.email = email;
+        this.treasure_number = treasure_number;
+        this.treasure_record_number = treasure_record_number;
+        this.foot_number = foot_number;
     }
 
     public Long getId() {
@@ -248,6 +258,28 @@ public class UserInfo implements Serializable{
         this.email = email;
     }
 
-    
-    
+    public Integer getTreasure_number() {
+        return treasure_number;
+    }
+
+    public void setTreasure_number(Integer treasure_number) {
+        this.treasure_number = treasure_number;
+    }
+
+    public Integer getTreasure_record_number() {
+        return treasure_record_number;
+    }
+
+    public void setTreasure_record_number(Integer treasure_record_number) {
+        this.treasure_record_number = treasure_record_number;
+    }
+
+    public Integer getFoot_number() {
+        return foot_number;
+    }
+
+    public void setFoot_number(Integer foot_number) {
+        this.foot_number = foot_number;
+    }
+
 }

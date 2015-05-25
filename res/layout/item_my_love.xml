@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="7dp" 
+    android:paddingLeft="@dimen/detail_text_padd" 
     android:paddingBottom="@dimen/layout_margin_top">
 
     <LinearLayout
@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="84dp"
-            android:layout_height="84dp" />
+            android:layout_width="@dimen/layout_love_width"
+            android:layout_height="@dimen/layout_love_width" />
     </LinearLayout>
 
 </RelativeLayout>

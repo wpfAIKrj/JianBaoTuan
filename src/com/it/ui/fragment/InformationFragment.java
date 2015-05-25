@@ -7,6 +7,7 @@ import java.util.logging.SimpleFormatter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.ContentInfo;
+import com.it.bean.InfoEvent;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
 import com.it.presenter.ArticlePresenter;
@@ -41,6 +43,8 @@ import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import de.greenrobot.event.EventBus;
 
 public class InformationFragment extends BaseFragment implements onListView<ContentInfo>,ListviewLoadListener{
 
@@ -77,6 +81,34 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	protected int nextShow=1;
 	
 	private ListLoadType currt=ListLoadType.Nomal;
+	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		EventBus.getDefault().register(this);
+	}
+	
+	
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+	}
+	
+	
+	public void onEventMainThread(InfoEvent event){
+		switch (event.type) {
+		case 0://刷新
+			lazyLoad();
+			break;
+
+		default:
+			break;
+		}
+	}
  	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

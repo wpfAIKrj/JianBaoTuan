@@ -1,10 +1,19 @@
 package com.it.ui.fragment;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnLongClickListener;
@@ -17,9 +26,14 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.app.ItApplication;
+import com.it.bean.ChoicesEntity;
 import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
+import com.it.config.NetConst;
+import com.it.inter.onBasicView;
+import com.it.model.getUserInfoModel;
+import com.it.presenter.getUserInfoLPresenter;
 import com.it.ui.activity.ActivityFootPrint;
 import com.it.ui.activity.ActivityMyPrecious;
 import com.it.ui.activity.AuthenticateActivity;
@@ -27,10 +41,11 @@ import com.it.ui.activity.FavoriteArticlesActivity;
 import com.it.ui.activity.IMListActivity;
 import com.it.ui.activity.LevelActivity;
 import com.it.ui.activity.SystemInfoActivity;
-import com.it.ui.adapter.MyLoveAdapter;
+import com.it.ui.adapter.MyLikeAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.ui.dialog.SelectPhotoDialog;
 import com.it.utils.BitmapsUtils;
+import com.it.utils.DialogUtil;
 import com.it.utils.ImageUtils;
 import com.it.utils.ToastUtils;
 import com.it.view.CircleImageView;
@@ -49,9 +64,9 @@ import de.greenrobot.event.EventBus;
 public class MyFragment extends BaseFragment{
 	
 
-	private OnClickListener listener;
+	private OnClickListener MenuListner;
 	@ViewInject(R.id.horizontalListView1)
-	private HorizontalListView listView;
+	private RecyclerView listView;
 	
 	@ViewInject(R.id.my_tv_name)
 	private TextView tv_name;
@@ -71,7 +86,7 @@ public class MyFragment extends BaseFragment{
 	@ViewInject(R.id.my_iv_level)
 	private ImageView iv_level;
 	
-
+	private ArrayList<ChoicesEntity> list=new ArrayList<ChoicesEntity>();
 	
 	@ViewInject(R.id.login_user_head)
 	private CircleImageView user_logo;
@@ -81,12 +96,18 @@ public class MyFragment extends BaseFragment{
 	
 	private UserInfo user=null;
 	
-	
+	private getUserInfoLPresenter  getPresenter;
 
 	
 	private int[] levels={R.drawable.level01,R.drawable.level02,R.drawable.level03,
 			R.drawable.level04,R.drawable.level05,R.drawable.level06};
 	private OnLongClickListener onlongListner;
+	private Dialog dialog;
+	
+	private boolean isFirst=true;
+
+	private MyLikeAdapter madapter;
+
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -116,7 +137,12 @@ public class MyFragment extends BaseFragment{
 			tv_name.setText(user.getNickname());
 			BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
 			break;
-
+		case 1://更新个人信息
+			if(isFirst){
+				isFirst=false;
+				initDisplay();
+			}
+			break;
 		default:
 			break;
 		}
@@ -126,7 +152,11 @@ public class MyFragment extends BaseFragment{
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
 		ViewUtils.inject(this,view);
-	
+		getPresenter=new getUserInfoLPresenter(viewlis);
+		LinearLayoutManager manager=new LinearLayoutManager(view.getContext());
+		manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+		listView.setLayoutManager(manager);
+		
 	}
 
 	@Override
@@ -135,12 +165,11 @@ public class MyFragment extends BaseFragment{
 		user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
 		tv_name.setText(user.getNickname());
 		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
-		MyLoveAdapter adapter = new MyLoveAdapter(mActivity);
-		listView.setAdapter(adapter);
 		//initData();
+		dialog=DialogUtil.createLoadingDialog(mActivity, "加载个人信息中");
+		dialog.show();
+		getPresenter.getUserInfo();
 	}
-
-
 
 
 	@Override
@@ -150,7 +179,7 @@ public class MyFragment extends BaseFragment{
 	}
 
 	public void setPopMenuListener(OnClickListener lis) {
-		listener = lis;
+		MenuListner = lis;
 	}
 	public void setLogoListener(OnLongClickListener onlongListner){
 		this.onlongListner=onlongListner;
@@ -181,8 +210,8 @@ public class MyFragment extends BaseFragment{
 			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));	
 			break;
 		case R.id.my_bt_showmenu://右侧菜单
-			if (listener != null) {
-				listener.onClick(v);
+			if (MenuListner != null) {
+				MenuListner.onClick(v);
 			}
 			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
@@ -250,7 +279,58 @@ public class MyFragment extends BaseFragment{
 		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
 		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[user.getUser_type()]);
 		iv_level.setImageResource(levels[user.getUser_type()]);
+		madapter=new MyLikeAdapter(list, itemListner);
+		listView.setAdapter(madapter);
+		tv_collect_number.setText(""+user.getTreasure_number());
+		tv_fooler_number.setText(""+user.getFoot_number());
+		tv_identiy_number.setText(""+user.getTreasure_record_number());
+		
 	}
 	
-
+	private onBasicView<String> viewlis=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO Auto-generated method stub
+			try {
+				JSONObject obj=new JSONObject(data);
+				user.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
+				user.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
+				user.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
+				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
+				list.clear();
+				for (int i = 0; i < arrays.length(); i++) {
+					ChoicesEntity entity=new ChoicesEntity();
+					JSONObject json=arrays.getJSONObject(i);
+					entity.id=json.getLong("treasure_id");
+					entity.image=json.getString("image");
+					list.add(entity);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}finally{
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+				initData();
+			}
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			new ToastUtils(mActivity, errorMsg);
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+		}
+	};
+	private OnClickListener itemListner=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
 }

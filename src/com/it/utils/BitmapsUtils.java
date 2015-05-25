@@ -27,7 +27,7 @@ public class BitmapsUtils {
 	private BitmapUtils utils=null;
 	private BitmapDisplayConfig config;//显示使用的
 	private BitmapsUtils(Context context){
-		utils=new BitmapUtils(context, FileUtils.getInstance().getCacheImage(), 10,30);
+		utils=new BitmapUtils(context, FileUtils.getInstance().getCacheImage());
 		utils.configDefaultBitmapMaxSize(SystemUtils.getDisplaysWidth(context), SystemUtils.getDisplaysHeight(context));
 		utils.configDefaultCacheExpiry(60000*60*24*30);
 		utils.configDefaultConnectTimeout(10000);
@@ -38,14 +38,6 @@ public class BitmapsUtils {
 		utils.configDefaultShowOriginal(false);
 		utils.configDiskCacheEnabled(true);
 		utils.configMemoryCacheEnabled(true);
-		utils.configDiskCacheFileNameGenerator(new FileNameGenerator() {
-			
-			@Override
-			public String generate(String key) {
-				// TODO Auto-generated method stub
-				return key;
-			}
-		});
 		config=new BitmapDisplayConfig();
 		config.setLoadingDrawable(context.getResources().getDrawable(R.drawable.test3));
 		config.setLoadFailedDrawable(context.getResources().getDrawable(R.drawable.test3));

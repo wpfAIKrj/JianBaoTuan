@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.app.ItApplication;
 import com.it.bean.ContentInfo;
+import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.BitmapsUtils;
+import com.it.utils.ToastUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -43,6 +46,7 @@ public class InformationDetailsActivity extends BaseActivity{
 	
 	private ContentInfo info;
 	
+	private UserInfo user;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -50,6 +54,8 @@ public class InformationDetailsActivity extends BaseActivity{
 		setContentView(R.layout.activity_informationdetail);
 		ViewUtils.inject(this);
 		initData();
+		user=((ItApplication)getApplication()).getCurrnUser();
+		
 	}
 
 
@@ -62,7 +68,7 @@ public class InformationDetailsActivity extends BaseActivity{
 	}
 
 
-	@OnClick({R.id.detail_back,R.id.detail_share})
+	@OnClick({R.id.detail_back,R.id.detail_share,R.id.detail_collect})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -71,10 +77,18 @@ public class InformationDetailsActivity extends BaseActivity{
 			finish();
 			break;
 		case R.id.detail_share://分享
-			
+			if(user!=null){
+				
+			}else{
+				new ToastUtils(this, "请先登陆！");
+			}
 			break;
 		case R.id.detail_collect://收藏
-			
+			if(user!=null){
+				
+			}else{
+				new ToastUtils(this, "请先登陆！");
+			}
 			break;
 		default:
 			break;

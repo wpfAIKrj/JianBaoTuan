@@ -3,6 +3,7 @@ package com.it.ui.activity;
 
 import com.it.R;
 import com.it.app.ItApplication;
+import com.it.bean.InfoEvent;
 import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
@@ -205,6 +206,7 @@ OnTabSelectedListener ,OnClickListener{
 			}
 			break;
 		case 2:
+			EventBus.getDefault().post(new InfoEvent(0, null));
 			if (null == mInformationFragment) {
 				mInformationFragment = new InformationFragment();
 				transaction.add(R.id.center_layout, mInformationFragment);
@@ -234,6 +236,7 @@ OnTabSelectedListener ,OnClickListener{
 			} else {
 				transaction.show(mMyFragment);
 			}
+			//EventBus.getDefault().post(new MyEvent(1, null));
 			break;
 
 		default:

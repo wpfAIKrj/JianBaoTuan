@@ -419,13 +419,14 @@
       	    
       	</LinearLayout>
 
-      	<com.it.view.listview.HorizontalListView
+      	<android.support.v7.widget.RecyclerView
       	    android:id="@+id/horizontalListView1"
       	    android:layout_width="match_parent"
-      	    android:layout_height="85dp" 
+      	    android:layout_height="@dimen/layout_scorll_height" 
       	   	android:background="@color/wite"
-      	    >
-      	</com.it.view.listview.HorizontalListView>
+      	   />
+
+
 
   </LinearLayout>
           
