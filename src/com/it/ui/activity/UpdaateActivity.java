@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 /**
  * 更新软件
  * @author Administrator
@@ -15,7 +17,9 @@ import com.it.ui.base.BaseActivity;
  */
 public class UpdaateActivity extends BaseActivity implements OnClickListener{
 	
-	
+
+	@ViewInject(R.id.home_title)
+	private TextView title;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -28,19 +32,16 @@ public class UpdaateActivity extends BaseActivity implements OnClickListener{
 	
 	private void initView() {
 		// TODO Auto-generated method stub
-		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setOnClickListener(this);
-		TextView tv=(TextView)findViewById(R.id.home_title);
-		tv.setText(R.string.feednack_title);
+		title.setText(R.string.feednack_title);
 	}
 
 
 
-	@Override
+	@OnClick({R.id.btn_back})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.button_category://返回上层
+		case R.id.btn_back://返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;

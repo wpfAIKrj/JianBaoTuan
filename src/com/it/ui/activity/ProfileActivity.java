@@ -81,11 +81,11 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 
 
 
-	@OnClick({R.id.button_category,R.id.bt_save})
+	@OnClick({R.id.btn_back,R.id.bt_save})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.button_category://返回上层
+		case R.id.btn_back://返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;

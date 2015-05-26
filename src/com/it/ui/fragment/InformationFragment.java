@@ -152,7 +152,11 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
 
-		
+		if(isFiset){
+			mSwipeRefreshWidget.setRefreshing(true);
+			onRefresh();
+			isFiset=false;
+		}
 	}
 
 	@Override
