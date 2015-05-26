@@ -18,6 +18,7 @@ import com.it.R;
 import com.it.bean.CollectionEntity;
 import com.it.utils.BitmapsUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
@@ -73,6 +74,10 @@ public class ViewArticles extends LinearLayout {
 	}
 
 	public void setItem(CollectionEntity item) {
+		if(item==null){
+			LogUtils.e("Articles  CollectionEntity is null");
+			return;
+		}
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}

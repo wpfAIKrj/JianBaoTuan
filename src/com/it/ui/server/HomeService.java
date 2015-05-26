@@ -71,7 +71,7 @@ public class HomeService extends Service {
 						HomeEntity homeEntity = new HomeEntity();
 						try {
 							JSONObject json = new JSONObject(
-									responseInfo.result.replace("\\", ""));
+									responseInfo.result);
 							if (json != null) {
 								Gson gson = new Gson();
 								JSONObject json_data = json

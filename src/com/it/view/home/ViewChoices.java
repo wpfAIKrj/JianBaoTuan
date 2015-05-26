@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
@@ -21,6 +22,7 @@ import com.it.R;
 import com.it.bean.CollectionEntity;
 import com.it.ui.activity.ActivityUserDelails;
 import com.it.utils.BitmapsUtils;
+import com.lidroid.xutils.util.LogUtils;
 
 /**
  * @author ytmfdw 主页 [精品藏品]下的选项 根据屏幕宽高来计算图片大小
@@ -80,15 +82,25 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 	}
 
 	public void setItem(CollectionEntity item) {
+		if (item == null) {
+			LogUtils.e("Choices  CollectionEntity is null");
+			return;
+		}
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
-		bitmapUtils.display(iv_big, item.image);
+		if (TextUtils.equals(item.image, "")) {
+
+			bitmapUtils.display(iv_big, item.images[0]);
+		} else {
+
+			bitmapUtils.display(iv_big, item.image);
+		}
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage);
 		// 设置等级
-		// setGradeImage(item.linkAddress);
+		setGradeImage(item.authLevel);
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
@@ -97,6 +109,9 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 	}
 
 	public void setGradeImage(int grade) {
+		if (grade < 1) {
+			grade = 1;
+		}
 		iv_grade.setImageResource(R.drawable.level01 + (grade - 1));
 	}
 

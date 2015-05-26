@@ -21,6 +21,10 @@ import com.it.R;
 import com.it.bean.CollectionEntity;
 import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.utils.BitmapsUtils;
+import com.it.view.MyButton;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
  * @author ytmfdw 主页 [热门鉴定]下的选项 根据屏幕宽高来计算图片大小
@@ -30,10 +34,19 @@ import com.it.utils.BitmapsUtils;
 public class ViewHots extends LinearLayout implements OnClickListener {
 
 	// screen height,and width,in px
+	@ViewInject(R.id.imageview_big_icon)
 	private ImageView iv_big;
+	@ViewInject(R.id.imageview_small_icon)
 	private ImageView iv_small;
+	@ViewInject(R.id.imageview_grade)
 	private ImageView iv_grade;
-	private TextView tv_name, tv_num;
+	@ViewInject(R.id.textview_name)
+	private TextView tv_name;
+	@ViewInject(R.id.textview_num)
+	private TextView tv_num;
+
+	@ViewInject(R.id.layout_menu)
+	LinearLayout layout_menu;
 
 	BitmapsUtils bitmapUtils;
 
@@ -68,12 +81,15 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	private void init(Context context) {
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
-		iv_big = (ImageView) findViewById(R.id.imageview_big_icon);
-		iv_small = (ImageView) findViewById(R.id.imageview_small_icon);
-		iv_grade = (ImageView) findViewById(R.id.imageview_grade);
 
-		tv_name = (TextView) findViewById(R.id.textview_name);
-		tv_num = (TextView) findViewById(R.id.textview_num);
+		ViewUtils.inject(this);
+
+		// iv_big = (ImageView) findViewById(R.id.imageview_big_icon);
+		// iv_small = (ImageView) findViewById(R.id.imageview_small_icon);
+		// iv_grade = (ImageView) findViewById(R.id.imageview_grade);
+		//
+		// tv_name = (TextView) findViewById(R.id.textview_name);
+		// tv_num = (TextView) findViewById(R.id.textview_num);
 
 		iv_small.setClickable(true);
 
@@ -82,23 +98,35 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 	}
 
 	public void setItem(CollectionEntity item) {
+		if (item == null) {
+			LogUtils.e("Hots  CollectionEntity is null");
+			return;
+		}
+
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
-		bitmapUtils.display(iv_big, item.image);
+		if (item.images != null && item.images.length > 0) {
+
+			bitmapUtils.display(iv_big, item.images[0]);
+		}
+		setSmallImage(item.images);
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage);
 		// 设置等级
-		// setGradeImage(item.grade);
+		setGradeImage(item.authLevel);
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
-		setNum(item.viewTimes+"");
+		setNum(item.viewTimes + "");
 
 	}
 
 	public void setGradeImage(int grade) {
+		if (grade < 1) {
+			grade = 1;
+		}
 		iv_grade.setImageResource(R.drawable.level01 + (grade - 1));
 	}
 
@@ -109,6 +137,18 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 	public void setNum(String num) {
 		String all = num + "人浏览过";
 		tv_num.setText(highlightText(all, num, R.color.home_head_color));
+	}
+
+	// 设置小图片
+	public void setSmallImage(String[] urls) {
+		if (urls == null || urls.length == 0) {
+			return;
+		}
+		int count = urls.length;
+		for (int i = 0; i < count; i++) {
+			MyButton button = new MyButton(getContext(), iv_big, urls[i]);
+			layout_menu.addView(button);
+		}
 	}
 
 	/**
