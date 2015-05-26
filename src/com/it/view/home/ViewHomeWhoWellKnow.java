@@ -1,17 +1,17 @@
 package com.it.view.home;
 
-import com.it.R;
-import com.it.bean.AuthorsEntity;
-import com.it.utils.BitmapsUtils;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.it.R;
+import com.it.bean.CollectionEntity;
+import com.it.utils.BitmapsUtils;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class ViewHomeWhoWellKnow extends LinearLayout {
 
@@ -50,7 +50,7 @@ public class ViewHomeWhoWellKnow extends LinearLayout {
 		ViewUtils.inject(this);
 	}
 
-	public void setItem(AuthorsEntity entity) {
+	public void setItem(CollectionEntity entity) {
 		BitmapsUtils.getInstance().display(iv_head, entity.authImage);
 		tv_name.setText(entity.authName);
 		tv_identify_place.setText(entity.company);

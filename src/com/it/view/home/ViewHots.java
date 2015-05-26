@@ -18,10 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.bean.HotsEntity;
+import com.it.bean.CollectionEntity;
 import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.utils.BitmapsUtils;
-import com.lidroid.xutils.BitmapUtils;
 
 /**
  * @author ytmfdw 主页 [热门鉴定]下的选项 根据屏幕宽高来计算图片大小
@@ -82,7 +81,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(HotsEntity item) {
+	public void setItem(CollectionEntity item) {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
@@ -95,7 +94,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 		// 设置名字
 		setName(item.name);
 		// 设置浏览量
-		setNum(item.viewTimes);
+		setNum(item.viewTimes+"");
 
 	}
 

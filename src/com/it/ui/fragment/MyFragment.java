@@ -5,34 +5,28 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Event;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
 import com.it.app.ItApplication;
-import com.it.bean.ChoicesEntity;
+import com.it.bean.CollectionEntity;
 import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.config.NetConst;
 import com.it.inter.onBasicView;
-import com.it.model.getUserInfoModel;
 import com.it.presenter.getUserInfoLPresenter;
 import com.it.ui.activity.ActivityFootPrint;
 import com.it.ui.activity.ActivityMyPrecious;
@@ -43,13 +37,10 @@ import com.it.ui.activity.LevelActivity;
 import com.it.ui.activity.SystemInfoActivity;
 import com.it.ui.adapter.MyLikeAdapter;
 import com.it.ui.base.BaseFragment;
-import com.it.ui.dialog.SelectPhotoDialog;
 import com.it.utils.BitmapsUtils;
 import com.it.utils.DialogUtil;
-import com.it.utils.ImageUtils;
 import com.it.utils.ToastUtils;
 import com.it.view.CircleImageView;
-import com.it.view.listview.HorizontalListView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -86,7 +77,7 @@ public class MyFragment extends BaseFragment{
 	@ViewInject(R.id.my_iv_level)
 	private ImageView iv_level;
 	
-	private ArrayList<ChoicesEntity> list=new ArrayList<ChoicesEntity>();
+	private ArrayList<CollectionEntity> list=new ArrayList<CollectionEntity>();
 	
 	@ViewInject(R.id.login_user_head)
 	private CircleImageView user_logo;
@@ -303,9 +294,9 @@ public class MyFragment extends BaseFragment{
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
 				for (int i = 0; i < arrays.length(); i++) {
-					ChoicesEntity entity=new ChoicesEntity();
+					CollectionEntity entity=new CollectionEntity();
 					JSONObject json=arrays.getJSONObject(i);
-					entity.id=json.getLong("treasure_id");
+					entity.treasure_id=json.getLong("treasure_id");
 					entity.image=json.getString("image");
 					list.add(entity);
 				}

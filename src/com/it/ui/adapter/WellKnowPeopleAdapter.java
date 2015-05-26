@@ -7,19 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 import com.it.R;
-import com.it.bean.AuthorsEntity;
+import com.it.bean.CollectionEntity;
 import com.it.utils.BitmapsUtils;
 import com.it.view.CircleImageView;
 
 public class WellKnowPeopleAdapter extends BaseAdapter {
 
 	Context mContext;
-	List<AuthorsEntity> list;
+	List<CollectionEntity> list;
 
-	public WellKnowPeopleAdapter(Context context, List<AuthorsEntity> strs) {
+	public WellKnowPeopleAdapter(Context context, List<CollectionEntity> strs) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
 		this.list = strs;
@@ -32,7 +31,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public AuthorsEntity getItem(int position) {
+	public CollectionEntity getItem(int position) {
 		// TODO Auto-generated method stub
 		return list.get(position);
 	}
@@ -56,9 +55,9 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		BitmapsUtils bitmapsUtils=BitmapsUtils.getInstance();
+		BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
 		bitmapsUtils.display(holder.iv, list.get(position).authImage);
-//		holder.iv.setImageResource(R.drawable.user_logo);
+		// holder.iv.setImageResource(R.drawable.user_logo);
 
 		return convertView;
 	}

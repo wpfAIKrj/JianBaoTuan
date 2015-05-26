@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.it.R;
-import com.it.bean.HotsEntity;
+import com.it.bean.CollectionEntity;
 import com.it.ui.adapter.IdentiyAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.PullRefreshRecyclerView;
@@ -70,15 +69,15 @@ public class IdentiyFragment extends BaseFragment implements
 		ViewUtils.inject(this, view);
 		mAdapter = new IdentiyAdapter();
 		// test data
-		List<HotsEntity> list = new ArrayList<HotsEntity>();
-		list.add(new HotsEntity("向阳花木", "http:\\", "我的宝贝", "http:\\", "1000",
-				"http:\\www.baidu.com"));
-		list.add(new HotsEntity("向阳花", "http:\\", "我宝贝", "http:\\", "1000",
-				"http:\\www.baidu.com"));
-		list.add(new HotsEntity("向阳", "http:\\", "宝贝", "http:\\", "1000",
-				"http:\\www.baidu.com"));
-		list.add(new HotsEntity("向", "http:\\", "我的", "http:\\", "1000",
-				"http:\\www.baidu.com"));
+		List<CollectionEntity> list = new ArrayList<CollectionEntity>();
+		list.add(new CollectionEntity("向阳花木", 1, "http:\\", "我的宝贝", "http:\\",
+				1000, 8));
+		list.add(new CollectionEntity("向阳花", 2, "http:\\", "我宝贝", "http:\\",
+				800, 12));
+		list.add(new CollectionEntity("向阳", 3, "http:\\", "宝贝", "http:\\", 456,
+				3));
+		list.add(new CollectionEntity("向", 4, "http:\\", "我的", "http:\\", 567,
+				45));
 		mAdapter.setData(list);
 
 		prrv.setRefreshLoadMoreListener(this);

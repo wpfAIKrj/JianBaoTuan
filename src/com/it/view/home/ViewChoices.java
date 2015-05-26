@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.bean.ChoicesEntity;
+import com.it.bean.CollectionEntity;
 import com.it.ui.activity.ActivityUserDelails;
 import com.it.utils.BitmapsUtils;
 
@@ -79,7 +79,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(ChoicesEntity item) {
+	public void setItem(CollectionEntity item) {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}

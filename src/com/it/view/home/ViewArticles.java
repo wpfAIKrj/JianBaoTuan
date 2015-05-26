@@ -15,9 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
-import com.it.bean.ArticlesEntity;
+import com.it.bean.CollectionEntity;
 import com.it.utils.BitmapsUtils;
-import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -73,13 +72,13 @@ public class ViewArticles extends LinearLayout {
 		ViewUtils.inject(this);
 	}
 
-	public void setItem(ArticlesEntity item) {
+	public void setItem(CollectionEntity item) {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		bitmapUtils.display(iv, item.image);
 		tv_msg.setText(item.name);
-		tv_num.setText(item.viewTimes);
+		tv_num.setText(item.viewTimes+"");
 
 	}
 

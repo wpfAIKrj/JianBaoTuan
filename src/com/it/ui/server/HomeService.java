@@ -12,11 +12,8 @@ import android.os.IBinder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.it.app.ItApplication;
-import com.it.bean.ArticlesEntity;
-import com.it.bean.AuthorsEntity;
-import com.it.bean.ChoicesEntity;
+import com.it.bean.CollectionEntity;
 import com.it.bean.HomeEntity;
-import com.it.bean.HotsEntity;
 import com.it.config.UrlUtil;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -74,37 +71,46 @@ public class HomeService extends Service {
 						HomeEntity homeEntity = new HomeEntity();
 						try {
 							JSONObject json = new JSONObject(
-									responseInfo.result);
+									responseInfo.result.replace("\\", ""));
 							if (json != null) {
 								Gson gson = new Gson();
 								JSONObject json_data = json
 										.getJSONObject("data");
+								String advertising = json_data
+										.getString("advertising");
+								List<CollectionEntity> list_advertising = gson
+										.fromJson(
+												advertising,
+												new TypeToken<List<CollectionEntity>>() {
+												}.getType());
+								homeEntity.setAdvertising(list_advertising);
 								String choices = json_data.getString("choices");
-								List<ChoicesEntity> list_choices = gson
+								List<CollectionEntity> list_choices = gson
 										.fromJson(
 												choices,
-												new TypeToken<List<ChoicesEntity>>() {
+												new TypeToken<List<CollectionEntity>>() {
 												}.getType());
 								homeEntity.setChoices(list_choices);
 								String hots = json_data.getString("hots");
-								List<HotsEntity> list_hots = gson.fromJson(
-										hots,
-										new TypeToken<List<HotsEntity>>() {
-										}.getType());
+								List<CollectionEntity> list_hots = gson
+										.fromJson(
+												hots,
+												new TypeToken<List<CollectionEntity>>() {
+												}.getType());
 								homeEntity.setHots(list_hots);
 								String articles = json_data
 										.getString("articles");
-								List<ArticlesEntity> list_articles = gson
+								List<CollectionEntity> list_articles = gson
 										.fromJson(
 												articles,
-												new TypeToken<List<ArticlesEntity>>() {
+												new TypeToken<List<CollectionEntity>>() {
 												}.getType());
 								homeEntity.setArticles(list_articles);
 								String authors = json_data.getString("authors");
-								List<AuthorsEntity> list_authors = gson
+								List<CollectionEntity> list_authors = gson
 										.fromJson(
 												authors,
-												new TypeToken<List<AuthorsEntity>>() {
+												new TypeToken<List<CollectionEntity>>() {
 												}.getType());
 								homeEntity.setAuthors(list_authors);
 

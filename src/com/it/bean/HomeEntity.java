@@ -5,60 +5,70 @@ import java.util.List;
 
 public class HomeEntity {
 
-	private List<ChoicesEntity> choices;
-	private List<HotsEntity> hots;
-	private List<ArticlesEntity> articles;
-	private List<AuthorsEntity> authors;
+	private List<CollectionEntity> advertising;
+	private List<CollectionEntity> choices;
+	private List<CollectionEntity> hots;
+	private List<CollectionEntity> articles;
+	private List<CollectionEntity> authors;
 
 	public HomeEntity() {
 		// TODO Auto-generated constructor stub
-		choices = new ArrayList<ChoicesEntity>();
-		hots = new ArrayList<HotsEntity>();
-		articles = new ArrayList<ArticlesEntity>();
-		authors = new ArrayList<AuthorsEntity>();
+		advertising = new ArrayList<CollectionEntity>();
+		choices = new ArrayList<CollectionEntity>();
+		hots = new ArrayList<CollectionEntity>();
+		articles = new ArrayList<CollectionEntity>();
+		authors = new ArrayList<CollectionEntity>();
 	}
 
-	public void setChoices(List<ChoicesEntity> list) {
+	public List<CollectionEntity> getAdvertising() {
+		return advertising;
+	}
+
+	public void setAdvertising(List<CollectionEntity> advertising) {
+		this.advertising = advertising;
+	}
+
+	public void setChoices(List<CollectionEntity> list) {
 		if (list == null)
 			return;
 		choices.clear();
 		choices.addAll(list);
 	}
 
-	public void setHots(List<HotsEntity> list) {
+	public void setHots(List<CollectionEntity> list) {
 		if (list == null)
 			return;
 		hots.clear();
 		hots.addAll(list);
 	}
 
-	public void setArticles(List<ArticlesEntity> list) {
+	public void setArticles(List<CollectionEntity> list) {
 		if (list == null)
 			return;
 		articles.clear();
 		articles.addAll(list);
 	}
 
-	public void setAuthors(List<AuthorsEntity> list) {
+	public void setAuthors(List<CollectionEntity> list) {
 		if (list == null)
 			return;
 		authors.clear();
 		authors.addAll(list);
 	}
 
-	public List<ChoicesEntity> getChoices() {
+	public List<CollectionEntity> getChoices() {
 		return choices;
 	}
 
-	public List<HotsEntity> getHots() {
+	public List<CollectionEntity> getHots() {
 		return hots;
 	}
 
-	public List<ArticlesEntity> getArticles() {
+	public List<CollectionEntity> getArticles() {
 		return articles;
 	}
 
-	public List<AuthorsEntity> getAuthors() {
+	public List<CollectionEntity> getAuthors() {
 		return authors;
 	}
 

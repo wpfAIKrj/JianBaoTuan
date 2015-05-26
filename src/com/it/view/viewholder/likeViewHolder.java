@@ -1,19 +1,19 @@
 package com.it.view.viewholder;
 
-import com.it.R;
-import com.it.bean.ChoicesEntity;
-import com.it.utils.BitmapsUtils;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
+import com.it.R;
+import com.it.bean.CollectionEntity;
+import com.it.utils.BitmapsUtils;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+
 public class likeViewHolder extends ViewHolder {
 
-	private ChoicesEntity entity;
+	private CollectionEntity entity;
 	
 	@ViewInject(R.id.imageView)
 	private ImageView logo;
@@ -36,7 +36,7 @@ public class likeViewHolder extends ViewHolder {
 		});
 	}
 	
-	public void showData(ChoicesEntity entity){
+	public void showData(CollectionEntity entity){
 		this.entity=entity;
 		BitmapsUtils.getInstance().display(logo, entity.image,logo.getMeasuredWidth(),logo.getMeasuredHeight());
 	}

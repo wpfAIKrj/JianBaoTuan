@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.it.R;
-import com.it.bean.HotsEntity;
+import com.it.bean.CollectionEntity;
 import com.it.ui.adapter.IdentiyAdapter.MyViewHolder;
 import com.it.view.home.ViewHots;
 
 public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-	private List<HotsEntity> hots;
+	private List<CollectionEntity> hots;
 
 	static class MyViewHolder extends ViewHolder {
 		ViewHots hotsView;
@@ -29,17 +29,17 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 	}
 
-	public IdentiyAdapter(List<HotsEntity> list) {
+	public IdentiyAdapter(List<CollectionEntity> list) {
 		// TODO Auto-generated constructor stub
 		this.hots = list;
 	}
 
 	public IdentiyAdapter() {
 		// TODO Auto-generated constructor stub
-		hots = new ArrayList<HotsEntity>();
+		hots = new ArrayList<CollectionEntity>();
 	}
 
-	public void setData(List<HotsEntity> list) {
+	public void setData(List<CollectionEntity> list) {
 		if (this.hots == null) {
 			this.hots = list;
 		} else {
@@ -48,7 +48,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 		}
 	}
 
-	public List<HotsEntity> getData() {
+	public List<CollectionEntity> getData() {
 		return hots;
 	}
 
@@ -61,7 +61,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, int position) {
 		// TODO Auto-generated method stub
-		HotsEntity entity = hots.get(position);
+		CollectionEntity entity = hots.get(position);
 		holder.hotsView.setItem(entity);
 
 	}
