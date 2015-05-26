@@ -27,22 +27,19 @@ public class BitmapsUtils {
 	private BitmapUtils utils=null;
 	private BitmapDisplayConfig config;//显示使用的
 	private BitmapsUtils(Context context){
-		utils=new BitmapUtils(context, FileUtils.getInstance().getCacheImage());
-		utils.configDefaultBitmapMaxSize(SystemUtils.getDisplaysWidth(context), SystemUtils.getDisplaysHeight(context));
-		utils.configDefaultCacheExpiry(60000*60*24*30);
+		utils=new BitmapUtils(context);
 		utils.configDefaultConnectTimeout(10000);
 		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(context, R.anim.bitmap_show));
 		utils.configDefaultLoadFailedImage(R.drawable.test3);
 		utils.configDefaultLoadingImage(R.drawable.test3);
 		utils.configDefaultReadTimeout(10000);
-		utils.configDefaultShowOriginal(false);
 		utils.configDiskCacheEnabled(true);
 		utils.configMemoryCacheEnabled(true);
 		config=new BitmapDisplayConfig();
 		config.setLoadingDrawable(context.getResources().getDrawable(R.drawable.test3));
 		config.setLoadFailedDrawable(context.getResources().getDrawable(R.drawable.test3));
 		config.setAnimation(AnimationUtils.loadAnimation(context, R.anim.bitmap_show));
-		config.setShowOriginal(true);
+	
 
 		
 	}
