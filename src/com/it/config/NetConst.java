@@ -13,9 +13,31 @@ public class NetConst {
 	
 	public static final int CODE_SUCCESS=100000;
 	
-	public static final int CODE_ERROR1=10000;
-	public static final int CODE_ERROR2=10002;//登陆失败
-	public static final int CODE_ERROR3=10002;//用户已注册
+	public static final int CODE_ERROR1=10001;//参数错误
+	public static final int CODE_ERROR2=10002;//更新失败
+	public static final int CODE_ERROR3=10003;//添加失败
+	public static final int CODE_ERROR4=10004;//暂时没有数据
+	public static final int CODE_ERROR5=110000;//登录失败
+	public static final int CODE_ERROR6=110001;//注册失败
+	public static final int CODE_ERROR7=110002;//手机号码已经存在
+	public static final int CODE_ERROR8=110003;//请先登录
+	public static final int CODE_ERROR9=110004;//用户数据更新失败
+	public static final int CODE_ERROR10=110005;//手机号码格式错误
+	public static final int CODE_ERROR11=110006;//鉴定师不存在
+	public static final int CODE_ERROR12=110007;//鉴定师不合法
+	public static final int CODE_ERROR13=110008;//您已经鉴定此宝物
+	
+	public static final int CODE_ERROR14=210000;//宝贝添加失败
+	public static final int CODE_ERROR15=210001;//请填写鉴定师
+	public static final int CODE_ERROR16=210002;//没有找到宝贝
+	public static final int CODE_ERROR17=210003;//该宝贝已经被收藏
+	public static final int CODE_ERROR18=210003;//收藏宝贝失败
+	public static final int CODE_ERROR19=310000;//知识信息没有找到
+	public static final int CODE_ERROR20=310001;//知识信息已经无效
+	public static final int CODE_ERROR21=310002;//该内容已经被收藏
+	public static final int CODE_ERROR22=310003;//收藏内容失败
+	
+	
 	
 	public static final String MESSAGE="message";
 	
