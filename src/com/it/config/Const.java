@@ -13,6 +13,7 @@ public class Const {
 	public static final int IDENTIFY = 0x03;
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
+
 	
 	/**
 	 * 文章id
@@ -64,4 +65,8 @@ public class Const {
 	 * 去查看文章详情
 	 */
 	public static final int TO_ARTICLE=5;
+	/**
+	 * 查看收藏文章
+	 */
+	public static int TO_COLLECT_INFO=6;
 }

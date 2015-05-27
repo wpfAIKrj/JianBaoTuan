@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/wite" >
 
-  <include layout="@layout/article_head"/>
-  	<com.it.view.listview.XListView 
-  	    android:id="@+id/article_listview"
-  	    android:layout_width="match_parent"
-  	    android:layout_height="match_parent"
-  	    ></com.it.view.listview.XListView>
-</LinearLayout>
+  <include
+      layout="@layout/article_head" android:id="@+id/layout_head"/>
+
+	  <android.support.v4.widget.SwipeRefreshLayout
+	      xmlns:tools="http://schemas.android.com/tools"
+	      android:id="@+id/swipe_refresh_widget"
+	      android:layout_width="match_parent"
+	      android:layout_height="match_parent"
+	      android:layout_below="@id/layout_head" >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:scrollbars="vertical" />
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+	  <RelativeLayout
+	      android:id="@+id/layout_delet"
+	      android:layout_width="match_parent"
+	      android:layout_height="@dimen/layout_item_height"
+	      android:layout_alignParentBottom="true"
+	      android:layout_centerHorizontal="true"
+	      android:background="@color/layout_bg_color"
+	      android:visibility="gone"
+	       >
+	  </RelativeLayout>
+
+</RelativeLayout>

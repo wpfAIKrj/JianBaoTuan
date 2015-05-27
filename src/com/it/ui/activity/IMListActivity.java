@@ -27,8 +27,8 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favoritearticles);
-		initView();
-		initData();
+//		initView();
+//		initData();
 	}
 	private XListView mlistview;
 	private IMAdapter madapter;
@@ -36,7 +36,6 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 
 	protected void initView() {
 		// TODO Auto-generated method stub
-		mlistview=(XListView) findViewById(R.id.article_listview);
 		ImageView bt=(ImageView)findViewById(R.id.button_category);
 		bt.setOnClickListener(this);
 		bt=(ImageView)findViewById(R.id.button_delect);

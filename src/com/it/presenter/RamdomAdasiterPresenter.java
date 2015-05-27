@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
-import com.it.model.GetRandomInfoModel;
+import com.it.model.getRandomInfoModel;
 import com.it.view.inter.onListView;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
@@ -14,7 +14,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
  */
 public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo> {
 	
-	private GetRandomInfoModel model;
+	private getRandomInfoModel model;
 	private onListView<UserInfo> mView;
 	public RamdomAdasiterPresenter(onListView<UserInfo> view) {
 		// TODO Auto-generated constructor stub
@@ -22,7 +22,7 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 	}
 	
 	public void startGet(){
-		this.model=new GetRandomInfoModel();
+		this.model=new getRandomInfoModel();
 		model.setHTTPMODE(HttpMethod.GET);
 		model.startGet(this);
 		model.sendHttp();

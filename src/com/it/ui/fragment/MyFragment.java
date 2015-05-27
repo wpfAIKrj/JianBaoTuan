@@ -234,8 +234,9 @@ public class MyFragment extends BaseFragment{
 		startActivity(mIntent);}
 			break;
 		case R.id.my_tab2:// 跳转到收藏文章
-			mActivity.startActivity(new Intent(mActivity,
-					FavoriteArticlesActivity.class));
+			
+			mActivity.startActivityForResult(new Intent(mActivity,
+					FavoriteArticlesActivity.class),Const.TO_COLLECT_INFO);
 			break;
 		case R.id.my_tab3:// 跳转我的私信
 			mActivity
