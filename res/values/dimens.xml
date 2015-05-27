@@ -57,4 +57,7 @@
 	
 	<dimen name="layout_love_width">85dp</dimen>
 	
+	<dimen name="dialog_layout_height">100dp</dimen>
+	<dimen name="dialog_button_height">35dp</dimen>
+	
 </resources>

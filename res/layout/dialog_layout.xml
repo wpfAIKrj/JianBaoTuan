@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dialog_layout_height"
+    android:gravity="center_horizontal"
+    android:layout_marginLeft="@dimen/layout_padding"
+    android:layout_marginRight="@dimen/layout_padding"
+	android:background="@color/wite"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5px"
+        android:layout_above="@+id/layout_bottom"
+        android:background="@color/black_2" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_sure"
+            style="@style/my_title_style1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:text="确定" />
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="match_parent"
+            android:background="@color/black_2" />
+
+        <Button
+            android:id="@+id/dialog_cancle"
+            style="@style/my_title_style1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:text="取消" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="@string/register_result_succes_title"
+        android:textColor="@color/dialog_title_color"
+        android:textSize="@dimen/login_bt_smart_size" />
+
+</RelativeLayout>

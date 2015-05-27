@@ -11,7 +11,7 @@ public class NetConst {
 	
 	public static final String CODE="code";
 	
-	public static final int CODE_SUCCESS=100000;
+	public static final int CODE_SUCCESS=100000;//所有操作成功
 	
 	public static final int CODE_ERROR1=10001;//参数错误
 	public static final int CODE_ERROR2=10002;//更新失败
@@ -59,15 +59,17 @@ public class NetConst {
 	public static final String IM_KEY="3argexb6r9p1e";
 	public static final String IM_SECRET="aWFuJg2Rl0O";
 	
-	public static final String REGISTER_URL="Users/registAction";
+	public static final String REGISTER_URL="Users/registAction";//注册
 	
-	public static final String LOGIN_URL="Users/loginAction";
+	public static final String LOGIN_URL="Users/loginAction";//登录
 	
-	public static final String EXTRAUSR="Users/extraAction";
+	public static final String EXTRAUSR="Users/extraAction";//更新个人用户
 	
-	public static final String RAMDOMAPPRAISER="Contents/listAction";
+	public static final String RAMDOMAPPRAISER="Contents/listAction";//获取鉴定师
 	
-	public static final String MINEACTION="home/mineAction";
+	public static final String MINEACTION="home/mineAction";//获取我的页面入口数据
+	
+	public static final String COLLECTINFO="contents/collectAction";//收藏文章
 	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	

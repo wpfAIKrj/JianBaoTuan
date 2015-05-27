@@ -1,5 +1,6 @@
 package com.it.ui.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,12 @@ import com.it.app.ItApplication;
 import com.it.bean.ContentInfo;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
+import com.it.inter.DialogForResult;
+import com.it.inter.onBasicView;
+import com.it.presenter.collectInfoPresenter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.BitmapsUtils;
+import com.it.utils.DialogUtil;
 import com.it.utils.ToastUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -23,7 +28,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
  * @author Administrator
  *
  */
-public class InformationDetailsActivity extends BaseActivity{
+public class InformationDetailsActivity extends BaseActivity {
 
 	
 	@ViewInject(R.id.detail_share)
@@ -47,6 +52,13 @@ public class InformationDetailsActivity extends BaseActivity{
 	private ContentInfo info;
 	
 	private UserInfo user;
+
+	private Dialog dialog1;
+
+	private collectInfoPresenter collectPresenter;
+
+	protected Dialog loaddialog;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,7 +67,7 @@ public class InformationDetailsActivity extends BaseActivity{
 		ViewUtils.inject(this);
 		initData();
 		user=((ItApplication)getApplication()).getCurrnUser();
-		
+		collectPresenter=new collectInfoPresenter(listener);
 	}
 
 
@@ -85,7 +97,10 @@ public class InformationDetailsActivity extends BaseActivity{
 			break;
 		case R.id.detail_collect://收藏
 			if(user!=null){
-				
+				if(dialog1==null){
+					dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
+				}
+				dialog1.show();
 			}else{
 				new ToastUtils(this, "请先登陆！");
 			}
@@ -94,6 +109,51 @@ public class InformationDetailsActivity extends BaseActivity{
 			break;
 		}
 	}
+
+	
+	private DialogForResult lis1=new DialogForResult() {
+		
+		@Override
+		public void onSucess() {
+			// TODO Auto-generated method stub
+			if(dialog1!=null){
+				dialog1.dismiss();
+			}
+			collectPresenter.collectInfo(info.getId());
+			loaddialog=DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
+			loaddialog.show();
+		}
+		
+		@Override
+		public void onCancel() {
+			// TODO Auto-generated method stub
+			if(dialog1!=null){
+				dialog1.dismiss();
+			}
+		}
+	};
+	
+	private onBasicView<String> listener=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO Auto-generated method stub
+			if(loaddialog!=null){
+				loaddialog.dismiss();
+			}
+			new ToastUtils(InformationDetailsActivity.this, "该文章收藏成功！");
+			
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			if(loaddialog!=null){
+				loaddialog.dismiss();
+			}
+			new ToastUtils(InformationDetailsActivity.this, errorMsg);
+		}
+	};
 	
 	
 }

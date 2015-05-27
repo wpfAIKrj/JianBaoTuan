@@ -38,7 +38,7 @@ public class likeViewHolder extends ViewHolder {
 	
 	public void showData(CollectionEntity entity){
 		this.entity=entity;
-		BitmapsUtils.getInstance().display(logo, entity.image,logo.getMeasuredWidth(),logo.getMeasuredHeight());
+		BitmapsUtils.getInstance().display(logo, entity.image);
 	}
 
 }
