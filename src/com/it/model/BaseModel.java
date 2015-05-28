@@ -61,8 +61,9 @@ public abstract class BaseModel {
 			int code=json.getInt(NetConst.CODE);
 			String message=json.getString(NetConst.MESSAGE);
 			if(code==NetConst.CODE_SUCCESS){
-				LogUtils.d(json.getString(NetConst.DATA));
-				analyzeData(json.getString(NetConst.DATA));
+				String data=json.getString(NetConst.DATA);
+				LogUtils.d(data);
+				analyzeData(data);
 				
 			}else{
 				onFailureForString(String.valueOf(code),message);

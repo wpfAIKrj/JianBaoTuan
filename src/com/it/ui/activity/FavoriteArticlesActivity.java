@@ -1,7 +1,13 @@
 package com.it.ui.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import android.R.integer;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,14 +32,18 @@ import com.it.R;
 import com.it.bean.ContentInfo;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
+import com.it.inter.deleteItemlistener;
+import com.it.inter.onBasicView;
 import com.it.model.getCollectArticleModel;
 import com.it.presenter.ArticlePresenter;
 import com.it.presenter.OnListDataLoadListener;
+import com.it.presenter.deleteInfoPresenter;
 import com.it.presenter.myCollectArticlePresenter;
 import com.it.ui.adapter.ArticleAdapter;
 import com.it.ui.adapter.MyArticleAdapter;
 import com.it.ui.base.BaseActivity;
 import com.it.ui.fragment.InformationFragment;
+import com.it.utils.DialogUtil;
 import com.it.utils.ListLoadType;
 import com.it.utils.ToastUtils;
 import com.it.view.inter.onListView;
@@ -75,11 +85,20 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	protected int lastVisableView;
 	protected int totalItemCount;
 	protected int nextShow=1;
+
+	private HashMap<Long, Integer> deleteInfos;
 	
 	private ListLoadType currt=ListLoadType.Nomal;
 
 
 	private myCollectArticlePresenter myPresenter;
+
+
+	private Dialog dialogLoad;
+	
+	
+	private deleteInfoPresenter deletePresenter;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +115,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		title.setText(R.string.collect_info_title);
 		list=new ArrayList<ContentInfo>();
 		myPresenter=new myCollectArticlePresenter(this);
+		deletePresenter=new deleteInfoPresenter(netlistener);
 		LayoutManager layoutManager=new LinearLayoutManager(this);
 		mRecyclerView.setLayoutManager(layoutManager);
 		mSwipeRefreshWidget.setDistanceToTriggerSync(200);
@@ -116,12 +136,13 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 
 		mRecyclerView.setHasFixedSize(true);
 		
-		madapter=new MyArticleAdapter(this,list,listener,FavoriteArticlesActivity.this);
+		madapter=new MyArticleAdapter(this,list,listener,FavoriteArticlesActivity.this,deleteItemlistener);
 		madapter.setMode(Attributes.Mode.Single);
 		madapter.setScorll(true);
 		
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRecyclerView.setAdapter(madapter);
+		dialogLoad=DialogUtil.createLoadingDialog(this, "正在删除");
 	}
 
 	protected void initData() {
@@ -130,6 +151,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 //		mlistview.setAdapter(madapter);
 //		mlistview.setXListViewListener(this);
 //		mlistview.setOnItemClickListener(this);
+		
+		deleteInfos=new HashMap<Long, Integer>();
 	}
 
 
@@ -156,6 +179,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			ContentInfo info=(ContentInfo) v.getTag();
+			info.setIsCollected(1);
 			Intent intent=new Intent(FavoriteArticlesActivity.this, InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, info);
 			startActivity(intent);
@@ -266,6 +290,53 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		myPresenter.getArticleList("0", (length+1));
 	}
 
+	private deleteItemlistener deleteItemlistener=new deleteItemlistener() {
+		
+		@Override
+		public void ondeleteItem(ContentInfo item, int id) {
+			// TODO Auto-generated method stub
+			dialogLoad.show();
+			deleteInfos.put(item.getId(), id);
+			deletePresenter.deleteInfo(String.valueOf(item.getId()));
+			
+		}
+	};
+	/**
+	 * 删除结果
+	 */
+	private onBasicView<String> netlistener=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO Auto-generated method stub
+			try {
+				JSONArray ids=new JSONArray(data);
+				if(ids!=null||ids.length()!=0){
+					for (int i = 0; i < ids.length(); i++) {
+						madapter.deleteItem((int)deleteInfos.get(i));	
+					}
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(dialogLoad!=null){
+				dialogLoad.dismiss();
+			}
+			
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			
+			if(dialogLoad!=null){
+				dialogLoad.dismiss();
+			}
+			new ToastUtils(FavoriteArticlesActivity.this,errorMsg);
+		}
+	};
 
+	
 
 }

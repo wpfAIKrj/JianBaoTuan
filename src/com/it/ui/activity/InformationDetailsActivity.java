@@ -77,6 +77,9 @@ public class InformationDetailsActivity extends BaseActivity {
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
 		context.setText(info.getContent());
+		if(info.getIsCollected()!=0){
+			collect.setVisibility(View.GONE);
+		}
 	}
 
 
@@ -101,6 +104,7 @@ public class InformationDetailsActivity extends BaseActivity {
 					dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
 				}
 				dialog1.show();
+				
 			}else{
 				new ToastUtils(this, "请先登陆！");
 			}

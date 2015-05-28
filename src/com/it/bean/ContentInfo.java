@@ -41,8 +41,13 @@ public class ContentInfo implements Serializable{
     private String insert_time;
 	@SerializedName("image")
     private String image;
+	
 	@SerializedName("viewTimes")
     private Integer view_times;
+	
+	
+	@SerializedName("isCollected")
+    private Integer isCollected;
 
     public ContentInfo() {
     }
@@ -51,7 +56,7 @@ public class ContentInfo implements Serializable{
         this.id = id;
     }
 
-    public ContentInfo(Long id, String title, String content, Integer content_type, Integer content_classify_id, String admin_name, Long admin_id, Integer is_valid, String is_hot, String insert_time, String image, Integer view_times) {
+    public ContentInfo(Long id, String title, String content, Integer content_type, Integer content_classify_id, String admin_name, Long admin_id, Integer is_valid, String is_hot, String insert_time, String image, Integer view_times, Integer isCollected) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -64,6 +69,7 @@ public class ContentInfo implements Serializable{
         this.insert_time = insert_time;
         this.image = image;
         this.view_times = view_times;
+        this.isCollected = isCollected;
     }
 
     public Long getId() {
@@ -162,15 +168,22 @@ public class ContentInfo implements Serializable{
         this.view_times = view_times;
     }
 
-		   @Override
-		public boolean equals(Object o) {
-			// TODO Auto-generated method stub
-			   if(o instanceof ContentInfo){
-				   ContentInfo obj=(ContentInfo) o;
-				   if(obj.getId()==id){
-					   return true;
-				   }
+    public Integer getIsCollected() {
+        return isCollected;
+    }
+
+    public void setIsCollected(Integer isCollected) {
+        this.isCollected = isCollected;
+    }
+	   @Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		   if(o instanceof ContentInfo){
+			   ContentInfo obj=(ContentInfo) o;
+			   if(obj.getId()==id){
+				   return true;
 			   }
-			return super.equals(o);
-		}
+		   }
+		return super.equals(o);
+	}
 }

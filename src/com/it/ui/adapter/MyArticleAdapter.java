@@ -9,6 +9,7 @@ import com.it.R;
 import com.it.bean.ContentInfo;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
+import com.it.inter.deleteItemlistener;
 import com.it.view.viewholder.ArticleViewHolder;
 import com.it.view.viewholder.SwipeInfoViewHolder;
 import com.it.view.viewholder.footerViewHolder;
@@ -22,7 +23,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 /**
- * 加载文章列表
+ * 加载我的文章列表
  * @author Administrator
  *
  */
@@ -38,7 +39,10 @@ public class MyArticleAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 	
 	private int load_type=2;
 	private boolean isScorll;
-	public MyArticleAdapter(Context context,ArrayList<ContentInfo> list,OnClickListener listner,ListviewLoadListener listview) {
+	private deleteItemlistener delete;
+	public MyArticleAdapter(Context context,ArrayList<ContentInfo> list,
+			OnClickListener listner,ListviewLoadListener listview
+			,deleteItemlistener delete) {
 		// TODO Auto-generated constructor stub
 		this.context=context;
 		mInflater=LayoutInflater.from(context);
@@ -46,6 +50,7 @@ public class MyArticleAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 		this.onclick=listner;
 		this.listview=listview;
 		load_type=2;
+		this.delete=delete;
 	}
 	
 
@@ -96,10 +101,9 @@ public class MyArticleAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 	            @Override
 	            public void onClick(View view) {
 	                mItemManger.removeShownLayouts(articie.swipeLayout);
-	                list.remove(arg1);
-	                notifyItemRemoved(arg1);
-	                notifyItemRangeChanged(arg1, list.size());
-	                mItemManger.closeAllItems();
+	                if(delete!=null){
+	                	delete.ondeleteItem(list.get(arg1),arg1);
+	                }
 	          //      Toast.makeText(view.getContext(), "Deleted " + viewHolder.textViewData.getText().toString() + "!", Toast.LENGTH_SHORT).show();
 	            }
 	        });
@@ -154,6 +158,16 @@ public class MyArticleAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 	}
 	
 	
+	/**
+	 * 删除制定id
+	 * @param id
+	 */
+	public void deleteItem(int id){
+        list.remove(id);
+        notifyItemRemoved(id);
+        notifyItemRangeChanged(id, list.size());
+        mItemManger.closeAllItems();
+	}
 	
 
 }

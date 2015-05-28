@@ -37,6 +37,7 @@ public class SwipeInfoViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            	view.setTag(contentinfo);
             	if(lisntener!=null){
             		lisntener.onClick(view);
             	}

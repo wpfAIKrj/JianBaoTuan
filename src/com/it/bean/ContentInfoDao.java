@@ -35,6 +35,7 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
         public final static Property Insert_time = new Property(9, String.class, "insert_time", false, "INSERT_TIME","CONTENT_INFO");
         public final static Property Image = new Property(10, String.class, "image", false, "IMAGE","CONTENT_INFO");
         public final static Property View_times = new Property(11, Integer.class, "view_times", false, "VIEW_TIMES","CONTENT_INFO");
+        public final static Property IsCollected = new Property(12, Integer.class, "isCollected", false, "IS_COLLECTED","CONTENT_INFO");
     };
 
 
@@ -61,7 +62,8 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
                 "'IS_HOT' TEXT," + // 8: is_hot
                 "'INSERT_TIME' TEXT," + // 9: insert_time
                 "'IMAGE' TEXT," + // 10: image
-                "'VIEW_TIMES' INTEGER);"); // 11: view_times
+                "'VIEW_TIMES' INTEGER," + // 11: view_times
+                "'IS_COLLECTED' INTEGER);"); // 12: isCollected
     }
 
     /** Drops the underlying database table. */
@@ -134,6 +136,11 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
         if (view_times != null) {
             stmt.bindLong(12, view_times);
         }
+ 
+        Integer isCollected = entity.getIsCollected();
+        if (isCollected != null) {
+            stmt.bindLong(13, isCollected);
+        }
     }
 
     /** @inheritdoc */
@@ -157,7 +164,8 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // is_hot
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // insert_time
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // image
-            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11) // view_times
+            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // view_times
+            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12) // isCollected
         );
         return entity;
     }
@@ -177,6 +185,7 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
         entity.setInsert_time(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
         entity.setImage(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setView_times(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
+        entity.setIsCollected(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
      }
     
     /** @inheritdoc */
