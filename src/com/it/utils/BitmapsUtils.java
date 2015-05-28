@@ -1,6 +1,7 @@
 package com.it.utils;
 
 import com.it.R;
+import com.it.view.CircleImageView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 /**
  * 图片加载工具类
@@ -87,6 +89,10 @@ public class BitmapsUtils {
 			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
 					container.getHeight());
 			config.setBitmapMaxSize(bitmapMaxSize);
+			if(!(container instanceof CircleImageView)){
+				
+				container.setScaleType(ScaleType.FIT_XY);
+			}
 			utils.display(container, uri, config);
 		}
 	}
