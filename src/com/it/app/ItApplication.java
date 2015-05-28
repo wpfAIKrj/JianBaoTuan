@@ -23,6 +23,7 @@ public class ItApplication extends Application {
 	private HomeEntity homeEntity;
 
 	private List<CollectionEntity> hasIdentify;
+	private List<CollectionEntity> unIdentify;
 
 	public UserInfo getCurrnUser() {
 		return currnUser;
@@ -46,6 +47,16 @@ public class ItApplication extends Application {
 
 	public void setHasIdentify(List<CollectionEntity> hasIdentify) {
 		this.hasIdentify = hasIdentify;
+	}
+	
+	
+
+	public List<CollectionEntity> getUnIdentify() {
+		return unIdentify;
+	}
+
+	public void setUnIdentify(List<CollectionEntity> unIdentify) {
+		this.unIdentify = unIdentify;
 	}
 
 	@Override

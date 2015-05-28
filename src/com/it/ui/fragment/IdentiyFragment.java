@@ -1,6 +1,5 @@
 package com.it.ui.fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
@@ -10,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.CollectionEntity;
-import com.it.bean.TreasureEntity;
+import com.it.model.CommonCallBack;
+import com.it.model.IdentifyModel;
 import com.it.ui.adapter.IdentiyAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.PullRefreshRecyclerView;
@@ -38,21 +39,54 @@ public class IdentiyFragment extends BaseFragment implements
 
 	IdentiyAdapter mAdapter = null;
 
+	IdentifyModel model = null;
+
+	int type = 1;
+
+	int current_page = 0;
+
+	private List<CollectionEntity> list = null;
+
+	ItApplication app;
+
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed })
 	public void doClick(View v) {
 		// TODO Auto-generated method stub
 		setIdentifyBackground(v.getId());
 		switch (v.getId()) {
 		case R.id.btn_identifing: {
+			type = 1;
+			prrv.stopRefresh();
+			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
+			if (app != null) {
+				if (app.getHasIdentify() != null) {
+					list = app.getHasIdentify();
+					mAdapter.setData(list);
+				} else {
+					// 联网下载
+				}
+			}
+
 		}
 
 			break;
 
 		case R.id.btn_identifed: {
 			// 获取已经鉴定数据
+			type = 2;
+			prrv.stopRefresh();
+			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
+			if (app != null) {
+				if (app.getUnIdentify() != null) {
+					list = app.getUnIdentify();
+					mAdapter.setData(list);
+				} else {
+					// 联网下载
+				}
+			}
 		}
 
 			break;
@@ -69,19 +103,10 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
+		model = new IdentifyModel();
 		mAdapter = new IdentiyAdapter();
-		// test data
-		/*
-		 * List<CollectionEntity> list = new ArrayList<CollectionEntity>();
-		 * list.add(new CollectionEntity(1,"向阳花木", 1, "http:\\", "我的宝贝",
-		 * "http:\\", 1000, 8)); list.add(new CollectionEntity(2,"向阳花", 2,
-		 * "http:\\", "我宝贝", "http:\\", 800, 12)); list.add(new
-		 * CollectionEntity(3,"向阳", 3, "http:\\", "宝贝", "http:\\", 456, 3));
-		 * list.add(new CollectionEntity(4,"向", 4, "http:\\", "我的", "http:\\",
-		 * 567, 45));
-		 */
-		List<CollectionEntity> list = ((ItApplication) getActivity()
-				.getApplication()).getHasIdentify();
+		app = (ItApplication) getActivity().getApplication();
+		list = app.getHasIdentify();
 		if (list != null && list.size() != 0) {
 
 			mAdapter.setData(list);
@@ -142,6 +167,29 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
+		current_page++;
+		model.sendHttp(new CommonCallBack() {
+
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				prrv.stopRefresh();
+				List<CollectionEntity> result = model.getResult();
+				if (result.size() == 0) {
+					Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
+							.show();
+				}
+				mAdapter.setData(model.getResult());
+
+			}
+
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+				prrv.stopRefresh();
+
+			}
+		}, String.valueOf(type), current_page);
 
 	}
 

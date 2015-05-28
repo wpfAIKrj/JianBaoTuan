@@ -46,6 +46,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 			this.hots.clear();
 			this.hots.addAll(list);
 		}
+		notifyDataSetChanged();
 	}
 
 	public List<CollectionEntity> getData() {
