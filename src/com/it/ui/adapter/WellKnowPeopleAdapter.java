@@ -56,7 +56,8 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
-		bitmapsUtils.display(holder.iv, list.get(position).authImage);
+		bitmapsUtils.display(holder.iv, list.get(position).authImage,
+				BitmapsUtils.TYPE_YES);
 		// holder.iv.setImageResource(R.drawable.user_logo);
 
 		return convertView;

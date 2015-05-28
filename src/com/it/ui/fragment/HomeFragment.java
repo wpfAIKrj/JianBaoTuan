@@ -1,10 +1,6 @@
 package com.it.ui.fragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +15,7 @@ import com.it.bean.HomeEntity;
 import com.it.ui.activity.ActivitySearch;
 import com.it.ui.adapter.WellKnowPeopleAdapter;
 import com.it.ui.base.BaseFragment;
-import com.it.view.ImageViewPage;
+import com.it.view.SlideShowView;
 import com.it.view.home.ViewArticles;
 import com.it.view.home.ViewChoices;
 import com.it.view.home.ViewHomeWhoWellKnow;
@@ -29,7 +25,7 @@ import com.it.view.listview.HorizontalListView;
 public class HomeFragment extends BaseFragment implements OnClickListener,
 		OnItemClickListener {
 
-	private ImageViewPage head;
+	private SlideShowView head;
 
 	HomeEntity homeEntity;
 
@@ -66,17 +62,20 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
 		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
 
-		head = (ImageViewPage) view.findViewById(R.id.imageViewpage);
+		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
 		// for test
-		List<Drawable> list = new ArrayList<Drawable>();
-		list.add(getResources().getDrawable(R.drawable.test_1));
-		list.add(getResources().getDrawable(R.drawable.test_1));
-		list.add(getResources().getDrawable(R.drawable.test_1));
-		list.add(getResources().getDrawable(R.drawable.test_1));
-		list.add(getResources().getDrawable(R.drawable.test_1));
-		head.prepareData(list);
+		/*
+		 * List<Drawable> list = new ArrayList<Drawable>();
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * list.add(getResources().getDrawable(R.drawable.test_1));
+		 * head.prepareData(list);
+		 */
 
 		btn_search = view.findViewById(R.id.btn_search);
 		btn_search.setOnClickListener(new OnClickListener() {
@@ -93,6 +92,8 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 		if (homeEntity == null) {
 			// 说明没有下载数据，就要去联网加载
 		} else {
+			head.prepareData(homeEntity.getAdvertising());
+
 			choices_0.setItem(homeEntity.getChoices().get(0));
 			choices_1.setItem(homeEntity.getChoices().get(1));
 			if (homeEntity.getChoices().size() > 2) {

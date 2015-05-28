@@ -1,6 +1,5 @@
 package com.it.utils;
 
-
 import com.it.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.DbUtils;
@@ -16,78 +15,114 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-
 /**
  * 图片加载工具类
+ * 
  * @author xy418
  *
  */
 public class BitmapsUtils {
-	private static BitmapsUtils mInstance=null;
-	private BitmapUtils utils=null;
-	private BitmapDisplayConfig config;//显示使用的
-	private BitmapsUtils(Context context){
-		utils=new BitmapUtils(context);
+	public static final int TYPE_YES = 1;
+	public static final int TYPE_NO = 0;
+
+	private static BitmapsUtils mInstance = null;
+	private BitmapUtils utils = null;
+	private BitmapDisplayConfig config;// 显示使用的
+
+	private BitmapsUtils(Context context) {
+		utils = new BitmapUtils(context);
 		utils.configDefaultConnectTimeout(10000);
-		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(context, R.anim.bitmap_show));
+		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(
+				context, R.anim.bitmap_show));
 		utils.configDefaultLoadFailedImage(R.drawable.test3);
 		utils.configDefaultLoadingImage(R.drawable.test3);
 		utils.configDefaultReadTimeout(10000);
 		utils.configDiskCacheEnabled(true);
 		utils.configMemoryCacheEnabled(true);
-		config=new BitmapDisplayConfig();
-		config.setLoadingDrawable(context.getResources().getDrawable(R.drawable.test3));
-		config.setLoadFailedDrawable(context.getResources().getDrawable(R.drawable.test3));
-		config.setAnimation(AnimationUtils.loadAnimation(context, R.anim.bitmap_show));
-	
+		config = new BitmapDisplayConfig();
+		config.setLoadingDrawable(context.getResources().getDrawable(
+				R.drawable.test3));
+		config.setLoadFailedDrawable(context.getResources().getDrawable(
+				R.drawable.test3));
+		config.setAnimation(AnimationUtils.loadAnimation(context,
+				R.anim.bitmap_show));
 
-		
 	}
-	
-	
-	public static BitmapsUtils getInstance(){
+
+	public static BitmapsUtils getInstance() {
 		return mInstance;
 	}
-	
-	public static void init(Context context){
-		mInstance=new BitmapsUtils(context);
+
+	public static void init(Context context) {
+		mInstance = new BitmapsUtils(context);
 	}
-	
+
 	/**
 	 * 图片加载
-	 * @param container imageview
-	 * @param uri 地址
+	 * 
+	 * @param container
+	 *            imageview
+	 * @param uri
+	 *            地址
 	 */
-	public void display(ImageView container,String uri){
+	public void display(ImageView container, String uri) {
 		utils.display(container, uri);
 	}
-	
+
 	/**
 	 * 图片加载
-	 * @param container imageview
-	 * @param uri 地址
-	 * @param width 显示的宽
-	 * @param height 显示的高
+	 * 
+	 * @param container
+	 *            imageview
+	 * @param uri
+	 *            地址
+	 * @param type
+	 *            是否按指定大小加载
 	 */
-	public void display(ImageView container,String uri,int width,int height){
-		config.setBitmapMaxSize(new BitmapSize(width, height));
-		utils.display(container,uri,config);
+	public void display(ImageView container, String uri, int type) {
+		if (type == TYPE_NO) {
+			display(container, uri);
+		} else {
+			BitmapDisplayConfig config = this.config.cloneNew();
+			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
+					container.getHeight());
+			config.setBitmapMaxSize(bitmapMaxSize);
+			utils.display(container, uri, config);
+		}
 	}
-	
+
 	/**
 	 * 图片加载
-	 * @param container 非imageview控件
-	 * @param uri 地址
-	 * @param width 显示的宽
-	 * @param height 显示的高
+	 * 
+	 * @param container
+	 *            imageview
+	 * @param uri
+	 *            地址
+	 * @param width
+	 *            显示的宽
+	 * @param height
+	 *            显示的高
 	 */
-	public void display(View container,String uri,int width,int height){
+	public void display(ImageView container, String uri, int width, int height) {
 		config.setBitmapMaxSize(new BitmapSize(width, height));
-		utils.display(container,uri,config);
+		utils.display(container, uri, config);
 	}
-	
-	
-	
-	
-	
+
+	/**
+	 * 图片加载
+	 * 
+	 * @param container
+	 *            非imageview控件
+	 * @param uri
+	 *            地址
+	 * @param width
+	 *            显示的宽
+	 * @param height
+	 *            显示的高
+	 */
+	public void display(View container, String uri, int width, int height) {
+		config.setBitmapMaxSize(new BitmapSize(width, height));
+		utils.display(container, uri, config);
+	}
+
 }

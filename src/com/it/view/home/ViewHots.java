@@ -3,6 +3,8 @@ package com.it.view.home;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.CollectionEntity;
+import com.it.bean.TreasureEntity;
 import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.utils.BitmapsUtils;
 import com.it.view.MyButton;
@@ -97,6 +100,38 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	}
 
+	public void setTeasure(TreasureEntity item) {
+		if (item == null) {
+			LogUtils.e("Hots  TreasureEntity is null");
+			return;
+		}
+
+		if (bitmapUtils == null) {
+			bitmapUtils = BitmapsUtils.getInstance();
+		}
+		// 设置大图片
+		if (item.treasure_special_view_data != null
+				&& item.treasure_special_view_data.length > 0) {
+
+			bitmapUtils.display(iv_big, item.treasure_special_view_data[0]);
+		}
+		setSmallImage(item.treasure_special_view_data);
+		// 设置头像
+		// 设置等级
+		// 设置名字
+		try {
+			bitmapUtils.display(iv_small, item.author_info.getString("avatar"));
+			setGradeImage(item.author_info.getInt("user_level"));
+			setName(item.author_info.getString("nickname"));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// 设置浏览量
+		setNum(item.view_times + "");
+
+	}
+
 	public void setItem(CollectionEntity item) {
 		if (item == null) {
 			LogUtils.e("Hots  CollectionEntity is null");
@@ -109,11 +144,11 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 		// 设置大图片
 		if (item.images != null && item.images.length > 0) {
 
-			bitmapUtils.display(iv_big, item.images[0]);
+			bitmapUtils.display(iv_big, item.images[0],BitmapsUtils.TYPE_YES);
 		}
 		setSmallImage(item.images);
 		// 设置头像
-		bitmapUtils.display(iv_small, item.authImage);
+		bitmapUtils.display(iv_small, item.authImage,BitmapsUtils.TYPE_YES);
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字

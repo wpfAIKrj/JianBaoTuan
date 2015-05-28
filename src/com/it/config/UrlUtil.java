@@ -17,5 +17,13 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/home/indexAction");
 		return url.toString();
 	}
+	/**
+	 * 鉴定大厅
+	 * */
+	public static String getIdentifyPageURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/home/hallAction");
+		return url.toString();
+	}
 
 }

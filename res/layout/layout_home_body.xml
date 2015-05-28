@@ -4,7 +4,7 @@
     style="@style/w_h_full"
     android:orientation="vertical" >
 
-    <com.it.view.ImageViewPage
+    <com.it.view.SlideShowView
         android:id="@+id/imageViewpage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y300" />

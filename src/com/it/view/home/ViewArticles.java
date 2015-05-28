@@ -81,7 +81,7 @@ public class ViewArticles extends LinearLayout {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.display(iv, item.image);
+		bitmapUtils.display(iv, item.image,BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.name);
 		tv_num.setText(item.viewTimes+"");
 

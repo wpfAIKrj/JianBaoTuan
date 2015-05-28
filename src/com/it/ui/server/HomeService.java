@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.it.app.ItApplication;
 import com.it.bean.CollectionEntity;
 import com.it.bean.HomeEntity;
+import com.it.bean.TreasureEntity;
 import com.it.config.UrlUtil;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -128,6 +129,44 @@ public class HomeService extends Service {
 					@Override
 					public void onFailure(HttpException error, String msg) {
 						LogUtils.e("ytmfdw" + "http onFailure" + msg);
+						// TODO Auto-generated method stub
+
+					}
+				});
+		// 鉴定大厅数据下载,默认为参数1
+		http.send(HttpMethod.GET, UrlUtil.getIdentifyPageURL(),
+				new RequestCallBack<String>() {
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						// TODO Auto-generated method stub
+						LogUtils.i("ytmfdw" + "http onSuccess"
+								+ responseInfo.result);
+						try {
+							JSONObject json = new JSONObject(
+									responseInfo.result);
+							if (json != null) {
+								Gson gson = new Gson();
+								String json_data = json.getString("data");
+								LogUtils.i("ytmdfdw"+"get identify data:"+json_data);
+								List<CollectionEntity> list = gson.fromJson(
+										json_data,
+										new TypeToken<List<CollectionEntity>>() {
+										}.getType());
+								((ItApplication) getApplication())
+										.setHasIdentify(list);
+
+							}
+
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
 						// TODO Auto-generated method stub
 
 					}

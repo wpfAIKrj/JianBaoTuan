@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.it.R;
+import com.it.app.ItApplication;
 import com.it.bean.CollectionEntity;
+import com.it.bean.TreasureEntity;
 import com.it.ui.adapter.IdentiyAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.PullRefreshRecyclerView;
@@ -69,16 +71,21 @@ public class IdentiyFragment extends BaseFragment implements
 		ViewUtils.inject(this, view);
 		mAdapter = new IdentiyAdapter();
 		// test data
-		List<CollectionEntity> list = new ArrayList<CollectionEntity>();
-		list.add(new CollectionEntity("向阳花木", 1, "http:\\", "我的宝贝", "http:\\",
-				1000, 8));
-		list.add(new CollectionEntity("向阳花", 2, "http:\\", "我宝贝", "http:\\",
-				800, 12));
-		list.add(new CollectionEntity("向阳", 3, "http:\\", "宝贝", "http:\\", 456,
-				3));
-		list.add(new CollectionEntity("向", 4, "http:\\", "我的", "http:\\", 567,
-				45));
-		mAdapter.setData(list);
+		/*
+		 * List<CollectionEntity> list = new ArrayList<CollectionEntity>();
+		 * list.add(new CollectionEntity(1,"向阳花木", 1, "http:\\", "我的宝贝",
+		 * "http:\\", 1000, 8)); list.add(new CollectionEntity(2,"向阳花", 2,
+		 * "http:\\", "我宝贝", "http:\\", 800, 12)); list.add(new
+		 * CollectionEntity(3,"向阳", 3, "http:\\", "宝贝", "http:\\", 456, 3));
+		 * list.add(new CollectionEntity(4,"向", 4, "http:\\", "我的", "http:\\",
+		 * 567, 45));
+		 */
+		List<CollectionEntity> list = ((ItApplication) getActivity()
+				.getApplication()).getHasIdentify();
+		if (list != null && list.size() != 0) {
+
+			mAdapter.setData(list);
+		}
 
 		prrv.setRefreshLoadMoreListener(this);
 		prrv.setVertical();

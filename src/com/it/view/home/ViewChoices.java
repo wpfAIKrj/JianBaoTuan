@@ -92,13 +92,13 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 		// 设置大图片
 		if (TextUtils.equals(item.image, "")) {
 
-			bitmapUtils.display(iv_big, item.images[0]);
+			bitmapUtils.display(iv_big, item.images[0],BitmapsUtils.TYPE_YES);
 		} else {
 
-			bitmapUtils.display(iv_big, item.image);
+			bitmapUtils.display(iv_big, item.image,BitmapsUtils.TYPE_YES);
 		}
 		// 设置头像
-		bitmapUtils.display(iv_small, item.authImage);
+		bitmapUtils.display(iv_small, item.authImage,BitmapsUtils.TYPE_YES);
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字

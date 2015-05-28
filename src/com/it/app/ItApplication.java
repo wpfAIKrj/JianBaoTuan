@@ -1,8 +1,12 @@
 package com.it.app;
 
+import java.util.List;
+
 import io.rong.imkit.RongIM;
 
+import com.it.bean.CollectionEntity;
 import com.it.bean.HomeEntity;
+import com.it.bean.TreasureEntity;
 import com.it.bean.UserInfo;
 import com.it.im.RongCloudEvent;
 import com.it.im.RongImUtils;
@@ -18,6 +22,8 @@ public class ItApplication extends Application {
 
 	private HomeEntity homeEntity;
 
+	private List<CollectionEntity> hasIdentify;
+
 	public UserInfo getCurrnUser() {
 		return currnUser;
 	}
@@ -32,6 +38,14 @@ public class ItApplication extends Application {
 
 	public void setHomeEntity(HomeEntity homeEntity) {
 		this.homeEntity = homeEntity;
+	}
+
+	public List<CollectionEntity> getHasIdentify() {
+		return hasIdentify;
+	}
+
+	public void setHasIdentify(List<CollectionEntity> hasIdentify) {
+		this.hasIdentify = hasIdentify;
 	}
 
 	@Override
