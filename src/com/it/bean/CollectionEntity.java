@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author ytmfdw 主页实体类
+ * @author ytmfdw 主页实体类,每个小类　
  *
  */
 public class CollectionEntity implements Serializable {

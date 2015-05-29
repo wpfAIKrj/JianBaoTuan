@@ -18,7 +18,7 @@
             android:background="@color/wite"
             android:orientation="vertical" >
 
-            <include layout="@layout/item_user_delails_1" />
+            <include layout="@layout/item_delails_user" />
 
             <com.it.view.ImageViewWithBorder
                 android:id="@+id/iv_0"

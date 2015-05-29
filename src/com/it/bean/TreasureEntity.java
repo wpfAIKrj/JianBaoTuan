@@ -1,12 +1,16 @@
 package com.it.bean;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import org.json.JSONObject;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TreasureEntity {
+/**
+ * @author ytmfdw 宝贝实体类
+ * */
+public class TreasureEntity implements Serializable {
 
 	@SerializedName("id")
 	public long id;
@@ -40,7 +44,8 @@ public class TreasureEntity {
 	public long view_times;
 	@SerializedName("author_info")
 	public JSONObject author_info;
-//	public UserInfo user_info;
+
+	// public UserInfo user_info;
 
 	public TreasureEntity() {
 		super();

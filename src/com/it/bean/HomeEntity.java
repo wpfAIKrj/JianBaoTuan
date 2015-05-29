@@ -1,9 +1,15 @@
 package com.it.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeEntity {
+
+/**
+ * @author ytmfdw,主页实体类，解析服务器返回的数据，包装成一个类
+ *
+ */
+public class HomeEntity implements Serializable{
 
 	private List<CollectionEntity> advertising;
 	private List<CollectionEntity> choices;

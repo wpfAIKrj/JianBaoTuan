@@ -32,6 +32,8 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	TextView tv_name;
 	@ViewInject(R.id.tv_grade_name)
 	TextView tv_grade_name;
+	@ViewInject(R.id.iv_grade)
+	ImageView iv_grade;
 
 	@ViewInject(R.id.btn_identifing)
 	ViewGroup btn_identifing;
@@ -43,7 +45,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	View btn_msg;
 	@ViewInject(R.id.prrv)
 	PullRefreshRecyclerView prrv;
-	
+
 	IdentiyAdapter mAdapter = null;
 
 	@OnClick(R.id.btn_msg)
@@ -101,6 +103,13 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		if (!TextUtils.equals(entity.company, "")) {
 
 			tv_grade_name.setText(entity.company);
+		}
+		if (entity.authLevel < 6) {
+
+			iv_grade.setImageResource(R.drawable.level01
+					+ (entity.authLevel - 1));
+		} else {
+			iv_grade.setImageResource(R.drawable.level06);
 		}
 	}
 

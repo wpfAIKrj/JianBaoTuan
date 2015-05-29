@@ -2,6 +2,7 @@ package com.it.ui.fragment;
 
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.it.app.ItApplication;
 import com.it.bean.CollectionEntity;
 import com.it.model.CommonCallBack;
 import com.it.model.IdentifyModel;
+import com.it.ui.activity.ActivityKindOfPrecious;
 import com.it.ui.adapter.IdentiyAdapter;
 import com.it.ui.base.BaseFragment;
 import com.it.view.PullRefreshRecyclerView;
@@ -49,11 +51,17 @@ public class IdentiyFragment extends BaseFragment implements
 
 	ItApplication app;
 
-	@OnClick({ R.id.btn_identifing, R.id.btn_identifed })
+	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
 		// TODO Auto-generated method stub
 		setIdentifyBackground(v.getId());
 		switch (v.getId()) {
+		case R.id.button_category: {
+			Intent mIntent = new Intent(getActivity(),
+					ActivityKindOfPrecious.class);
+			startActivity(mIntent);
+		}
+			break;
 		case R.id.btn_identifing: {
 			type = 1;
 			prrv.stopRefresh();

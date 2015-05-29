@@ -95,4 +95,5 @@
       <string name="str_none_msg">没有找到宝贝</string>
       
       <string name="collect_info_title">收藏文章</string>
+      <string name="str_result">查看结果</string>
 </resources>

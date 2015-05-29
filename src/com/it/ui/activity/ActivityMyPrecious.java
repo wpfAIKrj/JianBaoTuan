@@ -1,32 +1,56 @@
 package com.it.ui.activity;
 
-import com.it.R;
-import com.it.config.Const;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.it.R;
+import com.it.config.Const;
+import com.it.ui.adapter.MyTreasureAdapter;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+
 public class ActivityMyPrecious extends Activity {
 
+	@ViewInject(R.id.tv_title)
 	TextView title;
 
-	View view_all, view_identifing, view_identified;
-	ViewGroup btn_all, btn_ing, btn_ed;
-	ViewGroup vg;
+	// View view_all, view_identifing, view_identified;
+	@ViewInject(R.id.btn_all)
+	ViewGroup btn_all;
+	@ViewInject(R.id.btn_identifing)
+	ViewGroup btn_ing;
+	@ViewInject(R.id.btn_identified)
+	ViewGroup btn_ed;
 
 	View iv_01, iv_02, iv_03, iv_04;
+	@ViewInject(R.id.btn_delete)
+	View btn_delete;
+	@ViewInject(R.id.btn_back)
+	View btn_back;
+	@ViewInject(R.id.swipe_refresh_widget)
+	SwipeRefreshLayout swipe_refresh_widget;
+	@ViewInject(R.id.recyclerview)
+	RecyclerView recyclerview;
 
-	View btn_delete, btn_back;
+	@OnClick(R.id.btn_back)
+	public void back_click(View view) {
+		onBackPressed();
+	}
+
 	int type = Const.PRECIOUS;
+
+	MyTreasureAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +58,9 @@ public class ActivityMyPrecious extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_my_precious);
-		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
-		title = (TextView) findViewById(R.id.tv_title);
-		btn_delete = findViewById(R.id.btn_delete);
-		btn_back = findViewById(R.id.btn_back);
-		btn_back.setOnClickListener(new OnClickListener() {
+		ViewUtils.inject(this);
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				onBackPressed();
-			}
-		});
+		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 		if (type == Const.PRECIOUS) {
 
 			title.setText("我的宝物");
@@ -57,35 +72,22 @@ public class ActivityMyPrecious extends Activity {
 
 			title.setText("我的鉴定");
 		}
-		view_all = LayoutInflater.from(this).inflate(
-				R.layout.layout_my_precious, null);
-		view_identifing = LayoutInflater.from(this).inflate(
-				R.layout.layout_my_precious, null);
-		view_identified = LayoutInflater.from(this).inflate(
-				R.layout.layout_my_precious, null);
-		vg = (ViewGroup) findViewById(R.id.layout_add);
-		btn_all = (ViewGroup) findViewById(R.id.btn_all);
-		btn_ing = (ViewGroup) findViewById(R.id.btn_identifing);
-		btn_ed = (ViewGroup) findViewById(R.id.btn_identified);
 		btn_all.setOnClickListener(listener);
 		btn_ing.setOnClickListener(listener);
 		btn_ed.setOnClickListener(listener);
 
-		vg.addView(view_all);
-		findViews(view_all);
+		initViews();
 
 	}
 
-	private void findViews(View view) {
+	private void initViews() {
 		// TODO Auto-generated method stub
-		iv_01 = view.findViewById(R.id.iv_01);
-		iv_02 = view.findViewById(R.id.iv_02);
-		iv_03 = view.findViewById(R.id.iv_03);
-		iv_04 = view.findViewById(R.id.iv_04);
-		iv_01.setOnClickListener(ivListener);
-		iv_02.setOnClickListener(ivListener);
-		iv_03.setOnClickListener(ivListener);
-		iv_04.setOnClickListener(ivListener);
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		recyclerview.setLayoutManager(layoutManager);
+		recyclerview.setHasFixedSize(true);
+		mAdapter = new MyTreasureAdapter();
+		recyclerview.setAdapter(mAdapter);
 	}
 
 	OnClickListener ivListener = new OnClickListener() {
@@ -103,34 +105,10 @@ public class ActivityMyPrecious extends Activity {
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all:
-				vg.getChildAt(0).startAnimation(
-						AnimationUtils.loadAnimation(ActivityMyPrecious.this,
-								R.anim.left_out));
-				vg.removeAllViews();
-				view_all.startAnimation(AnimationUtils.loadAnimation(
-						ActivityMyPrecious.this, R.anim.right_in));
-				vg.addView(view_all);
-				findViews(view_all);
 				break;
 			case R.id.btn_identifing:
-				vg.getChildAt(0).startAnimation(
-						AnimationUtils.loadAnimation(ActivityMyPrecious.this,
-								R.anim.left_out));
-				vg.removeAllViews();
-				view_identifing.startAnimation(AnimationUtils.loadAnimation(
-						ActivityMyPrecious.this, R.anim.right_in));
-				vg.addView(view_identifing);
-				findViews(view_identifing);
 				break;
 			case R.id.btn_identified:
-				vg.getChildAt(0).startAnimation(
-						AnimationUtils.loadAnimation(ActivityMyPrecious.this,
-								R.anim.left_out));
-				vg.removeAllViews();
-				view_identified.startAnimation(AnimationUtils.loadAnimation(
-						ActivityMyPrecious.this, R.anim.right_in));
-				vg.addView(view_identified);
-				findViews(view_identified);
 				break;
 
 			default:
