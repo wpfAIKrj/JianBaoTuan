@@ -1,5 +1,7 @@
 package com.it.ui.server;
 
+import java.util.ArrayList;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -8,6 +10,8 @@ import com.it.app.ItApplication;
 import com.it.model.CommonCallBack;
 import com.it.model.HomeModel;
 import com.it.model.IdentifyModel;
+import com.it.model.getAllKindsModel;
+import com.it.presenter.OnListDataLoadListener;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.util.LogUtils;
 
@@ -82,6 +86,23 @@ public class HomeService extends Service {
 
 			}
 		}, "2", 0);
+		
+		final getAllKindsModel allkinds=new getAllKindsModel(new OnListDataLoadListener<String>() {
+			
+			@Override
+			public void onListDataLoaded(ArrayList<String> data) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onListDataLoadErrorHappened(String errorCode, String errorMsg) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		allkinds.sendHttp();
+		
 		return super.onStartCommand(intent, flags, startId);
 	}
 }
