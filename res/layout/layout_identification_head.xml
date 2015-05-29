@@ -17,11 +17,14 @@
     <ImageView
         android:id="@+id/button_category"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:background="@drawable/menu_category"
-        android:clickable="true" />
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="@dimen/button_padd"
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding"
+        android:paddingTop="@dimen/button_padd"
+        android:src="@drawable/menu_category" />
 
 </RelativeLayout>

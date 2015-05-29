@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.CollectionEntity;
+import com.it.config.Const;
+import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.ui.activity.ActivityUserDelails;
 import com.it.utils.BitmapsUtils;
 import com.lidroid.xutils.util.LogUtils;
@@ -76,6 +78,8 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 		tv_name = (TextView) findViewById(R.id.textview_name);
 		tv_num = (TextView) findViewById(R.id.textview_num);
+		iv_big.setClickable(true);
+		iv_big.setOnClickListener(this);
 		iv_small.setClickable(true);
 		iv_small.setOnClickListener(this);
 
@@ -89,16 +93,18 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
+		iv_big.setTag(item);
+		iv_small.setTag(item);
 		// 设置大图片
 		if (TextUtils.equals(item.image, "")) {
 
-			bitmapUtils.display(iv_big, item.images[0],BitmapsUtils.TYPE_YES);
+			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		} else {
 
-			bitmapUtils.display(iv_big, item.image,BitmapsUtils.TYPE_YES);
+			bitmapUtils.display(iv_big, item.image, BitmapsUtils.TYPE_YES);
 		}
 		// 设置头像
-		bitmapUtils.display(iv_small, item.authImage,BitmapsUtils.TYPE_YES);
+		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字
@@ -153,8 +159,27 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-		getContext().startActivity(mIntent);
+		CollectionEntity entity = (CollectionEntity) v.getTag();
+		if (entity == null)
+			return;
+		switch (v.getId()) {
+		case R.id.imageview_big_icon: {
+			// 跳转到宝贝详情页
+			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			getContext().startActivity(mIntent);
+
+		}
+			break;
+
+		case R.id.imageview_small_icon: {
+			// 跳转到用户详情页
+			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			getContext().startActivity(mIntent);
+		}
+			break;
+		}
 	}
 
 }

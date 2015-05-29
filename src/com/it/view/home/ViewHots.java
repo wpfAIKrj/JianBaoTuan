@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.bean.CollectionEntity;
 import com.it.bean.TreasureEntity;
+import com.it.config.Const;
 import com.it.ui.activity.ActivityHotIdentiy;
 import com.it.utils.BitmapsUtils;
 import com.it.view.MyButton;
@@ -87,12 +88,8 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 		ViewUtils.inject(this);
 
-		// iv_big = (ImageView) findViewById(R.id.imageview_big_icon);
-		// iv_small = (ImageView) findViewById(R.id.imageview_small_icon);
-		// iv_grade = (ImageView) findViewById(R.id.imageview_grade);
-		//
-		// tv_name = (TextView) findViewById(R.id.textview_name);
-		// tv_num = (TextView) findViewById(R.id.textview_num);
+		iv_big.setClickable(true);
+		iv_big.setOnClickListener(this);
 
 		iv_small.setClickable(true);
 
@@ -138,17 +135,20 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 			return;
 		}
 
+		iv_big.setTag(item);
+		iv_small.setTag(item);
+
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
 		if (item.images != null && item.images.length > 0) {
 
-			bitmapUtils.display(iv_big, item.images[0],BitmapsUtils.TYPE_YES);
+			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		}
 		setSmallImage(item.images);
 		// 设置头像
-		bitmapUtils.display(iv_small, item.authImage,BitmapsUtils.TYPE_YES);
+		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字
@@ -215,8 +215,23 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
-		// mIntent.putExtra("", "");
-		getContext().startActivity((mIntent));
+		CollectionEntity entity = (CollectionEntity) v.getTag();
+		if (entity == null)
+			return;
+		switch (v.getId()) {
+		case R.id.imageview_big_icon: {
+
+		}
+
+			break;
+
+		case R.id.imageview_small_icon: {
+
+			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			getContext().startActivity((mIntent));
+		}
+			break;
+		}
 	}
 }

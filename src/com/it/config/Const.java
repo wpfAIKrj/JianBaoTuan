@@ -69,4 +69,9 @@ public class Const {
 	 * 查看收藏文章
 	 */
 	public static int TO_COLLECT_INFO=6;
+	
+	/**
+	 * 跳转时传参字符串
+	 * */
+	public final static String ENTITY="entity";
 }

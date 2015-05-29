@@ -1,29 +1,56 @@
 package com.it.ui.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.it.R;
+import com.it.bean.CollectionEntity;
+import com.it.config.Const;
+import com.it.ui.adapter.IdentiyAdapter;
+import com.it.utils.BitmapsUtils;
+import com.it.view.PullRefreshRecyclerView;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
+	BitmapsUtils bitmapUtils;
+	@ViewInject(R.id.btn_back)
 	private View btn_back;
+	@ViewInject(R.id.iv_icon)
+	ImageView iv_icon;
+	@ViewInject(R.id.tv_name)
+	TextView tv_name;
+	@ViewInject(R.id.tv_grade_name)
+	TextView tv_grade_name;
 
-	ViewGroup btn_identifing, btn_identified;
-	ViewGroup fl_identify;
+	@ViewInject(R.id.btn_identifing)
+	ViewGroup btn_identifing;
+	@ViewInject(R.id.btn_identified)
+	ViewGroup btn_identified;
 
-	View view_identifing, view_identified;
+	CollectionEntity entity;
+	@ViewInject(R.id.btn_msg)
 	View btn_msg;
+	@ViewInject(R.id.prrv)
+	PullRefreshRecyclerView prrv;
+	
+	IdentiyAdapter mAdapter = null;
 
-	private int currentView = 0;
+	@OnClick(R.id.btn_msg)
+	public void doClick(View view) {
+		// startActivity(new Intent(ActivityHotIdentiy.this,
+		// IMListActivity.class));
+	}
 
 	OnClickListener identifyListener = new OnClickListener() {
 
@@ -35,51 +62,11 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 			switch (v.getId()) {
 			case R.id.btn_identifing: {
 				// 设置View
-				if (currentView == 0)
-					return;
-				currentView = 0;
-				if (view_identifing == null) {
-					view_identifing = LayoutInflater.from(
-							ActivityHotIdentiy.this).inflate(
-							R.layout.item_identified_test, null);
-				}
-				if (view_identified == null) {
-					view_identified = LayoutInflater.from(
-							ActivityHotIdentiy.this).inflate(
-							R.layout.item_identified_test, null);
-				}
-				view_identified.startAnimation(AnimationUtils.loadAnimation(
-						ActivityHotIdentiy.this, R.anim.left_out));
-				fl_identify.removeView(view_identified);
-				view_identifing.startAnimation(AnimationUtils.loadAnimation(
-						ActivityHotIdentiy.this, R.anim.right_in));
-				fl_identify.addView(view_identifing);
 			}
 
 				break;
 
 			case R.id.btn_identified: {
-				if (currentView == 1) {
-					return;
-				}
-				currentView = 1;
-				if (view_identifing == null) {
-					view_identifing = LayoutInflater.from(
-							ActivityHotIdentiy.this).inflate(
-							R.layout.item_identified_test, null);
-				}
-				if (view_identified == null) {
-					view_identified = LayoutInflater.from(
-							ActivityHotIdentiy.this).inflate(
-							R.layout.item_identified_test, null);
-				}
-				view_identifing.startAnimation(AnimationUtils.loadAnimation(
-						ActivityHotIdentiy.this, R.anim.left_out));
-				fl_identify.removeView(view_identifing);
-
-				view_identified.startAnimation(AnimationUtils.loadAnimation(
-						ActivityHotIdentiy.this, R.anim.right_in));
-				fl_identify.addView(view_identified);
 			}
 
 				break;
@@ -94,36 +81,27 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_first_page_user);
-		btn_back = findViewById(R.id.btn_back);
+		ViewUtils.inject(this);
+		bitmapUtils = BitmapsUtils.getInstance();
+		entity = (CollectionEntity) getIntent().getSerializableExtra(
+				Const.ENTITY);
 		btn_back.setOnClickListener(this);
-		fl_identify = (ViewGroup) findViewById(R.id.fl_identify);
-		btn_identifing = (ViewGroup) findViewById(R.id.btn_identifing);
-		btn_identified = (ViewGroup) findViewById(R.id.btn_identified);
-
 		btn_identifing.setOnClickListener(identifyListener);
 		btn_identified.setOnClickListener(identifyListener);
+		initViews();
+	}
 
-		if (view_identifing == null) {
-			view_identifing = LayoutInflater.from(this).inflate(
-					R.layout.item_identified_test, null);
+	private void initViews() {
+		// TODO Auto-generated method stub
+		if (entity == null) {
+			return;
 		}
-		if (view_identified == null) {
-			view_identified = LayoutInflater.from(this).inflate(
-					R.layout.item_identified_test, null);
+		bitmapUtils.display(iv_icon, entity.authImage);
+		tv_name.setText(entity.authName);
+		if (!TextUtils.equals(entity.company, "")) {
+
+			tv_grade_name.setText(entity.company);
 		}
-
-		fl_identify.addView(view_identifing);
-		btn_msg = findViewById(R.id.btn_msg);
-		btn_msg.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				startActivity(new Intent(ActivityHotIdentiy.this,
-						IMListActivity.class));
-			}
-		});
-
 	}
 
 	@Override

@@ -65,18 +65,6 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
-		// for test
-		/*
-		 * List<Drawable> list = new ArrayList<Drawable>();
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * list.add(getResources().getDrawable(R.drawable.test_1));
-		 * head.prepareData(list);
-		 */
-
 		btn_search = view.findViewById(R.id.btn_search);
 		btn_search.setOnClickListener(new OnClickListener() {
 
@@ -115,6 +103,9 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 					homeEntity.getAuthors());
 
 			hsv.setAdapter(adapter);
+			if(adapter.getCount()>0){//设置第一个选中
+				wellKnow.setItem(adapter.getItem(0));
+			}
 		}
 
 	}
@@ -134,20 +125,6 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		// case R.id.iv_home_item0:
-		// case R.id.iv_home_item1:
-		// case R.id.iv_home_item2:
-		// case R.id.iv_home_item3:
-		//
-		// startActivity(new Intent(getActivity(), ActivityUserDelails.class));
-		// break;
-
-		// case R.id.iv_home_item1_0:
-		// case R.id.iv_home_item1_1:
-		// case R.id.iv_home_item1_2:
-		// case R.id.iv_home_item1_3:
-		// startActivity(new Intent(getActivity(), ActivityHotIdentiy.class));
-		// break;
 		}
 
 	}

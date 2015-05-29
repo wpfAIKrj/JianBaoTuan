@@ -69,62 +69,35 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <FrameLayout
-            android:id="@+id/fl_identify"
+        <com.it.view.PullRefreshRecyclerView
+            android:id="@+id/prrv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </FrameLayout>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y20"
+            android:paddingLeft="@dimen/x14"
+            android:paddingRight="@dimen/x14" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:background="#EEEEEE"
-        android:orientation="vertical"
-        android:visibility="gone" >
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_none"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/str_none_msg"
+            android:textColor="@color/black_2"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
-            <include
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                layout="@layout/item_identified" />
-
-            <include
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                layout="@layout/item_identified" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"
-            android:orientation="horizontal" >
-
-            <include
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                layout="@layout/item_identified" />
-
-            <include
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                layout="@layout/item_identified" />
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/loading"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>

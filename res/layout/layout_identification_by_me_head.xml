@@ -14,13 +14,14 @@
         android:layout_centerVertical="true"
         android:text="@string/identiy_by_me" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:background="@drawable/back_botton" />
+        android:paddingLeft="@dimen/layout_padding"
+        android:paddingRight="@dimen/layout_padding"
+        android:src="@drawable/back_botton" />
 
 </RelativeLayout>

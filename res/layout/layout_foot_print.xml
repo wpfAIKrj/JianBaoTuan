@@ -7,20 +7,35 @@
 
     <include layout="@layout/layout_foot_print_head" />
 
-    <ScrollView
+   <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:id="@+id/fl_identify"
+        <com.it.view.PullRefreshRecyclerView
+            android:id="@+id/prrv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_marginTop="@dimen/y20"
+            android:paddingLeft="@dimen/x14"
+            android:paddingRight="@dimen/x14" />
 
-            <include layout="@layout/item_identified_test" />
+        <TextView
+            android:id="@+id/tv_none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/str_none_msg"
+            android:textColor="@color/black_2"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
-            <include layout="@layout/item_identified_test" />
-        </LinearLayout>
-    </ScrollView>
+        <ImageView
+            android:id="@+id/iv_loading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/loading"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>
