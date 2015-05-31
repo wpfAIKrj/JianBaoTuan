@@ -4,13 +4,13 @@ import com.it.bean.ContentInfo;
 import com.it.inter.onBasicView;
 import com.it.model.getdetailInfoModel;
 
-public class getdetailPresenter implements OnBasicDataLoadListener<ContentInfo> {
+public class getdetailInfoPresenter implements OnBasicDataLoadListener<ContentInfo> {
 	
 	
 	private onBasicView<ContentInfo> mview;
 	
 	private getdetailInfoModel model;
-	public getdetailPresenter(onBasicView<ContentInfo> listener1) {
+	public getdetailInfoPresenter(onBasicView<ContentInfo> listener1) {
 		// TODO Auto-generated constructor stub
 		mview=listener1;
 	}

@@ -16,7 +16,7 @@ import com.it.config.Const;
 import com.it.inter.DialogForResult;
 import com.it.inter.onBasicView;
 import com.it.presenter.collectInfoPresenter;
-import com.it.presenter.getdetailPresenter;
+import com.it.presenter.getdetailInfoPresenter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.BitmapsUtils;
 import com.it.utils.DialogUtil;
@@ -60,7 +60,7 @@ public class InformationDetailsActivity extends BaseActivity {
 
 	protected Dialog loaddialog;
 
-	private getdetailPresenter getdetailPresenter;
+	private getdetailInfoPresenter getdetailPresenter;
 	
 	private boolean isFirest=true;
 	
@@ -76,7 +76,7 @@ public class InformationDetailsActivity extends BaseActivity {
 		user=((ItApplication)getApplication()).getCurrnUser();
 		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
 		collectPresenter=new collectInfoPresenter(listener);
-		getdetailPresenter=new getdetailPresenter(listener1);
+		getdetailPresenter=new getdetailInfoPresenter(listener1);
 		initData();
 	}
 	

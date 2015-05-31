@@ -16,7 +16,7 @@ import com.it.presenter.OnListDataLoadListener;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
- * 获取知识大厅列表
+ * 获取用户收藏文章列表
  * @author Administrator
  *
  */
@@ -36,6 +36,7 @@ public class getCollectArticleModel extends BaseModel{
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
+		sb.append("&length=").append(String.valueOf(group_id));
 		url=sb.toString();
 	}
 	

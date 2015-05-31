@@ -36,6 +36,7 @@ public class ArticleModel extends BaseModel{
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
+		sb.append("&type=").append(type).append("&group_id=").append(String.valueOf(group_id));
 		url=sb.toString();
 	}
 	
@@ -45,9 +46,6 @@ public class ArticleModel extends BaseModel{
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-		params=new RequestParams();
-		params.addBodyParameter("type", type);
-		params.addBodyParameter("group_id", String.valueOf(group_id));
 	}
 	
 	
