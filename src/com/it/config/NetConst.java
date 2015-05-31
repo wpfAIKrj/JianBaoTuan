@@ -75,7 +75,7 @@ public class NetConst {
 	
 	public static final String DELETEINFO="contents/deleteCollectionsAction";//删除我收藏文章列表中部分数据
 	
-	public static final Object GETALLKINDS = "Material/kindsAction";//获取所有分类数据
+	public static final Object GETALLKINDS = "Contents/groupsAction";//获取所有分类数据
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值

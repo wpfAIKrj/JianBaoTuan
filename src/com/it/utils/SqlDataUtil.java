@@ -1,7 +1,12 @@
 package com.it.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.it.bean.ContentInfo;
+import com.it.bean.ContentInfoDao;
+import com.it.bean.ContentType;
+import com.it.bean.ContentTypeDao;
 import com.it.bean.DaoMaster;
 import com.it.bean.DaoMaster.DevOpenHelper;
 import com.it.bean.DaoSession;
@@ -24,7 +29,11 @@ public class SqlDataUtil {
 	private static SqlDataUtil mInstance=null;
 	private  DaoMaster daoMaster=null;
 	private  DaoSession daoSession=null;
-	private  UserInfoDao userdao=null;
+	private  UserInfoDao userdao=null;//用户
+	private ContentInfoDao infoDao=null;//文章详细
+	private ContentTypeDao typeDao=null;//文章分类
+	
+	
 	
 	
 	private SqlDataUtil(Context context){
@@ -37,6 +46,12 @@ public class SqlDataUtil {
 					}
 					if(userdao==null){
 						userdao=daoSession.getUserInfoDao();
+					}
+					if(typeDao==null){
+						typeDao=daoSession.getContentTypeDao();
+					}
+					if(infoDao==null){
+						infoDao=daoSession.getContentInfoDao();
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -98,6 +113,20 @@ public class SqlDataUtil {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	/**
+	 * 保存文章分类信息
+	 * @param data
+	 */
+	public void saveContentType(ArrayList<ContentType> data) {
+		// TODO Auto-generated method stub
+		try {
+			typeDao.insertOrReplaceInTx(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

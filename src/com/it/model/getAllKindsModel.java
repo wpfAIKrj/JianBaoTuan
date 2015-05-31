@@ -1,5 +1,12 @@
 package com.it.model;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+
+import com.google.gson.Gson;
+import com.it.bean.ContentInfo;
+import com.it.bean.ContentType;
 import com.it.config.NetConst;
 import com.it.config.UrlUtil;
 import com.it.presenter.OnListDataLoadListener;
@@ -16,9 +23,9 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
  */
 public class getAllKindsModel extends BaseModel {
 
-	
-	private OnListDataLoadListener<String> lis;
-	public getAllKindsModel(OnListDataLoadListener<String> listener) {
+	private ArrayList<ContentType> datas;
+	private OnListDataLoadListener<ContentType> lis;
+	public getAllKindsModel(OnListDataLoadListener<ContentType> listener) {
 		// TODO Auto-generated constructor stub
 		lis=listener;
 		httpmodel = HttpMethod.GET;
@@ -33,7 +40,20 @@ public class getAllKindsModel extends BaseModel {
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		lis.onListDataLoaded(null);
+		datas=new ArrayList<ContentType>();
+		try {
+			JSONArray array=new JSONArray(data);
+			Gson gson=new Gson();
+			for (int i = 0; i < array.length(); i++) {
+				ContentType type=gson.fromJson(array.getJSONObject(i).toString(), ContentType.class);
+				datas.add(type);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		lis.onListDataLoaded(datas);
+		
 	}
 
 	@Override
