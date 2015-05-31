@@ -3,12 +3,14 @@ package com.it.view.viewholder;
 import com.it.R;
 import com.it.bean.ContentInfo;
 import com.it.utils.BitmapsUtils;
+import com.it.utils.SystemUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 /**
@@ -32,6 +34,8 @@ public class ArticleViewHolder extends ViewHolder {
 	public ArticleViewHolder(View itemView,OnClickListener lisnter) {
 		super(itemView);
 		// TODO Auto-generated constructor stub
+		MarginLayoutParams params=new MarginLayoutParams(SystemUtils.getDisplaysWidth(itemView.getContext()),120);
+		itemView.setLayoutParams(params);
 		ViewUtils.inject(this, itemView);
 		this.lis=lisnter;
 		itemView.setOnClickListener(new OnClickListener() {

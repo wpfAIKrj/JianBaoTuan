@@ -41,7 +41,11 @@ public class deleteInfoModel extends BaseModel{
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
+		
+		sb.append("&ids=").append(cids);
 		url=sb.toString();
+		setHTTPMODE(HttpMethod.GET);
+		
 	}
 	
 	
@@ -50,8 +54,8 @@ public class deleteInfoModel extends BaseModel{
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-		params=new RequestParams();
-		params.addBodyParameter("ids", String.valueOf(cid));
+//		params=new RequestParams();
+//		params.addBodyParameter("ids", cid);
 	}
 	
 	

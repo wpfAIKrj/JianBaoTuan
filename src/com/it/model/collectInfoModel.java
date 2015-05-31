@@ -41,6 +41,7 @@ public class collectInfoModel extends BaseModel{
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
+		sb.append("&cid=").append(String.valueOf(cid));
 		url=sb.toString();
 	}
 	
@@ -50,8 +51,7 @@ public class collectInfoModel extends BaseModel{
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-		params=new RequestParams();
-		params.addBodyParameter("cid", String.valueOf(cid));
+
 	}
 	
 	

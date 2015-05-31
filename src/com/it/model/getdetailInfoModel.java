@@ -35,8 +35,7 @@ public class getdetailInfoModel extends BaseModel {
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-		params=new RequestParams();
-		params.addBodyParameter(NetConst.INFO_ID, String.valueOf(id));
+
 	}
 
 	@Override
@@ -53,9 +52,11 @@ public class getdetailInfoModel extends BaseModel {
 		sb.append(NetConst.GETDETAILINFO);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
+		sb.append("&id=").append(String.valueOf(id));
 		url=sb.toString();
-		addRequestParams();
 		setHTTPMODE(HttpMethod.GET);
 		sendHttp();
 		

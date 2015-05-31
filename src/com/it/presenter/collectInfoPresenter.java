@@ -23,7 +23,6 @@ public class collectInfoPresenter implements OnStringDataLoadListener{
 	public void collectInfo(long cid){
 		model=new collectInfoModel();
 		model.getcollectInfo(cid, this);
-		model.addRequestParams();
 		model.setHTTPMODE(HttpMethod.GET);
 		model.sendHttp();
 	}

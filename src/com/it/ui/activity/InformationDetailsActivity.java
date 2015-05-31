@@ -160,6 +160,9 @@ public class InformationDetailsActivity extends BaseActivity {
 		}
 	};
 	
+	/**
+	 * 收藏文章
+	 */
 	private onBasicView<String> listener=new onBasicView<String>() {
 		
 		@Override
@@ -168,6 +171,8 @@ public class InformationDetailsActivity extends BaseActivity {
 			if(loaddialog!=null){
 				loaddialog.dismiss();
 			}
+			info.setIsCollected(1);
+			collect.setVisibility(View.GONE);
 			new ToastUtils(InformationDetailsActivity.this, "该文章收藏成功！");
 			
 		}

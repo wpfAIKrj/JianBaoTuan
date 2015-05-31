@@ -9,6 +9,7 @@ import org.json.JSONException;
 import android.R.integer;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.NetworkInfo.DetailedState;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
@@ -29,6 +30,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.daimajia.swipe.util.Attributes;
 import com.it.R;
+import com.it.R.string;
 import com.it.bean.ContentInfo;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
@@ -86,7 +88,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	protected int totalItemCount;
 	protected int nextShow=1;
 
-	private HashMap<Long, Integer> deleteInfos;
+	private HashMap<String, Integer> deleteInfos;
 	
 	private ListLoadType currt=ListLoadType.Nomal;
 
@@ -132,7 +134,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 				}
 			}
 		});
-		mRecyclerView.setOnScrollListener(Scrolllistener);
 
 		mRecyclerView.setHasFixedSize(true);
 		
@@ -152,7 +153,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 //		mlistview.setXListViewListener(this);
 //		mlistview.setOnItemClickListener(this);
 		
-		deleteInfos=new HashMap<Long, Integer>();
+		deleteInfos=new HashMap<String, Integer>();
 	}
 
 
@@ -236,36 +237,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			}
 		}
 	}
-	OnScrollListener Scrolllistener=new OnScrollListener() {
-		
-		@Override
-		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			// TODO Auto-generated method stub
-			super.onScrolled(recyclerView, dx, dy);
-//			LayoutManager lm = recyclerView.getLayoutManager();
-//			if(lm instanceof LinearLayoutManager){//竖向
-//				LinearLayoutManager llm=(LinearLayoutManager) lm;
-//				lastVisableView=llm.findLastVisibleItemPosition();
-//				totalItemCount=llm.getItemCount();
-//				//lastVisableView>=totalItemCount-nextShow表示剩下nextshow个item的时候自动加载
-//				//dy>0表示向下滑动，dy<0表示向上滑动
-//				if((lastVisableView>=totalItemCount-nextShow)&&dy>0){//加载更多
-//					if(isLoadMore){
-//						FavoriteArticlesActivity.this.onLoadMore();
-//					}else{
-//						Log.d("helper","正在加载中!");
-//					}
-//				}
-//			}
-		}
 
-
-		public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-			super.onScrollStateChanged(recyclerView, newState);
-
-			
-		};
-	};
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
@@ -296,7 +268,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		public void ondeleteItem(ContentInfo item, int id) {
 			// TODO Auto-generated method stub
 			dialogLoad.show();
-			deleteInfos.put(item.getId(), id);
+			deleteInfos.put(String.valueOf(item.getId()), id);
 			deletePresenter.deleteInfo(String.valueOf(item.getId()));
 			
 		}
@@ -309,17 +281,27 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		@Override
 		public void onSucess(String data) {
 			// TODO Auto-generated method stub
-			try {
-				JSONArray ids=new JSONArray(data);
-				if(ids!=null||ids.length()!=0){
-					for (int i = 0; i < ids.length(); i++) {
-						madapter.deleteItem((int)deleteInfos.get(i));	
-					}
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+				try {
+					StringBuffer sb=new StringBuffer(data);
+					sb.deleteCharAt(0);
+					sb.deleteCharAt(sb.length()-1);
+					String[] strs=sb.toString().split(",");
+					for (int i = 0; i < strs.length; i++) {
+							sb=new StringBuffer(strs[i]);
+							sb.deleteCharAt(0);
+							sb.deleteCharAt(sb.length()-1);
+							int id=deleteInfos.get(sb.toString());
+							
+							madapter.deleteItem(id);	
+					}		
+					deleteInfos.clear();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					madapter.closeAllItems();
+				} 
+			deleteInfos.clear();
 			if(dialogLoad!=null){
 				dialogLoad.dismiss();
 			}
