@@ -21,6 +21,8 @@ public class getUserInfoModel extends BaseModel{
 		sb.append(NetConst.MINEACTION);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		url=sb.toString();
 	}

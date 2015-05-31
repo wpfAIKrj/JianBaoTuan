@@ -35,6 +35,8 @@ public class getCollectArticleModel extends BaseModel{
 		sb.append(NetConst.GETCOLLECTINFO);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		sb.append("&length=").append(String.valueOf(group_id));
 		url=sb.toString();
@@ -47,8 +49,7 @@ public class getCollectArticleModel extends BaseModel{
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
 		params=new RequestParams();
-//		params.addBodyParameter("type", type);
-		params.addBodyParameter("length", String.valueOf(group_id));
+
 	}
 	
 	

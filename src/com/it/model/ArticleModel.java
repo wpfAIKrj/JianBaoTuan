@@ -35,6 +35,8 @@ public class ArticleModel extends BaseModel{
 		sb.append(NetConst.RAMDOMAPPRAISER);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		sb.append("&type=").append(type).append("&group_id=").append(String.valueOf(group_id));
 		url=sb.toString();

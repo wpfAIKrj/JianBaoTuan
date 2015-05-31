@@ -40,6 +40,8 @@ public class collectInfoModel extends BaseModel{
 		sb.append(NetConst.COLLECTINFO);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		sb.append("&cid=").append(String.valueOf(cid));
 		url=sb.toString();

@@ -29,6 +29,8 @@ public class getRandomInfoModel extends BaseModel{
 		sb.append(NetConst.RAMDOMAPPRAISER);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+		}else{
+			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		url=sb.toString();
 	}
