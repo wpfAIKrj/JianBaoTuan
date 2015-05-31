@@ -16,6 +16,7 @@ import com.it.config.Const;
 import com.it.inter.DialogForResult;
 import com.it.inter.onBasicView;
 import com.it.presenter.collectInfoPresenter;
+import com.it.presenter.getdetailPresenter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.BitmapsUtils;
 import com.it.utils.DialogUtil;
@@ -58,6 +59,13 @@ public class InformationDetailsActivity extends BaseActivity {
 	private collectInfoPresenter collectPresenter;
 
 	protected Dialog loaddialog;
+
+	private getdetailPresenter getdetailPresenter;
+	
+	private boolean isFirest=true;
+	
+	private Dialog loaddialog2;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +73,30 @@ public class InformationDetailsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_informationdetail);
 		ViewUtils.inject(this);
-		initData();
 		user=((ItApplication)getApplication()).getCurrnUser();
+		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
 		collectPresenter=new collectInfoPresenter(listener);
+		getdetailPresenter=new getdetailPresenter(listener1);
+		initData();
 	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		if(isFirest){
+			isFirest=false;
+			getdetailPresenter.getDetailInfo(info.getId());
+			loaddialog2=DialogUtil.createLoadingDialog(this, "获取详细文章中....");
+			loaddialog2.show();
+		}
+	}
+	
 
 
 	private void initData() {
 		// TODO Auto-generated method stub
-		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
+
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
 		context.setText(info.getContent());
@@ -154,6 +177,33 @@ public class InformationDetailsActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			if(loaddialog!=null){
 				loaddialog.dismiss();
+			}
+			new ToastUtils(InformationDetailsActivity.this, errorMsg);
+		}
+	};
+	
+	/**
+	 * 获取详细文章的详细
+	 */
+	private onBasicView<ContentInfo> listener1=new onBasicView<ContentInfo>() {
+		
+		@Override
+		public void onSucess(ContentInfo data) {
+			// TODO Auto-generated method stub
+			if(data!=null){
+				info=data;
+			}
+			initData();
+			if(loaddialog2!=null){
+				loaddialog2.dismiss();
+			}
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			if(loaddialog2!=null){
+				loaddialog2.dismiss();
 			}
 			new ToastUtils(InformationDetailsActivity.this, errorMsg);
 		}

@@ -3,7 +3,11 @@ package com.it.presenter;
 import com.it.inter.onBasicView;
 import com.it.model.collectInfoModel;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
-
+/**
+ * 收藏文章
+ * @author Administrator
+ *
+ */
 public class collectInfoPresenter implements OnStringDataLoadListener{
 	
 	private onBasicView<String> mview;

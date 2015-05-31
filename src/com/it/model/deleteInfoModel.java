@@ -17,7 +17,7 @@ import com.it.presenter.OnStringDataLoadListener;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
- * 获取3个随机鉴定师
+ * 删除文章
  * @author Administrator
  *
  */
