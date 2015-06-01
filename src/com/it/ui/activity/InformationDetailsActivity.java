@@ -100,7 +100,7 @@ public class InformationDetailsActivity extends BaseActivity {
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
 		context.setText(info.getContent());
-		if(info.getIsCollected()!=0){
+		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
 			collect.setVisibility(View.GONE);
 		}
 	}
@@ -171,7 +171,6 @@ public class InformationDetailsActivity extends BaseActivity {
 			if(loaddialog!=null){
 				loaddialog.dismiss();
 			}
-			info.setIsCollected(1);
 			collect.setVisibility(View.GONE);
 			new ToastUtils(InformationDetailsActivity.this, "该文章收藏成功！");
 			

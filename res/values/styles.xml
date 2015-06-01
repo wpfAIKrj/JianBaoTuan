@@ -208,4 +208,17 @@
          <item name="android:shadowRadius">3</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
+    
+    <!-- 单选的删除 -->
+    <style name="delete_checkbox_logo_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/delete_checkbox</item>
+        <item name="android:background">@drawable/delete_checkbox_bg</item>
+    </style>
+    <!-- 全选的删除 -->
+        <style name="delete_checkbox_all_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/delete_checkbox</item>
+        <item name="android:background">@drawable/select_delete_checkbox_bg</item>
+    </style>
+    
+
 </resources>

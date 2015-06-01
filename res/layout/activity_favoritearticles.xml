@@ -7,7 +7,7 @@
 
   <include
       layout="@layout/article_head" android:id="@+id/layout_head"/>
-
+  
 	  <android.support.v4.widget.SwipeRefreshLayout
 	      xmlns:tools="http://schemas.android.com/tools"
 	      android:id="@+id/swipe_refresh_widget"
@@ -21,8 +21,8 @@
         android:layout_height="match_parent"
         android:cacheColorHint="@null"
         android:scrollbars="vertical" />
-
 </android.support.v4.widget.SwipeRefreshLayout>
+  
 
 	  <RelativeLayout
 	      android:id="@+id/layout_delet"
@@ -31,8 +31,59 @@
 	      android:layout_alignParentBottom="true"
 	      android:layout_centerHorizontal="true"
 	      android:background="@color/layout_bg_color"
-	      android:visibility="gone"
-	       >
+	      android:visibility="gone" >
+
+	      <CheckBox
+	          android:id="@+id/all_checkbox"
+	          style="@style/delete_checkbox_all_style"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_centerVertical="true"
+	          android:layout_marginLeft="14dp" 
+	         />
+
+	      <TextView
+	          android:id="@+id/textView1"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_alignBaseline="@+id/all_checkbox"
+	          android:layout_alignBottom="@+id/all_checkbox"
+	          android:layout_toRightOf="@+id/all_checkbox"
+	          android:layout_marginLeft="@dimen/layouts_marginleft"
+	          android:text="全选" 
+	          style="@style/my_title_style1"
+	          />
+
+	      <Button
+	          android:id="@+id/delete_all_bt"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_alignParentRight="true"
+	          android:layout_centerVertical="true"
+	          android:layout_marginRight="@dimen/detail_text_padd"
+	          android:text="删除"
+	          android:gravity="center"
+	           android:background="@drawable/delete_button_bg"
+	           android:textColor="@color/dialog_title_color"
+	           android:textSize="@dimen/login_bt_smart_size"
+	           />
+
+	      <Button
+	          android:id="@+id/cancle_all_bt"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_alignBaseline="@+id/delete_all_bt"
+	          android:layout_alignBottom="@+id/delete_all_bt"
+	   
+	          android:layout_toLeftOf="@+id/delete_all_bt"
+	          android:text="取消"
+	          android:gravity="center"
+	           android:background="@drawable/canle_button_bg"
+	           android:textColor="@color/number_color"
+	           android:textSize="@dimen/login_bt_smart_size" 
+	           android:layout_marginRight="@dimen/button_layout_margin"
+	           />
+
 	  </RelativeLayout>
 
 </RelativeLayout>

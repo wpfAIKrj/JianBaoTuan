@@ -73,14 +73,14 @@ public class ArticleModel extends BaseModel{
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		JSONObject jason=new JSONObject(data);
-		String lists=jason.getString(NetConst.LISTSDATA);
-		if(lists.equals("null")){
+//		JSONObject jason=new JSONObject(data);
+//		String lists=jason.getString(NetConst.LISTSDATA);
+		if(data.equals("null")){
 			lisntenr.onListDataLoaded(new ArrayList<ContentInfo>());	
 		}else{
-		Gson gson=new Gson();
-		ArrayList<ContentInfo> infos=new ArrayList<ContentInfo>();
-			JSONArray array=new JSONArray(lists);
+			Gson gson=new Gson();
+			ArrayList<ContentInfo> infos=new ArrayList<ContentInfo>();
+			JSONArray array=new JSONArray(data);
 			for (int i = 0; i < array.length(); i++) {
 				ContentInfo info=gson.fromJson(array.getString(i), ContentInfo.class);
 				infos.add(info);

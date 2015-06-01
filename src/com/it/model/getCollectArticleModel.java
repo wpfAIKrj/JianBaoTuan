@@ -75,20 +75,23 @@ public class getCollectArticleModel extends BaseModel{
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
+		Gson gson=new Gson();
 		ArrayList<ContentInfo> infos=new ArrayList<ContentInfo>();
 			JSONArray array=new JSONArray(data);
 			for (int i = 0; i < array.length(); i++) {
-				try {
-					ContentInfo info=new ContentInfo();
-					JSONObject object=array.getJSONObject(i);
-					info.setId(object.getLong("content_id"));
-					info.setTitle(object.getString("title"));
-					info.setView_times(object.getInt("viewTimes"));
-					info.setImage(object.getString("image"));
-					infos.add(info);
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
+				ContentInfo info=gson.fromJson(array.getString(i), ContentInfo.class);
+				infos.add(info);
+//				try {
+//					ContentInfo info=new ContentInfo();
+//					JSONObject object=array.getJSONObject(i);
+//					info.setId(object.getLong("content_id"));
+//					info.setTitle(object.getString("title"));
+//					info.setView_times(object.getInt("viewTimes"));
+//					info.setImage(object.getString("image"));
+//					infos.add(info);
+//				} catch (Exception e) {
+//					// TODO: handle exception
+//				}
 			}
 			lisntenr.onListDataLoaded(infos);
 		}

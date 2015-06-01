@@ -68,7 +68,6 @@ public abstract class BaseModel {
 			}else{
 				onFailureForString(String.valueOf(code),message);
 			}
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			onFailureForString(HTTP_ERROR,e.getMessage());

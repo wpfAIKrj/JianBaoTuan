@@ -2,6 +2,7 @@ package com.it.ui.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -54,6 +58,7 @@ import com.it.view.listview.XListView.IXListViewListener;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
 /**
  * 文章加载页面
  * @author Administrator
@@ -101,6 +106,11 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	
 	private deleteInfoPresenter deletePresenter;
 	
+	@ViewInject(R.id.layout_delet)
+	private RelativeLayout layout_delet;
+	
+	@ViewInject(R.id.all_checkbox)
+	private CheckBox allcheckbox;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +168,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 
 
 
-	@OnClick({R.id.button_delect,R.id.button_category})
+	@OnClick({R.id.button_delect,R.id.button_category,R.id.delete_all_bt,R.id.cancle_all_bt})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -167,6 +177,30 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			finish();
 			break;
 		case R.id.button_delect://删除模式
+			madapter.setScorll(false);
+			madapter.notifyDataSetChanged();
+			layout_delet.setVisibility(View.VISIBLE);
+			break;
+		case R.id.delete_all_bt://删除
+			deleteInfos=madapter.getSelectForMap();
+			if(deleteInfos.keySet().size()>0){
+				dialogLoad.show();
+				StringBuffer sb=new StringBuffer();
+				Set<String> ids = deleteInfos.keySet();
+				for (String string : ids) {
+					sb.append(string).append(",");
+				}
+				sb.deleteCharAt(sb.length()-1);
+				deletePresenter.deleteInfo(String.valueOf(sb.toString()));
+			}else{
+				new ToastUtils(this, "请选择后在点击删除按钮");
+			}
+			break;
+		case R.id.cancle_all_bt://退出选择模式
+			layout_delet.setVisibility(View.GONE);
+			allcheckbox.setChecked(false);
+			madapter.setScorll(true);
+			madapter.exitSelectMode();
 			
 			break;
 		default:
@@ -318,7 +352,16 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			new ToastUtils(FavoriteArticlesActivity.this,errorMsg);
 		}
 	};
-
+	
+	@OnCompoundButtonCheckedChange(R.id.all_checkbox)
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		if(isChecked){
+			madapter.setSelectDelete(true);
+		}else{
+			madapter.setSelectDelete(false);
+		}
+	}
 	
 
 }

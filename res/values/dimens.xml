@@ -60,4 +60,10 @@
 	<dimen name="dialog_layout_height">100dp</dimen>
 	<dimen name="dialog_button_height">35dp</dimen>
 	
+	<dimen name="layouts_marginleft">22dp</dimen>
+	
+	<dimen name="button_layout_width">74dp</dimen>
+	<dimen name="button_layout_height">35dp</dimen>
+	
+	<dimen name="button_layout_margin">20dp</dimen>
 </resources>

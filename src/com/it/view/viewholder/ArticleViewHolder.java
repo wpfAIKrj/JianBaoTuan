@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 /**
@@ -28,7 +29,8 @@ public class ArticleViewHolder extends ViewHolder {
 	
 	@ViewInject(R.id.article_number)
 	private TextView number;
-	
+	@ViewInject(R.id.delete_checkbox)
+	private CheckBox box;
 	private ContentInfo contentinfo;
 	private OnClickListener lis;
 	public ArticleViewHolder(View itemView,OnClickListener lisnter) {
@@ -58,6 +60,7 @@ public class ArticleViewHolder extends ViewHolder {
 		
 		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
 		number.setText(""+contentinfo.getView_times());
+		box.setVisibility(View.GONE);
 	}
 	
 }
