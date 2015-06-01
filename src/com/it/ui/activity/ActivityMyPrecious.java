@@ -1,5 +1,6 @@
 package com.it.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.config.Const;
+import com.it.model.CommonCallBack;
+import com.it.model.MyTreasureModel;
 import com.it.ui.adapter.MyTreasureAdapter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -50,8 +53,11 @@ public class ActivityMyPrecious extends Activity {
 
 	int type = Const.PRECIOUS;
 
+	MyTreasureModel model;
+
 	MyTreasureAdapter mAdapter;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -60,9 +66,12 @@ public class ActivityMyPrecious extends Activity {
 		setContentView(R.layout.activity_my_precious);
 		ViewUtils.inject(this);
 
-		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
-		if (type == Const.PRECIOUS) {
+		model = new MyTreasureModel();
 
+		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
+
+		model.setType(type);
+		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
 		} else if (type == Const.COLLECT) {
 
@@ -75,6 +84,8 @@ public class ActivityMyPrecious extends Activity {
 		btn_all.setOnClickListener(listener);
 		btn_ing.setOnClickListener(listener);
 		btn_ed.setOnClickListener(listener);
+
+		btn_all.callOnClick();
 
 		initViews();
 
@@ -104,11 +115,31 @@ public class ActivityMyPrecious extends Activity {
 			// TODO Auto-generated method stub
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
-			case R.id.btn_all:
+			case R.id.btn_all: {
+				model.sendHttp(new CommonCallBack() {
+
+					@Override
+					public void onSuccess() {
+						// TODO Auto-generated method stub
+						mAdapter.setData(model.getResult());
+
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+
+					}
+				}, MyTreasureModel.TYPE_ALL);
+			}
 				break;
-			case R.id.btn_identifing:
+			case R.id.btn_identifing: {
+
+			}
 				break;
-			case R.id.btn_identified:
+			case R.id.btn_identified: {
+
+			}
 				break;
 
 			default:

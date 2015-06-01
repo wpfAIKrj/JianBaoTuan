@@ -17,6 +17,7 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/home/indexAction");
 		return url.toString();
 	}
+
 	/**
 	 * 鉴定大厅
 	 * */
@@ -25,12 +26,22 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/home/hallAction");
 		return url.toString();
 	}
+
 	/**
 	 * 我的足迹
 	 * */
 	public static String getMyFootPrintsURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/myFootPrintsListAction");
+		return url.toString();
+	}
+
+	/**
+	 * 我的收藏
+	 * */
+	public static String getMyCollectionURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/myCollectionsAction");
 		return url.toString();
 	}
 

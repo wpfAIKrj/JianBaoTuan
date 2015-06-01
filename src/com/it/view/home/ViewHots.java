@@ -97,38 +97,6 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setTeasure(TreasureEntity item) {
-		if (item == null) {
-			LogUtils.e("Hots  TreasureEntity is null");
-			return;
-		}
-
-		if (bitmapUtils == null) {
-			bitmapUtils = BitmapsUtils.getInstance();
-		}
-		// 设置大图片
-		if (item.treasure_special_view_data != null
-				&& item.treasure_special_view_data.length > 0) {
-
-			bitmapUtils.display(iv_big, item.treasure_special_view_data[0]);
-		}
-		setSmallImage(item.treasure_special_view_data);
-		// 设置头像
-		// 设置等级
-		// 设置名字
-		try {
-			bitmapUtils.display(iv_small, item.author_info.getString("avatar"));
-			setGradeImage(item.author_info.getInt("user_level"));
-			setName(item.author_info.getString("nickname"));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// 设置浏览量
-		setNum(item.view_times + "");
-
-	}
-
 	public void setItem(CollectionEntity item) {
 		if (item == null) {
 			LogUtils.e("Hots  CollectionEntity is null");

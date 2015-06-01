@@ -1,13 +1,21 @@
 package com.it.view.home;
 
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.JsonArray;
 import com.it.R;
 import com.it.bean.TreasureEntity;
 import com.it.utils.BitmapsUtils;
@@ -72,7 +80,35 @@ public class ViewTreasure extends LinearLayout {
 		if (item == null) {
 			return;
 		}
-		tv_msg.setText(item.treasure_description);
-		tv_status.setText(item.status==1?"已鉴定":"未鉴定");
+		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
+		tv_msg.setText(item.title);
+		tv_status.setText(item.status == 1 ? "已鉴定" : "未鉴定");
+		List<com.it.bean.TreasureEntity.Kind> kinds = item.kinds;
+		if (kinds != null) {
+			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
+					LayoutParams.MATCH_PARENT);
+			params.setMargins(0, 0, 20, 0);
+			params.gravity = Gravity.CENTER;
+
+			int len = kinds.size();
+			for (int i = 0; i < len; i++) {
+				TextView view = new TextView(getContext());
+				view.setTextSize(12f);
+				view.setTextColor(getResources().getColor(R.color.wite));
+				view.setBackgroundColor(getResources().getColor(
+						R.color.number_color));
+				view.setPadding(10, 0, 10, 0);
+				view.setText(kinds.get(i).name);
+				view.setTag(kinds.get(i).id);
+
+				layout_kind.addView(view, params);
+			}
+
+		}
+	}
+
+	public class Kind {
+		public long id;
+		public String name;
 	}
 }
