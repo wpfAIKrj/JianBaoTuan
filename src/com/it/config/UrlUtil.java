@@ -25,5 +25,13 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/home/hallAction");
 		return url.toString();
 	}
+	/**
+	 * 我的足迹
+	 * */
+	public static String getMyFootPrintsURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/myFootPrintsListAction");
+		return url.toString();
+	}
 
 }
