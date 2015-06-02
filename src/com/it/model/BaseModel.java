@@ -57,12 +57,12 @@ public abstract class BaseModel {
 	
     public  void onSuccessForString(String jsonstring){
     	try {
+    		LogUtils.d(jsonstring);
 			JSONObject json=new JSONObject(jsonstring);	
 			int code=json.getInt(NetConst.CODE);
 			String message=json.getString(NetConst.MESSAGE);
 			if(code==NetConst.CODE_SUCCESS){
 				String data=json.getString(NetConst.DATA);
-				LogUtils.d(data);
 				analyzeData(data);
 				
 			}else{

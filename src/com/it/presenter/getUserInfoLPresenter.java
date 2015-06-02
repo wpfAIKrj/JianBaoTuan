@@ -6,7 +6,11 @@ import com.it.model.getUserInfoModel;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 
-
+/**
+ * 获取我的入口信息
+ * @author Administrator
+ *
+ */
 public class getUserInfoLPresenter implements OnStringDataLoadListener {
 
 	private onBasicView<String> mView;

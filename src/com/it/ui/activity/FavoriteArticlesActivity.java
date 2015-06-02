@@ -339,6 +339,12 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			if(dialogLoad!=null){
 				dialogLoad.dismiss();
 			}
+			if(madapter.getItemCount()==1){
+				layout_delet.setVisibility(View.GONE);
+				allcheckbox.setChecked(false);
+				madapter.setScorll(true);
+				madapter.exitSelectMode();
+			}
 			
 		}
 		

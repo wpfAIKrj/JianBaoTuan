@@ -3,7 +3,11 @@ package com.it.presenter;
 import com.it.bean.ContentInfo;
 import com.it.inter.onBasicView;
 import com.it.model.getdetailInfoModel;
-
+/**
+ * 获取文章详情
+ * @author Administrator
+ *
+ */
 public class getdetailInfoPresenter implements OnBasicDataLoadListener<ContentInfo> {
 	
 	
