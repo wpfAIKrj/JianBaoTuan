@@ -46,6 +46,9 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	@ViewInject(R.id.et_email)
 	private EmailAutoCompleteTextView edEmail;
 	
+	@ViewInject(R.id.et_name)
+	private EditText edName;
+	
 	private UploadLogoPresenter mpresenter;
 	private UserInfo user;
 	private String qq;
@@ -77,6 +80,7 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		name=user.getNickname();
 		edQQ.setText(user.getQq());
 		edEmail.setText(user.getEmail());
+		edName.setText(user.getNickname());
 	}
 
 
@@ -101,18 +105,23 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 
 	private void saveInfo() {
 		// TODO Auto-generated method stub
+		 name=edName.getText().toString();
+		if(!name.isEmpty()){
 		String qq=edQQ.getText().toString();
 		if(!qq.isEmpty()&&(qq.length()>=6)){
 			String email=edEmail.getText().toString();
 			if(!email.isEmpty()){
 				Logodialong=DialogUtil.createLoadingDialog(this, "正在更新个人信息中");
 				Logodialong.show();
-				mpresenter.startExtra(key, name,email, qq);
+				mpresenter.startExtra(key, name, email, qq);
 			}else{
 				new ToastUtils(this, "请输入正确的email号码！");
 			}
 		}else{
 			new ToastUtils(this, "请输入正确的qq号码！");
+		}
+		}else{
+			new ToastUtils(this, "请输入昵称！");
 		}
 	}
 
@@ -127,8 +136,9 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		((ItApplication)getApplication()).getCurrnUser().setAvatar(user.getAvatar());
 		((ItApplication)getApplication()).getCurrnUser().setQq(user.getQq());
 		((ItApplication)getApplication()).getCurrnUser().setEmail(user.getEmail());
-		
+		((ItApplication)getApplication()).getCurrnUser().setNickname(user.getNickname());
 		EventBus.getDefault().post(new MyEvent(0,user));
+		new ToastUtils(this, "个人信息更新成功！");
 	}
 
 

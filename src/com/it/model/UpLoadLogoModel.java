@@ -19,7 +19,7 @@ public class UpLoadLogoModel extends BaseModel {
 	private String name;
 	private OnBasicDataLoadListener<UserInfo> listener;
 
-	public void startUpload(String key, String qq, String email, String name, OnBasicDataLoadListener<UserInfo> listener) {
+	public void startUpload(String key, String name, String qq, String email, OnBasicDataLoadListener<UserInfo> listener) {
 		// TODO Auto-generated method stub
 		this.portrait=key;
 		this.qq=qq;
@@ -32,6 +32,8 @@ public class UpLoadLogoModel extends BaseModel {
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
 		url=sb.toString();
+		addRequestParams();
+		sendHttp();
 	}
 	
 	@Override

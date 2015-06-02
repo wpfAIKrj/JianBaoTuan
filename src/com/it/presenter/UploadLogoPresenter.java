@@ -43,9 +43,7 @@ public class UploadLogoPresenter implements OnBasicDataLoadListener<UserInfo>,Up
 		this.qq=qq;
 		this.name=name;
 		mModel=new UpLoadLogoModel();
-		mModel.startUpload(key,name,qq,email,this);
-		mModel.addRequestParams();
-		mModel.sendHttp();
+		mModel.startUpload(key, name, qq, email, this);
 	}
 	
 	@Override

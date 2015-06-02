@@ -22,7 +22,7 @@ public class AuthenticateActivity extends BaseActivity implements OnClickListene
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_authenticate);
-		initView();
+//		initView();
 	}
 
 	

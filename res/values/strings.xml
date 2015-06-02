@@ -43,6 +43,7 @@
       <!-- 个人资料 -->
       <string name="profile_title">个人资料</string>
       <string name="profile_qq">QQ号:</string>
+      <string name="profile_name">用户昵称:</string>
       <string name="profile_email">邮箱:</string>
       <string name="profile_bt_save">保存修改</string>
       

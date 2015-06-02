@@ -37,6 +37,10 @@ public abstract class BaseModel {
 	
 	public  void sendHttp(){
 		final HttpUtils httpUtils=new HttpUtils(connTimeout);
+		//设置当前请求的缓存时间
+		httpUtils.configCurrentHttpCacheExpiry(0*1000);
+		//设置默认请求的缓存时间
+		httpUtils.configDefaultHttpCacheExpiry(0);
 		httpUtils.send(httpmodel, url, params,new RequestCallBack<String>(){
 
 			@Override
