@@ -44,5 +44,21 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Material/myCollectionsAction");
 		return url.toString();
 	}
+	/**
+	 * 我的鉴定
+	 * */
+	public static String getMyIdentifyURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Users/treasureListAction");
+		return url.toString();
+	}
+	/**
+	 * 我的宝物
+	 * */
+	public static String getMyTreasuresURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Users/myTreasuresAction");
+		return url.toString();
+	}
 
 }

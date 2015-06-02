@@ -71,6 +71,7 @@ public class ActivityMyPrecious extends Activity {
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 
 		model.setType(type);
+//		model.setType(Const.IDENTIFY);
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
 		} else if (type == Const.COLLECT) {
@@ -134,11 +135,40 @@ public class ActivityMyPrecious extends Activity {
 			}
 				break;
 			case R.id.btn_identifing: {
+				model.sendHttp(new CommonCallBack() {
+
+					@Override
+					public void onSuccess() {
+						// TODO Auto-generated method stub
+						mAdapter.setData(model.getResult());
+
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+
+					}
+				}, MyTreasureModel.TYPE_IDENTIFYING);
 
 			}
 				break;
 			case R.id.btn_identified: {
+				model.sendHttp(new CommonCallBack() {
 
+					@Override
+					public void onSuccess() {
+						// TODO Auto-generated method stub
+						mAdapter.setData(model.getResult());
+
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+
+					}
+				}, MyTreasureModel.TYPE_IDENTIFIED);
 			}
 				break;
 

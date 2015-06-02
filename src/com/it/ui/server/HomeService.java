@@ -31,13 +31,11 @@ public class HomeService extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		LogUtils.i("ytmfdw" + "HomeService onCreate!");
 		http = new HttpUtils();
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		LogUtils.i("ytmfdw" + "HomeService onStart!");
 		// TODO Auto-generated method stub
 		final HomeModel homeModel = new HomeModel();
 		homeModel.sendHttp(new CommonCallBack() {

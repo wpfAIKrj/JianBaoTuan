@@ -1,17 +1,10 @@
 package com.it.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.R.integer;
-import android.provider.SyncStateContract.Constants;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.it.bean.CollectionEntity;
-import com.it.bean.HomeEntity;
 import com.it.bean.TreasureEntity;
 import com.it.config.Const;
 import com.it.config.NetConst;
@@ -30,11 +23,11 @@ import com.lidroid.xutils.util.LogUtils;
  */
 public class MyTreasureModel extends BaseModel {
 
-	//全部宝物
+	// 全部宝物
 	public static final int TYPE_ALL = 0;
-	//未鉴定的
+	// 未鉴定的
 	public static final int TYPE_IDENTIFYING = 1;
-	//已鉴定的
+	// 已鉴定的
 	public static final int TYPE_IDENTIFIED = 2;
 
 	private List<TreasureEntity> list = null;
@@ -70,11 +63,27 @@ public class MyTreasureModel extends BaseModel {
 		}
 			break;
 		case Const.PRECIOUS: {// 我的宝物
-
+			url = UrlUtil.getMyTreasuresURL();
+			StringBuffer sb = new StringBuffer(url);
+			if (NetConst.SESSIONID != null) {
+				sb.append("?").append(NetConst.SID).append("=")
+						.append(NetConst.SESSIONID);
+			} else {
+				sb.append("?").append(NetConst.SID).append("=").append("");
+			}
+			url = sb.toString();
 		}
 			break;
 		case Const.IDENTIFY: {// 我的鉴定
-
+			url = UrlUtil.getMyIdentifyURL();
+			StringBuffer sb = new StringBuffer(url);
+			if (NetConst.SESSIONID != null) {
+				sb.append("?").append(NetConst.SID).append("=")
+						.append(NetConst.SESSIONID);
+			} else {
+				sb.append("?").append(NetConst.SID).append("=").append("");
+			}
+			url = sb.toString();
 		}
 			break;
 
@@ -88,11 +97,12 @@ public class MyTreasureModel extends BaseModel {
 		params = new RequestParams();
 		params.addBodyParameter("status", String.valueOf(type));
 		// params.addBodyParameter("length", String.valueOf(type));
+		LogUtils.i("url=" + url.toString());
 		httpUtils.send(httpmodel, url, params, new RequestCallBack<String>() {
-
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				// TODO Auto-generated method stub
+				LogUtils.i("onSucess responseInfo=" + responseInfo);
 				onSuccessForString(responseInfo.result);
 				callBack.onSuccess();
 			}
@@ -113,7 +123,7 @@ public class MyTreasureModel extends BaseModel {
 		try {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
-			LogUtils.i("ytmdfdw" + "get my foot print:" + data);
+			LogUtils.i("ytmfdw" + "get my foot print:" + data);
 			list = gson.fromJson(data, new TypeToken<List<TreasureEntity>>() {
 			}.getType());
 		} catch (Exception e) {
@@ -135,6 +145,9 @@ public class MyTreasureModel extends BaseModel {
 	}
 
 	public List<TreasureEntity> getResult() {
+		if(list==null){
+			list=new ArrayList<TreasureEntity>();
+		}
 		return list;
 	}
 
