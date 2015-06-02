@@ -55,9 +55,9 @@ public class getdetailInfoModel extends BaseModel {
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
-		sb.append("&id=").append(String.valueOf(id));
+		sb.append("&id=").append(id);
 		url=sb.toString();
-		setHTTPMODE(HttpMethod.GET);
+		httpmodel=HttpMethod.GET;
 		sendHttp();
 		
 	}

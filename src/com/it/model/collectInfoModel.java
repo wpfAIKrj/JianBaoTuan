@@ -43,8 +43,10 @@ public class collectInfoModel extends BaseModel{
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
-		sb.append("&cid=").append(String.valueOf(cid));
+		sb.append("&cid=").append(cid);
 		url=sb.toString();
+		setHTTPMODE(HttpMethod.GET);
+		sendHttp();
 	}
 	
 	

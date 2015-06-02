@@ -16,6 +16,7 @@ import com.it.config.Const;
 import com.it.inter.DialogForResult;
 import com.it.inter.onBasicView;
 import com.it.presenter.collectInfoPresenter;
+import com.it.presenter.deleteInfoPresenter;
 import com.it.presenter.getdetailInfoPresenter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.BitmapsUtils;
@@ -38,7 +39,8 @@ public class InformationDetailsActivity extends BaseActivity {
 	@ViewInject(R.id.detail_collect)
 	private ImageView collect;
 	
-	
+	@ViewInject(R.id.detail_cancle_collect)
+	private ImageView canclecollect;
 	@ViewInject(R.id.title)
 	private TextView title;
 	
@@ -66,6 +68,10 @@ public class InformationDetailsActivity extends BaseActivity {
 	
 	private Dialog loaddialog2;
 	
+	private Dialog loaddialog3;
+	private deleteInfoPresenter deletePresenter;
+
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +83,7 @@ public class InformationDetailsActivity extends BaseActivity {
 		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
 		collectPresenter=new collectInfoPresenter(listener);
 		getdetailPresenter=new getdetailInfoPresenter(listener1);
+		deletePresenter=new deleteInfoPresenter(listener2);
 		initData();
 	}
 	
@@ -102,11 +109,15 @@ public class InformationDetailsActivity extends BaseActivity {
 		context.setText(info.getContent());
 		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
 			collect.setVisibility(View.GONE);
+			canclecollect.setVisibility(View.VISIBLE);
+		}else{
+			collect.setVisibility(View.VISIBLE);
+			canclecollect.setVisibility(View.GONE);
 		}
 	}
 
 
-	@OnClick({R.id.detail_back,R.id.detail_share,R.id.detail_collect})
+	@OnClick({R.id.detail_back,R.id.detail_share,R.id.detail_collect,R.id.detail_cancle_collect})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -123,9 +134,16 @@ public class InformationDetailsActivity extends BaseActivity {
 			break;
 		case R.id.detail_collect://收藏
 			if(user!=null){
-				if(dialog1==null){
-					dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
-				}
+				dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
+				dialog1.show();
+				
+			}else{
+				new ToastUtils(this, "请先登陆！");
+			}
+			break;
+		case R.id.detail_cancle_collect://取消收藏
+			if(user!=null){
+				dialog1=DialogUtil.createShowDialog(this, "是否取消收藏文章？", lis2);
 				dialog1.show();
 				
 			}else{
@@ -160,6 +178,28 @@ public class InformationDetailsActivity extends BaseActivity {
 		}
 	};
 	
+	private DialogForResult lis2=new DialogForResult() {
+		
+		@Override
+		public void onSucess() {
+			// TODO Auto-generated method stub
+			if(dialog1!=null){
+				dialog1.dismiss();
+			}
+			deletePresenter.deleteInfo(String.valueOf(info.getId()));
+			loaddialog3=DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
+			loaddialog3.show();
+		}
+		
+		@Override
+		public void onCancel() {
+			// TODO Auto-generated method stub
+			if(dialog1!=null){
+				dialog1.dismiss();
+			}
+		}
+	};
+	
 	/**
 	 * 收藏文章
 	 */
@@ -171,7 +211,8 @@ public class InformationDetailsActivity extends BaseActivity {
 			if(loaddialog!=null){
 				loaddialog.dismiss();
 			}
-			collect.setVisibility(View.GONE);
+			info.setIsCollected(1);
+			initData();
 			new ToastUtils(InformationDetailsActivity.this, "该文章收藏成功！");
 			
 		}
@@ -187,6 +228,32 @@ public class InformationDetailsActivity extends BaseActivity {
 	};
 	
 	/**
+	 * 取消收藏文章的结果
+	 */
+	private onBasicView<String> listener2=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO Auto-generated method stub
+			if(loaddialog3!=null){
+				loaddialog3.dismiss();
+			}
+			info.setIsCollected(0);
+			initData();
+			new ToastUtils(InformationDetailsActivity.this, "该文章取消收藏成功！");
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			if(loaddialog3!=null){
+				loaddialog3.dismiss();
+			}
+			new ToastUtils(InformationDetailsActivity.this, errorMsg);
+		}
+	};
+	
+	/**
 	 * 获取详细文章的详细
 	 */
 	private onBasicView<ContentInfo> listener1=new onBasicView<ContentInfo>() {
@@ -196,7 +263,7 @@ public class InformationDetailsActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			if(data!=null){
 				info=data;
-			}
+			}		
 			initData();
 			if(loaddialog2!=null){
 				loaddialog2.dismiss();

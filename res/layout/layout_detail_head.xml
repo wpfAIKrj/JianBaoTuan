@@ -38,4 +38,16 @@
             android:paddingRight="@dimen/button_padd"
            />
 
+        <ImageView
+            android:id="@+id/detail_cancle_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/detail_collect"
+            android:src="@drawable/cancle_collect_bg"
+           	android:paddingLeft="@dimen/layout_padding"
+            android:paddingRight="@dimen/button_padd"
+            android:visibility="gone"
+             />
+
 </RelativeLayout>
