@@ -83,6 +83,7 @@ public class ViewTreasure extends LinearLayout {
 		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.title);
 		tv_status.setText(item.status == 1 ? "已鉴定" : "未鉴定");
+		layout_kind.removeAllViews();
 		List<com.it.bean.TreasureEntity.Kind> kinds = item.kinds;
 		if (kinds != null) {
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
