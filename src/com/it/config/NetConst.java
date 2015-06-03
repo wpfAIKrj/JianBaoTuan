@@ -79,6 +79,10 @@ public class NetConst {
 	public static final Object GETALLKINDS = "Contents/groupsAction";//获取所有分类数据
 	
 	public static final Object GETDETAILINFO = "contents/detailAction";//获取文章详情
+	
+	public static final Object ATTESTPERSONAL = "Licence/personAction";//个人认证申请
+	
+	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
@@ -110,6 +114,7 @@ public class NetConst {
 
 	public static final String UPKEY="key";
 	public static final String INFO_ID = "id";
+
 
 	
 	

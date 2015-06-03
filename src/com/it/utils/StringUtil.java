@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
@@ -88,6 +89,27 @@ public class StringUtil {
 		return sd;
 		
 	}
-
+	  /**
+     * 返回是否为汉字
+     * @param str 
+     * @return
+     */
+    public static boolean getIsChinesecharacter(String str){
+    	Pattern pa= Pattern.compile( "^[\u4E00-\u9FA5\uF900-\uFA2D]+$");
+    	Matcher matcher = pa.matcher(str);
+    	return matcher.find();     //true为全部是汉字，否则是false
+    }
+    
+    /**
+     * 验证身份证号是否符合规则
+     * @param text 身份证号
+     * @return
+     */
+     public static boolean personIdValidation(String text) {
+          String regx = "[0-9]{17}x";
+          String reg1 = "[0-9]{15}";
+          String regex = "[0-9]{18}";
+          return text.matches(regx) || text.matches(reg1) || text.matches(regex);
+    }
 	
 }

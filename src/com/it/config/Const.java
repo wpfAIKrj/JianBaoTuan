@@ -71,7 +71,18 @@ public class Const {
 	public static int TO_COLLECT_INFO=6;
 	
 	/**
+	 * 机构注册
+	 */
+	public static int TO_ATTEST_AGENCY=7;
+	
+	/**
+	 * 个人注册
+	 */
+	public static final int TO_ATTEST_PERSIONAL = 8;
+	
+	/**
 	 * 跳转时传参字符串
-	 * */
+	 */
 	public final static String ENTITY="entity";
+	
 }

@@ -66,4 +66,9 @@
 	<dimen name="button_layout_height">35dp</dimen>
 	
 	<dimen name="button_layout_margin">20dp</dimen>
+	
+	<dimen name="title_layout_smart_height">40dp</dimen>
+	
+	<dimen name="ed_layout_height">47dp</dimen>
+	
 </resources>

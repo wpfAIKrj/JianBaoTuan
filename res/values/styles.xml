@@ -103,7 +103,18 @@
    		<item name="android:textSize">@dimen/login_bt_smart_size</item>
     	</style>
     	
-    	   <style name="AnimBottom" parent="@android:style/Animation">
+    	
+    	<style name="my_titl_style4">
+    	 	<item name="android:textColor">@color/number_color</item>
+   			<item name="android:textSize">@dimen/my_up_size</item>
+    	</style>
+    	
+    	<style name="my_titl_style5">
+    	 	<item name="android:textColor">@color/ed_login_color</item>
+   			<item name="android:textSize">@dimen/my_up_size</item>
+    	</style>
+    	
+    <style name="AnimBottom" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>

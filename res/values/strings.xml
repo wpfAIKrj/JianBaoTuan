@@ -97,4 +97,13 @@
       
       <string name="collect_info_title">收藏文章</string>
       <string name="str_result">查看结果</string>
+      
+      <string name="title_attestagency">机构认证</string>
+       <string name="title_personal">个人认证</string>
+       <string name="attest_help_titls">为了你的认证可以及时通过审核，请认证填写相关信息</string>
+       <string name="attest_hiht_name">真实姓名:</string>
+       <string name="attest_hiht_number">身份证号：</string>
+       <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
+       <string name="attest_bt_save">认证</string>
+       
 </resources>

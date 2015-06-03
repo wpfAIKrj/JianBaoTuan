@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -474,6 +475,30 @@ public class StringUtils {
     public static String getDataTime(String format) {
         SimpleDateFormat df = new SimpleDateFormat(format);
         return df.format(new Date());
+    }
+    
+    
+    /**
+     * 返回是否为汉字
+     * @param str 
+     * @return
+     */
+    public static boolean getIsChinesecharacter(String str){
+    	Pattern pa= Pattern.compile( "^[\u4e00-\u9fa5]*$ ");
+    	Matcher matcher = pa.matcher(str);
+    	return matcher.find();     //true为全部是汉字，否则是false
+    }
+    
+    /**
+     * 验证身份证号是否符合规则
+     * @param text 身份证号
+     * @return
+     */
+     public boolean personIdValidation(String text) {
+          String regx = "[0-9]{17}x";
+          String reg1 = "[0-9]{15}";
+          String regex = "[0-9]{18}";
+          return text.matches(regx) || text.matches(reg1) || text.matches(regex);
     }
 
 }
