@@ -157,7 +157,7 @@ OnTabSelectedListener ,OnClickListener{
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
-//		
+		
 //		if(keyCode==KeyEvent.KEYCODE_BACK){
 //		     if (System.currentTimeMillis() - this.mkeyTime > 2000L){
 //		         this.mkeyTime = System.currentTimeMillis();
@@ -321,10 +321,10 @@ OnTabSelectedListener ,OnClickListener{
 		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
 				if(imageUtils.PICPATH!=null){
-//				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
+				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					//uploadLogo(imageUtils.PICPATH);
 				}
 			}
 		}
@@ -332,10 +332,10 @@ OnTabSelectedListener ,OnClickListener{
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.doPhoto( arg2);
 				if(imageUtils.PICPATH!=null){
-//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
+					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					//uploadLogo(imageUtils.PICPATH);
 				}
 			}
 		}
@@ -343,10 +343,10 @@ OnTabSelectedListener ,OnClickListener{
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.doPhotoKIKAT(arg2);
 				if(imageUtils.PICPATH!=null){
-//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
+					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+					//uploadLogo(imageUtils.PICPATH);
 			}
 		}
 		}

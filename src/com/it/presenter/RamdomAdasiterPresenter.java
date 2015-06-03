@@ -23,9 +23,7 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 	
 	public void startGet(){
 		this.model=new getRandomInfoModel();
-		model.setHTTPMODE(HttpMethod.GET);
 		model.startGet(this);
-		model.sendHttp();
 	}
 	
 	@Override

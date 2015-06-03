@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import net.bither.util.NativeUtil;
+
+import com.it.utils.BitmapCompressor;
 import com.it.utils.FileUtils;
 
 import android.content.Context;
@@ -278,15 +281,16 @@ public class CutView extends View {
 
 	private String saveTu(Bitmap bm) {	
 		File file = new File(FileUtils.getInstance().NewUploadImagePath());
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(file);
-			bm.compress(Bitmap.CompressFormat.PNG, 50, fos);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		NativeUtil.compressBitmap(bm, file.getAbsolutePath(), true);
+//		FileOutputStream fos = null;
+//		try {
+//			fos = new FileOutputStream(file);
+//			bm.compress(Bitmap.CompressFormat.PNG, 50, fos);
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return null;
+//		}
 		return file.getAbsolutePath();
 	}
 

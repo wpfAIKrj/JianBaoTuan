@@ -9,6 +9,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
 import android.text.format.DateFormat;
 
 import com.it.config.NetConst;
@@ -39,7 +40,6 @@ public class UploadUtils {
 	 */
 	public static void UploadPortrait(String filePath,final UpLoadFileInterface listener){
 		UploadManager uploadManager=new UploadManager();
-		String key=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+"";
 		uploadManager.put(filePath, null, NetConst.UPTOKEN, new UpCompletionHandler() {
 			
 			@Override

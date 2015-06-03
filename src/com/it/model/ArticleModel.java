@@ -32,7 +32,7 @@ public class ArticleModel extends BaseModel{
 		this.type=type;
 		this.group_id=group_id;
 		StringBuffer sb=new StringBuffer(url);
-		sb.append(NetConst.RAMDOMAPPRAISER);
+		sb.append(NetConst.LIST_INFO);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}else{

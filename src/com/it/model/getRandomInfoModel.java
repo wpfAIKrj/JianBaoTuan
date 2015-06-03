@@ -33,6 +33,8 @@ public class getRandomInfoModel extends BaseModel{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		url=sb.toString();
+		addRequestParams();
+		sendHttp();
 	}
 	
 	

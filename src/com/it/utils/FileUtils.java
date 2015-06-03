@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
+import net.bither.util.NativeUtil;
+
 import com.lidroid.xutils.util.LogUtils;
 
 import android.content.Context;
@@ -362,7 +364,23 @@ public class FileUtils {
 		return path;
 	}
 	
-	
+	/**
+	 * 生存上传缓存文件
+	 * @return 返回缓存路径
+	 */
+	public String saceUpImage(String picpath){
+		String path=null;
+		try {
+			path=NewUploadImageCachePath();
+			int reqWidth=SystemUtils.getDisplaysWidth(mContext)/2;
+			int reqHeight=SystemUtils.getDisplaysHeight(mContext)/2;
+			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
+			saveImageToSD(mContext, path, bitmap, 50);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return path;
+	}
 	
 	/**
      * 写图片文件到SD卡
@@ -375,13 +393,14 @@ public class FileUtils {
             File file = new File(filePath.substring(0,
                     filePath.lastIndexOf(File.separator)));
             if (!file.exists()) {
-                file.mkdirs();
+               file.createNewFile();
             }
-            BufferedOutputStream bos = new BufferedOutputStream(
-                    new FileOutputStream(filePath));
-            bitmap.compress(CompressFormat.PNG, quality, bos);
-            bos.flush();
-            bos.close();
+            NativeUtil.compressBitmap(bitmap, 50,filePath, true);
+//            BufferedOutputStream bos = new BufferedOutputStream(
+//                    new FileOutputStream(filePath));
+//            bitmap.compress(CompressFormat.PNG, quality, bos);
+//            bos.flush();
+//            bos.close();
         }
     }
     
@@ -407,6 +426,17 @@ public class FileUtils {
 		root=root+File.separator+imagename;
 		return root;
 	}
+	
+	/**
+	 * 返回上传图片中使用的缓存文件
+	 * @return 文件路径
+	 */
+	public String NewUploadImageCachePath(){
+		String root = FileUtils.getInstance().getUpImage();
+		String imagename=new DateFormat().format("imagechache", Calendar.getInstance())+".jpg";
+		root=root+File.separator+imagename;
+		return root;
+	}
 
 	/**
 	 * 讲相册中的图片压缩并保存在上传目录下
@@ -418,16 +448,20 @@ public class FileUtils {
 		String path=null;
 		try {
 			path=NewUploadImagePath();
+			File newImage=new File(path);
 			int reqWidth=SystemUtils.getDisplaysWidth(mContext);
 			int reqHeight=SystemUtils.getDisplaysHeight(mContext);
 			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
-			saveImageToSD(mContext, path, bitmap, 100);
+			saveImageToSD(mContext, path, bitmap, 50);
 			deleteFile(picpath);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return path;
 	}
+	
+	
 	
 	
 	

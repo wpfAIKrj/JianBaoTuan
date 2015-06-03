@@ -65,7 +65,8 @@ public class NetConst {
 	
 	public static final String EXTRAUSR="Users/extraAction";//更新个人用户
 	
-	public static final String RAMDOMAPPRAISER="Contents/listAction";//获取鉴定师
+	public static final String LIST_INFO = "Contents/listAction";//获取知识大厅列表
+	public static final String RAMDOMAPPRAISER="Material/randomAppraiserAction";//获取鉴定师
 	
 	public static final String MINEACTION="home/mineAction";//获取我的页面入口数据
 	
@@ -109,6 +110,7 @@ public class NetConst {
 
 	public static final String UPKEY="key";
 	public static final String INFO_ID = "id";
+
 	
 	
 

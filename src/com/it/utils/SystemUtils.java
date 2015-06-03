@@ -34,6 +34,8 @@ import android.view.WindowManager;
 
 public class SystemUtils {
 
+	
+	
 	/**
 	 * 返回当前屏幕的宽
 	 * @param context

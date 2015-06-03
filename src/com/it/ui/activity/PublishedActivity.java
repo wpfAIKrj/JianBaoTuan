@@ -119,7 +119,7 @@ public class PublishedActivity extends BaseActivity{
 		case R.id.imageView06:
 			showGetPhotoDialog(5);
 			break;
-		case R.id.bt_next:
+		case R.id.bt_next://下一步
 			if(NetUtils.checkNetWork(this)){
 				Intent intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
 				intent.putExtra(Const.IMAGEPATH, imagePath);
@@ -160,8 +160,12 @@ public class PublishedActivity extends BaseActivity{
 			}
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
-		
 			if(imageUtils.PICPATH!=null){
+				String path=imagePath[getPhoto];
+				if(path!=null&&!path.isEmpty()){
+					FileUtils.getInstance().deleteFile(path);
+				}
+				imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
 				saveImage();
 			}
 		}
@@ -169,6 +173,11 @@ public class PublishedActivity extends BaseActivity{
 			if(data != null && data.getData() != null) {
 				imageUtils.doPhoto( data);
 				if(imageUtils.PICPATH!=null){
+					String path=imagePath[getPhoto];
+					if(path!=null&&!path.isEmpty()){
+						FileUtils.getInstance().deleteFile(path);
+					}
+					imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForPhone(imageUtils.PICPATH);
 					saveImage();
 				}
 			}
@@ -177,6 +186,11 @@ public class PublishedActivity extends BaseActivity{
 			if(data != null && data.getData() != null) {
 				imageUtils.doPhotoKIKAT(data);
 				if(imageUtils.PICPATH!=null){
+					String path=imagePath[getPhoto];
+					if(path!=null&&!path.isEmpty()){
+						FileUtils.getInstance().deleteFile(path);
+					}
+					imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForPhone(imageUtils.PICPATH);
 					saveImage();
 				}
 			}
@@ -199,11 +213,6 @@ public class PublishedActivity extends BaseActivity{
 
 	private void saveImage() {
 		// TODO Auto-generated method stub
-		String path=imagePath[getPhoto];
-		if(path!=null&&!path.isEmpty()){
-			FileUtils.getInstance().deleteFile(path);
-		}
-		imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
 		switch (getPhoto) {
 		case 0:
 			BitmapsUtils.getInstance().display(iv1, imagePath[getPhoto]);
