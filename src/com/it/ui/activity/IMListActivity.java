@@ -1,21 +1,40 @@
 package com.it.ui.activity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.it.R;
+import com.it.bean.ContentInfo;
 import com.it.ui.adapter.ArticleAdapter;
 import com.it.ui.adapter.IMAdapter;
+import com.it.ui.adapter.SystemInfoAdapter;
 import com.it.ui.base.BaseActivity;
+import com.it.utils.DialogUtil;
+import com.it.utils.ListLoadType;
 import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 /**
  * 聊天页面
  * @author Administrator
@@ -27,31 +46,87 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favoritearticles);
-//		initView();
-//		initData();
+		ViewUtils.inject(this);
+		initView();
+		initData();
 	}
-	private XListView mlistview;
-	private IMAdapter madapter;
+	@ViewInject(R.id.home_title)
+	private TextView title;
+	
+	private ArrayList<ContentInfo> list;
+	
+	@ViewInject(R.id.swipe_refresh_widget)
+	private SwipeRefreshLayout mSwipeRefreshWidget;
+	@ViewInject(R.id.recyclerview1)
+	private RecyclerView mRecyclerView;
+	
+	
+	private int length=30;
+	
+	protected boolean isLoadMore=false;
+	private boolean isRefreshing=true;
+	
+	private boolean isFiset=true;
+	
+	protected int lastVisableView;
+	protected int totalItemCount;
+	protected int nextShow=1;
+
+	private HashMap<String, Integer> deleteInfos;
+	
+	private ListLoadType currt=ListLoadType.Nomal;
+
+
+	private Dialog dialogLoad;
+	
+	
+	@ViewInject(R.id.layout_delet)
+	private RelativeLayout layout_delet;
+	
+	@ViewInject(R.id.all_checkbox)
+	private CheckBox allcheckbox;
+	
+	private SystemInfoAdapter madapter;
 
 
 	protected void initView() {
 		// TODO Auto-generated method stub
-		ImageView bt=(ImageView)findViewById(R.id.button_category);
-		bt.setOnClickListener(this);
-		bt=(ImageView)findViewById(R.id.button_delect);
-		bt.setOnClickListener(this);
 
-		TextView tv=(TextView)findViewById(R.id.home_title);
-		tv.setText("聊天");
+		title.setText("聊天");
+		list=new ArrayList<ContentInfo>();
+		LayoutManager layoutManager=new LinearLayoutManager(this);
+		mRecyclerView.setLayoutManager(layoutManager);
+		mSwipeRefreshWidget.setDistanceToTriggerSync(200);
+		mSwipeRefreshWidget.setOnRefreshListener(new OnRefreshListener() {
+			
+			@Override
+			public void onRefresh() {//刷新
+				// TODO Auto-generated method stub
+				if(isRefreshing){
+				
+				}else{
+					Log.d("helper","正在刷新中!");
+					mSwipeRefreshWidget.setRefreshing(false);
+				}
+			}
+		});
+
+		mRecyclerView.setHasFixedSize(true);
+		
+//		madapter=new MyArticleAdapter(this,list,listener,FavoriteArticlesActivity.this,deleteItemlistener);
+//		madapter.setMode(Attributes.Mode.Single);
+//		madapter.setScorll(true);
+		
+		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+//		mRecyclerView.setAdapter(madapter);
+		dialogLoad=DialogUtil.createLoadingDialog(this, "正在删除");
 		
 	}
 
 	protected void initData() {
 		// TODO Auto-generated method stub
-		madapter=new IMAdapter(LayoutInflater.from(this));
-		mlistview.setAdapter(madapter);
-		mlistview.setXListViewListener(this);
-		mlistview.setOnItemClickListener(this);
+		madapter=new SystemInfoAdapter(LayoutInflater.from(this));
+		deleteInfos=new HashMap<String, Integer>();
 	}
 
 

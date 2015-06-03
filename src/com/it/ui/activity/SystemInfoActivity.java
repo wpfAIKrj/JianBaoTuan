@@ -37,6 +37,7 @@ import com.it.utils.ListLoadType;
 import com.it.view.inter.onListView;
 import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -51,8 +52,9 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favoritearticles);
-//		initView();
-//		initData();
+		ViewUtils.inject(this);
+		initView();
+		initData();
 	}
 
 	@ViewInject(R.id.home_title)
