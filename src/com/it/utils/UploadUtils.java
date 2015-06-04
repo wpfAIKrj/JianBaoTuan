@@ -82,6 +82,7 @@ public class UploadUtils {
 	}
 	
 	
+	
 	private static final String MAC_NAME = "HmacSHA1";
 	private static final String ENCODING = "UTF-8";
 

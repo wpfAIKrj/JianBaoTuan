@@ -79,9 +79,13 @@ public class AttestPersionalActivity extends BaseActivity {
 		
 	}
 	
-	@OnClick({R.id.imageView01,R.id.bt_attest})
+	@OnClick({R.id.btn_back,R.id.imageView01,R.id.bt_attest})
 	public void onClick(View v){
 		switch (v.getId()) {
+		case R.id.btn_back://返回上一层
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
+			break;
 		case R.id.imageView01://弹出选择图片
 			if(dialog==null){
 				dialog=new SelectPhotoDialog(this, ImageListner);

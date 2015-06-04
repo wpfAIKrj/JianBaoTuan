@@ -104,6 +104,6 @@
        <string name="attest_hiht_name">真实姓名:</string>
        <string name="attest_hiht_number">身份证号：</string>
        <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
-       <string name="attest_bt_save">认证</string>
-       
+      	<string name="attest_helps_title3">营业执照</string>
+   	<string name="attest_hiht_agentcy_name">机构全称：</string>
 </resources>
