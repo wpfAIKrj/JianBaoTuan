@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.ui.base.BaseActivity;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 /**
@@ -25,6 +26,7 @@ public class UpdaateActivity extends BaseActivity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_update);
+		ViewUtils.inject(this);
 		initView();
 	}
 

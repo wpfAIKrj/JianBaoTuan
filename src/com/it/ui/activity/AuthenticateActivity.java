@@ -79,6 +79,10 @@ public class AuthenticateActivity extends BaseActivity {
 			setResult(RESULT_OK, getIntent());
 			finish();
 		}
-		
+		if(requestCode==Const.TO_ATTEST_AGENCY&&resultCode==RESULT_OK){//个人认证成功
+			new ToastUtils(this, "申请已经提交，请等待审核...");
+			setResult(RESULT_OK, getIntent());
+			finish();
+		}
 	}
 }
