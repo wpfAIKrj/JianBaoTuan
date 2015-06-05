@@ -1,5 +1,6 @@
 package com.it.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -89,6 +90,9 @@ public class getMyFootPrintsModel extends BaseModel {
 	}
 
 	public List<CollectionEntity> getResult() {
+		if (list == null) {
+			list = new ArrayList<CollectionEntity>();
+		}
 		return list;
 	}
 

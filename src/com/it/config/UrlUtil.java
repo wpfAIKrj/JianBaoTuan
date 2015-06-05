@@ -60,5 +60,13 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Users/myTreasuresAction");
 		return url.toString();
 	}
+	/**
+	 * 所有分类
+	 * */
+	public static String getAllKinds() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/kindsAction");
+		return url.toString();
+	}
 
 }

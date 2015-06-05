@@ -7,6 +7,25 @@
 
     <include layout="@layout/kind_of_precious_head" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
+
+    <include layout="@layout/item_kind_of_precios_first" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
+
+    <include layout="@layout/item_kind_of_precios_second" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
+
     <ListView
         android:id="@+id/lv_kind"
         android:layout_width="match_parent"
