@@ -76,6 +76,8 @@ public class NetConst {
 	
 	public static final String DELETEINFO="contents/deleteCollectionsAction";//删除我收藏文章列表中部分数据
 	
+	public static final String GETALLKINDTYPE="Material/kindsAction";//获取所有宝物的分类
+	
 	public static final String GETALLKINDS = "Contents/groupsAction";//获取所有分类数据
 	
 	public static final String GETDETAILINFO = "contents/detailAction";//获取文章详情

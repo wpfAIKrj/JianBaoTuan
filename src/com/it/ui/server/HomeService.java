@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.it.app.ItApplication;
-import com.it.bean.ContentType;
+import com.it.bean.TreasureType;
 import com.it.model.CommonCallBack;
 import com.it.model.HomeModel;
 import com.it.model.IdentifyModel;
@@ -87,10 +87,10 @@ public class HomeService extends Service {
 			}
 		}, "2", 0);
 		
-		final getAllKindsModel allkinds=new getAllKindsModel(new OnListDataLoadListener<ContentType>() {
+		final getAllKindsModel allkinds=new getAllKindsModel(new OnListDataLoadListener<TreasureType>() {
 			
 			@Override
-			public void onListDataLoaded(ArrayList<ContentType> data) {
+			public void onListDataLoaded(ArrayList<TreasureType> data) {
 				// TODO Auto-generated method stub
 				if(data!=null&&!data.isEmpty()){
 					SqlDataUtil.getInstance().saveContentType(data);

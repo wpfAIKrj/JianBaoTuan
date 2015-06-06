@@ -1,15 +1,16 @@
 package com.it.utils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.it.bean.ContentInfo;
 import com.it.bean.ContentInfoDao;
-import com.it.bean.ContentType;
-import com.it.bean.ContentTypeDao;
 import com.it.bean.DaoMaster;
 import com.it.bean.DaoMaster.DevOpenHelper;
 import com.it.bean.DaoSession;
+import com.it.bean.TreasureType;
+import com.it.bean.TreasureTypeDao;
 import com.it.bean.UserInfo;
 import com.it.bean.UserInfoDao;
 import com.it.config.Const;
@@ -31,7 +32,7 @@ public class SqlDataUtil {
 	private  DaoSession daoSession=null;
 	private  UserInfoDao userdao=null;//用户
 	private ContentInfoDao infoDao=null;//文章详细
-	private ContentTypeDao typeDao=null;//文章分类
+	private TreasureTypeDao typeDao=null;//宝物分类
 	
 	
 	
@@ -48,7 +49,7 @@ public class SqlDataUtil {
 						userdao=daoSession.getUserInfoDao();
 					}
 					if(typeDao==null){
-						typeDao=daoSession.getContentTypeDao();
+						typeDao=daoSession.getTreasureTypeDao();
 					}
 					if(infoDao==null){
 						infoDao=daoSession.getContentInfoDao();
@@ -116,17 +117,25 @@ public class SqlDataUtil {
 	}
 
 	/**
-	 * 保存文章分类信息
+	 * 保存宝物分类信息
 	 * @param data
 	 */
-	public void saveContentType(ArrayList<ContentType> data) {
+	public void saveContentType(ArrayList<TreasureType> data) {
 		// TODO Auto-generated method stub
-		try {
-			typeDao.insertOrReplaceInTx(data);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		QueryBuilder<TreasureType> qb =null;
+		for (int i = 0; i < data.size(); i++) {
+			TreasureType newdata = data.get(i);
+			 qb = typeDao.queryBuilder();	
+			 qb.where(TreasureTypeDao.Properties.Type.eq(newdata.getType()),
+					 TreasureTypeDao.Properties.Currnt_id.eq(newdata.getCurrnt_id())
+					 ,TreasureTypeDao.Properties.Parent_id.eq(newdata.getParent_id()));
+			 TreasureType olddata = qb.unique();
+			 if(olddata!=null){
+				 newdata.setId(olddata.getId());
+			 }
+			 typeDao.insertOrReplace(newdata);
 		}
+	
 	}
 	
 	
