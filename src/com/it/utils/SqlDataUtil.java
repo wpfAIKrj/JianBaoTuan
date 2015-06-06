@@ -137,6 +137,35 @@ public class SqlDataUtil {
 		}
 	
 	}
+
+	/**
+	 * 获取宝物一级列表
+	 * @return
+	 */
+	public ArrayList<TreasureType> getFirsetTreasureType() {
+		// TODO Auto-generated method stub
+		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
+		.orderAsc(TreasureTypeDao.Properties.Currnt_id);
+		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();
+		return list;
+	}
+
+	/**
+	 * 获取制定2级列表
+	 * @param parent_id 1级列表id
+	 * @return 2级列表
+	 */
+	public ArrayList<TreasureType> getSecondTreasureType(long parent_id) {
+		// TODO Auto-generated method stub
+		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_SECOND),TreasureTypeDao.Properties.Parent_id.eq(parent_id))
+		.orderAsc(TreasureTypeDao.Properties.Currnt_id);
+		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();
+		return list;
+	}
 	
 	
 	
