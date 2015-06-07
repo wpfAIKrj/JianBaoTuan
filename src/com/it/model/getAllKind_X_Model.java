@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.it.bean.CollectionEntity;
-import com.it.bean.HomeEntity;
-import com.it.bean.KindEntity;
+import com.it.bean.TreasureType;
 import com.it.config.NetConst;
 import com.it.config.UrlUtil;
 import com.lidroid.xutils.HttpUtils;
@@ -22,16 +17,16 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 
 /**
- * @author ytmfdw 获取我的足迹
+ * @author ytmfdw 获取宝贝分类
  *
  */
 public class getAllKind_X_Model extends BaseModel {
 
-	private List<KindEntity> first = null;
-	private List<KindEntity> second = null;
-	private List<KindEntity> third = null;
+	private List<TreasureType> first = null;
+	private List<TreasureType> second = null;
+	private List<TreasureType> third = null;
 
-	private List<List<KindEntity>> list = null;
+	private List<List<TreasureType>> list = null;
 
 	public getAllKind_X_Model() {
 		// TODO Auto-generated constructor stub
@@ -90,10 +85,10 @@ public class getAllKind_X_Model extends BaseModel {
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		first = new ArrayList<KindEntity>();
-		second = new ArrayList<KindEntity>();
-		third = new ArrayList<KindEntity>();
-		list = new ArrayList<List<KindEntity>>();
+		first = new ArrayList<TreasureType>();
+		second = new ArrayList<TreasureType>();
+		third = new ArrayList<TreasureType>();
+		list = new ArrayList<List<TreasureType>>();
 		JSONObject json = new JSONObject(data);
 		LogUtils.d("?" + (json == null));
 		try {
@@ -104,23 +99,23 @@ public class getAllKind_X_Model extends BaseModel {
 				for (int i = 0; i < size; i++) {
 					LogUtils.d("first begin size=" + size);
 					JSONObject firstObj = jsons.getJSONObject(i);
-					KindEntity firstEntity = new KindEntity();
+					TreasureType firstEntity = new TreasureType();
 					firstEntity.id = firstObj.getLong(NetConst.INFO_ID);
 					firstEntity.name = firstObj.getString("name");
-					firstEntity.type = KindEntity.TYPE_FIRST;
+					firstEntity.type = TreasureType.TYPE_FIRST;
 					JSONArray secondJSONs = firstObj.getJSONArray("children");
 					if (secondJSONs != null) {
 						int size_2 = secondJSONs.length();
 						for (int j = 0; j < size_2; j++) {
 							LogUtils.d("second begin size=" + size_2);
 							JSONObject secondObj = secondJSONs.getJSONObject(j);
-							KindEntity secondEntity = new KindEntity();
+							TreasureType secondEntity = new TreasureType();
 							secondEntity.id = secondObj
 									.getLong(NetConst.INFO_ID);
 							secondEntity.name = secondObj.getString("name");
 							secondEntity.parent_id = secondObj
 									.getLong("parent_id");
-							secondEntity.type = KindEntity.TYPE_SECOND;
+							secondEntity.type = TreasureType.TYPE_SECOND;
 
 							JSONArray thirdJSONs = secondObj
 									.getJSONArray("children");
@@ -130,14 +125,14 @@ public class getAllKind_X_Model extends BaseModel {
 									LogUtils.d("third begin size=" + size_3);
 									JSONObject thirdObj = thirdJSONs
 											.getJSONObject(k);
-									KindEntity thirdEntity = new KindEntity();
+									TreasureType thirdEntity = new TreasureType();
 									thirdEntity.id = thirdObj
 											.getLong(NetConst.INFO_ID);
 									thirdEntity.name = thirdObj
 											.getString("name");
 									thirdEntity.parent_id = thirdObj
 											.getLong("parent_id");
-									thirdEntity.type = KindEntity.TYPE_THIRD;
+									thirdEntity.type = TreasureType.TYPE_THIRD;
 
 									third.add(thirdEntity);
 								}
@@ -172,9 +167,9 @@ public class getAllKind_X_Model extends BaseModel {
 
 	}
 
-	public List<List<KindEntity>> getResult() {
+	public List<List<TreasureType>> getResult() {
 		if (list == null) {
-			list = new ArrayList<List<KindEntity>>();
+			list = new ArrayList<List<TreasureType>>();
 		}
 		return list;
 	}

@@ -1,32 +1,25 @@
 package com.it.ui.activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.it.R;
-import com.it.bean.KindEntity;
-import com.it.model.CommonCallBack;
+import com.it.bean.TreasureType;
 import com.it.model.getAllKind_X_Model;
-import com.it.ui.adapter.KindAdpater;
+import com.it.tree.bean.Node;
+import com.it.tree.bean.TreeListViewAdapter;
+import com.it.tree.bean.TreeListViewAdapter.OnTreeNodeClickListener;
+import com.it.ui.adapter.SimpleTreeAdapter;
+import com.it.utils.SqlDataUtil;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -34,9 +27,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 
 public class ActivityKindOfPrecious extends Activity {
 
-	@ViewInject(R.id.lv_kind)
-	RecyclerView lv;
-
+	@ViewInject(R.id.tree_view)
+	ListView treeView;
 
 	@ViewInject(R.id.btn_back)
 	ImageView btn_back;
@@ -58,7 +50,6 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
-			mAdpater.closeData();
 		}
 			break;
 
@@ -67,15 +58,11 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 	}
 
-	List<List<KindEntity>> list;
-	List<KindEntity> first;
-	List<KindEntity> second;
-	List<KindEntity> third;
+	List<TreasureType> first;
 
 	getAllKind_X_Model model;
-
-	private KindAdpater mAdpater;
-
+	
+	private TreeListViewAdapter mAdapter;
 
 
 	@Override
@@ -85,25 +72,43 @@ public class ActivityKindOfPrecious extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_kind_of_precious);
 		ViewUtils.inject(this);
-		LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-		lv.setLayoutManager(layoutManager);
-		
-		mAdpater=new KindAdpater(this, listener);
-		lv.setAdapter(mAdpater);
+		first=SqlDataUtil.getInstance().getTreasureType();
+		LogUtils.d("获取所有分类："+first.size());
+		try
+		{
+			mAdapter = new SimpleTreeAdapter<TreasureType>(treeView, this, first, 1);
+			mAdapter.setOnTreeNodeClickListener(new OnTreeNodeClickListener()
+			{
+				@Override
+				public void onClick(Node node, int position)
+				{
+					if (node.isLeaf())
+					{
+						Toast.makeText(getApplicationContext(), node.getName(),
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+
+			});
+
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		treeView.setAdapter(mAdapter);
 
 	}
 
 	/**
 	 * 选择3级跳转
 	 */
-	private OnClickListener listener=new OnClickListener() {
-		
+	private OnClickListener listener = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	};
-
 
 }

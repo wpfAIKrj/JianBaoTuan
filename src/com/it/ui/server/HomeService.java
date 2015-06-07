@@ -1,6 +1,7 @@
 package com.it.ui.server;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Service;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import com.it.bean.TreasureType;
 import com.it.model.CommonCallBack;
 import com.it.model.HomeModel;
 import com.it.model.IdentifyModel;
+import com.it.model.getAllKind_X_Model;
 import com.it.model.getAllKindsModel;
 import com.it.presenter.OnListDataLoadListener;
 import com.it.utils.SqlDataUtil;
@@ -86,25 +88,43 @@ public class HomeService extends Service {
 
 			}
 		}, "2", 0);
-		
-		final getAllKindsModel allkinds=new getAllKindsModel(new OnListDataLoadListener<TreasureType>() {
-			
+
+		/*
+		 * final getAllKindsModel allkinds=new getAllKindsModel(new
+		 * OnListDataLoadListener<TreasureType>() {
+		 * 
+		 * @Override public void onListDataLoaded(ArrayList<TreasureType> data)
+		 * { // TODO Auto-generated method stub if(data!=null&&!data.isEmpty()){
+		 * SqlDataUtil.getInstance().saveContentType(data); } }
+		 * 
+		 * @Override public void onListDataLoadErrorHappened(String errorCode,
+		 * String errorMsg) { // TODO Auto-generated method stub
+		 * 
+		 * } }); allkinds.sendHttp();
+		 */
+		final getAllKind_X_Model allKinds = new getAllKind_X_Model();
+		allKinds.sendHttp(new CommonCallBack() {
+
 			@Override
-			public void onListDataLoaded(ArrayList<TreasureType> data) {
+			public void onSuccess() {
 				// TODO Auto-generated method stub
-				if(data!=null&&!data.isEmpty()){
-					SqlDataUtil.getInstance().saveContentType(data);
-				}
+				List<List<TreasureType>> list = allKinds.getResult();
+				List<TreasureType> first = list.get(0);// 获取一级分类
+				List<TreasureType> second = list.get(1);// 获取一级分类
+				List<TreasureType> third = list.get(2);// 获取一级分类
+				// 写入数据库
+				SqlDataUtil.getInstance().saveContentType(first);
+				SqlDataUtil.getInstance().saveContentType(second);
+				SqlDataUtil.getInstance().saveContentType(third);
 			}
-			
+
 			@Override
-			public void onListDataLoadErrorHappened(String errorCode, String errorMsg) {
+			public void onError() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		allkinds.sendHttp();
-		
+
 		return super.onStartCommand(intent, flags, startId);
 	}
 }

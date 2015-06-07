@@ -120,34 +120,40 @@ public class SqlDataUtil {
 	 * 保存宝物分类信息
 	 * @param data
 	 */
-	public void saveContentType(ArrayList<TreasureType> data) {
+	public void saveContentType(List<TreasureType> data) {
 		// TODO Auto-generated method stub
 		QueryBuilder<TreasureType> qb =null;
-		for (int i = 0; i < data.size(); i++) {
-			TreasureType newdata = data.get(i);
-			 qb = typeDao.queryBuilder();	
-			 qb.where(TreasureTypeDao.Properties.Type.eq(newdata.getType()),
-					 TreasureTypeDao.Properties.Currnt_id.eq(newdata.getCurrnt_id())
-					 ,TreasureTypeDao.Properties.Parent_id.eq(newdata.getParent_id()));
-			 TreasureType olddata = qb.unique();
-			 if(olddata!=null){
-				 newdata.setId(olddata.getId());
-			 }
-			 typeDao.insertOrReplace(newdata);
+		try {
+			for (int i = 0; i < data.size(); i++) {
+				TreasureType newdata = data.get(i);
+				 qb = typeDao.queryBuilder();	
+				/* qb.where(TreasureTypeDao.Properties.Type.eq(newdata.getType()),
+						 TreasureTypeDao.Properties.Currnt_id.eq(newdata.getCurrnt_id())
+						 ,TreasureTypeDao.Properties.Parent_id.eq(newdata.getParent_id()));
+				 TreasureType olddata = qb.unique();
+				 if(olddata!=null){
+					 newdata.setId(olddata.getId());
+				 }*/
+				 typeDao.insertOrReplace(newdata);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	
 	}
 
 	/**
-	 * 获取宝物一级列表
+	 * 获取所有分类列表
 	 * @return
 	 */
-	public ArrayList<TreasureType> getFirsetTreasureType() {
+	public List<TreasureType> getTreasureType() {
 		// TODO Auto-generated method stub
 		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
-		qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
-		.orderAsc(TreasureTypeDao.Properties.Currnt_id);
+		qb.list();
+		/*qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
+		.orderAsc(TreasureTypeDao.Properties.Currnt_id);*/
 		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();
 		return list;
 	}
@@ -156,7 +162,7 @@ public class SqlDataUtil {
 	 * 获取制定2级列表
 	 * @param parent_id 1级列表id
 	 * @return 2级列表
-	 */
+	 *//*
 	public ArrayList<TreasureType> getSecondTreasureType(long parent_id) {
 		// TODO Auto-generated method stub
 		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
@@ -165,7 +171,7 @@ public class SqlDataUtil {
 		.orderAsc(TreasureTypeDao.Properties.Currnt_id);
 		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();
 		return list;
-	}
+	}*/
 	
 	
 	

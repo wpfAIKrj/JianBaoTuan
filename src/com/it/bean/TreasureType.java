@@ -7,15 +7,15 @@ package com.it.bean;
  */
 public class TreasureType {
 
-	public static final int TYPE_FIRST = 0;//第一层
-	public static final int TYPE_SECOND = 1;//第二层
-	public static final int TYPE_THIRD = 2;//第三层
+	public static final int TYPE_FIRST = 1;//第一层
+	public static final int TYPE_SECOND = 2;//第二层
+	public static final int TYPE_THIRD = 3;//第三层
 	
-    private Long id; 
-    private Long currnt_id; //宝物id
-    private String name;//宝物名字
-    private Integer type;//宝物级别
-    private Long parent_id;//父类id
+    public long id; 
+    public long currnt_id; //宝物id
+    public String name;//宝物名字
+    public Integer type;//宝物级别
+    public long parent_id;//父类id
 
     public TreasureType() {
     }
@@ -68,7 +68,7 @@ public class TreasureType {
         return parent_id;
     }
 
-    public void setParent_id(Long parent_id) {
+    public void setParent_id(long parent_id) {
         this.parent_id = parent_id;
     }
 
