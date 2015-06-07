@@ -84,5 +84,13 @@ public class Const {
 	 * 跳转时传参字符串
 	 */
 	public final static String ENTITY="entity";
+	/**
+	 * 跳到鉴定大厅
+	 * */
+	public final static int TO_INDENTIFY=9;
+	/**
+	 * 跳转时id 
+	 * */
+	public final static String KIND_ID="kind_id";
 	
 }

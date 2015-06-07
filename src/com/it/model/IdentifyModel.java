@@ -66,7 +66,7 @@ public class IdentifyModel extends BaseModel {
 	 * @param groupid
 	 *            分组id
 	 * */
-	public void sendHttp(final CommonCallBack callBack, String type, int groupid) {
+	public void sendHttp(final CommonCallBack callBack, String type, long groupid) {
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
 		params = new RequestParams();
 		 params.addBodyParameter("status",type);

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.it.R;
 import com.it.bean.TreasureType;
+import com.it.config.Const;
 import com.it.model.getAllKind_X_Model;
 import com.it.tree.bean.Node;
 import com.it.tree.bean.TreeListViewAdapter;
@@ -61,9 +62,8 @@ public class ActivityKindOfPrecious extends Activity {
 	List<TreasureType> first;
 
 	getAllKind_X_Model model;
-	
-	private TreeListViewAdapter mAdapter;
 
+	private TreeListViewAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,43 +72,34 @@ public class ActivityKindOfPrecious extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_kind_of_precious);
 		ViewUtils.inject(this);
-		first=SqlDataUtil.getInstance().getTreasureType();
-		LogUtils.d("获取所有分类："+first.size());
-		try
-		{
-			mAdapter = new SimpleTreeAdapter<TreasureType>(treeView, this, first, 1);
-			mAdapter.setOnTreeNodeClickListener(new OnTreeNodeClickListener()
-			{
+		first = SqlDataUtil.getInstance().getTreasureType();
+		LogUtils.d("获取所有分类：" + first.size());
+		try {
+			mAdapter = new SimpleTreeAdapter<TreasureType>(treeView, this,
+					first, 0);
+			mAdapter.setOnTreeNodeClickListener(new OnTreeNodeClickListener() {
 				@Override
-				public void onClick(Node node, int position)
-				{
-					if (node.isLeaf())
-					{
-						Toast.makeText(getApplicationContext(), node.getName(),
-								Toast.LENGTH_SHORT).show();
+				public void onClick(Node node, int position) {
+					if (node.isLeaf()) {
+						// Toast.makeText(getApplicationContext(),
+						// node.getName(),
+						// Toast.LENGTH_SHORT).show();
+						// 跳转到大厅，
+						Intent mIntent = new Intent();
+						mIntent.putExtra(Const.KIND_ID, node.getType().id);
+						setResult(Const.TO_INDENTIFY, mIntent);
+						finish();
+
 					}
 				}
 
 			});
 
-		} catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		treeView.setAdapter(mAdapter);
 
 	}
-
-	/**
-	 * 选择3级跳转
-	 */
-	private OnClickListener listener = new OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-
-		}
-	};
 
 }

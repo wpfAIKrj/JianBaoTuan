@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.it.R;
 import com.it.app.ItApplication;
 import com.it.bean.CollectionEntity;
+import com.it.config.Const;
 import com.it.model.CommonCallBack;
 import com.it.model.IdentifyModel;
 import com.it.ui.activity.ActivityKindOfPrecious;
@@ -59,7 +60,7 @@ public class IdentiyFragment extends BaseFragment implements
 		case R.id.button_category: {
 			Intent mIntent = new Intent(getActivity(),
 					ActivityKindOfPrecious.class);
-			startActivity(mIntent);
+			startActivityForResult(mIntent, Const.TO_INDENTIFY);
 		}
 			break;
 		case R.id.btn_identifing: {
@@ -205,6 +206,36 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == Const.TO_INDENTIFY) {
+			long kindId = data.getIntExtra(Const.KIND_ID, -1);
+			// 根据分类id来加载
+			model.sendHttp(new CommonCallBack() {
+
+				@Override
+				public void onSuccess() {
+					// TODO Auto-generated method stub
+					prrv.stopRefresh();
+					List<CollectionEntity> result = model.getResult();
+					if (result.size() == 0) {
+						Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
+								.show();
+					}
+					mAdapter.setData(model.getResult());
+				}
+
+				@Override
+				public void onError() {
+					// TODO Auto-generated method stub
+					prrv.stopRefresh();
+				}
+			}, String.valueOf(type), kindId);
+		}
 	}
 
 }
