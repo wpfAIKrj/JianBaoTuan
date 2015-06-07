@@ -2,7 +2,7 @@ package com.it.config;
 
 /**
  * 基本参数
- * 
+ *
  * @author Gong
  *
  */
@@ -14,13 +14,13 @@ public class Const {
 	public static final String DATABASE_NAME = "it";
 	public static int DATABASE_VERSION=1;
 
-	
+
 	/**
 	 * 文章id
 	 */
 	public static final String ArticleId="article_id";
 
-	
+
 	/**
 	 * 发布鉴定的图片路径
 	 */
@@ -30,7 +30,7 @@ public class Const {
 	 * 单张图片
 	 */
 	public static final String PICPATH="picpath";
-	
+
 	/**
 	 * 主页面当前选择的序号
 	 */
@@ -39,7 +39,7 @@ public class Const {
 	 * 主页面保存的用户信息
 	 */
 	public static final String USER="user";
-	
+
 	/**
 	 * 跳转我要鉴定
 	 */
@@ -48,7 +48,7 @@ public class Const {
 	 * 我要鉴定的第二步
 	 */
 	public static final int TO_IDENTY_NEXT=1;
-	
+
 	/**
 	 * 跳转到注册页面
 	 */
@@ -69,17 +69,21 @@ public class Const {
 	 * 查看收藏文章
 	 */
 	public static int TO_COLLECT_INFO=6;
-	
+
 	/**
 	 * 机构注册
 	 */
 	public static int TO_ATTEST_AGENCY=7;
-	
+	/**
+	 * 知识大厅跳转到选择宝物分类页面
+	 */
+	public static int TO_SELECT_TYPE=10;
+
 	/**
 	 * 个人注册
 	 */
 	public static final int TO_ATTEST_PERSIONAL = 8;
-	
+
 	/**
 	 * 跳转时传参字符串
 	 */
@@ -89,8 +93,8 @@ public class Const {
 	 * */
 	public final static int TO_INDENTIFY=9;
 	/**
-	 * 跳转时id 
+	 * 跳转时id
 	 * */
 	public final static String KIND_ID="kind_id";
-	
+
 }

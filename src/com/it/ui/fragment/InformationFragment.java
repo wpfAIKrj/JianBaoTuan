@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Event;
@@ -33,6 +34,7 @@ import com.it.bean.InfoEvent;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
 import com.it.presenter.ArticlePresenter;
+import com.it.ui.activity.ActivityKindOfPrecious;
 import com.it.ui.activity.InformationDetailsActivity;
 import com.it.ui.adapter.ArticleAdapter;
 import com.it.ui.base.BaseFragment;
@@ -43,66 +45,80 @@ import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import de.greenrobot.event.EventBus;
 
 public class InformationFragment extends BaseFragment implements onListView<ContentInfo>,ListviewLoadListener{
 
 
-	
+
 	private ArticleAdapter madapter;
-	
-	
+
+
 	@ViewInject(R.id.button_category)
 	private ImageView back;
 	@ViewInject(R.id.home_title)
 	private TextView title;
-	
+
 	private ArrayList<ContentInfo> list;
-	
+
 	private ArticlePresenter articlePresenter;
-	
-	
+
+
 	@ViewInject(R.id.swipe_refresh_widget)
 	private SwipeRefreshLayout mSwipeRefreshWidget;
 	@ViewInject(R.id.recyclerview1)
 	private RecyclerView mRecyclerView;
-	
-	
+
+
 	private int length=0;
-	
+
 	protected boolean isLoadMore=false;
 	private boolean isRefreshing=true;
-	
+
 	private boolean isFiset=true;
-	
+
 	protected int lastVisableView;
 	protected int totalItemCount;
 	protected int nextShow=1;
-	
+
 	private ListLoadType currt=ListLoadType.Nomal;
-	
-	
+
+	private String ground_id="0";
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this);
 	}
-	
-	
+
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
 	}
-	
-	
+
+
 	public void onEventMainThread(InfoEvent event){
 		switch (event.type) {
 		case 0://刷新
 			lazyLoad();
+			break;
+
+		default:
+			break;
+		}
+	}
+	@OnClick({R.id.button_category})
+	public void onClick(View v){
+		switch (v.getId()) {
+		case R.id.button_category:
+			Intent intent=new Intent(mActivity, ActivityKindOfPrecious.class);
+			mActivity.startActivityForResult(intent, Const.TO_SELECT_TYPE);
 			break;
 
 		default:
@@ -126,7 +142,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		LayoutManager layoutManager=new LinearLayoutManager(view.getContext());
 		mRecyclerView.setLayoutManager(layoutManager);
 		mSwipeRefreshWidget.setOnRefreshListener(new OnRefreshListener() {
-			
+
 			@Override
 			public void onRefresh() {//刷新
 				// TODO Auto-generated method stub
@@ -141,9 +157,9 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		mRecyclerView.setOnScrollListener(Scrolllistener);
 
 		mRecyclerView.setHasFixedSize(true);
-		
+
 		madapter=new ArticleAdapter(mActivity,list,lisntener,InformationFragment.this);
-		
+
 		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRecyclerView.setAdapter(madapter);
 	}
@@ -177,14 +193,14 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	 * 跳转详细文章页面
 	 */
 	private OnClickListener lisntener=new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			ContentInfo contentInfo=(ContentInfo) v.getTag();
 			Intent intent=new Intent(mActivity, InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, contentInfo);
-			startActivity(intent);	
+			startActivity(intent);
 		}
 	};
 
@@ -196,7 +212,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 			addList(data);
 		}
 		if(currt==ListLoadType.Refresh){//刷新
-			if(!data.isEmpty()){ 
+			if(!data.isEmpty()){
 				list.clear();
 				addList(data);
 			}
@@ -211,8 +227,8 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	}
 
-	
-	
+
+
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
 		// TODO Auto-generated method stub
@@ -224,13 +240,13 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	}
 
 	/**
-	 * 
+	 *
 	 * @param data
 	 */
 	public void addList(ArrayList<ContentInfo> data) {
 		// TODO Auto-generated method stub
 		if(list.size()==0){
-			list.addAll(data);	
+			list.addAll(data);
 		}else {
 			for (int i = 0; i < data.size(); i++) {
 				if(!list.contains(data.get(i))){
@@ -240,7 +256,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		}
 	}
 	OnScrollListener Scrolllistener=new OnScrollListener() {
-		
+
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 			// TODO Auto-generated method stub
@@ -292,7 +308,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		madapter.notifyItemChanged(list.size());
 		int foot=mRecyclerView.getChildCount();
 		length=0;
-		articlePresenter.getArticleList("0", length);
+		articlePresenter.getArticleList(ground_id, length);
 	}
 
 	@Override
@@ -304,6 +320,18 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		mSwipeRefreshWidget.setRefreshing(false);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
-		articlePresenter.getArticleList("0", (length+1));
+		articlePresenter.getArticleList(ground_id, (length+1));
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		//super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==Const.TO_SELECT_TYPE&&resultCode==Activity.RESULT_OK){
+			ground_id=String.valueOf(data.getLongExtra(Const.KIND_ID, 0));
+			mSwipeRefreshWidget.setRefreshing(true);
+			onRefresh();
+			isFiset=false;
+		}
 	}
 }

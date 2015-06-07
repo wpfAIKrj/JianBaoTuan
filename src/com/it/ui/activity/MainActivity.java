@@ -55,15 +55,15 @@ import android.widget.LinearLayout;
  * @author Administrator
  *
  */
-public class MainActivity extends FragmentActivity implements 
+public class MainActivity extends FragmentActivity implements
 OnTabSelectedListener ,OnClickListener{
-	
-	
+
+
 	private FragmentManager mFragmentManager;
 	private HomeFragment mHomeFragment;
 	private IdentiyFragment mIdentiyFragment;
 	private InformationFragment mInformationFragment;
-	private MyFragment mMyFragment;	
+	private MyFragment mMyFragment;
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
 	private int mIndex=0;
@@ -77,7 +77,7 @@ OnTabSelectedListener ,OnClickListener{
         super.onCreate(savedInstanceState);
         getSave(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);  
+        setContentView(R.layout.activity_main);
 		init();
 		initEvents();
 		setUpMenu();
@@ -91,21 +91,21 @@ OnTabSelectedListener ,OnClickListener{
          resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_LEFT);
          resideMenu.setShadowVisible(false);
          resideMenu.setButtonOnClickListener(this);
-         
+
 	}
-    
-   
+
+
 
 
 	private void init() {
 		// TODO Auto-generated method stub
 		mFragmentManager = getSupportFragmentManager();
 		mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
-	     LinearLayout viewSnsLayout = (LinearLayout)findViewById(R.id.viewSnsLayout);      
+	     LinearLayout viewSnsLayout = (LinearLayout)findViewById(R.id.viewSnsLayout);
 	     viewSnsLayout.setLongClickable(true);
 	     Button bt=(Button)findViewById(R.id.circle_btn);
 	     bt.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -132,7 +132,7 @@ OnTabSelectedListener ,OnClickListener{
 		mTabWidget.setTabsDisplay(this, mIndex);
 		mTabWidget.setIndicateDisplay(this, mIndex, true);
     }
-    
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(Const.MINDEX, mIndex);
@@ -144,7 +144,7 @@ OnTabSelectedListener ,OnClickListener{
 		getSave(savedInstanceState);
 	}
 
-    
+
 	private void getSave(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(savedInstanceState!=null){
@@ -157,7 +157,7 @@ OnTabSelectedListener ,OnClickListener{
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
-		
+
 //		if(keyCode==KeyEvent.KEYCODE_BACK){
 //		     if (System.currentTimeMillis() - this.mkeyTime > 2000L){
 //		         this.mkeyTime = System.currentTimeMillis();
@@ -166,13 +166,13 @@ OnTabSelectedListener ,OnClickListener{
 //		    	 //
 //		         return false;
 //		     }
-//		     
+//
 //		}
 		return super.onKeyDown(keyCode, event);
 	}
 
-	
-	
+
+
 
 
 	@Override
@@ -219,7 +219,7 @@ OnTabSelectedListener ,OnClickListener{
 				mMyFragment = new MyFragment();
 				mMyFragment.setPopMenuListener(this);
 				mMyFragment.setLogoListener(new OnLongClickListener() {
-					
+
 					@Override
 					public boolean onLongClick(View v) {
 						// TODO Auto-generated method stub
@@ -266,11 +266,11 @@ OnTabSelectedListener ,OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub		
-		
+		// TODO Auto-generated method stub
+
 		if(v.getId()==R.id.my_bt_showmenu){
 			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
-			return;	
+			return;
 		}
 		if(v.getId()==R.id.layout_item1){//跳转到个人资料
 			startActivity(new Intent(MainActivity.this, ProfileActivity.class));
@@ -288,24 +288,29 @@ OnTabSelectedListener ,OnClickListener{
 
 		}
 		if(v.getId()==R.id.layout_item1){//退出登陆
-		
+
 		}
 		resideMenu.closeMenu();
 	}
 
-	
+
 	@Override
 	public void startActivity(Intent intent) {
 		// TODO Auto-generated method stub
 		super.startActivity(intent);
 		overridePendingTransition(R.anim.left_in, R.anim.left_out);
 	}
-  
-	
+
+
 	@Override
 	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
 		// TODO Auto-generated method stub
+		if(mInformationFragment!=null){
+			mInformationFragment.onActivityResult(arg0, arg1, arg2);
+		}
 		super.onActivityResult(arg0, arg1, arg2);
+		
+
 		if (arg1 == RESULT_CANCELED) {
 			disshowPhoto();
 			return;
@@ -315,8 +320,8 @@ OnTabSelectedListener ,OnClickListener{
 			onTabSelected(mIndex);
 		}
 		if(arg0==Const.TO_SEND_IDENTIY&&arg1==RESULT_OK){//发布成功
-			
-			
+
+
 		}
 		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
@@ -356,7 +361,7 @@ OnTabSelectedListener ,OnClickListener{
 				uploadLogo(path);
 			}
 		}
-	
+
 	}
 
 	public void uploadLogo(String path){
@@ -372,8 +377,8 @@ OnTabSelectedListener ,OnClickListener{
 			Logodialong.show();
 		}
 	}
-	
-	
+
+
 	private void disshowPhoto() {
 		// TODO Auto-generated method stub
 		if(photodialog!=null){
@@ -382,10 +387,10 @@ OnTabSelectedListener ,OnClickListener{
 			}
 		}
 	}
-	
+
 
 	private onBasicView<UserInfo> listener=new onBasicView<UserInfo>() {
-		
+
 		@Override
 		public void onSucess(UserInfo user) {
 			// TODO Auto-generated method stub
@@ -395,10 +400,10 @@ OnTabSelectedListener ,OnClickListener{
 			}
 			UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
 			cunnt.setAvatar(user.getAvatar());
-			
+
 			EventBus.getDefault().post(new MyEvent(0,user));
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
@@ -410,9 +415,9 @@ OnTabSelectedListener ,OnClickListener{
 		}
 	};
 
-	
+
 	private OnClickListener ImageListner = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
