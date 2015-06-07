@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.it.R;
 import com.it.bean.ContentInfo;
 import com.it.bean.InfoEvent;
+import com.it.bean.TreasureType;
 import com.it.config.Const;
 import com.it.inter.ListviewLoadListener;
 import com.it.presenter.ArticlePresenter;
@@ -72,7 +73,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	private RecyclerView mRecyclerView;
 
 
-	private int length=0;
 
 	protected boolean isLoadMore=false;
 	private boolean isRefreshing=true;
@@ -212,6 +212,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 			addList(data);
 		}
 		if(currt==ListLoadType.Refresh){//刷新
+			
 			if(!data.isEmpty()){
 				list.clear();
 				addList(data);
@@ -307,8 +308,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		madapter.setFootType(2);
 		madapter.notifyItemChanged(list.size());
 		int foot=mRecyclerView.getChildCount();
-		length=0;
-		articlePresenter.getArticleList(ground_id, length);
+		articlePresenter.getArticleList("0",ground_id);
 	}
 
 	@Override
@@ -320,18 +320,24 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		mSwipeRefreshWidget.setRefreshing(false);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
-		articlePresenter.getArticleList(ground_id, (length+1));
+		articlePresenter.getArticleList("0",ground_id );
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		//super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode==Const.TO_SELECT_TYPE&&resultCode==Activity.RESULT_OK){
-			ground_id=String.valueOf(data.getLongExtra(Const.KIND_ID, 0));
-			mSwipeRefreshWidget.setRefreshing(true);
-			onRefresh();
-			isFiset=false;
+		if(requestCode==Const.TO_SELECT_TYPE&&resultCode==Activity.RESULT_OK){
+			try {
+				TreasureType type=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
+				ground_id=String.valueOf(type.getId());
+				mSwipeRefreshWidget.setRefreshing(true);
+				onRefresh();
+				isFiset=false;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

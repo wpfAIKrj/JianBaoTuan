@@ -26,8 +26,8 @@ public class ArticleModel extends BaseModel{
 	private OnListDataLoadListener<ContentInfo> lisntenr;
 	
 	private String type;
-	private int group_id;
-	public void getArticleList(String type, int group_id ,OnListDataLoadListener<ContentInfo> lis){
+	private String group_id;
+	public void getArticleList(String type, String group_id ,OnListDataLoadListener<ContentInfo> lis){
 		this.lisntenr=lis;
 		this.type=type;
 		this.group_id=group_id;

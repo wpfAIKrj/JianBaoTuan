@@ -85,9 +85,9 @@ public class ActivityKindOfPrecious extends Activity {
 						// node.getName(),
 						// Toast.LENGTH_SHORT).show();
 						// 跳转到大厅，
-						Intent mIntent = new Intent();
-						mIntent.putExtra(Const.KIND_ID, node.getType().id);
-						setResult(Const.TO_INDENTIFY, mIntent);
+						Intent mIntent = getIntent();
+						mIntent.putExtra(Const.KIND_ID, node.getType());
+						setResult(Activity.RESULT_OK, mIntent);
 						finish();
 
 					}

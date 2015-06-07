@@ -21,8 +21,12 @@ public class ArticlePresenter implements OnListDataLoadListener<ContentInfo> {
 		// TODO Auto-generated constructor stub
 		this.mView=view;
 	}
-	
-	public void getArticleList(String type,int group_id){
+	/**
+	 * 类型
+	 * @param type 知识类型
+	 * @param group_id 宝贝分类id
+	 */
+	public void getArticleList(String type,String group_id){
 		model=new ArticleModel();
 		model.getArticleList(type, group_id, this);
 		model.addRequestParams();
