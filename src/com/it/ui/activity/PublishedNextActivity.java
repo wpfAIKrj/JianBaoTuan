@@ -88,9 +88,7 @@ public class PublishedNextActivity extends BaseActivity implements onListView<Us
 			finish();
 			break;
 		case R.id.send_identy:
-	
 			
-			setResult(RESULT_OK, getIntent());
 			break;
 			default:
 				break;

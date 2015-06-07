@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.it.bean.TreasureType;
 import com.it.config.NetConst;
 import com.it.config.UrlUtil;
+import com.it.utils.SqlDataUtil;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -85,76 +86,109 @@ public class getAllKind_X_Model extends BaseModel {
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		first = new ArrayList<TreasureType>();
-		second = new ArrayList<TreasureType>();
-		third = new ArrayList<TreasureType>();
-		list = new ArrayList<List<TreasureType>>();
+		
 		JSONObject json = new JSONObject(data);
-		LogUtils.d("?" + (json == null));
-		try {
-			if (json != null) {
-				JSONArray jsons = new JSONArray(json.getString(NetConst.DATA));
-				int size = jsons.length();
-				LogUtils.d("begin size=" + size);
-				for (int i = 0; i < size; i++) {
-					LogUtils.d("first begin size=" + size);
-					JSONObject firstObj = jsons.getJSONObject(i);
-					TreasureType firstEntity = new TreasureType();
-					firstEntity.id = firstObj.getLong(NetConst.INFO_ID);
-					firstEntity.name = firstObj.getString("name");
-					firstEntity.type = TreasureType.TYPE_FIRST;
-					JSONArray secondJSONs = firstObj.getJSONArray("children");
-					if (secondJSONs != null) {
-						int size_2 = secondJSONs.length();
-						for (int j = 0; j < size_2; j++) {
-							LogUtils.d("second begin size=" + size_2);
-							JSONObject secondObj = secondJSONs.getJSONObject(j);
-							TreasureType secondEntity = new TreasureType();
-							secondEntity.id = secondObj
-									.getLong(NetConst.INFO_ID);
-							secondEntity.name = secondObj.getString("name");
-							secondEntity.parent_id = secondObj
-									.getLong("parent_id");
-							secondEntity.type = TreasureType.TYPE_SECOND;
-
-							JSONArray thirdJSONs = secondObj
-									.getJSONArray("children");
-							if (thirdJSONs != null) {
-								int size_3 = thirdJSONs.length();
-								for (int k = 0; k < size_3; k++) {
-									LogUtils.d("third begin size=" + size_3);
-									JSONObject thirdObj = thirdJSONs
-											.getJSONObject(k);
-									TreasureType thirdEntity = new TreasureType();
-									thirdEntity.id = thirdObj
-											.getLong(NetConst.INFO_ID);
-									thirdEntity.name = thirdObj
-											.getString("name");
-									thirdEntity.parent_id = thirdObj
-											.getLong("parent_id");
-									thirdEntity.type = TreasureType.TYPE_THIRD;
-
-									third.add(thirdEntity);
-								}
-							}
-
-							second.add(secondEntity);
-						}
-					}
-
-					first.add(firstEntity);
-				}
-
-				list.add(first);
-				list.add(second);
-				list.add(third);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		int type=0;
+		if(json!=null){
+			JSONArray jsons = new JSONArray(json.getString(NetConst.DATA));
+			
+			dealWork(type, jsons,-1);
 		}
+			
+//		first = new ArrayList<TreasureType>();
+//		second = new ArrayList<TreasureType>();
+//		third = new ArrayList<TreasureType>();
+//		list = new ArrayList<List<TreasureType>>();
+//		JSONObject json = new JSONObject(data);
+//		LogUtils.d("?" + (json == null));
+//		try {
+//			if (json != null) {
+//				JSONArray jsons = new JSONArray(json.getString(NetConst.DATA));
+//				int size = jsons.length();
+//				LogUtils.d("begin size=" + size);
+//				for (int i = 0; i < size; i++) {
+//					LogUtils.d("first begin size=" + size);
+//					JSONObject firstObj = jsons.getJSONObject(i);
+//					TreasureType firstEntity = new TreasureType();
+//					firstEntity.id = firstObj.getLong(NetConst.INFO_ID);
+//					firstEntity.name = firstObj.getString("name");
+//					firstEntity.type = TreasureType.TYPE_FIRST;
+//					JSONArray secondJSONs = firstObj.getJSONArray("children");
+//					if (secondJSONs != null) {
+//						int size_2 = secondJSONs.length();
+//						for (int j = 0; j < size_2; j++) {
+//							LogUtils.d("second begin size=" + size_2);
+//							JSONObject secondObj = secondJSONs.getJSONObject(j);
+//							TreasureType secondEntity = new TreasureType();
+//							secondEntity.id = secondObj
+//									.getLong(NetConst.INFO_ID);
+//							secondEntity.name = secondObj.getString("name");
+//							secondEntity.parent_id = secondObj
+//									.getLong("parent_id");
+//							secondEntity.type = TreasureType.TYPE_SECOND;
+//
+//							JSONArray thirdJSONs = secondObj
+//									.getJSONArray("children");
+//							if (thirdJSONs != null) {
+//								int size_3 = thirdJSONs.length();
+//								for (int k = 0; k < size_3; k++) {
+//									LogUtils.d("third begin size=" + size_3);
+//									JSONObject thirdObj = thirdJSONs
+//											.getJSONObject(k);
+//									TreasureType thirdEntity = new TreasureType();
+//									thirdEntity.id = thirdObj
+//											.getLong(NetConst.INFO_ID);
+//									thirdEntity.name = thirdObj
+//											.getString("name");
+//									thirdEntity.parent_id = thirdObj
+//											.getLong("parent_id");
+//									thirdEntity.type = TreasureType.TYPE_THIRD;
+//
+//									third.add(thirdEntity);
+//								}
+//							}
+//
+//							second.add(secondEntity);
+//						}
+//					}
+//
+//					first.add(firstEntity);
+//				}
+//
+//				list.add(first);
+//				list.add(second);
+//				list.add(third);
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
+	/**
+	 * 解析
+	 * @param type 几级
+	 * @param array json数组
+	 * @param parent_id  父类id
+	 */
+	public void  dealWork(int type,JSONArray array, long parent_id) throws Exception{
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject Obj = array.getJSONObject(i);
+			TreasureType Entity = new TreasureType();
+			Entity.id = Obj.getLong(NetConst.INFO_ID);
+			Entity.name = Obj.getString("name");
+			Entity.type = type;
+			Entity.parent_id=parent_id;
+			SqlDataUtil.getInstance().saveContentType(Entity);
+			if(Obj.has("children")){
+				JSONArray nextJSONs = Obj.getJSONArray("children");
+				int nexttype=type+1;
+				dealWork(nexttype, nextJSONs,Entity.id);
+			}else{
+				continue;
+			}
+		}
+	}
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub

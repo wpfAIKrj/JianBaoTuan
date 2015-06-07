@@ -142,6 +142,19 @@ public class SqlDataUtil {
 		}
 	
 	}
+	
+	/**
+	 * 保存宝物分类信息
+	 * @param data
+	 */
+	public void saveContentType(TreasureType data){
+		 try {
+			typeDao.insertOrReplace(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 获取所有分类列表
