@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import com.it.R;
 import com.it.bean.CollectionEntity;
+import com.it.bean.UserInfo;
 import com.it.config.Const;
+import com.it.model.CommonCallBack;
+import com.it.model.getUserByIdModel;
 import com.it.utils.BitmapsUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -53,6 +56,8 @@ public class ActivityUserDelails extends Activity {
 	}
 
 	private CollectionEntity entity = null;
+	getUserByIdModel userModel=null;
+	private UserInfo user=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +68,34 @@ public class ActivityUserDelails extends Activity {
 		ViewUtils.inject(this);
 		entity = (CollectionEntity) getIntent().getSerializableExtra(
 				Const.ENTITY);
+		getUserInfo(entity);
 		bitmapUtils = BitmapsUtils.getInstance();
 		initViews();
+	}
+
+	private void getUserInfo(CollectionEntity entity) {
+		// TODO Auto-generated method stub
+		userModel=new getUserByIdModel();
+		userModel.sendHttp(new CommonCallBack() {
+			
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				user=userModel.getResult();
+				if(user==null){
+					return;
+				}
+				bitmapUtils.display(iv_head, user.getImage_token());
+				tv_name.setText(user.getNickname());
+				//用户等级
+			}
+			
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+				
+			}
+		}, entity.author_id);
 	}
 
 	private void initViews() {

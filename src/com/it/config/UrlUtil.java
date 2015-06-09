@@ -68,5 +68,13 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Material/kindsAction");
 		return url.toString();
 	}
+	/**
+	 * 根据ID获取用户详情
+	 * */
+	public static String getUserById() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Users/detailAction");
+		return url.toString();
+	}
 
 }
