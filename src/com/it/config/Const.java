@@ -78,6 +78,10 @@ public class Const {
 	 * 知识大厅跳转到选择宝物分类页面
 	 */
 	public static int TO_SELECT_TYPE=10;
+	/**
+	 * 发布鉴定页面选择宝物分类
+	 */
+	public static int TO_PUBLISH_SELECT_TYPE=11;
 
 	/**
 	 * 个人注册

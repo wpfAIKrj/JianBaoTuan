@@ -92,7 +92,7 @@ public class getAllKind_X_Model extends BaseModel {
 		if(json!=null){
 			JSONArray jsons = new JSONArray(json.getString(NetConst.DATA));
 			
-			dealWork(type, jsons,-1);
+			dealWork(type, jsons);
 		}
 			
 //		first = new ArrayList<TreasureType>();
@@ -171,19 +171,19 @@ public class getAllKind_X_Model extends BaseModel {
 	 * @param array json数组
 	 * @param parent_id  父类id
 	 */
-	public void  dealWork(int type,JSONArray array, long parent_id) throws Exception{
+	public void  dealWork(int type,JSONArray array) throws Exception{
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject Obj = array.getJSONObject(i);
 			TreasureType Entity = new TreasureType();
 			Entity.id = Obj.getLong(NetConst.INFO_ID);
-			Entity.name = Obj.getString("name");
+			Entity.name = Obj.getString("classify_name");
 			Entity.type = type;
-			Entity.parent_id=parent_id;
+			Entity.parent_id=Obj.getLong("parent_id");
 			SqlDataUtil.getInstance().saveContentType(Entity);
 			if(Obj.has("children")){
 				JSONArray nextJSONs = Obj.getJSONArray("children");
 				int nexttype=type+1;
-				dealWork(nexttype, nextJSONs,Entity.id);
+				dealWork(nexttype, nextJSONs);
 			}else{
 				continue;
 			}

@@ -172,6 +172,51 @@ public class SqlDataUtil {
 	}
 
 	/**
+	 * 指定最低级，来获取你父级的标签
+	 * @param type 最低级的宝物
+	 * @return 包含起的宝贝列表
+	 */
+	public ArrayList<TreasureType> getTreasureTypeByChild(TreasureType type) {
+		// TODO 自动生成的方法存根
+		 ArrayList<TreasureType> list=new ArrayList<TreasureType>();
+		 list.add(type);
+		 
+		 TreasureType start=type;
+		 do{
+			 if(start.parent_id!=0){
+				 start=getSTreasureType((start.type-1),start.parent_id);
+				 if(start!=null){
+					 list.add(start);
+				 }
+				 
+			 }else{
+				 start=null;
+			 }
+			 
+		 }while(start!=null);
+		return list;
+	}
+	/**
+	 * 获取指定的宝贝类别信息
+	 * @param id id
+	 * @param type 第几级
+	 * @return 返回该宝物信息
+	 */
+	public TreasureType getSTreasureType(int type,long id) {
+		// TODO Auto-generated method stub
+		TreasureType data=null;
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		try {
+			qb.where(TreasureTypeDao.Properties.Type.eq(type),TreasureTypeDao.Properties.Id.eq(id));
+			data=qb.uniqueOrThrow();
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return data;
+	}
+	
+	/**
 	 * 获取制定2级列表
 	 * @param parent_id 1级列表id
 	 * @return 2级列表

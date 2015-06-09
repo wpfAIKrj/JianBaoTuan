@@ -15,7 +15,7 @@
     	    android:id="@+id/textView1"
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
-    	    android:text="为了确保鉴定的准确性，请你按照要求分享宝贝照片及信息"
+    	    android:text="@string/publih_text_title"
     	    android:textSize="@dimen/item_text_size"
     	    android:textColor="@color/number_color" 
     	    android:background="@color/layout_bg_color"
@@ -72,43 +72,18 @@
     			    android:layout_height="wrap_content"
     			    android:src="@drawable/published_bt_bg" />
 
-    			<TextView
-    				android:id="@+id/tv_tag1"
-    			    android:layout_width="@dimen/text_layout_width"
-    			    android:layout_height="match_parent"
-    			    android:text="木"
-    			    android:layout_marginLeft="16dp" 
-    			    android:gravity="center"
-    			    android:textColor="@color/wite"
-    			    android:background="@color/number_color"
-    			    android:layout_marginTop="5dp"
+   
+
+    			<com.it.view.TagLinearLayout
+    			   android:id="@+id/tag_layout"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content" 
+    			     android:layout_marginTop="5dp"
     			    android:layout_marginBottom="5dp"
-    			    />
-				<TextView
-    			  	android:id="@+id/tv_tag2"
-    			    android:layout_width="@dimen/text_layout_width"
-    			    android:layout_height="match_parent"
-    			    android:text="沉香"
-    			    android:layout_marginLeft="10dp" 
-    			    android:gravity="center"
-    			    android:textColor="@color/wite"
-    			    android:background="@color/bt_color"
-    			    android:layout_marginTop="5dp"
-    			    android:layout_marginBottom="5dp"
-    			    />
-				
-				<TextView
-    			  	android:id="@+id/tv_tag3"
-    			    android:layout_width="@dimen/text_big_layout_width"
-    			    android:layout_height="match_parent"
-    			    android:text="小叶紫檀"
-    			    android:layout_marginLeft="10dp" 
-    			    android:gravity="center"
-    			    android:textColor="@color/wite"
-    			    android:background="@color/number_color"
-    			    android:layout_marginTop="5dp"
-    			    android:layout_marginBottom="5dp"
-    			    />
+    			 android:layout_marginLeft="16dp" 
+    			    >
+    			</com.it.view.TagLinearLayout>
+
     		</LinearLayout>
 
     	</LinearLayout>

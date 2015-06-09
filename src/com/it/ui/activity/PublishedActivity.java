@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.bean.TreasureType;
 import com.it.config.Const;
 import com.it.ui.base.BaseActivity;
 import com.it.ui.dialog.SelectPhotoDialog;
@@ -18,6 +19,7 @@ import com.it.utils.FileUtils;
 import com.it.utils.ImageUtils;
 import com.it.utils.NetUtils;
 import com.it.utils.ToastUtils;
+import com.it.view.TagLinearLayout;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -35,14 +37,8 @@ public class PublishedActivity extends BaseActivity{
 	@ViewInject(R.id.published_bt)
 	private ImageView tv_munu;
 	
-	@ViewInject(R.id.tv_tag1)
-	private TextView tv_tag1;
-	
-	@ViewInject(R.id.tv_tag2)
-	private TextView tv_tag2;
-	
-	@ViewInject(R.id.tv_tag3)
-	private TextView tv_tag3;
+	@ViewInject(R.id.tag_layout)
+	private TagLinearLayout taglayout;
 	
 	@ViewInject(R.id.imageView01)
 	private ImageView iv1;
@@ -64,6 +60,8 @@ public class PublishedActivity extends BaseActivity{
 	private String[] imagePath=new String[6];//全景图片路径
 	
 	private ImageUtils imageUtils;
+	
+	private TreasureType type=null;//宝贝分类
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -88,6 +86,7 @@ public class PublishedActivity extends BaseActivity{
 		,R.id.imageView05,R.id.imageView06,R.id.bt_next})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		Intent intent;
 		switch (v.getId()) {
 		case R.id.btn_back://返回上层
 			for (String path : imagePath) {
@@ -99,7 +98,8 @@ public class PublishedActivity extends BaseActivity{
 			finish();
 			break;
 		case R.id.published_bt://跳转到搜索
-			
+			 intent=new Intent(PublishedActivity.this, ActivityKindOfPrecious.class);
+			startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
 			break;
 		case R.id.imageView01:
 			showGetPhotoDialog(0);
@@ -121,7 +121,7 @@ public class PublishedActivity extends BaseActivity{
 			break;
 		case R.id.bt_next://下一步
 			if(NetUtils.checkNetWork(this)){
-				Intent intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
+				 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
 				intent.putExtra(Const.IMAGEPATH, imagePath);
 				startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
 			}else{
@@ -151,6 +151,13 @@ public class PublishedActivity extends BaseActivity{
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==Const.TO_PUBLISH_SELECT_TYPE){//选择宝物
+			if(resultCode==RESULT_OK){
+				type=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
+				taglayout.addTag(type);
+			}
+			
+		}
 		if(requestCode==Const.TO_IDENTY_NEXT){
 			if(resultCode==RESULT_OK){//鉴定发布成功，返回主页面
 				
