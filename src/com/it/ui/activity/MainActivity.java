@@ -18,6 +18,7 @@ import com.it.ui.fragment.InformationFragment;
 import com.it.ui.fragment.MyFragment;
 import com.it.utils.DialogUtil;
 import com.it.utils.ImageUtils;
+import com.it.utils.SqlDataUtil;
 import com.it.utils.ToastUtils;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
@@ -290,8 +291,10 @@ OnTabSelectedListener ,OnClickListener{
 		if(v.getId()==R.id.layout_item5){//清楚缓存
 
 		}
-		if(v.getId()==R.id.layout_item1){//退出登陆
-			
+		if(v.getId()==R.id.layout_item6){//退出登陆
+			Logodialong=DialogUtil.createLoadingDialog(this, "正在退出当前用户.....");
+			Logodialong.show();
+			exitpresenter.sendExit();
 		}
 		resideMenu.closeMenu();
 	}
@@ -423,13 +426,26 @@ OnTabSelectedListener ,OnClickListener{
 		@Override
 		public void onSucess(String data) {
 			// TODO 自动生成的方法存根
+			if(Logodialong!=null){
+				Logodialong.dismiss();
+			}
+			SqlDataUtil.getInstance().clearUserinfo();
+			((ItApplication)getApplication()).setCurrnUser(null);
+			new ToastUtils(MainActivity.this, "退出账户成功！");
+			mIndex=0;
+		   	onTabSelected(mIndex);
+			mTabWidget.setTabsDisplay(MainActivity.this, mIndex);
+			mTabWidget.setIndicateDisplay(MainActivity.this, mIndex, true);
 			
 		}
 		
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO 自动生成的方法存根
-			
+			if(Logodialong!=null){
+				Logodialong.dismiss();
+			}
+			new ToastUtils(MainActivity.this, errorMsg);
 		}
 	};
 

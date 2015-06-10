@@ -215,6 +215,14 @@ public class SqlDataUtil {
 		}
 		return data;
 	}
+
+	/**
+	 * 清空用户信息表
+	 */
+	public void clearUserinfo() {
+		// TODO 自动生成的方法存根
+		userdao.deleteAll();
+	}
 	
 	/**
 	 * 获取制定2级列表
