@@ -22,10 +22,13 @@ public class Const {
 
 
 	/**
-	 * 发布鉴定的图片路径
+	 * 发布鉴定的图片路径(全景)
 	 */
-	public static final String IMAGEPATH="imagepath";
-
+	public static final String IMAGEPATH_PANORAMIC="imagepath1";
+	/**
+	 * 发布鉴定的图片路径(特写)
+	 */
+	public static final String IMAGEPATH_FEATURE="imagepath2";
 	/**
 	 * 单张图片
 	 */

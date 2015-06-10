@@ -91,6 +91,8 @@ public class NetConst {
 	public static final String SENDFEED = "Users/suggestAction";//反馈意见
 	
 	public static final String SENDEXIT = "Users/logoutAction";//用户退出
+	
+	public static final String PUBLISH_TREASURES = "Material/addAction";//发布藏品
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
@@ -122,6 +124,7 @@ public class NetConst {
 
 	public static final String UPKEY="key";
 	public static final String INFO_ID = "id";
+
 
 
 	

@@ -21,9 +21,9 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 		this.mView=view;
 	}
 	
-	public void startGet(){
+	public void startGet(Long id){
 		this.model=new getRandomInfoModel();
-		model.startGet(this);
+		model.startGet(id,this);
 	}
 	
 	@Override
@@ -37,7 +37,5 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 		// TODO Auto-generated method stub
 		mView.onFail(errorCode, errorMsg);
 	}
-
-
 
 }

@@ -57,7 +57,8 @@ public class PublishedActivity extends BaseActivity{
 	private TextView title;
 	
 	private int getPhoto=-1;//没有选择图片时为-1
-	private String[] imagePath=new String[6];//全景图片路径
+	private String[] imageAll=new String[3];//全景图片路径
+	private String[] imageTest=new String[3];//特写图片路径
 	
 	private ImageUtils imageUtils;
 	
@@ -89,7 +90,12 @@ public class PublishedActivity extends BaseActivity{
 		Intent intent;
 		switch (v.getId()) {
 		case R.id.btn_back://返回上层
-			for (String path : imagePath) {
+			for (String path : imageAll) {
+				if(path!=null&&!path.isEmpty()){
+					FileUtils.getInstance().deleteFile(path);
+				}
+			}
+			for (String path : imageTest) {
 				if(path!=null&&!path.isEmpty()){
 					FileUtils.getInstance().deleteFile(path);
 				}
@@ -122,7 +128,9 @@ public class PublishedActivity extends BaseActivity{
 		case R.id.bt_next://下一步
 			if(NetUtils.checkNetWork(this)){
 				 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
-				intent.putExtra(Const.IMAGEPATH, imagePath);
+				intent.putExtra(Const.IMAGEPATH_PANORAMIC, imageAll);
+				intent.putExtra(Const.IMAGEPATH_FEATURE, imageTest);
+				intent.putExtra(Const.KIND_ID, type);
 				startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
 			}else{
 				new ToastUtils(this, R.string.help_msg_03);
@@ -168,11 +176,6 @@ public class PublishedActivity extends BaseActivity{
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
-				String path=imagePath[getPhoto];
-				if(path!=null&&!path.isEmpty()){
-					FileUtils.getInstance().deleteFile(path);
-				}
-				imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
 				saveImage();
 			}
 		}
@@ -180,11 +183,6 @@ public class PublishedActivity extends BaseActivity{
 			if(data != null && data.getData() != null) {
 				imageUtils.doPhoto( data);
 				if(imageUtils.PICPATH!=null){
-					String path=imagePath[getPhoto];
-					if(path!=null&&!path.isEmpty()){
-						FileUtils.getInstance().deleteFile(path);
-					}
-					imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForPhone(imageUtils.PICPATH);
 					saveImage();
 				}
 			}
@@ -193,11 +191,6 @@ public class PublishedActivity extends BaseActivity{
 			if(data != null && data.getData() != null) {
 				imageUtils.doPhotoKIKAT(data);
 				if(imageUtils.PICPATH!=null){
-					String path=imagePath[getPhoto];
-					if(path!=null&&!path.isEmpty()){
-						FileUtils.getInstance().deleteFile(path);
-					}
-					imagePath[getPhoto]=FileUtils.getInstance().saveUpImageForPhone(imageUtils.PICPATH);
 					saveImage();
 				}
 			}
@@ -220,24 +213,40 @@ public class PublishedActivity extends BaseActivity{
 
 	private void saveImage() {
 		// TODO Auto-generated method stub
+		String path=null;
+		if(getPhoto>=3){
+			path=imageTest[getPhoto-3];
+			if(path!=null&&!path.isEmpty()){
+				FileUtils.getInstance().deleteFile(path);
+			}
+			imageTest[getPhoto-3]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
+
+		}else{
+			path=imageAll[getPhoto];
+			if(path!=null&&!path.isEmpty()){
+				FileUtils.getInstance().deleteFile(path);
+			}
+			imageAll[getPhoto]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
+
+		}
 		switch (getPhoto) {
 		case 0:
-			BitmapsUtils.getInstance().display(iv1, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv1, imageAll[getPhoto]);
 			break;
 		case 1:
-			BitmapsUtils.getInstance().display(iv2, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv2, imageAll[getPhoto]);
 			break;
 		case 2:
-			BitmapsUtils.getInstance().display(iv3, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv3, imageAll[getPhoto]);
 			break;
 		case 3:
-			BitmapsUtils.getInstance().display(iv4, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv4, imageTest[getPhoto-3]);
 			break;
 		case 4:
-			BitmapsUtils.getInstance().display(iv5, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv5, imageTest[getPhoto-3]);
 			break;
 		case 5:
-			BitmapsUtils.getInstance().display(iv6, imagePath[getPhoto]);
+			BitmapsUtils.getInstance().display(iv6, imageTest[getPhoto-3]);
 			break;
 		default:
 			break;

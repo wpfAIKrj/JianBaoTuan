@@ -21,7 +21,7 @@ import android.widget.TextView;
  */
 public class IdentiyViewHolder extends RecyclerView.ViewHolder{
 
-	private UserInfo currnt;
+	public UserInfo currnt;
 	
 	@ViewInject(R.id.user_logo)
 	private CircleImageView logo;
@@ -33,25 +33,13 @@ public class IdentiyViewHolder extends RecyclerView.ViewHolder{
 	private TextView tv_type;
 	
 	@ViewInject(R.id.user_checkbox)
-	private CheckBox checkBox;
+	public CheckBox checkBox;
 	
 	
-	public IdentiyViewHolder(View itemView,final OnCheckedChangeListener listener) {
+	public IdentiyViewHolder(View itemView) {
 		super(itemView);
 		// TODO Auto-generated constructor stub
 		ViewUtils.inject(this, itemView);
-		checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
-				
-				buttonView.setTag(currnt);
-				if(listener!=null){
-					listener.onCheckedChanged(buttonView, isChecked);
-				}
-			}
-		});
 	}
 	
 	

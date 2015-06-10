@@ -23,8 +23,10 @@ public class getRandomInfoModel extends BaseModel{
 
 	private OnListDataLoadListener<UserInfo> lisntenr;
 	
-	public void startGet(OnListDataLoadListener<UserInfo> lis){
+	private long id;
+	public void startGet(long id,OnListDataLoadListener<UserInfo> lis){
 		this.lisntenr=lis;
+		this.id=id;
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.RAMDOMAPPRAISER);
 		if(NetConst.SESSIONID!=null){
@@ -32,8 +34,9 @@ public class getRandomInfoModel extends BaseModel{
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
+		sb.append("&classify_id=").append(id);
 		url=sb.toString();
-		addRequestParams();
+		setHTTPMODE(HttpMethod.GET);
 		sendHttp();
 	}
 	
@@ -43,7 +46,7 @@ public class getRandomInfoModel extends BaseModel{
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-		params=new RequestParams();
+	
 	}
 	
 	

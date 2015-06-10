@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -19,12 +20,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.it.R;
+import com.it.bean.TreasureType;
 import com.it.bean.UserInfo;
+import com.it.config.Const;
+import com.it.presenter.PublishPresenter;
 import com.it.presenter.RamdomAdasiterPresenter;
 import com.it.ui.adapter.identiySelectAdapter;
 import com.it.ui.base.BaseActivity;
+import com.it.utils.BitmapsUtils;
 import com.it.utils.DialogUtil;
 import com.it.utils.ToastUtils;
+import com.it.view.CircleImageView;
+import com.it.inter.onBasicView;
 import com.it.inter.onListView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -36,7 +43,7 @@ import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
  * @author Administrator
  *
  */
-public class PublishedNextActivity extends BaseActivity implements onListView<UserInfo>{
+public class PublishedNextActivity extends BaseActivity {
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
@@ -44,13 +51,30 @@ public class PublishedNextActivity extends BaseActivity implements onListView<Us
 	@ViewInject(R.id.ed_info)
 	private EditText ed_info;
 	
-	@ViewInject(R.id.recyclerview1)
-	private RecyclerView recyclerview;
 	
 	private RamdomAdasiterPresenter rampresenter;
-	private identiySelectAdapter madapter;
 
 	private Dialog dialog;
+
+	@ViewInject(R.id.threed_layout)
+	private LinearLayout threadlayout;
+	
+	@ViewInject(R.id.checkBox1)
+	private CheckBox otherbox;
+	
+	
+	private TreasureType type=null;//选择的宝物
+	
+	private CheckBox[] checkboxs;
+	
+	private ArrayList<UserInfo> list;
+
+	private int select_user=-1;
+	private String context;
+
+	private PublishPresenter mypresenter;
+	private String[] imageAll=new String[3];//全景图片路径
+	private String[] imageTest=new String[3];//特写图片路径
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +83,28 @@ public class PublishedNextActivity extends BaseActivity implements onListView<Us
 		setContentView(R.layout.activity_publishednext);
 		ViewUtils.inject(this);
 		initView();
-		rampresenter=new RamdomAdasiterPresenter(this);
+		mypresenter=new PublishPresenter(netlis);
+		rampresenter=new RamdomAdasiterPresenter(lis);
+		if(dialog==null){
+			dialog=DialogUtil.createLoadingDialog(this, "获取鉴定师中。。。");
+			}
+			dialog.show();
+		rampresenter.startGet(type.getId());
 	}
 
 	private void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.publish_title);
-		LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-		recyclerview.setLayoutManager(layoutManager);
+		type=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
+		imageAll=getIntent().getStringArrayExtra(Const.IMAGEPATH_PANORAMIC);
+		imageTest=getIntent().getStringArrayExtra(Const.IMAGEPATH_FEATURE);
+
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		rampresenter.startGet();
-		dialog=DialogUtil.createLoadingDialog(this, "获取鉴定师中。。。");
-		dialog.show();
 	}
 	
 
@@ -87,54 +116,123 @@ public class PublishedNextActivity extends BaseActivity implements onListView<Us
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;
-		case R.id.send_identy:
-			
+		case R.id.send_identy://发表宝贝
+			if(select_user!=(-1)){
+				context=ed_info.getText().toString();
+				if(context!=null&&!context.isEmpty()){
+					startPublish(type,context,select_user);
+				}else{
+					new ToastUtils(PublishedNextActivity.this, R.string.help_msg_11);
+				}
+			}else{
+				new ToastUtils(PublishedNextActivity.this, R.string.help_msg_10);
+			}
 			break;
 			default:
 				break;
 		}
 	}
 
-	@Override
-	public void onSucess(ArrayList<UserInfo> data) {
-		// TODO Auto-generated method stub
-		madapter=new identiySelectAdapter(data, click, check);
-		recyclerview.setAdapter(madapter);
-		if(dialog!=null){
-			dialog.dismiss();
-		}
-	}
-
-	@Override
-	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
-		if(dialog!=null){
-			dialog.dismiss();
-		}
-		new ToastUtils(this, errorMsg);
-	}
 	
-	/**
-	 * 点击重新刷新加载
-	 */
-	private OnClickListener click=new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			rampresenter.startGet();
-			dialog=DialogUtil.createLoadingDialog(PublishedNextActivity.this, "获取鉴定师中。。。");
-			dialog.show();
+	private void startPublish(TreasureType type, String context,
+			int select_user) {
+		// TODO 自动生成的方法存根
+		UserInfo user=null;
+		if(select_user==4){
+			user=null;
+		}else{
+			user=list.get(select_user);
 		}
-	};
+		dialog=DialogUtil.createLoadingDialog(this, "发布宝物中。。。。");
+		dialog.show();
+		mypresenter.startSendTreasure(user,type,context,imageAll,imageTest);
+	}
 
-	private OnCheckedChangeListener check=new OnCheckedChangeListener() {
+
+	private OnCheckedChangeListener listener=new OnCheckedChangeListener() {
 		
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			// TODO Auto-generated method stub
-			
+			// TODO 自动生成的方法存根
+			if(isChecked){
+				for (int i = 0; i < checkboxs.length; i++) {
+					CheckBox box=checkboxs[i];
+					if(box==buttonView){
+						select_user=i;
+					}else{
+						box.setChecked(false);
+					}
+				}
+			}
 		}
 	};
 	
+	@OnCompoundButtonCheckedChange({R.id.checkBox1})
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO 自动生成的方法存根
+		if(isChecked){
+			select_user=4;
+			for (int i = 0; i < checkboxs.length; i++) {
+				CheckBox box=checkboxs[i];
+				box.setChecked(false);
+			}
+		}
+	}
+	private onListView<UserInfo> lis=new onListView<UserInfo>() {
+		
+		@Override
+		public void onSucess(ArrayList<UserInfo> data) {
+			// TODO 自动生成的方法存根
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+			list=data;
+			threadlayout.removeAllViews();
+			checkboxs=new CheckBox[data.size()];
+			for (int i = 0; i < data.size(); i++) {
+				UserInfo user=data.get(i);
+				View layout=LinearLayout.inflate(PublishedNextActivity.this, R.layout.item_identy_people, null);
+				checkboxs[i]=(CheckBox) layout.findViewById(R.id.user_checkbox);
+				checkboxs[i].setOnCheckedChangeListener(listener);
+				TextView tv_name=(TextView) layout.findViewById(R.id.user_name);
+				tv_name.setText(user.getNickname());
+				CircleImageView logo=(CircleImageView) layout.findViewById(R.id.user_logo);
+				BitmapsUtils.getInstance().display(logo, user.getAvatar());
+				threadlayout.addView(layout);
+			}
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO 自动生成的方法存根
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+			new ToastUtils(PublishedNextActivity.this, errorMsg);
+		}
+	};
+
+	
+	private onBasicView<String> netlis=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO 自动生成的方法存根
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+			new ToastUtils(PublishedNextActivity.this, data);
+
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO 自动生成的方法存根
+			if(dialog!=null){
+				dialog.dismiss();
+			}
+			new ToastUtils(PublishedNextActivity.this, errorMsg);
+		}
+	};
+
 }

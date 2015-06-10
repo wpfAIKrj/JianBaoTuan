@@ -4,12 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/wite"
-    
-    android:fitsSystemWindows="true"
+
     
      >
 
-    	<include layout="@layout/layout_head"/>
+    	<include layout="@layout/layout_head"
+    	
+    	   
+    	    />
 
     	<TextView
     	    android:id="@+id/textView1"
@@ -62,32 +64,24 @@
     	    android:paddingTop="10dp"
     	    android:layout_marginLeft="@dimen/detail_text_padd"/>
 
-		<LinearLayout
-	 		android:layout_marginLeft="@dimen/detail_text_padd"
+	
+		 <LinearLayout 
+		     android:id="@+id/threed_layout"
+  			android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:orientation="vertical"
-		  	 >
-		 <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" 
-  	>
-
-    <android.support.v7.widget.RecyclerView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/recyclerview1"
-        />
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/item_space_color"
-        />
-</LinearLayout>
-    	    </LinearLayout>
+		    android:orientation="vertical" 
+  		>  
+	</LinearLayout>
+<include 
+    android:id="@+id/other_layout"
+    layout="@layout/item_identy_select"
+	android:paddingLeft="@dimen/detail_text_padd"
+   	android:paddingRight="@dimen/detail_text_padd"
+		  
+    />
+    	
     	
 		<Button
 		    android:id="@+id/send_identy"

@@ -22,17 +22,13 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 public class identiySelectAdapter extends Adapter {
 
 	private ArrayList<UserInfo> list;
-	private OnClickListener clickListener;
-	private OnCheckedChangeListener checkListener;
 	
 	
 	private static final int TYPE_ITEM = 0;
 	private static final int TYPE_FOOTER = 1;
-	public identiySelectAdapter(ArrayList<UserInfo> list,OnClickListener click,OnCheckedChangeListener check) {
+	public identiySelectAdapter(ArrayList<UserInfo> list) {
 		// TODO Auto-generated constructor stub
 		this.list=list;
-		this.checkListener=check;
-		this.clickListener=click;
 	}
 	
 	@Override
@@ -70,13 +66,19 @@ public class identiySelectAdapter extends Adapter {
 		// TODO Auto-generated method stub
 		if(arg1==TYPE_FOOTER){
 			View view=LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identy_select, arg0, false);
-			return new ChangIdentiyViewHolder(view, clickListener);
+			return new ChangIdentiyViewHolder(view);
 		}
 		if(arg1==TYPE_ITEM){
 			View view=LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identy_people, arg0, false);
-			return new IdentiyViewHolder(view, checkListener);
+			return new IdentiyViewHolder(view);
 		}
 		return null;
+	}
+
+	public void addListData(ArrayList<UserInfo> data) {
+		// TODO 自动生成的方法存根
+		list=data;
+		notifyDataSetChanged();
 	}
 
 }

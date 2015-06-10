@@ -115,4 +115,6 @@
  	  <string name="help_msg_07">请重新输入正确的密码和验证密码！</string>
  	  <string name="help_msg_08">密码长度请输入6位数以上！</string>
  	  <string name="help_msg_09">请输入你的建议！</string>
+ 	  <string name="help_msg_10">请选择一位鉴定师！</string>
+ 	  <string name="help_msg_11">为了帮助我们鉴定你的宝物，请你输入你的宝物详细描述！</string>
 </resources>
