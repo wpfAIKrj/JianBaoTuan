@@ -94,10 +94,11 @@ public class MyTreasureModel extends BaseModel {
 
 	public void sendHttp(final CommonCallBack callBack, int type) {
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
-		params = new RequestParams();
-		params.addBodyParameter("status", String.valueOf(type));
+		StringBuffer sb = new StringBuffer(url);
+		sb.append("&status=").append(type);
 		// params.addBodyParameter("length", String.valueOf(type));
-		LogUtils.i("url=" + url.toString());
+		url = sb.toString();
+		LogUtils.d("ytmfdw  url=" + url);
 		httpUtils.send(httpmodel, url, params, new RequestCallBack<String>() {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -145,8 +146,8 @@ public class MyTreasureModel extends BaseModel {
 	}
 
 	public List<TreasureEntity> getResult() {
-		if(list==null){
-			list=new ArrayList<TreasureEntity>();
+		if (list == null) {
+			list = new ArrayList<TreasureEntity>();
 		}
 		return list;
 	}

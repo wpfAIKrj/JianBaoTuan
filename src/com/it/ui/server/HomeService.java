@@ -71,7 +71,7 @@ public class HomeService extends Service {
 				// TODO Auto-generated method stub
 
 			}
-		}, "1", 0);
+		}, 1);
 		final IdentifyModel unIdentify = new IdentifyModel();
 		unIdentify.sendHttp(new CommonCallBack() {
 
@@ -87,7 +87,7 @@ public class HomeService extends Service {
 				// TODO Auto-generated method stub
 
 			}
-		}, "2", 0);
+		}, 2);
 
 		/*
 		 * final getAllKindsModel allkinds=new getAllKindsModel(new

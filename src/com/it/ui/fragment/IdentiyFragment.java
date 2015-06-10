@@ -125,7 +125,7 @@ public class IdentiyFragment extends BaseFragment implements
 		prrv.setVertical();
 
 		prrv.setAdapter(mAdapter);
-		prrv.refresh();
+		// prrv.refresh();
 
 	}
 
@@ -176,7 +176,7 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
-		current_page++;
+		// current_page++;
 		model.sendHttp(new CommonCallBack() {
 
 			@Override
@@ -188,6 +188,7 @@ public class IdentiyFragment extends BaseFragment implements
 					Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
 							.show();
 				}
+				mAdapter.getData().addAll(model.getResult());
 				mAdapter.setData(model.getResult());
 
 			}
@@ -198,7 +199,7 @@ public class IdentiyFragment extends BaseFragment implements
 				prrv.stopRefresh();
 
 			}
-		}, String.valueOf(type), current_page);
+		}, type);
 
 	}
 
@@ -234,7 +235,7 @@ public class IdentiyFragment extends BaseFragment implements
 					// TODO Auto-generated method stub
 					prrv.stopRefresh();
 				}
-			}, String.valueOf(type), kindId);
+			}, type, kindId);
 		}
 	}
 

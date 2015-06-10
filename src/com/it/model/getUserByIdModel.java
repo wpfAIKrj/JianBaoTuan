@@ -11,6 +11,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.lidroid.xutils.util.LogUtils;
 
 /**
  * @author ytmfdw 根据用户id获取用户详情
@@ -36,8 +37,11 @@ public class getUserByIdModel extends BaseModel {
 
 	public void sendHttp(final CommonCallBack callBack, long id) {
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
-		params = new RequestParams();
-		params.addBodyParameter("user_id", String.valueOf(id));
+		StringBuffer sb=new StringBuffer(url);
+		sb.append("&user_id=").append(id);
+		url=sb.toString();
+		LogUtils.d("getuser by id:"+id);
+		LogUtils.d("getuser by id: url="+url);
 		httpUtils.send(httpmodel, url, params, new RequestCallBack<String>() {
 
 			@Override
@@ -97,6 +101,9 @@ public class getUserByIdModel extends BaseModel {
 	}
 
 	public UserInfo getResult() {
+		if(user==null){
+			user=new UserInfo();
+		}
 		return user;
 	}
 }
