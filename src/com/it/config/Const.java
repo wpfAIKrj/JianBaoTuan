@@ -106,5 +106,9 @@ public class Const {
 	 * 跳转到修改密码页面
 	 */
 	public static final int TO_UPDATA_PWD = 12;
+	/**
+	 * 意见反馈页面
+	 */
+	public static final int TO_FEEDBACK = 13;
 
 }

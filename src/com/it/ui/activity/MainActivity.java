@@ -279,7 +279,7 @@ OnTabSelectedListener ,OnClickListener{
 			startActivityForResult(new Intent(MainActivity.this, PasswordActivity.class),Const.TO_UPDATA_PWD);
 		}
 		if(v.getId()==R.id.layout_item3){//意见反馈
-			startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
+			startActivityForResult(new Intent(MainActivity.this, FeedbackActivity.class),Const.TO_FEEDBACK);
 		}
 		if(v.getId()==R.id.layout_item4){//检测更新
 			startActivity(new Intent(MainActivity.this, UpdaateActivity.class));

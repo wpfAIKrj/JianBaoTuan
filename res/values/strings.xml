@@ -114,4 +114,5 @@
  	  <string name="help_msg_06">请输入验证密码</string>
  	  <string name="help_msg_07">请重新输入正确的密码和验证密码！</string>
  	  <string name="help_msg_08">密码长度请输入6位数以上！</string>
+ 	  <string name="help_msg_09">请输入你的建议！</string>
 </resources>

@@ -20,19 +20,19 @@
     	     android:background="@color/item_space_color"
     	    />
     	<EditText
-    	    android:id="@+id/editText1"
+    	    android:id="@+id/et_context"
     	    android:layout_width="match_parent"
-    	    android:layout_height="200dp"
+    	    android:layout_height="@dimen/ed_feed_layout_height"
     	    android:ems="10"
     	    android:background="@color/layout_bg_color"
-    	    android:inputType="number" 
+    	    android:inputType="text" 
     	    android:gravity="left"
     	    android:hint="@string/feednack_hint"
     	    
     	    style="@style/my_title_style3"
     	    android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
-    	    
+    	    android:imeOptions="actionDone"
     	    >
 
     	    <requestFocus />
@@ -46,9 +46,9 @@
     	    />
     	
 		<Button
-		    android:id="@+id/button1"
+		    android:id="@+id/bt_save"
 		    android:layout_width="match_parent"
-		    android:layout_height="50dp"
+		    android:layout_height="@dimen/bt_margintop_layout"
 		    android:text="@string/feednack_bt"
 		    style="@style/bt_login_style"
 		    android:layout_marginLeft="@dimen/detail_text_padd"
