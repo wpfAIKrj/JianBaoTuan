@@ -90,9 +90,7 @@
        <string name="type_collect">成为网络鉴定师</string>
        <string name="type_identiy">网络鉴定师</string>
        
-      <string name="help_msg_01">你已经为网络鉴定师</string>
-      <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
-      <string name="help_msg_03">请先检测网络环境</string>
+
       <string name="str_none_msg">没有找到宝贝</string>
       
       <string name="collect_info_title">收藏文章</string>
@@ -106,4 +104,14 @@
        <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
       	<string name="attest_helps_title3">营业执照</string>
    	<string name="attest_hiht_agentcy_name">机构全称：</string>
+   	
+   	
+   	  <string name="help_msg_01">你已经为网络鉴定师</string>
+      <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
+      <string name="help_msg_03">请先检测网络环境</string>
+      <string name="help_msg_04">请输入旧的密码</string>
+ 	  <string name="help_msg_05">请输入新的密码</string>
+ 	  <string name="help_msg_06">请输入验证密码</string>
+ 	  <string name="help_msg_07">请重新输入正确的密码和验证密码！</string>
+ 	  <string name="help_msg_08">密码长度请输入6位数以上！</string>
 </resources>

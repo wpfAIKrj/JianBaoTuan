@@ -276,7 +276,7 @@ OnTabSelectedListener ,OnClickListener{
 			startActivity(new Intent(MainActivity.this, ProfileActivity.class));
 		}
 		if(v.getId()==R.id.layout_item2){//修改密码
-			startActivity(new Intent(MainActivity.this, PasswordActivity.class));
+			startActivityForResult(new Intent(MainActivity.this, PasswordActivity.class),Const.TO_UPDATA_PWD);
 		}
 		if(v.getId()==R.id.layout_item3){//意见反馈
 			startActivity(new Intent(MainActivity.this, FeedbackActivity.class));

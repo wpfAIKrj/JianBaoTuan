@@ -39,6 +39,15 @@ public class Const {
 	 * 主页面保存的用户信息
 	 */
 	public static final String USER="user";
+	
+	/**
+	 * 跳转时传参字符串
+	 */
+	public static final  String ENTITY="entity";
+	/**
+	 * 跳转时id
+	 * */
+	public static final String KIND_ID="kind_id";
 
 	/**
 	 * 跳转我要鉴定
@@ -74,6 +83,16 @@ public class Const {
 	 * 机构注册
 	 */
 	public static int TO_ATTEST_AGENCY=7;
+
+	/**
+	 * 个人注册
+	 */
+	public static final int TO_ATTEST_PERSIONAL = 8;
+	/**
+	 * 跳到鉴定大厅
+	 * */
+	public static final  int TO_INDENTIFY=9;
+	
 	/**
 	 * 知识大厅跳转到选择宝物分类页面
 	 */
@@ -84,21 +103,8 @@ public class Const {
 	public static int TO_PUBLISH_SELECT_TYPE=11;
 
 	/**
-	 * 个人注册
+	 * 跳转到修改密码页面
 	 */
-	public static final int TO_ATTEST_PERSIONAL = 8;
-
-	/**
-	 * 跳转时传参字符串
-	 */
-	public final static String ENTITY="entity";
-	/**
-	 * 跳到鉴定大厅
-	 * */
-	public final static int TO_INDENTIFY=9;
-	/**
-	 * 跳转时id
-	 * */
-	public final static String KIND_ID="kind_id";
+	public static final int TO_UPDATA_PWD = 12;
 
 }
