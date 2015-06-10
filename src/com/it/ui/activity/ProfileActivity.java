@@ -20,7 +20,7 @@ import com.it.ui.base.BaseActivity;
 import com.it.utils.DialogUtil;
 import com.it.utils.ToastUtils;
 import com.it.view.EmailAutoCompleteTextView;
-import com.it.view.inter.onBasicView;
+import com.it.inter.onBasicView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;

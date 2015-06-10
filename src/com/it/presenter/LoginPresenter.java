@@ -1,8 +1,8 @@
 package com.it.presenter;
 
 import com.it.bean.UserInfo;
+import com.it.inter.onBasicView;
 import com.it.model.LoginModel;
-import com.it.view.inter.onBasicView;
 
 public class LoginPresenter implements OnBasicDataLoadListener<UserInfo> {
 	

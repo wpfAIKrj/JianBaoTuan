@@ -6,10 +6,10 @@ import org.json.JSONObject;
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
 import com.it.inter.UpLoadFileInterface;
+import com.it.inter.onBasicView;
 import com.it.model.LoginModel;
 import com.it.model.UpLoadLogoModel;
 import com.it.utils.UploadUtils;
-import com.it.view.inter.onBasicView;
 import com.lidroid.xutils.util.LogUtils;
 import com.qiniu.android.http.ResponseInfo;
 

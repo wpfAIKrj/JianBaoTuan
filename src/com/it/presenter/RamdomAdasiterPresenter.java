@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.it.bean.UserInfo;
 import com.it.config.NetConst;
+import com.it.inter.onListView;
 import com.it.model.getRandomInfoModel;
-import com.it.view.inter.onListView;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 /**
  * 获取随机3个鉴定师

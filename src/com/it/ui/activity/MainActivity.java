@@ -8,6 +8,8 @@ import com.it.bean.MyEvent;
 import com.it.bean.UserInfo;
 import com.it.config.Const;
 import com.it.config.NetConst;
+import com.it.inter.onBasicView;
+import com.it.presenter.ExitPresenter;
 import com.it.presenter.UploadLogoPresenter;
 import com.it.ui.dialog.SelectPhotoDialog;
 import com.it.ui.fragment.HomeFragment;
@@ -19,7 +21,6 @@ import com.it.utils.ImageUtils;
 import com.it.utils.ToastUtils;
 import com.it.view.MyTabWidget;
 import com.it.view.MyTabWidget.OnTabSelectedListener;
-import com.it.view.inter.onBasicView;
 import com.it.view.menu.ResideMenu;
 import com.it.view.menu.ResideMenuItem;
 import com.lidroid.xutils.util.LogUtils;
@@ -72,6 +73,7 @@ OnTabSelectedListener ,OnClickListener{
 	private SelectPhotoDialog photodialog;
 	private ImageUtils imageUtils;
 	private Dialog Logodialong;
+	private ExitPresenter exitpresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +120,7 @@ OnTabSelectedListener ,OnClickListener{
 			}
 		});
 	     uplogopresenter=new UploadLogoPresenter(listener);
+	     exitpresenter=new ExitPresenter(listener2);
 	     imageUtils=new ImageUtils(this);
 	}
 	private void initEvents() {
@@ -288,7 +291,7 @@ OnTabSelectedListener ,OnClickListener{
 
 		}
 		if(v.getId()==R.id.layout_item1){//退出登陆
-
+			
 		}
 		resideMenu.closeMenu();
 	}
@@ -414,7 +417,21 @@ OnTabSelectedListener ,OnClickListener{
 			new ToastUtils(MainActivity.this, errorMsg);
 		}
 	};
-
+	
+	private onBasicView<String> listener2=new onBasicView<String>() {
+		
+		@Override
+		public void onSucess(String data) {
+			// TODO 自动生成的方法存根
+			
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO 自动生成的方法存根
+			
+		}
+	};
 
 	private OnClickListener ImageListner = new OnClickListener() {
 

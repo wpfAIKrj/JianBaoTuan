@@ -4,9 +4,9 @@ import org.json.JSONObject;
 
 import com.it.config.NetConst;
 import com.it.inter.UpLoadFileInterface;
+import com.it.inter.onBasicView;
 import com.it.model.AttestPersonalModel;
 import com.it.utils.UploadUtils;
-import com.it.view.inter.onBasicView;
 import com.qiniu.android.http.ResponseInfo;
 
 public class AttestPersonalPresenter implements OnBasicDataLoadListener<String>,UpLoadFileInterface {

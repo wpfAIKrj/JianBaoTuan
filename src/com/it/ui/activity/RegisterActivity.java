@@ -36,7 +36,7 @@ import com.it.utils.SqlDataUtil;
 import com.it.utils.DialogUtil;
 import com.it.utils.TelNumMath;
 import com.it.utils.ToastUtils;
-import com.it.view.inter.onBasicView;
+import com.it.inter.onBasicView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;

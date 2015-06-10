@@ -52,7 +52,7 @@ import com.it.ui.fragment.InformationFragment;
 import com.it.utils.DialogUtil;
 import com.it.utils.ListLoadType;
 import com.it.utils.ToastUtils;
-import com.it.view.inter.onListView;
+import com.it.inter.onListView;
 import com.it.view.listview.XListView;
 import com.it.view.listview.XListView.IXListViewListener;
 import com.lidroid.xutils.ViewUtils;

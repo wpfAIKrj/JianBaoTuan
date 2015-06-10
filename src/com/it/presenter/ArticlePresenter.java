@@ -3,8 +3,8 @@ package com.it.presenter;
 import java.util.ArrayList;
 
 import com.it.bean.ContentInfo;
+import com.it.inter.onListView;
 import com.it.model.ArticleModel;
-import com.it.view.inter.onListView;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 import android.content.Context;

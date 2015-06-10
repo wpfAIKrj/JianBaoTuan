@@ -25,7 +25,7 @@ import com.it.ui.adapter.identiySelectAdapter;
 import com.it.ui.base.BaseActivity;
 import com.it.utils.DialogUtil;
 import com.it.utils.ToastUtils;
-import com.it.view.inter.onListView;
+import com.it.inter.onListView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
