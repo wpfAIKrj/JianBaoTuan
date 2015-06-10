@@ -60,10 +60,12 @@ public class publishModel extends BaseModel {
 
 	
 	public void startSendTreasure(UserInfo user, TreasureType type,
-			String context, String[] imageAll, String[] imageTest) {
+			String context, String[] imageAll, String[] imageTest, OnBasicDataLoadListener<String> listener) {
 		// TODO 自动生成的方法存根
+		this.listener=listener;
 		isuoloadfear=false;
 		isUploadall=false;
+		this.context=context;
 		this.imageAll=imageAll;
 		this.imageTest=imageTest;
 		if(user!=null){
@@ -73,13 +75,13 @@ public class publishModel extends BaseModel {
 		}
 		kind_id=String.valueOf(type.getId());
 		kind_name=type.getName();
+		
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.PUBLISH_TREASURES);
 		if(NetConst.SESSIONID!=null){
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
 		url=sb.toString();
-		
 		startUploadImage();
 	}
 
@@ -202,6 +204,7 @@ public class publishModel extends BaseModel {
 		}
 		fearsb.deleteCharAt(fearsb.length()-1);
 		addRequestParams();
+		setHTTPMODE(HttpMethod.POST);
 		sendHttp();
 	}	
 

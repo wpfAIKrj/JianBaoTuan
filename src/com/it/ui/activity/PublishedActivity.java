@@ -127,11 +127,15 @@ public class PublishedActivity extends BaseActivity{
 			break;
 		case R.id.bt_next://下一步
 			if(NetUtils.checkNetWork(this)){
-				 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
-				intent.putExtra(Const.IMAGEPATH_PANORAMIC, imageAll);
-				intent.putExtra(Const.IMAGEPATH_FEATURE, imageTest);
-				intent.putExtra(Const.KIND_ID, type);
-				startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
+				if(type!=null){
+					 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
+						intent.putExtra(Const.IMAGEPATH_PANORAMIC, imageAll);
+						intent.putExtra(Const.IMAGEPATH_FEATURE, imageTest);
+						intent.putExtra(Const.KIND_ID, type);
+						startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
+				}else{
+					new ToastUtils(this, R.string.help_msg_12);
+				}
 			}else{
 				new ToastUtils(this, R.string.help_msg_03);
 			}
@@ -168,10 +172,11 @@ public class PublishedActivity extends BaseActivity{
 		}
 		if(requestCode==Const.TO_IDENTY_NEXT){
 			if(resultCode==RESULT_OK){//鉴定发布成功，返回主页面
-				
+				setResult(RESULT_OK, getIntent());
+				finish();
 			}
-			if(resultCode==RESULT_CANCELED){//鉴赏失败
-				
+			if(resultCode==(-2)){//鉴赏失败
+				new ToastUtils(PublishedActivity.this, "发布鉴定失败！");
 			}
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）

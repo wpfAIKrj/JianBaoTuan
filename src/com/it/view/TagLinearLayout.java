@@ -110,7 +110,7 @@ public class TagLinearLayout extends ViewGroup {
 			tv=new TextView(getContext());
 			text=cunrrnt.name;
 			size=text.length();
-			width=(size/2)*76+(size%2)*76;
+			width=(size/2)*90+(size%2)*90;
 			tv.setWidth(width);
 			tv.setGravity(Gravity.CENTER);
 			tv.setTextSize(15);
