@@ -117,4 +117,5 @@
  	  <string name="help_msg_09">请输入你的建议！</string>
  	  <string name="help_msg_10">请选择一位鉴定师！</string>
  	  <string name="help_msg_11">为了帮助我们鉴定你的宝物，请你输入你的宝物详细描述！</string>
+ 	  <string name="help_msg_12">请选择宝物的种类！</string>
 </resources>

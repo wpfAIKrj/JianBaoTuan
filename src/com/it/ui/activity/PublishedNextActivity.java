@@ -172,9 +172,11 @@ public class PublishedNextActivity extends BaseActivity {
 		// TODO 自动生成的方法存根
 		if(isChecked){
 			select_user=4;
+			if(checkboxs!=null){
 			for (int i = 0; i < checkboxs.length; i++) {
 				CheckBox box=checkboxs[i];
 				box.setChecked(false);
+			}
 			}
 		}
 	}
@@ -221,8 +223,9 @@ public class PublishedNextActivity extends BaseActivity {
 			if(dialog!=null){
 				dialog.dismiss();
 			}
-			new ToastUtils(PublishedNextActivity.this, data);
-
+			new ToastUtils(PublishedNextActivity.this, "发布宝贝鉴定成功！");
+			setResult(RESULT_OK, getIntent());
+			finish();
 		}
 		
 		@Override
@@ -231,7 +234,8 @@ public class PublishedNextActivity extends BaseActivity {
 			if(dialog!=null){
 				dialog.dismiss();
 			}
-			new ToastUtils(PublishedNextActivity.this, errorMsg);
+			setResult(-2, getIntent());
+			finish();
 		}
 	};
 

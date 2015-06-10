@@ -48,7 +48,7 @@ public class PublishPresenter implements OnBasicDataLoadListener<String>{
 			String context, String[] imageAll, String[] imageTest) {
 		// TODO 自动生成的方法存根
 		model=new publishModel();
-		model.startSendTreasure(user,type,context,imageAll,imageTest);
+		model.startSendTreasure(user,type,context,imageAll,imageTest,this);
 	}
 
 }
