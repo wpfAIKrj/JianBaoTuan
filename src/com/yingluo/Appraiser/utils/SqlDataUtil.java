@@ -10,12 +10,12 @@ import com.lidroid.xutils.exception.DbException;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.ContentInfoDao;
 import com.yingluo.Appraiser.bean.DaoMaster;
+import com.yingluo.Appraiser.bean.DaoMaster.DevOpenHelper;
 import com.yingluo.Appraiser.bean.DaoSession;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.TreasureTypeDao;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.bean.UserInfoDao;
-import com.yingluo.Appraiser.bean.DaoMaster.DevOpenHelper;
 import com.yingluo.Appraiser.config.Const;
 
 import de.greenrobot.dao.query.QueryBuilder;

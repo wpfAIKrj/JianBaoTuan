@@ -1,5 +1,7 @@
 package com.yingluo.Appraiser.model;
 
+import io.rong.imkit.RongIM;
+
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
@@ -7,6 +9,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
 /**
  * 登录操作
@@ -67,6 +70,7 @@ public class LoginModel extends BaseModel{
 		NetConst.SESSIONID=user.getSession_id();
 		NetConst.UPTOKEN=user.getImage_token();
 		NetConst.IMTOKEN=user.getMessage_token();
+		RongImUtils.getInstance().connect(NetConst.IMTOKEN);
 		lisntenr.onBaseDataLoaded(user);
 	}
 

@@ -1,8 +1,9 @@
 package com.yingluo.Appraiser.im;
 
-import io.rong.imkit.RongIM;
-import io.rong.imlib.RongIMClient.ConnectCallback;
-import io.rong.imlib.RongIMClient.ConnectCallback.ErrorCode;
+
+//import io.rong.imkit.RongIM;
+//import io.rong.imlib.RongIMClient.ConnectCallback;
+//import io.rong.imlib.RongIMClient.ErrorCode;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.protocol.HTTP;
@@ -28,7 +29,7 @@ public class RongImUtils {
 
 
 	
-	
+
 	
 	
 	private Context mContext;
@@ -38,6 +39,7 @@ public class RongImUtils {
 	public static void init(Context context) {
 		// TODO Auto-generated method stub
 		mInstance=new RongImUtils(context);
+	//	RongIM.init(context);
 	}
 	
 	private RongImUtils(Context context) {
@@ -50,96 +52,48 @@ public class RongImUtils {
 		return mInstance;
 	}
 	
-//	/**
-//	 * 获取聊天的taken
-//	 * @param userid 用户标志符
-//	 * @param name 用户昵称
-//	 * @param photourl 用户头像
-//	 */
-//	public void getToken(String userid,String name,String photourl){
-//		HttpUtils httpUtils=new HttpUtils(10000);
-//		String url=IMURL+GETTOKEN+FORMAT;
-//		RequestParams params=new RequestParams(HTTP.UTF_8);
-//		params.addBodyParameter(USERID, userid);
-//		params.addBodyParameter(NAME, name);
-//		params.addBodyParameter(ICON, photourl);
-//		params.addHeader("Host", "api.cn.rong.io");
-//		params.addHeader("App-Key", NetConst.IM_KEY);
-//		params.addHeader("Nonce", "1316580241");
-//		params.addHeader("Timestamp", "1431519478");
-//		params.addHeader("Signature", "2f51ed72e9faa7c1c76a66aacc1e978952607501");
-//		params.addHeader("Content-Type", "application/x-www-form-urlencoded");
-//
-//		httpUtils.send(HttpMethod.POST, url, params, new RequestCallBack<String>() {
-//
-//			@Override
-//			public void onSuccess(ResponseInfo<String> responseInfo) {
-//				// TODO Auto-generated method stub
-//				try {
-//					JSONObject json=new JSONObject(responseInfo.result);
-//					int code=json.getInt(NetConst.CODE);
-//					if(code==200){
-//						user_id=json.getString(USERID);
-//						token=json.getString(TOKEN);
-//						LogUtils.d("用户id："+user_id+",token:"+token);
-//						getToken=true;
-//					}
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//					getToken=false;
-//				}
-//				
-//				
-//			}
-//
-//			@Override
-//			public void onFailure(HttpException error, String msg) {
-//				// TODO Auto-generated method stub
-//				LogUtils.d("获取token失败"+",失败原因："+msg);
-//				getToken=false;
-//			}
-//		});
-//	}
-//	
+
 	
 	/**
 	 * 创建连接
 	 */
-	public void connect(){
-		try {
-			RongIM.connect(NetConst.IMTOKEN, new ConnectCallback() {
-				
-				@Override
-				public void onSuccess(String arg0) {
-					// TODO Auto-generated method stub
-					isconnect=true;
-					//连接成功后注册处理事件
-					RongCloudEvent.getInstance().setOtherListener();
-				}
-				
-				@Override
-				public void onError(ErrorCode arg0) {
-					// TODO Auto-generated method stub
-					isconnect=false;
-				}
-			});
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void connect(String token){
+//		RongIM.connect(token, new ConnectCallback() {
+//			
+//			@Override
+//			public void onSuccess(String arg0) {
+//				// TODO 连接成功
+//				LogUtils.d("聊天连接成功！");
+//				isconnect=true;
+//			    RongCloudEvent.getInstance().setOtherListener();
+//			}
+//			
+//			@Override
+//			public void onError(ErrorCode arg0) {
+//				// TODO 连接失败
+//				isconnect=false;
+//				LogUtils.d("聊天连接失败！");
+//			}
+//			
+//			@Override
+//			public void onTokenIncorrect() {
+//				// TODO 自动生成的方法存根
+//				
+//			}
+//		});
+//		
 	}
 	
 	/**
 	 * 启动单独聊天页面
 	 * @param context 
-	 * @param targetUserId 用户id（手机号码）
-	 * @param title  聊天标题
+	 * @param targetUserId 用户id（用户编号id）
+	 * @param title  聊天对象名字
 	 */
 	public void startPrivateChat(Context context, String targetUserId, String title){
-		if(isconnect){
-			RongIM.getInstance().startPrivateChat(context, targetUserId, title);
-		}
+//		if(isconnect){
+//			RongIM.getInstance().startPrivateChat(context, targetUserId, title);
+//		}
 	}
 
 	
