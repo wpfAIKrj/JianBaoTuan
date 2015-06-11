@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.it.R;
 import com.it.bean.TreasureEntity;
 import com.it.bean.TreasureType;
+import com.it.utils.DensityUtil;
 import com.it.utils.SqlDataUtil;
 
 import de.greenrobot.dao.internal.SqlUtils;
@@ -102,6 +103,7 @@ public class TagLinearLayout extends ViewGroup {
 		int tagsize=type.getType();
 		int size=0;
 		int width=0;
+		int onewidth=DensityUtil.dip2px(getContext(), 36);
 		TextView tv;
 		String text=null;
 		ArrayList<TreasureType> list=SqlDataUtil.getInstance().getTreasureTypeByChild(type);
@@ -113,7 +115,7 @@ public class TagLinearLayout extends ViewGroup {
 			width=(size/2)*90+(size%2)*90;
 			tv.setWidth(width);
 			tv.setGravity(Gravity.CENTER);
-			tv.setTextSize(15);
+			tv.setTextSize(DensityUtil.sp2px(getContext(),8));
 			tv.setText(text);
 			tv.setTextColor(textcolor);
 			tv.setBackgroundResource(textbackgrounds[cunrrnt.type%2]);
