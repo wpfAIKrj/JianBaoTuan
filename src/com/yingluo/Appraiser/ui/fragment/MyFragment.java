@@ -1,5 +1,7 @@
 package com.yingluo.Appraiser.ui.fragment;
 
+import io.rong.imkit.RongIM;
+
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -242,8 +244,9 @@ public class MyFragment extends BaseFragment{
 					FavoriteArticlesActivity.class),Const.TO_COLLECT_INFO);
 			break;
 		case R.id.my_tab3:// 跳转我的私信
-			mActivity
-					.startActivity(new Intent(mActivity, IMListActivity.class));
+//			mActivity
+//					.startActivity(new Intent(mActivity, IMListActivity.class));
+			RongIM.getInstance().startConversationList(mActivity);
 			break;
 		case R.id.my_tab4:// 跳转到系统通知
 			mActivity.startActivity(new Intent(mActivity,

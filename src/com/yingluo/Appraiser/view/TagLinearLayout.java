@@ -103,7 +103,7 @@ public class TagLinearLayout extends ViewGroup {
 		int tagsize=type.getType();
 		int size=0;
 		int width=0;
-		int onewidth=DensityUtil.dip2px(getContext(), 36);
+		int onewidth=DensityUtil.dip2px(getContext(),30);
 		TextView tv;
 		String text=null;
 		ArrayList<TreasureType> list=SqlDataUtil.getInstance().getTreasureTypeByChild(type);
@@ -112,10 +112,10 @@ public class TagLinearLayout extends ViewGroup {
 			tv=new TextView(getContext());
 			text=cunrrnt.name;
 			size=text.length();
-			width=(size/2)*90+(size%2)*90;
+			width=(size/2)*onewidth+(size%2)*onewidth;
 			tv.setWidth(width);
 			tv.setGravity(Gravity.CENTER);
-			tv.setTextSize(DensityUtil.sp2px(getContext(),8));
+			tv.setTextSize(12);
 			tv.setText(text);
 			tv.setTextColor(textcolor);
 			tv.setBackgroundResource(textbackgrounds[cunrrnt.type%2]);

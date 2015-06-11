@@ -89,6 +89,7 @@ public class RongImUtils {
 		});
 		
 	}
+	
 	/**
 	 * 连接创建成功后，将用户的
 	 */

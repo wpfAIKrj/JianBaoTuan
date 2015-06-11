@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -26,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.adapter.IMAdapter;
@@ -40,7 +43,7 @@ import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
  * @author Administrator
  *
  */
-public class IMListActivity extends BaseActivity implements OnClickListener,IXListViewListener,OnItemClickListener{
+public class IMListActivity extends FragmentActivity{
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
@@ -60,7 +63,8 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_favoritearticles);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.activity_imlistview);
 		ViewUtils.inject(this);
 		initView();
 
@@ -78,7 +82,7 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 
 
 
-	@Override
+	@OnClick({R.id.button_category})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -93,22 +97,5 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 	}
 
 	
-	@Override
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
-		// TODO Auto-generated method stub
-
-	}
 }
