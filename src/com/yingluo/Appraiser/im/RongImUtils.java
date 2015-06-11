@@ -1,9 +1,9 @@
 package com.yingluo.Appraiser.im;
 
 
-//import io.rong.imkit.RongIM;
-//import io.rong.imlib.RongIMClient.ConnectCallback;
-//import io.rong.imlib.RongIMClient.ErrorCode;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient.ConnectCallback;
+import io.rong.imlib.RongIMClient.ErrorCode;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.protocol.HTTP;
@@ -39,7 +39,7 @@ public class RongImUtils {
 	public static void init(Context context) {
 		// TODO Auto-generated method stub
 		mInstance=new RongImUtils(context);
-	//	RongIM.init(context);
+		RongIM.init(context);
 	}
 	
 	private RongImUtils(Context context) {
@@ -58,30 +58,30 @@ public class RongImUtils {
 	 * 创建连接
 	 */
 	public void connect(String token){
-//		RongIM.connect(token, new ConnectCallback() {
-//			
-//			@Override
-//			public void onSuccess(String arg0) {
-//				// TODO 连接成功
-//				LogUtils.d("聊天连接成功！");
-//				isconnect=true;
-//			    RongCloudEvent.getInstance().setOtherListener();
-//			}
-//			
-//			@Override
-//			public void onError(ErrorCode arg0) {
-//				// TODO 连接失败
-//				isconnect=false;
-//				LogUtils.d("聊天连接失败！");
-//			}
-//			
-//			@Override
-//			public void onTokenIncorrect() {
-//				// TODO 自动生成的方法存根
-//				
-//			}
-//		});
-//		
+		RongIM.connect(token, new ConnectCallback() {
+			
+			@Override
+			public void onSuccess(String arg0) {
+				// TODO 连接成功
+				LogUtils.d("聊天连接成功！");
+				isconnect=true;
+			    RongCloudEvent.getInstance().setOtherListener();
+			}
+			
+			@Override
+			public void onError(ErrorCode arg0) {
+				// TODO 连接失败
+				isconnect=false;
+				LogUtils.d("聊天连接失败！");
+			}
+			
+			@Override
+			public void onTokenIncorrect() {
+				// TODO 自动生成的方法存根
+				LogUtils.d("触发改方法！");
+			}
+		});
+		
 	}
 	
 	/**
@@ -91,9 +91,9 @@ public class RongImUtils {
 	 * @param title  聊天对象名字
 	 */
 	public void startPrivateChat(Context context, String targetUserId, String title){
-//		if(isconnect){
-//			RongIM.getInstance().startPrivateChat(context, targetUserId, title);
-//		}
+		if(isconnect){
+			RongIM.getInstance().startPrivateChat(context, targetUserId, title);
+		}
 	}
 
 	

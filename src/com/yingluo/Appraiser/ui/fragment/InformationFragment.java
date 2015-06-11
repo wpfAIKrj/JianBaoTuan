@@ -246,15 +246,16 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	 */
 	public void addList(ArrayList<ContentInfo> data) {
 		// TODO Auto-generated method stub
-		if(list.size()==0){
-			list.addAll(data);
-		}else {
-			for (int i = 0; i < data.size(); i++) {
-				if(!list.contains(data.get(i))){
-					list.add(data.get(i));
-				}
-			}
-		}
+//		if(list.size()==0){
+//			list.addAll(data);
+//		}else {
+//			for (int i = 0; i < data.size(); i++) {
+//				if(!list.contains(data.get(i))){
+//					list.add(data.get(i));
+//				}
+//			}
+//		}
+		list.addAll(data);
 	}
 	OnScrollListener Scrolllistener=new OnScrollListener() {
 

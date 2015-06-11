@@ -72,7 +72,7 @@ public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener
      */
     private RongCloudEvent(Context context) {
         mContext = context;
-     //   initDefaultListener();
+      initDefaultListener();
     }
     
     /**
