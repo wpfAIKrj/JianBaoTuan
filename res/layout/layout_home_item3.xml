@@ -29,13 +29,13 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/x15" >
 
-        <com.it.view.home.ViewHomeWhoWellKnow
+        <com.yingluo.Appraiser.view.home.ViewHomeWhoWellKnow
             android:id="@+id/wellKnow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y22" />
 
-        <com.it.view.listview.HorizontalListView
+        <com.yingluo.Appraiser.view.listview.HorizontalListView
             android:id="@+id/hs_people"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y102"
@@ -43,7 +43,7 @@
             android:layout_marginTop="@dimen/y32"
             android:background="@color/wite"
             android:scrollbars="none" >
-        </com.it.view.listview.HorizontalListView>
+        </com.yingluo.Appraiser.view.listview.HorizontalListView>
     </LinearLayout>
 
 </LinearLayout>

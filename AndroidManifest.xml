@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.it"
+    package="com.yingluo.Appraiser"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -23,7 +23,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:name=".app.ItApplication">
+        android:theme="@style/AppTheme" android:name="com.yingluo.Appraiser.app.ItApplication">
         
            <meta-data
               android:name="RONG_CLOUD_APP_KEY"
@@ -39,12 +39,12 @@
             android:value="Umeng" >
         </meta-data>
         <activity
-            android:name="com.it.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
              >
         </activity>
-        <activity android:name="com.it.ui.activity.GuidePageActivity"
+        <activity android:name=".ui.activity.GuidePageActivity"
             android:screenOrientation="portrait"
             >
                       <intent-filter>
@@ -55,96 +55,96 @@
        
         </activity>
         
-        <activity android:name="com.it.ui.activity.LoginAcitivity"
+        <activity android:name=".ui.activity.LoginAcitivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"
             >
   
         </activity>
         
-        <activity android:name="com.it.ui.activity.RegisterActivity"
+        <activity android:name=".ui.activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
-         <activity android:name="com.it.ui.activity.ForgotActivity"
+         <activity android:name=".ui.activity.ForgotActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
-         <activity android:name="com.it.ui.activity.InformationDetailsActivity"
+         <activity android:name=".ui.activity.InformationDetailsActivity"
               android:screenOrientation="portrait"
              ></activity>
-           <activity android:name="com.it.ui.activity.ProfileActivity"
+           <activity android:name=".ui.activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
-            <activity android:name="com.it.ui.activity.PasswordActivity"
+            <activity android:name=".ui.activity.PasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
-            <activity android:name="com.it.ui.activity.FeedbackActivity"
+            <activity android:name=".ui.activity.FeedbackActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name="com.it.ui.activity.UpdaateActivity"
+        <activity android:name=".ui.activity.UpdaateActivity"
             android:screenOrientation="portrait"
          ></activity>        
-         <activity android:name="com.it.ui.activity.PublishedActivity"
+         <activity android:name=".ui.activity.PublishedActivity"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>  
-          <activity android:name="com.it.ui.activity.PublishedNextActivity"
+          <activity android:name=".ui.activity.PublishedNextActivity"
                android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"
          ></activity> 
-           <activity android:name="com.it.ui.activity.AuthenticateActivity"
+           <activity android:name=".ui.activity.AuthenticateActivity"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>  
-          <activity android:name="com.it.ui.activity.ActivityKindOfPrecious"
+          <activity android:name=".ui.activity.ActivityKindOfPrecious"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>              
-          <activity android:name="com.it.ui.activity.LevelActivity"
+          <activity android:name=".ui.activity.LevelActivity"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>              
                  
-          <activity android:name="com.it.ui.activity.ActivitySearch"
+          <activity android:name=".ui.activity.ActivitySearch"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity>              
-          <activity android:name="com.it.ui.activity.ActivityHotIdentiy"
+          <activity android:name=".ui.activity.ActivityHotIdentiy"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity> 
-           <activity android:name="com.it.ui.activity.FavoriteArticlesActivity"
+           <activity android:name=".ui.activity.FavoriteArticlesActivity"
             android:screenOrientation="portrait"
          ></activity>    
-          <activity android:name="com.it.ui.activity.IMListActivity"
+          <activity android:name=".ui.activity.IMListActivity"
             android:screenOrientation="portrait"
          ></activity>                  
-          <activity android:name="com.it.ui.activity.ActivityFootPrint"
+          <activity android:name=".ui.activity.ActivityFootPrint"
             android:screenOrientation="portrait"
          ></activity>                  
-          <activity android:name="com.it.ui.activity.ActivityUserDelails"
+          <activity android:name=".ui.activity.ActivityUserDelails"
             android:screenOrientation="portrait"
          ></activity>  
-	   <activity android:name="com.it.ui.activity.SystemInfoActivity"
+	   <activity android:name=".ui.activity.SystemInfoActivity"
             android:screenOrientation="portrait"
          ></activity>                  
-	   <activity android:name="com.it.ui.activity.ActivityMyPrecious"
+	   <activity android:name=".ui.activity.ActivityMyPrecious"
             android:screenOrientation="portrait"
          ></activity>                  
-	   <activity android:name="com.it.ui.activity.ActivityIdentifyByMe"
+	   <activity android:name=".ui.activity.ActivityIdentifyByMe"
             android:screenOrientation="portrait"
          ></activity>    
-          <activity android:name="com.it.ui.activity.GetUserLogoActivity"
+          <activity android:name=".ui.activity.GetUserLogoActivity"
             android:screenOrientation="portrait"
          ></activity> 
-                  <activity android:name="com.it.ui.activity.AttestAgencyActivity"
-            android:screenOrientation="portrait"
-             android:windowSoftInputMode="stateHidden"
-         ></activity> 
-                  <activity android:name="com.it.ui.activity.AttestPersionalActivity"
+                  <activity android:name=".ui.activity.AttestAgencyActivity"
             android:screenOrientation="portrait"
              android:windowSoftInputMode="stateHidden"
          ></activity> 
-         <service android:name="com.it.ui.server.HomeService"></service>                       
+             <activity android:name=".ui.activity.AttestPersionalActivity"
+            android:screenOrientation="portrait"
+             android:windowSoftInputMode="stateHidden"
+         ></activity> 
+         <service android:name=".ui.server.HomeService"></service>                       
     </application>
 
      <supports-screens

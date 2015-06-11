@@ -28,11 +28,11 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
-        <com.it.view.home.ViewUserDelaisIdentifyResult
+        <com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.it.view.home.ViewUserDelaisIdentifyResult
+        <com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

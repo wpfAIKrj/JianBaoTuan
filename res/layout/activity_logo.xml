@@ -4,7 +4,7 @@
     android:orientation="vertical" >
 
     <include layout="@layout/layout_head" android:id="@+id/layout_top"/>
-    <com.it.view.CutView
+    <com.yingluo.Appraiser.view.CutView
         android:id="@+id/myCutView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

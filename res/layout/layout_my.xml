@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    xmlns:app="http://schemas.android.com/apk/res/com.it">
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     <ScrollView 
            android:layout_width="match_parent"
@@ -52,7 +52,7 @@
     		android:layout_below="@id/layout1"
           android:orientation="vertical" >
 
-          <com.it.view.CircleImageView
+          <com.yingluo.Appraiser.view.CircleImageView
               android:id="@+id/login_user_head"
               android:layout_width="@dimen/user_logo_width"
               android:layout_height="@dimen/user_logo_width"

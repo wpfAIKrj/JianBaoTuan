@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.it"
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
@@ -21,7 +21,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical" >
 
-        <com.it.view.CircleImageView
+        <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/login_user_head"
             android:layout_width="@dimen/user_logo_width"
             android:layout_height="@dimen/user_logo_width"

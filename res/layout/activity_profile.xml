@@ -68,7 +68,7 @@
     	     android:background="@color/item_space_color"
     	    
     	    />
-		<com.it.view.EmailAutoCompleteTextView
+		<com.yingluo.Appraiser.view.EmailAutoCompleteTextView
 		    	    android:id="@+id/et_email"
 		    	    android:layout_width="match_parent"
 		    	    android:layout_height="47dp"

@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="@color/wite"
     
-    android:fitsSystemWindows="true"
     
      >
 
@@ -74,15 +73,15 @@
 
    
 
-    			<com.it.view.TagLinearLayout
+    			<com.yingluo.Appraiser.view.TagLinearLayout
     			   android:id="@+id/tag_layout"
     			    android:layout_width="wrap_content"
     			    android:layout_height="wrap_content" 
     			     android:layout_marginTop="5dp"
     			    android:layout_marginBottom="5dp"
-    			 android:layout_marginLeft="16dp" 
-    			    >
-    			</com.it.view.TagLinearLayout>
+    				 android:layout_marginLeft="16dp" 
+    			   />
+    		
 
     		</LinearLayout>
 
@@ -124,7 +123,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView01"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
@@ -139,7 +138,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView02"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
@@ -154,7 +153,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView03"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
@@ -196,7 +195,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView04"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
@@ -211,7 +210,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView05"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"
@@ -226,7 +225,7 @@
 				    android:gravity="center"
 				    >
 
-					<com.it.view.CircleImageView
+					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView06"
 					    android:layout_width="wrap_content"
 					    android:layout_height="wrap_content"

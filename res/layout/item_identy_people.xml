@@ -20,7 +20,7 @@
         android:src="@color/cricle_color"
          >
 
-        <com.it.view.CircleImageView
+        <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/user_logo"
             android:layout_width="@dimen/layout_logo_width"
             android:layout_height="@dimen/layout_logo_width"

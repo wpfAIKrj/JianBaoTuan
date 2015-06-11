@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.it.view.PullRefreshRecyclerView
+        <com.yingluo.Appraiser.view.PullRefreshRecyclerView
             android:id="@+id/prrv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

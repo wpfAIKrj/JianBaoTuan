@@ -29,7 +29,7 @@
         android:layout_marginBottom="@dimen/y20"
         android:paddingTop="@dimen/y20" >
 
-        <com.it.view.home.ViewHots
+        <com.yingluo.Appraiser.view.home.ViewHots
             android:id="@+id/viewhots_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:layout_marginLeft="@dimen/x14"
             android:layout_marginRight="@dimen/x6" />
 
-        <com.it.view.home.ViewHots
+        <com.yingluo.Appraiser.view.home.ViewHots
             android:id="@+id/viewhots_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginLeft="@dimen/x6"
             android:layout_marginRight="@dimen/x14" />
 
-        <com.it.view.home.ViewHots
+        <com.yingluo.Appraiser.view.home.ViewHots
             android:id="@+id/viewhots_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_marginLeft="@dimen/x14"
             android:layout_marginRight="@dimen/x6" />
 
-        <com.it.view.home.ViewHots
+        <com.yingluo.Appraiser.view.home.ViewHots
             android:id="@+id/viewhots_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

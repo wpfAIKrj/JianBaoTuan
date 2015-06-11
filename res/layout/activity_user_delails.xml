@@ -20,14 +20,14 @@
 
             <include layout="@layout/item_delails_user" />
 
-            <com.it.view.ImageViewWithBorder
+            <com.yingluo.Appraiser.view.ImageViewWithBorder
                 android:id="@+id/iv_0"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y500"
                 android:scaleType="fitXY"
                 android:src="@drawable/test_xc8" />
 
-            <com.it.view.ImageViewWithBorder
+            <com.yingluo.Appraiser.view.ImageViewWithBorder
                 android:id="@+id/iv_1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y500"

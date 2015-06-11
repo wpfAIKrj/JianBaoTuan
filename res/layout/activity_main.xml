@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res/com.it"
-    xmlns:MyTabWidget="http://schemas.android.com/apk/res/com.it.view"
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
+    xmlns:MyTabWidget="http://schemas.android.com/apk/res/com.yingluo.Appraiser.view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.it.ui.activity.MainActivity" >
+    tools:context="com.yingluo.Appraiser.ui.activity.MainActivity" >
 
     <LinearLayout
         android:id="@+id/viewSnsLayout"
@@ -20,10 +20,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
     </LinearLayout>
-	
- 
- 
-    <com.it.view.MyTabWidget
+     <com.yingluo.Appraiser.view.MyTabWidget
         android:id="@+id/tab_widget"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

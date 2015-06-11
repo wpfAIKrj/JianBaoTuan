@@ -76,7 +76,7 @@
     	    android:gravity="center_vertical"
     		android:paddingLeft="@dimen/layout_padding"
     	    />
-		<com.it.view.CircleImageView
+		<com.yingluo.Appraiser.view.CircleImageView
 			android:id="@+id/imageView01"
 			android:layout_width="@dimen/published_layout_height"
 			android:layout_height="@dimen/published_layout_height"

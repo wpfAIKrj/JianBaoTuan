@@ -9,7 +9,7 @@
     android:minWidth="@dimen/x120"
     android:orientation="vertical" >
 
-    <com.it.view.CircleImageView
+    <com.yingluo.Appraiser.view.CircleImageView
         android:id="@+id/iv"
         android:layout_width="@dimen/x102"
         android:layout_height="@dimen/y102" />
