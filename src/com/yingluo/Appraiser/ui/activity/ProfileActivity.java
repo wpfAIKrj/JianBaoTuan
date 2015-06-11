@@ -50,7 +50,6 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	private EditText edName;
 	
 	private UploadLogoPresenter mpresenter;
-	private UserInfo user;
 	private String qq;
 	private String email;
 	private String key;
@@ -66,7 +65,6 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		setContentView(R.layout.activity_profile);
 		ViewUtils.inject(this);
 		mpresenter=new UploadLogoPresenter(this);
-		user=((ItApplication)getApplication()).getCurrnUser();
 		initView();
 	}
 
@@ -75,12 +73,14 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	private void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.profile_title);
-		String string = user.getPersonal_data();
-		key=user.getPortrait();
-		name=user.getNickname();
-		edQQ.setText(user.getQq());
-		edEmail.setText(user.getEmail());
-		edName.setText(user.getNickname());
+		if(ItApplication.currnUser!=null){
+		String string = ItApplication.currnUser.getPersonal_data();
+		key=ItApplication.currnUser.getPortrait();
+		name=ItApplication.currnUser.getNickname();
+		edQQ.setText(ItApplication.currnUser.getQq());
+		edEmail.setText(ItApplication.currnUser.getEmail());
+		edName.setText(ItApplication.currnUser.getNickname());
+		}
 	}
 
 
@@ -133,10 +133,10 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		if(Logodialong!=null){
 			Logodialong.dismiss();
 		}
-		((ItApplication)getApplication()).getCurrnUser().setAvatar(user.getAvatar());
-		((ItApplication)getApplication()).getCurrnUser().setQq(user.getQq());
-		((ItApplication)getApplication()).getCurrnUser().setEmail(user.getEmail());
-		((ItApplication)getApplication()).getCurrnUser().setNickname(user.getNickname());
+		ItApplication.currnUser.setAvatar(user.getAvatar());
+		ItApplication.currnUser.setQq(user.getQq());
+		ItApplication.currnUser.setEmail(user.getEmail());
+		ItApplication.currnUser.setNickname(user.getNickname());
 		EventBus.getDefault().post(new MyEvent(0,user));
 		new ToastUtils(this, "个人信息更新成功！");
 	}

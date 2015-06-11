@@ -2,8 +2,10 @@ package com.yingluo.Appraiser.im;
 
 
 import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import io.rong.imlib.RongIMClient.ConnectCallback;
 import io.rong.imlib.RongIMClient.ErrorCode;
+import io.rong.imlib.model.UserInfo;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.protocol.HTTP;
@@ -21,9 +23,12 @@ import com.lidroid.xutils.http.callback.HttpRedirectHandler;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import android.content.Context;
+import android.net.Uri;
 
 public class RongImUtils {
 
@@ -66,6 +71,7 @@ public class RongImUtils {
 				LogUtils.d("聊天连接成功！");
 				isconnect=true;
 			    RongCloudEvent.getInstance().setOtherListener();
+			    setUserInfo();
 			}
 			
 			@Override
@@ -83,7 +89,46 @@ public class RongImUtils {
 		});
 		
 	}
-	
+	/**
+	 * 连接创建成功后，将用户的
+	 */
+	protected void setUserInfo() {
+		// TODO Auto-generated method stub
+	    //设置用户信息提供者。
+        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
+            //App 返回指定的用户信息给 IMKit 界面组件。
+
+			@Override
+			public UserInfo getUserInfo(String arg0) {
+				// TODO 获取本地用户转化的
+				return getUserInfoFromLocalCache(arg0);
+			}
+        }, false);
+	}
+
+	/**
+	 * 获取当前登录用户的基本信息
+	 * @param arg0
+	 * @return
+	 */
+	protected UserInfo getUserInfoFromLocalCache(String arg0) {
+		// TODO Auto-generated method stub
+		UserInfo user =null;
+		if(ItApplication.currnUser!=null){
+		 try {
+			 if(ItApplication.currnUser.getAvatar()!=null){
+				 user=new UserInfo(arg0, ItApplication.currnUser.getNickname(), Uri.parse(ItApplication.currnUser.getAvatar())); 
+			 }else{
+				 user=new UserInfo(arg0, ItApplication.currnUser.getNickname(),null);
+			 }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		return user;
+	}
+
 	/**
 	 * 启动单独聊天页面
 	 * @param context 

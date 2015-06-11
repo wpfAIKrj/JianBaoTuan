@@ -54,7 +54,6 @@ public class InformationDetailsActivity extends BaseActivity {
 	
 	private ContentInfo info;
 	
-	private UserInfo user;
 
 	private Dialog dialog1;
 
@@ -79,7 +78,7 @@ public class InformationDetailsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_informationdetail);
 		ViewUtils.inject(this);
-		user=((ItApplication)getApplication()).getCurrnUser();
+		
 		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
 		collectPresenter=new collectInfoPresenter(listener);
 		getdetailPresenter=new getdetailInfoPresenter(listener1);
@@ -126,14 +125,14 @@ public class InformationDetailsActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.detail_share://分享
-			if(user!=null){
+			if(ItApplication.currnUser!=null){
 				
 			}else{
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
 		case R.id.detail_collect://收藏
-			if(user!=null){
+			if(ItApplication.currnUser!=null){
 				dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
 				dialog1.show();
 				
@@ -142,7 +141,7 @@ public class InformationDetailsActivity extends BaseActivity {
 			}
 			break;
 		case R.id.detail_cancle_collect://取消收藏
-			if(user!=null){
+			if(ItApplication.currnUser!=null){
 				dialog1=DialogUtil.createShowDialog(this, "是否取消收藏文章？", lis2);
 				dialog1.show();
 				

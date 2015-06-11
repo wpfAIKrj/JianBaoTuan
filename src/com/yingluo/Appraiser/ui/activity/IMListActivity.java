@@ -41,6 +41,21 @@ import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
  *
  */
 public class IMListActivity extends BaseActivity implements OnClickListener,IXListViewListener,OnItemClickListener{
+
+	@ViewInject(R.id.home_title)
+	private TextView title;
+	
+	@ViewInject(R.id.button_delect)
+	private ImageView iv_delete;
+	
+
+
+	
+
+
+	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -48,86 +63,18 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 		setContentView(R.layout.activity_favoritearticles);
 		ViewUtils.inject(this);
 		initView();
-		initData();
+
 	}
-	@ViewInject(R.id.home_title)
-	private TextView title;
 	
-	private ArrayList<ContentInfo> list;
-	
-	@ViewInject(R.id.swipe_refresh_widget)
-	private SwipeRefreshLayout mSwipeRefreshWidget;
-	@ViewInject(R.id.recyclerview1)
-	private RecyclerView mRecyclerView;
-	
-	
-	private int length=30;
-	
-	protected boolean isLoadMore=false;
-	private boolean isRefreshing=true;
-	
-	private boolean isFiset=true;
-	
-	protected int lastVisableView;
-	protected int totalItemCount;
-	protected int nextShow=1;
-
-	private HashMap<String, Integer> deleteInfos;
-	
-	private ListLoadType currt=ListLoadType.Nomal;
-
-
-	private Dialog dialogLoad;
-	
-	
-	@ViewInject(R.id.layout_delet)
-	private RelativeLayout layout_delet;
-	
-	@ViewInject(R.id.all_checkbox)
-	private CheckBox allcheckbox;
-	
-	private SystemInfoAdapter madapter;
-
-
 	protected void initView() {
 		// TODO Auto-generated method stub
 
 		title.setText("聊天");
-		list=new ArrayList<ContentInfo>();
-		LayoutManager layoutManager=new LinearLayoutManager(this);
-		mRecyclerView.setLayoutManager(layoutManager);
-		mSwipeRefreshWidget.setDistanceToTriggerSync(200);
-		mSwipeRefreshWidget.setOnRefreshListener(new OnRefreshListener() {
-			
-			@Override
-			public void onRefresh() {//刷新
-				// TODO Auto-generated method stub
-				if(isRefreshing){
-				
-				}else{
-					Log.d("helper","正在刷新中!");
-					mSwipeRefreshWidget.setRefreshing(false);
-				}
-			}
-		});
-
-		mRecyclerView.setHasFixedSize(true);
-		
-//		madapter=new MyArticleAdapter(this,list,listener,FavoriteArticlesActivity.this,deleteItemlistener);
-//		madapter.setMode(Attributes.Mode.Single);
-//		madapter.setScorll(true);
-		
-		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//		mRecyclerView.setAdapter(madapter);
-		dialogLoad=DialogUtil.createLoadingDialog(this, "正在删除");
+		iv_delete.setVisibility(View.GONE);
 		
 	}
 
-	protected void initData() {
-		// TODO Auto-generated method stub
-		madapter=new SystemInfoAdapter(LayoutInflater.from(this));
-		deleteInfos=new HashMap<String, Integer>();
-	}
+
 
 
 
@@ -139,9 +86,7 @@ public class IMListActivity extends BaseActivity implements OnClickListener,IXLi
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;
-		case R.id.button_delect://删除模式
-			
-			break;
+
 		default:
 			break;
 		}

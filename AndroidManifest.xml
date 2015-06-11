@@ -134,10 +134,7 @@
          ></activity> 
            <activity android:name=".ui.activity.FavoriteArticlesActivity"
             android:screenOrientation="portrait"
-         ></activity>    
-          <activity android:name=".ui.activity.IMListActivity"
-            android:screenOrientation="portrait"
-         ></activity>                  
+         ></activity>                 
           <activity android:name=".ui.activity.ActivityFootPrint"
             android:screenOrientation="portrait"
          ></activity>                  
@@ -166,7 +163,122 @@
          ></activity> 
          <service android:name=".ui.server.HomeService"></service>     
          
+         
+         
+          <activity android:name=".ui.activity.IMListActivity"
+            android:screenOrientation="portrait"
+             android:launchMode="singleTask"
+         >
+           <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+          		 <data
+                    android:host="com.yingluo.Appraiser"
+                    android:pathPrefix="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+              
+          </activity>  
+         
+          <activity 
+             	 android:name=".ui.activity.ConversationActivity"
+                android:screenOrientation="portrait"
+                 android:launchMode="singleTask"
+              >
+               <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+
+          		 <data
+                    android:host="com.yingluo.Appraiser"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+          </activity>
+         
          <!-- 聊天 -->
+            <activity
+            android:name="io.rong.voipkit.activity.CallSideActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.yingluo.Appraiser"
+                    android:pathPrefix="/VoIPCall"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.rong.voipkit.activity.CalledSideActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.yingluo.Appraiser"
+                    android:pathPrefix="/VoIPAccept"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="io.rong.push.PushService"
+            android:process="io.rong.push">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="io.rong.push" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="io.rong.push.CommandService"
+            android:process="io.rong.push">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="io.rong.command" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="io.rong.push.PushReceiver"
+            android:process="io.rong.push">
+            <intent-filter>
+                <action android:name="io.rong.imlib.action.push.heartbeat" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="io.rong.imlib.HeartbeatReceiver"
+            android:process=":ipc" />
+
+
+        <activity
+            android:name="io.rong.imkit.tools.SelectPictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.rong.imkit.tools.PreviewPictureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.rong.imkit.tools.RongWebviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="io.rong.imkit.widget.provider.TakingPicturesActivity"
+            android:screenOrientation="portrait" />
            <service
             android:name="io.rong.imlib.ipc.RongService"
             android:process=":ipc"></service>

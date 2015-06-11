@@ -19,20 +19,14 @@ import android.content.Context;
 
 public class ItApplication extends Application {
 
-	private UserInfo currnUser;
+	public static  UserInfo currnUser=null;
 
 	private HomeEntity homeEntity;
 
 	private List<CollectionEntity> hasIdentify;
 	private List<CollectionEntity> unIdentify;
 
-	public UserInfo getCurrnUser() {
-		return currnUser;
-	}
 
-	public void setCurrnUser(UserInfo currnUser) {
-		this.currnUser = currnUser;
-	}
 
 	public HomeEntity getHomeEntity() {
 		return homeEntity;

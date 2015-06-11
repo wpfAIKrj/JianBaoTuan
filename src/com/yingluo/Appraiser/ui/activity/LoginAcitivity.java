@@ -165,7 +165,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@Override
 	public void onSucess(UserInfo user) {
 		// TODO Auto-generated method stub
-		((ItApplication)getApplication()).setCurrnUser(user);
+		ItApplication.currnUser=user;
 		SqlDataUtil.getInstance().saveUserInfo(user);
 	//	RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
 		if(dialog!=null){

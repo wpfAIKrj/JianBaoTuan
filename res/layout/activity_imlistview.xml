@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/wite" >
+  <include
+      layout="@layout/article_head" android:id="@+id/layout_head"/>
+   <!-- 会话列表页面 Fragment -->
+    <fragment  
+        android:layout_width="match_parent"  
+        android:layout_height="match_parent"  
+        android:name="io.rong.imkit.fragment.ConversationListFragment"/>  
+
+
+</LinearLayout>

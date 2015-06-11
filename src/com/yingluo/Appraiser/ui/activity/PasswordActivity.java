@@ -124,7 +124,7 @@ public class PasswordActivity extends BaseActivity {
 					loadding.dismiss();
 				}
 				SqlDataUtil.getInstance().saveUserInfo(data);
-				((ItApplication)getApplication()).setCurrnUser(data);
+				ItApplication.currnUser=data;
 				new ToastUtils(PasswordActivity.this, "修改密码成功！");
 			}
 			

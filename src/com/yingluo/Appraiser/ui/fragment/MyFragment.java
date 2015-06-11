@@ -85,7 +85,8 @@ public class MyFragment extends BaseFragment{
 	@ViewInject(R.id.my_type_msg)
 	private TextView my_type_msg;
 	
-	private UserInfo user=null;
+
+
 	
 	private getUserInfoLPresenter  getPresenter;
 
@@ -124,9 +125,10 @@ public class MyFragment extends BaseFragment{
 	public void onEventMainThread(MyEvent event){
 		switch (event.type) {
 		case 0://更新人物头像
-			user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
-			tv_name.setText(user.getNickname());
-			BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
+			if(ItApplication.currnUser!=null){
+				tv_name.setText(ItApplication.currnUser.getNickname());
+				BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());	
+			}
 			break;
 		case 1://更新个人信息
 			if(isFirst){
@@ -153,9 +155,10 @@ public class MyFragment extends BaseFragment{
 	@Override
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
-		user=((ItApplication)(mActivity.getApplication())).getCurrnUser();
-		tv_name.setText(user.getNickname());
-		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
+		if(ItApplication.currnUser!=null){
+		tv_name.setText(ItApplication.currnUser.getNickname());
+		BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
+		}
 		//initData();
 		dialog=DialogUtil.createLoadingDialog(mActivity, "加载个人信息中");
 		dialog.show();
@@ -209,7 +212,7 @@ public class MyFragment extends BaseFragment{
 			}
 			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
-			if(user.getUser_type()==0){
+			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
 			}
@@ -247,7 +250,7 @@ public class MyFragment extends BaseFragment{
 					SystemInfoActivity.class));
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
-			if(user.getUser_type()==0){
+			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
 			}else{
@@ -270,15 +273,17 @@ public class MyFragment extends BaseFragment{
 	
 	private void initData() {
 		// TODO Auto-generated method stub
-		tv_name.setText(user.getNickname());
-		BitmapsUtils.getInstance().display(user_logo, user.getAvatar());
-		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[user.getUser_type()]);
-		iv_level.setImageResource(levels[user.getUser_type()]);
+		if(ItApplication.currnUser!=null){
+		tv_name.setText(ItApplication.currnUser.getNickname());
+		BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
+		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[ItApplication.currnUser.getUser_type()]);
+		iv_level.setImageResource(levels[ItApplication.currnUser.getUser_type()]);
 		madapter=new MyLikeAdapter(list, itemListner);
 		listView.setAdapter(madapter);
-		tv_collect_number.setText(""+user.getTreasure_number());
-		tv_fooler_number.setText(""+user.getFoot_number());
-		tv_identiy_number.setText(""+user.getTreasure_record_number());
+		tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
+		tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
+		tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
+		}
 		
 	}
 	
@@ -289,9 +294,9 @@ public class MyFragment extends BaseFragment{
 			// TODO Auto-generated method stub
 			try {
 				JSONObject obj=new JSONObject(data);
-				user.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
-				user.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
-				user.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
+				ItApplication.currnUser.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
+				ItApplication.currnUser.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
+				ItApplication.currnUser.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
 				for (int i = 0; i < arrays.length(); i++) {

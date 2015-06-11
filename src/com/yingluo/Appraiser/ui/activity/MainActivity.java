@@ -112,7 +112,7 @@ OnTabSelectedListener ,OnClickListener{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(((ItApplication)getApplication()).getCurrnUser()!=null){
+				if(ItApplication.currnUser!=null){
 					Intent intent=new Intent(MainActivity.this, PublishedActivity.class);
 					startActivityForResult(intent, Const.TO_SEND_IDENTIY);
 				}else{
@@ -140,7 +140,7 @@ OnTabSelectedListener ,OnClickListener{
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(Const.MINDEX, mIndex);
-		outState.putSerializable(Const.USER, ((ItApplication)getApplication()).getCurrnUser());
+		outState.putSerializable(Const.USER, ItApplication.currnUser);
 	}
 
 	@Override
@@ -154,7 +154,7 @@ OnTabSelectedListener ,OnClickListener{
 		if(savedInstanceState!=null){
 		   	mIndex=savedInstanceState.getInt(Const.MINDEX,0);
 	    	UserInfo user = (UserInfo) savedInstanceState.getSerializable(Const.USER);
-	    	((ItApplication)getApplication()).setCurrnUser(user);
+	    	ItApplication.currnUser=user;
 		}
 	}
 
@@ -184,7 +184,7 @@ OnTabSelectedListener ,OnClickListener{
 		// TODO Auto-generated method stub
 		//
 		if(index==3){//我的页面
-			if(((ItApplication)getApplication()).getCurrnUser()==null){
+			if(ItApplication.currnUser==null){
 				Intent intent=new Intent(MainActivity.this, LoginAcitivity.class);
 				startActivityForResult(intent, Const.TO_LOGIN);
 				return;
@@ -373,11 +373,10 @@ OnTabSelectedListener ,OnClickListener{
 	public void uploadLogo(String path){
 		LogUtils.d("获取的头像路径："+path);
 		disshowPhoto();
-		UserInfo user=((ItApplication)getApplication()).getCurrnUser();
-		if(user!=null){
-			String qq=user.getQq();
-			String email=user.getEmail();
-			String name=user.getNickname();
+		if(ItApplication.currnUser!=null){
+			String qq=ItApplication.currnUser.getQq();
+			String email=ItApplication.currnUser.getEmail();
+			String name=ItApplication.currnUser.getNickname();
 			uplogopresenter.startUpLoadLogo(path,email,qq,name);
 			Logodialong=DialogUtil.createLoadingDialog(this, "正在更新头像中");
 			Logodialong.show();
@@ -404,9 +403,9 @@ OnTabSelectedListener ,OnClickListener{
 			if(Logodialong!=null){
 				Logodialong.dismiss();
 			}
-			UserInfo cunnt=((ItApplication)getApplication()).getCurrnUser();
-			cunnt.setAvatar(user.getAvatar());
-
+			if(ItApplication.currnUser!=null){
+			ItApplication.currnUser.setAvatar(user.getAvatar());
+			}
 			EventBus.getDefault().post(new MyEvent(0,user));
 		}
 
@@ -430,7 +429,7 @@ OnTabSelectedListener ,OnClickListener{
 				Logodialong.dismiss();
 			}
 			SqlDataUtil.getInstance().clearUserinfo();
-			((ItApplication)getApplication()).setCurrnUser(null);
+			ItApplication.currnUser=null;
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex=0;
 		   	onTabSelected(mIndex);
