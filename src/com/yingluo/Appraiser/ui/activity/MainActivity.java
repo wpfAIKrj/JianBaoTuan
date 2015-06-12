@@ -9,6 +9,7 @@ import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.presenter.ExitPresenter;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
@@ -429,6 +430,7 @@ OnTabSelectedListener ,OnClickListener{
 				Logodialong.dismiss();
 			}
 			SqlDataUtil.getInstance().clearUserinfo();
+			RongImUtils.getInstance().disconnect();
 			ItApplication.currnUser=null;
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex=0;

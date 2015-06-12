@@ -15,6 +15,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.CollectionEntity;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.config.UrlUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
 
 public class HomeModel extends BaseModel {
 
@@ -51,6 +52,7 @@ public class HomeModel extends BaseModel {
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
+		FileUtils.getInstance().saveFileForJson(data);
 		homeEntity = new HomeEntity();
 		JSONObject json = new JSONObject(data);
 		try {
@@ -66,6 +68,7 @@ public class HomeModel extends BaseModel {
 						new TypeToken<List<CollectionEntity>>() {
 						}.getType());
 				homeEntity.setChoices(list_choices);
+				
 				String hots = json.getString("hots");
 				List<CollectionEntity> list_hots = gson.fromJson(hots,
 						new TypeToken<List<CollectionEntity>>() {

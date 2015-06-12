@@ -42,7 +42,9 @@ public class NativeUtil {
 
 		// if (bit.getConfig() != Config.ARGB_8888) {
 		Bitmap result = null;
-
+		if(bit.getWidth()<540&&bit.getHeight()<960){
+			saveBitmap(bit, DEFAULT_QUALITY, fileName, optimize);
+		}else{
 		result = Bitmap.createBitmap(bit.getWidth()/2 , bit.getHeight()/2,
 				Config.ARGB_8888);// 缩小2倍
 		Canvas canvas = new Canvas(result);
@@ -51,6 +53,7 @@ public class NativeUtil {
 		canvas.drawBitmap(bit, null, rect, null);
 		saveBitmap(result, DEFAULT_QUALITY, fileName, optimize);
 		result.recycle();
+		}
 		// } else {
 		// saveBitmap(bit, quality, fileName, optimize);
 		// }

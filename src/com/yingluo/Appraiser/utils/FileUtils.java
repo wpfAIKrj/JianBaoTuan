@@ -1,10 +1,19 @@
 package com.yingluo.Appraiser.utils;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,9 +40,10 @@ public class FileUtils {
 	private static FileUtils mInstance=null;
 	private Context mContext;
 	public static final String DIRNAME="if";
-	public static final String CACHEIMAGE="cacheimage";//图片缓存
 	public static final String UPLOADIMAGE="cachupload";//上传图片
 	public static final String CACHEFILES="cachfiles";//文件缓存
+	
+	public static final String JSON_HOME="home.json";
 	private String root_path;//根目录
 	
 	
@@ -73,10 +83,6 @@ public class FileUtils {
 		if(!root.exists()){
 			root.mkdir();
 		}
-		File cache=new File(root, CACHEIMAGE);
-		if(!cache.exists()){
-			cache.mkdirs();
-		}
 		File upload=new File(root, UPLOADIMAGE);
 		if(!upload.exists()){
 			upload.mkdir();
@@ -87,14 +93,7 @@ public class FileUtils {
 		}
 	}
 	
-	/**
-	 * 获取缓存图片的文件夹路径
-	 * @return
-	 */
-	public String getCacheImage(){
-		return root_path+File.separator+DIRNAME+File.separator+CACHEIMAGE;
-	}
-	
+
 	/**
 	 * 获取缓存数据的文件夹路径
 	 * @return
@@ -232,7 +231,7 @@ public class FileUtils {
 	/**
 	 * 删除目录(包括：目录里的所有文件)
 	 * 
-	 * @param type 0为缓存，1为上传，2为文件，3为全部 
+	 * @param type 1为上传，2为文件，3为全部 
 	 * @return 
 	 */
 	public  boolean deleteDirectory(int type) {
@@ -240,9 +239,6 @@ public class FileUtils {
 		SecurityManager checker = new SecurityManager();
 		File newPath =null;
 			switch (type) {
-			case 0:
-				newPath=new File(getCacheImage());
-				break;
 			case 1:
 				newPath=new File(getUpImage());
 				break;
@@ -461,8 +457,63 @@ public class FileUtils {
 		return path;
 	}
 	
+	/**
+	 * 保存首页获取到的json数据
+	 */
+	public void saveFileForJson(String json){
+		File file=new File(getCacheFile(), JSON_HOME);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		try {
+			FileOutputStream out=new FileOutputStream(file);
+			BufferedOutputStream writer=new BufferedOutputStream(out);
+			writer.write(json.getBytes());
+			writer.flush();
+			writer.close();			
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	}
 	
-	
+	/**
+	 * 获取首页的json数据
+	 * @return 存在则返回string，不存在则是null
+	 */
+	public String getFileForHomeJson(){
+		File file=new File(getCacheFile(), JSON_HOME);
+		StringBuffer content=new StringBuffer();
+		if(file.exists()){
+			 try {
+				InputStream instream = new FileInputStream(file); 
+				 if (instream != null) 
+				 {
+				     InputStreamReader inputreader = new InputStreamReader(instream);
+				     BufferedReader buffreader = new BufferedReader(inputreader);
+				     String line;
+				     //分行读取
+				     while (( line = buffreader.readLine()) != null) {
+				         content.append(line);
+				     }                
+				     instream.close();
+				 }
+		         return content.toString(); 
+			} catch (Exception e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+				return null;
+			} 
+
+		}else{
+			return null;
+		}
+	}
 	
 	
 }

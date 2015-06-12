@@ -41,6 +41,8 @@ public class CollectionEntity implements Serializable {
 	public long author_id;
 	@SerializedName("linkaddress")
 	public String linkaddress;
+	@SerializedName("user_id")
+	public long user_id;
 
 	public CollectionEntity() {
 		// TODO Auto-generated constructor stub

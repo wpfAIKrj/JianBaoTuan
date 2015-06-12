@@ -12,6 +12,8 @@ import com.yingluo.Appraiser.bean.ContentInfoDao;
 import com.yingluo.Appraiser.bean.DaoMaster;
 import com.yingluo.Appraiser.bean.DaoMaster.DevOpenHelper;
 import com.yingluo.Appraiser.bean.DaoSession;
+import com.yingluo.Appraiser.bean.ImUserInfo;
+import com.yingluo.Appraiser.bean.ImUserInfoDao;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.TreasureTypeDao;
 import com.yingluo.Appraiser.bean.UserInfo;
@@ -20,6 +22,7 @@ import com.yingluo.Appraiser.config.Const;
 
 import de.greenrobot.dao.query.QueryBuilder;
 import android.content.Context;
+import android.net.Uri;
 /**
  * 数据库操作
  * @author Administrator
@@ -33,7 +36,7 @@ public class SqlDataUtil {
 	private  UserInfoDao userdao=null;//用户
 	private ContentInfoDao infoDao=null;//文章详细
 	private TreasureTypeDao typeDao=null;//宝物分类
-	
+	private ImUserInfoDao imdao=null;//聊天用户信息本地
 	
 	
 	
@@ -53,6 +56,9 @@ public class SqlDataUtil {
 					}
 					if(infoDao==null){
 						infoDao=daoSession.getContentInfoDao();
+					}
+					if(imdao==null){
+						imdao=daoSession.getImUserInfoDao();
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -85,15 +91,8 @@ public class SqlDataUtil {
 	 */
 	public void saveUserInfo(UserInfo user){
 		try {
-			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
-			List<UserInfo> list = qb.list();
-			for (UserInfo userInfo : list) {
-				
-				if(userInfo.getMobile().equals(user.getMobile())){
-					user.setId(userInfo.getId());
-				}
-			}
 			userdao.insertOrReplace(user);
+			ImUserInfo im=new ImUserInfo(user.getId(), user.getNickname(), user.getAvatar());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -231,24 +230,31 @@ public class SqlDataUtil {
 	 */
 	public io.rong.imlib.model.UserInfo getImUser(String arg0) {
 		// TODO 自动生成的方法存根
-		
-		return null;
+		io.rong.imlib.model.UserInfo user=null;
+		try {
+			long id=Long.parseLong(arg0);
+			QueryBuilder<ImUserInfo> qb = imdao.queryBuilder();
+			qb.where(ImUserInfoDao.Properties.Id.eq(id));
+			ImUserInfo old = qb.unique();
+			if(old!=null){
+				user=new io.rong.imlib.model.UserInfo(arg0,old.getName(),
+						(old.getIcon()!=null)?Uri.parse(old.getIcon()):null);
+			}
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return user;
 	}
 	
 	/**
-	 * 获取制定2级列表
-	 * @param parent_id 1级列表id
-	 * @return 2级列表
-	 *//*
-	public ArrayList<TreasureType> getSecondTreasureType(long parent_id) {
-		// TODO Auto-generated method stub
-		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
-		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
-		qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_SECOND),TreasureTypeDao.Properties.Parent_id.eq(parent_id))
-		.orderAsc(TreasureTypeDao.Properties.Currnt_id);
-		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();
-		return list;
-	}*/
+	 * 保存聊天用户基本信息在本地
+	 * @param imuser
+	 */
+	public void saveIMUserinfo(ImUserInfo imuser){
+		imdao.insertOrReplace(imuser);
+	}
+
 	
 	
 	

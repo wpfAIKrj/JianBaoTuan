@@ -108,14 +108,6 @@ public class HomeService extends Service {
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
-//				List<List<TreasureType>> list = allKinds.getResult();
-//				List<TreasureType> first = list.get(0);// 获取一级分类
-//				List<TreasureType> second = list.get(1);// 获取一级分类
-//				List<TreasureType> third = list.get(2);// 获取一级分类
-//				// 写入数据库
-//				SqlDataUtil.getInstance().saveContentType(first);
-//				SqlDataUtil.getInstance().saveContentType(second);
-//				SqlDataUtil.getInstance().saveContentType(third);
 			}
 
 			@Override

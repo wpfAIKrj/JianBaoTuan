@@ -167,7 +167,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		// TODO Auto-generated method stub
 		ItApplication.currnUser=user;
 		SqlDataUtil.getInstance().saveUserInfo(user);
-	//	RongImUtils.getInstance().getToken(user.getMobile(), user.getNickname(),"");
 		if(dialog!=null){
 			dialog.dismiss();
 		}
