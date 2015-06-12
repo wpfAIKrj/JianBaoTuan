@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+  <include
+      layout="@layout/article_head" android:id="@+id/layout_head"/>
     <!-- 会话页面 Fragment -->
     <fragment  
         android:layout_width="match_parent"  

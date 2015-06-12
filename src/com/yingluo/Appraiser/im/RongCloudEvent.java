@@ -2,11 +2,16 @@ package com.yingluo.Appraiser.im;
 
 
 import com.lidroid.xutils.util.LogUtils;
+import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import io.rong.imkit.RongContext;
 import io.rong.imkit.RongIM;
+import io.rong.imkit.RongIM.ConversationBehaviorListener;
+import io.rong.imkit.RongIM.ConversationListBehaviorListener;
 import io.rong.imkit.RongIM.OnSendMessageListener;
 import io.rong.imkit.RongIM.UserInfoProvider;
+import io.rong.imkit.model.UIConversation;
 import io.rong.imkit.widget.provider.CameraInputProvider;
 import io.rong.imkit.widget.provider.ImageInputProvider;
 import io.rong.imkit.widget.provider.InputProvider;
@@ -16,6 +21,7 @@ import io.rong.imlib.RongIMClient.ConnectionStatusListener;
 import io.rong.imlib.RongIMClient.OnReceiveMessageListener;
 import io.rong.imlib.RongIMClient.ConnectionStatusListener.ConnectionStatus;
 import io.rong.imlib.model.Conversation;
+import io.rong.imlib.model.Conversation.ConversationType;
 import io.rong.imlib.model.Message;
 import io.rong.imlib.model.MessageContent;
 import io.rong.imlib.model.UserInfo;
@@ -27,14 +33,16 @@ import io.rong.message.TextMessage;
 import io.rong.message.VoiceMessage;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 
 /**
  * 接手融云聊天信息回调
  * @author xy418
  *
  */
-public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener,ConnectionStatusListener,OnSendMessageListener{
+public class RongCloudEvent implements ConversationListBehaviorListener,UserInfoProvider,ConversationBehaviorListener,OnReceiveMessageListener,ConnectionStatusListener,OnSendMessageListener{
 	
 	private static RongCloudEvent mRongCloudInstance;
     private Context mContext;
@@ -81,7 +89,7 @@ public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener
     private void initDefaultListener() {
           RongIM.setUserInfoProvider(this, true);//设置用户信息提供者。
 //        RongIM.setGroupInfoProvider(this,true);//设置群组信息提供者。
-//        RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
+          RongIM.setConversationBehaviorListener(this);//设置会话界面操作的监听器。
 //        RongIM.setLocationProvider(this);//设置地理位置提供者,不用位置的同学可以注掉此行代码
 //        RongIM.setPushMessageBehaviorListener(this);//自定义 push 通知。
     }
@@ -95,12 +103,11 @@ public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener
         RongIM.getInstance().getRongIMClient().setOnReceiveMessageListener(this);//设置消息接收监听器。
         RongIM.getInstance().setSendMessageListener(this);//设置发出消息接收监听器.
         RongIM.getInstance().getRongIMClient().setConnectionStatusListener(this);//设置连接状态监听器。
-
+        RongIM.getInstance().setConversationListBehaviorListener(this);
         //扩展功能自定义
         InputProvider.ExtendProvider[] provider = {
                 new ImageInputProvider(RongContext.getInstance()),
                 new CameraInputProvider(RongContext.getInstance()),
-                new LocationInputProvider(RongContext.getInstance()),
                 new VoIPInputProvider(RongContext.getInstance()),
         };
         RongIM.getInstance().resetInputExtensionProvider(Conversation.ConversationType.PRIVATE, provider);
@@ -112,7 +119,7 @@ public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener
 	@Override
 	public UserInfo getUserInfo(String arg0) {
 		// TODO 自动生成的方法存根
-		return null;
+		return SqlDataUtil.getInstance().getImUser(arg0);
 	}
 
 
@@ -195,6 +202,72 @@ public class RongCloudEvent implements UserInfoProvider,OnReceiveMessageListener
 	        }
 
 	        return false;
+	}
+
+	/**
+	 * 会话页面，短按后触发操作
+	 */
+	@Override
+	public boolean onMessageClick(Context arg0, View arg1, Message arg2) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	/**
+	 * 会话页面 长按时候的操作
+	 */
+	@Override
+	public boolean onMessageLongClick(Context arg0, View arg1, Message arg2) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	/**
+	 * 会话界面操作的监听器：ConversationBehaviorListener 的回调方法，当点击用户头像后执行。
+	 */
+	@Override
+	public boolean onUserPortraitClick(Context arg0, ConversationType arg1,
+			UserInfo arg2) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	/**
+	 * 会话界面操作的监听器：ConversationBehaviorListener 的回调方法，当长按点击用户头像后执行。
+	 */
+	@Override
+	public boolean onUserPortraitLongClick(Context arg0, ConversationType arg1,
+			UserInfo arg2) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	/**
+	 * 会话列表 短按
+	 * @param arg0
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	@Override
+	public boolean onConversationClick(Context arg0, View arg1,
+			UIConversation arg2) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
+	/**
+	 * 会话列表 长按
+	 * @param arg0
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	@Override
+	public boolean onConversationLongClick(Context arg0, View arg1,
+			UIConversation arg2) {
+		// TODO 自动生成的方法存根
+		return false;
 	}
 
     

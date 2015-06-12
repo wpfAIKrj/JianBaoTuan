@@ -223,6 +223,17 @@ public class SqlDataUtil {
 		// TODO 自动生成的方法存根
 		userdao.deleteAll();
 	}
+
+	/**
+	 * 返回一个聊天的用户数据
+	 * @param arg0 用户id
+	 * @return
+	 */
+	public io.rong.imlib.model.UserInfo getImUser(String arg0) {
+		// TODO 自动生成的方法存根
+		
+		return null;
+	}
 	
 	/**
 	 * 获取制定2级列表

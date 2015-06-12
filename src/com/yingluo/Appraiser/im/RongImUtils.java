@@ -71,7 +71,8 @@ public class RongImUtils {
 				LogUtils.d("聊天连接成功！");
 				isconnect=true;
 			    RongCloudEvent.getInstance().setOtherListener();
-			    setUserInfo();
+			    
+			   
 			}
 			
 			@Override
@@ -91,9 +92,9 @@ public class RongImUtils {
 	}
 	
 	/**
-	 * 连接创建成功后，将用户的
+	 * 连接创建成功后，更新当前用户的信息
 	 */
-	protected void setUserInfo() {
+	public void setUserInfo() {
 		// TODO Auto-generated method stub
 	    //设置用户信息提供者。
         RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
@@ -144,6 +145,14 @@ public class RongImUtils {
 
 	
 
+	/**
+	 * 断开融云聊天
+	 */
+	public void disconnect(){
+		if(isconnect){
+			RongIM.getInstance().disconnect(false);
+		}
+	}
 	
 	
 	

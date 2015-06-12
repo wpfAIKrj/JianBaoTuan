@@ -1,5 +1,6 @@
 package com.yingluo.Appraiser.ui.activity;
 
+import io.rong.imkit.RongIM;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +18,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.CollectionEntity;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
@@ -42,7 +44,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 	CollectionEntity entity;
 	@ViewInject(R.id.btn_msg)
-	View btn_msg;
+	Button btn_msg;
 	@ViewInject(R.id.prrv)
 	PullRefreshRecyclerView prrv;
 
@@ -52,6 +54,9 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	public void doClick(View view) {
 		// startActivity(new Intent(ActivityHotIdentiy.this,
 		// IMListActivity.class));
+		String userid=String.valueOf(entity.author_id);
+		RongImUtils.getInstance().startPrivateChat(this, userid, entity.authName);
+		
 	}
 
 	OnClickListener identifyListener = new OnClickListener() {
