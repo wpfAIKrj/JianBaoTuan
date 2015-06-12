@@ -27,7 +27,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnLongClick;
 import com.yingluo.Appraiser.app.ItApplication;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
@@ -79,7 +79,7 @@ public class MyFragment extends BaseFragment{
 	@ViewInject(R.id.my_iv_level)
 	private ImageView iv_level;
 	
-	private ArrayList<CollectionEntity> list=new ArrayList<CollectionEntity>();
+	private ArrayList<CollectionTreasure> list=new ArrayList<CollectionTreasure>();
 	
 	@ViewInject(R.id.login_user_head)
 	private CircleImageView user_logo;
@@ -303,7 +303,7 @@ public class MyFragment extends BaseFragment{
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
 				for (int i = 0; i < arrays.length(); i++) {
-					CollectionEntity entity=new CollectionEntity();
+					CollectionTreasure entity=new CollectionTreasure();
 					JSONObject json=arrays.getJSONObject(i);
 					entity.treasure_id=json.getLong("treasure_id");
 					entity.image=json.getString("image");

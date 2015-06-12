@@ -14,7 +14,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
@@ -25,7 +25,7 @@ import com.yingluo.Appraiser.config.UrlUtil;
  */
 public class getMyFootPrintsModel extends BaseModel {
 
-	private List<CollectionEntity> list = null;
+	private List<CollectionTreasure> list = null;
 
 	public getMyFootPrintsModel() {
 		// TODO Auto-generated constructor stub
@@ -69,7 +69,7 @@ public class getMyFootPrintsModel extends BaseModel {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
 			LogUtils.i("ytmdfdw" + "get my foot print:" + data);
-			list = gson.fromJson(data, new TypeToken<List<CollectionEntity>>() {
+			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -89,9 +89,9 @@ public class getMyFootPrintsModel extends BaseModel {
 
 	}
 
-	public List<CollectionEntity> getResult() {
+	public List<CollectionTreasure> getResult() {
 		if (list == null) {
-			list = new ArrayList<CollectionEntity>();
+			list = new ArrayList<CollectionTreasure>();
 		}
 		return list;
 	}

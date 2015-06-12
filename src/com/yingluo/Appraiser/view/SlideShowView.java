@@ -24,7 +24,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
@@ -98,7 +98,7 @@ public class SlideShowView extends FrameLayout {
 	/**
 	 * 设置数据
 	 * */
-	public void prepareData(List<CollectionEntity> imageRes) {
+	public void prepareData(List<CollectionTreasure> imageRes) {
 		if (imageRes == null)
 			return;
 		String[] list = new String[imageRes.size()];

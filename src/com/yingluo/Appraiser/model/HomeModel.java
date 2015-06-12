@@ -1,7 +1,9 @@
 package com.yingluo.Appraiser.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,10 +14,13 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.HomeEntity;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.config.UrlUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class HomeModel extends BaseModel {
 
@@ -59,34 +64,74 @@ public class HomeModel extends BaseModel {
 			if (json != null) {
 				Gson gson = new Gson();
 				String advertising = json.getString("advertising");
-				List<CollectionEntity> list_advertising = gson.fromJson(
-						advertising, new TypeToken<List<CollectionEntity>>() {
+				List<CollectionTreasure> list_advertising = gson.fromJson(
+						advertising, new TypeToken<List<CollectionTreasure>>() {
 						}.getType());
 				homeEntity.setAdvertising(list_advertising);
 				String choices = json.getString("choices");
-				List<CollectionEntity> list_choices = gson.fromJson(choices,
-						new TypeToken<List<CollectionEntity>>() {
+				List<CollectionTreasure> list_choices = gson.fromJson(choices,
+						new TypeToken<List<CollectionTreasure>>() {
 						}.getType());
 				homeEntity.setChoices(list_choices);
-				
+				for (CollectionTreasure collectionTreasure : list_choices) {
+					ImUserInfo user=new ImUserInfo();
+					user.setId(collectionTreasure.user_id);
+					user.setName(collectionTreasure.authName);
+					user.setIcon(collectionTreasure.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(user);
+				}
 				String hots = json.getString("hots");
-				List<CollectionEntity> list_hots = gson.fromJson(hots,
-						new TypeToken<List<CollectionEntity>>() {
+				List<CollectionTreasure> list_hots = gson.fromJson(hots,
+						new TypeToken<List<CollectionTreasure>>() {
 						}.getType());
 				homeEntity.setHots(list_hots);
+				
+				for (CollectionTreasure collectionTreasure : list_hots) {
+					ImUserInfo user=new ImUserInfo();
+					user.setId(collectionTreasure.user_id);
+					user.setName(collectionTreasure.authName);
+					user.setIcon(collectionTreasure.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(user);
+				}
 				String articles = json.getString("articles");
-				List<CollectionEntity> list_articles = gson.fromJson(articles,
-						new TypeToken<List<CollectionEntity>>() {
-						}.getType());
+//				List<ContentInfo> list_articles = gson.fromJson(articles,
+//						new TypeToken<List<ContentInfo>>() {
+//						}.getType());
+				List<ContentInfo> list_articles=new ArrayList<ContentInfo>();
+				JSONArray array=new JSONArray(articles);
+				for (int i = 0; i < array.length(); i++) {
+					JSONObject obj=array.getJSONObject(i);
+					ContentInfo info=new ContentInfo();
+					info.setId(obj.getLong("article_id"));
+					info.setTitle(obj.getString("msg"));
+					info.setView_times(obj.getInt("viewTimes"));
+					info.setImage(obj.getString("image"));
+					list_articles.add(info);
+				}
 				homeEntity.setArticles(list_articles);
 				String authors = json.getString("authors");
-				List<CollectionEntity> list_authors = gson.fromJson(authors,
-						new TypeToken<List<CollectionEntity>>() {
-						}.getType());
+				List<CollectionTreasure> list_authors = new ArrayList<CollectionTreasure>();
+				array=new JSONArray(authors);
+				for (int i = 0; i < array.length(); i++) {
+					JSONObject obj=array.getJSONObject(i);
+					CollectionTreasure user=new CollectionTreasure();
+					user.authName=obj.getString("authName");
+					user.authImage=obj.getString("authImage");
+					user.user_id=obj.getLong("author_id");
+					user.goodAt=obj.getString("goodAt");
+					user.company=obj.getString("company");
+					list_authors.add(user);
+					
+					ImUserInfo imuser=new ImUserInfo();
+					imuser.setId(user.user_id);
+					imuser.setName(user.authName);
+					imuser.setIcon(user.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(imuser);
+				}
 				homeEntity.setAuthors(list_authors);
 
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

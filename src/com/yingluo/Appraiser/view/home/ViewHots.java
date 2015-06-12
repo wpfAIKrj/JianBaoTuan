@@ -23,10 +23,11 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
+import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.view.MyButton;
 
@@ -54,6 +55,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	BitmapsUtils bitmapUtils;
 
+	private CollectionTreasure currnt;
 	public ViewHots(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -97,12 +99,12 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(CollectionEntity item) {
+	public void setItem(CollectionTreasure item) {
 		if (item == null) {
 			LogUtils.e("Hots  CollectionEntity is null");
 			return;
 		}
-
+		currnt=item;
 		iv_big.setTag(item);
 		iv_small.setTag(item);
 
@@ -183,11 +185,13 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		CollectionEntity entity = (CollectionEntity) v.getTag();
-		if (entity == null)
+		if (currnt == null)
 			return;
 		switch (v.getId()) {
 		case R.id.imageview_big_icon: {
+			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+			mIntent.putExtra(Const.ENTITY, currnt);
+			getContext().startActivity(mIntent);
 
 		}
 
@@ -196,7 +200,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 		case R.id.imageview_small_icon: {
 
 			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
-			mIntent.putExtra(Const.ENTITY, entity);
+			mIntent.putExtra(Const.ENTITY, currnt);
 			getContext().startActivity((mIntent));
 		}
 			break;

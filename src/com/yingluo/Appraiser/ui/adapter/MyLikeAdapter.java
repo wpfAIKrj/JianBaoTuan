@@ -9,15 +9,15 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.view.viewholder.likeViewHolder;
 
 public class MyLikeAdapter extends Adapter<ViewHolder> {
 
-	private ArrayList<CollectionEntity> list;
+	private ArrayList<CollectionTreasure> list;
 	private OnClickListener lis;
 
-	public MyLikeAdapter(ArrayList<CollectionEntity> list, OnClickListener lis) {
+	public MyLikeAdapter(ArrayList<CollectionTreasure> list, OnClickListener lis) {
 		// TODO Auto-generated constructor stub
 		this.list = list;
 		this.lis = lis;

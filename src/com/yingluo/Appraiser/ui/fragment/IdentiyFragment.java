@@ -17,7 +17,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
@@ -48,7 +48,7 @@ public class IdentiyFragment extends BaseFragment implements
 
 	int current_page = 0;
 
-	private List<CollectionEntity> list = null;
+	private List<CollectionTreasure> list = null;
 
 	ItApplication app;
 
@@ -183,7 +183,7 @@ public class IdentiyFragment extends BaseFragment implements
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				prrv.stopRefresh();
-				List<CollectionEntity> result = model.getResult();
+				List<CollectionTreasure> result = model.getResult();
 				if (result.size() == 0) {
 					Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
 							.show();
@@ -222,7 +222,7 @@ public class IdentiyFragment extends BaseFragment implements
 				public void onSuccess() {
 					// TODO Auto-generated method stub
 					prrv.stopRefresh();
-					List<CollectionEntity> result = model.getResult();
+					List<CollectionTreasure> result = model.getResult();
 					if (result.size() == 0) {
 						Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
 								.show();

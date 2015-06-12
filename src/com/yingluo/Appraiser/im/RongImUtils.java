@@ -115,20 +115,7 @@ public class RongImUtils {
 	 */
 	protected UserInfo getUserInfoFromLocalCache(String arg0) {
 		// TODO Auto-generated method stub
-		UserInfo user =null;
-		if(ItApplication.currnUser!=null){
-		 try {
-			 if(ItApplication.currnUser.getAvatar()!=null){
-				 user=new UserInfo(arg0, ItApplication.currnUser.getNickname(), Uri.parse(ItApplication.currnUser.getAvatar())); 
-			 }else{
-				 user=new UserInfo(arg0, ItApplication.currnUser.getNickname(),null);
-			 }
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		return user;
+		return SqlDataUtil.getInstance().getImUser(arg0);
 	}
 
 	/**

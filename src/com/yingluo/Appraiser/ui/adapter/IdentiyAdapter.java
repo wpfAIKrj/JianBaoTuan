@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter.MyViewHolder;
 import com.yingluo.Appraiser.view.home.ViewHots;
 
 public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-	private List<CollectionEntity> hots;
+	private List<CollectionTreasure> hots;
 
 	static class MyViewHolder extends ViewHolder {
 		ViewHots hotsView;
@@ -29,17 +29,17 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 	}
 
-	public IdentiyAdapter(List<CollectionEntity> list) {
+	public IdentiyAdapter(List<CollectionTreasure> list) {
 		// TODO Auto-generated constructor stub
 		this.hots = list;
 	}
 
 	public IdentiyAdapter() {
 		// TODO Auto-generated constructor stub
-		hots = new ArrayList<CollectionEntity>();
+		hots = new ArrayList<CollectionTreasure>();
 	}
 
-	public void setData(List<CollectionEntity> list) {
+	public void setData(List<CollectionTreasure> list) {
 		if (this.hots == null) {
 			this.hots = list;
 		} else {
@@ -49,7 +49,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 		notifyDataSetChanged();
 	}
 
-	public List<CollectionEntity> getData() {
+	public List<CollectionTreasure> getData() {
 		return hots;
 	}
 
@@ -62,7 +62,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 	@Override
 	public void onBindViewHolder(MyViewHolder holder, int position) {
 		// TODO Auto-generated method stub
-		CollectionEntity entity = hots.get(position);
+		CollectionTreasure entity = hots.get(position);
 		holder.hotsView.setItem(entity);
 
 	}

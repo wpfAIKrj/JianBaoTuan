@@ -14,13 +14,18 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
+/**
+ * 宝贝详情
+ * @author xy418
+ *
+ */
 public class ActivityUserDelails extends Activity {
 
 	private BitmapsUtils bitmapUtils;
@@ -55,7 +60,7 @@ public class ActivityUserDelails extends Activity {
 		}
 	}
 
-	private CollectionEntity entity = null;
+	private CollectionTreasure entity = null;
 	getUserByIdModel userModel=null;
 	private UserInfo user=null;
 
@@ -66,14 +71,14 @@ public class ActivityUserDelails extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_user_delails);
 		ViewUtils.inject(this);
-		entity = (CollectionEntity) getIntent().getSerializableExtra(
+		entity = (CollectionTreasure) getIntent().getSerializableExtra(
 				Const.ENTITY);
 		getUserInfo(entity);
 		bitmapUtils = BitmapsUtils.getInstance();
 		initViews();
 	}
 
-	private void getUserInfo(CollectionEntity entity) {
+	private void getUserInfo(CollectionTreasure entity) {
 		// TODO Auto-generated method stub
 		userModel=new getUserByIdModel();
 		userModel.sendHttp(new CommonCallBack() {
@@ -95,7 +100,7 @@ public class ActivityUserDelails extends Activity {
 				// TODO Auto-generated method stub
 				
 			}
-		}, entity.author_id);
+		}, entity.user_id);
 	}
 
 	private void initViews() {
@@ -105,7 +110,7 @@ public class ActivityUserDelails extends Activity {
 		}
 		bitmapUtils.display(iv_head, entity.authImage);
 		tv_name.setText(entity.authName);
-		tv_msg.setText(entity.msg);
+		tv_msg.setText(entity.name);
 
 	}
 }

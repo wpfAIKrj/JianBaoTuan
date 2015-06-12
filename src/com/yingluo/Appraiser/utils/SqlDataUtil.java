@@ -93,6 +93,7 @@ public class SqlDataUtil {
 		try {
 			userdao.insertOrReplace(user);
 			ImUserInfo im=new ImUserInfo(user.getId(), user.getNickname(), user.getAvatar());
+			saveIMUserinfo(im);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -16,13 +16,17 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
-
+/**
+ * 个人详情页面
+ * @author xy418
+ *
+ */
 public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 	BitmapsUtils bitmapUtils;
@@ -42,7 +46,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	@ViewInject(R.id.btn_identified)
 	ViewGroup btn_identified;
 
-	CollectionEntity entity;
+	CollectionTreasure entity;
 	@ViewInject(R.id.btn_msg)
 	Button btn_msg;
 	@ViewInject(R.id.prrv)
@@ -54,7 +58,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	public void doClick(View view) {
 		// startActivity(new Intent(ActivityHotIdentiy.this,
 		// IMListActivity.class));
-		String userid=String.valueOf(entity.author_id);
+		String userid=String.valueOf(entity.user_id);
 		RongImUtils.getInstance().startPrivateChat(this, userid, entity.authName);
 		
 	}
@@ -90,7 +94,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		setContentView(R.layout.layout_first_page_user);
 		ViewUtils.inject(this);
 		bitmapUtils = BitmapsUtils.getInstance();
-		entity = (CollectionEntity) getIntent().getSerializableExtra(
+		entity = (CollectionTreasure) getIntent().getSerializableExtra(
 				Const.ENTITY);
 		btn_back.setOnClickListener(this);
 		btn_identifing.setOnClickListener(identifyListener);
@@ -109,13 +113,13 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 			tv_grade_name.setText(entity.company);
 		}
-		if (entity.authLevel < 6) {
-
-			iv_grade.setImageResource(R.drawable.level01
-					+ (entity.authLevel - 1));
-		} else {
-			iv_grade.setImageResource(R.drawable.level06);
-		}
+//		if (entity.authLevel < 6) {
+//
+//			iv_grade.setImageResource(R.drawable.level01
+//					+ (entity.authLevel - 1));
+//		} else {
+//			iv_grade.setImageResource(R.drawable.level06);
+//		}
 	}
 
 	@Override

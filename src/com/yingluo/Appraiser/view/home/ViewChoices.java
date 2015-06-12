@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.util.LogUtils;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
@@ -41,6 +41,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	BitmapsUtils bitmapUtils;
 
+	private CollectionTreasure currnt=null;
 	public ViewChoices(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -85,16 +86,17 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	}
 
-	public void setItem(CollectionEntity item) {
+	public void setItem(CollectionTreasure item) {
 		if (item == null) {
 			LogUtils.e("Choices  CollectionEntity is null");
 			return;
 		}
+		currnt=item;
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		iv_big.setTag(item);
-		iv_small.setTag(item);
+		iv_big.setTag(currnt);
+		iv_small.setTag(currnt);
 		// 设置大图片
 		if (TextUtils.equals(item.image, "")) {
 
@@ -159,7 +161,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		CollectionEntity entity = (CollectionEntity) v.getTag();
+		CollectionTreasure entity = (CollectionTreasure) v.getTag();
 		if (entity == null)
 			return;
 		switch (v.getId()) {

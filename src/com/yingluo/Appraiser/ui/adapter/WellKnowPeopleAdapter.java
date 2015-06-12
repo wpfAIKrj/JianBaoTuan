@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
 
 public class WellKnowPeopleAdapter extends BaseAdapter {
 
 	Context mContext;
-	List<CollectionEntity> list;
+	List<CollectionTreasure> list;
 
-	public WellKnowPeopleAdapter(Context context, List<CollectionEntity> strs) {
+	public WellKnowPeopleAdapter(Context context, List<CollectionTreasure> strs) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
 		this.list = strs;
@@ -31,7 +31,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public CollectionEntity getItem(int position) {
+	public CollectionTreasure getItem(int position) {
 		// TODO Auto-generated method stub
 		return list.get(position);
 	}

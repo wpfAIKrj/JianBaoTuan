@@ -4,12 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +20,10 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.yingluo.Appraiser.bean.ContentInfo;
+import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.activity.InformationDetailsActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
@@ -39,6 +44,7 @@ public class ViewArticles extends LinearLayout {
 	@ViewInject(R.id.tv_num)
 	TextView tv_num;
 
+	private ContentInfo currnt;
 	public ViewArticles(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -73,17 +79,18 @@ public class ViewArticles extends LinearLayout {
 		ViewUtils.inject(this);
 	}
 
-	public void setItem(CollectionEntity item) {
+	public void setItem(ContentInfo item) {
 		if(item==null){
 			LogUtils.e("Articles  CollectionEntity is null");
 			return;
 		}
+		currnt=null;
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.display(iv, item.image,BitmapsUtils.TYPE_YES);
-		tv_msg.setText(item.name);
-		tv_num.setText(item.viewTimes+"");
+		bitmapUtils.display(iv, item.getImage(),BitmapsUtils.TYPE_YES);
+		tv_msg.setText(item.getTitle());
+		tv_num.setText(item.getView_times()+"");
 
 	}
 
@@ -113,4 +120,24 @@ public class ViewArticles extends LinearLayout {
 		return spannable;
 	}
 
+	
+	@OnClick({R.id.iv_item3})
+	public void onclick(View v){
+		if(currnt==null){
+			return;
+		}
+		switch (v.getId()) {
+		case R.id.iv_item3:
+		{
+			ContentInfo contentInfo=(ContentInfo) v.getTag();
+			Intent intent=new Intent(getContext(), InformationDetailsActivity.class);
+			intent.putExtra(Const.ArticleId, contentInfo);
+			getContext().startActivity(intent);
+		}
+			break;
+
+		default:
+			break;
+		}
+	}
 }

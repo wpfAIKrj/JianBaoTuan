@@ -17,13 +17,13 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
 
 public class IdentifyModel extends BaseModel {
 
-	private List<CollectionEntity> list = null;
+	private List<CollectionTreasure> list = null;
 
 	public IdentifyModel() {
 		// TODO Auto-generated constructor stub
@@ -47,7 +47,7 @@ public class IdentifyModel extends BaseModel {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
 			LogUtils.i("ytmdfdw" + "get identify data:" + data);
-			list = gson.fromJson(data, new TypeToken<List<CollectionEntity>>() {
+			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -149,9 +149,9 @@ public class IdentifyModel extends BaseModel {
 		});
 	}
 
-	public List<CollectionEntity> getResult() {
+	public List<CollectionTreasure> getResult() {
 		if(list==null){
-			list=new ArrayList<CollectionEntity>();
+			list=new ArrayList<CollectionTreasure>();
 		}
 		return list;
 	}

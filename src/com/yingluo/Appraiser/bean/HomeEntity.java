@@ -11,70 +11,70 @@ import java.util.List;
  */
 public class HomeEntity implements Serializable{
 
-	private List<CollectionEntity> advertising;
-	private List<CollectionEntity> choices;
-	private List<CollectionEntity> hots;
-	private List<CollectionEntity> articles;
-	private List<CollectionEntity> authors;
+	private List<CollectionTreasure> advertising;
+	private List<CollectionTreasure> choices;
+	private List<CollectionTreasure> hots;
+	private List<ContentInfo> articles;
+	private List<CollectionTreasure> authors;
 
 	public HomeEntity() {
 		// TODO Auto-generated constructor stub
-		advertising = new ArrayList<CollectionEntity>();
-		choices = new ArrayList<CollectionEntity>();
-		hots = new ArrayList<CollectionEntity>();
-		articles = new ArrayList<CollectionEntity>();
-		authors = new ArrayList<CollectionEntity>();
+		advertising = new ArrayList<CollectionTreasure>();
+		choices = new ArrayList<CollectionTreasure>();
+		hots = new ArrayList<CollectionTreasure>();
+		articles = new ArrayList<ContentInfo>();
+		authors = new ArrayList<CollectionTreasure>();
 	}
 
-	public List<CollectionEntity> getAdvertising() {
+	public List<CollectionTreasure> getAdvertising() {
 		return advertising;
 	}
 
-	public void setAdvertising(List<CollectionEntity> advertising) {
+	public void setAdvertising(List<CollectionTreasure> advertising) {
 		this.advertising = advertising;
 	}
 
-	public void setChoices(List<CollectionEntity> list) {
+	public void setChoices(List<CollectionTreasure> list) {
 		if (list == null)
 			return;
 		choices.clear();
 		choices.addAll(list);
 	}
 
-	public void setHots(List<CollectionEntity> list) {
+	public void setHots(List<CollectionTreasure> list) {
 		if (list == null)
 			return;
 		hots.clear();
 		hots.addAll(list);
 	}
 
-	public void setArticles(List<CollectionEntity> list) {
+	public void setArticles(List<ContentInfo> list) {
 		if (list == null)
 			return;
 		articles.clear();
 		articles.addAll(list);
 	}
 
-	public void setAuthors(List<CollectionEntity> list) {
+	public void setAuthors(List<CollectionTreasure> list) {
 		if (list == null)
 			return;
 		authors.clear();
 		authors.addAll(list);
 	}
 
-	public List<CollectionEntity> getChoices() {
+	public List<CollectionTreasure> getChoices() {
 		return choices;
 	}
 
-	public List<CollectionEntity> getHots() {
+	public List<CollectionTreasure> getHots() {
 		return hots;
 	}
 
-	public List<CollectionEntity> getArticles() {
+	public List<ContentInfo> getArticles() {
 		return articles;
 	}
 
-	public List<CollectionEntity> getAuthors() {
+	public List<CollectionTreasure> getAuthors() {
 		return authors;
 	}
 

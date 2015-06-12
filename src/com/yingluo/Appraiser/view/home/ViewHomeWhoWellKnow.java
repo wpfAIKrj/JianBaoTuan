@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 public class ViewHomeWhoWellKnow extends LinearLayout {
@@ -50,7 +50,7 @@ public class ViewHomeWhoWellKnow extends LinearLayout {
 		ViewUtils.inject(this);
 	}
 
-	public void setItem(CollectionEntity entity) {
+	public void setItem(CollectionTreasure entity) {
 		BitmapsUtils.getInstance().display(iv_head, entity.authImage);
 		tv_name.setText(entity.authName);
 		tv_identify_place.setText(entity.company);

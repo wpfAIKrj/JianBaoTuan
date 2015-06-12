@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 public class likeViewHolder extends ViewHolder {
 
-	private CollectionEntity entity;
+	private CollectionTreasure entity;
 	
 	@ViewInject(R.id.imageView)
 	private ImageView logo;
@@ -36,7 +36,7 @@ public class likeViewHolder extends ViewHolder {
 		});
 	}
 	
-	public void showData(CollectionEntity entity){
+	public void showData(CollectionTreasure entity){
 		this.entity=entity;
 		BitmapsUtils.getInstance().display(logo, entity.image);
 	}

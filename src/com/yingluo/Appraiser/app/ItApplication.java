@@ -1,8 +1,7 @@
 package com.yingluo.Appraiser.app;
 
 import java.util.List;
-
-import com.yingluo.Appraiser.bean.CollectionEntity;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.bean.UserInfo;
@@ -23,8 +22,8 @@ public class ItApplication extends Application {
 
 	private HomeEntity homeEntity;
 
-	private List<CollectionEntity> hasIdentify;
-	private List<CollectionEntity> unIdentify;
+	private List<CollectionTreasure> hasIdentify;
+	private List<CollectionTreasure> unIdentify;
 
 
 
@@ -36,21 +35,21 @@ public class ItApplication extends Application {
 		this.homeEntity = homeEntity;
 	}
 
-	public List<CollectionEntity> getHasIdentify() {
+	public List<CollectionTreasure> getHasIdentify() {
 		return hasIdentify;
 	}
 
-	public void setHasIdentify(List<CollectionEntity> hasIdentify) {
+	public void setHasIdentify(List<CollectionTreasure> hasIdentify) {
 		this.hasIdentify = hasIdentify;
 	}
 	
 	
 
-	public List<CollectionEntity> getUnIdentify() {
+	public List<CollectionTreasure> getUnIdentify() {
 		return unIdentify;
 	}
 
-	public void setUnIdentify(List<CollectionEntity> unIdentify) {
+	public void setUnIdentify(List<CollectionTreasure> unIdentify) {
 		this.unIdentify = unIdentify;
 	}
 
