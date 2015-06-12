@@ -51,7 +51,8 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
-			mAdapter.notifyDataSetChanged();
+			mAdapter.setVisibleLevel(0);
+//			mAdapter.notifyDataSetChanged();
 			
 		}
 			break;

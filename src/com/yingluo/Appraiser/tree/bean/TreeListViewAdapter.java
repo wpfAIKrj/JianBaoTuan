@@ -114,6 +114,20 @@ public abstract class TreeListViewAdapter<T> extends BaseAdapter
 			}
 		}
 	}
+	
+	/**
+	 * add by ytmfdw ,set level visible
+	 * */
+	public void setVisibleLevel(int level){
+		mNodes.clear();
+		for(Node node:mAllNodes){
+			if(node.getLevel()==level){
+				node.setExpand(false);
+				mNodes.add(node);
+			}
+		}
+		notifyDataSetChanged();
+	}
 
 	@Override
 	public int getCount()
