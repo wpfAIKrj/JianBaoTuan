@@ -1,8 +1,10 @@
 package com.yingluo.Appraiser.ui.activity;
 
-import io.rong.imkit.RongIM;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,18 +14,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.im.RongImUtils;
-import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.MyTreasureModel;
+import com.yingluo.Appraiser.model.getTreasureByIdModel;
+import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
+
 /**
  * 个人详情页面
+ * 
  * @author xy418
  *
  */
@@ -49,18 +55,25 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	CollectionTreasure entity;
 	@ViewInject(R.id.btn_msg)
 	Button btn_msg;
-	@ViewInject(R.id.prrv)
-	PullRefreshRecyclerView prrv;
+	@ViewInject(R.id.swipe_refresh_widget)
+	SwipeRefreshLayout swipe_refresh_widget;
+	@ViewInject(R.id.recyclerview)
+	RecyclerView recyclerview;
 
-	IdentiyAdapter mAdapter = null;
+	MyTreasureAdapter mAdapter = null;
+
+	getTreasureByIdModel treasureModel = null;
+
+	MyTreasureModel identifyModel = null;
 
 	@OnClick(R.id.btn_msg)
 	public void doClick(View view) {
 		// startActivity(new Intent(ActivityHotIdentiy.this,
 		// IMListActivity.class));
-		String userid=String.valueOf(entity.user_id);
-		RongImUtils.getInstance().startPrivateChat(this, userid, entity.authName);
-		
+		String userid = String.valueOf(entity.user_id);
+		RongImUtils.getInstance().startPrivateChat(this, userid,
+				entity.authName);
+
 	}
 
 	OnClickListener identifyListener = new OnClickListener() {
@@ -68,16 +81,55 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			// 取消刷新动画
+			swipe_refresh_widget.setRefreshing(false);
+			//先清空数据
+			mAdapter.getData().clear();
 			// 先设置背景
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_identifing: {
 				// 设置View
+				treasureModel.sendHttp(new CommonCallBack() {
+
+					@Override
+					public void onSuccess() {
+						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
+						mAdapter.setData(treasureModel.getResult());
+
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
+
+					}
+				}, 0, entity.user_id);
 			}
 
 				break;
 
 			case R.id.btn_identified: {
+
+				identifyModel.sendHttp(new CommonCallBack() {
+
+					@Override
+					public void onSuccess() {
+						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
+						mAdapter.setData(treasureModel.getResult());
+
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
+
+					}
+				}, 0, entity.user_id);
 			}
 
 				break;
@@ -99,6 +151,8 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		btn_back.setOnClickListener(this);
 		btn_identifing.setOnClickListener(identifyListener);
 		btn_identified.setOnClickListener(identifyListener);
+		treasureModel = new getTreasureByIdModel();
+		identifyModel = new MyTreasureModel();
 		initViews();
 	}
 
@@ -113,13 +167,36 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 			tv_grade_name.setText(entity.company);
 		}
-//		if (entity.authLevel < 6) {
-//
-//			iv_grade.setImageResource(R.drawable.level01
-//					+ (entity.authLevel - 1));
-//		} else {
-//			iv_grade.setImageResource(R.drawable.level06);
-//		}
+		// if (entity.authLevel < 6) {
+		//
+		// iv_grade.setImageResource(R.drawable.level01
+		// + (entity.authLevel - 1));
+		// } else {
+		// iv_grade.setImageResource(R.drawable.level06);
+		// }
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		recyclerview.setLayoutManager(layoutManager);
+		recyclerview.setHasFixedSize(true);
+		mAdapter = new MyTreasureAdapter();
+		recyclerview.setAdapter(mAdapter);
+		treasureModel.sendHttp(new CommonCallBack() {
+
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				swipe_refresh_widget.setRefreshing(false);
+				mAdapter.setData(treasureModel.getResult());
+
+			}
+
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+				swipe_refresh_widget.setRefreshing(false);
+
+			}
+		}, 0, entity.user_id);
 	}
 
 	@Override

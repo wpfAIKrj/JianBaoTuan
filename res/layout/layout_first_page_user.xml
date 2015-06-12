@@ -73,13 +73,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <com.yingluo.Appraiser.view.PullRefreshRecyclerView
-            android:id="@+id/prrv"
+         <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_widget"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/y20"
-            android:paddingLeft="@dimen/x14"
-            android:paddingRight="@dimen/x14" />
+            android:layout_height="match_parent" >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@null"
+                android:scrollbars="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <TextView
             android:id="@+id/tv_none"

@@ -35,6 +35,14 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Material/myFootPrintsListAction");
 		return url.toString();
 	}
+	/**
+	 * 他的宝物
+	 * */
+	public static String getTreasureByIdURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Users/myTreasuresAction");
+		return url.toString();
+	}
 
 	/**
 	 * 我的收藏

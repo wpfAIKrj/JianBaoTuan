@@ -114,6 +114,7 @@ public class ActivityMyPrecious extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			swipe_refresh_widget.setRefreshing(false);
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {
@@ -122,6 +123,7 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 						mAdapter.setData(model.getResult());
 
 					}
@@ -129,9 +131,10 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onError() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_ALL);
+				}, MyTreasureModel.TYPE_ALL,0);
 			}
 				break;
 			case R.id.btn_identifing: {
@@ -140,6 +143,7 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 						mAdapter.setData(model.getResult());
 
 					}
@@ -147,9 +151,10 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onError() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFYING);
+				}, MyTreasureModel.TYPE_IDENTIFYING,0);
 
 			}
 				break;
@@ -159,6 +164,7 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 						mAdapter.setData(model.getResult());
 
 					}
@@ -166,9 +172,10 @@ public class ActivityMyPrecious extends Activity {
 					@Override
 					public void onError() {
 						// TODO Auto-generated method stub
+						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFIED);
+				}, MyTreasureModel.TYPE_IDENTIFIED,0);
 			}
 				break;
 
