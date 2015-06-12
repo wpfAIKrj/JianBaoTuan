@@ -84,5 +84,21 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Users/detailAction");
 		return url.toString();
 	}
+	/**
+	 * 根据宝物id来收藏
+	 * */
+	public static String collectTreasureById() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/collectAction");
+		return url.toString();
+	}
+	/**
+	 * 根据宝物id来取消收藏
+	 * */
+	public static String deleteCollectTreasureById() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/deleteCollectionsAction");
+		return url.toString();
+	}
 
 }
