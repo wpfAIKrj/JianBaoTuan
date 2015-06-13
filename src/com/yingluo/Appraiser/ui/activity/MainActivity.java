@@ -336,7 +336,7 @@ OnTabSelectedListener ,OnClickListener{
 		}
 		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
-				imageUtils.crop(Uri.parse((new File(imageUtils.PICPATH).getAbsolutePath())));
+				imageUtils.crop(Uri.fromFile((new File(imageUtils.PICPATH))));
 			}
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE&&arg1==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
@@ -353,7 +353,8 @@ OnTabSelectedListener ,OnClickListener{
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE_KITKAT&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相册）4.4系统，用谷歌的相册
 			if(arg2 != null && arg2.getData() != null) {
-				imageUtils.crop(arg2.getData());
+				imageUtils.doPhotoKIKAT(arg2);
+				imageUtils.crop(Uri.fromFile(new File(imageUtils.PICPATH)));
 //				imageUtils.doPhotoKIKAT(arg2);
 //				if(imageUtils.PICPATH!=null){
 ////					Intent intent=new Inten+t(MainActivity.this, GetUserLogoActivity.class);
@@ -366,6 +367,7 @@ OnTabSelectedListener ,OnClickListener{
 		}
 		if(arg0==ImageUtils.PHOTO_REQUEST_CUT&&arg1==RESULT_OK){//获取剪切好的人物头像
 			if(arg2 != null ){
+		
 				uploadLogo(FileUtils.getInstance().getLogoPath().getAbsolutePath());
 			}
 			

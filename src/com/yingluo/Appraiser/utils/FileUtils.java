@@ -521,14 +521,6 @@ public class FileUtils {
 	public File getLogoPath() {
 		// TODO 自动生成的方法存根
 		File file=new File(getUpImage(), "logo.jpg");
-		if(!file.exists()){
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				// TODO 自动生成的 catch 块
-				e.printStackTrace();
-			}
-		}
 		return file;
 	}
 	

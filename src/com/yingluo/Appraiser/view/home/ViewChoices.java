@@ -19,7 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
@@ -31,16 +34,28 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
  *
  */
 
-public class ViewChoices extends LinearLayout implements OnClickListener {
+public class ViewChoices extends LinearLayout  {
 
+	
+	
 	// screen height,and width,in px
+	@ViewInject(R.id.imageview_big_icon)
 	private ImageView iv_big;
+	@ViewInject(R.id.imageview_small_icon)
 	private ImageView iv_small;
+	@ViewInject(R.id.imageview_grade)
 	private ImageView iv_grade;
-	private TextView tv_name, tv_num;
+	
+	@ViewInject(R.id.textview_name)
+	private TextView tv_name;
+	
+	@ViewInject(R.id.textview_num)
+	private TextView tv_num;
 
 	BitmapsUtils bitmapUtils;
-
+	
+	@ViewInject(R.id.layout_treasurs)
+	private LinearLayout mylayout;
 	private CollectionTreasure currnt=null;
 	public ViewChoices(Context context) {
 		super(context);
@@ -73,16 +88,10 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 
 	private void init(Context context) {
 		LayoutInflater.from(context).inflate(R.layout.item_home_0, this);
-		iv_big = (ImageView) findViewById(R.id.imageview_big_icon);
-		iv_small = (ImageView) findViewById(R.id.imageview_small_icon);
-		iv_grade = (ImageView) findViewById(R.id.imageview_grade);
-
-		tv_name = (TextView) findViewById(R.id.textview_name);
-		tv_num = (TextView) findViewById(R.id.textview_num);
+		ViewUtils.inject(this);
 		iv_big.setClickable(true);
-		iv_big.setOnClickListener(this);
 		iv_small.setClickable(true);
-		iv_small.setOnClickListener(this);
+
 
 	}
 
@@ -158,7 +167,7 @@ public class ViewChoices extends LinearLayout implements OnClickListener {
 		return spannable;
 	}
 
-	@Override
+	@OnClick({R.id.imageview_small_icon,R.id.imageview_big_icon})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		CollectionTreasure entity = (CollectionTreasure) v.getTag();

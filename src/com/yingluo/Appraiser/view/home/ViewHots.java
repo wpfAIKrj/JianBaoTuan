@@ -23,6 +23,7 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
@@ -36,7 +37,7 @@ import com.yingluo.Appraiser.view.MyButton;
  *
  */
 
-public class ViewHots extends LinearLayout implements OnClickListener {
+public class ViewHots extends LinearLayout  {
 
 	// screen height,and width,in px
 	@ViewInject(R.id.imageview_big_icon)
@@ -89,13 +90,11 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
 
 		ViewUtils.inject(this);
-
+		
 		iv_big.setClickable(true);
-		iv_big.setOnClickListener(this);
 
 		iv_small.setClickable(true);
 
-		iv_small.setOnClickListener(this);
 
 	}
 
@@ -182,7 +181,7 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 		return spannable;
 	}
 
-	@Override
+	@OnClick({R.id.imageview_big_icon,R.id.imageview_small_icon})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if (currnt == null)
@@ -198,7 +197,6 @@ public class ViewHots extends LinearLayout implements OnClickListener {
 			break;
 
 		case R.id.imageview_small_icon: {
-
 			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, currnt);
 			getContext().startActivity((mIntent));

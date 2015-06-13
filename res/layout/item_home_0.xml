@@ -3,7 +3,10 @@
     android:layout_width="@dimen/x340"
     android:layout_height="@dimen/y468"
     android:background="@drawable/item_big_stroke"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:id="@+id/layout_treasurs"
+    android:descendantFocusability="blocksDescendants"
+    >
 
     <ImageView
         android:id="@+id/imageview_big_icon"

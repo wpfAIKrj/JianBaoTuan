@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +13,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.HomeEntity;
+import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
@@ -22,7 +25,9 @@ import com.yingluo.Appraiser.view.home.ViewHomeWhoWellKnow;
 import com.yingluo.Appraiser.view.home.ViewHots;
 import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
-public class HomeFragment extends BaseFragment implements OnClickListener,
+import de.greenrobot.dao.FuncProperty.MinProperty;
+
+public class HomeFragment extends BaseFragment implements
 		OnItemClickListener {
 
 	private SlideShowView head;
@@ -40,6 +45,7 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 
 	ViewHomeWhoWellKnow wellKnow;
 
+	private int index=0;
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -103,9 +109,13 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 					homeEntity.getAuthors());
 
 			hsv.setAdapter(adapter);
+
 			if(adapter.getCount()>0){//设置第一个选中
-				wellKnow.setItem(adapter.getItem(0));
+				index=0;
+				wellKnow.setItem(adapter.getItem(index));
+				new Thread(myWork).start();
 			}
+			
 		}
 
 	}
@@ -121,22 +131,55 @@ public class HomeFragment extends BaseFragment implements OnClickListener,
 
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		}
 
-	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
 		if (adapter != null) {
-
-			wellKnow.setItem(adapter.getItem(position));
+			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
+			mIntent.putExtra(Const.ENTITY, homeEntity.getAuthors().get(position));
+			mActivity.startActivity(mIntent);
 		}
 	}
+	
+	
+	public Runnable myWork=new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			while(true){
+				try {
+					Thread.sleep(5000);
+					mhandler.sendEmptyMessage(0);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	};
 
+	
+	
+	private Handler mhandler=new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0://更新页面
+				if(adapter.getCount()>0){
+					index++;
+					if(index>=adapter.getCount()){
+						index=0;
+					}
+					wellKnow.setItem(adapter.getItem(index));
+				}
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 }

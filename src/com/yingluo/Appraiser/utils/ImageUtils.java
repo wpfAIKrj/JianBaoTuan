@@ -153,28 +153,19 @@ public class ImageUtils {
      */
     public void crop(Uri uri) {
         // 裁剪图片意图
-        Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setType("image/*");
-        intent.setData(uri);
-        intent.putExtra("crop", "true");
-        // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 250);
-        intent.putExtra("outputY", 250);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
-        intent.putExtra("outputFormat", "JPEG");// 图片格式
-        intent.putExtra("noFaceDetection", true);// 取消人脸识别
-        intent.putExtra("return-data", true);
-        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
-        activity.startActivityForResult(intent, PHOTO_REQUEST_CUT);
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		intent.setDataAndType(uri, "image/*");
+		intent.putExtra("crop", "true");
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		intent.putExtra("outputX", 250);
+		intent.putExtra("outputY", 250);
+		intent.putExtra("return-data", true);
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
+		activity.startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
   
     private Uri getTempUri() {
-    	if(PICPATH!=null){
-    		deletePic();
-    	}
         Uri tempPhotoUri = Uri.fromFile(FileUtils.getInstance().getLogoPath());
         return tempPhotoUri;
     }

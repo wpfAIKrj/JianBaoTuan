@@ -7,6 +7,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -25,6 +26,8 @@ import android.widget.LinearLayout;
 
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
@@ -72,6 +75,10 @@ public class SlideShowView extends FrameLayout {
 
 	};
 
+
+
+	private List<CollectionTreasure> imageRes=null;	
+	
 	public SlideShowView(Context context) {
 		this(context, null);
 		// TODO Auto-generated constructor stub
@@ -101,6 +108,7 @@ public class SlideShowView extends FrameLayout {
 	public void prepareData(List<CollectionTreasure> imageRes) {
 		if (imageRes == null)
 			return;
+		this.imageRes=imageRes;
 		String[] list = new String[imageRes.size()];
 		for (int i = 0; i < list.length; i++) {
 			list[i] = imageRes.get(i).image;
@@ -158,6 +166,7 @@ public class SlideShowView extends FrameLayout {
 			if (i == 0)// 给一个默认图
 				view.setBackgroundResource(R.drawable.test3);
 			view.setScaleType(ScaleType.FIT_XY);
+			view.setOnClickListener(onclick);
 			imageViewsList.add(view);
 
 			ImageView dotView = new ImageView(context);
@@ -193,7 +202,6 @@ public class SlideShowView extends FrameLayout {
 		@Override
 		public Object instantiateItem(View container, int position) {
 			ImageView imageView = imageViewsList.get(position);
-
 			// imageLoader.displayImage(imageView.getTag() + "", imageView);
 			bitmapsUtils.display(imageView, (String) imageView.getTag(),
 					BitmapsUtils.TYPE_YES);
@@ -275,7 +283,7 @@ public class SlideShowView extends FrameLayout {
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 			// TODO Auto-generated method stub
-
+			
 		}
 
 		@Override
@@ -364,6 +372,20 @@ public class SlideShowView extends FrameLayout {
 		}
 	}
 
+	
+	private OnClickListener onclick=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if(imageRes!=null){
+				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
+				getContext().startActivity(mIntent);
+			}
+		}
+	};
+	
 	/**
 	 * ImageLoader 图片组件初始化
 	 * 
