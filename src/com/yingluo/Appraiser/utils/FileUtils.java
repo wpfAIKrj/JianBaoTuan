@@ -514,6 +514,23 @@ public class FileUtils {
 			return null;
 		}
 	}
+	/**
+	 * 获取上传头像地址
+	 * @return
+	 */
+	public File getLogoPath() {
+		// TODO 自动生成的方法存根
+		File file=new File(getUpImage(), "logo.jpg");
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		return file;
+	}
 	
 	
 }

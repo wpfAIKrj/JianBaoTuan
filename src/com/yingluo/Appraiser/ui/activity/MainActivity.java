@@ -1,6 +1,8 @@
 package com.yingluo.Appraiser.ui.activity;
 
 
+import java.io.File;
+
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
@@ -19,6 +21,7 @@ import com.yingluo.Appraiser.ui.fragment.IdentiyFragment;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.ui.fragment.MyFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ImageUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -33,6 +36,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -332,42 +336,41 @@ OnTabSelectedListener ,OnClickListener{
 		}
 		if(arg0==ImageUtils.GET_IMAGE_BY_CAMERA&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
-				if(imageUtils.PICPATH!=null){
-//				Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//				intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//				startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
-				}
+				imageUtils.crop(Uri.parse((new File(imageUtils.PICPATH).getAbsolutePath())));
 			}
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE&&arg1==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
 			if(arg2 != null && arg2.getData() != null) {
-				imageUtils.doPhoto( arg2);
-				if(imageUtils.PICPATH!=null){
-//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
-				}
+				imageUtils.crop(arg2.getData());
+//				imageUtils.doPhoto( arg2);
+//				if(imageUtils.PICPATH!=null){
+////					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
+////					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+////					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+////					uploadLogo(imageUtils.PICPATH);
+//				}
 			}
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE_KITKAT&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相册）4.4系统，用谷歌的相册
 			if(arg2 != null && arg2.getData() != null) {
-				imageUtils.doPhotoKIKAT(arg2);
-				if(imageUtils.PICPATH!=null){
-//					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-//					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-//					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-					uploadLogo(imageUtils.PICPATH);
+				imageUtils.crop(arg2.getData());
+//				imageUtils.doPhotoKIKAT(arg2);
+//				if(imageUtils.PICPATH!=null){
+////					Intent intent=new Inten+t(MainActivity.this, GetUserLogoActivity.class);
+////					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
+////					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
+////					uploadLogo(imageUtils.PICPATH);
+//					imageUtils.crop();
+//			   }
+		}
+		}
+		if(arg0==ImageUtils.PHOTO_REQUEST_CUT&&arg1==RESULT_OK){//获取剪切好的人物头像
+			if(arg2 != null ){
+				uploadLogo(FileUtils.getInstance().getLogoPath().getAbsolutePath());
 			}
+			
 		}
-		}
-		if(arg0==ImageUtils.CROP_IMAGE&&arg1==RESULT_OK){//获取剪切好的人物头像
-			if(arg2!=null){
-				String path=arg2.getStringExtra(Const.PICPATH);
-				uploadLogo(path);
-			}
-		}
+		disshowPhoto();
 
 	}
 
@@ -405,7 +408,8 @@ OnTabSelectedListener ,OnClickListener{
 				Logodialong.dismiss();
 			}
 			if(ItApplication.currnUser!=null){
-			ItApplication.currnUser.setAvatar(user.getAvatar());
+				ItApplication.currnUser.setAvatar(user.getAvatar());
+				SqlDataUtil.getInstance().saveUserInfo(ItApplication.currnUser);
 			}
 			EventBus.getDefault().post(new MyEvent(0,user));
 		}

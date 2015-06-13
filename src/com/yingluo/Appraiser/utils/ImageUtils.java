@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentUris;
@@ -29,6 +30,7 @@ public class ImageUtils {
 	public static final int GET_IMAGE_FROM_PHONE = 5002;
 	public static final int GET_IMAGE_FROM_PHONE_KITKAT = 5003;
 	public static final int CROP_IMAGE = 5004;
+	public static final int PHOTO_REQUEST_CUT = 5004;
 	public  String PICPATH=null;
 	private Activity activity;
 	public ImageUtils(Activity activity) {
@@ -102,7 +104,7 @@ public class ImageUtils {
 	 * @param activity
 	 * @param data
 	 */
-	@TargetApi(19)
+	@SuppressLint("NewApi")
 	public  void doPhotoKIKAT( Intent data) {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -132,8 +134,10 @@ public class ImageUtils {
             String[] projection = { MediaStore.Images.Media.DATA };
             Cursor cursor = activity.getContentResolver().query(photoUri, projection, null, null, null);
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            PICPATH = cursor.getString(column_index);
+           if( cursor.moveToFirst()){
+        	   PICPATH = cursor.getString(column_index);
+           }
+           cursor.close();
         }
 		if (PICPATH != null
 				&& (PICPATH.endsWith(".png") || PICPATH.endsWith(".PNG")
@@ -144,8 +148,38 @@ public class ImageUtils {
 		}
 	}
 	
-	
-	
+	/*
+     * 剪切图片(相册)
+     */
+    public void crop(Uri uri) {
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setType("image/*");
+        intent.setData(uri);
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小
+        intent.putExtra("outputX", 250);
+        intent.putExtra("outputY", 250);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, getTempUri());
+        intent.putExtra("outputFormat", "JPEG");// 图片格式
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
+        activity.startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
+  
+    private Uri getTempUri() {
+    	if(PICPATH!=null){
+    		deletePic();
+    	}
+        Uri tempPhotoUri = Uri.fromFile(FileUtils.getInstance().getLogoPath());
+        return tempPhotoUri;
+    }
+     
+   
 	
 	/**
 	 * 删除原来的文件
