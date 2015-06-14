@@ -11,7 +11,9 @@
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
         android:layout_marginTop="10dp"
-        android:background="@drawable/home_menu_back" >
+        android:background="@drawable/home_menu_back" 
+         
+        >
 
         <TextView
             android:id="@+id/title"
@@ -29,6 +31,7 @@
         android:layout_marginTop="@dimen/y20"
         android:orientation="horizontal" 
         android:id="@+id/layout_treasure"
+         android:background="@color/wite"
         >
 
    

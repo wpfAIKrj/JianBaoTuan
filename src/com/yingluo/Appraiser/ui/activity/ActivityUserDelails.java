@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -80,10 +82,14 @@ public class ActivityUserDelails extends Activity {
 	@ViewInject(R.id.layout_people)
 	private LinearLayout peoplelayout;
 	
+	@ViewInject(R.id.comment_recyclerview)
+	private RecyclerView commentview;
+	
 	
 	CollectTreasureByIdModel collectModel;//收藏
 	
 	getTreasureAllInfoByIdModel infoModel;//宝物详情
+	
 	getTreasureCommentListByIdModel commentListModel;//宝物评论列表
 	
 	
@@ -274,9 +280,12 @@ public class ActivityUserDelails extends Activity {
 	
 	private void initViews() {
 		// TODO Auto-generated method stub
-		bitmapUtils.display(iv_head, entity.authImage);
-		tv_name.setText(entity.authName);
-		tv_msg.setText(entity.name);
+//		bitmapUtils.display(iv_head, entity.authImage);
+//		tv_name.setText(entity.authName);
+//		tv_msg.setText(entity.name);
+		LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		commentview.setLayoutManager(layoutManager);
 	}
 	@Override
 	protected void onResume() {
@@ -286,6 +295,7 @@ public class ActivityUserDelails extends Activity {
 			loaddialog=DialogUtil.createLoadingDialog(this, "正在获取宝物详情...");
 			loaddialog.show();
 			infoModel.getInfoTreasure(entity.getTreasure_id());
+			commentListModel.getInfoTreasure(entity.treasure_id);
 		}
 	}
 	
@@ -333,7 +343,12 @@ public class ActivityUserDelails extends Activity {
 			@Override
 			public void onBaseDataLoaded(String data) {
 				// TODO Auto-generated method stub
-				
+				if(loaddialog!=null&&loaddialog.isShowing()){
+					loaddialog.dismiss();
+				}
+				if(commentListModel.commentlist!=null){
+					
+				}
 			}
 			
 			@Override

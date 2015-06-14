@@ -46,7 +46,9 @@
 
             <include layout="@layout/layout_user_delais_similar_item" />
 
-            <include layout="@layout/layout_user_delais_identify_result" />
+            <include layout="@layout/layout_user_delais_identify_result"  
+                />
+            <include layout="@layout/layout_treasure__comment"/>
         </LinearLayout>
     </ScrollView>
 

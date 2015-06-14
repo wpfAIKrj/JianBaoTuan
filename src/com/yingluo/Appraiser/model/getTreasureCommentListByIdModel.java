@@ -25,6 +25,7 @@ import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 public class getTreasureCommentListByIdModel extends BaseModel {
 
 	private OnStringDataLoadListener listener=null;
+	public List<CollectionTreasure> commentlist=null;
 	public getTreasureCommentListByIdModel(OnStringDataLoadListener listener) {
 		// TODO Auto-generated constructor stub
 		this.listener=listener;
@@ -55,7 +56,7 @@ public class getTreasureCommentListByIdModel extends BaseModel {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
 			LogUtils.i("ytmdfdw" + "get treasure by id :" + data);
-	
+			commentlist=new ArrayList<CollectionTreasure>();
 			listener.onBaseDataLoaded("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
