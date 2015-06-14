@@ -27,23 +27,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y20"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:id="@+id/layout_treasure"
+        >
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/y300"
-            android:layout_marginRight="@dimen/x10"
-            android:layout_weight="1.0"
-            android:scaleType="fitXY"
-            android:src="@drawable/test_xc9" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/y300"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_weight="1.0"
-            android:scaleType="fitXY"
-            android:src="@drawable/test_xc9" />
+   
     </LinearLayout>
 
 </LinearLayout>

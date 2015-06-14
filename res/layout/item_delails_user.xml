@@ -44,25 +44,15 @@
         android:paddingBottom="@dimen/y20"
         android:paddingLeft="@dimen/x30"
         android:paddingTop="@dimen/y20" >
-
-        <Button
-            android:layout_width="@dimen/x76"
-            android:layout_height="@dimen/y40"
-            android:background="@color/bt_color"
-            android:gravity="center"
-            android:text="木"
-            android:textColor="@color/wite"
-            android:textSize="@dimen/x24" />
-
-        <Button
-            android:layout_width="@dimen/x76"
-            android:layout_height="@dimen/y40"
-            android:layout_marginLeft="@dimen/x20"
-            android:background="@color/bt_color"
-            android:gravity="center"
-            android:text="沉香"
-            android:textColor="@color/wite"
-            android:textSize="@dimen/x24" />
+	
+    <com.yingluo.Appraiser.view.TagLinearLayout
+    			   android:id="@+id/tag_layout"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content" 
+    			     android:layout_marginTop="5dp"
+    			    android:layout_marginBottom="5dp"
+    				 android:layout_marginLeft="16dp" 
+    			   />
     </LinearLayout>
 
     <TextView

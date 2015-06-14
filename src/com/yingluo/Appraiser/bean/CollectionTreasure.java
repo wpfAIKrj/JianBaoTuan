@@ -43,6 +43,14 @@ public class CollectionTreasure implements Serializable {
 	public String goodAt;
 	
 	
+	public int authType;
+	public String[] images1;
+	public String[] images2;
+	
+	
+	public TreasureType kind;
+	public int status;
+	public boolean isCollected;
 	
 	public CollectionTreasure() {
 		super();
@@ -209,8 +217,80 @@ public class CollectionTreasure implements Serializable {
 
 
 
+	public String[] getImages1() {
+		return images1;
+	}
+
+
+
+	public void setImages1(String[] images1) {
+		this.images1 = images1;
+	}
+
+
+
+	public String[] getImages2() {
+		return images2;
+	}
+
+
+
+	public void setImages2(String[] images2) {
+		this.images2 = images2;
+	}
+
+
+
 	public void setGoodAt(String goodAt) {
 		this.goodAt = goodAt;
+	}
+
+
+
+	public int getAuthType() {
+		return authType;
+	}
+
+
+
+	public void setAuthType(int authType) {
+		this.authType = authType;
+	}
+
+
+
+	public TreasureType getKind() {
+		return kind;
+	}
+
+
+
+	public void setKind(TreasureType kind) {
+		this.kind = kind;
+	}
+
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
+
+	public boolean isCollected() {
+		return isCollected;
+	}
+
+
+
+	public void setCollected(boolean isCollected) {
+		this.isCollected = isCollected;
 	}
 
 	

@@ -107,7 +107,7 @@ public class ViewChoices extends LinearLayout  {
 		iv_big.setTag(currnt);
 		iv_small.setTag(currnt);
 		// 设置大图片
-		if (TextUtils.equals(item.image, "")) {
+		if (item.image==null||TextUtils.equals(item.image, "")) {
 
 			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		} else {

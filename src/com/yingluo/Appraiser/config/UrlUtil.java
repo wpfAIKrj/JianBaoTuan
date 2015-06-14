@@ -79,14 +79,7 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Users/treasureListAction");
 		return url.toString();
 	}
-	/**
-	 * 我的宝物
-	 * */
-	public static String getMyTreasuresURL() {
-		StringBuilder url = new StringBuilder();
-		url.append(BASE_URL).append("/Users/myTreasuresAction");
-		return url.toString();
-	}
+
 	/**
 	 * 所有分类
 	 * */
@@ -119,5 +112,37 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Material/deleteCollectionsAction");
 		return url.toString();
 	}
+	
+	/**
+	 * 获取宝贝详情
+	 * */
+	public static String getTreasureAllInfoByIdURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/detailAction");
+		return url.toString();
+	}
+
+	/**
+	 * 获取宝贝评论列表
+	 * @return
+	 */
+	public static String getTreasureCommentListByIdURL() {
+		// TODO Auto-generated method stub
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/commentsAction");
+		return url.toString();
+	}
+
+	/**
+	 * 发表宝贝评论
+	 * @return
+	 */
+	public static String sendTreasureCommentURL() {
+		// TODO Auto-generated method stub
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/addCommentAction");
+		return url.toString();
+	}
+	
 
 }

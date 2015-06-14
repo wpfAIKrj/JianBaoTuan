@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
@@ -23,10 +25,17 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.DialogForResult;
 import com.yingluo.Appraiser.model.CollectTreasureByIdModel;
 import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.getTreasureAllInfoByIdModel;
+import com.yingluo.Appraiser.model.getTreasureCommentListByIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
+import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
+import com.yingluo.Appraiser.view.ImageViewWithBorder;
+import com.yingluo.Appraiser.view.TagLinearLayout;
+import com.yingluo.Appraiser.view.ViewOtherTreasure;
+import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
 
 /**
  * 宝贝详情
@@ -51,20 +60,50 @@ public class ActivityUserDelails extends Activity {
 
 	@ViewInject(R.id.tv_msg)
 	private TextView tv_msg;
+	
 	@ViewInject(R.id.detail_collect)
 	private View detail_collect;
+	
 	@ViewInject(R.id.detail_cancle_collect)
 	private View detail_cancle_collect;
+	
+	
+	@ViewInject(R.id.tag_layout)
+	private TagLinearLayout taglayout;
+	
+	@ViewInject(R.id.layout_images)
+	private LinearLayout imageslayout;
 
-	CollectTreasureByIdModel collectModel;
+	@ViewInject(R.id.layout_treasure)
+	private LinearLayout treasurelayout;
+	
+	@ViewInject(R.id.layout_people)
+	private LinearLayout peoplelayout;
+	
+	
+	CollectTreasureByIdModel collectModel;//收藏
+	
+	getTreasureAllInfoByIdModel infoModel;//宝物详情
+	getTreasureCommentListByIdModel commentListModel;//宝物评论列表
+	
+	
+	
+	
 	private Dialog dialog1;
+	
+	
 	protected Dialog loaddialog;
 
+	private boolean isFirst=true;
+	
+	
+	
 	@OnClick({ R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.detail_back: {
-			onBackPressed();
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
 		}
 			break;
 
@@ -183,6 +222,8 @@ public class ActivityUserDelails extends Activity {
 	getUserByIdModel userModel = null;
 	private UserInfo user = null;
 
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -192,12 +233,19 @@ public class ActivityUserDelails extends Activity {
 		ViewUtils.inject(this);
 		entity = (CollectionTreasure) getIntent().getSerializableExtra(
 				Const.ENTITY);
-		getUserInfo(entity);
+		if (entity == null) {
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
+		}
 		bitmapUtils = BitmapsUtils.getInstance();
 		collectModel = new CollectTreasureByIdModel();
+		infoModel=new getTreasureAllInfoByIdModel(netListner1);
+		commentListModel=new getTreasureCommentListByIdModel(netListner2);
 		initViews();
 	}
 
+	
+	//获取用户详细信息
 	private void getUserInfo(CollectionTreasure entity) {
 		// TODO Auto-generated method stub
 		userModel = new getUserByIdModel();
@@ -210,7 +258,7 @@ public class ActivityUserDelails extends Activity {
 				if (user == null) {
 					return;
 				}
-				bitmapUtils.display(iv_head, user.getImage_token());
+				bitmapUtils.display(iv_head, user.getAvatar());
 				tv_name.setText(user.getNickname());
 				// 用户等级
 			}
@@ -223,33 +271,139 @@ public class ActivityUserDelails extends Activity {
 		}, entity.user_id);
 	}
 
+	
 	private void initViews() {
 		// TODO Auto-generated method stub
-		if (entity == null) {
-			return;
-		}
 		bitmapUtils.display(iv_head, entity.authImage);
 		tv_name.setText(entity.authName);
 		tv_msg.setText(entity.name);
-
-		//判断该宝物是否被收藏
-		collectModel.isCollect(new CommonCallBack() {
-
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(isFirst){
+			loaddialog=DialogUtil.createLoadingDialog(this, "正在获取宝物详情...");
+			loaddialog.show();
+			infoModel.getInfoTreasure(entity.getTreasure_id());
+		}
+	}
+	
+	//获取宝贝详情
+	private OnStringDataLoadListener netListner1=new OnStringDataLoadListener() {
+		
+		@Override
+		public void onBaseDataLoaded(String data) {
+			// TODO Auto-generated method stub
+			if(loaddialog!=null&&loaddialog.isShowing()){
+				loaddialog.dismiss();
+			}
+			isFirst=false;
+			//加载宝贝详情
+			entity=infoModel.curnt;
+			bitmapUtils.display(iv_head, entity.authImage);
+			tv_name.setText(entity.authName);
+			tv_msg.setText(entity.name);
+			taglayout.addTag(entity.kind);
+			showTreasureImage();
+			if(entity.isCollected){
 				detail_collect.setVisibility(View.GONE);
 				detail_cancle_collect.setVisibility(View.VISIBLE);
-			}
-
-			@Override
-			public void onError() {
-				// TODO Auto-generated method stub
+			}else{
 				detail_collect.setVisibility(View.VISIBLE);
 				detail_cancle_collect.setVisibility(View.GONE);
-
 			}
-		}, entity.treasure_id);
+			addOtherTreasure();
+			addPeopleidentity();
+		}
+		
+		@Override
+		public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			if(loaddialog!=null&&loaddialog.isShowing()){
+				loaddialog.dismiss();
+			}
+			new ToastUtils(ActivityUserDelails.this, errorMsg);
+		}
+	};
+	
+	//获取宝贝评论详情
+		private OnStringDataLoadListener netListner2=new OnStringDataLoadListener() {
+			
+			@Override
+			public void onBaseDataLoaded(String data) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
+				// TODO Auto-generated method stub
+				if(loaddialog!=null&&loaddialog.isShowing()){
+					loaddialog.dismiss();
+				}
+				new ToastUtils(ActivityUserDelails.this, errorMsg);
+			}
+		};
 
+
+	//加载宝物图片
+	protected void showTreasureImage() {
+		// TODO Auto-generated method stub
+		imageslayout.removeAllViews();
+		if(entity.images1!=null&&entity.images1.length>0){
+			for (int i = 0; i < entity.images1.length; i++) {
+				ImageViewWithBorder image=new ImageViewWithBorder(this);
+				LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT,
+						(int) getResources().getDimension(R.dimen.y500));
+				image.setLayoutParams(params);
+				bitmapUtils.display(image, entity.images1[i]);
+				imageslayout.addView(image);
+			}
+		}
+		if(entity.images2!=null&&entity.images2.length>0){
+			for (int i = 0; i < entity.images1.length; i++) {
+				ImageViewWithBorder image=new ImageViewWithBorder(this);
+				LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT,
+						(int) getResources().getDimension(R.dimen.y500));
+				image.setLayoutParams(params);
+				bitmapUtils.display(image, entity.images2[i]);
+				imageslayout.addView(image);
+			}
+		}
+		
+	}
+
+	//添加鉴定结果
+	protected void addPeopleidentity() {
+		// TODO Auto-generated method stub
+		peoplelayout.removeAllViews();
+		if(infoModel.treasureList!=null&&infoModel.treasureList.size()>0){
+			for (int i = 0; i < infoModel.treasureList.size(); i++) {
+				ViewUserDelaisIdentifyResult result=new ViewUserDelaisIdentifyResult(this); 
+				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+				result.setLayoutParams(params);
+				result.setItem(infoModel.otherTreasure.get(i));
+				peoplelayout.addView(result);
+			}
+		}else{//隐藏鉴定结果
+			
+		}
+	}
+
+
+	//添加其他宝物
+	protected void addOtherTreasure() {
+		// TODO Auto-generated method stub
+		treasurelayout.removeAllViews();
+		if(infoModel.otherTreasure!=null&&infoModel.otherTreasure.size()>0){
+			for (int i = 0; i < infoModel.otherTreasure.size(); i++) {
+				ViewOtherTreasure view=new ViewOtherTreasure(this);
+				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(treasurelayout.getMeasuredWidth()/2, LinearLayout.LayoutParams.WRAP_CONTENT);
+				view.setLayoutParams(params);
+				view.setItem(infoModel.otherTreasure.get(i));
+				treasurelayout.addView(view);
+			}
+		}
 	}
 }

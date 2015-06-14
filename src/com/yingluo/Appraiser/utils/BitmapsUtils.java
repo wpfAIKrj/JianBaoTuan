@@ -96,6 +96,8 @@ public class BitmapsUtils {
 			utils.display(container, uri, config);
 		}
 	}
+	
+	
 
 	/**
 	 * 图片加载

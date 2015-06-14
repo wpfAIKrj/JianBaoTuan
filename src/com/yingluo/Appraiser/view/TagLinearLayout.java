@@ -103,7 +103,7 @@ public class TagLinearLayout extends ViewGroup {
 		int tagsize=type.getType();
 		int size=0;
 		int width=0;
-		int onewidth=DensityUtil.dip2px(getContext(),30);
+		int onewidth=DensityUtil.dip2px(getContext(),38);
 		TextView tv;
 		String text=null;
 		ArrayList<TreasureType> list=SqlDataUtil.getInstance().getTreasureTypeByChild(type);

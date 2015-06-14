@@ -20,7 +20,15 @@
 
             <include layout="@layout/item_delails_user" />
 
-            <com.yingluo.Appraiser.view.ImageViewWithBorder
+            <LinearLayout 
+                android:id="@+id/layout_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                
+            </LinearLayout>
+    <!--       <com.yingluo.Appraiser.view.ImageViewWithBorder
                 android:id="@+id/iv_0"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y500"
@@ -34,6 +42,7 @@
                 android:layout_marginTop="@dimen/y20"
                 android:scaleType="fitXY"
                 android:src="@drawable/test_xc8" />
+      --> 
 
             <include layout="@layout/layout_user_delais_similar_item" />
 

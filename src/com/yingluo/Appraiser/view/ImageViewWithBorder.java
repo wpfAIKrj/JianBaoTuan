@@ -12,11 +12,12 @@ import android.widget.ImageView;
 
 public class ImageViewWithBorder extends ImageView {
 
-	private int co;
-	private int borderwidth;
+	private int co=getContext().getResources().getColor(R.color.item_space_color);
+	private int borderwidth=1;
 
 	public ImageViewWithBorder(Context context) {
 		super(context);
+	
 	}
 
 	public ImageViewWithBorder(Context context, AttributeSet attrs, int defStyle) {

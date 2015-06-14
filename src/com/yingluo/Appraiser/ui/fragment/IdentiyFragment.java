@@ -18,6 +18,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
@@ -214,7 +215,11 @@ public class IdentiyFragment extends BaseFragment implements
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Const.TO_INDENTIFY) {
-			long kindId = data.getIntExtra(Const.KIND_ID, -1);
+			TreasureType treasureType=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
+			if(treasureType==null){
+				return;
+			}
+			long kindId = treasureType.getId();
 			// 根据分类id来加载
 			model.sendHttp(new CommonCallBack() {
 
