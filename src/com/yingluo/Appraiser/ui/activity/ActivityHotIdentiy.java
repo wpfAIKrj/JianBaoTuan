@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,8 +24,11 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
+import com.yingluo.Appraiser.model.MyTreasureOtherModel;
 import com.yingluo.Appraiser.model.getTreasureByIdModel;
+import com.yingluo.Appraiser.model.getTreasureByOtherIdModel;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
+import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
@@ -60,12 +64,15 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	@ViewInject(R.id.recyclerview)
 	RecyclerView recyclerview;
 
-	MyTreasureAdapter mAdapter = null;
+	OtherTreasureAdapter mAdapter = null;
 
-	getTreasureByIdModel treasureModel = null;
+	
+	getTreasureByOtherIdModel treasureModel = null;
 
-	MyTreasureModel identifyModel = null;
+	MyTreasureOtherModel identifyModel = null;
 
+	private boolean isone=true;
+	private boolean istwo=true;
 	@OnClick(R.id.btn_msg)
 	public void doClick(View view) {
 		// startActivity(new Intent(ActivityHotIdentiy.this,
@@ -90,11 +97,13 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 			switch (v.getId()) {
 			case R.id.btn_identifing: {
 				// 设置View
+				if(isone){
 				treasureModel.sendHttp(new CommonCallBack() {
 
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
+						isone=false;
 						swipe_refresh_widget.setRefreshing(false);
 						mAdapter.setData(treasureModel.getResult());
 
@@ -107,19 +116,24 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 					}
 				}, 0, entity.user_id);
+				}else{
+					swipe_refresh_widget.setRefreshing(false);
+					mAdapter.setData(treasureModel.getResult());
+				}
 			}
 
 				break;
 
 			case R.id.btn_identified: {
-
+				if(istwo){
 				identifyModel.sendHttp(new CommonCallBack() {
 
 					@Override
 					public void onSuccess() {
 						// TODO Auto-generated method stub
+						istwo=false;
 						swipe_refresh_widget.setRefreshing(false);
-						mAdapter.setData(treasureModel.getResult());
+						mAdapter.setData(identifyModel.getResult());
 
 					}
 
@@ -130,6 +144,10 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 					}
 				}, 0, entity.user_id);
+				}else{
+					swipe_refresh_widget.setRefreshing(false);
+					mAdapter.setData(identifyModel.getResult());
+				}
 			}
 
 				break;
@@ -151,8 +169,8 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		btn_back.setOnClickListener(this);
 		btn_identifing.setOnClickListener(identifyListener);
 		btn_identified.setOnClickListener(identifyListener);
-		treasureModel = new getTreasureByIdModel();
-		identifyModel = new MyTreasureModel();
+		treasureModel = new getTreasureByOtherIdModel();
+		identifyModel = new MyTreasureOtherModel();
 		initViews();
 	}
 
@@ -174,17 +192,19 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		// } else {
 		// iv_grade.setImageResource(R.drawable.level06);
 		// }
-		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		GridLayoutManager layoutManager=new GridLayoutManager(this, 2);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
-		mAdapter = new MyTreasureAdapter();
+		mAdapter = new OtherTreasureAdapter();
 		recyclerview.setAdapter(mAdapter);
 		treasureModel.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
+				isone=false;
 				swipe_refresh_widget.setRefreshing(false);
 				mAdapter.setData(treasureModel.getResult());
 

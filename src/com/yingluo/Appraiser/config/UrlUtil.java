@@ -36,14 +36,33 @@ public class UrlUtil {
 		return url.toString();
 	}
 	/**
-	 * 他的宝物
+	 * 我的宝物
 	 * */
 	public static String getTreasureByIdURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Users/myTreasuresAction");
 		return url.toString();
 	}
+	
+	/**
+	 * 他的宝物
+	 * */
+	public static String getTreasureByOtherIdURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Home/otherTreasuresAction");
+		return url.toString();
+	}
 
+
+	/**
+	 * 他的收藏
+	 * */
+	public static String getOtherCollectionURL() {		
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Home/otherTreasureListAction");
+		return url.toString();
+	}
+	
 	/**
 	 * 我的收藏
 	 * */

@@ -188,9 +188,9 @@ public class ViewHots extends LinearLayout  {
 			return;
 		switch (v.getId()) {
 		case R.id.imageview_big_icon: {
-			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-			mIntent.putExtra(Const.ENTITY, currnt);
-			getContext().startActivity(mIntent);
+//			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+//			mIntent.putExtra(Const.ENTITY, currnt);
+//			getContext().startActivity(mIntent);
 
 		}
 

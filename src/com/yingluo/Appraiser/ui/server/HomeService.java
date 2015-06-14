@@ -15,7 +15,6 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
-import com.yingluo.Appraiser.model.getAllKindsModel;
 import com.yingluo.Appraiser.presenter.OnListDataLoadListener;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
