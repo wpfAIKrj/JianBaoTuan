@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -25,10 +26,12 @@ import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 public class sendTreasureCommentModel extends BaseModel {
 
 	private OnStringDataLoadListener listener=null;
+	private long treasure_id;
+	private long to_user_id;
+	private String comment;
 	public sendTreasureCommentModel(OnStringDataLoadListener listener) {
 		// TODO Auto-generated constructor stub
 		this.listener=listener;
-		httpmodel = HttpMethod.GET;
 		url = UrlUtil.sendTreasureCommentURL();
 		StringBuffer sb = new StringBuffer(url);
 		if (NetConst.SESSIONID != null) {
@@ -40,12 +43,22 @@ public class sendTreasureCommentModel extends BaseModel {
 		url = sb.toString();
 	}
 	
-	public void getInfoTreasure(long treasure_id){
-		StringBuffer sb=new StringBuffer(url);
-		sb.append("&id=").append(treasure_id);
-		url=sb.toString();
-		setHTTPMODE(HttpMethod.GET);
+	public void sendTreasureComment(long treasure_id,long to_user_id,String comment){
+		this.treasure_id=treasure_id;
+		this.to_user_id=to_user_id;
+		this.comment=comment;
+		addRequestParams();
 		sendHttp();
+	}
+	
+	@Override
+	public void addRequestParams() {
+		// TODO Auto-generated method stub
+		params=new RequestParams();
+		params.addBodyParameter("treasure_id", String.valueOf(treasure_id));
+		params.addBodyParameter("to_user_id", String.valueOf(to_user_id));
+		params.addBodyParameter("comment", comment);
+		
 	}
 	
 	@Override
@@ -64,11 +77,6 @@ public class sendTreasureCommentModel extends BaseModel {
 		}
 	}
 
-	@Override
-	public void addRequestParams() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void onFailureForString(String error, String msg) {

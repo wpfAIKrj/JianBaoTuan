@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getTreasureAllInfoByIdModel;
 import com.yingluo.Appraiser.model.getTreasureCommentListByIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
+import com.yingluo.Appraiser.model.sendTreasureCommentModel;
 import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
@@ -54,6 +56,8 @@ public class ActivityUserDelails extends Activity {
 	@ViewInject(R.id.btn_goto)
 	private View btn_goto;
 
+	@ViewInject(R.id.ed_context)
+	private EditText ed_text;
 	@ViewInject(R.id.iv_head)
 	private ImageView iv_head;
 
@@ -92,7 +96,7 @@ public class ActivityUserDelails extends Activity {
 	
 	getTreasureCommentListByIdModel commentListModel;//宝物评论列表
 	
-	
+	sendTreasureCommentModel sendCommentModel;//发送评论
 	
 	
 	private Dialog dialog1;
@@ -104,7 +108,7 @@ public class ActivityUserDelails extends Activity {
 	
 	
 	
-	@OnClick({ R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
+	@OnClick({ R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.detail_back: {
@@ -112,7 +116,19 @@ public class ActivityUserDelails extends Activity {
 			finish();
 		}
 			break;
-
+		case R.id.btn_send_comment://发布评论
+			if (ItApplication.currnUser != null) {
+			String content=ed_text.getText().toString().trim();
+			if(content!=null&&!content.isEmpty()){
+				loaddialog=DialogUtil.createLoadingDialog(this, "发表评论中....");
+				loaddialog.show();
+				sendCommentModel.sendTreasureComment(entity.treasure_id, 0, content);
+			}else{
+				new ToastUtils(this, "请输入评论内容！");
+			}}else{
+				new ToastUtils(this, "请先登陆！");
+			}
+			break;
 		case R.id.btn_goto: {
 			startActivity(new Intent(ActivityUserDelails.this,
 					ActivityIdentifyByMe.class));
@@ -247,6 +263,7 @@ public class ActivityUserDelails extends Activity {
 		collectModel = new CollectTreasureByIdModel();
 		infoModel=new getTreasureAllInfoByIdModel(netListner1);
 		commentListModel=new getTreasureCommentListByIdModel(netListner2);
+		sendCommentModel=new sendTreasureCommentModel(netListner3);
 		initViews();
 	}
 
@@ -361,7 +378,29 @@ public class ActivityUserDelails extends Activity {
 			}
 		};
 
-
+		//获取发表评论结果
+	private OnStringDataLoadListener netListner3=new OnStringDataLoadListener() {
+					
+					@Override
+					public void onBaseDataLoaded(String data) {
+						// TODO Auto-generated method stub
+						if(loaddialog!=null&&loaddialog.isShowing()){
+							loaddialog.dismiss();
+						}
+						new ToastUtils(ActivityUserDelails.this, "发表评论成功！");
+						//刷新评论
+						commentListModel.getInfoTreasure(entity.treasure_id);
+					}
+					
+					@Override
+					public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
+						// TODO Auto-generated method stub
+						if(loaddialog!=null&&loaddialog.isShowing()){
+							loaddialog.dismiss();
+						}
+						new ToastUtils(ActivityUserDelails.this, errorMsg);
+					}
+		};
 	//加载宝物图片
 	protected void showTreasureImage() {
 		// TODO Auto-generated method stub

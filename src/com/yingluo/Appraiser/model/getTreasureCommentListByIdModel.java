@@ -43,7 +43,7 @@ public class getTreasureCommentListByIdModel extends BaseModel {
 	
 	public void getInfoTreasure(long treasure_id){
 		StringBuffer sb=new StringBuffer(url);
-		sb.append("&id=").append(treasure_id);
+		sb.append("&tid=").append(treasure_id);
 		url=sb.toString();
 		setHTTPMODE(HttpMethod.GET);
 		sendHttp();
