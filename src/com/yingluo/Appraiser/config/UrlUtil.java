@@ -143,6 +143,17 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Material/addCommentAction");
 		return url.toString();
 	}
+
+	/**
+	 * 我要鉴定
+	 * @return
+	 */
+	public static String sendTreasureIdentityURL() {
+		// TODO 自动生成的方法存根
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Users/addTreasureAction");
+		return url.toString();
+	}
 	
 
 }

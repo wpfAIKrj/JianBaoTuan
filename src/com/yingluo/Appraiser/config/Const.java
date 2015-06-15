@@ -48,7 +48,7 @@ public class Const {
 	 */
 	public static final  String ENTITY="entity";
 	/**
-	 * 跳转时id
+	 * 跳转(宝物)时id
 	 * */
 	public static final String KIND_ID="kind_id";
 
@@ -113,5 +113,9 @@ public class Const {
 	 * 意见反馈页面
 	 */
 	public static final int TO_FEEDBACK = 13;
+	/**
+	 * 我要鉴定
+	 */
+	public static final int TO_MY_INDENTITY = 14;
 
 }

@@ -37,6 +37,7 @@ import com.yingluo.Appraiser.model.sendTreasureCommentModel;
 import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.ui.adapter.IndentiyResultAdapter;
 import com.yingluo.Appraiser.ui.adapter.commentListAdapter;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -51,7 +52,7 @@ import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
  * @author xy418
  *
  */
-public class ActivityUserDelails extends Activity {
+public class ActivityUserDelails extends BaseActivity {
 
 	private BitmapsUtils bitmapUtils;
 
@@ -138,8 +139,14 @@ public class ActivityUserDelails extends Activity {
 			}
 			break;
 		case R.id.btn_goto: {
-			startActivity(new Intent(ActivityUserDelails.this,
-					ActivityIdentifyByMe.class));
+			if (ItApplication.currnUser != null) {
+			Intent intent=new Intent(ActivityUserDelails.this,
+					ActivityIdentifyByMe.class);
+			intent.putExtra(Const.ENTITY, entity);
+			startActivityForResult(intent,Const.TO_MY_INDENTITY);
+			}else{
+				new ToastUtils(this, "请先登陆！");
+			}
 		}
 			break;
 		case R.id.detail_collect: {
@@ -260,7 +267,6 @@ public class ActivityUserDelails extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_user_delails);
 		ViewUtils.inject(this);
 		entity = (CollectionTreasure) getIntent().getSerializableExtra(
@@ -479,5 +485,13 @@ public class ActivityUserDelails extends Activity {
 			// TODO 自动生成的方法存根
 			
 		}
+	};
+	
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode==Const.TO_MY_INDENTITY&&resultCode==RESULT_OK){	
+			new ToastUtils(this, "发表评论成功！");
+		}
+		
 	};
 }

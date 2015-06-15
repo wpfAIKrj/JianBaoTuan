@@ -16,51 +16,35 @@
         android:textColor="@color/number_color"
         android:textSize="18sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp" >
+   	 <LinearLayout
+    		    android:layout_width="match_parent"
+    		    android:layout_height="wrap_content"
+    		    android:orientation="horizontal"
+    		    android:gravity="center_vertical"
+   				android:layout_marginTop="@dimen/button_padd"
+   				android:layout_marginLeft="5dp"
+   				
+    		     >
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/published_bt_bg" />
+    			<ImageView
+    			    android:id="@+id/published_bt"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content"
+    			    android:src="@drawable/published_bt_bg" />
 
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@color/number_color"
-            android:gravity="center"
-            android:text="木"
-            android:textColor="@color/wite"
-            android:textSize="15sp" />
+   
 
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@color/bt_color"
-            android:gravity="center"
-            android:text="沉香"
-            android:textColor="@color/wite"
-            android:textSize="15sp" />
+    			<com.yingluo.Appraiser.view.TagLinearLayout
+    			   android:id="@+id/tag_layout"
+    			    android:layout_width="wrap_content"
+    			    android:layout_height="wrap_content" 
+    			     android:layout_marginTop="5dp"
+    			    android:layout_marginBottom="5dp"
+    				 android:layout_marginLeft="16dp" 
+    			   />
+    		
 
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@color/number_color"
-            android:gravity="center"
-            android:text="小叶紫檀"
-            android:textColor="@color/wite"
-            android:textSize="15sp" />
-    </LinearLayout>
+    		</LinearLayout>
 
     <View
         android:layout_width="fill_parent"
@@ -82,10 +66,15 @@
     <EditText
         android:id="@+id/et_declare"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/x400"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/edit_declare_bg" />
+        android:background="@drawable/edit_declare_bg"
+        android:textColor="@color/black"
+        android:imeOptions="actionGo"
+        android:gravity="top|left"
+        android:inputType="text"
+         />
 
     <Button
         android:id="@+id/btn_publish"
