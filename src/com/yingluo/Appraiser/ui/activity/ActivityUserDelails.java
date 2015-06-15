@@ -141,8 +141,13 @@ public class ActivityUserDelails extends BaseActivity {
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
-		case R.id.btn_goto: {
+		case R.id.btn_goto: //我要鉴定
+		{
 			if (ItApplication.currnUser != null) {
+				if(entity.status==2){
+					new ToastUtils(this, "宝物已经鉴定完毕！");
+					return;
+				}
 			Intent intent=new Intent(ActivityUserDelails.this,
 					ActivityIdentifyByMe.class);
 			intent.putExtra(Const.ENTITY, entity);
@@ -359,6 +364,14 @@ public class ActivityUserDelails extends BaseActivity {
 			}else{
 				detail_collect.setVisibility(View.VISIBLE);
 				detail_cancle_collect.setVisibility(View.GONE);
+			}
+			
+			if(entity.status==1){
+				tag.setText("");
+			}
+			if(entity.status==2){
+				tag.setText("(已鉴定)");
+				tag.setVisibility(View.VISIBLE);
 			}
 			addOtherTreasure();
 			addPeopleidentity();

@@ -34,7 +34,7 @@ public class CollectionTreasure implements Serializable {
 	@SerializedName("treasure_id")
 	public long treasure_id;
 	
-
+	
 	
 
 	@SerializedName("company")
@@ -49,6 +49,8 @@ public class CollectionTreasure implements Serializable {
 	
 	
 	public TreasureType kind;
+	
+	@SerializedName("status")
 	public int status;
 	public boolean isCollected;
 	

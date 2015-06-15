@@ -77,6 +77,7 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				treasure.treasure_id=json.getLong("treasure_id");
 				treasure.authType=json.getInt("authType");
 				treasure.isCollected=json.getBoolean("isCollected");
+				treasure.status=json.getInt("status");
 				List<String> images=gson.fromJson(json.getString("images1"), new TypeToken<List<String>>(){}.getType());
 				if(images.size()>0){
 					treasure.images1=images.toArray(new String[images.size()]);
