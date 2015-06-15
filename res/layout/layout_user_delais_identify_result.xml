@@ -12,7 +12,7 @@
         android:id="@+id/float_head"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginTop="@dimen/y20" 
+
          android:background="@color/wite"
         >
 
@@ -24,18 +24,26 @@
             android:text="@string/str_identify_result"
             android:textColor="@color/black_2"
             android:textSize="@dimen/x30" />
+
+        <TextView
+            android:id="@+id/title_tag"
+       		style="@style/w_wrap_h_wrap"
+            android:layout_alignBaseline="@+id/title"
+            android:layout_alignBottom="@+id/title"
+            android:layout_toRightOf="@+id/title"
+             android:text="@string/str_identify_result"
+            android:textColor="@color/dialog_title_color"
+            android:textSize="@dimen/x30"
+            android:visibility="gone"
+             />
+
     </RelativeLayout>
 
-    <LinearLayout
+         <android.support.v7.widget.RecyclerView
+        android:id="@+id/people_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" 
-        android:id="@+id/layout_people"
-        android:background="@color/wite"
-        >
-
-  		
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:cacheColorHint="@null"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

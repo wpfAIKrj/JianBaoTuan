@@ -106,24 +106,31 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				for (int i = 0; i < array1.length(); i++) {
 					JSONObject obj=array1.getJSONObject(i);
 					CollectionTreasure other=new CollectionTreasure();
-					other.image=obj.getString("image");
-					other.name=obj.getString("title");
-					other.status=obj.getInt("status");
-					other.treasure_id=obj.getLong("treasure_id");
-					kinds=obj.getJSONArray("kinds");
-					key=new TreasureType();
-					for (int j = 0; j < kinds.length(); j++) {
-						JSONObject kind = kinds.getJSONObject(j);
-						key.id=kind.getLong("id");
-						key.name=kind.getString("name");
-						key.type=j;
-						if(j>1){
-							key.parent_id=kinds.getJSONObject(j-1).getLong("id");
-						}else{
-							key.parent_id=0;
-						}
+					treasure.viewTimes=obj.getInt("viewTimes");
+					treasure.authName=obj.getString("authName");
+					treasure.authImage=obj.getString("authImage");
+					treasure.authLevel=obj.getInt("authLevel");
+					other.name=obj.getString("name");
+					String otherimages=obj.getString("images");
+					images=gson.fromJson(otherimages, new TypeToken<List<String>>(){}.getType());
+					if(images.size()>0){
+						other.images=images.toArray(new String[images.size()]);
 					}
-					other.kind=key;
+					other.treasure_id=obj.getLong("treasure_id");
+//					kinds=obj.getJSONArray("kinds");
+//					key=new TreasureType();
+//					for (int j = 0; j < kinds.length(); j++) {
+//						JSONObject kind = kinds.getJSONObject(j);
+//						key.id=kind.getLong("id");
+//						key.name=kind.getString("name");
+//						key.type=j;
+//						if(j>1){
+//							key.parent_id=kinds.getJSONObject(j-1).getLong("id");
+//						}else{
+//							key.parent_id=0;
+//						}
+//					}
+//					other.kind=key;
 					otherTreasure.add(other);
 				}}
 				

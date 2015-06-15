@@ -92,7 +92,7 @@ public class ViewOtherTreasure extends LinearLayout {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.display(iv, item.image, iv.getMeasuredWidth(), iv.getMeasuredHeight());
+		bitmapUtils.display(iv, item.images[0], iv.getMeasuredWidth(), iv.getMeasuredHeight());
 		tv_msg.setText(item.name);
 	}
 

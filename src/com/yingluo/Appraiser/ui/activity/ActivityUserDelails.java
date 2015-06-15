@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
@@ -33,6 +35,8 @@ import com.yingluo.Appraiser.model.getTreasureCommentListByIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.model.sendTreasureCommentModel;
 import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.ui.adapter.IndentiyResultAdapter;
+import com.yingluo.Appraiser.ui.adapter.commentListAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -83,13 +87,14 @@ public class ActivityUserDelails extends Activity {
 	@ViewInject(R.id.layout_treasure)
 	private LinearLayout treasurelayout;
 	
-	@ViewInject(R.id.layout_people)
-	private LinearLayout peoplelayout;
+	@ViewInject(R.id.people_recyclerview)
+	private RecyclerView peopleview;
 	
-	@ViewInject(R.id.comment_recyclerview)
-	private RecyclerView commentview;
+	@ViewInject(R.id.comment_listview)
+	private ListView commentview;
 	
-	
+	@ViewInject(R.id.title_tag)
+	private TextView tag;//鉴定结果旁边的提示
 	CollectTreasureByIdModel collectModel;//收藏
 	
 	getTreasureAllInfoByIdModel infoModel;//宝物详情
@@ -98,6 +103,9 @@ public class ActivityUserDelails extends Activity {
 	
 	sendTreasureCommentModel sendCommentModel;//发送评论
 	
+	IndentiyResultAdapter resultadapter;//评论结果
+	
+	commentListAdapter commentadapter;//评论列表
 	
 	private Dialog dialog1;
 	
@@ -246,6 +254,8 @@ public class ActivityUserDelails extends Activity {
 
 
 
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -300,9 +310,12 @@ public class ActivityUserDelails extends Activity {
 //		bitmapUtils.display(iv_head, entity.authImage);
 //		tv_name.setText(entity.authName);
 //		tv_msg.setText(entity.name);
-		LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-		commentview.setLayoutManager(layoutManager);
+		commentadapter=new commentListAdapter(this,listner);
+		commentview.setAdapter(commentadapter);
+		resultadapter=new IndentiyResultAdapter();
+		peopleview.setAdapter(resultadapter);
+		peopleview.setLayoutManager(new LinearLayoutManager(this));
+		peopleview.setHasFixedSize(true);
 	}
 	@Override
 	protected void onResume() {
@@ -364,7 +377,8 @@ public class ActivityUserDelails extends Activity {
 					loaddialog.dismiss();
 				}
 				if(commentListModel.commentlist!=null){
-					
+					commentadapter.setData(commentListModel.commentlist);
+					commentadapter.setListViewHeightBasedOnChildren(commentview);	
 				}
 			}
 			
@@ -388,6 +402,7 @@ public class ActivityUserDelails extends Activity {
 							loaddialog.dismiss();
 						}
 						new ToastUtils(ActivityUserDelails.this, "发表评论成功！");
+						ed_text.setText("");
 						//刷新评论
 						commentListModel.getInfoTreasure(entity.treasure_id);
 					}
@@ -431,15 +446,8 @@ public class ActivityUserDelails extends Activity {
 	//添加鉴定结果
 	protected void addPeopleidentity() {
 		// TODO Auto-generated method stub
-		peoplelayout.removeAllViews();
 		if(infoModel.treasureList!=null&&infoModel.treasureList.size()>0){
-			for (int i = 0; i < infoModel.treasureList.size(); i++) {
-				ViewUserDelaisIdentifyResult result=new ViewUserDelaisIdentifyResult(this); 
-				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-				result.setLayoutParams(params);
-				result.setItem(infoModel.otherTreasure.get(i));
-				peoplelayout.addView(result);
-			}
+				
 		}else{//隐藏鉴定结果
 			
 		}
@@ -460,4 +468,16 @@ public class ActivityUserDelails extends Activity {
 			}
 		}
 	}
+	
+	/**
+	 * 发表评论（评论列表中）
+	 */
+	private OnClickListener listner=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO 自动生成的方法存根
+			
+		}
+	};
 }

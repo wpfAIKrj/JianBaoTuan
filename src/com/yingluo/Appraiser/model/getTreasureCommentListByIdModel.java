@@ -12,6 +12,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
@@ -25,7 +26,7 @@ import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
 public class getTreasureCommentListByIdModel extends BaseModel {
 
 	private OnStringDataLoadListener listener=null;
-	public List<CollectionTreasure> commentlist=null;
+	public List<CommentEntity> commentlist=null;
 	public getTreasureCommentListByIdModel(OnStringDataLoadListener listener) {
 		// TODO Auto-generated constructor stub
 		this.listener=listener;
@@ -56,7 +57,7 @@ public class getTreasureCommentListByIdModel extends BaseModel {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
 			LogUtils.i("ytmdfdw" + "get treasure by id :" + data);
-			commentlist=new ArrayList<CollectionTreasure>();
+			commentlist=gson.fromJson(data, new TypeToken<List<CommentEntity>>(){}.getType());
 			listener.onBaseDataLoaded("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
