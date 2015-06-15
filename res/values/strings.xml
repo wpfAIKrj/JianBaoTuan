@@ -105,7 +105,9 @@
       	<string name="attest_helps_title3">营业执照</string>
    	<string name="attest_hiht_agentcy_name">机构全称：</string>
    	
-   	
+   		<string name="user_type_level1">普通用户</string>
+   	 	<string name="user_type_level2">个人认定鉴定师</string>
+   	 	<string name="user_type_level3">权威机构认定鉴定师</string>
    	  <string name="help_msg_01">你已经为网络鉴定师</string>
       <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
       <string name="help_msg_03">请先检测网络环境</string>

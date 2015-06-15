@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.ui.fragment;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -214,7 +215,7 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == Const.TO_INDENTIFY) {
+		if (resultCode == Const.TO_INDENTIFY&&resultCode==Activity.RESULT_OK) {
 			TreasureType treasureType=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
 			if(treasureType==null){
 				return;

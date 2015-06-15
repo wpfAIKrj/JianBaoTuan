@@ -63,7 +63,18 @@ public class IndentityResultViewHolder extends ViewHolder{
 		tv_name.setText(currnt.authName);
 		msg.setText(currnt.content);
 		BitmapsUtils.getInstance().display(logo, currnt.authImage);
-		iv_grade.setImageResource(imagelevel[currnt.authLevel]);
+		if(currnt.authType==0){
+			tv_grade.setText(R.string.user_type_level1);
+			iv_grade.setImageResource(imagelevel[currnt.authLevel]);	
+		}else{
+			iv_grade.setVisibility(View.GONE);
+			if(currnt.authLevel==1){
+				tv_grade.setText(R.string.user_type_level2);	
+			}
+			if(currnt.authLevel==2){
+				tv_grade.setText(R.string.user_type_level3);	
+			}
+		}
 
 	}
 
