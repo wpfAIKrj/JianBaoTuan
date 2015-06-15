@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y207"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@color/wite">
 
     <View
         android:layout_width="match_parent"
@@ -76,7 +77,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y84"
         android:layout_marginLeft="@dimen/x14"
-        android:layout_marginTop="@dimen/y10"
         android:text="您的宝贝经鉴定为越南芽庄土沉，属于稀少品种，非常不错"
         android:textColor="@color/black_2"
         android:textSize="@dimen/x24" />

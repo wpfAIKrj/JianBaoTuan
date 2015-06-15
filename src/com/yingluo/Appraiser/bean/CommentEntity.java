@@ -28,7 +28,10 @@ public class CommentEntity implements Serializable{
 	public String authName;
 	@SerializedName("authImage")
 	public String authImage;
-	
+	@SerializedName("authType")
+	public int authType;
+	@SerializedName("authLevel")
+	public int authLevel;
 	
 	public CommentEntity() {
 		// TODO 自动生成的构造函数存根
@@ -37,18 +40,47 @@ public class CommentEntity implements Serializable{
 
 	
 	public CommentEntity(long user_id, long to_user_id, String content,
-			String to_user_name, long comment_id, String insert_time,
-			String authName, String authImage) {
+			String to_user_name, long id, String insert_time, String authName,
+			String authImage, int authType, int authLevel) {
 		super();
 		this.user_id = user_id;
 		this.to_user_id = to_user_id;
 		this.content = content;
 		this.to_user_name = to_user_name;
-		this.id = comment_id;
+		this.id = id;
 		this.insert_time = insert_time;
 		this.authName = authName;
 		this.authImage = authImage;
+		this.authType = authType;
+		this.authLevel = authLevel;
 	}
+
+
+
+	public int getAuthType() {
+		return authType;
+	}
+
+
+
+	public void setAuthType(int authType) {
+		this.authType = authType;
+	}
+
+
+
+	public int getAuthLevel() {
+		return authLevel;
+	}
+
+
+
+	public void setAuthLevel(int authLevel) {
+		this.authLevel = authLevel;
+	}
+
+
+
 	public long getUser_id() {
 		return user_id;
 	}

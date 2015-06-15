@@ -16,6 +16,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.NetConst;
@@ -33,7 +34,7 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 	
 	public CollectionTreasure curnt=null;
 	public List<CollectionTreasure> otherTreasure=null;
-	public List<CollectionTreasure> treasureList=null;
+	public List<CommentEntity> treasureList=null;
 	public getTreasureAllInfoByIdModel(OnStringDataLoadListener listener) {
 		// TODO Auto-generated constructor stub
 		this.listener=listener;
@@ -135,14 +136,8 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				}}
 				
 				//解析宝贝鉴定结果
-				JSONArray array2 = json.getJSONArray("treasureList");
-				treasureList=new ArrayList<CollectionTreasure>();
-				if(array2.length()>0){
-					for (int i = 0; i < array2.length(); i++) {
-						
-					}
-				}
-				
+				String array2 = json.getString("treasureList");
+				treasureList=gson.fromJson(array2, new TypeToken<List<CommentEntity>>(){}.getType());	
 				listener.onBaseDataLoaded("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

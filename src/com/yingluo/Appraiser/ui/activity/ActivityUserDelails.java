@@ -89,7 +89,7 @@ public class ActivityUserDelails extends BaseActivity {
 	private LinearLayout treasurelayout;
 	
 	@ViewInject(R.id.people_recyclerview)
-	private RecyclerView peopleview;
+	private ListView peopleview;
 	
 	@ViewInject(R.id.comment_listview)
 	private ListView commentview;
@@ -318,10 +318,8 @@ public class ActivityUserDelails extends BaseActivity {
 //		tv_msg.setText(entity.name);
 		commentadapter=new commentListAdapter(this,listner);
 		commentview.setAdapter(commentadapter);
-		resultadapter=new IndentiyResultAdapter();
+		resultadapter=new IndentiyResultAdapter(this);
 		peopleview.setAdapter(resultadapter);
-		peopleview.setLayoutManager(new LinearLayoutManager(this));
-		peopleview.setHasFixedSize(true);
 	}
 	@Override
 	protected void onResume() {
@@ -453,7 +451,8 @@ public class ActivityUserDelails extends BaseActivity {
 	protected void addPeopleidentity() {
 		// TODO Auto-generated method stub
 		if(infoModel.treasureList!=null&&infoModel.treasureList.size()>0){
-				
+				resultadapter.setData(infoModel.treasureList);
+				resultadapter.setListViewHeightBasedOnChildren(peopleview);
 		}else{//隐藏鉴定结果
 			
 		}
