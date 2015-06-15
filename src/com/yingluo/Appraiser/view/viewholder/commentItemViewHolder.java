@@ -45,11 +45,13 @@ public class commentItemViewHolder extends ViewHolder{
 	public CommentEntity currnt;
 
 	public Context mContext;
+	private String numberstr;
 	public commentItemViewHolder(View itemView,final OnClickListener listener) {
 		super(itemView);
 		// TODO 自动生成的构造函数存根
 		mContext=itemView.getContext();
 		ViewUtils.inject(this, itemView);
+		numberstr=mContext.getResources().getString(R.string.title_number);
 		bt.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -70,6 +72,7 @@ public class commentItemViewHolder extends ViewHolder{
 		BitmapsUtils.getInstance().display(logo, currnt.authImage);
 		name.setText(currnt.authName);
 		time.setText(currnt.insert_time);
+		number.setText(String.format(numberstr, currnt.index));
 		if(currnt.to_user_id!=0){//回复某人
 			StringBuffer str=new StringBuffer(String.format(mContext.getResources().getString(R.string.comment_list_tag),currnt.to_user_name));
 			int lenght=str.length();

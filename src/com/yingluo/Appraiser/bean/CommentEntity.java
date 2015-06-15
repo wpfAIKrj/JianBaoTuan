@@ -33,6 +33,9 @@ public class CommentEntity implements Serializable{
 	@SerializedName("authLevel")
 	public int authLevel;
 	
+	@SerializedName("index")
+	public int index;
+	
 	public CommentEntity() {
 		// TODO 自动生成的构造函数存根
 	}
