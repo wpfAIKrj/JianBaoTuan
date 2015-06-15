@@ -54,6 +54,8 @@ public class IdentiyFragment extends BaseFragment implements
 
 	ItApplication app;
 
+	private int kindId= 0;
+
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
 		// TODO Auto-generated method stub
@@ -62,7 +64,7 @@ public class IdentiyFragment extends BaseFragment implements
 		case R.id.button_category: {
 			Intent mIntent = new Intent(getActivity(),
 					ActivityKindOfPrecious.class);
-			startActivityForResult(mIntent, Const.TO_INDENTIFY);
+			mActivity.startActivityForResult(mIntent, Const.TO_INDENTIFY);
 		}
 			break;
 		case R.id.btn_identifing: {
@@ -215,12 +217,12 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == Const.TO_INDENTIFY&&resultCode==Activity.RESULT_OK) {
+		if (requestCode == Const.TO_INDENTIFY&&resultCode==Activity.RESULT_OK) {
 			TreasureType treasureType=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
 			if(treasureType==null){
 				return;
 			}
-			long kindId = treasureType.getId();
+			kindId = treasureType.getId().intValue();
 			// 根据分类id来加载
 			model.sendHttp(new CommonCallBack() {
 

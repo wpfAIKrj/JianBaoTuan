@@ -319,6 +319,9 @@ OnTabSelectedListener ,OnClickListener{
 		if(mInformationFragment!=null){
 			mInformationFragment.onActivityResult(arg0, arg1, arg2);
 		}
+		if(mIdentiyFragment!=null){
+			mIdentiyFragment.onActivityResult(arg0, arg1, arg2);
+		}
 		super.onActivityResult(arg0, arg1, arg2);
 		
 
