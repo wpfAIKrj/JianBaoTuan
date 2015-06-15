@@ -25,6 +25,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.DialogForResult;
@@ -115,6 +116,8 @@ public class ActivityUserDelails extends BaseActivity {
 
 	private boolean isFirst=true;
 	
+	
+	public long to_user_id=0;
 	
 	
 	@OnClick({ R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
@@ -406,6 +409,8 @@ public class ActivityUserDelails extends BaseActivity {
 							loaddialog.dismiss();
 						}
 						new ToastUtils(ActivityUserDelails.this, "发表评论成功！");
+						to_user_id=0;
+						ed_text.setHint("");
 						ed_text.setText("");
 						//刷新评论
 						commentListModel.getInfoTreasure(entity.treasure_id);
@@ -482,7 +487,10 @@ public class ActivityUserDelails extends BaseActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO 自动生成的方法存根
-			
+			CommentEntity comment=(CommentEntity) v.getTag();
+			to_user_id=comment.user_id;
+			String str=String.format(getResources().getString(R.string.title_send_comment_hint),comment.authName);
+			ed_text.setHint(str);
 		}
 	};
 	

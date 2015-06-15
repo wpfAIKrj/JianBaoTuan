@@ -89,7 +89,7 @@
        <string name="comment_list_tag">回复  ‘%1$s’</string>
        <string name="type_collect">成为网络鉴定师</string>
        <string name="type_identiy">网络鉴定师</string>
-       
+       <string name="title_send_comment_hint">回复  %1$s :</string>
 
       <string name="str_none_msg">没有找到宝贝</string>
       
