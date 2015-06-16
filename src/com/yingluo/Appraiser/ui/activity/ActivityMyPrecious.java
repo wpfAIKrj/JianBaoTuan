@@ -18,6 +18,8 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
@@ -56,6 +58,8 @@ public class ActivityMyPrecious extends Activity {
 	MyTreasureModel model;
 
 	MyTreasureAdapter mAdapter;
+
+	
 
 	@SuppressLint("NewApi")
 	@Override
@@ -98,7 +102,7 @@ public class ActivityMyPrecious extends Activity {
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
-		mAdapter = new MyTreasureAdapter();
+		mAdapter = new MyTreasureAdapter(lis);
 		recyclerview.setAdapter(mAdapter);
 	}
 
@@ -118,6 +122,7 @@ public class ActivityMyPrecious extends Activity {
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {
+				model.setType(type);
 				model.sendHttp(new CommonCallBack() {
 
 					@Override
@@ -134,10 +139,11 @@ public class ActivityMyPrecious extends Activity {
 						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_ALL,0);
+				}, MyTreasureModel.TYPE_ALL);
 			}
 				break;
 			case R.id.btn_identifing: {
+				model.setType(type);
 				model.sendHttp(new CommonCallBack() {
 
 					@Override
@@ -154,11 +160,12 @@ public class ActivityMyPrecious extends Activity {
 						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFYING,0);
+				}, MyTreasureModel.TYPE_IDENTIFYING);
 
 			}
 				break;
 			case R.id.btn_identified: {
+				model.setType(type);
 				model.sendHttp(new CommonCallBack() {
 
 					@Override
@@ -175,7 +182,7 @@ public class ActivityMyPrecious extends Activity {
 						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFIED,0);
+				}, MyTreasureModel.TYPE_IDENTIFIED);
 			}
 				break;
 
@@ -242,4 +249,20 @@ public class ActivityMyPrecious extends Activity {
 		}
 	}
 
+	private OnClickListener lis=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			TreasureEntity entity=(TreasureEntity) v.getTag();
+			CollectionTreasure id=new CollectionTreasure();
+			id.treasure_id=entity.treasure_id;
+			id.image=entity.image;
+			id.name=entity.title;
+			
+			Intent mIntent = new Intent(ActivityMyPrecious.this, ActivityUserDelails.class);
+			mIntent.putExtra(Const.ENTITY, id);
+			startActivity(mIntent);
+		}
+	};
 }

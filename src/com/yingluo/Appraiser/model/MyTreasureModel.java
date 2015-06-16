@@ -92,11 +92,12 @@ public class MyTreasureModel extends BaseModel {
 		}
 	}
 
-	public void sendHttp(final CommonCallBack callBack, int type,long user_id) {
+	public void sendHttp(final CommonCallBack callBack, int type) {
+		list.clear();
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
 		StringBuffer sb = new StringBuffer(url);
 		sb.append("&status=").append(type);
-		sb.append("&user_id=").append(user_id);
+		sb.append("&user_id=");
 		// params.addBodyParameter("length", String.valueOf(type));
 		url = sb.toString();
 		LogUtils.d("ytmfdw  url=" + url);

@@ -7,40 +7,34 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureEntity;
-import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter.MyViewHolder;
-import com.yingluo.Appraiser.view.home.ViewTreasure;
+import com.yingluo.Appraiser.view.viewholder.ViewTreasure;
 
 /**
  * @author ytmfdw 我的宝贝
  *
  */
-public class MyTreasureAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class MyTreasureAdapter extends RecyclerView.Adapter<ViewTreasure> {
 
 	private List<TreasureEntity> hots;
+	private OnClickListener lis;
 
-	static class MyViewHolder extends ViewHolder {
-		ViewTreasure hotsView;
+	
 
-		public MyViewHolder(View itemView) {
-			super(itemView);
-			// TODO Auto-generated constructor stub
-			hotsView = (ViewTreasure) itemView.findViewById(R.id.my_treasure);
-		}
-
-	}
-
-	public MyTreasureAdapter(List<TreasureEntity> list) {
+	public MyTreasureAdapter(List<TreasureEntity> list,OnClickListener lis) {
 		// TODO Auto-generated constructor stub
 		this.hots = list;
+		this.lis=lis;
 	}
 
-	public MyTreasureAdapter() {
+	public MyTreasureAdapter(OnClickListener lis) {
 		// TODO Auto-generated constructor stub
 		hots = new ArrayList<TreasureEntity>();
+		this.lis=lis;
 	}
 
 	public void setData(List<TreasureEntity> list) {
@@ -64,20 +58,20 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<MyViewHolder> {
 	}
 
 	@Override
-	public void onBindViewHolder(MyViewHolder holder, int position) {
+	public void onBindViewHolder(ViewTreasure holder, int position) {
 		// TODO Auto-generated method stub
 		TreasureEntity entity = hots.get(position);
-		holder.hotsView.setItem(entity);
+		holder.setItem(entity);
 
 	}
 
 	@Override
-	public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int arg1) {
+	public ViewTreasure onCreateViewHolder(ViewGroup viewGroup, int arg1) {
 		// TODO Auto-generated method stub
 		View view = LayoutInflater.from(viewGroup.getContext()).inflate(
-				R.layout.item_my_treasure, viewGroup, false);
+				R.layout.view_my_treasure, viewGroup, false);
 		// ViewHolder参数一定要是Item的Root节点.
-		return new MyViewHolder(view);
+		return new ViewTreasure(view,lis);
 	}
 
 }

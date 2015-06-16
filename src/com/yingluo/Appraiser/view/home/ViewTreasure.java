@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -40,12 +41,11 @@ public class ViewTreasure extends LinearLayout {
 	@ViewInject(R.id.tv_status)
 	TextView tv_status;
 	@ViewInject(R.id.btn_result)
-	View btn_result;
+	Button btn_result;
 
-	@OnClick(R.id.btn_result)
-	public void doClick(View view) {
-		// 跳转查看宝贝详情界面
-	}
+	TreasureEntity currn;
+	
+	
 
 	public ViewTreasure(Context context) {
 		super(context);
@@ -80,6 +80,7 @@ public class ViewTreasure extends LinearLayout {
 		if (item == null) {
 			return;
 		}
+		currn=item;
 		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.title);
 		tv_status.setText(item.status == 1 ? "已鉴定" : "未鉴定");
