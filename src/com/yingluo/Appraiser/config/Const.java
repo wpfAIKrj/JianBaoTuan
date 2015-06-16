@@ -117,5 +117,9 @@ public class Const {
 	 * 我要鉴定
 	 */
 	public static final int TO_MY_INDENTITY = 14;
+	/**
+	 * 宝贝搜索页面跳转到宝物鉴定列表
+	 */
+	public static final int TO_KIND_INDENTIFY = 15;
 
 }

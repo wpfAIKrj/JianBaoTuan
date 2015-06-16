@@ -93,7 +93,9 @@ public class MyTreasureModel extends BaseModel {
 	}
 
 	public void sendHttp(final CommonCallBack callBack, int type) {
+		if(list!=null){
 		list.clear();
+		}
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
 		StringBuffer sb = new StringBuffer(url);
 		sb.append("&status=").append(type);

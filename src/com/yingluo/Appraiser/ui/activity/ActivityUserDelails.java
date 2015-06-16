@@ -134,7 +134,7 @@ public class ActivityUserDelails extends BaseActivity {
 			if(content!=null&&!content.isEmpty()){
 				loaddialog=DialogUtil.createLoadingDialog(this, "发表评论中....");
 				loaddialog.show();
-				sendCommentModel.sendTreasureComment(entity.treasure_id, 0, content);
+				sendCommentModel.sendTreasureComment(entity.treasure_id, to_user_id, content);
 			}else{
 				new ToastUtils(this, "请输入评论内容！");
 			}}else{

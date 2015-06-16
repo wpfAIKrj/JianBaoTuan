@@ -255,6 +255,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 //				}
 //			}
 //		}
+		list.clear();
 		list.addAll(data);
 	}
 	OnScrollListener Scrolllistener=new OnScrollListener() {

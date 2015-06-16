@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -27,6 +28,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class ActivitySearch extends Activity {
@@ -58,7 +60,10 @@ public class ActivitySearch extends Activity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				TreasureType type = adapter.list.get(position);
-				
+				Intent mIntent = new Intent(ActivitySearch.this,
+						SearchActivity.class);
+				mIntent.putExtra(Const.KIND_ID, type);
+				startActivityForResult(mIntent, Const.TO_KIND_INDENTIFY);
 				
 			}
 		});
@@ -152,6 +157,16 @@ public class ActivitySearch extends Activity {
 
 		class ViewHolder {
 			TextView tv;
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==Const.TO_KIND_INDENTIFY&&resultCode==RESULT_OK){
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
 		}
 	}
 
