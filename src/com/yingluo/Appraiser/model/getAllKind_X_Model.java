@@ -114,12 +114,16 @@ public class getAllKind_X_Model extends BaseModel {
 			Entity.name = Obj.getString("classify_name");
 			Entity.type = type;
 			Entity.parent_id = Obj.getLong("parent_id");
-			SqlDataUtil.getInstance().saveContentType(Entity);
+			
 			if (Obj.has("children")) {
+				Entity.isChild=false;
+				SqlDataUtil.getInstance().saveContentType(Entity);
 				JSONArray nextJSONs = Obj.getJSONArray("children");
 				int nexttype = type + 1;
 				dealWork(nexttype, nextJSONs);
 			} else {
+				Entity.isChild=true;
+				SqlDataUtil.getInstance().saveContentType(Entity);
 				continue;
 			}
 		}

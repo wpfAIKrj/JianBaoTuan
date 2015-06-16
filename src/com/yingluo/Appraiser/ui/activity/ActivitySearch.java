@@ -6,6 +6,9 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,34 +17,37 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class ActivitySearch extends Activity {
 
+	@ViewInject(R.id.listview_search_result)
 	ListView lv;
-	ArrayList<String> list;
+	ArrayList<TreasureType> list;
 	MyAdapter adapter;
+	@ViewInject(R.id.home_title)
 	View home_title;
 
+	@ViewInject(R.id.edittext_search)
+	EditText edittext_search;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_search);
-		lv = (ListView) findViewById(R.id.listview_search_result);
-		list = new ArrayList<String>();
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
-		list.add("青花瓷");
+		ViewUtils.inject(this);
+		
+		list = new ArrayList<TreasureType>();
+	
 		adapter = new MyAdapter(this, list);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -50,15 +56,40 @@ public class ActivitySearch extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
+				
 			}
 		});
-		home_title = findViewById(R.id.home_title);
+		edittext_search.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO 自动生成的方法存根
+				String name=edittext_search.getText().toString();
+				adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
+				adapter.notifyDataSetChanged();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO 自动生成的方法存根
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO 自动生成的方法存根
+				
+			}
+		});
+		
 		home_title.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				onBackPressed();
+				setResult(RESULT_CANCELED,getIntent());
+				finish();
 			}
 		});
 	}
@@ -66,9 +97,9 @@ public class ActivitySearch extends Activity {
 	class MyAdapter extends BaseAdapter {
 
 		Context mContext;
-		List<String> list;
+		List<TreasureType> list;
 
-		public MyAdapter(Context context, List<String> list) {
+		public MyAdapter(Context context, List<TreasureType> list) {
 			// TODO Auto-generated constructor stub
 			this.mContext = context;
 			this.list = list;
@@ -81,7 +112,7 @@ public class ActivitySearch extends Activity {
 		}
 
 		@Override
-		public String getItem(int position) {
+		public TreasureType getItem(int position) {
 			// TODO Auto-generated method stub
 			return list.get(position);
 		}
@@ -107,7 +138,7 @@ public class ActivitySearch extends Activity {
 			}
 			if (list.get(position) != null) {
 
-				vh.tv.setText(list.get(position));
+				vh.tv.setText(list.get(position).name);
 			}
 			return convertView;
 		}

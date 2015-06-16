@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import u.aly.cu;
+
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.DbUtils.DbUpgradeListener;
 import com.lidroid.xutils.exception.DbException;
@@ -22,6 +24,8 @@ import com.yingluo.Appraiser.config.Const;
 
 import de.greenrobot.dao.query.QueryBuilder;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 /**
  * 数据库操作
@@ -37,6 +41,7 @@ public class SqlDataUtil {
 	private ContentInfoDao infoDao=null;//文章详细
 	private TreasureTypeDao typeDao=null;//宝物分类
 	private ImUserInfoDao imdao=null;//聊天用户信息本地
+	private SQLiteDatabase db=null;//数据库对象
 	
 	
 	
@@ -44,7 +49,8 @@ public class SqlDataUtil {
 			if(daoMaster==null){
 				DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "if", null);
 				try {
-					daoMaster=new DaoMaster(helper.getWritableDatabase());
+					 db = helper.getWritableDatabase();
+					daoMaster=new DaoMaster(db);
 					if(daoSession==null){
 						daoSession=daoMaster.newSession();
 					}
@@ -216,6 +222,22 @@ public class SqlDataUtil {
 		return data;
 	}
 
+	/**
+	 * 返回宝贝类型数据列表
+	 * @param name 宝贝名字
+	 * @return
+	 */
+	public ArrayList<TreasureType> getSelectTreasureType(String name){
+		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
+	
+		String selection=TreasureTypeDao.Properties.IsChild+"=? and "+TreasureTypeDao.Properties.Name.columnName+" like ?";
+		String[] selectionArgs={String.valueOf(true),"%" + name + "%"};
+		Cursor curosr = db.query(typeDao.getTablename(), typeDao.getAllColumns(), selection, selectionArgs, null, null, null);
+		while(curosr.moveToNext()){
+			list.add(typeDao.readEntity(curosr, 0));
+		}
+		return list;
+	}
 	/**
 	 * 清空用户信息表
 	 */

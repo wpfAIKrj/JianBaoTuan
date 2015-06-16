@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.bean;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
@@ -27,6 +28,7 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         public final static Property Name = new Property(2, String.class, "name", false, "NAME","TREASURE_TYPE");
         public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE","TREASURE_TYPE");
         public final static Property Parent_id = new Property(4, Long.class, "parent_id", false, "PARENT_ID","TREASURE_TYPE");
+        public final static Property IsChild = new Property(5, Boolean.class, "isChild", false, "IS_CHILD","TREASURE_TYPE");
     };
 
 
@@ -46,7 +48,8 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
                 "'CURRNT_ID' INTEGER," + // 1: currnt_id
                 "'NAME' TEXT," + // 2: name
                 "'TYPE' INTEGER," + // 3: type
-                "'PARENT_ID' INTEGER);"); // 4: parent_id
+                "'PARENT_ID' INTEGER," + // 4: parent_id
+                "'IS_CHILD' INTEGER);"); // 5: isChild
     }
 
     /** Drops the underlying database table. */
@@ -84,6 +87,11 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         if (parent_id != null) {
             stmt.bindLong(5, parent_id);
         }
+ 
+        Boolean isChild = entity.getIsChild();
+        if (isChild != null) {
+            stmt.bindLong(6, isChild ? 1l: 0l);
+        }
     }
 
     /** @inheritdoc */
@@ -100,7 +108,8 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
             cursor.isNull(offset + 1) ? null : cursor.getLong(offset + 1), // currnt_id
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // type
-            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // parent_id
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // parent_id
+            cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0 // isChild
         );
         return entity;
     }
@@ -113,6 +122,7 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setType(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
         entity.setParent_id(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
+        entity.setIsChild(cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0);
      }
     
     /** @inheritdoc */
