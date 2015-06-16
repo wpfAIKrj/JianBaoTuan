@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -64,9 +65,7 @@ public class ActivitySearch extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// TODO 自动生成的方法存根
-				String name=edittext_search.getText().toString();
-				adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
-				adapter.notifyDataSetChanged();
+				
 			}
 			
 			@Override
@@ -80,6 +79,12 @@ public class ActivitySearch extends Activity {
 			public void afterTextChanged(Editable s) {
 				// TODO 自动生成的方法存根
 				
+				String name=edittext_search.getText().toString();
+
+				if(name!=null&&!TextUtils.isEmpty(name)){
+					adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
+					adapter.notifyDataSetChanged();	
+				}
 			}
 		});
 		

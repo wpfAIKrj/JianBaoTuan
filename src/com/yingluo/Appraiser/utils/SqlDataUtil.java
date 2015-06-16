@@ -227,14 +227,14 @@ public class SqlDataUtil {
 	 * @param name 宝贝名字
 	 * @return
 	 */
-	public ArrayList<TreasureType> getSelectTreasureType(String name){
-		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
-	
-		String selection=TreasureTypeDao.Properties.IsChild+"=? and "+TreasureTypeDao.Properties.Name.columnName+" like ?";
-		String[] selectionArgs={String.valueOf(true),"%" + name + "%"};
-		Cursor curosr = db.query(typeDao.getTablename(), typeDao.getAllColumns(), selection, selectionArgs, null, null, null);
-		while(curosr.moveToNext()){
-			list.add(typeDao.readEntity(curosr, 0));
+	public List<TreasureType> getSelectTreasureType(String name){
+		List<TreasureType> list=new ArrayList<TreasureType>();
+		
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		qb.where(TreasureTypeDao.Properties.IsChild.eq(true),TreasureTypeDao.Properties.Name.like("%" + name + "%"));//, TreasureTypeDao.Properties.Name.eq());
+		list=qb.list();
+		if(list==null){
+			list=new ArrayList<TreasureType>();
 		}
 		return list;
 	}
