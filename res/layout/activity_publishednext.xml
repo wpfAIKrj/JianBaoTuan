@@ -79,7 +79,7 @@
     layout="@layout/item_identy_select"
 	android:paddingLeft="@dimen/detail_text_padd"
    	android:paddingRight="@dimen/detail_text_padd"
-		  
+		  android:visibility="gone"
     />
     	
     	

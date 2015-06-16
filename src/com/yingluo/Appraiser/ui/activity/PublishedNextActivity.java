@@ -59,6 +59,9 @@ public class PublishedNextActivity extends BaseActivity {
 	@ViewInject(R.id.threed_layout)
 	private LinearLayout threadlayout;
 	
+	
+	@ViewInject(R.id.other_layout)
+	private View other_layout;
 	@ViewInject(R.id.checkBox1)
 	private CheckBox otherbox;
 	
@@ -198,6 +201,7 @@ public class PublishedNextActivity extends BaseActivity {
 			}
 			list=data;
 			issend=true;
+			other_layout.setVisibility(View.VISIBLE);
 			threadlayout.removeAllViews();
 			checkboxs=new CheckBox[data.size()];
 			for (int i = 0; i < data.size(); i++) {
