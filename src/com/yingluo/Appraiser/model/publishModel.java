@@ -71,7 +71,7 @@ public class publishModel extends BaseModel {
 		if(user!=null){
 			user_id=String.valueOf(user.getId());
 		}else{
-			user_id="";
+			user_id=String.valueOf(0);
 		}
 		kind_id=String.valueOf(type.getId());
 		kind_name=type.getName();

@@ -78,7 +78,7 @@ public class getRandomInfoModel extends BaseModel{
 			for (int i = 0; i < array.length(); i++) {
 				UserInfo user=gson.fromJson(array.getString(0), UserInfo.class);
 				users.add(user);
-			lisntenr.onListDataLoaded(users);
+				lisntenr.onListDataLoaded(users);
 			}
 	}
 

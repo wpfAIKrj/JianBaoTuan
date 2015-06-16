@@ -76,6 +76,10 @@ public class PublishedNextActivity extends BaseActivity {
 	private String[] imageAll=new String[3];//全景图片路径
 	private String[] imageTest=new String[3];//特写图片路径
 
+	@ViewInject(R.id.send_identy)
+	private Button sendbt;
+	
+	private boolean issend=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -117,6 +121,7 @@ public class PublishedNextActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.send_identy://发表宝贝
+			if(issend){
 			if(select_user!=(-1)){
 				context=ed_info.getText().toString();
 				if(context!=null&&!context.isEmpty()){
@@ -126,6 +131,9 @@ public class PublishedNextActivity extends BaseActivity {
 				}
 			}else{
 				new ToastUtils(PublishedNextActivity.this, R.string.help_msg_10);
+			}
+			}else{
+				new ToastUtils(PublishedNextActivity.this, "很抱歉，暂时改类宝贝下没有鉴定师，我们会尽快处理的！");
 			}
 			break;
 			default:
@@ -189,6 +197,7 @@ public class PublishedNextActivity extends BaseActivity {
 				dialog.dismiss();
 			}
 			list=data;
+			issend=true;
 			threadlayout.removeAllViews();
 			checkboxs=new CheckBox[data.size()];
 			for (int i = 0; i < data.size(); i++) {
@@ -210,6 +219,7 @@ public class PublishedNextActivity extends BaseActivity {
 			if(dialog!=null){
 				dialog.dismiss();
 			}
+			issend=false;
 			new ToastUtils(PublishedNextActivity.this, errorMsg);
 		}
 	};
