@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.presenter;
 
 import com.yingluo.Appraiser.bean.ContentInfo;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.getdetailInfoModel;
 /**

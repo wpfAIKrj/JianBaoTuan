@@ -10,8 +10,8 @@ import com.qiniu.android.http.ResponseInfo;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.UpLoadFileInterface;
-import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
 import com.yingluo.Appraiser.utils.UploadUtils;
 

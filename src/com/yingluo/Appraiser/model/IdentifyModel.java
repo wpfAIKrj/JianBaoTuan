@@ -20,11 +20,17 @@ import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
+import com.yingluo.Appraiser.inter.OnListDataLoadListener;
+import com.yingluo.Appraiser.presenter.collectInfoPresenter;
 
 public class IdentifyModel extends BaseModel {
 
 	private List<CollectionTreasure> list = null;
-
+	private long kind_id;
+	private OnListDataLoadListener<CollectionTreasure> lis;
+	private int type;
+	
+	
 	public IdentifyModel() {
 		// TODO Auto-generated constructor stub
 		httpmodel = HttpMethod.GET;
@@ -39,6 +45,15 @@ public class IdentifyModel extends BaseModel {
 		url = sb.toString();
 	}
 
+	public void getIdentity(long kind_id, int type,
+			OnListDataLoadListener<CollectionTreasure> lis) {
+		// TODO Auto-generated method stub
+		this.kind_id=kind_id;
+		this.type=type;
+		this.lis=lis;
+		addRequestParams();
+		sendHttp();
+	}
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
@@ -49,9 +64,15 @@ public class IdentifyModel extends BaseModel {
 			LogUtils.i("ytmdfdw" + "get identify data:" + data);
 			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());
+			if(lis!=null){
+				lis.onListDataLoaded((ArrayList<CollectionTreasure>) list);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			if(lis!=null){
+				lis.onListDataLoadErrorHappened("-1", "Json error");
+			}
 		}
 
 	}
@@ -59,13 +80,18 @@ public class IdentifyModel extends BaseModel {
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
-
+		StringBuffer sb = new StringBuffer(url);
+		sb.append("&status=").append(type);
+		sb.append("&group_id=").append(kind_id);
+		url=sb.toString();
 	}
 
 	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
-
+		if(lis!=null){
+			lis.onListDataLoadErrorHappened(error, msg);
+		}
 	}
 
 	/**
@@ -155,5 +181,7 @@ public class IdentifyModel extends BaseModel {
 		}
 		return list;
 	}
+
+	
 
 }

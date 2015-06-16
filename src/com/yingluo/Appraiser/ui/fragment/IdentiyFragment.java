@@ -1,5 +1,6 @@
 package com.yingluo.Appraiser.ui.fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,11 +22,15 @@ import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.inter.onBasicView;
+import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
+import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
+import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
@@ -44,7 +49,7 @@ public class IdentiyFragment extends BaseFragment implements
 
 	IdentiyAdapter mAdapter = null;
 
-	IdentifyModel model = null;
+	
 
 	int type = 1;
 
@@ -55,6 +60,12 @@ public class IdentiyFragment extends BaseFragment implements
 	ItApplication app;
 
 	private int kindId= 0;
+	
+	private IdentifyPresenter identifyPresenter;
+
+
+
+	
 
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
@@ -74,11 +85,16 @@ public class IdentiyFragment extends BaseFragment implements
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
 			if (app != null) {
+				if(kindId==0){
 				if (app.getHasIdentify() != null) {
 					list = app.getHasIdentify();
 					mAdapter.setData(list);
 				} else {
 					// 联网下载
+					identifyPresenter.getIdentity(kindId, type);
+				}
+				}else{
+					identifyPresenter.getIdentity(kindId, type);
 				}
 			}
 
@@ -93,11 +109,16 @@ public class IdentiyFragment extends BaseFragment implements
 			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
 			if (app != null) {
+				if(kindId==0){
 				if (app.getUnIdentify() != null) {
 					list = app.getUnIdentify();
 					mAdapter.setData(list);
 				} else {
 					// 联网下载
+					identifyPresenter.getIdentity(kindId, type);
+				}
+				}else{
+					identifyPresenter.getIdentity(kindId, type);
 				}
 			}
 		}
@@ -116,7 +137,7 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
-		model = new IdentifyModel();
+		identifyPresenter=new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
 		app = (ItApplication) getActivity().getApplication();
 		list = app.getHasIdentify();
@@ -124,10 +145,8 @@ public class IdentiyFragment extends BaseFragment implements
 
 			mAdapter.setData(list);
 		}
-
 		prrv.setRefreshLoadMoreListener(this);
 		prrv.setVertical();
-
 		prrv.setAdapter(mAdapter);
 		// prrv.refresh();
 
@@ -181,29 +200,8 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onRefresh() {
 		// TODO Auto-generated method stub
 		// current_page++;
-		model.sendHttp(new CommonCallBack() {
-
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				prrv.stopRefresh();
-				List<CollectionTreasure> result = model.getResult();
-				if (result.size() == 0) {
-					Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
-							.show();
-				}
-				mAdapter.getData().addAll(model.getResult());
-				mAdapter.setData(model.getResult());
-
-			}
-
-			@Override
-			public void onError() {
-				// TODO Auto-generated method stub
-				prrv.stopRefresh();
-
-			}
-		}, type);
+		
+		identifyPresenter.getIdentity(kindId,type);
 
 	}
 
@@ -224,27 +222,29 @@ public class IdentiyFragment extends BaseFragment implements
 			}
 			kindId = treasureType.getId().intValue();
 			// 根据分类id来加载
-			model.sendHttp(new CommonCallBack() {
-
-				@Override
-				public void onSuccess() {
-					// TODO Auto-generated method stub
-					prrv.stopRefresh();
-					List<CollectionTreasure> result = model.getResult();
-					if (result.size() == 0) {
-						Toast.makeText(mActivity, "没有更多数据", Toast.LENGTH_LONG)
-								.show();
-					}
-					mAdapter.setData(model.getResult());
-				}
-
-				@Override
-				public void onError() {
-					// TODO Auto-generated method stub
-					prrv.stopRefresh();
-				}
-			}, type, kindId);
+			identifyPresenter.getIdentity(kindId,type);
 		}
 	}
+
+	private onListView<CollectionTreasure> netlistener1=new onListView<CollectionTreasure>() {
+		
+		@Override
+		public void onSucess(ArrayList<CollectionTreasure> data) {
+			// TODO Auto-generated method stub
+			prrv.stopRefresh();
+			if (data.size() == 0) {
+				new ToastUtils(mActivity, "没有更多数据");
+			}
+			mAdapter.setData(data);
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			prrv.stopRefresh();
+			new ToastUtils(mActivity, errorMsg);
+		}
+	};
+
 
 }

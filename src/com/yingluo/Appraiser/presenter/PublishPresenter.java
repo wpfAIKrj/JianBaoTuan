@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.presenter;
 
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.publishModel;
 /**

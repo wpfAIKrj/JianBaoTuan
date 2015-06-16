@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.qiniu.android.http.ResponseInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.UpLoadFileInterface;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.AttestPersonalModel;

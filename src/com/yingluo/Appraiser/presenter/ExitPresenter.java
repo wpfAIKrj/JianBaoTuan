@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.presenter;
 
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.ExitModel;
 import com.yingluo.Appraiser.model.collectInfoModel;

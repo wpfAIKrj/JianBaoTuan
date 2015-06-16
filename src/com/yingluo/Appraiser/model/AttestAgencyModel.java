@@ -2,7 +2,7 @@ package com.yingluo.Appraiser.model;
 
 import com.lidroid.xutils.http.RequestParams;
 import com.yingluo.Appraiser.config.NetConst;
-import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 
 public class AttestAgencyModel extends BaseModel {
 

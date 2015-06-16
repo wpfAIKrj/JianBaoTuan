@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.getRandomInfoModel;
 /**

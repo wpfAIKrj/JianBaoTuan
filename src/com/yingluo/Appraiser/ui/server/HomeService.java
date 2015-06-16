@@ -11,11 +11,11 @@ import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
-import com.yingluo.Appraiser.presenter.OnListDataLoadListener;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class HomeService extends Service {

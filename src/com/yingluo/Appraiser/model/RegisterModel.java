@@ -9,7 +9,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.im.RongImUtils;
-import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 /**
  * 注册操作
  * @author Administrator

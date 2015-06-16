@@ -57,6 +57,8 @@ public class ActivitySearch extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
+				TreasureType type = adapter.list.get(position);
+				
 				
 			}
 		});

@@ -5,7 +5,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.config.NetConst;
-import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 
 /**
  * 获取文章详情

@@ -1,4 +1,4 @@
-package com.yingluo.Appraiser.presenter;
+package com.yingluo.Appraiser.inter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

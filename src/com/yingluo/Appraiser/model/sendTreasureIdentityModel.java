@@ -16,8 +16,8 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
-import com.yingluo.Appraiser.presenter.OnBasicDataLoadListener;
-import com.yingluo.Appraiser.presenter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
+import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
 
 /**
  * @author ytmfdw 发表对宝贝的鉴定
