@@ -1,5 +1,7 @@
 package com.yingluo.Appraiser.presenter;
 
+import java.util.ArrayList;
+
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
@@ -46,7 +48,7 @@ public class PublishPresenter implements OnBasicDataLoadListener<String>{
 	 * @param imageTest 测试图片
 	 */
 	public void startSendTreasure(UserInfo user, TreasureType type,
-			String context, String[] imageAll, String[] imageTest) {
+			String context, ArrayList<String> imageAll, ArrayList<String> imageTest) {
 		// TODO 自动生成的方法存根
 		model=new publishModel();
 		model.startSendTreasure(user,type,context,imageAll,imageTest,this);

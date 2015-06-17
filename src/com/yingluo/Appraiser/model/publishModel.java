@@ -1,5 +1,7 @@
 package com.yingluo.Appraiser.model;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,9 +33,9 @@ public class publishModel extends BaseModel {
 	private boolean isUploadall=false;
 	private boolean isuoloadfear=false;
 
-	private String[] imageAll;
+	private ArrayList<String> imageAll;
 
-	private String[] imageTest;
+	private ArrayList<String> imageTest;
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub
@@ -60,7 +62,7 @@ public class publishModel extends BaseModel {
 
 	
 	public void startSendTreasure(UserInfo user, TreasureType type,
-			String context, String[] imageAll, String[] imageTest, OnBasicDataLoadListener<String> listener) {
+			String context, ArrayList<String> imageAll, ArrayList<String> imageTest, OnBasicDataLoadListener<String> listener) {
 		// TODO 自动生成的方法存根
 		this.listener=listener;
 		isuoloadfear=false;
@@ -89,20 +91,20 @@ public class publishModel extends BaseModel {
 
 	private void startUploadImage() {
 		// TODO 自动生成的方法存根
-		if(imageAll!=null&&imageAll.length>0){
-			startuploadImageAll(imageAll, 0);	
+		if(imageAll!=null&&imageAll.size()>0){
+			startuploadImageAll(0);	
 		}else{
-			if(imageTest!=null&&imageTest.length>0){
-				startuploadImagefear(imageTest,0);	
+			if(imageTest!=null&&imageTest.size()>0){
+				startuploadImagefear(0);	
 			}else{
 				startSend();
 			}
 		}
 	}
 
-	private void startuploadImageAll(final String[] imagepath, final int index) {
+	private void startuploadImageAll( final int index) {
 		// TODO 自动生成的方法存根
-		String path=imagepath[index];
+		String path=imageAll.get(index);
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
 			@Override
@@ -122,14 +124,14 @@ public class publishModel extends BaseModel {
 				// TODO 自动生成的方法存根
 				if(arg2!=null){
 					try {
-						imagepath[index] = arg2.getString(NetConst.UPKEY);
+						allsb.append(arg2.getString(NetConst.UPKEY)).append(",");
 						int newindex=index+1;
-						if(imagepath.length>newindex){//继续上传上一张
-							startuploadImageAll(imagepath, newindex);
+						if(imageAll.size()>newindex){//继续上传上一张
+							startuploadImageAll(newindex);
 						}else{//上传完毕
 							isUploadall=true;
-							if(imageTest!=null&&imageTest.length>0){
-								startuploadImagefear(imageTest,0);	
+							if(imageTest!=null&&imageTest.size()>0){
+								startuploadImagefear(0);	
 							}else{
 								startSend();
 							}
@@ -147,9 +149,9 @@ public class publishModel extends BaseModel {
 
 	}
 
-	private void startuploadImagefear(final String[] imagepath,final int index) {
+	private void startuploadImagefear(final int index) {
 		// TODO 自动生成的方法存根
-		String path=imagepath[index];
+		String path=imageTest.get(index);
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
 			@Override
@@ -169,10 +171,10 @@ public class publishModel extends BaseModel {
 				// TODO 自动生成的方法存根
 				if(arg2!=null){
 					try {
-						imagepath[index] = arg2.getString(NetConst.UPKEY);
+						fearsb.append(arg2.getString(NetConst.UPKEY)).append(",");
 						int newindex=index+1;
-						if(imagepath.length>newindex){//继续上传上一张
-							startuploadImagefear(imagepath, newindex);
+						if(imageTest.size()>newindex){//继续上传上一张
+							startuploadImagefear(newindex);
 						}else{//上传完毕
 							isuoloadfear=true;
 							startSend();
@@ -192,16 +194,8 @@ public class publishModel extends BaseModel {
 	
 	protected void startSend() {
 		// TODO 自动生成的方法存根
-		for (int i = 0; i < imageAll.length; i++) {
-			String string = imageAll[i];
-			allsb.append(string).append(",");
-		}
+	
 		allsb.deleteCharAt(allsb.length()-1);
-		
-		for (int i = 0; i < imageTest.length; i++) {
-			String str=imageTest[i];
-			fearsb.append(str).append(",");
-		}
 		fearsb.deleteCharAt(fearsb.length()-1);
 		addRequestParams();
 		setHTTPMODE(HttpMethod.POST);

@@ -76,8 +76,8 @@ public class PublishedNextActivity extends BaseActivity {
 	private String context;
 
 	private PublishPresenter mypresenter;
-	private String[] imageAll=new String[3];//全景图片路径
-	private String[] imageTest=new String[3];//特写图片路径
+	private ArrayList<String> imageAll=null;//全景图片路径
+	private ArrayList<String> imageTest=null;//特写图片路径
 
 	@ViewInject(R.id.send_identy)
 	private Button sendbt;
@@ -103,8 +103,8 @@ public class PublishedNextActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		title.setText(R.string.publish_title);
 		type=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
-		imageAll=getIntent().getStringArrayExtra(Const.IMAGEPATH_PANORAMIC);
-		imageTest=getIntent().getStringArrayExtra(Const.IMAGEPATH_FEATURE);
+		imageAll=getIntent().getStringArrayListExtra(Const.IMAGEPATH_PANORAMIC);
+		imageTest=getIntent().getStringArrayListExtra(Const.IMAGEPATH_FEATURE);
 
 	}
 
@@ -248,8 +248,7 @@ public class PublishedNextActivity extends BaseActivity {
 			if(dialog!=null){
 				dialog.dismiss();
 			}
-			setResult(-2, getIntent());
-			finish();
+			new ToastUtils(PublishedNextActivity.this, errorMsg);
 		}
 	};
 

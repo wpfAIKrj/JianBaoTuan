@@ -121,4 +121,6 @@
  	  <string name="help_msg_11">为了帮助我们鉴定你的宝物，请你输入你的宝物详细描述！</string>
  	  <string name="help_msg_12">请选择宝物的种类！</string>
  	  <string name="help_msg_13">请写下你对宝物的分析</string>
+ 	  <string name="help_msg_14">请选择全景图片</string>
+ 	   <string name="help_msg_15">请选择局部图片</string>
 </resources>

@@ -1,5 +1,8 @@
 package com.yingluo.Appraiser.ui.activity;
 
+import java.util.ArrayList;
+
+import android.R.array;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -128,9 +131,31 @@ public class PublishedActivity extends BaseActivity{
 		case R.id.bt_next://下一步
 			if(NetUtils.checkNetWork(this)){
 				if(type!=null){
+					ArrayList<String> alllist=new ArrayList<String>();
+					for (int i = 0; i < imageAll.length; i++) {
+						String path = imageAll[i];
+						if(path!=null){
+							alllist.add(path);
+						}
+					}
+					if(alllist.size()==0){
+						new ToastUtils(this, R.string.help_msg_14);
+						return;
+					}
+					ArrayList<String> testlist=new ArrayList<String>();
+					for (int i = 0; i < imageTest.length; i++) {
+						String path = imageTest[i];
+						if(path!=null){
+							testlist.add(path);
+						}
+					}
+					if(testlist.size()==0){
+						new ToastUtils(this, R.string.help_msg_15);
+						return;
+					}
 					 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
-						intent.putExtra(Const.IMAGEPATH_PANORAMIC, imageAll);
-						intent.putExtra(Const.IMAGEPATH_FEATURE, imageTest);
+						intent.putExtra(Const.IMAGEPATH_PANORAMIC, alllist);
+						intent.putExtra(Const.IMAGEPATH_FEATURE, testlist);
 						intent.putExtra(Const.KIND_ID, type);
 						startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
 				}else{
