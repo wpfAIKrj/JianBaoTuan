@@ -8,10 +8,7 @@
     
      >
 
-    	<include layout="@layout/layout_head"
-    	
-    	   
-    	    />
+    	<include layout="@layout/layout_head"/>
 
     	<TextView
     	    android:id="@+id/textView1"
@@ -79,7 +76,7 @@
     layout="@layout/item_identy_select"
 	android:paddingLeft="@dimen/detail_text_padd"
    	android:paddingRight="@dimen/detail_text_padd"
-		  android:visibility="gone"
+		  android:visibility="visible"
     />
     	
     	
