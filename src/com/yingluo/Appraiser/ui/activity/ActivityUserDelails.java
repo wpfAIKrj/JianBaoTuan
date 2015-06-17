@@ -510,7 +510,8 @@ public class ActivityUserDelails extends BaseActivity {
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(requestCode==Const.TO_MY_INDENTITY&&resultCode==RESULT_OK){	
-			new ToastUtils(this, "发表评论成功！");
+			new ToastUtils(this, "发表鉴定成功！");
+			infoModel.getInfoTreasure(entity.getTreasure_id());
 		}
 		
 	};

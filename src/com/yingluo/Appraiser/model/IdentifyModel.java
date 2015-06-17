@@ -89,6 +89,12 @@ public class IdentifyModel extends BaseModel {
 	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
+		if(error.equals(String.valueOf(NetConst.CODE_ERROR16))){
+			if(lis!=null){
+				lis.onListDataLoaded(new ArrayList<CollectionTreasure>());
+			}
+			return;
+		}
 		if(lis!=null){
 			lis.onListDataLoadErrorHappened(error, msg);
 		}

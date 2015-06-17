@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
+import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
@@ -48,27 +50,31 @@ RefreshLoadMoreListener{
 	private TextView home_title;
 
 
-	int type = 1;
+	int type = 2;
 
 	int current_page = 0;
 
 	private List<CollectionTreasure> list = null;
 
-	ItApplication app;
+	
 
 	private int kindId= 0;
 	
 	private IdentifyPresenter identifyPresenter;
 	private TreasureType treasuretype;
 	
+	private boolean isFirest=true;
+	
+	private Dialog dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		treasuretype=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
 		if(treasuretype==null){
-			setResult(RESULT_CANCELED, getIntent());
-			finish();
+			kindId=0;
+		}else{
+			kindId=treasuretype.getId().intValue();
 		}
 		setContentView(R.layout.layout_identiy);
 		ViewUtils.inject(this);
@@ -76,12 +82,10 @@ RefreshLoadMoreListener{
 	}
 	
 	protected void initViews() {
-		kindId=treasuretype.getId().intValue();
 		home_title.setText(treasuretype.name);
 		identifyPresenter=new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
-		app = (ItApplication)getApplication();
-		list = app.getHasIdentify();
+		list = new ArrayList<CollectionTreasure>();
 		if (list != null && list.size() != 0) {
 
 			mAdapter.setData(list);
@@ -98,27 +102,53 @@ RefreshLoadMoreListener{
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
 			// TODO Auto-generated method stub
+			isFirest=false;
 			prrv.stopRefresh();
 			if (data.size() == 0) {
 				new ToastUtils(SearchActivity.this, "没有更多数据");
 			}
 			mAdapter.setData(data);
+			if(dialog!=null&&dialog.isShowing()){
+				dialog.dismiss();
+			}
 		}
 		
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
 			prrv.stopRefresh();
+			if(dialog!=null&&dialog.isShowing()){
+				dialog.dismiss();
+			}
 			new ToastUtils(SearchActivity.this, errorMsg);
 		}
 	};
+	
+	 	@Override
+	    protected void onResume() {
+	    	// TODO Auto-generated method stub
+	    	super.onResume();
+	    	if(isFirest){
+	    		getIndentity();
+	    	}
+	    }
+	
+
 	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
 		// current_page++;
-		
-		identifyPresenter.getIdentity(kindId,type);
+		getIndentity();
 
+	}
+
+	private void getIndentity() {
+		// TODO Auto-generated method stub
+		if(dialog==null){
+			dialog=DialogUtil.createLoadingDialog(this, "获取鉴定宝物中....");
+		}
+		dialog.show();
+		identifyPresenter.getIdentity(kindId,type);
 	}
 
 	@Override
@@ -165,7 +195,7 @@ RefreshLoadMoreListener{
 		setIdentifyBackground(v.getId());
 		switch (v.getId()) {
 		case R.id.button_category: {
-			setResult(RESULT_OK, getIntent());
+			setResult(RESULT_CANCELED, getIntent());
 			finish();
 		}
 			break;
@@ -175,19 +205,8 @@ RefreshLoadMoreListener{
 			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
-			if (app != null) {
-				if(kindId==0){
-				if (app.getHasIdentify() != null) {
-					list = app.getHasIdentify();
-					mAdapter.setData(list);
-				} else {
-					// 联网下载
-					identifyPresenter.getIdentity(kindId, type);
-				}
-				}else{
-					identifyPresenter.getIdentity(kindId, type);
-				}
-			}
+	
+			getIndentity();
 
 		}
 
@@ -198,20 +217,8 @@ RefreshLoadMoreListener{
 			type = 2;
 			prrv.stopRefresh();
 			prrv.setLoadMoreCompleted();
-			Log.i("ytmfdw", "get identifed");
-			if (app != null) {
-				if(kindId==0){
-				if (app.getUnIdentify() != null) {
-					list = app.getUnIdentify();
-					mAdapter.setData(list);
-				} else {
-					// 联网下载
-					identifyPresenter.getIdentity(kindId, type);
-				}
-				}else{
-					identifyPresenter.getIdentity(kindId, type);
-				}
-			}
+			getIndentity();
+	
 		}
 
 			break;

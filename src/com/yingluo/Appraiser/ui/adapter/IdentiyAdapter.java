@@ -40,12 +40,7 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 	}
 
 	public void setData(List<CollectionTreasure> list) {
-		if (this.hots == null) {
-			this.hots = list;
-		} else {
-			this.hots.clear();
-			this.hots.addAll(list);
-		}
+		this.hots=list;
 		notifyDataSetChanged();
 	}
 
