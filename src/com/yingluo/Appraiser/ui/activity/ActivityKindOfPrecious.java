@@ -51,6 +51,9 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
+			if(first.size()==0){
+				return;
+			}
 			mAdapter.setVisibleLevel(0);
 //			mAdapter.notifyDataSetChanged();
 			
@@ -76,6 +79,9 @@ public class ActivityKindOfPrecious extends Activity {
 		setContentView(R.layout.layout_kind_of_precious);
 		ViewUtils.inject(this);
 		first = SqlDataUtil.getInstance().getTreasureType();
+		if(first.size()==0){
+			return;
+		}
 		LogUtils.d("获取所有分类：" + first.size());
 		try {
 			mAdapter = new SimpleTreeAdapter<TreasureType>(treeView, this,

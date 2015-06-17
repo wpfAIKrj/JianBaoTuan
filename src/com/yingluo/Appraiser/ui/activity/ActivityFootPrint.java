@@ -1,8 +1,10 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,9 +13,13 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.ContentInfo;
+import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
+import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
@@ -29,9 +35,25 @@ public class ActivityFootPrint extends Activity implements
 	@ViewInject(R.id.iv_loading)
 	ImageView iv_loading;
 
-	IdentiyAdapter mAdapter = null;
+	MyFootAdapter mAdapter = null;
 
 	getMyFootPrintsModel model = null;
+	private OnClickListener onarcitilis=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO 自动生成的方法存根
+			
+			CollectionTreasure treasure=(CollectionTreasure) v.getTag();
+			
+			ContentInfo contentInfo=new ContentInfo();
+			contentInfo.setId(treasure.article_id);
+			Intent intent = new Intent(ActivityFootPrint.this,
+					InformationDetailsActivity.class);
+			intent.putExtra(Const.ArticleId, contentInfo);
+			startActivity(intent);
+		}
+	};
 
 	@OnClick({ R.id.btn_back })
 	public void doClick(View view) {
@@ -53,7 +75,7 @@ public class ActivityFootPrint extends Activity implements
 		setContentView(R.layout.layout_foot_print);
 		ViewUtils.inject(this);
 		model = new getMyFootPrintsModel();
-		mAdapter = new IdentiyAdapter();
+		mAdapter = new MyFootAdapter(onarcitilis);
 
 		prrv.setRefreshLoadMoreListener(this);
 		prrv.setVertical();

@@ -50,9 +50,23 @@ public class CollectionTreasure implements Serializable {
 	
 	public TreasureType kind;
 	
+	@SerializedName("type")
+	public int type;
+	
 	@SerializedName("status")
 	public int status;
+	
 	public boolean isCollected;
+	
+	
+	@SerializedName("article_id")
+	public long article_id;
+	
+	
+	@SerializedName("msg")
+	public String msg;
+	
+	
 	
 	public CollectionTreasure() {
 		super();
@@ -293,6 +307,42 @@ public class CollectionTreasure implements Serializable {
 
 	public void setCollected(boolean isCollected) {
 		this.isCollected = isCollected;
+	}
+
+
+
+	public int getType() {
+		return type;
+	}
+
+
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+
+
+	public long getArticle_id() {
+		return article_id;
+	}
+
+
+
+	public void setArticle_id(long article_id) {
+		this.article_id = article_id;
+	}
+
+
+
+	public String getMsg() {
+		return msg;
+	}
+
+
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 	
