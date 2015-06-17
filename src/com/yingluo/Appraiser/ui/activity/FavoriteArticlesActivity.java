@@ -112,6 +112,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	@ViewInject(R.id.all_checkbox)
 	private CheckBox allcheckbox;
 	
+	private boolean isFirest=true;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -122,6 +123,15 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		initData();
 	}
 
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if(isFirest){
+			onRefresh();
+		}
+	}
 	protected void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.collect_info_title);
@@ -158,11 +168,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 
 	protected void initData() {
 		// TODO Auto-generated method stub
-//		madapter=new ArticleAdapter(this,list);
-//		mlistview.setAdapter(madapter);
-//		mlistview.setXListViewListener(this);
-//		mlistview.setOnItemClickListener(this);
-		
+
 		deleteInfos=new HashMap<String, Integer>();
 	}
 

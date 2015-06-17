@@ -78,13 +78,15 @@ public class ActivityMyPrecious extends Activity {
 //		model.setType(Const.IDENTIFY);
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
+			btn_delete.setVisibility(View.GONE);
 		} else if (type == Const.COLLECT) {
 
 			title.setText("收藏宝物");
-			btn_delete.setVisibility(View.VISIBLE);
+			btn_delete.setVisibility(View.GONE);
 		} else if (type == Const.IDENTIFY) {
 
 			title.setText("我的鉴定");
+			btn_delete.setVisibility(View.GONE);
 		}
 		btn_all.setOnClickListener(listener);
 		btn_ing.setOnClickListener(listener);

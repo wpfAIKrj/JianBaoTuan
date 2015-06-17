@@ -36,6 +36,7 @@ import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.presenter.getUserInfoLPresenter;
 import com.yingluo.Appraiser.ui.activity.ActivityFootPrint;
 import com.yingluo.Appraiser.ui.activity.ActivityMyPrecious;
+import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.ui.activity.AuthenticateActivity;
 import com.yingluo.Appraiser.ui.activity.FavoriteArticlesActivity;
 import com.yingluo.Appraiser.ui.activity.IMListActivity;
@@ -333,7 +334,10 @@ public class MyFragment extends BaseFragment{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
+			CollectionTreasure entity=(CollectionTreasure) v.getTag();
+			Intent mIntent = new Intent(mActivity, ActivityUserDelails.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			mActivity.startActivity(mIntent);
 		}
 	};
 }
