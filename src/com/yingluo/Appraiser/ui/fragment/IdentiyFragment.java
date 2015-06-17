@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
+import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
@@ -51,7 +53,7 @@ public class IdentiyFragment extends BaseFragment implements
 
 	
 
-	int type = 1;
+	int type = 2;
 
 	int current_page = 0;
 
@@ -63,7 +65,7 @@ public class IdentiyFragment extends BaseFragment implements
 	
 	private IdentifyPresenter identifyPresenter;
 
-
+	private Dialog dialog;
 
 	
 
@@ -91,10 +93,10 @@ public class IdentiyFragment extends BaseFragment implements
 					mAdapter.setData(list);
 				} else {
 					// 联网下载
-					identifyPresenter.getIdentity(kindId, type);
+					getIndentity();
 				}
 				}else{
-					identifyPresenter.getIdentity(kindId, type);
+					getIndentity();
 				}
 			}
 
@@ -115,10 +117,10 @@ public class IdentiyFragment extends BaseFragment implements
 					mAdapter.setData(list);
 				} else {
 					// 联网下载
-					identifyPresenter.getIdentity(kindId, type);
+					getIndentity();
 				}
 				}else{
-					identifyPresenter.getIdentity(kindId, type);
+					getIndentity();
 				}
 			}
 		}
@@ -155,7 +157,7 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
-
+		getIndentity();
 	}
 
 	@Override
@@ -201,7 +203,7 @@ public class IdentiyFragment extends BaseFragment implements
 		// TODO Auto-generated method stub
 		// current_page++;
 		
-		identifyPresenter.getIdentity(kindId,type);
+		getIndentity();
 
 	}
 
@@ -221,8 +223,7 @@ public class IdentiyFragment extends BaseFragment implements
 				return;
 			}
 			kindId = treasureType.getId().intValue();
-			// 根据分类id来加载
-			identifyPresenter.getIdentity(kindId,type);
+			getIndentity();
 		}
 	}
 
@@ -236,15 +237,31 @@ public class IdentiyFragment extends BaseFragment implements
 				new ToastUtils(mActivity, "没有更多数据");
 			}
 			mAdapter.setData(data);
+			if(dialog!=null&&dialog.isShowing()){
+				dialog.dismiss();
+			}
 		}
 		
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
 			prrv.stopRefresh();
+			if(dialog!=null&&dialog.isShowing()){
+				dialog.dismiss();
+			}
 			new ToastUtils(mActivity, errorMsg);
 		}
 	};
+
+	
+	private void getIndentity() {
+		// TODO Auto-generated method stub
+		if(dialog==null){
+			dialog=DialogUtil.createLoadingDialog(mActivity, "获取鉴定宝物中....");
+		}
+		dialog.show();
+		identifyPresenter.getIdentity(kindId,type);
+	}
 
 
 }
