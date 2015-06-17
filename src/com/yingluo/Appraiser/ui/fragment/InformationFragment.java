@@ -212,11 +212,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 			addList(data);
 		}
 		if(currt==ListLoadType.Refresh){//刷新
-			
-			if(!data.isEmpty()){
-				list.clear();
-				addList(data);
-			}
+			list=data;
 		}
 		madapter.setListData(list);
 		currt=ListLoadType.Nomal;
@@ -246,17 +242,16 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	 */
 	public void addList(ArrayList<ContentInfo> data) {
 		// TODO Auto-generated method stub
-//		if(list.size()==0){
-//			list.addAll(data);
-//		}else {
-//			for (int i = 0; i < data.size(); i++) {
-//				if(!list.contains(data.get(i))){
-//					list.add(data.get(i));
-//				}
-//			}
-//		}
-		list.clear();
-		list.addAll(data);
+		if(list.size()==0){
+			list.addAll(data);
+		}else {
+			for (int i = 0; i < data.size(); i++) {
+				if(!list.contains(data.get(i))){
+					list.add(data.get(i));
+				}
+			}
+		}
+		
 	}
 	OnScrollListener Scrolllistener=new OnScrollListener() {
 
