@@ -42,7 +42,8 @@ public class ActivityKindOfPrecious extends Activity {
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.btn_back:
-			onBackPressed();
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
 			break;
 		case R.id.layout_search: {
 			Intent mIntent = new Intent(ActivityKindOfPrecious.this,
@@ -56,7 +57,9 @@ public class ActivityKindOfPrecious extends Activity {
 			}
 			mAdapter.setVisibleLevel(0);
 //			mAdapter.notifyDataSetChanged();
-			
+			Intent mIntent = getIntent();
+			setResult(Activity.RESULT_OK, mIntent);
+			finish();
 		}
 			break;
 

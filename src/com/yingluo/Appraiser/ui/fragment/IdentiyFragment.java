@@ -220,9 +220,10 @@ public class IdentiyFragment extends BaseFragment implements
 		if (requestCode == Const.TO_INDENTIFY&&resultCode==Activity.RESULT_OK) {
 			TreasureType treasureType=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
 			if(treasureType==null){
-				return;
+				kindId=0;
+			}else{
+				kindId = treasureType.getId().intValue();
 			}
-			kindId = treasureType.getId().intValue();
 			getIndentity();
 		}
 	}
