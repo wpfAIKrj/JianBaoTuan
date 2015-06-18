@@ -5,10 +5,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/banner_fl"
         android:layout_width="match_parent"
-        android:layout_height="150dp" >
+        android:layout_height="@dimen/x300" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/baner"
@@ -19,8 +19,12 @@
             android:id="@+id/llPoints"
             style="@style/w_wrap_h_wrap"
             android:layout_gravity="bottom|right"
-            android:orientation="horizontal" >
+            android:orientation="horizontal" 
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/y30"
+            >
         </LinearLayout>
-    </FrameLayout>
+    </RelativeLayout>
 
 </LinearLayout>

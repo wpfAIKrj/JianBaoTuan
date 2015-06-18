@@ -91,8 +91,6 @@ public class ViewChoices extends LinearLayout  {
 		ViewUtils.inject(this);
 		iv_big.setClickable(true);
 		iv_small.setClickable(true);
-
-
 	}
 
 	public void setItem(CollectionTreasure item) {

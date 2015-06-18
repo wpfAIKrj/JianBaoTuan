@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
+   
     android:background="@color/wite"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
@@ -40,6 +40,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/y20"
             android:layout_marginTop="@dimen/y20" />
+         <View 
+            android:layout_marginTop="@dimen/y20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@drawable/item_layout_padd"
+            />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/x340"
-    android:layout_height="@dimen/y468"
+    android:layout_height="wrap_content"
     android:background="@drawable/item_big_stroke"
     android:orientation="vertical" 
     android:id="@+id/layout_treasurs"
@@ -10,11 +10,11 @@
 
     <ImageView
         android:id="@+id/imageview_big_icon"
-        android:layout_width="@dimen/x339"
-        android:layout_height="@dimen/y347"
+        android:layout_width="@dimen/x340"
+        android:layout_height="@dimen/y348"
         android:layout_marginLeft="@dimen/x1"
-        android:layout_marginRight="@dimen/x1"
         android:layout_marginTop="@dimen/y1"
+        android:layout_marginRight="@dimen/x1"
         android:scaleType="fitXY"
         android:src="@drawable/test2" />
 

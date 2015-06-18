@@ -5,12 +5,9 @@
     android:background="@color/layout_bg_color"
     android:orientation="vertical" >
 
-    <LinearLayout
-        style="@style/w_full_h_wrap"
-        android:orientation="vertical" >
 
-        <include layout="@layout/layout_home_head" />
-    </LinearLayout>
+     <include layout="@layout/layout_home_head" />
+
 
     <ScrollView
         android:id="@+id/scrollview"
@@ -19,7 +16,7 @@
         <LinearLayout
             android:id="@+id/linearlayout_body"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
 
             <include layout="@layout/layout_home_body" />

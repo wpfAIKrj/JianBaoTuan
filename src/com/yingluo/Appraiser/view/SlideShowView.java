@@ -171,7 +171,7 @@ public class SlideShowView extends FrameLayout {
 
 			ImageView dotView = new ImageView(context);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					30, 30);
+					(int)getResources().getDimension(R.dimen.x16), (int)getResources().getDimension(R.dimen.x16));
 			params.leftMargin = 10;
 			params.rightMargin = 10;
 			params.bottomMargin = 20;

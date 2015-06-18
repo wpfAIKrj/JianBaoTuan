@@ -20,24 +20,33 @@
             android:layout_height="fill_parent"
             android:layout_weight="1.0" />
     </LinearLayout>
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/tab_line_color"
+        android:layout_above="@+id/tab_widget"
+        />
      <com.yingluo.Appraiser.view.MyTabWidget
         android:id="@+id/tab_widget"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true" 
+      
+        />
 
     <Button
         android:id="@+id/circle_btn"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/y88"
+        android:layout_height="@dimen/y88"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/selector_btn_bk"
         android:gravity="center"
-        android:layout_marginBottom="3dp"
+    
+        android:layout_marginBottom="@dimen/y6"
         android:text="我要\n鉴定"
         android:textColor="@color/wite"
-        android:textSize="12sp" />
+        android:textSize="@dimen/x20" />
 
 </RelativeLayout>
