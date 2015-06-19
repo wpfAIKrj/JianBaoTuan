@@ -6,7 +6,7 @@
 
     <com.yingluo.Appraiser.view.CircleImageView
         android:id="@+id/iv_head"
-        android:layout_width="@dimen/x168"
+        android:layout_width="@dimen/y168"
         android:layout_height="@dimen/y168"
         android:src="@drawable/test_x6" />
 
@@ -29,7 +29,7 @@
             android:id="@+id/tv_identify_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y7"
+          	 android:layout_marginTop="@dimen/y7"
             android:text="权威机构鉴定师"
             android:textColor="@color/home_head_color"
             android:textSize="@dimen/x26" />
@@ -38,7 +38,7 @@
             android:id="@+id/tv_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/y7"
+             android:layout_marginTop="@dimen/y7"
             android:text="擅长海南黄花梨，小叶紫檀，翡翠玉石等鉴定"
             android:textColor="@color/black_2"
             android:textSize="@dimen/x22" />

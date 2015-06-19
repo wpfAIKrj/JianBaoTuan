@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:text="@string/str_know_people"
             android:textColor="@color/black_2"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x36" />
     </RelativeLayout>
 
     <LinearLayout

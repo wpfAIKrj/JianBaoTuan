@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/y20"
         android:background="@drawable/home_menu_back" >
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:text="@string/str_article"
             android:textColor="@color/black_2"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x36" />
     </RelativeLayout>
 
     <LinearLayout

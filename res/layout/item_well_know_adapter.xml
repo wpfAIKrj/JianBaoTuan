@@ -6,12 +6,12 @@
     android:layout_centerInParent="true"
     android:layout_gravity="center"
     android:gravity="center"
-    android:minWidth="@dimen/x120"
+    android:minWidth="@dimen/y120"
     android:orientation="vertical" >
 
     <com.yingluo.Appraiser.view.CircleImageView
         android:id="@+id/iv"
-        android:layout_width="@dimen/x102"
+        android:layout_width="@dimen/y102"
         android:layout_height="@dimen/y102" />
 
 </LinearLayout>

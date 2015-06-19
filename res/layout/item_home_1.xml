@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/x340"
-    android:layout_height="@dimen/y567"
+    android:layout_height="wrap_content"
     android:background="@drawable/item_big_stroke"
     android:orientation="vertical" >
 
@@ -52,7 +52,7 @@
         android:id="@+id/tv_info"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y46"
-        android:background="#FFDFDFDF"
+        android:background="#DFDFDF"
         android:gravity="center_vertical"
         android:text="帮帮忙看看橄榄怎么样？"
         android:textColor="@color/black_2"
@@ -69,8 +69,8 @@
 
         <ImageView
             android:id="@+id/imageview_small_icon"
-            android:layout_width="@dimen/x80"
-            android:layout_height="@dimen/y80"
+            android:layout_width="@dimen/x82"
+            android:layout_height="@dimen/x82"
             android:background="@drawable/item_small_stroke"
             android:scaleType="fitXY"
             android:src="@drawable/test_x6" />
@@ -83,8 +83,8 @@
 
             <ImageView
                 android:id="@+id/imageview_grade"
-                android:layout_width="@dimen/x40"
-                android:layout_height="@dimen/y40"
+                android:layout_width="@dimen/x34"
+                android:layout_height="@dimen/x34"
                 android:layout_gravity="left|bottom"
                 android:scaleType="fitXY"
                 android:src="@drawable/level01" />
