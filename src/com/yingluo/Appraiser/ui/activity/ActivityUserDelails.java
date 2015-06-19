@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -442,22 +443,26 @@ public class ActivityUserDelails extends BaseActivity {
 	protected void showTreasureImage() {
 		// TODO Auto-generated method stub
 		imageslayout.removeAllViews();
+		LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+				(int) getResources().getDimension(R.dimen.y500));
+		params.topMargin=(int) getResources().getDimension(R.dimen.y20);
 		if(entity.images1!=null&&entity.images1.length>0){
 			for (int i = 0; i < entity.images1.length; i++) {
+				
 				ImageViewWithBorder image=new ImageViewWithBorder(this);
-				LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT,
-						(int) getResources().getDimension(R.dimen.y500));
 				image.setLayoutParams(params);
+				image.setBackgroundResource(R.drawable.item_small_stroke);
 				bitmapUtils.display(image, entity.images1[i]);
 				imageslayout.addView(image);
+				
 			}
 		}
 		if(entity.images2!=null&&entity.images2.length>0){
 			for (int i = 0; i < entity.images1.length; i++) {
+		
 				ImageViewWithBorder image=new ImageViewWithBorder(this);
-				LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT,
-						(int) getResources().getDimension(R.dimen.y500));
 				image.setLayoutParams(params);
+				image.setBackgroundResource(R.drawable.item_small_stroke);
 				bitmapUtils.display(image, entity.images2[i]);
 				imageslayout.addView(image);
 			}
@@ -481,10 +486,13 @@ public class ActivityUserDelails extends BaseActivity {
 	protected void addOtherTreasure() {
 		// TODO Auto-generated method stub
 		treasurelayout.removeAllViews();
+		
 		if(infoModel.otherTreasure!=null&&infoModel.otherTreasure.size()>0){
+			LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(treasurelayout.getMeasuredWidth()/2, LinearLayout.LayoutParams.WRAP_CONTENT);
+			params.rightMargin=5;
+			params.leftMargin=5;
 			for (int i = 0; i < infoModel.otherTreasure.size(); i++) {
 				ViewOtherTreasure view=new ViewOtherTreasure(this);
-				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(treasurelayout.getMeasuredWidth()/2, LinearLayout.LayoutParams.WRAP_CONTENT);
 				view.setLayoutParams(params);
 				view.setItem(infoModel.otherTreasure.get(i));
 				treasurelayout.addView(view);

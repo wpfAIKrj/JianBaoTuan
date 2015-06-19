@@ -22,14 +22,15 @@ public class ImageViewWithBorder extends ImageView {
 
 	public ImageViewWithBorder(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		TypedArray a = context.obtainStyledAttributes(attrs,
-				R.styleable.ImageViewWithBorder);
-		int width = a.getDimensionPixelSize(0, 1);
-		setBorderWidth(width);
-		int color = a.getColor(1,
-				getResources().getColor(R.color.item_space_color));
-		setColour(color);
-		a.recycle();
+//		TypedArray a = context.obtainStyledAttributes(attrs,
+//				R.styleable.ImageViewWithBorder);
+//		int width = a.getDimensionPixelSize(0, 1);
+//		setBorderWidth(width);
+//		int color = a.getColor(1,
+//				getResources().getColor(R.color.item_space_color));
+//		setColour(color);
+//		a.recycle();
+		
 
 	}
 
@@ -51,16 +52,16 @@ public class ImageViewWithBorder extends ImageView {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		// 画边框
-		Rect rec = canvas.getClipBounds();
-		rec.bottom--;
-		rec.right--;
-		Paint paint = new Paint();
-		// 设置边框颜色
-		paint.setColor(co);
-		paint.setStyle(Paint.Style.STROKE);
-		// 设置边框宽度
-		paint.setStrokeWidth(borderwidth);
-		canvas.drawRect(rec, paint);
+//		// 画边框
+//		Rect rec = canvas.getClipBounds();
+//		rec.bottom--;
+//		rec.right--;
+//		Paint paint = new Paint();
+//		// 设置边框颜色
+//		paint.setColor(co);
+//		paint.setStyle(Paint.Style.STROKE);
+//		// 设置边框宽度
+//		paint.setStrokeWidth(borderwidth);
+//		canvas.drawRect(rec, paint);
 	}
 }

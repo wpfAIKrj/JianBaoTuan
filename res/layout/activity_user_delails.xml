@@ -30,26 +30,27 @@
                 >
                 
             </LinearLayout>
-    <!--       <com.yingluo.Appraiser.view.ImageViewWithBorder
-                android:id="@+id/iv_0"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y500"
-                android:scaleType="fitXY"
-                android:src="@drawable/test_xc8" />
-
-            <com.yingluo.Appraiser.view.ImageViewWithBorder
-                android:id="@+id/iv_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y500"
-                android:layout_marginTop="@dimen/y20"
-                android:scaleType="fitXY"
-                android:src="@drawable/test_xc8" />
-      --> 
-
+             <View 
+            android:layout_marginTop="@dimen/y20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@drawable/item_layout_padd"
+            />
             <include layout="@layout/layout_user_delais_similar_item" />
-
+ 		<View 
+            android:layout_marginTop="@dimen/y20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@drawable/item_layout_padd"
+            />
             <include layout="@layout/layout_user_delais_identify_result"  
                 />
+             <View 
+            android:layout_marginTop="@dimen/y20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@drawable/item_layout_padd"
+            />
             <include layout="@layout/layout_treasure__comment"/>
         </LinearLayout>
     </ScrollView>

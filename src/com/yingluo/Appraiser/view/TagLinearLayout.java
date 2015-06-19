@@ -11,6 +11,7 @@ import com.yingluo.Appraiser.utils.SqlDataUtil;
 import de.greenrobot.dao.internal.SqlUtils;
 import android.R.integer;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -75,6 +76,8 @@ public class TagLinearLayout extends ViewGroup {
 		
 		setMeasuredDimension((widthMode==MeasureSpec.EXACTLY)?widthsize:width,
 				(hightMode==MeasureSpec.EXACTLY)?hightsize:height);
+		
+		
 	}
 	
 	
@@ -82,17 +85,12 @@ public class TagLinearLayout extends ViewGroup {
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		// TODO 自动生成的方法存根
 		int left=0;
-		int top=0;
-		int right=0;
-		int bottom=0;
+		int top=(int)getResources().getDimension(R.dimen.y20);
 		int count=getChildCount();
 		for (int i = 0; i < count; i++) {
 			View child=getChildAt(i);
-
-			right=left+child.getMeasuredWidth();
-			bottom=child.getMeasuredHeight();
-			child.layout(left, top, right, bottom);
-			left=left+child.getMeasuredWidth()+20;
+			child.layout(left, top, left+child.getMeasuredWidth(), top+child.getMeasuredHeight());
+			left=left+child.getMeasuredWidth()+top;
 		}
 	}
 	
@@ -103,7 +101,9 @@ public class TagLinearLayout extends ViewGroup {
 		int tagsize=type.getType();
 		int size=0;
 		int width=0;
-		int onewidth=DensityUtil.dip2px(getContext(),38);
+		int onewidth=(int) getResources().getDimension(R.dimen.x76);
+		int height=(int)getResources().getDimension(R.dimen.y40);
+		int textsize=DensityUtil.px2sp(getContext(), getResources().getDimension(R.dimen.x24));
 		TextView tv;
 		String text=null;
 		ArrayList<TreasureType> list=SqlDataUtil.getInstance().getTreasureTypeByChild(type);
@@ -114,10 +114,11 @@ public class TagLinearLayout extends ViewGroup {
 			size=text.length();
 			width=(size/2)*onewidth+(size%2)*onewidth;
 			tv.setWidth(width);
+			tv.setHeight(height);
 			tv.setGravity(Gravity.CENTER);
-			tv.setTextSize(12);
+			tv.setTextSize(textsize);
 			tv.setText(text);
-			tv.setTextColor(textcolor);
+			tv.setTextColor(Color.WHITE);
 			tv.setBackgroundResource(textbackgrounds[cunrrnt.type%2]);
 			addView(tv);
 		}

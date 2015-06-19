@@ -2,29 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:background="@color/layout_bg_color"
-          android:gravity="center_horizontal"
+    android:background="@color/wite"
+    android:gravity="center_horizontal"
     android:orientation="vertical" 
+     android:layout_marginTop="@dimen/y20" 
     >
 
 
         
          <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_marginTop="@dimen/y20" 
+        android:layout_height="@dimen/y72"
          android:background="@color/wite"
         >
 
         <TextView
-          
             style="@style/w_wrap_h_wrap"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:text="@string/str_hot_discuss"
             android:textColor="@color/black_2"
             android:textSize="@dimen/x30" />
+        
     </RelativeLayout>
 
        <ListView

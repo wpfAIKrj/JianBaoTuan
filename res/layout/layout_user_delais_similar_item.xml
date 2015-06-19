@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="15dp"
     android:background="@color/wite"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/y20"
+     >
 
     <RelativeLayout
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
-        android:layout_marginTop="10dp"
         android:background="@drawable/home_menu_back" 
-         
         >
 
         <TextView
@@ -22,15 +21,15 @@
             android:layout_centerVertical="true"
             android:text="@string/str_similar"
             android:textColor="@color/black_2"
-            android:textSize="15sp" />
+            android:textSize="@dimen/x36" />
     </RelativeLayout>
 
     <LinearLayout
+         android:id="@+id/layout_treasure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y20"
         android:orientation="horizontal" 
-        android:id="@+id/layout_treasure"
          android:background="@color/wite"
         >
 

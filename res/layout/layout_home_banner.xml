@@ -22,7 +22,7 @@
             android:orientation="horizontal" 
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/y30"
+            android:layout_marginBottom="@dimen/y20"
             >
         </LinearLayout>
     </RelativeLayout>

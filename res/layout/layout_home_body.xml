@@ -7,6 +7,6 @@
     <com.yingluo.Appraiser.view.SlideShowView
         android:id="@+id/imageViewpage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y300" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
