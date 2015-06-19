@@ -54,7 +54,7 @@
         <item name="android:paddingLeft">5dp</item>
     </style>
       <style name="bt_smart_style">
-        <item name="android:textSize">@dimen/login_bt_smart_size</item>
+        <item name="android:textSize">@dimen/x30</item>
         <item name="android:textColor">@color/wite</item>
     </style>
     

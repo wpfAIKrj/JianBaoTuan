@@ -184,6 +184,8 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		if (!TextUtils.equals(entity.company, "")) {
 
 			tv_grade_name.setText(entity.company);
+		}else{
+			tv_grade_name.setText("普通用户");
 		}
 		// if (entity.authLevel < 6) {
 		//

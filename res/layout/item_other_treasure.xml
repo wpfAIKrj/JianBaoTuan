@@ -2,4 +2,7 @@
 <com.yingluo.Appraiser.view.home.ViewHots xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/other_treasure"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/y20"
+    android:layout_marginLeft="@dimen/x14"
+     />

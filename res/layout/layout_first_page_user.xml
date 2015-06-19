@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="#ababab"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -25,8 +25,8 @@
 
             <Button
                 style="@style/bt_smart_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/x158"
+                android:layout_height="@dimen/y94"
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
@@ -34,10 +34,8 @@
                 android:textColor="@color/dialog_title_color" />
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="@dimen/x158"
+                android:layout_height="@dimen/y1"
                 android:background="@color/bt_color" />
         </LinearLayout>
 
@@ -52,8 +50,8 @@
 
             <Button
                 style="@style/bt_smart_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/x158"
+                android:layout_height="@dimen/y94"
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
@@ -61,10 +59,9 @@
                 android:textColor="@color/ed_login_color" />
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="@dimen/x158"
+                android:layout_height="@dimen/y1"
+             
                 android:background="@color/wite" />
         </LinearLayout>
     </LinearLayout>
