@@ -11,8 +11,7 @@
         android:id="@+id/listview_search_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="#d5d5d5"
-        android:dividerHeight="1dp" >
+		 >
     </ListView>
 
 </LinearLayout>
