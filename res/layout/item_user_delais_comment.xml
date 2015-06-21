@@ -113,6 +113,10 @@
         android:textColor="@color/black_2"
         android:textSize="@dimen/x24" />        
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
+    
 
 </LinearLayout>

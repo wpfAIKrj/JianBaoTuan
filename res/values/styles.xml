@@ -35,7 +35,7 @@
     </style>
     <style name="home_title">
         <item name="android:textColor">@color/wite</item>
-        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textSize">@dimen/x38</item>
         <item name="android:layout_gravity">center</item>
     </style>
 

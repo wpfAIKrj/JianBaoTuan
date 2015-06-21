@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dialog_layout_height"
     android:gravity="center_horizontal"
-    android:layout_marginLeft="@dimen/layout_padding"
-    android:layout_marginRight="@dimen/layout_padding"
+    android:layout_marginLeft="@dimen/x30"
+    android:layout_marginRight="@dimen/x30"
 	android:background="@color/wite"
     >
 

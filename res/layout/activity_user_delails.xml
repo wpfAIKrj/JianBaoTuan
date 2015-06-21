@@ -52,18 +52,32 @@
             android:background="@drawable/item_layout_padd"
             />
             <include layout="@layout/layout_treasure__comment"/>
+            
+            <View 
+            android:layout_marginTop="@dimen/y20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:background="@drawable/item_layout_padd"
+            />
         </LinearLayout>
     </ScrollView>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" 
+        android:layout_above="@+id/bottom"/>
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y134"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        
+        android:gravity="center_vertical"
+        >
 
         <EditText
             android:id="@+id/ed_context"
@@ -75,7 +89,9 @@
             android:gravity="center_vertical"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:textColor="@color/black" >
+            android:textColor="@color/black"
+            android:textSize="@dimen/x30"
+             >
 
             <requestFocus />
         </EditText>
@@ -93,7 +109,7 @@
 
         <Button
             android:id="@+id/btn_goto"
-            android:layout_width="@dimen/x128"
+            android:layout_width="@dimen/x168"
             android:layout_height="@dimen/y94"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x14"

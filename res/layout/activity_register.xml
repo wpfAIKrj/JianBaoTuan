@@ -18,14 +18,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginLeft="@dimen/layout_padding"
-        android:layout_marginRight="@dimen/layout_padding"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="23dp"
         android:orientation="vertical" >
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_padding"
+            android:layout_marginTop="@dimen/x30"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -125,8 +125,8 @@
         android:layout_height="50dp"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="@dimen/layout_padding"
-        android:layout_marginRight="@dimen/layout_padding"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/edit_bt_padding"
   		style="@style/bt_login_style"
         android:text="@string/regitster_bt" />

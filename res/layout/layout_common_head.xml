@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/head_hight"
+    android:layout_height="@dimen/y88"
     android:background="@color/dialog_title_color"
     android:orientation="vertical" >
 
@@ -21,10 +21,10 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
-        android:paddingBottom="5dp"
-        android:paddingLeft="@dimen/layout_padding"
-        android:paddingRight="@dimen/layout_padding"
-        android:paddingTop="5dp"
+        android:paddingBottom="@dimen/y10"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
+        android:paddingTop="@dimen/y10"
         android:src="@drawable/back_botton" />
 
     <ImageView
@@ -35,10 +35,10 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center_vertical"
         android:clickable="true"
-        android:paddingBottom="5dp"
-        android:paddingLeft="@dimen/layout_padding"
-        android:paddingRight="@dimen/layout_padding"
-        android:paddingTop="5dp"
+        android:paddingBottom="@dimen/y10"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
+        android:paddingTop="@dimen/y10"
         android:src="@drawable/delect_bg" />
 
 </RelativeLayout>

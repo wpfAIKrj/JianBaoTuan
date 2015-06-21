@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/head_hight"
+    android:layout_height="@dimen/y88"
     android:background="@color/dialog_title_color"
     android:orientation="vertical" >
 
@@ -20,8 +20,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:paddingLeft="@dimen/layout_padding"
-        android:paddingRight="@dimen/layout_padding"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
         android:src="@drawable/back_botton" />
 
 </RelativeLayout>

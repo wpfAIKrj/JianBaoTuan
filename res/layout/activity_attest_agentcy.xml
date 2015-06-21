@@ -16,7 +16,7 @@
     	    android:text="@string/attest_help_titls"
     	    style="@style/my_titl_style4"
     	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/layout_padding"
+    		android:paddingLeft="@dimen/x30"
     	    />
 
     	<View
@@ -34,7 +34,7 @@
     	    android:gravity="center_vertical|left"
     	    android:hint="@string/attest_hiht_agentcy_name"
     	    style="@style/my_title_style3"
-    	    android:paddingLeft="@dimen/layout_padding"
+    	    android:paddingLeft="@dimen/x30"
     	    android:imeOptions="actionNext"
     	    >
 
@@ -52,28 +52,28 @@
     	    android:text="@string/attest_helps_title3"
     	    style="@style/my_titl_style5"
     	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/layout_padding"
+    		android:paddingLeft="@dimen/x30"
     	    />
 		<com.yingluo.Appraiser.view.CircleImageView
 			android:id="@+id/imageView01"
 			android:layout_width="@dimen/published_layout_height"
 			android:layout_height="@dimen/published_layout_height"
 			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/layout_padding"/>
+			android:paddingLeft="@dimen/x30"/>
     	<TextView 
     	    android:layout_width="match_parent"
     	    android:layout_height="@dimen/title_layout_smart_height"
     	    android:text="@string/attest_helps_title2"
     	    style="@style/my_titl_style5"
     	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/layout_padding"
+    		android:paddingLeft="@dimen/x30"
     	    />
 		<com.yingluo.Appraiser.view.CircleImageView
 			android:id="@+id/imageView02"
 			android:layout_width="@dimen/published_layout_height"
 			android:layout_height="@dimen/published_layout_height"
 			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/layout_padding"/>
+			android:paddingLeft="@dimen/x30"/>
 	
 		<Button
 		    android:id="@+id/bt_attest"

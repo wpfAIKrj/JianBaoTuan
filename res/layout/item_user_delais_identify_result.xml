@@ -12,46 +12,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="@dimen/y123"
+        android:orientation="horizontal" 
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_gravity="center_vertical"
+        >
 
         <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/iv_head"
             android:layout_width="@dimen/x100"
-            android:layout_height="@dimen/y100"
+            android:layout_height="@dimen/x100"
             android:layout_marginBottom="@dimen/y20"
-            android:layout_marginLeft="@dimen/x14"
             android:layout_marginTop="@dimen/y20"
             android:src="@drawable/test_x6" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y130"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+             android:layout_marginLeft="@dimen/x10"
+             >
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x10"
                 android:layout_marginTop="@dimen/y30"
                 android:text="@string/authenticate_title"
                 android:textColor="@color/black_2"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x30" 
+                android:layout_alignParentLeft="true"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_marginTop="@dimen/y10"
+                android:background="@color/item_space_color"
+               android:layout_alignParentBottom="true"
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y14"
-                android:orientation="horizontal"
-                android:gravity="center_vertical" >
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/tv_name"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" 
+                android:layout_marginTop="@dimen/y8"
+                >
 
                 <TextView
                     android:id="@+id/tv_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x10"
+             
                     android:text="权威机构鉴定师"
                     android:textColor="@color/dialog_title_color"
                     android:textSize="@dimen/x24" />
@@ -64,13 +81,7 @@
                     android:src="@drawable/level01" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y1"
-                android:layout_marginLeft="@dimen/x10"
-                android:layout_marginTop="@dimen/y10"
-                android:background="@color/item_space_color" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <TextView
@@ -80,6 +91,11 @@
         android:layout_marginLeft="@dimen/x14"
         android:text="您的宝贝经鉴定为越南芽庄土沉，属于稀少品种，非常不错"
         android:textColor="@color/black_2"
-        android:textSize="@dimen/x24" />
-
+        android:textSize="@dimen/x24"
+        android:gravity="center_vertical|left"
+         />
+   <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
 </LinearLayout>

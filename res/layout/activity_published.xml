@@ -20,8 +20,8 @@
     	    android:background="@color/layout_bg_color"
     	    android:paddingLeft="@dimen/detail_text_padd"
     	    android:gravity="center_vertical|left"
-    	    android:paddingTop="@dimen/layout_padding"
-    	    android:paddingBottom="@dimen/layout_padding"/>
+    	    android:paddingTop="@dimen/x30"
+    	    android:paddingBottom="@dimen/x30"/>
 
     	<View
     	    android:layout_width="match_parent"
@@ -67,19 +67,19 @@
 
     			<ImageView
     			    android:id="@+id/published_bt"
-    			    android:layout_width="wrap_content"
-    			    android:layout_height="wrap_content"
-    			    android:src="@drawable/published_bt_bg" />
+    			    android:layout_width="@dimen/y70"
+    			    android:layout_height="@dimen/y70"
+    			    android:src="@drawable/published_bt_bg" 
+    			    android:layout_marginTop="@dimen/y10"
+    			   android:layout_marginBottom="@dimen/y10"/>
 
    
 
     			<com.yingluo.Appraiser.view.TagLinearLayout
     			   android:id="@+id/tag_layout"
-    			    android:layout_width="wrap_content"
-    			    android:layout_height="wrap_content" 
-    			     android:layout_marginTop="5dp"
-    			    android:layout_marginBottom="5dp"
-    				 android:layout_marginLeft="16dp" 
+    			    android:layout_width="match_parent"
+    			  	android:layout_height="match_parent" 
+					android:layout_marginLeft="@dimen/x30"
     			   />
     		
 

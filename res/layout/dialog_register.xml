@@ -4,8 +4,8 @@
     android:layout_height="@dimen/dialog_layout_height"
     android:orientation="vertical" 
     android:gravity="center_horizontal"
-    android:layout_marginLeft="@dimen/layout_padding"
-    android:layout_marginRight="@dimen/layout_padding"
+    android:layout_marginLeft="@dimen/x30"
+    android:layout_marginRight="@dimen/x30"
     android:src="@color/dialog_bg"
     android:alpha="200"
     >
@@ -14,7 +14,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_padding"
+        android:layout_marginTop="@dimen/x30"
         android:text="@string/register_result_succes_title"
         
         android:textColor="@color/dialog_title_color"

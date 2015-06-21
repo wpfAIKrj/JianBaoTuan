@@ -11,36 +11,37 @@
         android:id="@+id/tv_kind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginTop="@dimen/y30"
         android:text="@string/str_kind"
         android:textColor="@color/number_color"
-        android:textSize="18sp" />
+        android:layout_marginLeft="@dimen/x14"
+        android:textSize="@dimen/x24" />
 
    	 <LinearLayout
-    		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content"
+    		   	style="@style/w_full_h_wrap"
     		    android:orientation="horizontal"
     		    android:gravity="center_vertical"
-   				android:layout_marginTop="@dimen/button_padd"
-   				android:layout_marginLeft="5dp"
-   				
+   				 android:layout_marginLeft="@dimen/x14"
+   				 android:layout_marginTop="@dimen/y30"
     		     >
 
     			<ImageView
     			    android:id="@+id/published_bt"
-    			    android:layout_width="wrap_content"
-    			    android:layout_height="wrap_content"
-    			    android:src="@drawable/published_bt_bg" />
+    			    android:layout_width="@dimen/y70"
+    			    android:layout_height="@dimen/y70"
+    			    android:src="@drawable/published_bt_bg"
+    			    android:layout_marginTop="@dimen/y10"
+    			   android:layout_marginBottom="@dimen/y10"
+    			    
+    			     />
 
    
 
     			<com.yingluo.Appraiser.view.TagLinearLayout
     			   android:id="@+id/tag_layout"
-    			    android:layout_width="wrap_content"
-    			    android:layout_height="wrap_content" 
-    			     android:layout_marginTop="5dp"
-    			    android:layout_marginBottom="5dp"
-    				 android:layout_marginLeft="16dp" 
+    			    android:layout_width="match_parent"
+    			    android:layout_height="@dimen/y60" 
+					android:layout_marginLeft="@dimen/x30"
     			   />
     		
 
@@ -48,43 +49,46 @@
 
     <View
         android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="15dp"
+        android:layout_height="@dimen/y1"
+        android:layout_marginTop="@dimen/y20"
         android:background="@color/item_space_color" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/x14"
+     
+        android:layout_marginTop="@dimen/y30"
         android:text="@string/str_idenify_declare"
         android:textColor="@color/number_color"
-        android:textSize="18sp" />
+        android:textSize="@dimen/x24" />
 
     <EditText
         android:id="@+id/et_declare"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x400"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginTop="@dimen/y20"
         android:background="@drawable/edit_declare_bg"
         android:textColor="@color/black"
         android:imeOptions="actionGo"
         android:gravity="top|left"
         android:inputType="text"
+        android:textSize="@dimen/x24"
          />
 
     <Button
         android:id="@+id/btn_publish"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/y100"
+        android:layout_marginTop="@dimen/y100"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
         android:background="@color/bt_color"
         android:gravity="center"
         android:text="发布"
         android:textColor="@color/wite"
-        android:textSize="20sp" />
+        android:textSize="@dimen/x40" />
 
 </LinearLayout>

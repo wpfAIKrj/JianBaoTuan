@@ -26,8 +26,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
        
-        android:paddingLeft="@dimen/layout_padding"
-        android:paddingRight="@dimen/layout_padding"
+        android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
         android:paddingTop="@dimen/button_padd"
         android:paddingBottom="@dimen/button_padd"
             android:src="@drawable/back_botton" />
@@ -40,8 +40,8 @@
             android:layout_centerVertical="true"
           
         android:layout_gravity="center_vertical"
-             android:paddingLeft="@dimen/layout_padding"
-        android:paddingRight="@dimen/layout_padding"
+             android:paddingLeft="@dimen/x30"
+        android:paddingRight="@dimen/x30"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
             android:src="@drawable/delect_bg" />

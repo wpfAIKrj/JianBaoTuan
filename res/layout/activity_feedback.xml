@@ -14,7 +14,7 @@
     	<View
     	    android:layout_width="match_parent"
     	    android:layout_height="1dp"
-    	     android:layout_marginTop="@dimen/layout_padding"
+    	     android:layout_marginTop="@dimen/x30"
     	         android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
     	     android:background="@color/item_space_color"
