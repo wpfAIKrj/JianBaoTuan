@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_identification_head" />
+    <include
+        android:id="@+id/top"
+        layout="@layout/layout_identification_head" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:id="@+id/btn_identifed"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center_horizontal"
@@ -24,8 +28,8 @@
 
             <Button
                 style="@style/bt_smart_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
@@ -33,17 +37,16 @@
                 android:textColor="@color/bt_color" />
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y2"
+           
                 android:background="@color/bt_color" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/btn_identifing"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
             android:gravity="center_horizontal"
@@ -51,8 +54,8 @@
 
             <Button
                 style="@style/bt_smart_style"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
@@ -60,43 +63,39 @@
                 android:textColor="@color/black" />
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y2"
+               
                 android:background="@color/wite" />
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <View
+        android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="@dimen/y30"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/item_space_color" />
 
-        <com.yingluo.Appraiser.view.PullRefreshRecyclerView
-            android:id="@+id/prrv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/y20"
-            android:paddingLeft="@dimen/x14"
-            android:paddingRight="@dimen/x14" />
+    <com.yingluo.Appraiser.view.PullRefreshRecyclerView
+        android:id="@+id/prrv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view1"
+        android:layout_below="@+id/view2"
+        android:layout_alignParentLeft="true"
+        android:background="@color/wite"
+        android:paddingLeft="@dimen/x14"
+        android:paddingRight="@dimen/x14" >
+    </com.yingluo.Appraiser.view.PullRefreshRecyclerView>
 
-        <TextView
-            android:id="@+id/tv_none"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/str_none_msg"
-            android:textColor="@color/black_2"
-            android:textSize="15sp"
-            android:visibility="gone" />
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/item_space_color" />
 
-        <ImageView
-            android:id="@+id/iv_loading"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/loading"
-            android:visibility="gone" />
-    </FrameLayout>
-
-</LinearLayout>
+</RelativeLayout>
