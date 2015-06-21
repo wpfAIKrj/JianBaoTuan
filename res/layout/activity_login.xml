@@ -11,39 +11,24 @@
         android:id="@+id/include1"
         layout="@layout/layout_activity_head" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include1"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical" >
-
-        <com.yingluo.Appraiser.view.CircleImageView
-            android:id="@+id/login_user_head"
-            android:layout_width="@dimen/user_logo_width"
-            android:layout_height="@dimen/user_logo_width"
-            android:src="@drawable/user_logo"
-            app:border_color="@color/cricle_color"
-            app:border_width="1dp" />
-    </LinearLayout>
+  
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="23dp"
-        android:orientation="vertical" >
+      	android:layout_below="@+id/include1"
+        android:orientation="vertical" 
+       
+        android:layout_marginTop="@dimen/y262"
+        >
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y94"
            android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:id="@+id/name_layout"
@@ -60,7 +45,10 @@
                 android:hint="@string/login_name_hint"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
-                android:singleLine="true" >
+                android:singleLine="true" 
+            
+                
+                >
 
                 <requestFocus />
             </EditText>
@@ -79,8 +67,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_margin_top"
+            android:layout_height="@dimen/y94"
+            android:layout_marginTop="@dimen/y20"
              android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -109,7 +97,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/y100"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" >
 
@@ -120,13 +108,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/login_forgeot" />
+            android:text="@string/login_forgeot" 
+            android:gravity="center"
+            />
 	
         <View 
-            android:layout_width="1dp"
+            android:layout_width="@dimen/x1"
             android:layout_height="match_parent"
             android:background="@color/wite"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="@dimen/y10"
             />
         <Button
             android:id="@+id/login_bt_register"
@@ -135,24 +125,26 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/login_register" />
+            android:text="@string/login_register"
+             android:gravity="center"
+             />
     </LinearLayout>
 
     <Button
         android:id="@+id/login_bt_login"
         style="@style/bt_login_style"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/y94"
         android:layout_below="@+id/linearLayout2"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/edit_bt_padding"
+        android:layout_marginTop="@dimen/y146"
         android:text="登 录" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/y1"
         android:layout_above="@+id/linearLayout3"
 
         android:background="@color/wite" />

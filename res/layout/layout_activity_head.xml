@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="@dimen/y88"
     android:orientation="vertical" 
    
     >
@@ -16,8 +16,8 @@
        
         android:paddingLeft="@dimen/x30"
         android:paddingRight="@dimen/x30"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:paddingTop="@dimen/y10"
+        android:paddingBottom="@dimen/y10"
         android:src="@drawable/back_botton" />
 
 

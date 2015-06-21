@@ -48,10 +48,10 @@
     
     <style name="edit_login_style">
          <item name="android:textColor">@color/ed_login_color</item>
-         <item name="android:textSize">@dimen/login_bt_smart_size</item>
+         <item name="android:textSize">@dimen/x30</item>
          <item name="android:textColorHint">@color/hint_color</item>
         <item name="android:gravity">center_vertical|left</item>
-        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingLeft">@dimen/x20</item>
     </style>
       <style name="bt_smart_style">
         <item name="android:textSize">@dimen/x30</item>
