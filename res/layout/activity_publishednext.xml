@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView 
+    
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/wite"
+    
+    
+    >
+    <LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,15 +27,15 @@
     	    android:layout_height="wrap_content"
     	    android:textColor="@color/ed_login_color"
     	    android:text="宝贝说明" 
-    	    android:textSize="@dimen/login_bt_smart_size"
-    	    android:paddingTop="10dp"
-    	    android:layout_marginLeft="@dimen/detail_text_padd"/>
+    	    android:textSize="@dimen/x30"
+    	    android:paddingTop="@dimen/y20"
+    	    android:layout_marginLeft="@dimen/x14"/>
 
     	<View
     	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
+    	    android:layout_height="@dimen/y1"
     	     android:layout_marginTop="@dimen/layout_margin_top"
-    	         android:layout_marginLeft="@dimen/detail_text_padd"
+    	     android:layout_marginLeft="@dimen/detail_text_padd"
     	    android:layout_marginRight="@dimen/detail_text_padd"
     	     android:background="@color/item_space_color"
     	    />
@@ -33,39 +44,37 @@
     	    android:id="@+id/ed_info"
     	    style="@style/my_title_style3"
     	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/identy_edit_height"
-    	    android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
-    	    android:background="@color/layout_bg_color"
+    	    android:layout_height="@dimen/y400"
+    	    android:layout_marginLeft="@dimen/x14"
+    	    android:layout_marginRight="@dimen/x14"
+    
     	    android:ems="10"
     	    android:gravity="left"
-    	    android:hint="请尽量说明你的宝贝信息，如何获得时间，价格，途径等"
-    	    android:inputType="text" >
+    	    android:hint="请尽量说明你的宝贝信息，如何获得时间，价格,途径等"
+    	   	android:scrollbars="vertical"
+    	    android:inputType="text" 
+    	   	android:singleLine="false"
+    	    android:background="@drawable/item_layout_padd"
+    	    >
 
     	    <requestFocus />
     	</EditText>
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	     android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
-    	     android:background="@color/item_space_color"
-    	    />
+
 		<TextView
     
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
     	    android:textColor="@color/ed_login_color"
     	    android:text="选择鉴定师" 
-    	    android:textSize="@dimen/login_bt_smart_size"
-    	    android:paddingTop="10dp"
-    	    android:layout_marginLeft="@dimen/detail_text_padd"/>
+    	    android:textSize="@dimen/x24"
+    	    android:paddingTop="@dimen/y20"
+    	    android:layout_marginLeft="@dimen/x14"/>
 
 	
 		 <LinearLayout 
 		     android:id="@+id/threed_layout"
-  			android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
+  			android:layout_marginLeft="@dimen/x14"
+    	    android:layout_marginRight="@dimen/x14"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical" 
@@ -92,3 +101,7 @@
 		 />
 
 </LinearLayout>
+    
+</ScrollView>
+
+

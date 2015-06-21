@@ -6,26 +6,25 @@
     android:background="@color/wite"
     
     
-     >
+     xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     	<include layout="@layout/layout_head"/>
 
     	<TextView
     	    android:id="@+id/textView1"
     	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
+    	    android:layout_height="@dimen/y100"
     	    android:text="@string/publih_text_title"
-    	    android:textSize="@dimen/item_text_size"
+    	    android:textSize="@dimen/x24"
     	    android:textColor="@color/number_color" 
     	    android:background="@color/layout_bg_color"
-    	    android:paddingLeft="@dimen/detail_text_padd"
+    	    android:paddingLeft="@dimen/x20"
     	    android:gravity="center_vertical|left"
-    	    android:paddingTop="@dimen/x30"
-    	    android:paddingBottom="@dimen/x30"/>
+    	    />
 
     	<View
     	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
+    	    android:layout_height="@dimen/y1"
     	     android:background="@color/item_space_color"
     	    />
 
@@ -33,36 +32,30 @@
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
     	    android:orientation="vertical"
-    	    android:layout_marginLeft="@dimen/detail_text_padd"
+    	    android:layout_marginLeft="@dimen/x14"
   
     	     >
 
-    		<LinearLayout
-    		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content"
-    		    android:orientation="vertical"
-    		     android:layout_marginTop="5dp"
-    		     >
-
+ 
     			<TextView
     			    android:layout_width="match_parent"
     			    android:layout_height="match_parent"
     			    android:text="请判断宝贝类型"
     			    android:gravity="center_vertical"
-    			    android:textSize="@dimen/login_bt_smart_size"
+    			    android:textSize="@dimen/x30"
     	    		android:textColor="@color/ed_login_color" 
-    	   
-    	
+    	    		android:layout_marginTop="@dimen/y30"
+    	    		
     			     />
 
-    		</LinearLayout>
+ 
 
     		<LinearLayout
     		    android:layout_width="match_parent"
     		    android:layout_height="wrap_content"
     		    android:orientation="horizontal"
     		    android:gravity="center_vertical"
-   				android:layout_marginTop="@dimen/button_padd"
+   			
     		     >
 
     			<ImageView
@@ -86,34 +79,36 @@
     		</LinearLayout>
 
     	</LinearLayout>
-    	<View
+  <View
     	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
+    	    android:layout_height="@dimen/y1"
     	     android:background="@color/item_space_color"
-    	     android:layout_marginTop="5dp"
+    	     android:layout_marginTop="@dimen/y30"
     	    />
 
     	<LinearLayout
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
-    	    android:orientation="vertical" >
+    	    android:orientation="vertical"
+    	    android:paddingLeft="@dimen/x14"
+    	     >
 
     		<TextView
     		
     		    android:layout_width="match_parent"
     		    android:layout_height="wrap_content"
     		    android:text="宝贝全景(建议与参照物一起拍照,如烟盒,硬币,尺子等)"
-    	    	android:textSize="@dimen/item_text_size"
+    	    	android:textSize="@dimen/x24"
     	   	 	android:textColor="@color/ed_login_color" 
-    	    	android:paddingLeft="@dimen/detail_text_padd"
+    	    
     	    	android:gravity="center_vertical|left" 
-    	    	android:layout_marginTop="10dp"/>
+    	    	android:layout_marginTop="@dimen/y20"/>
 
     		<LinearLayout
     		    android:layout_width="match_parent"
     		    android:layout_height="@dimen/published_layout_height" 
     		    android:orientation="horizontal"
-    		    android:layout_marginTop="10dp"
+    		    android:layout_marginTop="@dimen/y20"
     		    >
 				<LinearLayout 
 				    android:layout_width="0dp"
@@ -125,9 +120,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView01"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+					    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg" 
+					    app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					    />
 				    
 				</LinearLayout>
 					<LinearLayout 
@@ -140,9 +138,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView02"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+					    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg" 
+					     app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					    />
 				    
 				</LinearLayout>
 					<LinearLayout 
@@ -155,9 +156,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView03"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+					    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg"
+					     app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					     />
 				    
 				</LinearLayout>
 				
@@ -168,16 +172,18 @@
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
     	    android:orientation="vertical" 
-    	    android:layout_marginTop="5dp">
+    	    android:layout_marginTop="@dimen/y20"
+    	    android:paddingLeft="@dimen/x14"
+    	    >
 
     		<TextView
     		   
     		    android:layout_width="match_parent"
     		    android:layout_height="wrap_content"
     		    android:text="宝贝特写"
-    	    	android:textSize="@dimen/item_text_size"
+    	    	android:textSize="@dimen/x24"
     	   	 	android:textColor="@color/ed_login_color" 
-    	    	android:paddingLeft="@dimen/detail_text_padd"
+    	   
     	    	android:gravity="center_vertical|left" 
     	    	/>
 
@@ -185,7 +191,7 @@
     		    android:layout_width="match_parent"
     		    android:layout_height="@dimen/published_layout_height" 
     		    android:orientation="horizontal"
-    		    android:layout_marginTop="5dp"
+    		    android:layout_marginTop="@dimen/y20"
     		    >
 				<LinearLayout 
 				    android:layout_width="0dp"
@@ -197,9 +203,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView04"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+					      android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg"
+					     app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					     />
 				    
 				</LinearLayout>
 					<LinearLayout 
@@ -212,9 +221,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView05"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+					    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg"
+					     app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					     />
 				    
 				</LinearLayout>
 					<LinearLayout 
@@ -227,9 +239,12 @@
 
 					<com.yingluo.Appraiser.view.CircleImageView
 						android:id="@+id/imageView06"
-					    android:layout_width="wrap_content"
-					    android:layout_height="wrap_content"
-					    android:src="@drawable/add_image_bg" />
+				    android:layout_width="match_parent"
+					    android:layout_height="match_parent"
+					    android:src="@drawable/add_image_bg" 
+					     app:border_width="@dimen/y1"
+					    app:border_color="@color/item_space_color"
+					    />
 				    
 				</LinearLayout>
 				
@@ -239,11 +254,11 @@
 		<Button
 		    android:id="@+id/bt_next"
 		    android:layout_width="match_parent"
-		    android:layout_height="50dp"
+		    android:layout_height="@dimen/y100"
 		    android:text="下一步"
 		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/detail_text_padd"
-		    android:layout_marginRight="@dimen/detail_text_padd"
-		   android:layout_marginTop="@dimen/bt_margintop_layout"/>
+		    android:layout_marginLeft="@dimen/x14"
+		    android:layout_marginRight="@dimen/x14"
+		   android:layout_marginTop="@dimen/y100"/>
 
 </LinearLayout>

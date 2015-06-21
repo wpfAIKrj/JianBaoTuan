@@ -22,7 +22,7 @@
 	<dimen name="home_layout_ml">23dp</dimen>
 	<dimen name="home_layout_mr">11dp</dimen>
 	
-	<dimen name="item_text_size">12sp</dimen>
+	
 	
 	<dimen name="detail_text_padd">7dp</dimen>
 	<dimen name="detail_info_spacing">18dp</dimen>

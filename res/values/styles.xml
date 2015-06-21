@@ -43,7 +43,7 @@
         <item name="android:textColor">@color/wite</item>
         <item name="android:background">@drawable/login_bt</item>
         <item name="android:gravity">center</item>
-   		<item name="android:textSize">@dimen/login_bt_big_size</item>
+   		<item name="android:textSize">@dimen/x40</item>
     </style>
     
     <style name="edit_login_style">
@@ -60,18 +60,18 @@
     
       
       <style name="item_text_style">
-          <item name="android:textSize">@dimen/item_text_size</item>
+          <item name="android:textSize">@dimen/x24</item>
           <item name="android:textColor">@color/ed_login_color</item>
       </style>
       
       
       <style name="detail_title_style">
           <item name="android:textColor">@color/dialog_title_color</item>
-          <item name="android:textSize">@dimen/item_text_size</item>
+          <item name="android:textSize">@dimen/x24</item>
       </style>
 	   <style name="detail_info_style">
 	          <item name="android:textColor">@color/ed_login_color</item>
-	          <item name="android:textSize">@dimen/item_text_size</item>
+	          <item name="android:textSize">@dimen/x24</item>
 	          <item name="android:lineSpacingExtra">8dp</item>
 	      </style>
 	      
@@ -81,17 +81,17 @@
     	</style>
     	<style name="my_level_style">
         <item name="android:textColor">@color/wite</item>
-   		<item name="android:textSize">@dimen/item_text_size</item>
+   		<item name="android:textSize">@dimen/x24</item>
     	</style>
     	
     	<style name="my_up_style">
         <item name="android:textColor">@color/dialog_title_color</item>
-   		<item name="android:textSize">@dimen/item_text_size</item>
+   		<item name="android:textSize">@dimen/x24</item>
     	</style>
     	
     	<style name="my_title_style1">
     	 <item name="android:textColor">@color/ed_login_color</item>
-   		<item name="android:textSize">@dimen/login_bt_smart_size</item>
+   		<item name="android:textSize">@dimen/x30</item>
     	</style>
     	<style name="my_title_style2">
     	 <item name="android:textColor">@color/dialog_title_color</item>
@@ -100,7 +100,7 @@
     	
     	<style name="my_title_style3">
     	 <item name="android:textColor">@color/number_color</item>
-   		<item name="android:textSize">@dimen/login_bt_smart_size</item>
+   		<item name="android:textSize">@dimen/x30</item>
     	</style>
     	
     	
@@ -139,6 +139,7 @@
         <item name="android:button">@drawable/checkbox01</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/checkboxbg</item>
+        <item name="android:padding">@dimen/x1</item>
     </style>
     
      <style name="dialogWindowAnim" parent="android:Animation" mce_bogus="1">  

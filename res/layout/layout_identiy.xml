@@ -87,7 +87,8 @@
         android:layout_alignParentLeft="true"
         android:background="@color/wite"
         android:paddingLeft="@dimen/x14"
-        android:paddingRight="@dimen/x14" >
+        android:paddingRight="@dimen/x14"
+        android:layout_marginTop="@dimen/y20" >
     </com.yingluo.Appraiser.view.PullRefreshRecyclerView>
 
     <View

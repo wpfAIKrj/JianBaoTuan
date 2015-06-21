@@ -256,7 +256,7 @@
 		    		android:layout_centerVertical="true"
 		        android:layout_toLeftOf="@+id/iv_icon"
 		        android:text="32.5K" 
-		        android:textSize="@dimen/item_text_size"
+		        android:textSize="@dimen/x24"
 		        android:textColor="@color/ed_login_color"
 		        android:layout_marginRight="6dp"/>
 		 

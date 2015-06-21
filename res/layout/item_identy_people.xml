@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/layout_item_height"
+    android:layout_height="wrap_content"
     android:orientation="vertical" 
     android:background="@color/wite"
   	>
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+    	android:layout_marginLeft="@dimen/x14"
+    	
         >
-            <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:src="@color/cricle_color"
-         >
+     
 
         <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/user_logo"
-            android:layout_width="@dimen/layout_logo_width"
-            android:layout_height="@dimen/layout_logo_width"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/x100"
             android:src="@drawable/test3" 
-            android:padding="1dp"/>
+            android:layout_marginTop="@dimen/y10"
+            android:layout_marginBottom="@dimen/y10"
+            />
 
-        
-    </LinearLayout>
   	<RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/x10"
         >
 
   		<TextView
@@ -44,7 +40,7 @@
   		    android:layout_height="wrap_content"
   		    android:layout_alignParentLeft="true"
   		    android:layout_alignParentTop="true"
-  		    android:paddingTop="@dimen/layout_margin_top"
+  		    android:paddingTop="@dimen/y20"
   		    android:text="何为三界偷拍" />
 
   		<TextView
@@ -54,6 +50,7 @@
   		    android:layout_height="wrap_content"
   		    android:layout_alignParentLeft="true"
   		    android:layout_below="@+id/user_name"
+  		    android:layout_marginTop="@dimen/y6"
   		    android:text="初级藏家" />
 
   		<CheckBox
@@ -63,7 +60,7 @@
   		    android:layout_height="wrap_content"
   		    android:layout_alignParentRight="true"
   		    android:layout_centerVertical="true"
-  		    android:layout_marginRight="@dimen/detail_text_padd"
+  		    android:layout_marginRight="@dimen/x14"
 
   		    android:layout_centerInParent="true" />
         
@@ -71,7 +68,7 @@
     </LinearLayout>
     <View 
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/y1"
         android:background="@color/item_space_color"
         />
 </LinearLayout>
