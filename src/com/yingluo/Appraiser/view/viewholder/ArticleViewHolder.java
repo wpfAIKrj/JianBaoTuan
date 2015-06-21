@@ -36,8 +36,7 @@ public class ArticleViewHolder extends ViewHolder {
 	public ArticleViewHolder(View itemView,OnClickListener lisnter) {
 		super(itemView);
 		// TODO Auto-generated constructor stub
-		MarginLayoutParams params=new MarginLayoutParams(SystemUtils.getDisplaysWidth(itemView.getContext()),120);
-		itemView.setLayoutParams(params);
+
 		ViewUtils.inject(this, itemView);
 		this.lis=lisnter;
 		itemView.setOnClickListener(new OnClickListener() {

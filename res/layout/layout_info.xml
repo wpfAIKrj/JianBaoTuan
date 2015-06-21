@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:cacheColorHint="@null"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical" 
+         android:background="@color/wite"
+        />
 
 </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

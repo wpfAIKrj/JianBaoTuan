@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" 
   	>
 
     <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/y120"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         >
@@ -22,10 +22,11 @@
 
         <ImageView
             android:id="@+id/acticle_logo"
-            android:layout_width="@dimen/layout_logo_width"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/y82"
+            android:layout_height="@dimen/y82"
             android:src="@drawable/test3" 
-            android:padding="1dp"/>
+            android:scaleType="fitXY"
+            />
 
         <CheckBox
             android:id="@+id/delete_checkbox"
@@ -41,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/x10"
         >
 
   		<TextView
@@ -62,7 +63,8 @@
   		    android:layout_alignParentRight="true"
   		    android:text="1024" 
   		    android:textColor="@color/number_color"
-  		    android:layout_marginRight="5dp"/>
+  		    android:textSize="@dimen/x30"
+  		    android:layout_marginRight="@dimen/x14"/>
 
   		<ImageView
   		    android:id="@+id/imageView2"
@@ -71,13 +73,14 @@
   		   
   		    android:layout_toLeftOf="@+id/article_number"
   		     android:layout_centerVertical="true"
+  		     android:layout_marginRight="@dimen/x10"
   		    android:src="@drawable/point_bg" />
         
     </RelativeLayout>
     </LinearLayout>
     <View 
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/y1"
         android:background="@color/item_space_color"
         />
 </LinearLayout>
