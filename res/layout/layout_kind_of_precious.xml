@@ -32,6 +32,6 @@
         android:layout_height="match_parent"
         android:cacheColorHint="@null"
         android:divider="@color/item_space_color"
-        android:dividerHeight="1dip" />
+        android:dividerHeight="@dimen/y1" />
 
 </LinearLayout>

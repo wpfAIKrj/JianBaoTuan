@@ -2,23 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_search"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="@dimen/y100"
     android:clickable="true"
     android:gravity="center"
-    android:minHeight="50dp"
     android:orientation="horizontal" >
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/icon_search_black" />
+        android:layout_width="@dimen/y40"
+        android:layout_height="@dimen/y40"
+        android:src="@drawable/red_icon_search_black" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="@dimen/x14"
         android:text="@string/str_first_item_kind_of_precious"
         android:textColor="@color/number_color"
-        android:textSize="12sp" />
+        android:textSize="@dimen/x24" />
 
 </LinearLayout>
