@@ -65,7 +65,7 @@
 	          android:gravity="center"
 	           android:background="@drawable/delete_button_bg"
 	           android:textColor="@color/dialog_title_color"
-	           android:textSize="@dimen/login_bt_smart_size"
+	           android:textSize="@dimen/x30"
 	           />
 
 	      <Button
@@ -80,7 +80,7 @@
 	          android:gravity="center"
 	           android:background="@drawable/canle_button_bg"
 	           android:textColor="@color/number_color"
-	           android:textSize="@dimen/login_bt_smart_size" 
+	           android:textSize="@dimen/x30" 
 	           android:layout_marginRight="@dimen/button_layout_margin"
 	           />
 

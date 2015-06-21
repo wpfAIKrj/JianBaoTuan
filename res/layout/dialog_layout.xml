@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dialog_layout_height"
+    android:layout_height="@dimen/y250"
     android:gravity="center_horizontal"
     android:layout_marginLeft="@dimen/x30"
     android:layout_marginRight="@dimen/x30"
@@ -10,9 +10,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5px"
+        android:layout_height="@dimen/y1"
         android:layout_above="@+id/layout_bottom"
-        android:background="@color/black_2" />
+        android:background="@color/item_space_color" />
 
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -33,9 +33,9 @@
             android:text="确定" />
 
         <View
-            android:layout_width="2px"
+            android:layout_width="@dimen/x1"
             android:layout_height="match_parent"
-            android:background="@color/black_2" />
+            android:background="@color/item_space_color" />
 
         <Button
             android:id="@+id/dialog_cancle"
@@ -54,9 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="@dimen/x30"
         android:text="@string/register_result_succes_title"
         android:textColor="@color/dialog_title_color"
-        android:textSize="@dimen/login_bt_smart_size" />
+        android:textSize="@dimen/x30" />
 
 </RelativeLayout>

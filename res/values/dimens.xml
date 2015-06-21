@@ -7,12 +7,12 @@
     
     <dimen name="button_padd">5dp</dimen>
 
-	<dimen name="user_logo_width">85dp</dimen>
+	
 	
 
 	<dimen name="layout_margin_top">10dp</dimen>
 	<dimen name="login_bt_big_size">20sp</dimen>
-	<dimen name="login_bt_smart_size">15sp</dimen>
+	
 	
 	<dimen name="smart_text_size">10sp</dimen>
 	
@@ -34,9 +34,9 @@
 	<dimen name="bt_margintop_layout">50dp</dimen>
 	
 	
-	<dimen name="title_msg_top">30dp</dimen>
 	
-	<dimen name="my_layout_width">140dp</dimen>
+	
+	
 	
 	<dimen name="text_layout_width">40dp</dimen>
 	<dimen name="text_big_layout_width">65dp</dimen>
@@ -54,7 +54,7 @@
 	
 	<dimen name="layout_love_width">85dp</dimen>
 	
-	<dimen name="dialog_layout_height">100dp</dimen>
+	
 	<dimen name="dialog_button_height">35dp</dimen>
 	
 	<dimen name="layouts_marginleft">22dp</dimen>

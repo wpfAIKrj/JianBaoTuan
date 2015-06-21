@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/register_code_bt_hint" 
-                android:textSize="@dimen/login_bt_smart_size"
+                android:textSize="@dimen/x30"
                 android:gravity="center"
                 android:background="@drawable/bt_code_bg"
                 android:textColor="@color/bt_color"/>

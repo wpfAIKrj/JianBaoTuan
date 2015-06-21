@@ -11,48 +11,36 @@
 
     	<include layout="@layout/layout_head"/>
 
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	     android:layout_marginTop="@dimen/x30"
-    	         android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
-    	     android:background="@color/item_space_color"
-    	    />
+    
     	<EditText
+    	     android:layout_marginTop="@dimen/x30"
     	    android:id="@+id/et_context"
     	    android:layout_width="match_parent"
     	    android:layout_height="@dimen/ed_feed_layout_height"
     	    android:ems="10"
-    	    android:background="@color/layout_bg_color"
+    	    android:background="@drawable/item_layout_padd"
     	    android:inputType="text" 
     	    android:gravity="left"
     	    android:hint="@string/feednack_hint"
     	    
     	    style="@style/my_title_style3"
-    	    android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
+    	    android:layout_marginLeft="@dimen/x14"
+    	    android:layout_marginRight="@dimen/x14"
     	    android:imeOptions="actionDone"
     	    >
 
     	    <requestFocus />
     	</EditText>
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	     android:layout_marginLeft="@dimen/detail_text_padd"
-    	    android:layout_marginRight="@dimen/detail_text_padd"
-    	     android:background="@color/item_space_color"
-    	    />
+  
     	
 		<Button
 		    android:id="@+id/bt_save"
 		    android:layout_width="match_parent"
-		    android:layout_height="@dimen/bt_margintop_layout"
+		    android:layout_height="@dimen/y94"
 		    android:text="@string/feednack_bt"
 		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/detail_text_padd"
-		    android:layout_marginRight="@dimen/detail_text_padd"
-		   android:layout_marginTop="@dimen/bt_margintop_layout"/>
+		    android:layout_marginLeft="@dimen/x14"
+		    android:layout_marginRight="@dimen/x14"
+		   android:layout_marginTop="@dimen/y100"/>
 
 </LinearLayout>

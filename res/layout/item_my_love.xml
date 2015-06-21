@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/detail_text_padd" 
-    android:paddingBottom="@dimen/layout_margin_top">
+    android:paddingLeft="@dimen/x7" 
+    android:paddingBottom="@dimen/x7">
 
     <LinearLayout
         android:id="@+id/match_league_roung_item_ll"
@@ -12,13 +12,17 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:background="@drawable/item_small_stroke"
+        >
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="@dimen/layout_love_width"
-            android:layout_height="@dimen/layout_love_width"
-            android:scaleType="fitXY" />
+            android:layout_width="@dimen/y168"
+            android:layout_height="@dimen/y168"
+            android:scaleType="fitXY" 
+            
+            />
     </LinearLayout>
 
 </RelativeLayout>

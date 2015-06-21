@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/update_icon" 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/y100"
         />
 
     <TextView
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:text="v1.0.1" 
         android:textColor="@color/number_color"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
+        android:textSize="@dimen/x28"
+        android:layout_marginTop="@dimen/y16"
         />
 
     <TextView
@@ -36,28 +36,21 @@
         android:layout_height="wrap_content"
         android:text="已是最新版本" 
         android:textColor="@color/number_color"
-        android:layout_marginTop="@dimen/layout_margin_top"
-        android:textSize="13sp"
+        android:layout_marginTop="@dimen/y20"
+        android:textSize="@dimen/x26"
         />
 
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/item_space_color"
-        android:layout_marginTop="@dimen/user_logo_width"
-        />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:background="@color/wite"
+        android:layout_height="@dimen/y94"
+        android:background="@drawable/item_big_stroke"
         android:text="@string/update_bt" 
         style="@style/my_title_style1"
         android:gravity="center"
+        android:layout_marginTop="@dimen/y164"
+        
         />
-		<View 
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/item_space_color"
-        />
+	
 </LinearLayout>

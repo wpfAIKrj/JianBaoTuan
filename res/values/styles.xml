@@ -77,7 +77,7 @@
 	      
 	   <style name="my_name_style">
         <item name="android:textColor">@color/wite</item>
-   		<item name="android:textSize">@dimen/login_bt_smart_size</item>
+   		<item name="android:textSize">@dimen/x30</item>
     	</style>
     	<style name="my_level_style">
         <item name="android:textColor">@color/wite</item>
@@ -95,7 +95,7 @@
     	</style>
     	<style name="my_title_style2">
     	 <item name="android:textColor">@color/dialog_title_color</item>
-   		<item name="android:textSize">@dimen/login_bt_smart_size</item>
+   		<item name="android:textSize">@dimen/x30</item>
     	</style>
     	
     	<style name="my_title_style3">
