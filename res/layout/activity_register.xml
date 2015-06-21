@@ -20,11 +20,11 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="@dimen/y148"
         android:orientation="vertical" >
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/y94"
             android:layout_marginTop="@dimen/x30"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
@@ -49,8 +49,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_margin_top"
+            android:layout_height="@dimen/y94"
+            android:layout_marginTop="@dimen/y20"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -75,7 +75,7 @@
             <Button
                 android:id="@+id/register_send_code"
                 android:layout_width="0dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/register_code_bt_hint" 
@@ -88,8 +88,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/layout_margin_top"
+            android:layout_height="@dimen/y94"
+            android:layout_marginTop="@dimen/y20"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -112,17 +112,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" >
-    </LinearLayout>
+
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/y94"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/x30"
