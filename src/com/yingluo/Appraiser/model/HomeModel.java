@@ -1,5 +1,6 @@
 package com.yingluo.Appraiser.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class HomeModel extends BaseModel {
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		FileUtils.getInstance().saveFileForJson(data);
+		FileUtils.getInstance().saveFileForHomeJson(data);
 		homeEntity = new HomeEntity();
 		JSONObject json = new JSONObject(data);
 		try {
@@ -147,7 +148,7 @@ public class HomeModel extends BaseModel {
 	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	public HomeEntity getResult() {

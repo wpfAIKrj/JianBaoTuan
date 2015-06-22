@@ -16,6 +16,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class HomeService extends Service {
@@ -51,7 +52,17 @@ public class HomeService extends Service {
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
+				String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
+				if(str!=null){
+					try {
+						homeModel.analyzeData(str);
+						((ItApplication) getApplication()).setHomeEntity(homeModel
+								.getResult());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		});
 
@@ -107,12 +118,13 @@ public class HomeService extends Service {
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
+			
 			}
 
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
+				
 			}
 		});
 

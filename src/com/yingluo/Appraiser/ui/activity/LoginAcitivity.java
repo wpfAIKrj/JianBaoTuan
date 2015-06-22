@@ -31,6 +31,7 @@ import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.presenter.LoginPresenter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.TelNumMath;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -167,6 +168,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		// TODO Auto-generated method stub
 		ItApplication.currnUser=user;
 		SqlDataUtil.getInstance().saveUserInfo(user);
+		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
+		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		if(dialog!=null){
 			dialog.dismiss();
 		}

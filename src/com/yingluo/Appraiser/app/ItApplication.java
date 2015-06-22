@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.app;
 
 import java.util.List;
+
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.TreasureEntity;
@@ -10,6 +11,8 @@ import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DefaultExceptionHandler;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.NetUtils;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import android.app.ActivityManager;
@@ -63,7 +66,8 @@ public class ItApplication extends Application {
 		BitmapsUtils.init(this);
 		RongImUtils.init(this);
         RongCloudEvent.init(this);
-        
+        SharedPreferencesUtils.init(this);
+        NetUtils.init(this);
         //Crash 日志
         Thread.setDefaultUncaughtExceptionHandler(new DefaultExceptionHandler(this));
 	}

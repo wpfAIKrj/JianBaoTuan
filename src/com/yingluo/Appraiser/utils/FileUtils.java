@@ -39,11 +39,14 @@ public class FileUtils {
 	
 	private static FileUtils mInstance=null;
 	private Context mContext;
-	public static final String DIRNAME="if";
+	public static final String DIRNAME="appraiser";
 	public static final String UPLOADIMAGE="cachupload";//上传图片
 	public static final String CACHEFILES="cachfiles";//文件缓存
 	
 	public static final String JSON_HOME="home.json";
+	
+	public static final String JSON_KINDS="kinds.json";
+	
 	private String root_path;//根目录
 	
 	
@@ -460,8 +463,33 @@ public class FileUtils {
 	/**
 	 * 保存首页获取到的json数据
 	 */
-	public void saveFileForJson(String json){
+	public void saveFileForHomeJson(String json){
 		File file=new File(getCacheFile(), JSON_HOME);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		try {
+			FileOutputStream out=new FileOutputStream(file);
+			BufferedOutputStream writer=new BufferedOutputStream(out);
+			writer.write(json.getBytes());
+			writer.flush();
+			writer.close();			
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 保存宝贝分类的数据
+	 */
+	public void saveFileForKindJson(String json){
+		File file=new File(getCacheFile(), JSON_KINDS);
 		if(!file.exists()){
 			try {
 				file.createNewFile();
@@ -525,4 +553,40 @@ public class FileUtils {
 	}
 	
 	
+	/**
+	 * 获取制定的string数据
+	 * @param filename 文件名
+ 	 * @return string，不存在则为null
+	 */
+	public String getJsonStringForJson(String filename){
+		File file=new File(getCacheFile(), JSON_HOME);
+		if(file.exists()){//存在
+			
+			  try {
+				InputStream in = new FileInputStream(file);
+				  String jsonStr = "";
+				    // ByteArrayOutputStream相当于内存输出流
+				    ByteArrayOutputStream out = new ByteArrayOutputStream();
+				    byte[] buffer = new byte[1024];
+				    int len = 0;
+				    // 将输入流转移到内存输出流中
+				    while ((len = in.read(buffer, 0, buffer.length)) != -1)
+				    {
+				    	out.write(buffer, 0, len);
+				    }
+				 // 将内存流转换为字符串
+				    jsonStr = new String(out.toByteArray());
+				    return jsonStr;
+			  	} catch (Exception e) {
+				
+			  		// TODO Auto-generated catch block
+			  		e.printStackTrace();
+					return null;
+			  	} 
+          
+		}else{
+			return null;
+		}
+		
+	}
 }

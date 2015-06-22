@@ -18,6 +18,7 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.utils.NetUtils;
 
 public abstract class BaseModel {
 	protected String url="http://123.57.251.101/";
@@ -28,7 +29,7 @@ public abstract class BaseModel {
 	
 	//json解析异常跑出为-2
 	public static final String HTTP_ERROR="-2";
-	
+	public static final String HTTP_NOTNET="-3";
 	public BaseModel() {
 		// TODO Auto-generated constructor stub
 		httpmodel=HttpMethod.POST;
@@ -36,27 +37,31 @@ public abstract class BaseModel {
 	
 	
 	public  void sendHttp(){
-		final HttpUtils httpUtils=new HttpUtils(connTimeout);
-		//设置当前请求的缓存时间
-		httpUtils.configCurrentHttpCacheExpiry(0*1000);
-		//设置默认请求的缓存时间
-		httpUtils.configDefaultHttpCacheExpiry(0);
-		httpUtils.send(httpmodel, url, params,new RequestCallBack<String>(){
+		if(NetUtils.getInstance().isConnected()){
+			final HttpUtils httpUtils=new HttpUtils(connTimeout);
+			//设置当前请求的缓存时间
+			httpUtils.configCurrentHttpCacheExpiry(0*1000);
+			//设置默认请求的缓存时间
+			httpUtils.configDefaultHttpCacheExpiry(0);
+			httpUtils.send(httpmodel, url, params,new RequestCallBack<String>(){
 
-			@Override
-			public void onSuccess(ResponseInfo<String> responseInfo) {
-				// TODO Auto-generated method stub
-				onSuccessForString(responseInfo.result);
+				@Override
+				public void onSuccess(ResponseInfo<String> responseInfo) {
+					// TODO Auto-generated method stub
+					onSuccessForString(responseInfo.result);
+					
+				}
+
+				@Override
+				public void onFailure(HttpException error, String msg) {
+					// TODO Auto-generated method stub
+					onFailureForString(error.getMessage(), msg);
+				}
 				
-			}
-
-			@Override
-			public void onFailure(HttpException error, String msg) {
-				// TODO Auto-generated method stub
-				onFailureForString(error.getMessage(), msg);
-			}
-			
-		});
+			});	
+		}else{
+			onFailureForString(HTTP_NOTNET, "请检查网络状态！");
+		}
 	}
 	
     public  void onSuccessForString(String jsonstring){

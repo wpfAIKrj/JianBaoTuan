@@ -8,8 +8,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.ui.server.HomeService;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
+
+import de.greenrobot.dao.internal.SqlUtils;
 /**
  * 引导页面
  * @author Administrator
@@ -25,10 +32,21 @@ public class GuidePageActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guide);
-//		if(mTintManager!=null){
-//			int color=getResources().getColor(R.color.wite);
-//    		mTintManager.setTintColor(color);
-//		}
+		if(SharedPreferencesUtils.getInstance().getIsHaveLogin()){
+			String name=SharedPreferencesUtils.getInstance().getLoginUserName();
+			if(name==null){
+				SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+			}else{	
+				ItApplication.currnUser=SqlDataUtil.getInstance().getUserForPhone(name);
+				if(ItApplication.currnUser!=null){
+					NetConst.SESSIONID=ItApplication.currnUser.getSession_id();
+					NetConst.UPTOKEN=ItApplication.currnUser.getImage_token();
+					NetConst.IMTOKEN=ItApplication.currnUser.getMessage_token();
+					RongImUtils.getInstance().connect(NetConst.IMTOKEN);	
+				}
+			}
+		}
+	
 		startService(new Intent(this,HomeService.class));
 		mHandler.postDelayed(new Runnable() {
 			

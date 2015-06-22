@@ -107,6 +107,16 @@ public class SqlDataUtil {
 	}
 	
 	/**
+	 * 通过手机获取指定的用户
+	 * @param moblie
+	 */
+	public UserInfo getUserForPhone(String moblie){
+		QueryBuilder<UserInfo> qb = userdao.queryBuilder();
+		qb.where( UserInfoDao.Properties.Mobile.eq(moblie));
+		UserInfo user = qb.unique();
+		return user;
+	}
+	/**
 	 * 获取当前本地保存的所有用户数据
 	 * @return 存在则是链表，不存在则为null
 	 */

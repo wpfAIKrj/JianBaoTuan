@@ -129,7 +129,6 @@ public class PublishedActivity extends BaseActivity{
 			showGetPhotoDialog(5);
 			break;
 		case R.id.bt_next://下一步
-			if(NetUtils.checkNetWork(this)){
 				if(type!=null){
 					ArrayList<String> alllist=new ArrayList<String>();
 					for (int i = 0; i < imageAll.length; i++) {
@@ -161,9 +160,6 @@ public class PublishedActivity extends BaseActivity{
 				}else{
 					new ToastUtils(this, R.string.help_msg_12);
 				}
-			}else{
-				new ToastUtils(this, R.string.help_msg_03);
-			}
 			break;
 		default:
 			break;

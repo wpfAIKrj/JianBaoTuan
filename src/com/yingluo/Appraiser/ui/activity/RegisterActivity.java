@@ -37,6 +37,7 @@ import com.yingluo.Appraiser.presenter.RegisterPresenter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.ui.dialog.RegisterDialog;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.TelNumMath;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -265,6 +266,8 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		}
 		ItApplication.currnUser=user;
 		SqlDataUtil.getInstance().saveUserInfo(user);
+		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
+		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		registerdialog=new RegisterDialog(this);
 		registerdialog.show();
 		mhandler.postDelayed(new Runnable() {

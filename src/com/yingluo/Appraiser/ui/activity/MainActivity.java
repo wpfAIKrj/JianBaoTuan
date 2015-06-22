@@ -23,6 +23,7 @@ import com.yingluo.Appraiser.ui.fragment.MyFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ImageUtils;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.MyTabWidget;
@@ -441,6 +442,8 @@ OnTabSelectedListener ,OnClickListener{
 			SqlDataUtil.getInstance().clearUserinfo();
 			RongImUtils.getInstance().disconnect();
 			ItApplication.currnUser=null;
+			SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+			SharedPreferencesUtils.getInstance().saveLoginUserName(null);
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex=0;
 		   	onTabSelected(mIndex);
