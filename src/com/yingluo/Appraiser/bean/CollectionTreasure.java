@@ -66,6 +66,9 @@ public class CollectionTreasure implements Serializable {
 	@SerializedName("msg")
 	public String msg;
 	
+	@SerializedName("id")
+	public long delete_id;
+	
 	
 	
 	public CollectionTreasure() {

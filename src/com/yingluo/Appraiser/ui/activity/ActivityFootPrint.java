@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
@@ -17,6 +18,7 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
@@ -34,21 +36,29 @@ public class ActivityFootPrint extends Activity implements
 	TextView tv_none;
 	@ViewInject(R.id.iv_loading)
 	ImageView iv_loading;
+	@ViewInject(R.id.btn_delete)
+	View btn_delete;
+	@ViewInject(R.id.cancle_all_bt)
+	View btn_cancle;
+	@ViewInject(R.id.delete_all_bt)
+	View delete_all_bt;
+	@ViewInject(R.id.layout_delet)
+	private RelativeLayout layout_delet;
 
 	MyFootAdapter mAdapter = null;
 
 	getMyFootPrintsModel model = null;
-	
-	
-	private OnClickListener onarcitilis=new OnClickListener() {
-		
+	deleteMyFootPrintsModel delModel=null;
+
+	private OnClickListener onarcitilis = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
 			// TODO 自动生成的方法存根
-			
-			CollectionTreasure treasure=(CollectionTreasure) v.getTag();
-			
-			ContentInfo contentInfo=new ContentInfo();
+
+			CollectionTreasure treasure = (CollectionTreasure) v.getTag();
+
+			ContentInfo contentInfo = new ContentInfo();
 			contentInfo.setId(treasure.article_id);
 			Intent intent = new Intent(ActivityFootPrint.this,
 					InformationDetailsActivity.class);
@@ -57,14 +67,39 @@ public class ActivityFootPrint extends Activity implements
 		}
 	};
 
-	@OnClick({ R.id.btn_back })
+	@OnClick({ R.id.btn_back, R.id.btn_delete, R.id.delete_all_bt,
+			R.id.all_checkbox, R.id.cancle_all_bt })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.btn_back:
 			onBackPressed();
 			break;
 
-		default:
+		case R.id.btn_delete: {
+			// 进入删除模式
+			mAdapter.setScorll(true);
+			mAdapter.notifyDataSetChanged();
+			layout_delet.setVisibility(View.VISIBLE);
+
+		}
+			break;
+		case R.id.all_checkbox: {
+			// 全选
+			mAdapter.selectAll();
+		}
+			break;
+		case R.id.cancle_all_bt:// 退出选择模式
+		{
+			layout_delet.setVisibility(View.GONE);
+			mAdapter.setScorll(false);
+			mAdapter.notifyDataSetChanged();
+			mAdapter.exitDelete();
+		}
+			break;
+		case R.id.delete_all_bt: {
+			//删除
+			mAdapter.deleteAll(delModel);
+		}
 			break;
 		}
 	}
@@ -77,6 +112,7 @@ public class ActivityFootPrint extends Activity implements
 		setContentView(R.layout.layout_foot_print);
 		ViewUtils.inject(this);
 		model = new getMyFootPrintsModel();
+		delModel=new deleteMyFootPrintsModel();
 		mAdapter = new MyFootAdapter(onarcitilis);
 
 		prrv.setRefreshLoadMoreListener(this);

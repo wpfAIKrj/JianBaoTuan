@@ -15,6 +15,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -50,6 +51,8 @@ public class ViewHots extends LinearLayout  {
 	private TextView tv_name;
 	@ViewInject(R.id.textview_num)
 	private TextView tv_num;
+	@ViewInject(R.id.delete_checkbox)
+	public CheckBox delete_checkbox;
 
 	@ViewInject(R.id.layout_menu)
 	LinearLayout layout_menu;
@@ -203,5 +206,13 @@ public class ViewHots extends LinearLayout  {
 		}
 			break;
 		}
+	}
+	
+	public void setDataFromDelete(boolean isDelete) {
+		delete_checkbox.setVisibility(isDelete ? View.VISIBLE : View.GONE);
+	}
+	
+	public CollectionTreasure getItem(){
+		return currnt;
 	}
 }

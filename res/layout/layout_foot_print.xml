@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_foot_print_head" 
-        
-        android:id="@+id/top"/>
+    <include
+        android:id="@+id/top"
+        layout="@layout/layout_foot_print_head" />
 
-   <FrameLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top"
-        android:layout_above="@+id/bottom"
-         >
+        android:layout_below="@+id/top" >
 
         <com.yingluo.Appraiser.view.PullRefreshRecyclerView
             android:id="@+id/prrv"
@@ -41,14 +39,70 @@
             android:layout_gravity="center"
             android:src="@drawable/loading"
             android:visibility="gone" />
-        
-        
+
+        <View
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y30"
+            android:layout_gravity="bottom"
+            android:background="@color/item_space_color" />
+
+        <RelativeLayout
+            android:layout_gravity="bottom"
+            android:id="@+id/layout_delet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_item_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/layout_bg_color"
+            android:visibility="gone" >
+
+            <CheckBox
+                android:id="@+id/all_checkbox"
+                style="@style/delete_checkbox_all_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/my_title_style1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/all_checkbox"
+                android:layout_alignBottom="@+id/all_checkbox"
+                android:layout_marginLeft="@dimen/layouts_marginleft"
+                android:layout_toRightOf="@+id/all_checkbox"
+                android:text="全选" />
+
+            <Button
+                android:id="@+id/delete_all_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/detail_text_padd"
+                android:background="@drawable/delete_button_bg"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/dialog_title_color"
+                android:textSize="@dimen/x30" />
+
+            <Button
+                android:id="@+id/cancle_all_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/delete_all_bt"
+                android:layout_alignBottom="@+id/delete_all_bt"
+                android:layout_marginRight="@dimen/button_layout_margin"
+                android:layout_toLeftOf="@+id/delete_all_bt"
+                android:background="@drawable/canle_button_bg"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/number_color"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
     </FrameLayout>
-<View
-        android:id="@+id/bottom"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y30"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/item_space_color" />
-</RelativeLayout>
+
+</LinearLayout>

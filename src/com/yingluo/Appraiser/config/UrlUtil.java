@@ -36,6 +36,14 @@ public class UrlUtil {
 		return url.toString();
 	}
 	/**
+	 *删除 我的足迹
+	 * */
+	public static String deleteMyFootPrintsURL() {
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Material/deleteFootPrintsAction");
+		return url.toString();
+	}
+	/**
 	 * 我的宝物
 	 * */
 	public static String getTreasureByIdURL() {
