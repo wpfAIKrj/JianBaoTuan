@@ -25,6 +25,8 @@
     	    android:paddingLeft="@dimen/x30"
     	    android:imeOptions="actionNext"
     	     android:layout_marginTop="@dimen/x30"
+    	     android:cursorVisible="true"
+    	     android:textCursorDrawable="@null"
     	    >
 
     	    <requestFocus />
@@ -43,6 +45,8 @@
     	    android:paddingLeft="@dimen/x30"
     	    android:imeOptions="actionNext"
     	     android:layout_marginTop="@dimen/x30"
+    	      android:cursorVisible="true"
+    	      android:textCursorDrawable="@null"
     	    >
 
     	    <requestFocus />
@@ -54,13 +58,15 @@
 		    	     android:layout_height="@dimen/y94"
 		    	    android:ems="10"
 		    	    android:background="@drawable/item_layout_padd"
-		    	    android:inputType="number" 
+		    	    android:inputType="text" 
 		    	    android:gravity="center_vertical|left"
 		    	    android:hint="@string/profile_email"
 		    	    style="@style/my_title_style3"
 		    	    android:paddingLeft="@dimen/x30"
 		    	android:imeOptions="actionDone"
 		    	 android:layout_marginTop="@dimen/x30"
+		    	  android:cursorVisible="true"
+		    	  android:textCursorDrawable="@null"
 		    	    />
 
 

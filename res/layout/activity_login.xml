@@ -46,8 +46,8 @@
                 android:imeOptions="actionNext"
                 android:inputType="phone"
                 android:singleLine="true" 
-            
-                
+             android:cursorVisible="true"
+                android:textCursorDrawable="@null"
                 >
 
                 <requestFocus />
@@ -84,9 +84,9 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
        			style="@style/edit_login_style"
-             
+              android:cursorVisible="true"
                 android:hint="@string/login_pwd_hint" 
-          
+          android:textCursorDrawable="@null"
                 >
 
                 <requestFocus />

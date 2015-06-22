@@ -31,7 +31,10 @@
             android:layout_marginRight="@dimen/x20"
             android:background="@android:color/transparent"
             android:textColor="@color/ed_login_color"
-            android:textSize="@dimen/x36" >
+            android:textSize="@dimen/x36"
+             android:cursorVisible="true"
+             android:textCursorDrawable="@null"
+             >
         </EditText>
     </LinearLayout>
 

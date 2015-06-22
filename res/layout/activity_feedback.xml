@@ -27,6 +27,9 @@
     	    android:layout_marginLeft="@dimen/x14"
     	    android:layout_marginRight="@dimen/x14"
     	    android:imeOptions="actionDone"
+    	    
+    	    android:cursorVisible="true"
+    	    android:textCursorDrawable="@null"
     	    >
 
     	    <requestFocus />
