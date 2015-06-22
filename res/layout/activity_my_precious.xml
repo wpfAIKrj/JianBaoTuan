@@ -83,12 +83,12 @@
                 android:clickable="false"
                 android:gravity="center"
                 android:text="已鉴定"
-                android:textColor="@color/bt_color" />
+                android:textColor="@color/dialog_title_color" />
 
             <View
                 android:layout_width="@dimen/x126"
                 android:layout_height="@dimen/y1"
-                android:background="@color/bt_color" />
+                android:background="@color/dialog_title_color" />
         </LinearLayout>
     </LinearLayout>
 

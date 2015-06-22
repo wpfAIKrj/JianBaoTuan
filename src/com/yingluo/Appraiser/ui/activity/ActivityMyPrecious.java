@@ -200,9 +200,9 @@ public class ActivityMyPrecious extends Activity {
 		case R.id.btn_all: {
 			// 先设置背景
 			((Button) btn_all.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
+					.getColor(R.color.dialog_title_color));
 			btn_all.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+					getResources().getColor(R.color.dialog_title_color));
 
 			((Button) btn_ed.getChildAt(0)).setTextColor(getResources()
 					.getColor(R.color.black_2));
@@ -227,9 +227,9 @@ public class ActivityMyPrecious extends Activity {
 			btn_ed.getChildAt(1).setBackgroundColor(
 					getResources().getColor(R.color.wite));
 			((Button) btn_ing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
+					.getColor(R.color.dialog_title_color));
 			btn_ing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+					getResources().getColor(R.color.dialog_title_color));
 		}
 			break;
 		case R.id.btn_identified: {
@@ -239,9 +239,9 @@ public class ActivityMyPrecious extends Activity {
 					getResources().getColor(R.color.wite));
 
 			((Button) btn_ed.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
+					.getColor(R.color.dialog_title_color));
 			btn_ed.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+					getResources().getColor(R.color.dialog_title_color));
 			((Button) btn_ing.getChildAt(0)).setTextColor(getResources()
 					.getColor(R.color.black_2));
 			btn_ing.getChildAt(1).setBackgroundColor(
