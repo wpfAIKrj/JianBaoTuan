@@ -15,6 +15,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -450,6 +451,7 @@ public class ActivityUserDelails extends BaseActivity {
 			for (int i = 0; i < entity.images1.length; i++) {
 				
 				ImageViewWithBorder image=new ImageViewWithBorder(this);
+				image.setScaleType(ScaleType.FIT_XY);
 				image.setLayoutParams(params);
 				image.setBackgroundResource(R.drawable.item_small_stroke);
 				bitmapUtils.display(image, entity.images1[i]);
@@ -461,6 +463,7 @@ public class ActivityUserDelails extends BaseActivity {
 			for (int i = 0; i < entity.images1.length; i++) {
 		
 				ImageViewWithBorder image=new ImageViewWithBorder(this);
+				image.setScaleType(ScaleType.FIT_XY);
 				image.setLayoutParams(params);
 				image.setBackgroundResource(R.drawable.item_small_stroke);
 				bitmapUtils.display(image, entity.images2[i]);
