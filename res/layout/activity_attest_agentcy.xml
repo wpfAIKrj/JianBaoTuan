@@ -7,48 +7,41 @@
     
     android:fitsSystemWindows="true"
     
-     >
+     xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     	<include layout="@layout/layout_head"/>
     	<TextView 
     	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/title_layout_smart_height"
+    	    android:layout_height="@dimen/y80"
     	    android:text="@string/attest_help_titls"
     	    style="@style/my_titl_style4"
     	    android:gravity="center_vertical"
     		android:paddingLeft="@dimen/x30"
+    		
     	    />
 
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	     android:background="@color/item_space_color"
-    	    />
+    
     	<EditText
     	    android:id="@+id/et_name"
     	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/ed_layout_height"
+    	    android:layout_height="@dimen/y94"
     	    android:ems="10"
-    	    android:background="@color/layout_bg_color"
+    	    android:background="@drawable/item_layout_padd"
     	    android:inputType="text" 
     	    android:gravity="center_vertical|left"
     	    android:hint="@string/attest_hiht_agentcy_name"
     	    style="@style/my_title_style3"
     	    android:paddingLeft="@dimen/x30"
     	    android:imeOptions="actionNext"
+    	    
     	    >
 
     	    <requestFocus />
     	</EditText>
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="1dp"
-    	 
-    	     android:background="@color/item_space_color"
-    	    />
+    
     	<TextView 
     	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/title_layout_smart_height"
+    	    android:layout_height="@dimen/y80"
     	    android:text="@string/attest_helps_title3"
     	    style="@style/my_titl_style5"
     	    android:gravity="center_vertical"
@@ -56,34 +49,43 @@
     	    />
 		<com.yingluo.Appraiser.view.CircleImageView
 			android:id="@+id/imageView01"
-			android:layout_width="@dimen/published_layout_height"
-			android:layout_height="@dimen/published_layout_height"
+			android:layout_width="@dimen/y200"
+			android:layout_height="@dimen/y200"
 			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/x30"/>
+			android:paddingLeft="@dimen/x30"
+			android:layout_marginLeft="@dimen/x14"
+			app:border_width="@dimen/x1"
+			app:border_color="@color/black"/>
     	<TextView 
     	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/title_layout_smart_height"
+    	    android:layout_height="@dimen/y80"
     	    android:text="@string/attest_helps_title2"
     	    style="@style/my_titl_style5"
     	    android:gravity="center_vertical"
     		android:paddingLeft="@dimen/x30"
+    		android:layout_marginTop="@dimen/y20"
     	    />
 		<com.yingluo.Appraiser.view.CircleImageView
 			android:id="@+id/imageView02"
-			android:layout_width="@dimen/published_layout_height"
-			android:layout_height="@dimen/published_layout_height"
+			android:layout_width="@dimen/y200"
+			android:layout_height="@dimen/y200"
 			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/x30"/>
+			android:paddingLeft="@dimen/x30"
+			android:layout_marginLeft="@dimen/x14"
+			android:layout_marginTop="@dimen/y20"
+			app:border_width="@dimen/x1"
+			app:border_color="@color/black"
+			/>
 	
 		<Button
 		    android:id="@+id/bt_attest"
 		    android:layout_width="match_parent"
-		    android:layout_height="50dp"
+		    android:layout_height="@dimen/y94"
 		    android:text="@string/feednack_bt"
 		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/detail_text_padd"
-		    android:layout_marginRight="@dimen/detail_text_padd"
-		    android:layout_marginTop="@dimen/bt_margintop_layout" />
+		    android:layout_marginLeft="@dimen/x14"
+		    android:layout_marginRight="@dimen/x14"
+		    android:layout_marginTop="@dimen/y100" />
 
 
 

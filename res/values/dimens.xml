@@ -28,7 +28,7 @@
 	<dimen name="detail_info_spacing">18dp</dimen>
 	
 	
-	<dimen name="my_up_size">13sp</dimen>
+
 	
 	
 	<dimen name="bt_margintop_layout">50dp</dimen>
@@ -42,7 +42,7 @@
 	<dimen name="text_big_layout_width">65dp</dimen>
 	
 	
-	<dimen name="published_layout_height">100dp</dimen>
+	
 	<dimen name="identy_edit_height">120dp</dimen>
 	
 	<dimen name="layout_logo_width">50dp</dimen>

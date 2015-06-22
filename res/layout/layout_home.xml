@@ -11,7 +11,9 @@
 
     <ScrollView
         android:id="@+id/scrollview"
-        style="@style/w_h_full" >
+        style="@style/w_h_full"
+        android:scrollbars="none"
+         >
 
         <LinearLayout
             android:id="@+id/linearlayout_body"

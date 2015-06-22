@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom"
         android:layout_below="@+id/top"
+        android:scrollbars="none"
         >
 
         <LinearLayout

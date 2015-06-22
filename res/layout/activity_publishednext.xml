@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/wite"
-    
+    android:scrollbars="none"
     
     >
     <LinearLayout 

@@ -20,7 +20,7 @@
             android:id="@+id/sv_left_menu"
             android:scrollbars="none"
             android:paddingLeft="30dp"
-            android:layout_width="150dp"
+            android:layout_width="@dimen/y94"
             android:layout_height="wrap_content"
             android:layout_gravity="left|center_vertical">
         <LinearLayout
@@ -50,10 +50,8 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
               android:background="@drawable/login_edit_bg"
               >
 
@@ -64,8 +62,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="个人资料"
 		            />
 		
@@ -76,14 +74,14 @@
 		        android:layout_centerVertical="true"
 		        android:scaleType="centerCrop" 
 		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/detail_info_spacing"/>
+		        android:layout_marginRight="@dimen/x14"/>
 		
 		  
 
 	</RelativeLayout>
 	<View
 	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
+	    android:layout_height="@dimen/y1"
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
@@ -91,10 +89,9 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
+              
               android:background="@drawable/login_edit_bg"
               >
 
@@ -105,8 +102,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="修改密码"
 		            
 		            />
@@ -118,14 +115,14 @@
 		        android:layout_centerVertical="true"
 		        android:scaleType="centerCrop" 
 		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/detail_info_spacing"/>
+		        android:layout_marginRight="@dimen/x14"/>
 		
 		
 
 	</RelativeLayout>
 	<View
 	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
+	    android:layout_height="@dimen/y1"
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
@@ -133,10 +130,9 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
+     
               android:background="@drawable/login_edit_bg"
               >
 
@@ -147,8 +143,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="意见反馈"
 		            
 		            />
@@ -160,14 +156,14 @@
 		        android:layout_centerVertical="true"
 		        android:scaleType="centerCrop" 
 		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/detail_info_spacing"/>
+		        android:layout_marginRight="@dimen/x14"/>
 		
 		   
 
 	</RelativeLayout>
 	<View
 	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
+	    android:layout_height="@dimen/y1"
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
@@ -175,10 +171,9 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
+  
               android:background="@drawable/login_edit_bg"
               >
 
@@ -189,8 +184,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="检测更新"
 		            
 		            />
@@ -202,7 +197,7 @@
 		        android:layout_centerVertical="true"
 		        android:scaleType="centerCrop" 
 		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/detail_info_spacing"
+		        android:layout_marginRight="@dimen/x14"
 		  
 		        />
 		
@@ -211,7 +206,7 @@
 	</RelativeLayout>
 	<View
 	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
+	    android:layout_height="@dimen/y1"
 		android:background="@color/number_color"
 	    />
 	<RelativeLayout 
@@ -219,10 +214,9 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
+           
               android:background="@drawable/login_edit_bg"
               >
 
@@ -233,8 +227,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="清楚本地缓存"
 		            
 		            />
@@ -246,7 +240,7 @@
 		        android:layout_centerVertical="true"
 		        android:scaleType="centerCrop" 
 		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/detail_info_spacing"
+		        android:layout_marginRight="@dimen/x14"
 		         android:id="@+id/iv_icon"
 		        />
 		<TextView
@@ -258,21 +252,16 @@
 		        android:text="32.5K" 
 		        android:textSize="@dimen/x24"
 		        android:textColor="@color/ed_login_color"
-		        android:layout_marginRight="6dp"/>
+		        android:layout_marginRight="@dimen/x12"/>
 		 
 
 	</RelativeLayout>
 	<View
 	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
+	    android:layout_height="@dimen/y1"
 		android:background="@color/number_color"
 	    />
-	<View 
-	    android:layout_width="match_parent"
-	    android:layout_height="48dp"
-	    android:background="@android:color/transparent"
-	    
-	    />
+
 	<View
 	    android:layout_width="match_parent"
 	    android:layout_height="1dp"
@@ -283,10 +272,9 @@
 		      android:descendantFocusability="beforeDescendants"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="50dp"
+              android:layout_height="@dimen/y94"
               android:gravity="center_vertical"
-              android:paddingTop="15dp"
-              android:paddingBottom="15dp"
+      		 android:layout_marginTop="@dimen/y100"
               android:background="@drawable/login_edit_bg"
               >
 
@@ -297,8 +285,8 @@
 		            android:textColor="@color/ed_login_color"
 		            android:layout_alignParentLeft="true"
 		           	android:layout_centerVertical="true"
-		            android:textSize="14sp"
-		            android:layout_marginLeft="@dimen/layout_margin_top"
+		            android:textSize="@dimen/x28"
+		            android:layout_marginLeft="@dimen/x20"
 		            android:text="退出当前账号"
 		            
 		            />
