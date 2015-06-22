@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_foot_print_head" />
+    <include layout="@layout/layout_foot_print_head" 
+        
+        android:id="@+id/top"/>
 
    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_above="@+id/bottom"
+         >
 
         <com.yingluo.Appraiser.view.PullRefreshRecyclerView
             android:id="@+id/prrv"
@@ -36,6 +41,14 @@
             android:layout_gravity="center"
             android:src="@drawable/loading"
             android:visibility="gone" />
+        
+        
     </FrameLayout>
-
-</LinearLayout>
+<View
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/item_space_color" />
+</RelativeLayout>

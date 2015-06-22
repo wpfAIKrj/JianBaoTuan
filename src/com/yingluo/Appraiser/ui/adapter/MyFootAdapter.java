@@ -82,7 +82,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
 		// TODO 自动生成的方法存根
 		if(arg1==1){
-			return new AcrivleFootVIewholder(LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_home_3, arg0,false), lis);
+			return new AcrivleFootVIewholder(LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_foot_info, arg0,false), lis);
 		}
 		if(arg1==0){
 			View view = LayoutInflater.from(arg0.getContext()).inflate(

@@ -38,6 +38,8 @@ public class ActivityFootPrint extends Activity implements
 	MyFootAdapter mAdapter = null;
 
 	getMyFootPrintsModel model = null;
+	
+	
 	private OnClickListener onarcitilis=new OnClickListener() {
 		
 		@Override
