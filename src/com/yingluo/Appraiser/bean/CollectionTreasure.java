@@ -69,6 +69,9 @@ public class CollectionTreasure implements Serializable {
 	@SerializedName("id")
 	public long delete_id;
 	
+	//删除是否被选择
+	public boolean isSelect=false;
+	
 	
 	
 	public CollectionTreasure() {

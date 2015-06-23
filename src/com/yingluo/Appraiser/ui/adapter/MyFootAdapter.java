@@ -125,12 +125,13 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	}
 
 	// 全选
-	public void selectAll() {
+	public void selectAll(boolean isSelect) {
 		// TODO Auto-generated method stub
 		int len = list.size();
 		for (int i = 0; i < len; i++) {
-			
+			list.get(i).isSelect=isSelect;
 		}
+		notifyDataSetChanged();
 
 	}
 

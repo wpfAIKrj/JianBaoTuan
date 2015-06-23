@@ -127,6 +127,8 @@ public class ViewHots extends LinearLayout  {
 		setName(item.name);
 		// 设置浏览量
 		setNum(item.viewTimes + "");
+		
+		delete_checkbox.setChecked(item.isSelect);
 
 	}
 

@@ -82,6 +82,7 @@ public class AcrivleFootVIewholder extends ViewHolder {
 		bitmapUtils.displayForxy(iv, currnt.getImage());
 		tv_msg.setText(currnt.msg);
 		tv_num.setText(currnt.viewTimes + "");
+		delete_checkbox.setChecked(arcitite.isSelect);
 
 	}
 

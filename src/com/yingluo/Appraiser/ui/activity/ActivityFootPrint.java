@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class ActivityFootPrint extends Activity implements
 	View delete_all_bt;
 	@ViewInject(R.id.layout_delet)
 	private RelativeLayout layout_delet;
+	@ViewInject(R.id.all_checkbox)
+	CheckBox all_checkbox;
 
 	MyFootAdapter mAdapter = null;
 
@@ -85,7 +88,7 @@ public class ActivityFootPrint extends Activity implements
 			break;
 		case R.id.all_checkbox: {
 			// 全选
-			mAdapter.selectAll();
+			mAdapter.selectAll(all_checkbox.isChecked());
 		}
 			break;
 		case R.id.cancle_all_bt:// 退出选择模式
