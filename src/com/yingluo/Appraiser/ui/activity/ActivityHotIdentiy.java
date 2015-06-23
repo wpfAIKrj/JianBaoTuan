@@ -239,9 +239,9 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		case R.id.btn_identifing: {
 			// 先设置背景
 			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
+					.getColor(R.color.dialog_title_color));
 			btn_identifing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+					getResources().getColor(R.color.dialog_title_color));
 
 			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
 					.getColor(R.color.black_2));
@@ -258,9 +258,9 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 					getResources().getColor(R.color.wite));
 
 			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
+					.getColor(R.color.dialog_title_color));
 			btn_identified.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+					getResources().getColor(R.color.dialog_title_color));
 		}
 			break;
 		}

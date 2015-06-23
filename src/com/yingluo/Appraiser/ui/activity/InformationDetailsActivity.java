@@ -1,8 +1,15 @@
 package com.yingluo.Appraiser.ui.activity;
 
+import org.xml.sax.XMLReader;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.Html.TagHandler;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -105,7 +112,19 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
-		context.setText(info.getContent());
+		if(info.getContent()!=null){
+		context.setText(Html.fromHtml(info.getContent(), null, new TagHandler() {
+			
+			@Override
+			public void handleTag(boolean opening, String tag, Editable output,
+					XMLReader xmlReader) {
+				// TODO Auto-generated method stub
+				
+			}
+		}));
+		}else{
+			context.setText(null);
+		}
 		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
 			collect.setVisibility(View.GONE);
 			canclecollect.setVisibility(View.VISIBLE);

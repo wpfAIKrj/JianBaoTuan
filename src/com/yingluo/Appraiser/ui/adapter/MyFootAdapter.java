@@ -138,6 +138,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	public void deleteAll(deleteMyFootPrintsModel delModel) {
 		// TODO Auto-generated method stub
 		StringBuilder sb=new StringBuilder();
+		if(deleteIds.size()<0) return;
 		for (final CollectionTreasure id : deleteIds) {
 			sb.append(id.delete_id).append(",");
 		}
