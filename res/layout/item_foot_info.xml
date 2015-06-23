@@ -30,8 +30,7 @@
         android:layout_height="@dimen/y60"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:layout_marginLeft="@dimen/x7"
-        android:layout_marginRight="@dimen/x7"
+    
         android:background="#99FFFFFF"
         android:gravity="center_vertical"
         android:orientation="horizontal" >

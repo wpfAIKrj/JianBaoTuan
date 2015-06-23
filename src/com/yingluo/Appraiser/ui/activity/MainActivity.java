@@ -439,7 +439,6 @@ OnTabSelectedListener ,OnClickListener{
 			if(Logodialong!=null){
 				Logodialong.dismiss();
 			}
-			SqlDataUtil.getInstance().clearUserinfo();
 			RongImUtils.getInstance().disconnect();
 			ItApplication.currnUser=null;
 			SharedPreferencesUtils.getInstance().saveForIsLogin(false);

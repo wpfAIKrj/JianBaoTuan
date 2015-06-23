@@ -92,6 +92,8 @@ public class NetConst {
 	
 	public static final String SENDEXIT = "Users/logoutAction";//用户退出
 	
+	public static final String FORGETPWD="Users/forgetPasswordAction";//找回密码
+	
 	public static final String PUBLISH_TREASURES = "Material/addAction";//发布藏品
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	

@@ -143,7 +143,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 
 	/**
-	 * 
+	 * 验证手机码是否正确
 	 */
 	private void checkSms() {
 		// TODO Auto-generated method stub
@@ -168,6 +168,9 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		 }
 	}
 
+	/**
+	 * 发送短信
+	 */
 	private void sendSms() {
 		// TODO Auto-generated method stub
 		phone=ed_phone.getText().toString();
@@ -223,6 +226,9 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 	private RegisterDialog registerdialog;
 
+	/**
+	 * 倒计时
+	 */
 	protected void reSendSMS() {
 		// TODO Auto-generated method stub
 		 System.out.println("获取验证码成功");
