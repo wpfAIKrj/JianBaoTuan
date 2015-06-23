@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.R;
@@ -92,13 +93,19 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
 		// TODO 自动生成的方法存根
 		if (arg1 == 1) {
-			return new AcrivleFootVIewholder(LayoutInflater.from(
+			View view=LayoutInflater.from(
 					arg0.getContext()).inflate(R.layout.item_foot_info, arg0,
-					false), lis, deleteIds);
+					false);
+			LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT, (int)arg0.getContext().getResources().getDimension(R.dimen.y568));
+			view.setLayoutParams(params);
+			return new AcrivleFootVIewholder(view, lis, deleteIds);
+			
 		}
 		if (arg1 == 0) {
 			View view = LayoutInflater.from(arg0.getContext()).inflate(
 					R.layout.item_identified, arg0, false);
+			LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT, (int)arg0.getContext().getResources().getDimension(R.dimen.y568));
+			view.setLayoutParams(params);
 			// ViewHolder参数一定要是Item的Root节点.
 			return new IdentityFootViewholder(view, deleteIds);
 		}

@@ -9,7 +9,7 @@
         android:id="@+id/top"
         layout="@layout/layout_foot_print_head" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/top" >
@@ -20,7 +20,9 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/y20"
             android:paddingLeft="@dimen/x14"
-            android:paddingRight="@dimen/x14" />
+            android:paddingRight="@dimen/x14" 
+            android:layout_above="@+id/bottom"
+            />
 
         <TextView
             android:id="@+id/tv_none"
@@ -45,7 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y30"
             android:layout_gravity="bottom"
-            android:background="@color/item_space_color" />
+            android:background="@color/item_space_color"
+            android:layout_alignParentBottom="true" />
 
         <RelativeLayout
             android:layout_gravity="bottom"
@@ -103,6 +106,6 @@
                 android:textColor="@color/number_color"
                 android:textSize="@dimen/x30" />
         </RelativeLayout>
-    </FrameLayout>
+    </RelativeLayout>
 
 </LinearLayout>

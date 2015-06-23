@@ -4,13 +4,18 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.bitmap.core.BitmapSize;
 import com.lidroid.xutils.bitmap.factory.BitmapFactory;
 import com.lidroid.xutils.cache.FileNameGenerator;
 import com.yingluo.Appraiser.view.CircleImageView;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -96,6 +101,53 @@ public class BitmapsUtils {
 			utils.display(container, uri, config);
 		}
 	}
+	
+	
+	/**
+	 * 图片加载
+	 * 
+	 * @param container
+	 *            imageview
+	 * @param uri
+	 *            地址
+	 * @param type
+	 *            是否按指定大小加载
+	 */
+	public void displayForxy(ImageView container, String uri) {
+			BitmapDisplayConfig config = this.config.cloneNew();
+			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
+					container.getHeight());
+			config.setBitmapMaxSize(bitmapMaxSize);
+			if(!(container instanceof CircleImageView)){
+				
+				container.setScaleType(ScaleType.CENTER_CROP);
+			}
+			
+			utils.display(container, uri);
+			
+//			utils.display(container, uri, config, new BitmapLoadCallBack<ImageView>(){
+//
+//				@Override
+//				public void onLoadCompleted(ImageView container, String uri,
+//						Bitmap bitmap, BitmapDisplayConfig config,
+//						BitmapLoadFrom from) {
+//					// TODO 自动生成的方法存根
+//					BitmapCompressor.setBsetBitmap(bitmap, container, container.getMeasuredWidth(), container.getMeasuredHeight());
+//				}
+//
+//				@Override
+//				public void onLoadFailed(ImageView container, String uri,
+//						Drawable drawable) {
+//					// 
+//					BitmapDrawable bd = (BitmapDrawable) drawable;
+//					BitmapCompressor.setBsetBitmap(bd.getBitmap(), container, container.getMeasuredWidth(), container.getMeasuredHeight());
+//
+//				}
+//				
+//			});
+		
+	}
+	
 	
 	
 

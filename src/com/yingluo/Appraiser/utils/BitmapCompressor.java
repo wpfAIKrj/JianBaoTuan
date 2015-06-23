@@ -9,9 +9,12 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.Bitmap.Config;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
  
 /**
  * 图片压缩工具类
@@ -147,5 +150,39 @@ public class BitmapCompressor {
         return inSampleSize;
     }
     
-    
+    /**
+     * 在固定大小的ImageView中，保证图片不变形
+     * 
+     * @param bitmap
+     * @param imageView
+     * @param width
+     * @param height
+     */
+    public static void setBsetBitmap(Bitmap bitmap, ImageView imageView, int width,
+                    int height) {
+            //计算最佳缩放倍数
+//            float scaleX = (float) width / bitmap.getWidth();
+//            float scaleY = (float) height / bitmap.getHeight();
+//            float bestScale = scaleX < scaleY ? scaleX : scaleY;
+            //计算最佳缩放倍数,以填充宽高为目标
+            float scaleX = (float) width / bitmap.getWidth();
+            float scaleY = (float) height / bitmap.getHeight();
+            float bestScale = scaleX > scaleY ? scaleX : scaleY;
+            //以填充高度的前提下，计算最佳缩放倍数
+    //        float bestScale = (float) height / bitmap.getHeight();
+
+            float subX = (width - bitmap.getWidth() * bestScale) / 2;
+            float subY = (height - bitmap.getHeight() * bestScale) / 2;
+
+            Matrix imgMatrix = new Matrix();
+            imageView.setScaleType(ScaleType.MATRIX);
+            //缩放最佳大小
+            imgMatrix.postScale(bestScale, bestScale);
+            //移动到居中位置显示
+            imgMatrix.postTranslate(subX, subY);
+            //设置矩阵
+            imageView.setImageMatrix(imgMatrix);
+
+            imageView.setImageBitmap(bitmap);
+    }
 }

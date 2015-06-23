@@ -2,6 +2,8 @@ package com.yingluo.Appraiser.view.viewholder;
 
 import java.util.ArrayList;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -74,7 +79,7 @@ public class AcrivleFootVIewholder extends ViewHolder {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.display(iv, currnt.getImage(), BitmapsUtils.TYPE_YES);
+		bitmapUtils.displayForxy(iv, currnt.getImage());
 		tv_msg.setText(currnt.msg);
 		tv_num.setText(currnt.viewTimes + "");
 
