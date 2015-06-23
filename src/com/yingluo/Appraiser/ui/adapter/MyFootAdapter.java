@@ -137,26 +137,31 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	public void deleteAll(deleteMyFootPrintsModel delModel) {
 		// TODO Auto-generated method stub
+		StringBuilder sb=new StringBuilder();
 		for (final CollectionTreasure id : deleteIds) {
-			LogUtils.i("id=" + id);
-			delModel.sendHttp(new CommonCallBack() {
-
-				@Override
-				public void onSuccess() {
-					// TODO Auto-generated method stub
-					LogUtils.i("delete id: +  success!!!");
-					list.remove(id);
-					notifyDataSetChanged();
-
-				}
-
-				@Override
-				public void onError() {
-					// TODO Auto-generated method stub
-
-				}
-			}, id.delete_id);
+			sb.append(id.delete_id).append(",");
 		}
+		sb.deleteCharAt(sb.length()-1);
+		LogUtils.i("ids=" + sb.toString());
+		delModel.sendHttp(new CommonCallBack() {
+
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				LogUtils.i("delete id: +  success!!!");
+				for (final CollectionTreasure id : deleteIds) {
+					list.remove(id);
+				}
+				notifyDataSetChanged();
+
+			}
+
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+
+			}
+		}, sb.toString());
 		
 	}
 

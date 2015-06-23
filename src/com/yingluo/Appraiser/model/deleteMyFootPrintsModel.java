@@ -41,7 +41,7 @@ public class deleteMyFootPrintsModel extends BaseModel {
 		url = sb.toString();
 	}
 
-	public void sendHttp(final CommonCallBack callBack,long id) {
+	public void sendHttp(final CommonCallBack callBack,String id) {
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
 		StringBuffer sb=new StringBuffer(url);
 		sb.append("&ids=").append(id);
