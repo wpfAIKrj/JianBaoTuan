@@ -95,7 +95,7 @@
       
       <string name="collect_info_title">收藏文章</string>
       <string name="str_result">查看结果</string>
-      
+      <string name="system_info_title">系统通知</string>
       <string name="title_attestagency">机构认证</string>
        <string name="title_personal">个人认证</string>
        <string name="attest_help_titls">为了你的认证可以及时通过审核，请认证填写相关信息</string>

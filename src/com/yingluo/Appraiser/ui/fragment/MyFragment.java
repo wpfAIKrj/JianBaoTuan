@@ -250,8 +250,8 @@ public class MyFragment extends BaseFragment{
 			RongIM.getInstance().startConversationList(mActivity);
 			break;
 		case R.id.my_tab4:// 跳转到系统通知
-			mActivity.startActivity(new Intent(mActivity,
-					SystemInfoActivity.class));
+			mActivity.startActivityForResult(new Intent(mActivity,
+					SystemInfoActivity.class),Const.TO_SYSTEM_INFO);
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
 			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){

@@ -7,7 +7,7 @@ import com.yingluo.Appraiser.bean.ContentInfo;
  * @author Administrator
  *
  */
-public interface deleteItemlistener {
+public interface deleteItemlistener<T> {
 
-	public void ondeleteItem(ContentInfo item,int id);
+	public void ondeleteItem(T item,int id);
 }

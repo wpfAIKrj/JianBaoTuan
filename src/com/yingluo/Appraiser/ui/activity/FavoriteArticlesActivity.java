@@ -302,7 +302,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		myPresenter.getArticleList("0", (length+1));
 	}
 
-	private deleteItemlistener deleteItemlistener=new deleteItemlistener() {
+	private deleteItemlistener deleteItemlistener=new deleteItemlistener<ContentInfo>() {
 		
 		@Override
 		public void ondeleteItem(ContentInfo item, int id) {

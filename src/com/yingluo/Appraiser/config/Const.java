@@ -121,5 +121,9 @@ public class Const {
 	 * 宝贝搜索页面跳转到宝物鉴定列表
 	 */
 	public static final int TO_KIND_INDENTIFY = 15;
+	/**
+	 * 我的页面跳转到系统消息
+	 */
+	public static final int TO_SYSTEM_INFO = 16;
 
 }

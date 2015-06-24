@@ -95,6 +95,8 @@ public class NetConst {
 	public static final String FORGETPWD="Users/forgetPasswordAction";//找回密码
 	
 	public static final String PUBLISH_TREASURES = "Material/addAction";//发布藏品
+	public static final String SYSTEMNOTICE = "Users/systemNoticeAction";//获取系统消息列表
+	
 	public static CookieStore COOKIESTORE=null;//初始化为null
 	
 	public static String SESSIONID=null;//默认为空 注册登陆后赋值
@@ -126,6 +128,7 @@ public class NetConst {
 
 	public static final String UPKEY="key";
 	public static final String INFO_ID = "id";
+	
 
 
 

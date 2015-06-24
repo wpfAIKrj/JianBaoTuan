@@ -44,7 +44,7 @@ public class MyArticleAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 	
 	private int load_type=2;
 	private boolean isScorll;//删除
-	private deleteItemlistener delete;
+	private deleteItemlistener<ContentInfo> delete;
 
 	public Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();//选择删除
 	
