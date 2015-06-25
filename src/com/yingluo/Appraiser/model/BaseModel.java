@@ -16,6 +16,7 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.utils.NetUtils;
@@ -75,6 +76,10 @@ public abstract class BaseModel {
 				analyzeData(data);
 				
 			}else{
+				if(code==NetConst.CODE_ERROR8){
+					ItApplication.currnUser=null;
+					NetConst.SESSIONID=null;
+				}
 				onFailureForString(String.valueOf(code),message);
 			}
 		} catch (Exception e) {

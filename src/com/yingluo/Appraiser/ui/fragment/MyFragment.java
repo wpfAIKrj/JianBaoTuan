@@ -41,11 +41,13 @@ import com.yingluo.Appraiser.ui.activity.AuthenticateActivity;
 import com.yingluo.Appraiser.ui.activity.FavoriteArticlesActivity;
 import com.yingluo.Appraiser.ui.activity.IMListActivity;
 import com.yingluo.Appraiser.ui.activity.LevelActivity;
+import com.yingluo.Appraiser.ui.activity.MainActivity;
 import com.yingluo.Appraiser.ui.activity.SystemInfoActivity;
 import com.yingluo.Appraiser.ui.adapter.MyLikeAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
 
@@ -99,10 +101,10 @@ public class MyFragment extends BaseFragment{
 	private OnLongClickListener onlongListner;
 	private Dialog dialog;
 	
-	private boolean isFirst=true;
 
 	private MyLikeAdapter madapter;
 
+	private boolean isgete=false;
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -134,10 +136,7 @@ public class MyFragment extends BaseFragment{
 			}
 			break;
 		case 1://更新个人信息
-			if(isFirst){
-				isFirst=false;
-				initDisplay();
-			}
+			initDisplay();
 			break;
 		default:
 			break;
@@ -159,23 +158,23 @@ public class MyFragment extends BaseFragment{
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
 		if(ItApplication.currnUser!=null){
-		tv_name.setText(ItApplication.currnUser.getNickname());
-		BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
+			tv_name.setText(ItApplication.currnUser.getNickname());
+			BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
 		}
 		//initData();
-		dialog=DialogUtil.createLoadingDialog(mActivity, "加载个人信息中");
-		dialog.show();
-		getPresenter.getUserInfo();
+//		dialog=DialogUtil.createLoadingDialog(mActivity, "加载个人信息中");
+//		dialog.show();
+		if(!isgete){
+			getPresenter.getUserInfo();
+			isgete=true;	
+		}
 	}
 
 
 	@Override
 	public void lazyLoad() {
 		// TODO Auto-generated method stub
-		if(isFirst){
-			isFirst=false;
 			initDisplay();
-		}
 	}
 
 	public void setPopMenuListener(OnClickListener lis) {
@@ -301,6 +300,7 @@ public class MyFragment extends BaseFragment{
 				ItApplication.currnUser.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
 				ItApplication.currnUser.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
 				ItApplication.currnUser.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
+				SqlDataUtil.getInstance().saveUserInfo(ItApplication.currnUser);
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
 				for (int i = 0; i < arrays.length(); i++) {
@@ -310,23 +310,35 @@ public class MyFragment extends BaseFragment{
 					entity.image=json.getString("image");
 					list.add(entity);
 				}
+				
 			} catch (Exception e) {
 				// TODO: handle exception
 			}finally{
 			if(dialog!=null){
 				dialog.dismiss();
 			}
-				initData();
+				isgete=false;
+				madapter=new MyLikeAdapter(list, itemListner);
+				listView.setAdapter(madapter);
+				tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
+				tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
+				tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
+				
 			}
 		}
 		
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
+		
+			if(errorCode.equals(NetConst.CODE_ERROR8)){
+				((MainActivity)mActivity).setOnTabselected();
+			}
 			new ToastUtils(mActivity, errorMsg);
 			if(dialog!=null){
 				dialog.dismiss();
 			}
+		
 		}
 	};
 	private OnClickListener itemListner=new OnClickListener() {

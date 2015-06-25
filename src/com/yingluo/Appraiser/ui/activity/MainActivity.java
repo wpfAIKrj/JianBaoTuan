@@ -138,11 +138,16 @@ OnTabSelectedListener ,OnClickListener{
     protected void onResume() {
     	// TODO Auto-generated method stub
     	super.onResume();
+    	setOnTabselected();
+    }
+
+    public void setOnTabselected(){
     	onTabSelected(mIndex);
 		mTabWidget.setTabsDisplay(this, mIndex);
 		mTabWidget.setIndicateDisplay(this, mIndex, true);
     }
-
+    
+    
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(Const.MINDEX, mIndex);
@@ -246,7 +251,7 @@ OnTabSelectedListener ,OnClickListener{
 			} else {
 				transaction.show(mMyFragment);
 			}
-			//EventBus.getDefault().post(new MyEvent(1, null));
+			EventBus.getDefault().post(new MyEvent(1, null));
 			break;
 
 		default:
@@ -445,9 +450,7 @@ OnTabSelectedListener ,OnClickListener{
 			SharedPreferencesUtils.getInstance().saveLoginUserName(null);
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex=0;
-		   	onTabSelected(mIndex);
-			mTabWidget.setTabsDisplay(MainActivity.this, mIndex);
-			mTabWidget.setIndicateDisplay(MainActivity.this, mIndex, true);
+			setOnTabselected();
 			
 		}
 		
