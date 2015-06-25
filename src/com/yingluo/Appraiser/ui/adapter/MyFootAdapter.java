@@ -93,18 +93,21 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
 		// TODO 自动生成的方法存根
 		if (arg1 == 1) {
-			View view=LayoutInflater.from(
-					arg0.getContext()).inflate(R.layout.item_foot_info, arg0,
-					false);
-			LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT, (int)arg0.getContext().getResources().getDimension(R.dimen.y568));
+			View view = LayoutInflater.from(arg0.getContext()).inflate(
+					R.layout.item_foot_info, arg0, false);
+			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
+					(int) arg0.getContext().getResources()
+							.getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
 			return new AcrivleFootVIewholder(view, lis, deleteIds);
-			
+
 		}
 		if (arg1 == 0) {
 			View view = LayoutInflater.from(arg0.getContext()).inflate(
 					R.layout.item_identified, arg0, false);
-			LayoutParams params=new LayoutParams(LayoutParams.WRAP_CONTENT, (int)arg0.getContext().getResources().getDimension(R.dimen.y568));
+			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
+					(int) arg0.getContext().getResources()
+							.getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
 			// ViewHolder参数一定要是Item的Root节点.
 			return new IdentityFootViewholder(view, deleteIds);
@@ -129,7 +132,11 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 		// TODO Auto-generated method stub
 		int len = list.size();
 		for (int i = 0; i < len; i++) {
-			list.get(i).isSelect=isSelect;
+			list.get(i).isSelect = isSelect;
+		}
+		deleteIds.clear();
+		if (isSelect) {
+			deleteIds.addAll(list);
 		}
 		notifyDataSetChanged();
 
@@ -137,12 +144,13 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	public void deleteAll(deleteMyFootPrintsModel delModel) {
 		// TODO Auto-generated method stub
-		StringBuilder sb=new StringBuilder();
-		if(deleteIds.size()<0) return;
+		StringBuilder sb = new StringBuilder();
+		if (deleteIds.size() < 0)
+			return;
 		for (final CollectionTreasure id : deleteIds) {
 			sb.append(id.delete_id).append(",");
 		}
-		sb.deleteCharAt(sb.length()-1);
+		sb.deleteCharAt(sb.length() - 1);
 		LogUtils.i("ids=" + sb.toString());
 		delModel.sendHttp(new CommonCallBack() {
 
@@ -163,7 +171,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 			}
 		}, sb.toString());
-		
+
 	}
 
 }
