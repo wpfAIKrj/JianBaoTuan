@@ -105,6 +105,7 @@ public class MyFragment extends BaseFragment{
 	private MyLikeAdapter madapter;
 
 	private boolean isgete=false;
+	private boolean isFirst=true;
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -133,10 +134,11 @@ public class MyFragment extends BaseFragment{
 			if(ItApplication.currnUser!=null){
 				tv_name.setText(ItApplication.currnUser.getNickname());
 				BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());	
+				
 			}
 			break;
 		case 1://更新个人信息
-			initDisplay();
+			lazyLoad();
 			break;
 		default:
 			break;
@@ -157,13 +159,7 @@ public class MyFragment extends BaseFragment{
 	@Override
 	protected void initDisplay() {
 		// TODO Auto-generated method stub
-		if(ItApplication.currnUser!=null){
-			tv_name.setText(ItApplication.currnUser.getNickname());
-			BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
-		}
-		//initData();
-//		dialog=DialogUtil.createLoadingDialog(mActivity, "加载个人信息中");
-//		dialog.show();
+		initData();
 		if(!isgete){
 			getPresenter.getUserInfo();
 			isgete=true;	
@@ -276,18 +272,18 @@ public class MyFragment extends BaseFragment{
 	
 	private void initData() {
 		// TODO Auto-generated method stub
-		if(ItApplication.currnUser!=null){
-		tv_name.setText(ItApplication.currnUser.getNickname());
-		BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
-		tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[ItApplication.currnUser.getUser_type()]);
-		iv_level.setImageResource(levels[ItApplication.currnUser.getUser_type()]);
-		madapter=new MyLikeAdapter(list, itemListner);
-		listView.setAdapter(madapter);
-		tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
-		tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
-		tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
-		}
-		
+		if(ItApplication.currnUser!=null&&isFirst){
+			isFirst=false;
+			tv_name.setText(ItApplication.currnUser.getNickname());
+			BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
+			tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[ItApplication.currnUser.getUser_type()]);
+			iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+			madapter=new MyLikeAdapter(list, itemListner);
+			listView.setAdapter(madapter);
+			tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
+			tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
+			tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
+		}	
 	}
 	
 	private onBasicView<String> viewlis=new onBasicView<String>() {

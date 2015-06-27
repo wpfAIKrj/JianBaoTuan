@@ -106,6 +106,17 @@ public class FileUtils {
 	}
 	
 	/**
+	 * 获取缓存文件的大小
+	 * @return
+	 */
+	public String getCacheFileSize(){
+		String str="0.0k";
+		long size=getDirSize(new File(getUpImage()));
+		str=formatFileSize(size);
+		return str;
+	}
+	
+	/**
 	 * 获取缓存图片的文件夹路径
 	 * @return
 	 */
@@ -121,6 +132,9 @@ public class FileUtils {
 	 * @return B/KB/MB/GB
 	 */
 	public  String formatFileSize(long fileS) {
+		if(fileS==0){
+			return 0.0+"KB";
+		}
 		java.text.DecimalFormat df = new java.text.DecimalFormat("#.00");
 		String fileSizeString = "";
 		if (fileS < 1024) {

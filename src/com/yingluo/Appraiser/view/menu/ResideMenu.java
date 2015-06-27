@@ -640,7 +640,7 @@ public class ResideMenu extends FrameLayout {
     
     public void setCacheNumber(String number){
     	if(cache_number!=null){
-    		cache_number.setText(number+"k");
+    		cache_number.setText(number+" ");
     	}
     }
 }

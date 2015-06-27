@@ -11,6 +11,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.SystemInfoEntity;
 import com.yingluo.Appraiser.bean.UserInfo;
@@ -77,6 +78,10 @@ public class GetSystemInfoModel extends BaseModel{
 			ArrayList<SystemInfoEntity> infos = gson.fromJson(data, new TypeToken<ArrayList<SystemInfoEntity>>(){}.getType());
 			if(infos==null){
 				infos=new ArrayList<SystemInfoEntity>();
+			}else{
+				for (int i = 0; i < infos.size(); i++) {
+					infos.get(i).mobile=ItApplication.currnUser.getMobile();
+				}
 			}
 			lisntenr.onListDataLoaded(infos);
 		}

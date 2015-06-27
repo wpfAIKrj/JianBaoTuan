@@ -16,6 +16,8 @@ import com.yingluo.Appraiser.bean.DaoMaster.DevOpenHelper;
 import com.yingluo.Appraiser.bean.DaoSession;
 import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.bean.ImUserInfoDao;
+import com.yingluo.Appraiser.bean.SystemInfoEntity;
+import com.yingluo.Appraiser.bean.SystemInfoEntityDao;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.TreasureTypeDao;
 import com.yingluo.Appraiser.bean.UserInfo;
@@ -42,7 +44,7 @@ public class SqlDataUtil {
 	private TreasureTypeDao typeDao=null;//宝物分类
 	private ImUserInfoDao imdao=null;//聊天用户信息本地
 	private SQLiteDatabase db=null;//数据库对象
-	
+	private SystemInfoEntityDao systemdao=null;//系统消息
 	
 	
 	private SqlDataUtil(Context context){
@@ -65,6 +67,9 @@ public class SqlDataUtil {
 					}
 					if(imdao==null){
 						imdao=daoSession.getImUserInfoDao();
+					}
+					if(systemdao==null){
+						systemdao=daoSession.getSystemInfoEntityDao();
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -289,8 +294,52 @@ public class SqlDataUtil {
 	}
 
 	
+	/**
+	 * 保存系统消息列表
+	 */
+	public void saveSystemInfoList(ArrayList<SystemInfoEntity> list){		
+		if(list!=null&&!list.isEmpty()){
+			systemdao.deleteAll();
+			systemdao.insertInTx(list);
+//			for (int i = 0; i < list.size(); i++) {
+//				saveSystemInfo(list.get(i));				
+//			}
+		}
+	}
 	
+	/**
+	 * 保存系统消息列表
+	 * @param entity
+	 */
+	public void saveSystemInfo(SystemInfoEntity entity){
+		QueryBuilder<SystemInfoEntity> qb = systemdao.queryBuilder();
+		qb.where(SystemInfoEntityDao.Properties.Mobile.eq(entity.getMobile()), 
+				SystemInfoEntityDao.Properties.Treasure_id.eq(entity.treasure_id)
+				,SystemInfoEntityDao.Properties.Time.eq(entity.time));
+		SystemInfoEntity old = qb.unique();
+		if(old!=null){
+			entity.setId(old.getId());
+		}
+		systemdao.insertOrReplace(entity);
+	}
 	
+	/**
+	 * 获取某一用户的系统消息
+	 * @param mobile
+	 */
+	public ArrayList<SystemInfoEntity> getSystemInfoList(String mobile){
+		if(mobile==null||mobile.isEmpty()){
+			return new ArrayList<SystemInfoEntity>();
+		}
+		List<SystemInfoEntity> list=null;
+		QueryBuilder<SystemInfoEntity> qb = systemdao.queryBuilder();
+		qb.where(SystemInfoEntityDao.Properties.Mobile.eq(mobile));
+		list = qb.list();
+		if(list==null){
+			return new ArrayList<SystemInfoEntity>();
+		}
+		return (ArrayList<SystemInfoEntity>) list;
+	}
 
 
 }

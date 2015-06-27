@@ -284,6 +284,8 @@ OnTabSelectedListener ,OnClickListener{
 		// TODO Auto-generated method stub
 
 		if(v.getId()==R.id.my_bt_showmenu){
+			resideMenu.setCacheNumber(FileUtils.getInstance().getCacheFileSize());
+			
 			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
 			return;
 		}
@@ -300,7 +302,7 @@ OnTabSelectedListener ,OnClickListener{
 			startActivity(new Intent(MainActivity.this, UpdaateActivity.class));
 		}
 		if(v.getId()==R.id.layout_item5){//清楚缓存
-
+			FileUtils.getInstance().deleteDirectory(1);
 		}
 		if(v.getId()==R.id.layout_item6){//退出登陆
 			Logodialong=DialogUtil.createLoadingDialog(this, "正在退出当前用户.....");
@@ -351,27 +353,13 @@ OnTabSelectedListener ,OnClickListener{
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE&&arg1==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.crop(arg2.getData());
-//				imageUtils.doPhoto( arg2);
-//				if(imageUtils.PICPATH!=null){
-////					Intent intent=new Intent(MainActivity.this, GetUserLogoActivity.class);
-////					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-////					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-////					uploadLogo(imageUtils.PICPATH);
-//				}
 			}
 		}
 		if(arg0==ImageUtils.GET_IMAGE_FROM_PHONE_KITKAT&&arg1==RESULT_OK){//我的页面，获取照片地址获取到图片（相册）4.4系统，用谷歌的相册
 			if(arg2 != null && arg2.getData() != null) {
 				imageUtils.doPhotoKIKAT(arg2);
 				imageUtils.crop(Uri.fromFile(new File(imageUtils.PICPATH)));
-//				imageUtils.doPhotoKIKAT(arg2);
-//				if(imageUtils.PICPATH!=null){
-////					Intent intent=new Inten+t(MainActivity.this, GetUserLogoActivity.class);
-////					intent.putExtra(Const.PICPATH, imageUtils.PICPATH);
-////					startActivityForResult(intent, ImageUtils.CROP_IMAGE);
-////					uploadLogo(imageUtils.PICPATH);
-//					imageUtils.crop();
-//			   }
+
 		}
 		}
 		if(arg0==ImageUtils.PHOTO_REQUEST_CUT&&arg1==RESULT_OK){//获取剪切好的人物头像

@@ -31,6 +31,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.SystemInfoEntity;
@@ -48,6 +49,7 @@ import com.yingluo.Appraiser.ui.adapter.SystemInfoAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ListLoadType;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.listview.XListView;
 import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
@@ -128,7 +130,7 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 	protected void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.system_info_title);
-		list=new ArrayList<SystemInfoEntity>();
+		list=SqlDataUtil.getInstance().getSystemInfoList(ItApplication.currnUser.getMobile());
 		myPresenter=new SystemNoticePresenter(this);
 		deletePresenter=new deleteInfoPresenter(netlistener);
 		LayoutManager layoutManager=new LinearLayoutManager(this);
@@ -226,15 +228,6 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 	@Override
 	public void onSucess(ArrayList<SystemInfoEntity> data) {
 		// TODO Auto-generated method stub
-//		if(currt==ListLoadType.LoadMore){//加载更多
-//			addList(data);
-//		}
-//		if(currt==ListLoadType.Refresh){//刷新
-//			if(!data.isEmpty()){ 
-//				list.clear();
-//				addList(data);
-//			}
-//		}
 		list.clear();
 		addList(data);
 		madapter.setListData(list);
@@ -274,6 +267,7 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 				}
 			}
 		}
+		SqlDataUtil.getInstance().saveSystemInfoList(data);
 	}
 
 	@Override
@@ -285,7 +279,7 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 		madapter.setFootType(2);
 		madapter.notifyItemChanged(list.size());
 		int foot=mRecyclerView.getChildCount();
-		myPresenter.getArticleList("0", length);
+		myPresenter.getSystemInfosList("0", length);
 	}
 
 	@Override
@@ -297,7 +291,7 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 		mSwipeRefreshWidget.setRefreshing(false);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
-		myPresenter.getArticleList("0", (length+1));
+		myPresenter.getSystemInfosList("0", (length+1));
 	}
 
 	private deleteItemlistener deleteItemlistener=new deleteItemlistener<SystemInfoEntity>() {

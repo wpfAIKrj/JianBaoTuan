@@ -20,7 +20,7 @@ public class SystemNoticePresenter  implements OnListDataLoadListener<SystemInfo
 		this.mView=view;
 	}
 	
-	public void getArticleList(String type,int group_size){
+	public void getSystemInfosList(String type,int group_size){
 		model=new GetSystemInfoModel();
 		model.getSystemInfoList(this);
 	}
