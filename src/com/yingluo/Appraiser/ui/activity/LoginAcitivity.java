@@ -94,7 +94,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			finish();
 			break;
 		case R.id.login_bt_clear://显示下拉用户框
-			if(isShow){
+			if(!isShow){
 				showPopWinddos();
 			}else{
 				disPopWinddos();
@@ -124,7 +124,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	 */
 	private void disPopWinddos() {
 		// TODO Auto-generated method stub
-		popwindow.showPopupWindow(namelayout);
+			isShow=false;
+			popwindow.showPopupWindow(namelayout);
 	}
 
 
@@ -136,6 +137,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	private void showPopWinddos() {
 		// TODO Auto-generated method stub
 		
+			isShow=true;
+			popwindow.showPopupWindow(namelayout);	
 	}
 
 
@@ -198,6 +201,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		UserInfo user= popwindow.getUserInfo(position);
 		ed_name.setText(user.getMobile());
 		popwindow.showPopupWindow(namelayout);
+		isShow=false;
 	}
 	
 	

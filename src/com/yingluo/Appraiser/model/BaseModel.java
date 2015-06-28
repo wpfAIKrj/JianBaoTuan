@@ -17,9 +17,13 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.utils.NetUtils;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
+
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseModel {
 	protected String url="http://123.57.251.101/";
@@ -79,6 +83,8 @@ public abstract class BaseModel {
 				if(code==NetConst.CODE_ERROR8){
 					ItApplication.currnUser=null;
 					NetConst.SESSIONID=null;
+					SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+					SharedPreferencesUtils.getInstance().saveLoginUserName(null);
 				}
 				onFailureForString(String.valueOf(code),message);
 			}

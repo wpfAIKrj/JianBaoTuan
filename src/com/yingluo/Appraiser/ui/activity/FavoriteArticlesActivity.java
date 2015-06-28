@@ -39,7 +39,9 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.ContentInfo;
+import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.OnListDataLoadListener;
@@ -59,6 +61,8 @@ import com.yingluo.Appraiser.utils.ListLoadType;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.listview.XListView;
 import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
+
+import de.greenrobot.event.EventBus;
 /**
  * 文章加载页面
  * @author Administrator
@@ -113,25 +117,27 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	private CheckBox allcheckbox;
 	
 	private boolean isFirest=true;
+	private boolean ismodel=false;//false为滑动删除，true为选择删除
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		if(ItApplication.currnUser==null){
+			EventBus.getDefault().post(new MainEvent(0, null));
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
+		}
 		setContentView(R.layout.activity_favoritearticles);
 		ViewUtils.inject(this);
 		initView();
 		initData();
-	}
-
-	
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
 		if(isFirest){
 			onRefresh();
 		}
 	}
+
+	
+
 	protected void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.collect_info_title);
@@ -183,6 +189,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			finish();
 			break;
 		case R.id.button_delect://删除模式
+			ismodel=true;
 			madapter.setScorll(false);
 			madapter.notifyDataSetChanged();
 			layout_delet.setVisibility(View.VISIBLE);
@@ -198,6 +205,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 				}
 				sb.deleteCharAt(sb.length()-1);
 				deletePresenter.deleteInfo(String.valueOf(sb.toString()));
+				ismodel=false;
 			}else{
 				new ToastUtils(this, "请选择后在点击删除按钮");
 			}
@@ -207,7 +215,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 			allcheckbox.setChecked(false);
 			madapter.setScorll(true);
 			madapter.exitSelectMode();
-			
+			ismodel=false;
 			break;
 		default:
 			break;
@@ -219,11 +227,13 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
+			if(!ismodel){
 			ContentInfo info=(ContentInfo) v.getTag();
 			info.setIsCollected(1);
 			Intent intent=new Intent(FavoriteArticlesActivity.this, InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, info);
 			startActivity(intent);
+			}
 		}
 	};
 	

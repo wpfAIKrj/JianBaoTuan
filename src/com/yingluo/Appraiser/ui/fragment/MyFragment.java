@@ -28,6 +28,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnLongClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
@@ -276,8 +277,12 @@ public class MyFragment extends BaseFragment{
 			isFirst=false;
 			tv_name.setText(ItApplication.currnUser.getNickname());
 			BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
-			tv_authenticate.setText(mActivity.getResources().getStringArray(R.array.my_user_type)[ItApplication.currnUser.getUser_type()]);
-			iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+			if(ItApplication.currnUser.getUser_type()==0){
+				tv_authenticate.setText(R.string.type_collect);	
+				iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+			}else{
+				tv_authenticate.setText(R.string.type_identiy);	
+			}
 			madapter=new MyLikeAdapter(list, itemListner);
 			listView.setAdapter(madapter);
 			tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
@@ -327,8 +332,8 @@ public class MyFragment extends BaseFragment{
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
 		
-			if(errorCode.equals(NetConst.CODE_ERROR8)){
-				((MainActivity)mActivity).setOnTabselected();
+			if(errorCode.equals(String.valueOf(NetConst.CODE_ERROR8))){
+				EventBus.getDefault().post(new MainEvent(0, null));
 			}
 			new ToastUtils(mActivity, errorMsg);
 			if(dialog!=null){

@@ -216,7 +216,6 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			SystemInfoEntity info=(SystemInfoEntity) v.getTag();
-
 			CollectionTreasure currnt=new CollectionTreasure();
 			currnt.treasure_id=info.treasure_id;
 			Intent mIntent = new Intent(SystemInfoActivity.this, ActivityUserDelails.class);

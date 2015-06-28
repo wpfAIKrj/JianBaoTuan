@@ -95,7 +95,7 @@ public class SystemInfoAdapter extends  RecyclerSwipeAdapter<ViewHolder> {
 			final SwipeSystemInfoViewHolder articie=(SwipeSystemInfoViewHolder) arg0;
 		    if(isScorll){//删除
 				articie.showData(list.get(arg1));
-				articie.swipeLayout.setSwipeEnabled(true);
+				articie.swipeLayout.setSwipeEnabled(false);
 				articie.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
 				articie.buttonDelete.setOnClickListener(new View.OnClickListener() {
 		            @Override

@@ -7,6 +7,7 @@ import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.InfoEvent;
+import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
@@ -74,7 +75,7 @@ OnTabSelectedListener ,OnClickListener{
 	private MyFragment mMyFragment;
 	private long mkeyTime=0;
 	private MyTabWidget mTabWidget;
-	private int mIndex=0;
+	public int mIndex=0;
 	private ResideMenu resideMenu;
 	private UploadLogoPresenter uplogopresenter;
 	private SelectPhotoDialog photodialog;
@@ -90,6 +91,28 @@ OnTabSelectedListener ,OnClickListener{
 		init();
 		initEvents();
 		setUpMenu();
+		EventBus.getDefault().register(this);
+    }
+    
+    public void onEventMainThread(MainEvent event){
+    	switch (event.type) {
+		case 0://返回首页，切换到首页
+			mIndex=3;
+			setOnTabselected();
+			break;
+		case 1://登录
+			Intent intent=new Intent(MainActivity.this, LoginAcitivity.class);
+			startActivityForResult(intent, Const.TO_LOGIN);
+			break;
+		default:
+			break;
+		}
+    }
+    @Override
+    protected void onDestroy() {
+    	// TODO Auto-generated method stub
+     	EventBus.getDefault().unregister(this);
+    	super.onDestroy();
     }
 
 	private void setUpMenu() {
@@ -196,6 +219,7 @@ OnTabSelectedListener ,OnClickListener{
 		//
 		if(index==3){//我的页面
 			if(ItApplication.currnUser==null){
+				mIndex=0;
 				Intent intent=new Intent(MainActivity.this, LoginAcitivity.class);
 				startActivityForResult(intent, Const.TO_LOGIN);
 				return;
