@@ -301,6 +301,8 @@ public class MyFragment extends BaseFragment{
 				ItApplication.currnUser.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
 				ItApplication.currnUser.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
 				ItApplication.currnUser.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
+				ItApplication.currnUser.setUser_type(obj.getInt(NetConst.USER_TYPE));
+				ItApplication.currnUser.setUser_level(obj.getInt(NetConst.USER_LEVE));
 				SqlDataUtil.getInstance().saveUserInfo(ItApplication.currnUser);
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
@@ -321,6 +323,12 @@ public class MyFragment extends BaseFragment{
 				isgete=false;
 				madapter=new MyLikeAdapter(list, itemListner);
 				listView.setAdapter(madapter);
+				if(ItApplication.currnUser.getUser_type()==0){
+					tv_authenticate.setText(R.string.type_collect);	
+					iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+				}else{
+					tv_authenticate.setText(R.string.type_identiy);	
+				}
 				tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
 				tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
 				tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());

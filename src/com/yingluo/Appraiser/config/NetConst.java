@@ -112,6 +112,8 @@ public class NetConst {
 	public static final String FOOT_NUMBER="foot_number";
 	public static final String TREASURE_RECORD_NUMBER="treasure_record_number";
 	public static final String TREASURE_NUMBER="treasure_number";
+	public static final String USER_TYPE="user_type";
+	public static final String USER_LEVE="user_level";
 	public static final String LISTSDATA="lists";
 	public static final String EXTRA_NAME="nickname";
 	
