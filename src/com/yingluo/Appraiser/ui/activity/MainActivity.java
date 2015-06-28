@@ -161,6 +161,9 @@ OnTabSelectedListener ,OnClickListener{
     protected void onResume() {
     	// TODO Auto-generated method stub
     	super.onResume();
+    	if(ItApplication.currnUser==null){
+    		mIndex=0;
+    	}
     	setOnTabselected();
     }
 
@@ -366,7 +369,7 @@ OnTabSelectedListener ,OnClickListener{
 		}
 		if(arg0==Const.TO_LOGIN&&arg1==RESULT_OK){//登陆成功
 			mIndex=3;
-			onTabSelected(mIndex);
+			setOnTabselected();
 		}
 		if(arg0==Const.TO_SEND_IDENTIY&&arg1==RESULT_OK){//发布成功
 

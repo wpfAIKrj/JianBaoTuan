@@ -331,7 +331,7 @@ public class MyFragment extends BaseFragment{
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
-		
+			isgete=false;
 			if(errorCode.equals(String.valueOf(NetConst.CODE_ERROR8))){
 				EventBus.getDefault().post(new MainEvent(0, null));
 			}

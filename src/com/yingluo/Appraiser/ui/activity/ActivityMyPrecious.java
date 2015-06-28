@@ -162,7 +162,7 @@ public class ActivityMyPrecious extends Activity {
 						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFYING);
+				}, MyTreasureModel.TYPE_IDENTIFIED);
 
 			}
 				break;
@@ -184,7 +184,7 @@ public class ActivityMyPrecious extends Activity {
 						swipe_refresh_widget.setRefreshing(false);
 
 					}
-				}, MyTreasureModel.TYPE_IDENTIFIED);
+				}, MyTreasureModel.TYPE_IDENTIFYING);
 			}
 				break;
 
