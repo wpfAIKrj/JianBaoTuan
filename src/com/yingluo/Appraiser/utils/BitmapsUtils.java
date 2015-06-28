@@ -48,9 +48,9 @@ public class BitmapsUtils {
 		utils.configMemoryCacheEnabled(true);
 		config = new BitmapDisplayConfig();
 		config.setLoadingDrawable(context.getResources().getDrawable(
-				R.drawable.test3));
+				R.drawable.loading_bg));
 		config.setLoadFailedDrawable(context.getResources().getDrawable(
-				R.drawable.test3));
+				R.drawable.load_fail));
 		config.setAnimation(AnimationUtils.loadAnimation(context,
 				R.anim.bitmap_show));
 
