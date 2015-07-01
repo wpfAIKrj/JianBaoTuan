@@ -3,7 +3,7 @@
     android:layout_width="@dimen/x340"
     android:layout_height="wrap_content"
     android:background="@drawable/item_big_stroke"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     <FrameLayout
         android:layout_width="@dimen/x339"
@@ -67,13 +67,16 @@
         android:layout_marginTop="@dimen/y20"
         android:orientation="horizontal" >
 
-        <ImageView
+        <com.yingluo.Appraiser.view.CircleImageView
+            
             android:id="@+id/imageview_small_icon"
             android:layout_width="@dimen/x82"
             android:layout_height="@dimen/x82"
-            android:background="@drawable/item_small_stroke"
-            android:scaleType="fitXY"
-            android:src="@drawable/test_x6" />
+            
+            android:src="@drawable/test_x6" 
+            app:border_color="@color/cricle_color"
+            app:border_width="@dimen/x1"
+            />
 
         <FrameLayout
             android:layout_width="0dp"

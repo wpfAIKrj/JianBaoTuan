@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/x7" 
-    android:paddingBottom="@dimen/x7">
+    android:paddingBottom="@dimen/x7" xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     <LinearLayout
         android:id="@+id/match_league_roung_item_ll"
@@ -13,14 +13,14 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical" 
-        android:background="@drawable/item_small_stroke"
         >
 
-        <ImageView
+        <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/imageView"
             android:layout_width="@dimen/y168"
             android:layout_height="@dimen/y168"
-            android:scaleType="fitXY" 
+          	app:border_color="@color/cricle_color"
+            app:border_width="@dimen/x1"
             
             />
     </LinearLayout>

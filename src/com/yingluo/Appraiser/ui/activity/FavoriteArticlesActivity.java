@@ -63,6 +63,7 @@ import com.yingluo.Appraiser.view.listview.XListView;
 import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
 
 import de.greenrobot.event.EventBus;
+
 /**
  * 文章加载页面
  * @author Administrator

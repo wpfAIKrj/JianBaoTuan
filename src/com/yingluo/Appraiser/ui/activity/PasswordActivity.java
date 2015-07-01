@@ -21,7 +21,6 @@ import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
-import de.greenrobot.dao.internal.SqlUtils;
 /**
  * 修改密码
  * @author Administrator

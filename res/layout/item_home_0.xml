@@ -6,7 +6,7 @@
     android:orientation="vertical" 
     android:id="@+id/layout_treasurs"
     android:descendantFocusability="blocksDescendants"
-    >
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     <ImageView
         android:id="@+id/imageview_big_icon"
@@ -26,14 +26,14 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_marginTop="@dimen/y20"
         android:orientation="horizontal" >
-
-        <ImageView
+     <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/imageview_small_icon"
             android:layout_width="@dimen/x82"
             android:layout_height="@dimen/x82"
-            android:background="@drawable/item_small_stroke"
-            android:scaleType="fitXY"
-            android:src="@drawable/test_x6" />
+            android:src="@drawable/test_x6" 
+            app:border_color="@color/cricle_color"
+            app:border_width="@dimen/x1" />
+
 
         <FrameLayout
             android:layout_width="0dp"
@@ -66,6 +66,9 @@
                 android:text="456人浏览"
                 android:textColor="@color/number_color"
                 android:textSize="@dimen/x14" />
+
+       
+
         </FrameLayout>
     </LinearLayout>
 

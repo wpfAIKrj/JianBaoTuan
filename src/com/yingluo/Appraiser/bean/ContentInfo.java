@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ContentInfo implements Serializable{
 
+
 	@SerializedName("id")
     private Long id;
 	
@@ -48,6 +49,7 @@ public class ContentInfo implements Serializable{
 	
 	@SerializedName("isCollected")
     private Integer isCollected;
+
 
     public ContentInfo() {
     }
@@ -175,15 +177,5 @@ public class ContentInfo implements Serializable{
     public void setIsCollected(Integer isCollected) {
         this.isCollected = isCollected;
     }
-	   @Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		   if(o instanceof ContentInfo){
-			   ContentInfo obj=(ContentInfo) o;
-			   if(obj.getId()==id){
-				   return true;
-			   }
-		   }
-		return super.equals(o);
-	}
+
 }

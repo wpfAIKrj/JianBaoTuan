@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class SystemInfoEntity {
 
-	public Long id;
+    public Long id;
     public String mobile;
     
 	@SerializedName("treasure_id")

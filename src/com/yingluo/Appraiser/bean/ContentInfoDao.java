@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.bean;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
@@ -22,19 +23,19 @@ public class ContentInfoDao extends AbstractDao<ContentInfo, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id","CONTENT_INFO");
-        public final static Property Title = new Property(1, String.class, "title", false, "TITLE","CONTENT_INFO");
-        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT","CONTENT_INFO");
-        public final static Property Content_type = new Property(3, Integer.class, "content_type", false, "CONTENT_TYPE","CONTENT_INFO");
-        public final static Property Content_classify_id = new Property(4, Integer.class, "content_classify_id", false, "CONTENT_CLASSIFY_ID","CONTENT_INFO");
-        public final static Property Admin_name = new Property(5, String.class, "admin_name", false, "ADMIN_NAME","CONTENT_INFO");
-        public final static Property Admin_id = new Property(6, Long.class, "admin_id", false, "ADMIN_ID","CONTENT_INFO");
-        public final static Property Is_valid = new Property(7, Integer.class, "is_valid", false, "IS_VALID","CONTENT_INFO");
-        public final static Property Is_hot = new Property(8, String.class, "is_hot", false, "IS_HOT","CONTENT_INFO");
-        public final static Property Insert_time = new Property(9, String.class, "insert_time", false, "INSERT_TIME","CONTENT_INFO");
-        public final static Property Image = new Property(10, String.class, "image", false, "IMAGE","CONTENT_INFO");
-        public final static Property View_times = new Property(11, Integer.class, "view_times", false, "VIEW_TIMES","CONTENT_INFO");
-        public final static Property IsCollected = new Property(12, Integer.class, "isCollected", false, "IS_COLLECTED","CONTENT_INFO");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
+        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT");
+        public final static Property Content_type = new Property(3, Integer.class, "content_type", false, "CONTENT_TYPE");
+        public final static Property Content_classify_id = new Property(4, Integer.class, "content_classify_id", false, "CONTENT_CLASSIFY_ID");
+        public final static Property Admin_name = new Property(5, String.class, "admin_name", false, "ADMIN_NAME");
+        public final static Property Admin_id = new Property(6, Long.class, "admin_id", false, "ADMIN_ID");
+        public final static Property Is_valid = new Property(7, Integer.class, "is_valid", false, "IS_VALID");
+        public final static Property Is_hot = new Property(8, String.class, "is_hot", false, "IS_HOT");
+        public final static Property Insert_time = new Property(9, String.class, "insert_time", false, "INSERT_TIME");
+        public final static Property Image = new Property(10, String.class, "image", false, "IMAGE");
+        public final static Property View_times = new Property(11, Integer.class, "view_times", false, "VIEW_TIMES");
+        public final static Property IsCollected = new Property(12, Integer.class, "isCollected", false, "IS_COLLECTED");
     };
 
 

@@ -23,11 +23,11 @@ public class SystemInfoEntityDao extends AbstractDao<SystemInfoEntity, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id","SYSTEM_INFO_ENTITY");
-        public final static Property Mobile = new Property(1, String.class, "mobile", false, "MOBILE","SYSTEM_INFO_ENTITY");
-        public final static Property Time = new Property(2, String.class, "time", false, "TIME","SYSTEM_INFO_ENTITY");
-        public final static Property Content = new Property(3, String.class, "content", false, "CONTENT","SYSTEM_INFO_ENTITY");
-        public final static Property Treasure_id = new Property(4, Long.class, "treasure_id", false, "TREASURE_ID","SYSTEM_INFO_ENTITY");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Mobile = new Property(1, String.class, "mobile", false, "MOBILE");
+        public final static Property Time = new Property(2, String.class, "time", false, "TIME");
+        public final static Property Content = new Property(3, String.class, "content", false, "CONTENT");
+        public final static Property Treasure_id = new Property(4, Long.class, "treasure_id", false, "TREASURE_ID");
     };
 
 

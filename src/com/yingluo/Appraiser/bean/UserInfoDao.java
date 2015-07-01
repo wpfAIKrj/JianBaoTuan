@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.bean;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
 import de.greenrobot.dao.internal.DaoConfig;
@@ -22,28 +23,28 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id","USER_INFO");
-        public final static Property Nickname = new Property(1, String.class, "nickname", false, "NICKNAME","USER_INFO");
-        public final static Property Password = new Property(2, String.class, "password", false, "PASSWORD","USER_INFO");
-        public final static Property Mobile = new Property(3, String.class, "mobile", false, "MOBILE","USER_INFO");
-        public final static Property Portrait = new Property(4, String.class, "portrait", false, "PORTRAIT","USER_INFO");
-        public final static Property User_type = new Property(5, Integer.class, "user_type", false, "USER_TYPE","USER_INFO");
-        public final static Property User_level = new Property(6, Integer.class, "user_level", false, "USER_LEVEL","USER_INFO");
-        public final static Property Personal_data = new Property(7, String.class, "personal_data", false, "PERSONAL_DATA","USER_INFO");
-        public final static Property Is_valid = new Property(8, Integer.class, "is_valid", false, "IS_VALID","USER_INFO");
-        public final static Property Is_famous_expert = new Property(9, Integer.class, "is_famous_expert", false, "IS_FAMOUS_EXPERT","USER_INFO");
-        public final static Property Is_system = new Property(10, Integer.class, "is_system", false, "IS_SYSTEM","USER_INFO");
-        public final static Property Is_bind = new Property(11, Integer.class, "is_bind", false, "IS_BIND","USER_INFO");
-        public final static Property Insert_time = new Property(12, Integer.class, "insert_time", false, "INSERT_TIME","USER_INFO");
-        public final static Property Session_id = new Property(13, String.class, "session_id", false, "SESSION_ID","USER_INFO");
-        public final static Property Avatar = new Property(14, String.class, "avatar", false, "AVATAR","USER_INFO");
-        public final static Property Image_token = new Property(15, String.class, "image_token", false, "IMAGE_TOKEN","USER_INFO");
-        public final static Property Message_token = new Property(16, String.class, "message_token", false, "MESSAGE_TOKEN","USER_INFO");
-        public final static Property Qq = new Property(17, String.class, "qq", false, "QQ","USER_INFO");
-        public final static Property Email = new Property(18, String.class, "email", false, "EMAIL","USER_INFO");
-        public final static Property Treasure_number = new Property(19, Integer.class, "treasure_number", false, "TREASURE_NUMBER","USER_INFO");
-        public final static Property Treasure_record_number = new Property(20, Integer.class, "treasure_record_number", false, "TREASURE_RECORD_NUMBER","USER_INFO");
-        public final static Property Foot_number = new Property(21, Integer.class, "foot_number", false, "FOOT_NUMBER","USER_INFO");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Nickname = new Property(1, String.class, "nickname", false, "NICKNAME");
+        public final static Property Password = new Property(2, String.class, "password", false, "PASSWORD");
+        public final static Property Mobile = new Property(3, String.class, "mobile", false, "MOBILE");
+        public final static Property Portrait = new Property(4, String.class, "portrait", false, "PORTRAIT");
+        public final static Property User_type = new Property(5, Integer.class, "user_type", false, "USER_TYPE");
+        public final static Property User_level = new Property(6, Integer.class, "user_level", false, "USER_LEVEL");
+        public final static Property Personal_data = new Property(7, String.class, "personal_data", false, "PERSONAL_DATA");
+        public final static Property Is_valid = new Property(8, Integer.class, "is_valid", false, "IS_VALID");
+        public final static Property Is_famous_expert = new Property(9, Integer.class, "is_famous_expert", false, "IS_FAMOUS_EXPERT");
+        public final static Property Is_system = new Property(10, Integer.class, "is_system", false, "IS_SYSTEM");
+        public final static Property Is_bind = new Property(11, Integer.class, "is_bind", false, "IS_BIND");
+        public final static Property Insert_time = new Property(12, Integer.class, "insert_time", false, "INSERT_TIME");
+        public final static Property Session_id = new Property(13, String.class, "session_id", false, "SESSION_ID");
+        public final static Property Avatar = new Property(14, String.class, "avatar", false, "AVATAR");
+        public final static Property Image_token = new Property(15, String.class, "image_token", false, "IMAGE_TOKEN");
+        public final static Property Message_token = new Property(16, String.class, "message_token", false, "MESSAGE_TOKEN");
+        public final static Property Qq = new Property(17, String.class, "qq", false, "QQ");
+        public final static Property Email = new Property(18, String.class, "email", false, "EMAIL");
+        public final static Property Treasure_number = new Property(19, Integer.class, "treasure_number", false, "TREASURE_NUMBER");
+        public final static Property Treasure_record_number = new Property(20, Integer.class, "treasure_record_number", false, "TREASURE_RECORD_NUMBER");
+        public final static Property Foot_number = new Property(21, Integer.class, "foot_number", false, "FOOT_NUMBER");
     };
 
 

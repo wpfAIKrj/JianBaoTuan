@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
-    <ImageView
+    <com.yingluo.Appraiser.view.CircleImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/x106"
         android:layout_height="@dimen/y106"
         android:contentDescription="@null"
-        android:paddingLeft="@dimen/x5"
-        android:paddingRight="@dimen/x5"
-        android:scaleType="fitXY" />
+        android:layout_marginLeft="@dimen/x5"
+        android:layout_marginRight="@dimen/x5"
+        app:border_color="@color/cricle_color"
+        app:border_width="@dimen/x1"
+      	 />
 
 </FrameLayout>

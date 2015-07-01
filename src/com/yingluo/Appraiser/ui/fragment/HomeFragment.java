@@ -25,7 +25,6 @@ import com.yingluo.Appraiser.view.home.ViewHomeWhoWellKnow;
 import com.yingluo.Appraiser.view.home.ViewHots;
 import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
-import de.greenrobot.dao.FuncProperty.MinProperty;
 
 public class HomeFragment extends BaseFragment implements
 		OnItemClickListener {

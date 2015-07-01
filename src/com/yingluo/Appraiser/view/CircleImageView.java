@@ -51,6 +51,18 @@ public class CircleImageView extends ImageView {
 
     public CircleImageView(Context context) {
         super(context);
+        super.setScaleType(SCALE_TYPE);
+
+        mBorderWidth = (int) getResources().getDimension(R.dimen.x1);
+        mBorderColor = getResources().getColor(R.color.cricle_color);
+
+
+        mReady = true;
+
+        if (mSetupPending) {
+            setup();
+            mSetupPending = false;
+        }
     }
 
     public CircleImageView(Context context, AttributeSet attrs) {

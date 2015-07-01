@@ -68,11 +68,11 @@ public class UserInfo implements Serializable{
     
     
     @SerializedName("treasure_number")
-    private Integer treasure_number=0;
+    private Integer treasure_number;
     @SerializedName("treasure_record_number")
-    private Integer treasure_record_number=0;
+    private Integer treasure_record_number;
     @SerializedName("foot_number")
-    private Integer foot_number=0;
+    private Integer foot_number;
 
     public UserInfo() {
     }

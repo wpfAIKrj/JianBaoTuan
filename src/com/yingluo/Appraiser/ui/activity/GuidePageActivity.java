@@ -16,7 +16,6 @@ import com.yingluo.Appraiser.ui.server.HomeService;
 import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
-import de.greenrobot.dao.internal.SqlUtils;
 /**
  * 引导页面
  * @author Administrator

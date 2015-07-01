@@ -23,12 +23,12 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id","TREASURE_TYPE");
-        public final static Property Currnt_id = new Property(1, Long.class, "currnt_id", false, "CURRNT_ID","TREASURE_TYPE");
-        public final static Property Name = new Property(2, String.class, "name", false, "NAME","TREASURE_TYPE");
-        public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE","TREASURE_TYPE");
-        public final static Property Parent_id = new Property(4, Long.class, "parent_id", false, "PARENT_ID","TREASURE_TYPE");
-        public final static Property IsChild = new Property(5, Boolean.class, "isChild", false, "IS_CHILD","TREASURE_TYPE");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Currnt_id = new Property(1, Long.class, "currnt_id", false, "CURRNT_ID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE");
+        public final static Property Parent_id = new Property(4, Long.class, "parent_id", false, "PARENT_ID");
+        public final static Property IsChild = new Property(5, Boolean.class, "isChild", false, "IS_CHILD");
     };
 
 

@@ -8,7 +8,6 @@ import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
-import de.greenrobot.dao.internal.SqlUtils;
 import android.R.integer;
 import android.content.Context;
 import android.graphics.Color;

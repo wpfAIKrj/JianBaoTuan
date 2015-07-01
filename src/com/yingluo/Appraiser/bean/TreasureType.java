@@ -6,8 +6,7 @@ import java.io.Serializable;
 /**
  * Entity mapped to table TREASURE_TYPE.
  */
-public class TreasureType implements Serializable {
-
+public class TreasureType implements Serializable{
 	public static final int TYPE_FIRST = 1;//第一层
 	public static final int TYPE_SECOND = 2;//第二层
 	public static final int TYPE_THIRD = 3;//第三层
