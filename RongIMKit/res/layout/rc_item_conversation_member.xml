@@ -44,4 +44,10 @@
         android:padding="2.5dp"
         android:src="@drawable/rc_mebmer_delete" />
 
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d5d5d5"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>
