@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" 
     android:background="@color/wite"
-  	>
+  	xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
     <LinearLayout 
         android:layout_width="match_parent"
@@ -20,9 +20,11 @@
             android:id="@+id/user_logo"
             android:layout_width="@dimen/x100"
             android:layout_height="@dimen/x100"
-            android:src="@drawable/test3" 
+            android:src="@drawable/loading_bg" 
             android:layout_marginTop="@dimen/y10"
             android:layout_marginBottom="@dimen/y10"
+           	app:border_color="@color/cricle_color"
+            app:border_width="@dimen/x1"
             />
 
   	<RelativeLayout 

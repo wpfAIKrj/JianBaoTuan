@@ -164,7 +164,7 @@ public class SlideShowView extends FrameLayout {
 			ImageView view = new ImageView(context);
 			view.setTag(imageUrls[i]);
 			if (i == 0)// 给一个默认图
-				view.setBackgroundResource(R.drawable.test3);
+				view.setBackgroundResource(R.drawable.loading_bg);
 			view.setScaleType(ScaleType.FIT_XY);
 			view.setOnClickListener(onclick);
 			imageViewsList.add(view);

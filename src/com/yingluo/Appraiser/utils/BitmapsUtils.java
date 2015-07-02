@@ -41,8 +41,8 @@ public class BitmapsUtils {
 		utils.configDefaultConnectTimeout(10000);
 		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(
 				context, R.anim.bitmap_show));
-		utils.configDefaultLoadFailedImage(R.drawable.test3);
-		utils.configDefaultLoadingImage(R.drawable.test3);
+		utils.configDefaultLoadFailedImage(R.drawable.load_fail);
+		utils.configDefaultLoadingImage(R.drawable.loading_bg);
 		utils.configDefaultReadTimeout(10000);
 		utils.configDiskCacheEnabled(true);
 		utils.configMemoryCacheEnabled(true);
