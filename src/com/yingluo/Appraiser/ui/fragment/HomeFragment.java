@@ -85,15 +85,20 @@ public class HomeFragment extends BaseFragment implements
 		if (homeEntity == null) {
 			// 说明没有下载数据，就要去联网加载
 		} else {
-			head.prepareData(homeEntity.getAdvertising());
-
-			choices_0.setItem(homeEntity.getChoices().get(0));
-			choices_1.setItem(homeEntity.getChoices().get(1));
-			if (homeEntity.getChoices().size() > 2) {
-
-				choices_2.setItem(homeEntity.getChoices().get(2));
-				choices_3.setItem(homeEntity.getChoices().get(3));
+			
+			if(homeEntity.getAdvertising()!=null&&homeEntity.getAdvertising().size()>0){
+				head.prepareData(homeEntity.getAdvertising());
 			}
+			if(homeEntity.getChoices()!=null&&homeEntity.getChoices().size()>=4){
+				choices_0.setItem(homeEntity.getChoices().get(0));
+				choices_1.setItem(homeEntity.getChoices().get(1));
+				if (homeEntity.getChoices().size() > 2) {
+	
+					choices_2.setItem(homeEntity.getChoices().get(2));
+					choices_3.setItem(homeEntity.getChoices().get(3));
+				}
+			}
+			if(homeEntity.getHots()!=null&&homeEntity.getHots().size()>=4){
 			viewhots_0.setItem(homeEntity.getHots().get(0));
 			viewhots_1.setItem(homeEntity.getHots().get(1));
 			viewhots_2.setItem(homeEntity.getHots().get(2));
@@ -101,19 +106,22 @@ public class HomeFragment extends BaseFragment implements
 
 				viewhots_3.setItem(homeEntity.getHots().get(3));
 			}
+			}
+			if(homeEntity.getArticles()!=null&&homeEntity.getArticles().size()>=2){
 			articles_0.setItem(homeEntity.getArticles().get(0));
 			articles_1.setItem(homeEntity.getArticles().get(1));
-
-			adapter = new WellKnowPeopleAdapter(getActivity(),
-					homeEntity.getAuthors());
-
-			hsv.setAdapter(adapter);
-
-			if(adapter.getCount()>0){//设置第一个选中
-				index=0;
-				wellKnow.setItem(adapter.getItem(index));
-				new Thread(myWork).start();
 			}
+			if(homeEntity.getAuthors()!=null&&homeEntity.getAuthors().size()>0){
+				adapter = new WellKnowPeopleAdapter(getActivity(),
+						homeEntity.getAuthors());	
+				hsv.setAdapter(adapter);
+				if(adapter.getCount()>0){//设置第一个选中
+					index=0;
+					wellKnow.setItem(adapter.getItem(index));
+					new Thread(myWork).start();
+				}
+			}
+
 			
 		}
 
