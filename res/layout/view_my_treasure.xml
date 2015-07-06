@@ -5,15 +5,12 @@
     android:background="@color/wite"
     android:orientation="vertical" >
 
-   
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y144"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:background="@drawable/item_big_stroke"
-         >
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/iv_icon"
@@ -21,8 +18,7 @@
             android:layout_height="@dimen/y82"
             android:layout_marginLeft="@dimen/x14"
             android:contentDescription="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/test2" />
+            android:scaleType="fitXY" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,12 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:maxEms="12"
                 android:singleLine="true"
-                android:text="刚入手的２１克，帮忙看看宝贝怎么样"
                 android:textColor="@color/black_2"
-                android:textSize="@dimen/x30"
-               	android:maxEms="12"
-                 />
+                android:textSize="@dimen/x30" />
 
             <LinearLayout
                 android:id="@+id/layout_kind"
@@ -64,11 +58,10 @@
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y20"
                 android:text="已鉴定"
                 android:textColor="@color/number_color"
-                android:textSize="@dimen/x24"
-                android:layout_marginTop="@dimen/y20"
-                 />
+                android:textSize="@dimen/x24" />
 
             <Button
                 android:id="@+id/btn_result"
@@ -82,7 +75,5 @@
                 android:textSize="@dimen/x30" />
         </LinearLayout>
     </LinearLayout>
-
- 
 
 </LinearLayout>

@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/layout_bg_color"
-    android:orientation="vertical" 
-     android:paddingLeft="@dimen/x30"
-    >
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/x30" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,8 +16,7 @@
             android:layout_width="@dimen/y100"
             android:layout_height="@dimen/y100"
             android:layout_marginBottom="@dimen/y20"
-            android:layout_marginTop="@dimen/y20"
-            android:src="@drawable/test_x6" />
+            android:layout_marginTop="@dimen/y20" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -36,22 +34,17 @@
         android:layout_height="@dimen/y1"
         android:background="@color/item_space_color" />
 
-
-	
     <com.yingluo.Appraiser.view.TagLinearLayout
-    	android:id="@+id/tag_layout"
-    	android:layout_width="match_parent"
-    	android:layout_height="@dimen/y60" 
-    />
-
+        android:id="@+id/tag_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60" />
 
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y20"
         android:layout_marginBottom="@dimen/y20"
-        android:text="刚刚入手的21克多，帮忙看看怎么样，谢谢"
+        android:layout_marginTop="@dimen/y20"
         android:textColor="@color/black_2"
         android:textSize="@dimen/x24" />
 

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
+    android:id="@+id/layout_treasurs"
     android:layout_width="@dimen/x340"
     android:layout_height="wrap_content"
     android:background="@drawable/item_big_stroke"
-    android:orientation="vertical" 
-    android:id="@+id/layout_treasurs"
     android:descendantFocusability="blocksDescendants"
-    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
+    android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/imageview_big_icon"
         android:layout_width="@dimen/x340"
         android:layout_height="@dimen/y348"
         android:layout_marginLeft="@dimen/x1"
-        android:layout_marginTop="@dimen/y1"
         android:layout_marginRight="@dimen/x1"
-        android:scaleType="fitXY"
-        android:src="@drawable/test2" />
+        android:layout_marginTop="@dimen/y1"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,14 +25,13 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_marginTop="@dimen/y20"
         android:orientation="horizontal" >
-     <com.yingluo.Appraiser.view.CircleImageView
+
+        <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/imageview_small_icon"
             android:layout_width="@dimen/x82"
             android:layout_height="@dimen/x82"
-            android:src="@drawable/test_x6" 
             app:border_color="@color/cricle_color"
             app:border_width="@dimen/x1" />
-
 
         <FrameLayout
             android:layout_width="0dp"
@@ -42,11 +40,11 @@
             android:layout_weight="1.0" >
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/imageview_grade"
                 android:layout_width="@dimen/x34"
                 android:layout_height="@dimen/x34"
                 android:layout_gravity="left|bottom"
+                android:scaleType="fitXY"
                 android:src="@drawable/level01" />
 
             <TextView
@@ -54,7 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="品位人生享受生活"
                 android:textColor="@color/black_2"
                 android:textSize="@dimen/x22" />
 
@@ -63,12 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:text="456人浏览"
                 android:textColor="@color/number_color"
                 android:textSize="@dimen/x14" />
-
-       
-
         </FrameLayout>
     </LinearLayout>
 

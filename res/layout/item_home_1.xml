@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
     android:layout_width="@dimen/x340"
     android:layout_height="wrap_content"
     android:background="@drawable/item_big_stroke"
-    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
+    android:orientation="vertical" >
 
     <FrameLayout
         android:layout_width="@dimen/x339"
@@ -17,8 +18,7 @@
             android:layout_marginRight="@dimen/x1"
             android:layout_marginTop="@dimen/y1"
             android:contentDescription="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/test2" />
+            android:scaleType="fitXY" />
 
         <CheckBox
             android:id="@+id/delete_checkbox"
@@ -54,7 +54,6 @@
         android:layout_height="@dimen/y46"
         android:background="#DFDFDF"
         android:gravity="center_vertical"
-        android:text="帮帮忙看看橄榄怎么样？"
         android:textColor="@color/black_2"
         android:textSize="@dimen/x24" />
 
@@ -68,15 +67,11 @@
         android:orientation="horizontal" >
 
         <com.yingluo.Appraiser.view.CircleImageView
-            
             android:id="@+id/imageview_small_icon"
             android:layout_width="@dimen/x82"
             android:layout_height="@dimen/x82"
-            
-            android:src="@drawable/test_x6" 
             app:border_color="@color/cricle_color"
-            app:border_width="@dimen/x1"
-            />
+            app:border_width="@dimen/x1" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -97,7 +92,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="品位人生享受生活"
                 android:textColor="@color/black_2"
                 android:textSize="@dimen/x22" />
 
@@ -106,7 +100,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:text="456人浏览"
                 android:textSize="@dimen/x14" />
         </FrameLayout>
     </LinearLayout>
