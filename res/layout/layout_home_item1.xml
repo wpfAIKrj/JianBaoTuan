@@ -23,7 +23,7 @@
     </RelativeLayout>
 
  <LinearLayout
-        android:id="@+id/layout_home_item0"
+        android:id="@+id/layout_home_item1"
         style="@style/w_full_h_wrap"
         android:paddingTop="@dimen/y20"
         android:orientation="vertical" >

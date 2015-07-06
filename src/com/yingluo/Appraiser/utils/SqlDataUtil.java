@@ -185,7 +185,12 @@ public class SqlDataUtil {
 		// TODO Auto-generated method stub
 		ArrayList<TreasureType> list=new ArrayList<TreasureType>();
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
-		qb.list();
+		try {
+			qb.list();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		.orderAsc(TreasureTypeDao.Properties.Currnt_id);*/
 		list=(qb.list()!=null)?(ArrayList<TreasureType>) qb.list():new ArrayList<TreasureType>();

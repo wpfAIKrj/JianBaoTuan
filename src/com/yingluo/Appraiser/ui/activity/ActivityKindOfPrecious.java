@@ -52,11 +52,11 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
-			if(first.size()==0){
+			if (first.size() == 0) {
 				return;
 			}
 			mAdapter.setVisibleLevel(0);
-//			mAdapter.notifyDataSetChanged();
+			// mAdapter.notifyDataSetChanged();
 			Intent mIntent = getIntent();
 			setResult(Activity.RESULT_OK, mIntent);
 			finish();
@@ -82,7 +82,7 @@ public class ActivityKindOfPrecious extends Activity {
 		setContentView(R.layout.layout_kind_of_precious);
 		ViewUtils.inject(this);
 		first = SqlDataUtil.getInstance().getTreasureType();
-		if(first.size()==0){
+		if (first.size() == 0) {
 			return;
 		}
 		LogUtils.d("获取所有分类：" + first.size());
@@ -112,6 +112,12 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 		treeView.setAdapter(mAdapter);
 
+	}
+
+	/** 隐藏搜索和全部，当进入二级以下分类时，隐藏，进入一级分类时，显示 */
+	private void hideSearchAndAll(boolean flag) {
+		all_kind.setVisibility(flag ? View.GONE : View.VISIBLE);
+		search.setVisibility(flag ? View.GONE : View.VISIBLE);
 	}
 
 }

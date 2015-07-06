@@ -23,6 +23,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/layout_home_item3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y334"
         android:orientation="vertical"
@@ -44,10 +45,11 @@
             android:scrollbars="none" >
         </com.yingluo.Appraiser.view.listview.HorizontalListView>
     </LinearLayout>
-	 <View 
-            android:layout_marginTop="@dimen/y20"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:background="@drawable/item_layout_padd"
-            />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@drawable/item_layout_padd" />
+
 </LinearLayout>
