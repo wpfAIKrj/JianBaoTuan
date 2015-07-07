@@ -53,6 +53,7 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
+			currentType = 0;
 			mAdapter.setData(first);
 			// if (first.size() == 0) {
 			// return;
