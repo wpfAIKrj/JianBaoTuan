@@ -1,5 +1,7 @@
 package com.yingluo.Appraiser.ui.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -45,6 +47,7 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.ImageViewWithBorder;
+import com.yingluo.Appraiser.view.SlideShowImageView;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 import com.yingluo.Appraiser.view.ViewOtherTreasure;
 import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
@@ -85,9 +88,10 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.tag_layout)
 	private TagLinearLayout taglayout;
 	
-	@ViewInject(R.id.layout_images)
-	private LinearLayout imageslayout;
 
+
+	@ViewInject(R.id.show_images)
+	private SlideShowImageView showimage;
 	@ViewInject(R.id.layout_treasure)
 	private LinearLayout treasurelayout;
 	
@@ -415,7 +419,7 @@ public class ActivityUserDelails extends BaseActivity {
 		};
 
 		//获取发表评论结果
-	private OnStringDataLoadListener netListner3=new OnStringDataLoadListener() {
+		private OnStringDataLoadListener netListner3=new OnStringDataLoadListener() {
 					
 					@Override
 					public void onBaseDataLoaded(String data) {
@@ -443,32 +447,22 @@ public class ActivityUserDelails extends BaseActivity {
 	//加载宝物图片
 	protected void showTreasureImage() {
 		// TODO Auto-generated method stub
-		imageslayout.removeAllViews();
-		LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-				(int) getResources().getDimension(R.dimen.y500));
-		params.topMargin=(int) getResources().getDimension(R.dimen.y20);
+//		LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+//				(int) getResources().getDimension(R.dimen.y500));
+		ArrayList<String> str=new ArrayList<String>();
 		if(entity.images1!=null&&entity.images1.length>0){
 			for (int i = 0; i < entity.images1.length; i++) {
-				
-				ImageViewWithBorder image=new ImageViewWithBorder(this);
-				image.setScaleType(ScaleType.FIT_XY);
-				image.setLayoutParams(params);
-				image.setBackgroundResource(R.drawable.item_small_stroke);
-				bitmapUtils.display(image, entity.images1[i]);
-				imageslayout.addView(image);
-				
+				str.add(entity.images1[i]);
 			}
 		}
 		if(entity.images2!=null&&entity.images2.length>0){
-			for (int i = 0; i < entity.images1.length; i++) {
-		
-				ImageViewWithBorder image=new ImageViewWithBorder(this);
-				image.setScaleType(ScaleType.FIT_XY);
-				image.setLayoutParams(params);
-				image.setBackgroundResource(R.drawable.item_small_stroke);
-				bitmapUtils.display(image, entity.images2[i]);
-				imageslayout.addView(image);
+			for (int i = 0; i < entity.images2.length; i++) {
+				str.add(entity.images2[i]);
 			}
+		}
+		if(str.size()>0){
+			showimage.setVisibility(View.VISIBLE);
+			showimage.prepareData(str);
 		}
 		
 	}

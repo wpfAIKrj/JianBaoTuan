@@ -60,6 +60,7 @@
        
        <!--  认证鉴定师-->
        <string name="authenticate_title">认证鉴定师</string>
+       <string name="other_home_title">Ta的主页</string>
        <!--  成长体系-->
        <string name="level_title">成长体系</string>
        
