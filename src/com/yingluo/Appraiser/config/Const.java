@@ -125,5 +125,14 @@ public class Const {
 	 * 我的页面跳转到系统消息
 	 */
 	public static final int TO_SYSTEM_INFO = 16;
+	/**
+	 * 跳转到选择相册预览界面
+	 */
+	public static final int TO_GALLERY = 17;
+	
+	/**
+	 * 跳转到选择相册页面
+	 */
+	public static final int TO_SELECT_ALBUM = 18;
 
 }

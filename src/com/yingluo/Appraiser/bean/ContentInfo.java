@@ -177,5 +177,15 @@ public class ContentInfo implements Serializable{
     public void setIsCollected(Integer isCollected) {
         this.isCollected = isCollected;
     }
-
+    @Override
+        public boolean equals(Object o) {
+      	// TODO Auto-generated method stub
+       	if(o instanceof ContentInfo){
+     		ContentInfo c=(ContentInfo) o;
+      		if(c.getId()==id){
+      			return true;
+      		}
+      	}
+       	return super.equals(o);
+       }
 }

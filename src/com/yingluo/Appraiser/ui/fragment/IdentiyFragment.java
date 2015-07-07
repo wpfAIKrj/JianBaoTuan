@@ -215,13 +215,7 @@ public class IdentiyFragment extends BaseFragment implements
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_INDENTIFY
 				|| resultCode == Activity.RESULT_OK) {
-			TreasureType treasureType = (TreasureType) data
-					.getSerializableExtra(Const.KIND_ID);
-			if (treasureType == null) {
-				kindId = 0;
-			} else {
-				kindId = treasureType.getId().intValue();
-			}
+			kindId =  data.getIntExtra(Const.KIND_ID, 0);
 			getIndentity();
 		}
 	}

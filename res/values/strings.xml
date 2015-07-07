@@ -124,4 +124,6 @@
  	  <string name="help_msg_13">请写下你对宝物的分析</string>
  	  <string name="help_msg_14">请选择全景图片</string>
  	   <string name="help_msg_15">请选择局部图片</string>
+ 	    <string name="help_msg_16">已经选择了3张图片！不能在选择了！</string>
+ 	    <string name="finish">完成</string>
 </resources>

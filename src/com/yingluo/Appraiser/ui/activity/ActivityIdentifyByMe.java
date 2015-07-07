@@ -22,6 +22,7 @@ import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.model.sendTreasureIdentityModel;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 
@@ -115,8 +116,13 @@ public class ActivityIdentifyByMe extends BaseActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==Const.TO_PUBLISH_SELECT_TYPE){//选择宝物
 			if(resultCode==RESULT_OK){
-				type=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
-				taglayout.addTag(type);
+				int kind_id=data.getIntExtra(Const.KIND_ID, 0);
+				if(kind_id==0){
+					type=null;
+				}else{
+					type=SqlDataUtil.getInstance().getTreasureTypeById(kind_id);
+					taglayout.addTag(type);	
+				}
 			}
 			
 		}

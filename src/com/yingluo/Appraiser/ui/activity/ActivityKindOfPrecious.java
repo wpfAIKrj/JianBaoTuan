@@ -55,16 +55,11 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
-			currentType = 0;
-			mAdapter.setData(first);
-			// if (first.size() == 0) {
-			// return;
-			// }
-			// mAdapter.setVisibleLevel(0);
-			// mAdapter.notifyDataSetChanged();
-			// Intent mIntent = getIntent();
-			// setResult(Activity.RESULT_OK, mIntent);
-			// finish();
+			Intent mIntent = getIntent();
+			mIntent.putExtra("page", 0);
+			mIntent.putExtra(Const.KIND_ID,0);
+			setResult(RESULT_OK, mIntent);
+			finish();
 		}
 			break;
 
@@ -99,9 +94,8 @@ public class ActivityKindOfPrecious extends Activity {
 			public void onClick(TreasureType type) {
 				// TODO Auto-generated method stub
 				Intent mIntent = getIntent();
-				mIntent.putExtra("page", 1);
 				mIntent.putExtra(Const.KIND_ID, type.getType());
-				setResult(Const.TO_INDENTIFY, mIntent);
+				setResult(RESULT_OK, mIntent);
 				finish();
 			}
 		});

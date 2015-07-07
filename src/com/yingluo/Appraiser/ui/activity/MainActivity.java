@@ -152,9 +152,9 @@ public class MainActivity extends FragmentActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		if (ItApplication.currnUser == null) {
-			mIndex = 0;
-		}
+//		if (ItApplication.currnUser == null) {
+//			mIndex = 0;
+//		}
 		setOnTabselected();
 	}
 

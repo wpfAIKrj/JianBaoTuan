@@ -326,12 +326,8 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		//super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==Const.TO_SELECT_TYPE&&resultCode==Activity.RESULT_OK){
 			try {
-				TreasureType type=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
-				if(type==null){
-					ground_id="0";
-				}else{
-					ground_id=String.valueOf(type.getId());
-				}
+				int kindid=data.getIntExtra(Const.KIND_ID,0);
+				ground_id=String.valueOf(kindid);
 				mSwipeRefreshWidget.setRefreshing(true);
 				onRefresh();
 				isFiset=false;

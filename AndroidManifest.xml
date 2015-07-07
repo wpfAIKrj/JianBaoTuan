@@ -169,6 +169,12 @@
              <activity android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"
          ></activity>   
+             <activity android:name=".utils.photo.AlbumActivity"
+            android:screenOrientation="portrait"
+         ></activity>   
+             <activity android:name=".utils.photo.GalleryActivity"
+            android:screenOrientation="portrait"
+         ></activity>   
          <service android:name=".ui.server.HomeService"></service>     
          
          
