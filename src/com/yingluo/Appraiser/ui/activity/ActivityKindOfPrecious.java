@@ -7,10 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
@@ -25,6 +24,9 @@ import com.yingluo.Appraiser.ui.adapter.KindTreasureAdapter;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class ActivityKindOfPrecious extends Activity {
+
+	@ViewInject(R.id.home_title)
+	TextView home_title;
 
 	@ViewInject(R.id.tree_view)
 	ListView treeView;
@@ -107,9 +109,14 @@ public class ActivityKindOfPrecious extends Activity {
 	}
 
 	/** 隐藏搜索和全部，当进入二级以下分类时，隐藏，进入一级分类时，显示 */
-	private void hideSearchAndAll(boolean flag) {
+	public void hideSearchAndAll(boolean flag) {
 		all_kind.setVisibility(flag ? View.GONE : View.VISIBLE);
 		search.setVisibility(flag ? View.GONE : View.VISIBLE);
+	}
+
+	// 设置标题
+	public void setTitle(String string) {
+		home_title.setText(string);
 	}
 
 	@Override

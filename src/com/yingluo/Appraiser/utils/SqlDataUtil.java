@@ -237,6 +237,25 @@ public class SqlDataUtil {
 	}
 
 	/**
+	 * 根据id找宝贝分类
+	 * 
+	 * @return
+	 */
+	public TreasureType getTreasureTypeById(long id) {
+		// TODO Auto-generated method stub
+		ArrayList<TreasureType> list = new ArrayList<TreasureType>();
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		qb.where(TreasureTypeDao.Properties.Id.eq(id));
+		list = (ArrayList<TreasureType>) qb.list();
+		if (list == null || list.size() == 0) {
+			return null;
+		} else {
+			return list.get(0);
+		}
+
+	}
+
+	/**
 	 * 获取指定等级目录
 	 * 
 	 * @return

@@ -23,13 +23,21 @@ public class KindTreasureAdapter extends BaseAdapter {
 	private List<TreasureType> kind;
 	private OnKindClickListener listener;
 
+	private long currentType = 0;
+
+	ActivityKindOfPrecious act;
+
 	public KindTreasureAdapter(ActivityKindOfPrecious mContext) {
+		act = mContext;
 		mInflater = LayoutInflater.from(mContext);
 		kind = new ArrayList<TreasureType>();
 	}
 
 	public void setData(List<TreasureType> list) {
 		if (list != null) {
+			if (list.size() > 0) {
+				currentType = list.get(0).parent_id;
+			}
 			kind.clear();
 			kind.addAll(list);
 			notifyDataSetChanged();
@@ -95,6 +103,10 @@ public class KindTreasureAdapter extends BaseAdapter {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (hasChild) {
+					// 设置标题
+					act.setTitle(type.getName());
+					// 隐藏一二
+					act.hideSearchAndAll(true);
 					ActivityKindOfPrecious.currentType++;
 					KindTreasureAdapter.this.setData(child);
 				} else {
@@ -121,9 +133,21 @@ public class KindTreasureAdapter extends BaseAdapter {
 	}
 
 	public void onBackPress() {
-		List<TreasureType> tmp = SqlDataUtil.getInstance().getTreasureType(
-				ActivityKindOfPrecious.currentType);
-		setData(tmp);
+		if (ActivityKindOfPrecious.currentType == 0) {
+			// 一级目录时，显示全部分类
+			act.hideSearchAndAll(false);
+			act.setTitle("宝贝分类");
+			setData(SqlDataUtil.getInstance().getFirstType());
+		} else {
+			TreasureType type = SqlDataUtil.getInstance().getTreasureTypeById(
+					currentType);
+			TreasureType parent = SqlDataUtil.getInstance()
+					.getTreasureTypeById(type.getParent_id());
+			act.setTitle(parent.getName());
+			List<TreasureType> tmp = SqlDataUtil.getInstance()
+					.getChildTreasure(ActivityKindOfPrecious.currentType,
+							type.parent_id);
+			setData(tmp);
+		}
 	}
-
 }
