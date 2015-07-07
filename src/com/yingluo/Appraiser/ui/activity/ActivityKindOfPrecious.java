@@ -6,24 +6,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.inter.OnKindClickListener;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
-import com.yingluo.Appraiser.tree.bean.Node;
-import com.yingluo.Appraiser.tree.bean.TreeListViewAdapter;
-import com.yingluo.Appraiser.tree.bean.TreeListViewAdapter.OnTreeNodeClickListener;
-import com.yingluo.Appraiser.ui.adapter.SimpleTreeAdapter;
+import com.yingluo.Appraiser.ui.adapter.KindTreasureAdapter;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class ActivityKindOfPrecious extends Activity {
@@ -37,6 +35,9 @@ public class ActivityKindOfPrecious extends Activity {
 	View search;
 	@ViewInject(R.id.layout_all_kind)
 	View all_kind;
+
+	public static int currentType = 0;
+	private KindTreasureAdapter mAdapter;
 
 	@OnClick({ R.id.btn_back, R.id.layout_search, R.id.layout_all_kind })
 	public void doClick(View view) {
@@ -52,14 +53,15 @@ public class ActivityKindOfPrecious extends Activity {
 		}
 			break;
 		case R.id.layout_all_kind: {
-			if (first.size() == 0) {
-				return;
-			}
-			mAdapter.setVisibleLevel(0);
+			mAdapter.setData(first);
+			// if (first.size() == 0) {
+			// return;
+			// }
+			// mAdapter.setVisibleLevel(0);
 			// mAdapter.notifyDataSetChanged();
-			Intent mIntent = getIntent();
-			setResult(Activity.RESULT_OK, mIntent);
-			finish();
+			// Intent mIntent = getIntent();
+			// setResult(Activity.RESULT_OK, mIntent);
+			// finish();
 		}
 			break;
 
@@ -72,7 +74,7 @@ public class ActivityKindOfPrecious extends Activity {
 
 	getAllKind_X_Model model;
 
-	private TreeListViewAdapter mAdapter;
+	// private TreeListViewAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,36 +83,25 @@ public class ActivityKindOfPrecious extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_kind_of_precious);
 		ViewUtils.inject(this);
-		first = SqlDataUtil.getInstance().getTreasureType();
-		if (first.size() == 0) {
-			return;
-		}
-		LogUtils.d("获取所有分类：" + first.size());
-		try {
-			mAdapter = new SimpleTreeAdapter<TreasureType>(treeView, this,
-					first, 0);
-			mAdapter.setOnTreeNodeClickListener(new OnTreeNodeClickListener() {
-				@Override
-				public void onClick(Node node, int position) {
-					if (node.isLeaf()) {
-						// Toast.makeText(getApplicationContext(),
-						// node.getName(),
-						// Toast.LENGTH_SHORT).show();
-						// 跳转到大厅，
-						Intent mIntent = getIntent();
-						mIntent.putExtra(Const.KIND_ID, node.getType());
-						setResult(Activity.RESULT_OK, mIntent);
-						finish();
-
-					}
-				}
-
-			});
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		mAdapter = new KindTreasureAdapter(this);
 		treeView.setAdapter(mAdapter);
+		currentType = 0;
+		first = SqlDataUtil.getInstance().getFirstType();
+		LogUtils.d("获取所有分类：" + first.size());
+
+		mAdapter.setData(first);
+		mAdapter.setOnClickListener(new OnKindClickListener() {
+
+			@Override
+			public void onClick(TreasureType type) {
+				// TODO Auto-generated method stub
+				Intent mIntent = getIntent();
+				mIntent.putExtra("page", 1);
+				mIntent.putExtra(Const.KIND_ID, type.getType());
+				setResult(Const.TO_INDENTIFY, mIntent);
+				finish();
+			}
+		});
 
 	}
 
@@ -118,6 +109,17 @@ public class ActivityKindOfPrecious extends Activity {
 	private void hideSearchAndAll(boolean flag) {
 		all_kind.setVisibility(flag ? View.GONE : View.VISIBLE);
 		search.setVisibility(flag ? View.GONE : View.VISIBLE);
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		currentType--;
+		if (currentType < 0) {
+			super.onBackPressed();
+		} else {
+			mAdapter.onBackPress();
+		}
 	}
 
 }

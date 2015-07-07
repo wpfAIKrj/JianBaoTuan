@@ -38,7 +38,7 @@ import com.yingluo.Appraiser.view.MyButton;
  *
  */
 
-public class ViewHots extends LinearLayout  {
+public class ViewHots extends LinearLayout {
 
 	// screen height,and width,in px
 	@ViewInject(R.id.imageview_big_icon)
@@ -60,6 +60,7 @@ public class ViewHots extends LinearLayout  {
 	BitmapsUtils bitmapUtils;
 
 	private CollectionTreasure currnt;
+
 	public ViewHots(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -93,11 +94,10 @@ public class ViewHots extends LinearLayout  {
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
 
 		ViewUtils.inject(this);
-		
+
 		iv_big.setClickable(true);
 
 		iv_small.setClickable(true);
-
 
 	}
 
@@ -106,7 +106,7 @@ public class ViewHots extends LinearLayout  {
 			LogUtils.e("Hots  CollectionEntity is null");
 			return;
 		}
-		currnt=item;
+		currnt = item;
 		iv_big.setTag(item);
 		iv_small.setTag(item);
 
@@ -118,7 +118,7 @@ public class ViewHots extends LinearLayout  {
 
 			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		}
-		setSmallImage(item.images);
+		setSmallImage(iv_big, item.images);
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
 		// 设置等级
@@ -127,7 +127,7 @@ public class ViewHots extends LinearLayout  {
 		setName(item.name);
 		// 设置浏览量
 		setNum(item.viewTimes + "");
-		
+
 		delete_checkbox.setChecked(item.isSelect);
 
 	}
@@ -149,13 +149,22 @@ public class ViewHots extends LinearLayout  {
 	}
 
 	// 设置小图片
-	public void setSmallImage(String[] urls) {
+	public void setSmallImage(final ImageView iv, final String[] urls) {
 		if (urls == null || urls.length == 0) {
 			return;
 		}
 		int count = urls.length;
 		for (int i = 0; i < count; i++) {
+			final String url = urls[i];
 			MyButton button = new MyButton(getContext(), iv_big, urls[i]);
+			button.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					bitmapUtils.display(iv, url);
+				}
+			});
 			layout_menu.addView(button);
 		}
 	}
@@ -186,7 +195,7 @@ public class ViewHots extends LinearLayout  {
 		return spannable;
 	}
 
-	@OnClick({R.id.imageview_big_icon,R.id.imageview_small_icon})
+	@OnClick({ R.id.imageview_big_icon, R.id.imageview_small_icon })
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if (currnt == null)
@@ -209,12 +218,12 @@ public class ViewHots extends LinearLayout  {
 			break;
 		}
 	}
-	
+
 	public void setDataFromDelete(boolean isDelete) {
 		delete_checkbox.setVisibility(isDelete ? View.VISIBLE : View.GONE);
 	}
-	
-	public CollectionTreasure getItem(){
+
+	public CollectionTreasure getItem() {
 		return currnt;
 	}
 }

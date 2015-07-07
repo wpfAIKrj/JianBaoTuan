@@ -51,8 +51,6 @@ public class IdentiyFragment extends BaseFragment implements
 
 	IdentiyAdapter mAdapter = null;
 
-	
-
 	int type = 2;
 
 	int current_page = 0;
@@ -61,13 +59,11 @@ public class IdentiyFragment extends BaseFragment implements
 
 	ItApplication app;
 
-	private int kindId= 0;
-	
+	private int kindId = 0;
+
 	private IdentifyPresenter identifyPresenter;
 
 	private Dialog dialog;
-
-	
 
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
@@ -87,15 +83,15 @@ public class IdentiyFragment extends BaseFragment implements
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
 			if (app != null) {
-				if(kindId==0){
-				if (app.getHasIdentify() != null) {
-					list = app.getHasIdentify();
-					mAdapter.setData(list);
+				if (kindId == 0) {
+					if (app.getHasIdentify() != null) {
+						list = app.getHasIdentify();
+						mAdapter.setData(list);
+					} else {
+						// 联网下载
+						getIndentity();
+					}
 				} else {
-					// 联网下载
-					getIndentity();
-				}
-				}else{
 					getIndentity();
 				}
 			}
@@ -111,15 +107,15 @@ public class IdentiyFragment extends BaseFragment implements
 			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
 			if (app != null) {
-				if(kindId==0){
-				if (app.getUnIdentify() != null) {
-					list = app.getUnIdentify();
-					mAdapter.setData(list);
+				if (kindId == 0) {
+					if (app.getUnIdentify() != null) {
+						list = app.getUnIdentify();
+						mAdapter.setData(list);
+					} else {
+						// 联网下载
+						getIndentity();
+					}
 				} else {
-					// 联网下载
-					getIndentity();
-				}
-				}else{
 					getIndentity();
 				}
 			}
@@ -139,7 +135,7 @@ public class IdentiyFragment extends BaseFragment implements
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
-		identifyPresenter=new IdentifyPresenter(netlistener1);
+		identifyPresenter = new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
 		app = (ItApplication) getActivity().getApplication();
 		list = app.getHasIdentify();
@@ -202,7 +198,7 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onRefresh() {
 		// TODO Auto-generated method stub
 		// current_page++;
-		
+
 		getIndentity();
 
 	}
@@ -217,19 +213,21 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == Const.TO_INDENTIFY&&resultCode==Activity.RESULT_OK) {
-			TreasureType treasureType=(TreasureType) data.getSerializableExtra(Const.KIND_ID);
-			if(treasureType==null){
-				kindId=0;
-			}else{
+		if (requestCode == Const.TO_INDENTIFY
+				|| resultCode == Activity.RESULT_OK) {
+			TreasureType treasureType = (TreasureType) data
+					.getSerializableExtra(Const.KIND_ID);
+			if (treasureType == null) {
+				kindId = 0;
+			} else {
 				kindId = treasureType.getId().intValue();
 			}
 			getIndentity();
 		}
 	}
 
-	private onListView<CollectionTreasure> netlistener1=new onListView<CollectionTreasure>() {
-		
+	private onListView<CollectionTreasure> netlistener1 = new onListView<CollectionTreasure>() {
+
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
 			// TODO Auto-generated method stub
@@ -238,31 +236,29 @@ public class IdentiyFragment extends BaseFragment implements
 				new ToastUtils(mActivity, "没有更多数据");
 			}
 			mAdapter.setData(data);
-			if(dialog!=null&&dialog.isShowing()){
+			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
 			prrv.stopRefresh();
-			if(dialog!=null&&dialog.isShowing()){
+			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
 			new ToastUtils(mActivity, errorMsg);
 		}
 	};
 
-	
 	private void getIndentity() {
 		// TODO Auto-generated method stub
-		if(dialog==null){
-			dialog=DialogUtil.createLoadingDialog(mActivity, "获取鉴定宝物中....");
+		if (dialog == null) {
+			dialog = DialogUtil.createLoadingDialog(mActivity, "获取鉴定宝物中....");
 		}
 		dialog.show();
-		identifyPresenter.getIdentity(kindId,type);
+		identifyPresenter.getIdentity(kindId, type);
 	}
-
 
 }

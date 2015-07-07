@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
+    android:id="@+id/layout_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
@@ -10,16 +11,14 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y100"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
         android:layout_marginLeft="@dimen/x14"
-         >
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
         <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/iv_icon"
             android:layout_width="@dimen/y74"
             android:layout_height="@dimen/y74"
-      
             android:src="@drawable/user_logo"
             app:border_color="@color/cricle_color"
             app:border_width="@dimen/x1" />
