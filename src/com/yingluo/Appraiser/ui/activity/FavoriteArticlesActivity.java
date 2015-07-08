@@ -123,7 +123,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		if(ItApplication.currnUser==null){
+		if(ItApplication.getcurrnUser()==null){
 			EventBus.getDefault().post(new MainEvent(0, null));
 			setResult(RESULT_CANCELED, getIntent());
 			finish();

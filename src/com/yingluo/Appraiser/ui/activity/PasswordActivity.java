@@ -123,7 +123,7 @@ public class PasswordActivity extends BaseActivity {
 					loadding.dismiss();
 				}
 				SqlDataUtil.getInstance().saveUserInfo(data);
-				ItApplication.currnUser=data;
+				ItApplication.setCurrnUser(data);
 				new ToastUtils(PasswordActivity.this, "修改密码成功！");
 			}
 			

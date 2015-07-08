@@ -73,13 +73,13 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	private void initView() {
 		// TODO Auto-generated method stub
 		title.setText(R.string.profile_title);
-		if(ItApplication.currnUser!=null){
-		String string = ItApplication.currnUser.getPersonal_data();
-		key=ItApplication.currnUser.getPortrait();
-		name=ItApplication.currnUser.getNickname();
-		edQQ.setText(ItApplication.currnUser.getQq());
-		edEmail.setText(ItApplication.currnUser.getEmail());
-		edName.setText(ItApplication.currnUser.getNickname());
+		if(ItApplication.getcurrnUser()!=null){
+		String string = ItApplication.getcurrnUser().getPersonal_data();
+		key=ItApplication.getcurrnUser().getPortrait();
+		name=ItApplication.getcurrnUser().getNickname();
+		edQQ.setText(ItApplication.getcurrnUser().getQq());
+		edEmail.setText(ItApplication.getcurrnUser().getEmail());
+		edName.setText(ItApplication.getcurrnUser().getNickname());
 		}
 	}
 
@@ -133,10 +133,10 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		if(Logodialong!=null){
 			Logodialong.dismiss();
 		}
-		ItApplication.currnUser.setAvatar(user.getAvatar());
-		ItApplication.currnUser.setQq(user.getQq());
-		ItApplication.currnUser.setEmail(user.getEmail());
-		ItApplication.currnUser.setNickname(user.getNickname());
+		ItApplication.getcurrnUser().setAvatar(user.getAvatar());
+		ItApplication.getcurrnUser().setQq(user.getQq());
+		ItApplication.getcurrnUser().setEmail(user.getEmail());
+		ItApplication.getcurrnUser().setNickname(user.getNickname());
 		EventBus.getDefault().post(new MyEvent(0,user));
 		new ToastUtils(this, "个人信息更新成功！");
 	}

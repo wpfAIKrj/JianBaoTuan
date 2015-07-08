@@ -146,14 +146,14 @@ public class InformationDetailsActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.detail_share://分享
-			if(ItApplication.currnUser!=null){
+			if(ItApplication.getcurrnUser()!=null){
 				
 			}else{
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
 		case R.id.detail_collect://收藏
-			if(ItApplication.currnUser!=null){
+			if(ItApplication.getcurrnUser()!=null){
 				dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
 				dialog1.show();
 				
@@ -162,7 +162,7 @@ public class InformationDetailsActivity extends BaseActivity {
 			}
 			break;
 		case R.id.detail_cancle_collect://取消收藏
-			if(ItApplication.currnUser!=null){
+			if(ItApplication.getcurrnUser()!=null){
 				dialog1=DialogUtil.createShowDialog(this, "是否取消收藏文章？", lis2);
 				dialog1.show();
 				

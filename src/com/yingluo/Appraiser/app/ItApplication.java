@@ -6,6 +6,7 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.bean.UserInfo;
+import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.im.RongCloudEvent;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
@@ -21,7 +22,7 @@ import android.content.Context;
 
 public class ItApplication extends Application {
 
-	public static  UserInfo currnUser=null;
+	private static  UserInfo currnUser=null;
 
 	private HomeEntity homeEntity;
 
@@ -89,5 +90,51 @@ public class ItApplication extends Application {
             }
         }
         return null;
+    }
+    
+    /**
+     * 获取当前登录的用户
+     */
+    public static UserInfo getcurrnUser(){
+    	if(currnUser!=null){
+    		return currnUser;
+    	}
+    	if(SharedPreferencesUtils.getInstance().getIsHaveLogin()){
+			String name=SharedPreferencesUtils.getInstance().getLoginUserName();
+			if(name==null){
+				SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+				return null;
+			}else{	
+				currnUser=SqlDataUtil.getInstance().getUserForPhone(name);
+				if(currnUser!=null){
+					NetConst.SESSIONID=ItApplication.currnUser.getSession_id();
+					NetConst.UPTOKEN=ItApplication.currnUser.getImage_token();
+					NetConst.IMTOKEN=ItApplication.currnUser.getMessage_token();
+					RongImUtils.getInstance().connect(NetConst.IMTOKEN);
+			    	return currnUser;
+				}else{
+					return null;
+				}
+			}
+    	}else{
+    		return null;
+    	}
+    }
+    
+    /**
+     * 更新数据
+     * @param user
+     */
+    public static void setCurrnUser(UserInfo user){
+    	currnUser=user;
+    }
+    /**
+     * 推出登录状态
+     */
+    public static void cleanCurrnUser(){
+    	RongImUtils.getInstance().disconnect();
+		ItApplication.currnUser = null;
+		SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+		SharedPreferencesUtils.getInstance().saveLoginUserName(null);
     }
 }

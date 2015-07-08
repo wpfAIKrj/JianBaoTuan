@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.qiniu.android.http.ResponseInfo;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
@@ -105,6 +106,10 @@ public class publishModel extends BaseModel {
 
 	private void startuploadImageAll( final int index) {
 		// TODO 自动生成的方法存根
+		if(ItApplication.getcurrnUser()==null){
+			listener.onBaseDataLoadErrorHappened("-1", "未登录！");
+			return;
+		}
 		String path=FileUtils.getInstance().saveUpImageForCamera(imageAll.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
@@ -152,6 +157,10 @@ public class publishModel extends BaseModel {
 
 	private void startuploadImagefear(final int index) {
 		// TODO 自动生成的方法存根
+		if(ItApplication.getcurrnUser()==null){
+			listener.onBaseDataLoadErrorHappened("-1", "未登录！");
+			return;
+		}
 		String path=FileUtils.getInstance().saveUpImageForCamera(imageTest.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
@@ -195,9 +204,12 @@ public class publishModel extends BaseModel {
 	
 	protected void startSend() {
 		// TODO 自动生成的方法存根
-	
+		if(!allsb.toString().isEmpty()){
 		allsb.deleteCharAt(allsb.length()-1);
-		fearsb.deleteCharAt(fearsb.length()-1);
+		}
+		if(!fearsb.toString().isEmpty()){
+			fearsb.deleteCharAt(fearsb.length()-1);
+		}
 		addRequestParams();
 		setHTTPMODE(HttpMethod.POST);
 		sendHttp();

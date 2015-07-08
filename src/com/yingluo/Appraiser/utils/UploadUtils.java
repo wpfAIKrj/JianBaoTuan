@@ -20,6 +20,7 @@ import com.qiniu.android.storage.UpProgressHandler;
 import com.qiniu.android.storage.UploadManager;
 import com.qiniu.android.storage.UploadOptions;
 import com.qiniu.android.utils.UrlSafeBase64;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.UpLoadFileInterface;
 
@@ -40,7 +41,7 @@ public class UploadUtils {
 	 */
 	public static void UploadPortrait(String filePath,final UpLoadFileInterface listener){
 		UploadManager uploadManager=new UploadManager();
-		uploadManager.put(filePath, null, NetConst.UPTOKEN, new UpCompletionHandler() {
+		uploadManager.put(filePath, null, ItApplication.getcurrnUser().getImage_token(), new UpCompletionHandler() {
 			
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {

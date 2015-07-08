@@ -167,8 +167,8 @@ public class RongCloudEvent implements ConversationListBehaviorListener,UserInfo
 		// TODO 自动生成的方法存根
 		  LogUtils.d( "onChanged:" + arg0);
 	        if (arg0.getMessage().equals(ConnectionStatus.DISCONNECTED.getMessage())) {
-	        
-	       }
+	        	RongImUtils.isconnect=false;
+	        }
 	}
 
 

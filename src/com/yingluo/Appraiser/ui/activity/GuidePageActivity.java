@@ -30,23 +30,9 @@ public class GuidePageActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_guide);
-		if(SharedPreferencesUtils.getInstance().getIsHaveLogin()){
-			String name=SharedPreferencesUtils.getInstance().getLoginUserName();
-			if(name==null){
-				SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-			}else{	
-				ItApplication.currnUser=SqlDataUtil.getInstance().getUserForPhone(name);
-				if(ItApplication.currnUser!=null){
-					NetConst.SESSIONID=ItApplication.currnUser.getSession_id();
-					NetConst.UPTOKEN=ItApplication.currnUser.getImage_token();
-					NetConst.IMTOKEN=ItApplication.currnUser.getMessage_token();
-					RongImUtils.getInstance().connect(NetConst.IMTOKEN);	
-				}
-			}
-		}
-	
+		setContentView(R.layout.activity_guide);	
 		startService(new Intent(this,HomeService.class));
+		ItApplication.getcurrnUser();
 		mHandler.postDelayed(new Runnable() {
 			
 			@Override
@@ -56,7 +42,7 @@ public class GuidePageActivity extends BaseActivity {
 				startActivity(intent);
 				finish();
 			}
-		}, 5000);
+		},3000);
 		
 	}
 

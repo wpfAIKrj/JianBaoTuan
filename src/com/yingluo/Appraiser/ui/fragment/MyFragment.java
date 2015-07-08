@@ -132,9 +132,9 @@ public class MyFragment extends BaseFragment{
 	public void onEventMainThread(MyEvent event){
 		switch (event.type) {
 		case 0://更新人物头像
-			if(ItApplication.currnUser!=null){
-				tv_name.setText(ItApplication.currnUser.getNickname());
-				BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());	
+			if(ItApplication.getcurrnUser()!=null){
+				tv_name.setText(ItApplication.getcurrnUser().getNickname());
+				BitmapsUtils.getInstance().display(user_logo, ItApplication.getcurrnUser().getAvatar());	
 				
 			}
 			break;
@@ -207,7 +207,7 @@ public class MyFragment extends BaseFragment{
 			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class),Const.TO_USER_SET);
 			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
-			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){
+			if(ItApplication.getcurrnUser()!=null&&ItApplication.getcurrnUser().getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
 			}
@@ -246,7 +246,7 @@ public class MyFragment extends BaseFragment{
 					SystemInfoActivity.class),Const.TO_SYSTEM_INFO);
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
-			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){
+			if(ItApplication.getcurrnUser()!=null&&ItApplication.getcurrnUser().getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
 			}else{
@@ -269,21 +269,21 @@ public class MyFragment extends BaseFragment{
 	
 	private void initData() {
 		// TODO Auto-generated method stub
-		if(ItApplication.currnUser!=null&&isFirst){
+		if(ItApplication.getcurrnUser()!=null&&isFirst){
 			isFirst=false;
-			tv_name.setText(ItApplication.currnUser.getNickname());
-			BitmapsUtils.getInstance().display(user_logo, ItApplication.currnUser.getAvatar());
-			if(ItApplication.currnUser.getUser_type()==0){
+			tv_name.setText(ItApplication.getcurrnUser().getNickname());
+			BitmapsUtils.getInstance().display(user_logo,ItApplication.getcurrnUser().getAvatar());
+			if(ItApplication.getcurrnUser().getUser_type()==0){
 				tv_authenticate.setText(R.string.type_collect);	
-				iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+				iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 			}else{
 				tv_authenticate.setText(R.string.type_identiy);	
 			}
 			madapter=new MyLikeAdapter(list, itemListner);
 			listView.setAdapter(madapter);
-			tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
-			tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
-			tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
+			tv_collect_number.setText(""+ItApplication.getcurrnUser().getTreasure_number());
+			tv_fooler_number.setText(""+ItApplication.getcurrnUser().getFoot_number());
+			tv_identiy_number.setText(""+ItApplication.getcurrnUser().getTreasure_record_number());
 		}	
 	}
 	
@@ -294,12 +294,12 @@ public class MyFragment extends BaseFragment{
 			// TODO Auto-generated method stub
 			try {
 				JSONObject obj=new JSONObject(data);
-				ItApplication.currnUser.setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
-				ItApplication.currnUser.setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
-				ItApplication.currnUser.setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
-				ItApplication.currnUser.setUser_type(obj.getInt(NetConst.USER_TYPE));
-				ItApplication.currnUser.setUser_level(obj.getInt(NetConst.USER_LEVE));
-				SqlDataUtil.getInstance().saveUserInfo(ItApplication.currnUser);
+				ItApplication.getcurrnUser().setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
+				ItApplication.getcurrnUser().setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
+				ItApplication.getcurrnUser().setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
+				ItApplication.getcurrnUser().setUser_type(obj.getInt(NetConst.USER_TYPE));
+				ItApplication.getcurrnUser().setUser_level(obj.getInt(NetConst.USER_LEVE));
+				SqlDataUtil.getInstance().saveUserInfo(ItApplication.getcurrnUser());
 				JSONArray arrays=obj.getJSONArray(NetConst.LIKES);
 				list.clear();
 				for (int i = 0; i < arrays.length(); i++) {
@@ -319,15 +319,15 @@ public class MyFragment extends BaseFragment{
 				isgete=false;
 				madapter=new MyLikeAdapter(list, itemListner);
 				listView.setAdapter(madapter);
-				if(ItApplication.currnUser.getUser_type()==0){
+				if(ItApplication.getcurrnUser().getUser_type()==0){
 					tv_authenticate.setText(R.string.type_collect);	
-					iv_level.setImageResource(levels[ItApplication.currnUser.getUser_level()]);
+					iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 				}else{
 					tv_authenticate.setText(R.string.type_identiy);	
 				}
-				tv_collect_number.setText(""+ItApplication.currnUser.getTreasure_number());
-				tv_fooler_number.setText(""+ItApplication.currnUser.getFoot_number());
-				tv_identiy_number.setText(""+ItApplication.currnUser.getTreasure_record_number());
+				tv_collect_number.setText(""+ItApplication.getcurrnUser().getTreasure_number());
+				tv_fooler_number.setText(""+ItApplication.getcurrnUser().getFoot_number());
+				tv_identiy_number.setText(""+ItApplication.getcurrnUser().getTreasure_record_number());
 				
 			}
 		}

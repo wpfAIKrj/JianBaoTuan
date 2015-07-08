@@ -270,7 +270,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		if(dialog!=null){
 			dialog.dismiss();
 		}
-		ItApplication.currnUser=user;
+		ItApplication.setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());

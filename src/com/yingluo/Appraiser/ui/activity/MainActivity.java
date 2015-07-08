@@ -118,7 +118,7 @@ public class MainActivity extends FragmentActivity implements
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (ItApplication.currnUser != null) {
+				if (ItApplication.getcurrnUser() != null) {
 					Intent intent = new Intent(MainActivity.this,
 							PublishedActivity.class);
 					startActivityForResult(intent, Const.TO_SEND_IDENTIY);
@@ -156,7 +156,6 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt(Const.MINDEX, mIndex);
-		outState.putSerializable(Const.USER, ItApplication.currnUser);
 	}
 
 	@Override
@@ -168,9 +167,8 @@ public class MainActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		if (savedInstanceState != null) {
 			mIndex = savedInstanceState.getInt(Const.MINDEX, 0);
-			UserInfo user = (UserInfo) savedInstanceState
-					.getSerializable(Const.USER);
-			ItApplication.currnUser = user;
+	
+			
 		}
 	}
 
@@ -196,7 +194,7 @@ public class MainActivity extends FragmentActivity implements
 		// TODO Auto-generated method stub
 		//
 		if (index == 3) {// 我的页面
-			if (ItApplication.currnUser == null) {
+			if (ItApplication.getcurrnUser() == null) {
 				mIndex = 0;
 				Intent intent = new Intent(MainActivity.this,
 						LoginAcitivity.class);
@@ -366,10 +364,10 @@ public class MainActivity extends FragmentActivity implements
 	public void uploadLogo(String path) {
 		LogUtils.d("获取的头像路径：" + path);
 		disshowPhoto();
-		if (ItApplication.currnUser != null) {
-			String qq = ItApplication.currnUser.getQq();
-			String email = ItApplication.currnUser.getEmail();
-			String name = ItApplication.currnUser.getNickname();
+		if (ItApplication.getcurrnUser() != null) {
+			String qq = ItApplication.getcurrnUser().getQq();
+			String email =ItApplication.getcurrnUser().getEmail();
+			String name = ItApplication.getcurrnUser().getNickname();
 			uplogopresenter.startUpLoadLogo(path, email, qq, name);
 			Logodialong = DialogUtil.createLoadingDialog(this, "正在更新头像中");
 			Logodialong.show();
@@ -394,9 +392,9 @@ public class MainActivity extends FragmentActivity implements
 			if (Logodialong != null) {
 				Logodialong.dismiss();
 			}
-			if (ItApplication.currnUser != null) {
-				ItApplication.currnUser.setAvatar(user.getAvatar());
-				SqlDataUtil.getInstance().saveUserInfo(ItApplication.currnUser);
+			if (ItApplication.getcurrnUser() != null) {
+				ItApplication.getcurrnUser().setAvatar(user.getAvatar());
+				SqlDataUtil.getInstance().saveUserInfo(ItApplication.getcurrnUser());
 			}
 			EventBus.getDefault().post(new MyEvent(0, user));
 		}

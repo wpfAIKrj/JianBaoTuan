@@ -80,7 +80,7 @@ public class GetSystemInfoModel extends BaseModel{
 				infos=new ArrayList<SystemInfoEntity>();
 			}else{
 				for (int i = 0; i < infos.size(); i++) {
-					infos.get(i).mobile=ItApplication.currnUser.getMobile();
+					infos.get(i).mobile=ItApplication.getcurrnUser().getMobile();
 				}
 			}
 			lisntenr.onListDataLoaded(infos);

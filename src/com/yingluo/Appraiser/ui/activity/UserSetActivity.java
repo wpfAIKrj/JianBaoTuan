@@ -95,10 +95,7 @@ public class UserSetActivity extends BaseActivity {
 			if (Logodialong != null) {
 				Logodialong.dismiss();
 			}
-			RongImUtils.getInstance().disconnect();
-			ItApplication.currnUser = null;
-			SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-			SharedPreferencesUtils.getInstance().saveLoginUserName(null);
+			ItApplication.cleanCurrnUser();
 			setResult(Const.TO_EXITS_USER, getIntent());
 			finish();
 

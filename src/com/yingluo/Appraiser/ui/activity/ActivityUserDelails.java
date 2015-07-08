@@ -135,7 +135,7 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 			break;
 		case R.id.btn_send_comment://发布评论
-			if (ItApplication.currnUser != null) {
+			if (ItApplication.getcurrnUser() != null) {
 			String content=ed_text.getText().toString().trim();
 			if(content!=null&&!content.isEmpty()){
 				loaddialog=DialogUtil.createLoadingDialog(this, "发表评论中....");
@@ -149,7 +149,7 @@ public class ActivityUserDelails extends BaseActivity {
 			break;
 		case R.id.btn_goto: //我要鉴定
 		{
-			if (ItApplication.currnUser != null) {
+			if (ItApplication.getcurrnUser() != null) {
 				if(entity.status==2){
 					new ToastUtils(this, "宝物已经鉴定完毕！");
 					return;
@@ -165,7 +165,7 @@ public class ActivityUserDelails extends BaseActivity {
 			break;
 		case R.id.detail_collect: {
 			// 收藏宝物
-			if (ItApplication.currnUser != null) {
+			if (ItApplication.getcurrnUser() != null) {
 				dialog1 = DialogUtil.createShowDialog(this, "是否收藏该宝物？", lis1);
 				dialog1.show();
 
@@ -176,7 +176,7 @@ public class ActivityUserDelails extends BaseActivity {
 			break;
 		case R.id.detail_cancle_collect: {
 			// 取消收藏
-			if (ItApplication.currnUser != null) {
+			if (ItApplication.getcurrnUser()!= null) {
 				dialog1 = DialogUtil.createShowDialog(this, "是否取消收藏该宝物？", lis2);
 				dialog1.show();
 

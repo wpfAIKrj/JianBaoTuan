@@ -169,10 +169,10 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@Override
 	public void onSucess(UserInfo user) {
 		// TODO Auto-generated method stub
-		ItApplication.currnUser=user;
-		SqlDataUtil.getInstance().saveUserInfo(user);
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
+		SqlDataUtil.getInstance().saveUserInfo(user);
+		ItApplication.getcurrnUser();
 		if(dialog!=null){
 			dialog.dismiss();
 		}

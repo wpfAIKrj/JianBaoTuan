@@ -436,7 +436,7 @@ public class FileUtils {
 	public  String NewUploadImagePath() {
 		// TODO Auto-generated method stub
 		String root = FileUtils.getInstance().getUpImage();
-		String imagename=new DateFormat().format("yyyyMMDD_hhmmss", Calendar.getInstance())+".jpg";
+		String imagename=new DateFormat().format("yyyyMMdd_hhmmss", Calendar.getInstance())+".jpg";
 		root=root+File.separator+imagename;
 		return root;
 	}

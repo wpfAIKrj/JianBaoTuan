@@ -81,10 +81,7 @@ public abstract class BaseModel {
 				
 			}else{
 				if(code==NetConst.CODE_ERROR8){
-					ItApplication.currnUser=null;
-					NetConst.SESSIONID=null;
-					SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-					SharedPreferencesUtils.getInstance().saveLoginUserName(null);
+					ItApplication.cleanCurrnUser();
 				}
 				onFailureForString(String.valueOf(code),message);
 			}

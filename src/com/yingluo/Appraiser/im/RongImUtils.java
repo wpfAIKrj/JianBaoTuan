@@ -40,7 +40,7 @@ public class RongImUtils {
 	private Context mContext;
 	private static RongImUtils mInstance=null;
 	
-	private boolean isconnect=false;
+	public static boolean isconnect=false;
 	public static void init(Context context) {
 		// TODO Auto-generated method stub
 		mInstance=new RongImUtils(context);
@@ -63,6 +63,7 @@ public class RongImUtils {
 	 * 创建连接
 	 */
 	public void connect(String token){
+		if(!isconnect){
 		RongIM.connect(token, new ConnectCallback() {
 			
 			@Override
@@ -71,7 +72,6 @@ public class RongImUtils {
 				LogUtils.d("聊天连接成功！");
 				isconnect=true;
 			    RongCloudEvent.getInstance().setOtherListener();
-			    setUserInfo();
 			   
 			}
 			
@@ -88,6 +88,7 @@ public class RongImUtils {
 				LogUtils.d("触发改方法！");
 			}
 		});
+		}
 		
 	}
 	
