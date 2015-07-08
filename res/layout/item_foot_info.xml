@@ -43,7 +43,10 @@
             android:gravity="center_vertical"
             android:text="各产地南红背后的“秘密”"
             android:textColor="@color/black_2"
-            android:textSize="@dimen/x30" />
+            android:textSize="@dimen/x30" 
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            />
 
         <ImageView
             android:layout_width="@dimen/x26"

@@ -47,7 +47,7 @@ public class SlideShowImageView extends FrameLayout {
 	// 自动轮播的时间间隔
 	private final static int TIME_INTERVAL = 5;
 	// 自动轮播启用开关
-	private final static boolean isAutoPlay = true;
+	private final static boolean isAutoPlay = false;
 
 	// 自定义轮播图的资源
 	private String[] imageUrls;
@@ -175,7 +175,7 @@ public class SlideShowImageView extends FrameLayout {
 					(int)getResources().getDimension(R.dimen.x25), (int)getResources().getDimension(R.dimen.x25));
 			params.leftMargin = 10;
 			params.rightMargin = 10;
-			params.bottomMargin = 20;
+			
 			dotLayout.setGravity(Gravity.CENTER);
 			dotLayout.addView(dotView, params);
 			dotViewsList.add(dotView);
@@ -186,6 +186,18 @@ public class SlideShowImageView extends FrameLayout {
 
 		viewPager.setAdapter(new MyPagerAdapter());
 		viewPager.setOnPageChangeListener(new MyPageChangeListener());
+		if(imageViewsList.size()>0){
+			currentItem = 0;
+			for (int i = 0; i < dotViewsList.size(); i++) {
+				if (i == 0) {
+					((View) dotViewsList.get(0))
+							.setBackgroundResource(R.drawable.ball_select);
+				} else {
+					((View) dotViewsList.get(i))
+							.setBackgroundResource(R.drawable.ball_normal);
+				}
+			}	
+		}
 	}
 
 	/**

@@ -520,4 +520,6 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 		
 	};
+
+	
 }

@@ -63,6 +63,9 @@ public class ActivityFootPrint extends Activity implements
 
 			ContentInfo contentInfo = new ContentInfo();
 			contentInfo.setId(treasure.article_id);
+			contentInfo.setTitle(treasure.msg);
+			contentInfo.setView_times((int)treasure.viewTimes);
+			contentInfo.setImage(treasure.image);
 			Intent intent = new Intent(ActivityFootPrint.this,
 					InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, contentInfo);

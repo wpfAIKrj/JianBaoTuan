@@ -22,6 +22,7 @@ import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
 import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.presenter.collectInfoPresenter;
+import com.yingluo.Appraiser.utils.FileUtils;
 
 public class IdentifyModel extends BaseModel {
 
@@ -61,6 +62,7 @@ public class IdentifyModel extends BaseModel {
 		try {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
+			FileUtils.getInstance().saveFileForKindJson(kind_id,type,data);
 			LogUtils.i("ytmdfdw" + "get identify data:" + data);
 			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());

@@ -122,21 +122,10 @@ public class InformationDetailsActivity extends BaseActivity {
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
 		if(info.getContent()!=null){
-			
-//		context.setText(Html.fromHtml(info.getContent(), null, new TagHandler() {
-//			
-//			@Override
-//			public void handleTag(boolean opening, String tag, Editable output,
-//					XMLReader xmlReader) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		}));
 			   context.getSettings().setJavaScriptEnabled(true);
 			   context.loadData("<html>"+info.getContent()+"</html>",
 					   "text/html; charset=UTF-8", null);
 		}else{
-//			context.setText(null);
 		}
 		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
 			collect.setVisibility(View.GONE);

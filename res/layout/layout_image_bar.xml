@@ -18,12 +18,12 @@
         <LinearLayout
             android:id="@+id/llPoints"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y60"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_vertical"
             android:orientation="horizontal" 
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            
+            android:layout_marginBottom="@dimen/y30"
             >
         </LinearLayout>
     </RelativeLayout>

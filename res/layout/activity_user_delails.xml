@@ -32,7 +32,12 @@
                     android:visibility="gone"
                     ></com.yingluo.Appraiser.view.SlideShowImageView>
             </LinearLayout>
-   
+   			<View 
+           
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@drawable/item_layout_padd"
+            />
             <include layout="@layout/item_delails_user" />
 
             

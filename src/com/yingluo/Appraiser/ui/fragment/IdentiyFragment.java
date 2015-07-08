@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -32,6 +34,7 @@ import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
@@ -82,6 +85,7 @@ public class IdentiyFragment extends BaseFragment implements
 			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
+			showImageData(type,kindId);
 			if (app != null) {
 				if (kindId == 0) {
 					if (app.getHasIdentify() != null) {
@@ -104,6 +108,7 @@ public class IdentiyFragment extends BaseFragment implements
 			// 获取已经鉴定数据
 			type = 2;
 			prrv.stopRefresh();
+			showImageData(type,kindId);
 			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
 			if (app != null) {
@@ -123,6 +128,24 @@ public class IdentiyFragment extends BaseFragment implements
 
 			break;
 		}
+	}
+
+	private void showImageData(int type, long kindId) {
+		// TODO Auto-generated method stub
+		String str=FileUtils.getInstance().getFileForKindJson(kindId, type);
+		if(str!=null){
+			try {
+				Gson gson = new Gson();
+				List<CollectionTreasure> arrlist = gson.fromJson(str, new TypeToken<List<CollectionTreasure>>() {
+				}.getType());
+				if(arrlist!=null){
+					mAdapter.setData(arrlist);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		
 	}
 
 	@Override

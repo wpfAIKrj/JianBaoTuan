@@ -45,7 +45,7 @@ public class FileUtils {
 	
 	public static final String JSON_HOME="home.json";
 	
-	public static final String JSON_KINDS="kinds.json";
+	public static final String JSON_KINDS="kinds";
 	
 	private String root_path;//根目录
 	
@@ -501,10 +501,11 @@ public class FileUtils {
 	}
 	
 	/**
-	 * 保存宝贝分类的数据
+	 * 保存鉴定的宝物
 	 */
-	public void saveFileForKindJson(String json){
-		File file=new File(getCacheFile(), JSON_KINDS);
+	public void saveFileForKindJson(long kind,int status,String json){
+		String name=JSON_KINDS+"_"+kind+"_"+status;
+		File file=new File(getCacheFile(), name);
 		if(!file.exists()){
 			try {
 				file.createNewFile();
@@ -524,7 +525,39 @@ public class FileUtils {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 获取制定id下的鉴定信息
+	 * @return 存在则返回string，不存在则是null
+	 */
+	public String getFileForKindJson(long kind,int status){
+		String name=JSON_KINDS+"_"+kind+"_"+status;
+		File file=new File(getCacheFile(), name);
+		StringBuffer content=new StringBuffer();
+		if(file.exists()){
+			 try {
+				InputStream instream = new FileInputStream(file); 
+				 if (instream != null) 
+				 {
+				     InputStreamReader inputreader = new InputStreamReader(instream);
+				     BufferedReader buffreader = new BufferedReader(inputreader);
+				     String line;
+				     //分行读取
+				     while (( line = buffreader.readLine()) != null) {
+				         content.append(line);
+				     }                
+				     instream.close();
+				 }
+		         return content.toString(); 
+			} catch (Exception e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+				return null;
+			} 
+
+		}else{
+			return null;
+		}
+	}
 	/**
 	 * 获取首页的json数据
 	 * @return 存在则返回string，不存在则是null

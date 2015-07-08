@@ -81,6 +81,7 @@ public class MainActivity extends FragmentActivity implements
 		EventBus.getDefault().register(this);
 	}
 
+
 	public void onEventMainThread(MainEvent event) {
 		switch (event.type) {
 		case 0:// 返回首页，切换到首页
