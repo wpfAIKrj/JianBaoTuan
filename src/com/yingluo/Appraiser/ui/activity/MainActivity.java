@@ -55,7 +55,7 @@ import de.greenrobot.event.EventBus;
  *
  */
 public class MainActivity extends FragmentActivity implements
-		OnTabSelectedListener, OnClickListener {
+		OnTabSelectedListener {
 
 	private FragmentManager mFragmentManager;
 	private HomeFragment mHomeFragment;
@@ -65,12 +65,10 @@ public class MainActivity extends FragmentActivity implements
 	private long mkeyTime = 0;
 	private MyTabWidget mTabWidget;
 	public int mIndex = 0;
-	private ResideMenu resideMenu;
 	private UploadLogoPresenter uplogopresenter;
 	private SelectPhotoDialog photodialog;
 	private ImageUtils imageUtils;
 	private Dialog Logodialong;
-	private ExitPresenter exitpresenter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +78,6 @@ public class MainActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_main);
 		init();
 		initEvents();
-		setUpMenu();
 		EventBus.getDefault().register(this);
 	}
 
@@ -106,16 +103,7 @@ public class MainActivity extends FragmentActivity implements
 		super.onDestroy();
 	}
 
-	private void setUpMenu() {
-		// TODO Auto-generated method stub
-		resideMenu = new ResideMenu(this);
-		resideMenu.setBackground(R.drawable.menu_background);
-		resideMenu.attachToActivity(this);
-		resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_LEFT);
-		resideMenu.setShadowVisible(false);
-		resideMenu.setButtonOnClickListener(this);
 
-	}
 
 	private void init() {
 		// TODO Auto-generated method stub
@@ -139,7 +127,7 @@ public class MainActivity extends FragmentActivity implements
 			}
 		});
 		uplogopresenter = new UploadLogoPresenter(listener);
-		exitpresenter = new ExitPresenter(listener2);
+	
 		imageUtils = new ImageUtils(this);
 	}
 
@@ -246,7 +234,6 @@ public class MainActivity extends FragmentActivity implements
 		case 3:
 			if (null == mMyFragment) {
 				mMyFragment = new MyFragment();
-				mMyFragment.setPopMenuListener(this);
 				mMyFragment.setLogoListener(new OnLongClickListener() {
 
 					@Override
@@ -292,41 +279,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
 
-		if (v.getId() == R.id.my_bt_showmenu) {
-			resideMenu.setCacheNumber(FileUtils.getInstance()
-					.getCacheFileSize());
-
-			resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
-			return;
-		}
-		if (v.getId() == R.id.layout_item1) {// 跳转到个人资料
-			startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-		}
-		if (v.getId() == R.id.layout_item2) {// 修改密码
-			startActivityForResult(new Intent(MainActivity.this,
-					PasswordActivity.class), Const.TO_UPDATA_PWD);
-		}
-		if (v.getId() == R.id.layout_item3) {// 意见反馈
-			startActivityForResult(new Intent(MainActivity.this,
-					FeedbackActivity.class), Const.TO_FEEDBACK);
-		}
-		if (v.getId() == R.id.layout_item4) {// 检测更新
-			startActivity(new Intent(MainActivity.this, UpdaateActivity.class));
-		}
-		if (v.getId() == R.id.layout_item5) {// 清楚缓存
-			FileUtils.getInstance().deleteDirectory(1);
-		}
-		if (v.getId() == R.id.layout_item6) {// 退出登陆
-			Logodialong = DialogUtil.createLoadingDialog(this, "正在退出当前用户.....");
-			Logodialong.show();
-			exitpresenter.sendExit();
-		}
-		resideMenu.closeMenu();
-	}
 
 	@Override
 	public void startActivity(Intent intent) {
@@ -352,7 +305,11 @@ public class MainActivity extends FragmentActivity implements
 //			onTabSelected(1);
 //			return;
 //		}
-
+		if(arg0==Const.TO_USER_SET&&arg1==Const.TO_EXITS_USER){
+			new ToastUtils(MainActivity.this, "退出账户成功！");
+			mIndex = 0;
+			setOnTabselected();
+		}
 		if (mInformationFragment != null) {
 			mInformationFragment.onActivityResult(arg0, arg1, arg2);
 		}
@@ -454,33 +411,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 	};
 
-	private onBasicView<String> listener2 = new onBasicView<String>() {
-
-		@Override
-		public void onSucess(String data) {
-			// TODO 自动生成的方法存根
-			if (Logodialong != null) {
-				Logodialong.dismiss();
-			}
-			RongImUtils.getInstance().disconnect();
-			ItApplication.currnUser = null;
-			SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-			SharedPreferencesUtils.getInstance().saveLoginUserName(null);
-			new ToastUtils(MainActivity.this, "退出账户成功！");
-			mIndex = 0;
-			setOnTabselected();
-
-		}
-
-		@Override
-		public void onFail(String errorCode, String errorMsg) {
-			// TODO 自动生成的方法存根
-			if (Logodialong != null) {
-				Logodialong.dismiss();
-			}
-			new ToastUtils(MainActivity.this, errorMsg);
-		}
-	};
+	
 
 	private OnClickListener ImageListner = new OnClickListener() {
 

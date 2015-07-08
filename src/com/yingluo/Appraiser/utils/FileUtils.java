@@ -371,10 +371,11 @@ public class FileUtils {
 			Bitmap bitmap = BitmapCompressor.decodeSampledBitmapFromFile(picpath, reqWidth, reqHeight);
 			saveImageToSD(mContext, path, bitmap, 50);
 			deleteFile(picpath);
+			return path;
 		} catch (Exception e) {
 			// TODO: handle exception
+			return null;
 		}
-		return path;
 	}
 	
 	/**

@@ -1,5 +1,9 @@
 package com.yingluo.Appraiser.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.DbUtils;
@@ -9,6 +13,14 @@ import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.lidroid.xutils.bitmap.core.BitmapSize;
 import com.lidroid.xutils.bitmap.factory.BitmapFactory;
 import com.lidroid.xutils.cache.FileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.DiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.utils.IoUtils.CopyListener;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
 
 import android.content.Context;
@@ -33,27 +45,47 @@ public class BitmapsUtils {
 	public static final int TYPE_NO = 0;
 
 	private static BitmapsUtils mInstance = null;
-	private BitmapUtils utils = null;
-	private BitmapDisplayConfig config;// 显示使用的
+//	private BitmapUtils utils = null;
+//	private BitmapDisplayConfig config;// 显示使用的
 
 	private BitmapsUtils(Context context) {
-		utils = new BitmapUtils(context);
-		utils.configDefaultConnectTimeout(10000);
-		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(
-				context, R.anim.bitmap_show));
-		utils.configDefaultLoadFailedImage(R.drawable.load_fail);
-		utils.configDefaultLoadingImage(R.drawable.loading_bg);
-		utils.configDefaultReadTimeout(10000);
-		utils.configDiskCacheEnabled(true);
-		utils.configMemoryCacheEnabled(true);
-		config = new BitmapDisplayConfig();
-		config.setLoadingDrawable(context.getResources().getDrawable(
-				R.drawable.loading_bg));
-		config.setLoadFailedDrawable(context.getResources().getDrawable(
-				R.drawable.load_fail));
-		config.setAnimation(AnimationUtils.loadAnimation(context,
-				R.anim.bitmap_show));
+//		utils = new BitmapUtils(context);
+//		utils.configDefaultConnectTimeout(10000);
+//		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(
+//				context, R.anim.bitmap_show));
+//		utils.configDefaultLoadFailedImage(R.drawable.load_fail);
+//		utils.configDefaultLoadingImage(R.drawable.loading_bg);
+//		utils.configDefaultReadTimeout(10000);
+//		utils.configDiskCacheEnabled(true);
+//		utils.configMemoryCacheEnabled(true);
+//		config = new BitmapDisplayConfig();
+//		config.setLoadingDrawable(context.getResources().getDrawable(
+//				R.drawable.loading_bg));
+//		config.setLoadFailedDrawable(context.getResources().getDrawable(
+//				R.drawable.load_fail));
+//		config.setAnimation(AnimationUtils.loadAnimation(context,
+//				R.anim.bitmap_show));
 
+		
+		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
+		config.threadPriority(Thread.NORM_PRIORITY - 2);
+		config.denyCacheImageMultipleSizesInMemory();
+		config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+		config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+		config.tasksProcessingOrder(QueueProcessingType.LIFO);
+		config.writeDebugLogs(); // Remove for release app
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+		.showImageOnLoading(R.drawable.loading_bg)
+		.showImageForEmptyUri(R.drawable.load_fail)
+		.showImageOnFail(R.drawable.load_fail)
+		.cacheInMemory(true)
+		.cacheOnDisk(true)
+		.considerExifParams(true)
+		.bitmapConfig(Bitmap.Config.RGB_565)
+		.build();
+		config.defaultDisplayImageOptions(options);
+		// Initialize ImageLoader with configuration.
+		ImageLoader.getInstance().init(config.build());
 	}
 
 	public static BitmapsUtils getInstance() {
@@ -73,7 +105,12 @@ public class BitmapsUtils {
 	 *            地址
 	 */
 	public void display(ImageView container, String uri) {
-		utils.display(container, uri);
+		//utils.display(container, uri);
+		if(uri.contains("http")){
+			ImageLoader.getInstance().displayImage(uri, container);
+		}else{
+			ImageLoader.getInstance().displayImage("file://"+uri, container);
+		}
 	}
 
 	/**
@@ -90,15 +127,23 @@ public class BitmapsUtils {
 		if (type == TYPE_NO) {
 			display(container, uri);
 		} else {
-			BitmapDisplayConfig config = this.config.cloneNew();
-			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
-					container.getHeight());
-			config.setBitmapMaxSize(bitmapMaxSize);
+//			BitmapDisplayConfig config = this.config.cloneNew();
+//			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
+//					container.getHeight());
+//			config.setBitmapMaxSize(bitmapMaxSize);
+//			if(!(container instanceof CircleImageView)){
+//				
+//				container.setScaleType(ScaleType.FIT_XY);
+//			}
+			//utils.display(container, uri, config);
 			if(!(container instanceof CircleImageView)){
-				
-				container.setScaleType(ScaleType.FIT_XY);
+			container.setScaleType(ScaleType.FIT_XY);
 			}
-			utils.display(container, uri, config);
+			if(uri.contains("http")){
+				ImageLoader.getInstance().displayImage(uri, container);
+			}else{
+				ImageLoader.getInstance().displayImage("file://"+uri, container);
+			}
 		}
 	}
 	
@@ -114,37 +159,21 @@ public class BitmapsUtils {
 	 *            是否按指定大小加载
 	 */
 	public void displayForxy(ImageView container, String uri) {
-			BitmapDisplayConfig config = this.config.cloneNew();
-			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
-					container.getHeight());
-			config.setBitmapMaxSize(bitmapMaxSize);
+//			BitmapDisplayConfig config = this.config.cloneNew();
+//			BitmapSize bitmapMaxSize = new BitmapSize(container.getWidth(),
+//					container.getHeight());
+//			config.setBitmapMaxSize(bitmapMaxSize);
 			if(!(container instanceof CircleImageView)){
 				
 				container.setScaleType(ScaleType.CENTER_CROP);
 			}
 			
-			utils.display(container, uri);
-			
-//			utils.display(container, uri, config, new BitmapLoadCallBack<ImageView>(){
-//
-//				@Override
-//				public void onLoadCompleted(ImageView container, String uri,
-//						Bitmap bitmap, BitmapDisplayConfig config,
-//						BitmapLoadFrom from) {
-//					// TODO 自动生成的方法存根
-//					BitmapCompressor.setBsetBitmap(bitmap, container, container.getMeasuredWidth(), container.getMeasuredHeight());
-//				}
-//
-//				@Override
-//				public void onLoadFailed(ImageView container, String uri,
-//						Drawable drawable) {
-//					// 
-//					BitmapDrawable bd = (BitmapDrawable) drawable;
-//					BitmapCompressor.setBsetBitmap(bd.getBitmap(), container, container.getMeasuredWidth(), container.getMeasuredHeight());
-//
-//				}
-//				
-//			});
+			if(uri.contains("http")){
+				ImageLoader.getInstance().displayImage(uri, container);
+			}else{
+				ImageLoader.getInstance().displayImage("file://"+uri, container);
+			}
+
 		
 	}
 	
@@ -164,25 +193,33 @@ public class BitmapsUtils {
 	 *            显示的高
 	 */
 	public void display(ImageView container, String uri, int width, int height) {
-		config.setBitmapMaxSize(new BitmapSize(width, height));
-		utils.display(container, uri, config);
+		if(uri.contains("http")){
+			ImageLoader.getInstance().displayImage(uri, container);
+		}else{
+			ImageLoader.getInstance().displayImage("file://"+uri, container);
+		}
 	}
 
-	/**
-	 * 图片加载
-	 * 
-	 * @param container
-	 *            非imageview控件
-	 * @param uri
-	 *            地址
-	 * @param width
-	 *            显示的宽
-	 * @param height
-	 *            显示的高
-	 */
-	public void display(View container, String uri, int width, int height) {
-		config.setBitmapMaxSize(new BitmapSize(width, height));
-		utils.display(container, uri, config);
-	}
+//	/**
+//	 * 图片加载
+//	 * 
+//	 * @param container
+//	 *            非imageview控件
+//	 * @param uri
+//	 *            地址
+//	 * @param width
+//	 *            显示的宽
+//	 * @param height
+//	 *            显示的高
+//	 */
+//	public void display(View container, String uri, int width, int height) {
+////		config.setBitmapMaxSize(new BitmapSize(width, height));
+////		utils.display(container, uri, config);
+//		if(uri.contains("http")){
+//			ImageLoader.getInstance().displayImage(uri, container);
+//		}else{
+//			ImageLoader.getInstance().displayImage("file://"+uri, container);
+//		}
+//	}
 
 }

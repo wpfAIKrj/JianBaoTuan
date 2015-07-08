@@ -12,6 +12,8 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ import com.yingluo.Appraiser.presenter.getdetailInfoPresenter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 /**
  * 文章详细页面
@@ -57,7 +60,7 @@ public class InformationDetailsActivity extends BaseActivity {
 	
 	
 	@ViewInject(R.id.context)
-	private TextView context;
+	private WebView context;
 	
 	private ContentInfo info;
 	
@@ -90,6 +93,12 @@ public class InformationDetailsActivity extends BaseActivity {
 		collectPresenter=new collectInfoPresenter(listener);
 		getdetailPresenter=new getdetailInfoPresenter(listener1);
 		deletePresenter=new deleteInfoPresenter(listener2);
+		context.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		context.getSettings().setDomStorageEnabled(true); 
+		context.getSettings().setDatabaseEnabled(true); 
+		context.getSettings().setDatabasePath(FileUtils.getInstance().getUpImage()); 
+		context.getSettings().setAppCachePath(FileUtils.getInstance().getUpImage()); 
+		context.getSettings().setAppCacheEnabled(true); 
 		initData();
 	}
 	
@@ -113,17 +122,21 @@ public class InformationDetailsActivity extends BaseActivity {
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
 		if(info.getContent()!=null){
-		context.setText(Html.fromHtml(info.getContent(), null, new TagHandler() {
 			
-			@Override
-			public void handleTag(boolean opening, String tag, Editable output,
-					XMLReader xmlReader) {
-				// TODO Auto-generated method stub
-				
-			}
-		}));
+//		context.setText(Html.fromHtml(info.getContent(), null, new TagHandler() {
+//			
+//			@Override
+//			public void handleTag(boolean opening, String tag, Editable output,
+//					XMLReader xmlReader) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//		}));
+			   context.getSettings().setJavaScriptEnabled(true);
+			   context.loadData("<html>"+info.getContent()+"</html>",
+					   "text/html; charset=UTF-8", null);
 		}else{
-			context.setText(null);
+//			context.setText(null);
 		}
 		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
 			collect.setVisibility(View.GONE);

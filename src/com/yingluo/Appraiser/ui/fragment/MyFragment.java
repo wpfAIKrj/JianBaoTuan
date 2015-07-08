@@ -44,6 +44,7 @@ import com.yingluo.Appraiser.ui.activity.IMListActivity;
 import com.yingluo.Appraiser.ui.activity.LevelActivity;
 import com.yingluo.Appraiser.ui.activity.MainActivity;
 import com.yingluo.Appraiser.ui.activity.SystemInfoActivity;
+import com.yingluo.Appraiser.ui.activity.UserSetActivity;
 import com.yingluo.Appraiser.ui.adapter.MyLikeAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
@@ -61,7 +62,6 @@ import de.greenrobot.event.EventBus;
 public class MyFragment extends BaseFragment{
 	
 
-	private OnClickListener MenuListner;
 	@ViewInject(R.id.horizontalListView1)
 	private RecyclerView listView;
 	
@@ -174,9 +174,7 @@ public class MyFragment extends BaseFragment{
 			initDisplay();
 	}
 
-	public void setPopMenuListener(OnClickListener lis) {
-		MenuListner = lis;
-	}
+
 	public void setLogoListener(OnLongClickListener onlongListner){
 		this.onlongListner=onlongListner;
 	}
@@ -206,9 +204,7 @@ public class MyFragment extends BaseFragment{
 			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));	
 			break;
 		case R.id.my_bt_showmenu://右侧菜单
-			if (MenuListner != null) {
-				MenuListner.onClick(v);
-			}
+			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class),Const.TO_USER_SET);
 			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
 			if(ItApplication.currnUser!=null&&ItApplication.currnUser.getUser_type()==0){

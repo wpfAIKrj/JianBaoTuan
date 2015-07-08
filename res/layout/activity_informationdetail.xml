@@ -35,15 +35,15 @@
                 android:background="@drawable/item_layout_padd"
                 android:scaleType="fitXY" />
 
-            <TextView
+            <WebView
                 android:id="@+id/context"
                 style="@style/detail_info_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/x14"
                 android:layout_marginRight="@dimen/x14"
                 android:layout_marginTop="@dimen/y20"
-                android:text="小叶紫檀（学名：檀香紫檀）， 拉丁学名为P.santalinus。檀香紫檀为紫檀中精品，密度大棕眼小是其显著的特点，且木性非常稳定，不易变形开裂。檀香紫檀多产于热带、亚热带原始森林，以印度迈索尔邦地区、缅甸地区所出产的紫檀最优。紫檀质地坚硬，色泽从深黑到红棕，变幻多样，纹理细密。紫檀有许多种类，紫檀生长速度缓慢，5年才一年轮，要800年以上才能成材，硬度为木材之首，系称“帝王之木”，非一般木材所能比。据记载示巴女王曾以小叶紫檀木作为送给所罗门王的定情礼物，该木材被制成约柜，还有他们的床，并在上面诞生了以色列人的祖先曼尼里克一世，所以对于犹太人小叶紫檀是一种神圣的木材，在《密什那》（MISHAN）法典中称为充满正能量的天赐之木。" />
+		/>
         </LinearLayout>
     </ScrollView>
 

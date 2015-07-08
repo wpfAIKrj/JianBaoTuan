@@ -136,6 +136,10 @@ public class Const {
 	 */
 	public static final int TO_SELECT_ALBUM = 18;
 	/**
+	 * 跳转到用户设置页面
+	 */
+	public static final int TO_USER_SET = 19;
+	/**
 	 * 跳转的相册的类型
 	 */
 	public static final String SELECT_ALBUM_TYPE = "type";
@@ -143,5 +147,9 @@ public class Const {
 	 * 跳转的相册的数据
 	 */
 	public static final String SELECT_LIST = "list";
+	/**
+	 * 退出登录后返回到首页
+	 */
+	public static final int TO_EXITS_USER = 20;
 
 }
