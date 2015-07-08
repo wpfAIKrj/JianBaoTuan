@@ -104,6 +104,7 @@ public class Const {
 	 * 发布鉴定页面选择宝物分类
 	 */
 	public static int TO_PUBLISH_SELECT_TYPE=11;
+	
 
 	/**
 	 * 跳转到修改密码页面
@@ -134,5 +135,13 @@ public class Const {
 	 * 跳转到选择相册页面
 	 */
 	public static final int TO_SELECT_ALBUM = 18;
+	/**
+	 * 跳转的相册的类型
+	 */
+	public static final String SELECT_ALBUM_TYPE = "type";
+	/**
+	 * 跳转的相册的数据
+	 */
+	public static final String SELECT_LIST = "list";
 
 }

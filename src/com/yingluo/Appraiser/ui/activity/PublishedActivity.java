@@ -1,10 +1,12 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.R.array;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -27,6 +30,7 @@ import com.yingluo.Appraiser.utils.ImageUtils;
 import com.yingluo.Appraiser.utils.NetUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
+import com.yingluo.Appraiser.utils.photo.AlbumActivity;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 /**
  * 发布藏品
@@ -61,8 +65,8 @@ public class PublishedActivity extends BaseActivity{
 	private TextView title;
 	
 	private int getPhoto=-1;//没有选择图片时为-1
-	private String[] imageAll=new String[3];//全景图片路径
-	private String[] imageTest=new String[3];//特写图片路径
+	private ArrayList<String> selectListAll=new ArrayList<String>();//全景图片路径
+	private ArrayList<String> selectListTest=new ArrayList<String>();//特写图片路径
 	
 	private ImageUtils imageUtils;
 	
@@ -91,15 +95,15 @@ public class PublishedActivity extends BaseActivity{
 		,R.id.imageView05,R.id.imageView06,R.id.bt_next})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		Intent intent;
+		Intent intent=null;
 		switch (v.getId()) {
 		case R.id.btn_back://返回上层
-			for (String path : imageAll) {
+			for (String path : selectListAll) {
 				if(path!=null&&!path.isEmpty()){
 					FileUtils.getInstance().deleteFile(path);
 				}
 			}
-			for (String path : imageTest) {
+			for (String path : selectListTest) {
 				if(path!=null&&!path.isEmpty()){
 					FileUtils.getInstance().deleteFile(path);
 				}
@@ -131,31 +135,19 @@ public class PublishedActivity extends BaseActivity{
 			break;
 		case R.id.bt_next://下一步
 				if(type!=null){
-					ArrayList<String> alllist=new ArrayList<String>();
-					for (int i = 0; i < imageAll.length; i++) {
-						String path = imageAll[i];
-						if(path!=null){
-							alllist.add(path);
-						}
-					}
-					if(alllist.size()==0){
+					
+					if(selectListAll.size()==0){
 						new ToastUtils(this, R.string.help_msg_14);
 						return;
 					}
-					ArrayList<String> testlist=new ArrayList<String>();
-					for (int i = 0; i < imageTest.length; i++) {
-						String path = imageTest[i];
-						if(path!=null){
-							testlist.add(path);
-						}
-					}
-					if(testlist.size()==0){
+					
+					if(selectListTest.size()==0){
 						new ToastUtils(this, R.string.help_msg_15);
 						return;
 					}
 					 intent=new Intent(PublishedActivity.this, PublishedNextActivity.class);
-						intent.putExtra(Const.IMAGEPATH_PANORAMIC, alllist);
-						intent.putExtra(Const.IMAGEPATH_FEATURE, testlist);
+						intent.putExtra(Const.IMAGEPATH_PANORAMIC, selectListAll);
+						intent.putExtra(Const.IMAGEPATH_FEATURE, selectListTest);
 						intent.putExtra(Const.KIND_ID, type);
 						startActivityForResult(intent, Const.TO_IDENTY_NEXT);	
 				}else{
@@ -188,11 +180,14 @@ public class PublishedActivity extends BaseActivity{
 		if(requestCode==Const.TO_PUBLISH_SELECT_TYPE){//选择宝物
 			if(resultCode==RESULT_OK){
 				int kind_id=data.getIntExtra(Const.KIND_ID, 0);
+				LogUtils.d("选择宝物的id"+kind_id);
 				if(kind_id==0){
 					type=null;
 				}else{
 					type=SqlDataUtil.getInstance().getTreasureTypeById(kind_id);
-					taglayout.addTag(type);	
+					if(type!=null){
+						taglayout.addTag(type);	
+					}
 				}
 			}
 			
@@ -208,29 +203,91 @@ public class PublishedActivity extends BaseActivity{
 		}
 		if(requestCode==ImageUtils.GET_IMAGE_BY_CAMERA&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相机）
 			if(imageUtils.PICPATH!=null){
-				saveImage();
+				if(getPhoto<3){//全景
+					selectListAll.add(imageUtils.PICPATH) ;
+					//更新媒体库
+					Uri url = Uri.parse("file://"+imageUtils.PICPATH);
+					sendBroadcast(new Intent(
+							Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, url));
+					showAllImage();
+				}else{//特写
+					selectListTest.add(imageUtils.PICPATH) ;
+					//更新媒体库
+					Uri url = Uri.parse("file://"+imageUtils.PICPATH);
+					sendBroadcast(new Intent(
+							Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, url));
+					showTestImage();
+				}
+				getPhoto=-1;
 			}
 		}
-		if(requestCode==ImageUtils.GET_IMAGE_FROM_PHONE&&resultCode==Activity.RESULT_OK){//我的页面，获取照片地址获取到图片（相册）
-			if(data != null && data.getData() != null) {
-				imageUtils.doPhoto( data);
-				if(imageUtils.PICPATH!=null){
-					saveImage();
+		
+		if(requestCode==Const.TO_SELECT_ALBUM){
+			if(resultCode==RESULT_OK){
+				int type=data.getIntExtra(Const.SELECT_ALBUM_TYPE, 0);
+				if(type==0){
+					selectListAll=data.getStringArrayListExtra(Const.SELECT_LIST);
+					showAllImage();
+				}else{
+					selectListTest=data.getStringArrayListExtra(Const.SELECT_LIST);
+					showTestImage();
 				}
 			}
-		}
-		if(requestCode==ImageUtils.GET_IMAGE_FROM_PHONE_KITKAT&&resultCode==RESULT_OK){//我的页面，获取照片地址获取到图片（相册）4.4系统，用谷歌的相册
-			if(data != null && data.getData() != null) {
-				imageUtils.doPhotoKIKAT(data);
-				if(imageUtils.PICPATH!=null){
-					saveImage();
-				}
+			if(resultCode==RESULT_CANCELED){
+				
 			}
 		}
+		
 		dismissGetPhotoDialog();
 	}
-	
-	
+	//显示特写图片
+	private void showTestImage() {
+		// TODO 自动生成的方法存根
+		if(selectListTest.size()==0){
+			iv4.setImageResource(R.drawable.add_image_bg);
+			iv5.setImageResource(R.drawable.add_image_bg);
+			iv6.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListTest.size()==1){
+			BitmapsUtils.getInstance().display(iv4, selectListTest.get(0));
+			iv5.setImageResource(R.drawable.add_image_bg);
+			iv6.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListTest.size()==2){
+			BitmapsUtils.getInstance().display(iv4, selectListTest.get(0));
+			BitmapsUtils.getInstance().display(iv5, selectListTest.get(1));
+			iv6.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListTest.size()==3){
+			BitmapsUtils.getInstance().display(iv4, selectListTest.get(0));
+			BitmapsUtils.getInstance().display(iv5, selectListTest.get(1));
+			BitmapsUtils.getInstance().display(iv6, selectListTest.get(2));
+		}
+	}
+
+
+
+	//显示全景图片
+	private void showAllImage() {
+		// TODO 自动生成的方法存根
+		if(selectListAll.size()==0){
+			iv1.setImageResource(R.drawable.add_image_bg);
+			iv2.setImageResource(R.drawable.add_image_bg);
+			iv3.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListAll.size()==1){
+			BitmapsUtils.getInstance().display(iv1, selectListAll.get(0));
+			iv2.setImageResource(R.drawable.add_image_bg);
+			iv3.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListAll.size()==2){
+			BitmapsUtils.getInstance().display(iv1, selectListAll.get(0));
+			BitmapsUtils.getInstance().display(iv2, selectListAll.get(1));
+			iv3.setImageResource(R.drawable.add_image_bg);
+		}else if(selectListAll.size()==3){
+			BitmapsUtils.getInstance().display(iv1, selectListAll.get(0));
+			BitmapsUtils.getInstance().display(iv2, selectListAll.get(1));
+			BitmapsUtils.getInstance().display(iv3, selectListAll.get(2));
+		}
+	}
+
+
+
 	private void dismissGetPhotoDialog() {
 		// TODO Auto-generated method stub
 		getPhoto=-1;
@@ -243,66 +300,36 @@ public class PublishedActivity extends BaseActivity{
 
 
 
-	private void saveImage() {
-		// TODO Auto-generated method stub
-		String path=null;
-		if(getPhoto>=3){
-			path=imageTest[getPhoto-3];
-			if(path!=null&&!path.isEmpty()){
-				FileUtils.getInstance().deleteFile(path);
-			}
-			imageTest[getPhoto-3]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
-
-		}else{
-			path=imageAll[getPhoto];
-			if(path!=null&&!path.isEmpty()){
-				FileUtils.getInstance().deleteFile(path);
-			}
-			imageAll[getPhoto]=FileUtils.getInstance().saveUpImageForCamera(imageUtils.PICPATH);
-
-		}
-		switch (getPhoto) {
-		case 0:
-			BitmapsUtils.getInstance().display(iv1, imageAll[getPhoto]);
-			break;
-		case 1:
-			BitmapsUtils.getInstance().display(iv2, imageAll[getPhoto]);
-			break;
-		case 2:
-			BitmapsUtils.getInstance().display(iv3, imageAll[getPhoto]);
-			break;
-		case 3:
-			BitmapsUtils.getInstance().display(iv4, imageTest[getPhoto-3]);
-			break;
-		case 4:
-			BitmapsUtils.getInstance().display(iv5, imageTest[getPhoto-3]);
-			break;
-		case 5:
-			BitmapsUtils.getInstance().display(iv6, imageTest[getPhoto-3]);
-			break;
-		default:
-			break;
-		}
-	}
 	private OnClickListener ImageListner = new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Intent intent=null;
 				switch (v.getId()) {
 				case R.id.btn_take_photo://相机获取
 					imageUtils.openCameraImage();
 					break;
 				case R.id.btn_pick_photo://相册获取
-					imageUtils.openLocalImage();
+					intent=new Intent(PublishedActivity.this, AlbumActivity.class);
+					if(getPhoto<3){//全景
+						intent.putExtra(Const.SELECT_ALBUM_TYPE, 0);
+						intent.putExtra(Const.SELECT_LIST, selectListAll);
+					}else{//特写
+						intent.putExtra(Const.SELECT_ALBUM_TYPE, 1);
+						intent.putExtra(Const.SELECT_LIST, selectListTest);
+					}
+					startActivityForResult(intent, Const.TO_SELECT_ALBUM);
+					
 					break;
 				case R.id.btn_cancel://取消
-					if(dialog!=null){
-						dialog.dismiss();
-					}
+			
 					break;
 				default:
 					break;
+				}
+				if(dialog!=null){
+					dialog.dismiss();
 				}
 			}
 		};

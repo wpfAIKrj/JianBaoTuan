@@ -15,6 +15,7 @@ import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.UpLoadFileInterface;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.UploadUtils;
 
 public class publishModel extends BaseModel {
@@ -104,7 +105,7 @@ public class publishModel extends BaseModel {
 
 	private void startuploadImageAll( final int index) {
 		// TODO 自动生成的方法存根
-		String path=imageAll.get(index);
+		String path=FileUtils.getInstance().saveUpImageForCamera(imageAll.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
 			@Override
@@ -151,7 +152,7 @@ public class publishModel extends BaseModel {
 
 	private void startuploadImagefear(final int index) {
 		// TODO 自动生成的方法存根
-		String path=imageTest.get(index);
+		String path=FileUtils.getInstance().saveUpImageForCamera(imageTest.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
 			
 			@Override

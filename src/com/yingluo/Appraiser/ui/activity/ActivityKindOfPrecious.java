@@ -94,7 +94,10 @@ public class ActivityKindOfPrecious extends Activity {
 			public void onClick(TreasureType type) {
 				// TODO Auto-generated method stub
 				Intent mIntent = getIntent();
-				mIntent.putExtra(Const.KIND_ID, type.getType());
+				int kindid=type.getId().intValue();
+				LogUtils.d("选择宝物的id"+kindid);
+				LogUtils.d("选择宝物的id"+type.toString());
+				mIntent.putExtra(Const.KIND_ID,kindid );
 				setResult(RESULT_OK, mIntent);
 				finish();
 			}

@@ -62,7 +62,14 @@ public class TreasureType implements Serializable{
         return type;
     }
 
-    public void setType(Integer type) {
+    @Override
+	public String toString() {
+		return "TreasureType [id=" + id + ", currnt_id=" + currnt_id
+				+ ", name=" + name + ", type=" + type + ", parent_id="
+				+ parent_id + ", isChild=" + isChild + "]";
+	}
+
+	public void setType(Integer type) {
         this.type = type;
     }
 
@@ -81,5 +88,7 @@ public class TreasureType implements Serializable{
     public void setIsChild(Boolean isChild) {
         this.isChild = isChild;
     }
+    
+    
 
 }

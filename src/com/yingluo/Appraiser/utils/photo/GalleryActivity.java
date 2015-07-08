@@ -6,7 +6,10 @@ import java.util.List;
 
 
 
+
+
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 import android.R.array;
@@ -24,6 +27,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,11 +42,11 @@ public class GalleryActivity extends Activity {
 
 	
     // 返回按钮
-    private Button back_bt;
+    private ImageView back_bt;
 	// 发送按钮
-	private Button send_bt;
+	private TextView send_bt;
 	//删除按钮
-	private Button del_bt;
+	private ImageView del_bt;
 	//顶部显示预览图片位置的textview
 	private TextView positionTextView;
 
@@ -70,14 +74,14 @@ public class GalleryActivity extends Activity {
 		setContentView(R.layout.plugin_camera_gallery);// 切屏到主界面
 		
 		mContext = this;
-		back_bt = (Button) findViewById(R.id.gallery_back);
-		send_bt = (Button) findViewById(R.id.send_button);
-		del_bt = (Button)findViewById(R.id.gallery_del);
+		back_bt = (ImageView) findViewById(R.id.gallery_back);
+		send_bt = (TextView) findViewById(R.id.send_button);
+		del_bt = (ImageView)findViewById(R.id.gallery_del);
 		back_bt.setOnClickListener(new BackListener());
 		send_bt.setOnClickListener(new GallerySendListener());
 		del_bt.setOnClickListener(new DelListener());
-		type=getIntent().getIntExtra("type", 0);
-		selectList=getIntent().getStringArrayListExtra("list");
+		type=getIntent().getIntExtra(Const.SELECT_ALBUM_TYPE, 0);
+		selectList=getIntent().getStringArrayListExtra(Const.SELECT_LIST);
 		
 		isShowOkBt();
 		// 为发送按钮设置文字
@@ -150,8 +154,8 @@ public class GalleryActivity extends Activity {
 	private class GallerySendListener implements OnClickListener {
 		public void onClick(View v) {
 			Intent intent=getIntent();
-			intent.putExtra("type", type);
-			intent.putExtra("list", selectList);
+			intent.putExtra(Const.SELECT_ALBUM_TYPE, type);
+			intent.putExtra(Const.SELECT_LIST, selectList);
 			setResult(RESULT_OK, intent);
 			finish();
 		}

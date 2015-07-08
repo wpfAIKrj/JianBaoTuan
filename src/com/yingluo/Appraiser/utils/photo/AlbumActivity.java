@@ -25,6 +25,7 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
@@ -44,7 +45,7 @@ public class AlbumActivity extends Activity implements OnClickListener{
 	private final static int SCAN_OK = 1;
 	private ProgressDialog mProgressDialog;
 	private GridView imageGridView;
-	private Button btn_image_cancel ;
+	private ImageView btn_image_cancel ;
 	private LocalImageAdapter imageAdapter ;
 	private RelativeLayout btn_submit,bt_preview;
 	private TextView selectView ;
@@ -79,16 +80,17 @@ public class AlbumActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.fragment_select_pic);
-		selectList=getIntent().getStringArrayListExtra("list");
-		type=getIntent().getIntExtra("type", 0);
+		selectList=getIntent().getStringArrayListExtra(Const.SELECT_LIST);
+		type=getIntent().getIntExtra(Const.SELECT_ALBUM_TYPE, 0);
 		findViews() ;
 		getImages() ;
 	}
 	
 	private void findViews(){
 		imageList = new ArrayList<String>() ;
-		btn_image_cancel = (Button)findViewById(
+		btn_image_cancel = (ImageView)findViewById(
 				R.id.select_pic_title_btn_cancel) ;
 		imageGridView = (GridView)findViewById(
 				R.id.select_pic_gridview);
@@ -205,8 +207,8 @@ public class AlbumActivity extends Activity implements OnClickListener{
 		case R.id.select_pic_submit:
 			selectList=imageAdapter.selectList;
 			intent=getIntent();
-			intent.putExtra("type", type);
-			intent.putExtra("list", selectList);
+			intent.putExtra(Const.SELECT_ALBUM_TYPE, type);
+			intent.putExtra(Const.SELECT_LIST, selectList);
 			setResult(RESULT_OK, intent);
 			finish();
 			break ;
@@ -214,8 +216,8 @@ public class AlbumActivity extends Activity implements OnClickListener{
 			selectList=imageAdapter.selectList;
 			if(selectList.size()>0){
 				intent=new Intent(AlbumActivity.this, GalleryActivity.class);
-				intent.putExtra("type", type);
-				intent.putExtra("list", selectList);
+				intent.putExtra(Const.SELECT_ALBUM_TYPE, type);
+				intent.putExtra(Const.SELECT_LIST, selectList);
 				startActivityForResult(intent, Const.TO_GALLERY);
 			}
 			break;
@@ -250,7 +252,7 @@ public class AlbumActivity extends Activity implements OnClickListener{
 			}
 			if(resultCode==RESULT_CANCELED){
 				intent=getIntent();
-				selectList=data.getStringArrayListExtra("list");
+				selectList=data.getStringArrayListExtra(Const.SELECT_LIST);
 				imageAdapter.selectList=selectList;
 				imageAdapter.notifyDataSetChanged();
 			}
