@@ -108,10 +108,10 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				for (int i = 0; i < array1.length(); i++) {
 					JSONObject obj=array1.getJSONObject(i);
 					CollectionTreasure other=new CollectionTreasure();
-					treasure.viewTimes=obj.getInt("viewTimes");
-					treasure.authName=obj.getString("authName");
-					treasure.authImage=obj.getString("authImage");
-					treasure.authLevel=obj.getInt("authLevel");
+					other.viewTimes=obj.getInt("viewTimes");
+					other.authName=obj.getString("authName");
+					other.authImage=obj.getString("authImage");
+					other.authLevel=obj.getInt("authLevel");
 					other.name=obj.getString("name");
 					String otherimages=obj.getString("images");
 					images=gson.fromJson(otherimages, new TypeToken<List<String>>(){}.getType());

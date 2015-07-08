@@ -1,7 +1,9 @@
 package com.yingluo.Appraiser.utils.photo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 
 
 
@@ -34,6 +36,7 @@ public class LocalImageAdapter extends BaseAdapter {
 	public LocalImageAdapter(AlbumActivity activity, List<String> list,ArrayList<String> selectList){
 		this.activity = activity ;
 		this.imageList = list ;
+		Collections.reverse(imageList);
 		this.selectList=selectList;
 	
 	}

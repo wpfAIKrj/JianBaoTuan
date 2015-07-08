@@ -54,6 +54,8 @@ public class ViewHots extends LinearLayout {
 	@ViewInject(R.id.delete_checkbox)
 	public CheckBox delete_checkbox;
 
+	@ViewInject(R.id.tv_info)
+	public TextView tv_title;
 	@ViewInject(R.id.layout_menu)
 	LinearLayout layout_menu;
 
@@ -124,12 +126,18 @@ public class ViewHots extends LinearLayout {
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字
-		setName(item.name);
+		setName(item.authName);
+		setTitle(item.name);
 		// 设置浏览量
 		setNum(item.viewTimes + "");
 
 		delete_checkbox.setChecked(item.isSelect);
 
+	}
+
+	public void setTitle(String name) {
+		// TODO 自动生成的方法存根
+		tv_title.setText(name);
 	}
 
 	public void setGradeImage(int grade) {

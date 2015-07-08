@@ -53,7 +53,8 @@ public class ViewOtherTreasure extends LinearLayout {
 		private TextView tv_num;
 		@ViewInject(R.id.delete_checkbox)
 		public CheckBox delete_checkbox;
-
+		@ViewInject(R.id.tv_info)
+		public TextView tv_title;
 		@ViewInject(R.id.layout_menu)
 		LinearLayout layout_menu;
 
@@ -124,7 +125,9 @@ public class ViewOtherTreasure extends LinearLayout {
 			// 设置等级
 			setGradeImage(item.authLevel);
 			// 设置名字
-			setName(item.name);
+			setName(item.authName);
+			//设置宝物名字
+			setTitle(item.name);
 			// 设置浏览量
 			setNum(item.viewTimes + "");
 			
@@ -138,7 +141,12 @@ public class ViewOtherTreasure extends LinearLayout {
 			}
 			iv_grade.setImageResource(R.drawable.level01 + (grade - 1));
 		}
-
+		
+		public void setTitle(String name) {
+			// TODO 自动生成的方法存根
+			tv_title.setText(name);
+		}
+		
 		public void setName(String name) {
 			tv_name.setText(name);
 		}

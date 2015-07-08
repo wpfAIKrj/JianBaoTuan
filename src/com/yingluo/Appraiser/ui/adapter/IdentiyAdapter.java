@@ -59,7 +59,6 @@ public class IdentiyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 		// TODO Auto-generated method stub
 		CollectionTreasure entity = hots.get(position);
 		holder.hotsView.setItem(entity);
-
 	}
 
 	@Override
