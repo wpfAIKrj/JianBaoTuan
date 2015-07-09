@@ -201,41 +201,40 @@ public class MyFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.my_iv_level://跳转到等级说明
-			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));	
-			break;
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_bt_showmenu://右侧菜单
 			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class),Const.TO_USER_SET);
-			break;
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
 			if(ItApplication.getcurrnUser()!=null&&ItApplication.getcurrnUser().getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
-			}
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			}
 			break;
 
 		case R.id.my_layout_collect:// 跳转收集宝贝页面
 			{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
 			mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 			startActivity(mIntent);}
-			break;
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_layout_foot:// 跳转到足迹
 			startActivity(new Intent(mActivity, ActivityFootPrint.class));
-			break;
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_layout_identif:// 跳转到鉴定页面
 		{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
 		mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.IDENTIFY);
 		startActivity(mIntent);}
-			break;
+		mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_tab1:// 跳转到收藏宝物
 		{Intent mIntent=new Intent(mActivity, ActivityMyPrecious.class);
 		mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.COLLECT);
 		startActivity(mIntent);}
-			break;
+		mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_tab2:// 跳转到收藏文章
 			
 			mActivity.startActivityForResult(new Intent(mActivity,
 					FavoriteArticlesActivity.class),Const.TO_COLLECT_INFO);
-			break;
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_tab3:// 跳转我的私信
 //			mActivity
 //					.startActivity(new Intent(mActivity, IMListActivity.class));
@@ -244,12 +243,13 @@ public class MyFragment extends BaseFragment{
 		case R.id.my_tab4:// 跳转到系统通知
 			mActivity.startActivityForResult(new Intent(mActivity,
 					SystemInfoActivity.class),Const.TO_SYSTEM_INFO);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.my_tab5:// 跳转到认证鉴定师
 			if(ItApplication.getcurrnUser()!=null&&ItApplication.getcurrnUser().getUser_type()==0){
 				mActivity.startActivity(new Intent(mActivity,
 						AuthenticateActivity.class));
-			}else{
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			}else{
 				new ToastUtils(mActivity,R.string.help_msg_01);
 			}
 			break;

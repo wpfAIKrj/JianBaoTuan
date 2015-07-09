@@ -37,7 +37,7 @@ public class DialogUtil {
 	       // ImageView spaceshipImage = (ImageView) v.findViewById(R.id.img);  
 	        TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);
 	        tipTextView.setText(msg); 
-	        tipTextView.setTextColor(0xffffffff);
+//	        tipTextView.setTextColor(0x000000);
 	        Dialog loadingDialog = new Dialog(context, R.style.loading_dialog);
 	        loadingDialog.setCancelable(false);
 	        loadingDialog.getWindow().setGravity(Gravity.CENTER);
