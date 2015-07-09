@@ -99,4 +99,13 @@
         android:layout_below="@+id/linearLayout1"
         android:background="@color/item_space_color" />
 
+    <TextView
+        android:id="@+id/tv_show_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂无宝贝"
+        android:visibility="gone"
+        style="@style/show_no_data_text_style"
+        android:layout_centerInParent="true" />
+
 </RelativeLayout>

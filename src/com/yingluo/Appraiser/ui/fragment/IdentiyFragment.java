@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
@@ -67,6 +68,10 @@ public class IdentiyFragment extends BaseFragment implements
 	private IdentifyPresenter identifyPresenter;
 
 	private Dialog dialog;
+	
+	
+	@ViewInject(R.id.tv_show_no_data)
+	private TextView tv_show_no_data;
 
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
@@ -138,8 +143,11 @@ public class IdentiyFragment extends BaseFragment implements
 				Gson gson = new Gson();
 				List<CollectionTreasure> arrlist = gson.fromJson(str, new TypeToken<List<CollectionTreasure>>() {
 				}.getType());
-				if(arrlist!=null){
+				if(arrlist!=null&&arrlist.size()>0){
+					tv_show_no_data.setVisibility(View.GONE);
 					mAdapter.setData(arrlist);
+				}else{
+					tv_show_no_data.setVisibility(View.VISIBLE);
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -239,6 +247,7 @@ public class IdentiyFragment extends BaseFragment implements
 		if (requestCode == Const.TO_INDENTIFY
 				|| resultCode == Activity.RESULT_OK) {
 			kindId =  data.getIntExtra(Const.KIND_ID, 0);
+			showImageData(type, kindId);
 			getIndentity();
 		}
 	}
@@ -250,7 +259,10 @@ public class IdentiyFragment extends BaseFragment implements
 			// TODO Auto-generated method stub
 			prrv.stopRefresh();
 			if (data.size() == 0) {
+				tv_show_no_data.setVisibility(View.VISIBLE);
 				new ToastUtils(mActivity, "没有更多数据");
+			}else{
+				tv_show_no_data.setVisibility(View.GONE);
 			}
 			mAdapter.setData(data);
 			if (dialog != null && dialog.isShowing()) {

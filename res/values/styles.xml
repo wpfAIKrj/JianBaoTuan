@@ -103,7 +103,10 @@
    		<item name="android:textSize">@dimen/x30</item>
     	</style>
     	
-    	
+    	<style name="show_no_data_text_style">
+    	 <item name="android:textColor">@color/black</item>
+   		<item name="android:textSize">@dimen/x30</item>
+    	</style>
     	<style name="my_titl_style4">
     	 	<item name="android:textColor">@color/number_color</item>
    			<item name="android:textSize">@dimen/x26</item>
