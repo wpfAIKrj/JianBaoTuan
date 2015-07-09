@@ -222,8 +222,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 				finish();
 			}
 		}
-		if(requestCode==Const.TO_FOGOT){
-			
+		if(requestCode==Const.TO_FOGOT&&resultCode==RESULT_OK){
+			new ToastUtils(LoginAcitivity.this, "找回密码成功！");
 		}
 		
 	}

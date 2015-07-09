@@ -251,7 +251,8 @@ public class ForgotActivity extends BaseActivity {
 			ed_code.setText("");
 			ed_phone.setText("");
 			ed_pwd.setText("");
-			new ToastUtils(ForgotActivity.this, "找回密码成功！");
+			setResult(RESULT_OK, getIntent());
+			finish();
 		}
 
 		@Override
