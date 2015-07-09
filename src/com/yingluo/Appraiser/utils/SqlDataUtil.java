@@ -364,7 +364,7 @@ public class SqlDataUtil {
 
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
 		qb.where(TreasureTypeDao.Properties.IsChild.eq(true),
-				TreasureTypeDao.Properties.Name.like("%" + name + "%"));// ,
+				TreasureTypeDao.Properties.Name.like(name + "%"));// ,
 																		// TreasureTypeDao.Properties.Name.eq());
 		list = qb.list();
 		if (list == null) {

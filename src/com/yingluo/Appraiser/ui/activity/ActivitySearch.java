@@ -29,9 +29,10 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
-public class ActivitySearch extends Activity {
+public class ActivitySearch extends BaseActivity {
 
 	@ViewInject(R.id.listview_search_result)
 	ListView lv;

@@ -21,9 +21,10 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.OnKindClickListener;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.ui.adapter.KindTreasureAdapter;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
-public class ActivityKindOfPrecious extends Activity {
+public class ActivityKindOfPrecious extends BaseActivity {
 
 	@ViewInject(R.id.home_title)
 	TextView home_title;
