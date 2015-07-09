@@ -135,7 +135,6 @@ public class MyFragment extends BaseFragment{
 			if(ItApplication.getcurrnUser()!=null){
 				tv_name.setText(ItApplication.getcurrnUser().getNickname());
 				BitmapsUtils.getInstance().display(user_logo, ItApplication.getcurrnUser().getAvatar());	
-				
 			}
 			break;
 		case 1://更新个人信息

@@ -192,7 +192,6 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabSelected(int index) {
 		// TODO Auto-generated method stub
-		//
 		if (index == 3) {// 我的页面
 			if (ItApplication.getcurrnUser() == null) {
 				mIndex = 0;
@@ -290,20 +289,6 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
 		// TODO Auto-generated method stub
-//		int page = arg2.getIntExtra("page", -1);
-//		Log.i("ytmfdw", "从哪来的：" + page);
-//		// if (page == 1) {
-//		// // 从分类跳转过来的，要进入到鉴定大厅中去
-//		// onTabSelected(1);
-//		// if (mIdentiyFragment != null) {
-//		// mIdentiyFragment.onActivityResult(arg0, arg1, arg2);
-//		// }
-//		// return;
-//		// }
-//		if (page == 1) {
-//			onTabSelected(1);
-//			return;
-//		}
 		if(arg0==Const.TO_USER_SET&&arg1==Const.TO_EXITS_USER){
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex = 0;
@@ -327,6 +312,7 @@ public class MainActivity extends FragmentActivity implements
 		if (arg0 == Const.TO_LOGIN && arg1 == RESULT_OK) {// 登陆成功
 			mIndex = 3;
 			setOnTabselected();
+			EventBus.getDefault().post(new MyEvent(0, null));
 		}
 		if (arg0 == Const.TO_SEND_IDENTIY && arg1 == RESULT_OK) {// 发布成功
 
