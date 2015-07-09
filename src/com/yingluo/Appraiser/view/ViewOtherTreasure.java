@@ -158,6 +158,7 @@ public class ViewOtherTreasure extends LinearLayout {
 
 		// 设置小图片
 		public void setSmallImage(String[] urls) {
+			layout_menu.removeAllViews();
 			if (urls == null || urls.length == 0) {
 				return;
 			}

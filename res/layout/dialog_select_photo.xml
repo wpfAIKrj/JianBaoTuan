@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
+   
   >
 
     <LinearLayout
@@ -19,7 +20,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/y80"
                 android:background="@color/wite"
-                android:text="拍照选取"
+                android:text="@string/button_carme_title"
               
                 android:textColor="@color/dialog_title_color"
                 android:textSize="@dimen/x28"
@@ -36,7 +37,7 @@
                 android:layout_height="@dimen/y80"
                 android:layout_marginTop="0dip"
                 android:background="@color/wite"
-                android:text="相册选取"
+                android:text="@string/button_ablum_title"
                 android:textColor="@color/dialog_title_color"
                 android:textSize="@dimen/x28"
                 

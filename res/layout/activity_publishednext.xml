@@ -66,8 +66,8 @@
     	    android:layout_height="wrap_content"
     	    android:textColor="@color/ed_login_color"
     	    android:text="选择鉴定师" 
-    	    android:textSize="@dimen/x24"
-    	    android:paddingTop="@dimen/y20"
+    	    android:textSize="@dimen/x30"
+    	    android:layout_marginTop="@dimen/y20"
     	    android:layout_marginLeft="@dimen/x14"/>
 
 	

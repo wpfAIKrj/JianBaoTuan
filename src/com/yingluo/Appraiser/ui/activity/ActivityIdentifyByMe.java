@@ -82,6 +82,7 @@ public class ActivityIdentifyByMe extends BaseActivity {
 			break;
 		case R.id.published_bt://选择宝贝
 			 intent=new Intent(ActivityIdentifyByMe.this, ActivityKindOfPrecious.class);
+			 intent.putExtra(Const.SHOW_TYPE, 1);
 				startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
 			break;
 		case R.id.btn_publish://我要鉴定

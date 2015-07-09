@@ -113,11 +113,28 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 
 			}
 			if (homeEntity.getChoices() != null
-					&& homeEntity.getChoices().size() >= 4) {
-				choices_0.setItem(homeEntity.getChoices().get(0));
-				choices_1.setItem(homeEntity.getChoices().get(1));
-				if (homeEntity.getChoices().size() > 2) {
-
+					&& homeEntity.getChoices().size() >0) {
+				if(homeEntity.getChoices().size()==1){
+					choices_0.setItem(homeEntity.getChoices().get(0));
+					choices_1.setVisibility(View.GONE);
+					choices_2.setVisibility(View.GONE);
+					choices_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==2){
+					choices_0.setItem(homeEntity.getChoices().get(0));
+					choices_1.setItem(homeEntity.getChoices().get(1));
+					choices_2.setVisibility(View.GONE);
+					choices_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==3){
+					choices_0.setItem(homeEntity.getChoices().get(0));
+					choices_1.setItem(homeEntity.getChoices().get(1));
+					choices_2.setItem(homeEntity.getChoices().get(2));
+					choices_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==4){
+					choices_0.setItem(homeEntity.getChoices().get(0));
+					choices_1.setItem(homeEntity.getChoices().get(1));
 					choices_2.setItem(homeEntity.getChoices().get(2));
 					choices_3.setItem(homeEntity.getChoices().get(3));
 				}
@@ -125,14 +142,32 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 				hideViews(true, (short) 0);
 			}
 			if (homeEntity.getHots() != null
-					&& homeEntity.getHots().size() >= 4) {
-				viewhots_0.setItem(homeEntity.getHots().get(0));
-				viewhots_1.setItem(homeEntity.getHots().get(1));
-				viewhots_2.setItem(homeEntity.getHots().get(2));
-				if (homeEntity.getHots().size() > 3) {
-
+					&& homeEntity.getHots().size() >0) {
+				if(homeEntity.getChoices().size()==1){
+					viewhots_0.setItem(homeEntity.getHots().get(0));
+					viewhots_1.setVisibility(View.GONE);
+					viewhots_2.setVisibility(View.GONE);
+					viewhots_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==2){
+					viewhots_0.setItem(homeEntity.getHots().get(0));
+					viewhots_1.setItem(homeEntity.getHots().get(1));
+					viewhots_2.setVisibility(View.GONE);
+					viewhots_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==3){
+					viewhots_0.setItem(homeEntity.getHots().get(0));
+					viewhots_1.setItem(homeEntity.getHots().get(1));
+					viewhots_2.setItem(homeEntity.getHots().get(2));
+					viewhots_3.setVisibility(View.GONE);
+				}
+				if(homeEntity.getChoices().size()==4){
+					viewhots_0.setItem(homeEntity.getHots().get(0));
+					viewhots_1.setItem(homeEntity.getHots().get(1));
+					viewhots_2.setItem(homeEntity.getHots().get(2));
 					viewhots_3.setItem(homeEntity.getHots().get(3));
 				}
+	
 			} else {
 				hideViews(true, (short) 1);
 			}

@@ -158,6 +158,7 @@ public class ViewHots extends LinearLayout {
 
 	// 设置小图片
 	public void setSmallImage(final ImageView iv, final String[] urls) {
+		layout_menu.removeAllViews();
 		if (urls == null || urls.length == 0) {
 			return;
 		}

@@ -103,6 +103,9 @@ public class ActivityKindOfPrecious extends BaseActivity {
 				finish();
 			}
 		});
+		if(getIntent().getIntExtra(Const.SHOW_TYPE, 0)==1){
+			all_kind.setVisibility(View.GONE);
+		}
 
 	}
 

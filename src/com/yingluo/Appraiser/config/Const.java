@@ -151,5 +151,9 @@ public class Const {
 	 * 退出登录后返回到首页
 	 */
 	public static final int TO_EXITS_USER = 20;
+	/**
+	 * 发布宝物的跳转后，取出全部分类
+	 */
+	public static final String SHOW_TYPE = "show_kinds_type";
 
 }
