@@ -17,7 +17,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 
 	Context mContext;
 	List<CollectionTreasure> list;
-
+	int mindex=0;
 	public WellKnowPeopleAdapter(Context context, List<CollectionTreasure> strs) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
@@ -33,6 +33,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 	@Override
 	public CollectionTreasure getItem(int position) {
 		// TODO Auto-generated method stub
+		mindex=position;
 		return list.get(position);
 	}
 
@@ -59,7 +60,11 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		bitmapsUtils.display(holder.iv, list.get(position).authImage,
 				BitmapsUtils.TYPE_YES);
 		// holder.iv.setImageResource(R.drawable.user_logo);
-
+		if(mindex==position){
+			holder.iv.setAlpha(1);
+		}else{
+			holder.iv.setAlpha(0.6f);
+		}
 		return convertView;
 	}
 

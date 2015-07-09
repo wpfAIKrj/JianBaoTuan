@@ -151,6 +151,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 				if (adapter.getCount() > 0) {// 设置第一个选中
 					index = 0;
 					wellKnow.setItem(adapter.getItem(index));
+					adapter.notifyDataSetChanged();
 					new Thread(myWork).start();
 				}
 			} else {
@@ -211,6 +212,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 						index = 0;
 					}
 					wellKnow.setItem(adapter.getItem(index));
+					adapter.notifyDataSetChanged();
 				}
 				break;
 
