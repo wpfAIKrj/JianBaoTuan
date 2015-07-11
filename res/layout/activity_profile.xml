@@ -26,7 +26,7 @@
     	    android:imeOptions="actionNext"
     	     android:layout_marginTop="@dimen/x30"
     	     android:cursorVisible="true"
-    	     android:textCursorDrawable="@null"
+    	    android:textCursorDrawable="@drawable/color_cursor"
     	    >
 
     	    <requestFocus />
@@ -46,7 +46,7 @@
     	    android:imeOptions="actionNext"
     	     android:layout_marginTop="@dimen/x30"
     	      android:cursorVisible="true"
-    	      android:textCursorDrawable="@null"
+    	      android:textCursorDrawable="@drawable/color_cursor"
     	    >
 
     	    <requestFocus />
@@ -66,7 +66,7 @@
 		    	android:imeOptions="actionDone"
 		    	 android:layout_marginTop="@dimen/x30"
 		    	  android:cursorVisible="true"
-		    	  android:textCursorDrawable="@null"
+		    	  android:textCursorDrawable="@drawable/color_cursor"
 		    	    />
 
 
@@ -79,7 +79,7 @@
 		    style="@style/bt_login_style"
 		    android:layout_marginLeft="@dimen/x14"
 		    android:layout_marginRight="@dimen/x14"
-		    android:layout_marginTop="@dimen/y200" />
+		    android:layout_marginTop="@dimen/y100" />
 
 
 

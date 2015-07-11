@@ -42,7 +42,7 @@
                  style="@style/edit_login_style"
                  android:hint="@string/register_name_hint"
                   android:cursorVisible="true"
-               android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/color_cursor"
                  >
 
                 <requestFocus />
@@ -68,7 +68,7 @@
                 style="@style/edit_login_style"
                 android:alpha="10"
                  android:cursorVisible="true"
-                 android:textCursorDrawable="@null"
+               android:textCursorDrawable="@drawable/color_cursor"
                 android:hint="@string/register_code_ed_hint"
                 >
 
@@ -110,7 +110,7 @@
                 style="@style/edit_login_style" 
                 android:hint="@string/login_pwd_hint"
                  android:cursorVisible="true"
-                 android:textCursorDrawable="@null"
+                  android:textCursorDrawable="@drawable/color_cursor"
                 >
 
                 <requestFocus />

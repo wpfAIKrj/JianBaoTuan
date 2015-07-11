@@ -36,7 +36,7 @@
             android:textColor="@color/ed_login_color"
             android:textSize="@dimen/x36"
              android:cursorVisible="true"
-             android:textCursorDrawable="@null"
+             android:textCursorDrawable="@drawable/color_cursor"
              >
         </EditText>
     </LinearLayout>

@@ -29,7 +29,7 @@
     	    android:imeOptions="actionDone"
     	    
     	    android:cursorVisible="true"
-    	    android:textCursorDrawable="@null"
+    	    android:textCursorDrawable="@drawable/color_cursor"
     	    >
 
     	    <requestFocus />

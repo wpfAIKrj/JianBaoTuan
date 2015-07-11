@@ -67,7 +67,7 @@
         android:imeOptions="actionGo"
         android:inputType="text"
         android:textColor="@color/black"
-        android:textCursorDrawable="@null"
+         android:textCursorDrawable="@drawable/color_cursor"
         android:textSize="@dimen/x24" />
 
     <Button
