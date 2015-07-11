@@ -14,6 +14,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.HomeEntity;
+import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
@@ -26,6 +27,8 @@ import com.yingluo.Appraiser.view.home.ViewChoices;
 import com.yingluo.Appraiser.view.home.ViewHomeWhoWellKnow;
 import com.yingluo.Appraiser.view.home.ViewHots;
 import com.yingluo.Appraiser.view.listview.HorizontalListView;
+
+import de.greenrobot.event.EventBus;
 
 public class HomeFragment extends BaseFragment implements OnItemClickListener,
 		OnClickListener {
@@ -262,11 +265,11 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.tv_goto_infor:
-			((MainActivity) getActivity()).onTabSelected(2);
+			EventBus.getDefault().post(new MainEvent(3, ""));
 			break;
 
 		case R.id.tv_goto_identiy:
-			((MainActivity) getActivity()).onTabSelected(1);
+			EventBus.getDefault().post(new MainEvent(2, ""));
 			break;
 		}
 	}

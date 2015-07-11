@@ -92,6 +92,14 @@ public class MainActivity extends FragmentActivity implements
 			Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
 			startActivityForResult(intent, Const.TO_LOGIN);
 			break;
+		case 2://跳转到鉴定大厅
+			mIndex = 1;
+			setOnTabselected();
+			break;
+		case 3://跳转到知识学堂
+			mIndex = 2;
+			setOnTabselected();
+			break;
 		default:
 			break;
 		}

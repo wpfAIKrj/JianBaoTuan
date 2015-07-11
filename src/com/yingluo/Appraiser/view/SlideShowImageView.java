@@ -392,11 +392,11 @@ public class SlideShowImageView extends FrameLayout {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if(imageRes!=null){
-				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
-				getContext().startActivity(mIntent);
-			}
+//			if(imageRes!=null){
+//				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+//				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
+//				getContext().startActivity(mIntent);
+//			}
 		}
 	};
 	

@@ -163,5 +163,15 @@ public class UrlUtil {
 		return url.toString();
 	}
 	
+	/**
+	 * 获取图片下载连接
+	 * @return
+	 */
+	public static String getImageTokenUrl(){
+		StringBuilder url = new StringBuilder();
+		url.append(BASE_URL).append("/Home/token");
+		return url.toString();
+	}
+	
 
 }

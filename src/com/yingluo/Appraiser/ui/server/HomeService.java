@@ -11,8 +11,12 @@ import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.bean.UserInfo;
+import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.OnListDataLoadListener;
+import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.GetImageTokenModel;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
@@ -128,6 +132,29 @@ public class HomeService extends Service {
 			}
 		});
 
+		final GetImageTokenModel getImageToke=new GetImageTokenModel();
+		getImageToke.GetIMageToken(new onBasicView<String>() {
+			
+			@Override
+			public void onSucess(String data) {
+				// TODO Auto-generated method stub
+				NetConst.UPTOKEN=data;
+				UserInfo user = ItApplication.getcurrnUser();
+				if(user!=null){
+					user.setImage_token(data);
+					SqlDataUtil.getInstance().saveUserInfo(user);
+					ItApplication.setCurrnUser(user);
+				}
+			}
+			
+			@Override
+			public void onFail(String errorCode, String errorMsg) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
 		return super.onStartCommand(intent, flags, startId);
 	}
 }
