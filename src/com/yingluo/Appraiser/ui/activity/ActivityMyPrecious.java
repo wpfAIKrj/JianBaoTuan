@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
+import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 
 public class ActivityMyPrecious extends BaseActivity {
 
@@ -61,6 +64,8 @@ public class ActivityMyPrecious extends BaseActivity {
 	MyTreasureAdapter mAdapter;
 
 	
+	
+	private int Treadsure_type;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -76,7 +81,7 @@ public class ActivityMyPrecious extends BaseActivity {
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 
 		model.setType(type);
-//		model.setType(Const.IDENTIFY);
+		Treadsure_type=MyTreasureModel.TYPE_ALL;
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
 			btn_delete.setVisibility(View.GONE);
@@ -107,6 +112,36 @@ public class ActivityMyPrecious extends BaseActivity {
 		recyclerview.setHasFixedSize(true);
 		mAdapter = new MyTreasureAdapter(lis);
 		recyclerview.setAdapter(mAdapter);
+		swipe_refresh_widget.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public void onRefresh() {//刷新
+				// TODO Auto-generated method stub
+					ActivityMyPrecious.this.onRefresh();
+			}
+		});
+	}
+
+	protected void onRefresh() {
+		// TODO Auto-generated method stub
+		model.setType(type);
+		model.sendHttp(new CommonCallBack() {
+
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				swipe_refresh_widget.setRefreshing(false);
+				mAdapter.setData(model.getResult());
+
+			}
+
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+				swipe_refresh_widget.setRefreshing(false);
+
+			}
+		}, Treadsure_type);
 	}
 
 	OnClickListener ivListener = new OnClickListener() {
@@ -121,71 +156,23 @@ public class ActivityMyPrecious extends BaseActivity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			swipe_refresh_widget.setRefreshing(false);
+			swipe_refresh_widget.setRefreshing(true);
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {
-				model.setType(type);
-				model.sendHttp(new CommonCallBack() {
-
-					@Override
-					public void onSuccess() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-						mAdapter.setData(model.getResult());
-
-					}
-
-					@Override
-					public void onError() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-
-					}
-				}, MyTreasureModel.TYPE_ALL);
+				Treadsure_type=MyTreasureModel.TYPE_ALL;
+				onRefresh();
 			}
 				break;
 			case R.id.btn_identifing: {
-				model.setType(type);
-				model.sendHttp(new CommonCallBack() {
-
-					@Override
-					public void onSuccess() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-						mAdapter.setData(model.getResult());
-
-					}
-
-					@Override
-					public void onError() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-
-					}
-				}, MyTreasureModel.TYPE_IDENTIFIED);
+				Treadsure_type=MyTreasureModel.TYPE_IDENTIFIED;
+				onRefresh();
 
 			}
 				break;
 			case R.id.btn_identified: {
-				model.setType(type);
-				model.sendHttp(new CommonCallBack() {
-
-					@Override
-					public void onSuccess() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-						mAdapter.setData(model.getResult());
-
-					}
-
-					@Override
-					public void onError() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-
-					}
-				}, MyTreasureModel.TYPE_IDENTIFYING);
+				Treadsure_type=MyTreasureModel.TYPE_IDENTIFYING;
+				onRefresh();
 			}
 				break;
 
@@ -268,4 +255,8 @@ public class ActivityMyPrecious extends BaseActivity {
 			startActivity(mIntent);
 		}
 	};
+	
+	
+	
+	
 }
