@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.ui.activity;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -43,6 +44,9 @@ public class PasswordActivity extends BaseActivity {
 	private updatePwdPresenter mypresenter;
 
 	private Dialog loadding;
+	
+	private long TIME_STATE=2000;
+	private Handler mhandler=new Handler();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -115,7 +119,8 @@ public class PasswordActivity extends BaseActivity {
 
 
 		private onBasicView<UserInfo> lis=new onBasicView<UserInfo>() {
-			
+
+
 			@Override
 			public void onSucess(UserInfo data) {
 				// TODO 自动生成的方法存根
@@ -125,6 +130,15 @@ public class PasswordActivity extends BaseActivity {
 				SqlDataUtil.getInstance().saveUserInfo(data);
 				ItApplication.setCurrnUser(data);
 				new ToastUtils(PasswordActivity.this, "修改密码成功！");
+				mhandler.postDelayed(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						setResult(RESULT_OK, getIntent());
+						finish();
+					}
+				}, TIME_STATE);
 			}
 			
 			@Override

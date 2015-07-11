@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +41,9 @@ public class UserSetActivity extends BaseActivity {
 
 	private ExitPresenter exitpresenter;
     
-    
+    private Handler mhandler=new Handler();
+
+	private long TIME_LONG=3000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO 自动生成的方法存根
@@ -80,6 +83,13 @@ public class UserSetActivity extends BaseActivity {
 		}
 		if (v.getId() == R.id.layout_item5) {// 清楚缓存
 			FileUtils.getInstance().deleteDirectory(1);
+			mhandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					setCacheNumber(FileUtils.getInstance().getCacheFileSize());
+				}
+			}, TIME_LONG);
 		}
 		if (v.getId() == R.id.layout_item6) {// 退出登陆
 			Logodialong = DialogUtil.createLoadingDialog(this, "正在退出当前用户.....");
