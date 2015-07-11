@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.ui.adapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.yingluo.Appraiser.R;
@@ -36,6 +37,7 @@ public class commentListAdapter extends BaseAdapter {
 	
 	public void setData(List<CommentEntity> commentlist) {
 		// TODO 自动生成的方法存根
+		Collections.reverse(commentlist);
 		list=commentlist;
 		notifyDataSetChanged();
 	}

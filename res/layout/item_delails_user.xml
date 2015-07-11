@@ -54,13 +54,15 @@
         <TextView
      		android:id="@+id/tv_other_title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_marginRight="@dimen/x30"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x30"
             android:layout_alignParentRight="true"
             android:text="@string/other_home_title"
             android:textColor="@color/dialog_title_color"
-            android:textSize="@dimen/x30" />
+            android:textSize="@dimen/x30" 
+            android:gravity="center_vertical"
+            />
     </RelativeLayout>
 </LinearLayout>

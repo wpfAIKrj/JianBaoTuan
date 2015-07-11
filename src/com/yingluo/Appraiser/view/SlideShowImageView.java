@@ -29,6 +29,7 @@ import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
+import com.yingluo.Appraiser.ui.activity.IdentifyGalleryActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
@@ -78,7 +79,7 @@ public class SlideShowImageView extends FrameLayout {
 
 
 
-	private List<String> imageRes=null;	
+	private ArrayList<String> imageRes=null;	
 	
 	public SlideShowImageView(Context context) {
 		this(context, null);
@@ -392,11 +393,11 @@ public class SlideShowImageView extends FrameLayout {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-//			if(imageRes!=null){
-//				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-//				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
-//				getContext().startActivity(mIntent);
-//			}
+			if(imageRes!=null){
+				Intent mIntent = new Intent(getContext(), IdentifyGalleryActivity.class);
+				mIntent.putExtra(Const.ENTITY, imageRes);
+				getContext().startActivity(mIntent);
+			}
 		}
 	};
 	

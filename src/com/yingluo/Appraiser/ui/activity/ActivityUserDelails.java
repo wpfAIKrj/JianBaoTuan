@@ -34,6 +34,7 @@ import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.DialogForResult;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CollectTreasureByIdModel;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getTreasureAllInfoByIdModel;
@@ -88,7 +89,8 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.tag_layout)
 	private TagLinearLayout taglayout;
 	
-
+	@ViewInject(R.id.tv_other_title)
+	private TextView tv_other_title;
 
 	@ViewInject(R.id.show_images)
 	private SlideShowImageView showimage;
@@ -126,13 +128,18 @@ public class ActivityUserDelails extends BaseActivity {
 	public long to_user_id=0;
 	
 	
-	@OnClick({ R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
+	@OnClick({R.id.tv_other_title,R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.detail_back: {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 		}
+			break;
+		case R.id.tv_other_title://跳转到个人详情
+			Intent mIntent = new Intent(this, ActivityHotIdentiy.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			startActivity(mIntent);
 			break;
 		case R.id.btn_send_comment://发布评论
 			if (ItApplication.getcurrnUser() != null) {
@@ -196,28 +203,29 @@ public class ActivityUserDelails extends BaseActivity {
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
-			collectModel.sendHttp(new CommonCallBack() {
-
+			loaddialog = DialogUtil.createLoadingDialog(
+					ActivityUserDelails.this, "正在收藏该宝物....");
+			loaddialog.show();
+			collectModel.isCollect(new onBasicView<String>() {
+				
 				@Override
-				public void onSuccess() {
+				public void onSucess(String data) {
+					// TODO Auto-generated method stub
 					// 收藏成功
 					loaddialog.dismiss();
 					detail_collect.setVisibility(View.GONE);
 					detail_cancle_collect.setVisibility(View.VISIBLE);
-
 				}
-
+				
 				@Override
-				public void onError() {
+				public void onFail(String errorCode, String errorMsg) {
+					// TODO Auto-generated method stub
 					// 收藏失败
 					loaddialog.dismiss();
-					LogUtils.i("ytmfdw==>"+collectModel.getResult());
-
+					LogUtils.i("ytmfdw==>"+errorMsg);
 				}
-			}, entity.treasure_id, true);
-			loaddialog = DialogUtil.createLoadingDialog(
-					ActivityUserDelails.this, "正在收藏该宝物....");
-			loaddialog.show();
+			}, entity.treasure_id);
+
 		}
 
 		@Override
@@ -237,27 +245,28 @@ public class ActivityUserDelails extends BaseActivity {
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
-			collectModel.sendHttp(new CommonCallBack() {
-
+			loaddialog = DialogUtil.createLoadingDialog(
+					ActivityUserDelails.this, "正在收藏该宝物....");
+			loaddialog.show();
+			collectModel.isDelete(new onBasicView<String>() {
+				
 				@Override
-				public void onSuccess() {
+				public void onSucess(String data) {
+					// TODO Auto-generated method stub
 					loaddialog.dismiss();
 					// 收藏成功
 					detail_collect.setVisibility(View.VISIBLE);
 					detail_cancle_collect.setVisibility(View.GONE);
-
 				}
-
+				
 				@Override
-				public void onError() {
-					// 收藏失败
+				public void onFail(String errorCode, String errorMsg) {
+					// TODO Auto-generated method stub
 					loaddialog.dismiss();
-					LogUtils.i("ytmfdw==>"+collectModel.getResult());
+					LogUtils.i("ytmfdw==>"+errorMsg);
 				}
-			}, entity.treasure_id, false);
-			loaddialog = DialogUtil.createLoadingDialog(
-					ActivityUserDelails.this, "正在收藏该宝物....");
-			loaddialog.show();
+			}, entity.treasure_id);
+
 		}
 
 		@Override

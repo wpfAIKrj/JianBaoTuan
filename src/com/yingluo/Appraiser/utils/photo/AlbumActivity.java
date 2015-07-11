@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.photo.LocalImageAdapter.CheckChangeL;
 
 import android.app.Activity;
@@ -34,7 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AlbumActivity extends Activity implements OnClickListener{
+public class AlbumActivity extends BaseActivity implements OnClickListener{
 	//全部图片，单独放在列表中
 	private ArrayList<String> imageList ; 
 	

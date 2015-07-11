@@ -8,8 +8,10 @@ import java.util.List;
 
 
 
+
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 import android.R.array;
@@ -38,7 +40,7 @@ import android.widget.TextView;
  * @author king
  * @version 2014年10月18日  下午11:47:53
  */
-public class GalleryActivity extends Activity {
+public class GalleryActivity extends BaseActivity {
 
 	
     // 返回按钮

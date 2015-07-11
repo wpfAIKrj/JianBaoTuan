@@ -95,7 +95,9 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="@color/number_color"
-                android:textSize="@dimen/x24" />
+                android:textSize="@dimen/x24"
+                android:visibility="gone"
+                 />
         </LinearLayout>
 
         <TextView

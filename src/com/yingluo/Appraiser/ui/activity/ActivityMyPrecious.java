@@ -24,8 +24,9 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 
-public class ActivityMyPrecious extends Activity {
+public class ActivityMyPrecious extends BaseActivity {
 
 	@ViewInject(R.id.tv_title)
 	TextView title;
