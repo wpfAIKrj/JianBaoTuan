@@ -58,7 +58,7 @@
 		    	     android:layout_height="@dimen/y94"
 		    	    android:ems="10"
 		    	    android:background="@drawable/item_layout_padd"
-		    	    android:inputType="text" 
+		    	    android:inputType="textUri|textMultiLine" 
 		    	    android:gravity="center_vertical|left"
 		    	    android:hint="@string/profile_email"
 		    	    style="@style/my_title_style3"
