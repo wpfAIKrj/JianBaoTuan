@@ -3,17 +3,10 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/x7" 
-    android:paddingBottom="@dimen/x7" xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
+    android:paddingBottom="@dimen/x7" 
+    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
 
-    <LinearLayout
-        android:id="@+id/match_league_roung_item_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical" 
-        >
+
 
         <com.yingluo.Appraiser.view.CircleImageView
             android:id="@+id/imageView"
@@ -23,6 +16,5 @@
             app:border_width="@dimen/x1"
             
             />
-    </LinearLayout>
 
 </RelativeLayout>
