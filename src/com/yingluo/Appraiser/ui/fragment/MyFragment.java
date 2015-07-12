@@ -99,7 +99,7 @@ public class MyFragment extends BaseFragment{
 	
 	private int[] levels={R.drawable.level01,R.drawable.level02,R.drawable.level03,
 			R.drawable.level04,R.drawable.level05,R.drawable.level06};
-	private OnLongClickListener onlongListner;
+	private OnClickListener onlongListner;
 	private Dialog dialog;
 	
 
@@ -174,31 +174,22 @@ public class MyFragment extends BaseFragment{
 	}
 
 
-	public void setLogoListener(OnLongClickListener onlongListner){
+	public void setLogoListener(OnClickListener onlongListner){
 		this.onlongListner=onlongListner;
 	}
 
-	@OnLongClick(R.id.login_user_head)
-	public boolean onLongClick(View v){
-		switch (v.getId()) {
-		case R.id.login_user_head://更新头像
-			if(onlongListner!=null){
-				onlongListner.onLongClick(v);
-			}
-			break;
 
-		default:
-			break;
-		}
-		return false;
-	}
 	
-	
-	@OnClick({R.id.my_iv_level,R.id.my_bt_showmenu,R.id.my_tv_authenticate,R.id.my_layout_collect,R.id.my_layout_foot,R.id.my_layout_identif
+	@OnClick({R.id.login_user_head,R.id.my_iv_level,R.id.my_bt_showmenu,R.id.my_tv_authenticate,R.id.my_layout_collect,R.id.my_layout_foot,R.id.my_layout_identif
 		,R.id.my_tab1,R.id.my_tab2,R.id.my_tab3,R.id.my_tab4,R.id.my_tab5,R.id.my_tab6})
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
+		case R.id.login_user_head://更新头像
+			if(onlongListner!=null){
+				onlongListner.onClick(v);
+			}
+			break;
 		case R.id.my_iv_level://跳转到等级说明
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);			break;
 		case R.id.my_bt_showmenu://右侧菜单

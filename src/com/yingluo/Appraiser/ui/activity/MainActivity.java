@@ -240,10 +240,10 @@ public class MainActivity extends FragmentActivity implements
 		case 3:
 			if (null == mMyFragment) {
 				mMyFragment = new MyFragment();
-				mMyFragment.setLogoListener(new OnLongClickListener() {
+				mMyFragment.setLogoListener(new OnClickListener() {
 
 					@Override
-					public boolean onLongClick(View v) {
+					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						if (photodialog == null) {
 							photodialog = new SelectPhotoDialog(
@@ -252,7 +252,6 @@ public class MainActivity extends FragmentActivity implements
 						if (!photodialog.isShowing()) {
 							photodialog.show();
 						}
-						return false;
 					}
 				});
 				transaction.add(R.id.center_layout, mMyFragment);
