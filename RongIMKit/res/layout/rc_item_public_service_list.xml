@@ -17,7 +17,6 @@
         android:scaleType="fitXY"
         android:layout_gravity="center_vertical"
         app:defDrawable="@drawable/rc_ic_def_msg_portrait"
-         app:shape="circle"
         />
 
     <LinearLayout

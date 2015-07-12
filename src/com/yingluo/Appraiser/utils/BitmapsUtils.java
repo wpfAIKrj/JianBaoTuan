@@ -18,7 +18,10 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.IoUtils.CopyListener;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
@@ -68,20 +71,25 @@ public class BitmapsUtils {
 
 		
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
-		config.threadPriority(Thread.NORM_PRIORITY - 2);
+		config.threadPriority(3);
 		config.denyCacheImageMultipleSizesInMemory();
 		config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
 		config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
+		config.memoryCacheSize(2*1024*1024);
 		config.tasksProcessingOrder(QueueProcessingType.LIFO);
+		config.imageDownloader(new BaseImageDownloader(context, 5*1000, 10*1000));
 		config.writeDebugLogs(); // Remove for release app
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
 		.showImageOnLoading(R.drawable.loading_bg)
 		.showImageForEmptyUri(R.drawable.load_fail)
 		.showImageOnFail(R.drawable.load_fail)
+		.considerExifParams(true)
 		.cacheInMemory(true)
 		.cacheOnDisk(true)
-		.considerExifParams(true)
+		.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
 		.bitmapConfig(Bitmap.Config.RGB_565)
+		.resetViewBeforeLoading(true)
+		.displayer(new FadeInBitmapDisplayer(200))
 		.build();
 		config.defaultDisplayImageOptions(options);
 		// Initialize ImageLoader with configuration.

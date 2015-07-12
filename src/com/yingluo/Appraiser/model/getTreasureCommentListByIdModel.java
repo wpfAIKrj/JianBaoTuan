@@ -13,11 +13,13 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
 import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 /**
  * @author ytmfdw 获取宝贝评论列表
@@ -58,6 +60,17 @@ public class getTreasureCommentListByIdModel extends BaseModel {
 			// String json_data = json.getString("data");
 			LogUtils.i("ytmdfdw" + "get treasure by id :" + data);
 			commentlist=gson.fromJson(data, new TypeToken<List<CommentEntity>>(){}.getType());
+			if(commentlist!=null&&commentlist.size()>0){
+				for (int i = 0; i < commentlist.size(); i++) {
+					ImUserInfo user=new ImUserInfo();
+					CommentEntity collectionTreasure=commentlist.get(i);
+					user.setId(collectionTreasure.user_id);
+					user.setName(collectionTreasure.authName);
+					user.setIcon(collectionTreasure.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(user);
+				}	
+			}
+			
 			listener.onBaseDataLoaded("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

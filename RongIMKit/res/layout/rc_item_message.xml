@@ -24,7 +24,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginRight="4dp"
         android:background="@android:color/transparent"
-        app:defDrawable="@drawable/rc_ic_def_msg_portrait"/>
+        app:defDrawable="@drawable/rc_ic_def_msg_portrait"
+        app:shape="circle"/>
 
     <io.rong.imkit.widget.AsyncImageView
         android:id="@id/rc_right"
@@ -35,7 +36,8 @@
         android:layout_marginLeft="4dp"
         android:background="@android:color/transparent"
         app:defDrawable="@drawable/rc_ic_def_msg_portrait"
-         app:shape="circle"/>
+        app:shape="circle"
+        />
 
 
     <TextView

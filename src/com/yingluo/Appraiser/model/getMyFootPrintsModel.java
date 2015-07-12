@@ -16,8 +16,10 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 /**
  * @author ytmfdw 获取我的足迹
@@ -71,6 +73,16 @@ public class getMyFootPrintsModel extends BaseModel {
 			LogUtils.i("ytmdfdw" + "get my foot print:" + data);
 			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());
+			if(list!=null&&list.size()>0){
+				for (int i = 0; i < list.size(); i++) {
+					ImUserInfo user=new ImUserInfo();
+					CollectionTreasure collectionTreasure=list.get(i);
+					user.setId(collectionTreasure.user_id);
+					user.setName(collectionTreasure.authName);
+					user.setIcon(collectionTreasure.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(user);
+				}		
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

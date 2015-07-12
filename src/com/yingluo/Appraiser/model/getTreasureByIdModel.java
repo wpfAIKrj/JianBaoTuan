@@ -73,6 +73,8 @@ public class getTreasureByIdModel extends BaseModel {
 			LogUtils.i("ytmdfdw" + "get treasure by id :" + data);
 			list = gson.fromJson(data, new TypeToken<List<TreasureEntity>>() {
 			}.getType());
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

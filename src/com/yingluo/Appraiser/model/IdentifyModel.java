@@ -18,11 +18,13 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
 import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.presenter.collectInfoPresenter;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class IdentifyModel extends BaseModel {
 
@@ -66,8 +68,19 @@ public class IdentifyModel extends BaseModel {
 			LogUtils.i("ytmdfdw" + "get identify data:" + data);
 			list = gson.fromJson(data, new TypeToken<List<CollectionTreasure>>() {
 			}.getType());
-			if(lis!=null){
+			if(list!=null&&list.size()>0){
+				for (int i = 0; i < list.size(); i++) {
+					ImUserInfo user=new ImUserInfo();
+					CollectionTreasure collectionTreasure=list.get(i);
+					user.setId(collectionTreasure.user_id);
+					user.setName(collectionTreasure.authName);
+					user.setIcon(collectionTreasure.authImage);
+					SqlDataUtil.getInstance().saveIMUserinfo(user);
+				}
 				lis.onListDataLoaded((ArrayList<CollectionTreasure>) list);
+				
+			}else{
+				lis.onListDataLoaded(new ArrayList<CollectionTreasure>());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

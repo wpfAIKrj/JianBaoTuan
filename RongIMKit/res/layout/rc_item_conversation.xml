@@ -56,7 +56,6 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:defDrawable="@drawable/rc_default_portrait"
-            app:shape="circle"
             android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"/>
 

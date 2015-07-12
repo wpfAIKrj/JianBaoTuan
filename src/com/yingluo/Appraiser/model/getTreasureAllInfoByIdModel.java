@@ -17,12 +17,14 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
 import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 /**
  * @author ytmfdw 获取宝贝详情
@@ -78,6 +80,11 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				treasure.authType=json.getInt("authType");
 				treasure.isCollected=json.getBoolean("isCollected");
 				treasure.status=json.getInt("status");
+				ImUserInfo user=new ImUserInfo();
+				user.setId(treasure.user_id);
+				user.setName(treasure.authName);
+				user.setIcon(treasure.authImage);
+				SqlDataUtil.getInstance().saveIMUserinfo(user);
 				List<String> images=gson.fromJson(json.getString("images1"), new TypeToken<List<String>>(){}.getType());
 				if(images.size()>0){
 					treasure.images1=images.toArray(new String[images.size()]);
