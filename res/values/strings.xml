@@ -41,7 +41,9 @@
       <string name="my_title_collect">我的宝物</string>
       <string name="my_title_footprint">我的足迹</string>
       <string name="my_title_appraisal">我的鉴定</string>
-      
+      <string name="other_info_text">专家简介</string>
+        <string name="other_identityinfolist">TA的鉴定</string>
+        <string name="other_identitycollectinfo_text">TA的宝物</string>
       <!-- 个人资料 -->
       <string name="profile_title">个人资料</string>
       <string name="profile_qq">QQ号:</string>

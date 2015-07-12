@@ -279,7 +279,6 @@ public class ActivityUserDelails extends BaseActivity {
 	};
 
 	private CollectionTreasure entity = null;
-	getUserByIdModel userModel = null;
 	private UserInfo user = null;
 
 
@@ -307,33 +306,7 @@ public class ActivityUserDelails extends BaseActivity {
 	}
 
 	
-	//获取用户详细信息
-	private void getUserInfo(CollectionTreasure entity) {
-		// TODO Auto-generated method stub
-		userModel = new getUserByIdModel();
-		userModel.sendHttp(new CommonCallBack() {
 
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				user = userModel.getResult();
-				if (user == null) {
-					return;
-				}
-				bitmapUtils.display(iv_head, user.getAvatar());
-				tv_name.setText(user.getNickname());
-				// 用户等级
-			}
-
-			@Override
-			public void onError() {
-				// TODO Auto-generated method stub
-
-			}
-		}, entity.user_id);
-	}
-
-	
 	private void initViews() {
 		// TODO Auto-generated method stub
 //		bitmapUtils.display(iv_head, entity.authImage);
@@ -351,7 +324,7 @@ public class ActivityUserDelails extends BaseActivity {
 		if(isFirst){
 			loaddialog=DialogUtil.createLoadingDialog(this, "正在获取宝物详情...");
 			loaddialog.show();
-			infoModel.getInfoTreasure(entity.getTreasure_id());
+			infoModel.getInfoTreasure(entity.treasure_id);
 			commentListModel.getInfoTreasure(entity.treasure_id);
 		}
 	}

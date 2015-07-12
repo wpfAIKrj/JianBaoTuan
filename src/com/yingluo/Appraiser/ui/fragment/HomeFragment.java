@@ -13,6 +13,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
@@ -84,6 +85,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 		articles_0 = (ViewArticles) view.findViewById(R.id.articles_0);
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
 		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
+		wellKnow.setListener(user_listener);
 		tv_goto_infor = view.findViewById(R.id.tv_goto_infor);
 		tv_goto_identify = view.findViewById(R.id.tv_goto_identiy);
 		tv_goto_identify.setOnClickListener(this);
@@ -298,4 +300,17 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 		}
 
 	}
+	
+	
+	private OnClickListener user_listener=new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			CollectionTreasure entity=(CollectionTreasure) v.getTag();
+			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
+			mIntent.putExtra(Const.ENTITY, entity);
+			mActivity.startActivity(mIntent);
+		}
+	};
 }

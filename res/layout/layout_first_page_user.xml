@@ -30,7 +30,7 @@
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="他的宝物"
+                android:text="@string/other_identitycollectinfo_text"
                 android:textColor="@color/dialog_title_color" />
 
             <View
@@ -55,7 +55,7 @@
                 android:background="@android:color/transparent"
                 android:clickable="false"
                 android:gravity="center"
-                android:text="他的鉴定"
+                android:text="@string/other_identityinfolist"
                 android:textColor="@color/ed_login_color" />
 
             <View
@@ -66,10 +66,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
+        
+        
          <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_widget"
             android:layout_width="match_parent"
@@ -91,15 +93,10 @@
             android:text="@string/str_none_msg"
             android:textColor="@color/black_2"
             android:textSize="15sp"
-            android:visibility="gone" />
+            android:visibility="gone" 
+            android:layout_centerInParent="true"
+            />
 
-        <ImageView
-            android:id="@+id/iv_loading"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/loading"
-            android:visibility="gone" />
-    </FrameLayout>
+    </RelativeLayout>
 
 </LinearLayout>
