@@ -39,8 +39,8 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.ArticlePresenter;
-import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
 import com.yingluo.Appraiser.ui.activity.InformationDetailsActivity;
+import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.ListLoadType;
@@ -117,7 +117,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	public void onClick(View v){
 		switch (v.getId()) {
 		case R.id.button_category:
-			Intent intent=new Intent(mActivity, ActivityKindOfPrecious.class);
+			Intent intent=new Intent(mActivity, KindOfPreciousActivity.class);
 			mActivity.startActivityForResult(intent, Const.TO_SELECT_TYPE);
 			break;
 

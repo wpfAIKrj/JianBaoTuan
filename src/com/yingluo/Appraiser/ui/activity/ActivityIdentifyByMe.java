@@ -81,7 +81,7 @@ public class ActivityIdentifyByMe extends BaseActivity {
 			finish();
 			break;
 		case R.id.published_bt://选择宝贝
-			 intent=new Intent(ActivityIdentifyByMe.this, ActivityKindOfPrecious.class);
+			 intent=new Intent(ActivityIdentifyByMe.this, KindOfPreciousActivity.class);
 			 intent.putExtra(Const.SHOW_TYPE, 1);
 				startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
 			break;

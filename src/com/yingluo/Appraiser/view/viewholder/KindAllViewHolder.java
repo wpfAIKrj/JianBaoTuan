@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.view.ViewStub;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,18 +17,19 @@ import android.widget.TextView;
  * @author Administrator
  *
  */
-public class KindSecondViewHolder extends ViewHolder {
+public class KindAllViewHolder extends ViewHolder {
 
 
 	public TreasureType type;
-	private ViewGroup layout_root;
 	private ImageView iv_icon;
+	private ViewGroup layout_root;
 	private ImageView iv_enter;
 	private TextView label;
-	
-	public KindSecondViewHolder(View itemView,final OnClickListener listener) {
+	private String str=null;
+	public KindAllViewHolder(View itemView,final OnClickListener listener) {
 		super(itemView);
 		// TODO Auto-generated constructor stub
+		str=itemView.getContext().getResources().getString(R.string.all_kind_identity_title);
 		itemView.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -39,7 +40,8 @@ public class KindSecondViewHolder extends ViewHolder {
 					listener.onClick(v);
 				}
 			}
-		});
+		});	
+		
 		layout_root = (ViewGroup) itemView
 				.findViewById(R.id.layout_root);
 		iv_icon = (ImageView) itemView
@@ -48,28 +50,22 @@ public class KindSecondViewHolder extends ViewHolder {
 				.findViewById(R.id.btn_enter);
 		label = (TextView) itemView
 				.findViewById(R.id.tv_precious_name);
-		
 	}
 
 	public void showData(TreasureType treasureType, TreasureType selectType) {
 		// TODO Auto-generated method stub
 		this.type=treasureType;
-		if (!type.isChild) {
-			iv_enter.setVisibility(View.VISIBLE);
-			iv_enter.setImageResource(R.drawable.next_bg);
-		}else{
-			if(selectType==null){
-				iv_enter.setVisibility(View.GONE);
-			}else{
+		label.setText(String.format(str, type.getName()));
+		if(selectType!=null){
 			if(selectType.id==treasureType.id){
 				iv_enter.setImageResource(R.drawable.selected);
 				iv_enter.setVisibility(View.VISIBLE);
 			}else{
 				iv_enter.setVisibility(View.GONE);
 			}
-			}
+		}else{
+			iv_enter.setVisibility(View.GONE);
 		}
-		label.setText(type.getName());
 	}
 
 }

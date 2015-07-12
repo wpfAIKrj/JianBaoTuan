@@ -31,7 +31,7 @@ import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
-import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
+import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
@@ -80,7 +80,7 @@ public class IdentiyFragment extends BaseFragment implements
 		switch (v.getId()) {
 		case R.id.button_category: {
 			Intent mIntent = new Intent(getActivity(),
-					ActivityKindOfPrecious.class);
+					KindOfPreciousActivity.class);
 			mActivity.startActivityForResult(mIntent, Const.TO_INDENTIFY);
 		}
 			break;

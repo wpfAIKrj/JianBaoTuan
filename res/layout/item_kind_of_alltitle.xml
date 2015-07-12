@@ -15,28 +15,20 @@
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <com.yingluo.Appraiser.view.CircleImageView
-            android:id="@+id/iv_icon"
-            android:layout_width="@dimen/y74"
-            android:layout_height="@dimen/y74"
-            android:src="@drawable/user_logo"
-            app:border_color="@color/cricle_color"
-            app:border_width="@dimen/x1" />
-
         <TextView
             android:id="@+id/tv_precious_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
             android:layout_weight="1.0"
-            android:text="籽"
-            android:textColor="@color/ed_login_color"
+            android:text="@string/all_kind_identity_title"
+            android:textColor="@color/kind_all_color"
             android:textSize="@dimen/x30" />
 
         <ImageView
             android:id="@+id/btn_enter"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="@dimen/x14"
             android:src="@drawable/next_bg" />
     </LinearLayout>

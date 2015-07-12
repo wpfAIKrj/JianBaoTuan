@@ -112,7 +112,7 @@ public class PublishedActivity extends BaseActivity{
 			finish();
 			break;
 		case R.id.published_bt://跳转到搜索
-			 intent=new Intent(PublishedActivity.this, ActivityKindOfPrecious.class);
+			 intent=new Intent(PublishedActivity.this, KindOfPreciousActivity.class);
 			 intent.putExtra(Const.SHOW_TYPE, 1);
 			startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
 			break;

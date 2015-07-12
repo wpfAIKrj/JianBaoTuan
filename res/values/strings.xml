@@ -18,6 +18,8 @@
     <string name="xlistview_footer_hint_normal">没有更多数据</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     
+    
+    <string name="all_kind_identity_title">所有%1$s类</string>
     <!-- 登陆页面 -->
     <string name="login_name_hint">手机号</string>
     <string name="login_pwd_hint">密码</string>

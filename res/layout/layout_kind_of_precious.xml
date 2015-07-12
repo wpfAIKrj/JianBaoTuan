@@ -26,7 +26,7 @@
         android:layout_height="@dimen/y1"
         android:background="@color/item_space_color" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/tree_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,5 +35,6 @@
         android:dividerHeight="@dimen/y1" 
         android:scrollbars="none"
         />
+    
 
 </LinearLayout>

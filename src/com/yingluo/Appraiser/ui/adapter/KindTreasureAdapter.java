@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.inter.OnKindClickListener;
-import com.yingluo.Appraiser.ui.activity.ActivityKindOfPrecious;
+import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 public class KindTreasureAdapter extends BaseAdapter {
@@ -25,9 +26,9 @@ public class KindTreasureAdapter extends BaseAdapter {
 
 	private long currentType = 0;
 
-	ActivityKindOfPrecious act;
+	KindOfPreciousActivity act;
 
-	public KindTreasureAdapter(ActivityKindOfPrecious mContext) {
+	public KindTreasureAdapter(KindOfPreciousActivity mContext) {
 		act = mContext;
 		mInflater = LayoutInflater.from(mContext);
 		kind = new ArrayList<TreasureType>();
@@ -107,7 +108,7 @@ public class KindTreasureAdapter extends BaseAdapter {
 					act.setTitle(type.getName());
 					// 隐藏一二
 					act.hideSearchAndAll(true);
-					ActivityKindOfPrecious.currentType++;
+					KindOfPreciousActivity.currentType++;
 					KindTreasureAdapter.this.setData(child);
 				} else {
 					if (listener != null) {
@@ -133,7 +134,7 @@ public class KindTreasureAdapter extends BaseAdapter {
 	}
 
 	public void onBackPress() {
-		if (ActivityKindOfPrecious.currentType == 0) {
+		if (KindOfPreciousActivity.currentType == 0) {
 			// 一级目录时，显示全部分类
 			act.hideSearchAndAll(false);
 			act.setTitle("宝贝分类");
@@ -145,7 +146,7 @@ public class KindTreasureAdapter extends BaseAdapter {
 					.getTreasureTypeById(type.getParent_id());
 			act.setTitle(parent.getName());
 			List<TreasureType> tmp = SqlDataUtil.getInstance()
-					.getChildTreasure(ActivityKindOfPrecious.currentType,
+					.getChildTreasure(KindOfPreciousActivity.currentType,
 							type.parent_id);
 			setData(tmp);
 		}

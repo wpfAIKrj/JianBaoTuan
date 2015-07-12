@@ -255,6 +255,7 @@ public class SqlDataUtil {
 
 	}
 
+	
 	/**
 	 * 获取指定等级目录
 	 * 
@@ -265,7 +266,26 @@ public class SqlDataUtil {
 		ArrayList<TreasureType> list = new ArrayList<TreasureType>();
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
 		qb.where(TreasureTypeDao.Properties.Type.eq(type));
-		qb.list();
+		/*
+		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
+		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
+		 */
+		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
+				: new ArrayList<TreasureType>();
+
+		return list;
+	}
+
+	/**
+	 * 获取该父类下下一级子类1
+	 * @param treasureType
+	 * @return
+	 */
+	public List<TreasureType> getNextChildTreasure(TreasureType treasureType) {
+		// TODO Auto-generated method stub
+		ArrayList<TreasureType> list = new ArrayList<TreasureType>();
+		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
+		qb.where(TreasureTypeDao.Properties.Parent_id.eq(treasureType.id));
 		/*
 		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
@@ -344,7 +364,8 @@ public class SqlDataUtil {
 		try {
 			qb.where(TreasureTypeDao.Properties.Type.eq(type),
 					TreasureTypeDao.Properties.Parent_id.eq(parent_id));
-			list = (ArrayList<TreasureType>) qb.list();
+			list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
+					: new ArrayList<TreasureType>();
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -466,5 +487,6 @@ public class SqlDataUtil {
 		}
 		return (ArrayList<SystemInfoEntity>) list;
 	}
+
 
 }
