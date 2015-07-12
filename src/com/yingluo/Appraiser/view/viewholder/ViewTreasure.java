@@ -65,7 +65,17 @@ public class ViewTreasure extends ViewHolder {
 		currn=item;
 		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.title);
-		tv_status.setText(item.status == 1 ? "已鉴定" : "未鉴定");
+		switch (item.status) {
+		case 1:
+			tv_status.setText(R.string.identity_isno);
+			break;
+		case 2:
+			tv_status.setText(R.string.identity_ishava);
+			break;
+		default:
+			tv_status.setText(R.string.identity_ishava);
+			break;
+		}
 		layout_kind.removeAllViews();
 		List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds = item.kinds;
 		
