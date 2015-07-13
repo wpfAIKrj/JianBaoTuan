@@ -77,10 +77,14 @@ public class IdentifyModel extends BaseModel {
 					user.setIcon(collectionTreasure.authImage);
 					SqlDataUtil.getInstance().saveIMUserinfo(user);
 				}
-				lis.onListDataLoaded((ArrayList<CollectionTreasure>) list);
+				if(lis!=null){
+					lis.onListDataLoaded((ArrayList<CollectionTreasure>) list);
+				}
 				
 			}else{
-				lis.onListDataLoaded(new ArrayList<CollectionTreasure>());
+				if(lis!=null){
+					lis.onListDataLoaded(new ArrayList<CollectionTreasure>());
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

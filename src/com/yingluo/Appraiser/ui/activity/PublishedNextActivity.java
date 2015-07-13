@@ -27,6 +27,7 @@ import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.PublishPresenter;
@@ -218,7 +219,9 @@ public class PublishedNextActivity extends BaseActivity {
 			if(dialog!=null){
 				dialog.dismiss();
 			}
-			new ToastUtils(PublishedNextActivity.this, errorMsg);
+//			if(!errorCode.equals(NetConst.CODE_ERROR11)){
+//				new ToastUtils(PublishedNextActivity.this, errorMsg);
+//			}
 		}
 	};
 

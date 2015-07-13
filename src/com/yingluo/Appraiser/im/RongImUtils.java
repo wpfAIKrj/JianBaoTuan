@@ -24,7 +24,10 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import android.content.Context;
@@ -41,6 +44,9 @@ public class RongImUtils {
 	private static RongImUtils mInstance=null;
 	
 	public static boolean isconnect=false;
+	
+	
+	private getUserByIdModel userinfoModel=null;
 	public static void init(Context context) {
 		// TODO Auto-generated method stub
 		mInstance=new RongImUtils(context);
@@ -104,9 +110,46 @@ public class RongImUtils {
 			@Override
 			public UserInfo getUserInfo(String arg0) {
 				// TODO 获取本地用户转化的
-				return getUserInfoFromLocalCache(arg0);
+				UserInfo imuser=getUserInfoFromLocalCache(arg0);
+				if(imuser==null){
+					getUserInfoForId(arg0);
+				}
+				return imuser;
 			}
         }, false);
+	}
+
+	/**
+	 * 从服务器获取没有在本地得到的用户信息
+	 * @param arg0
+	 */
+	protected void getUserInfoForId(String arg0) {
+		// TODO Auto-generated method stub
+		long id = Long.parseLong(arg0);
+		userinfoModel=new getUserByIdModel();
+		userinfoModel.sendHttp(new CommonCallBack() {
+			
+			@Override
+			public void onSuccess() {
+				// TODO Auto-generated method stub
+				com.yingluo.Appraiser.bean.UserInfo user = userinfoModel.getResult();
+				if(user!=null){
+					ImUserInfo imuser=new ImUserInfo(user.getId());
+					imuser.setName(user.getNickname());
+					imuser.setIcon(user.getAvatar());
+					SqlDataUtil.getInstance().saveIMUserinfo(imuser);
+					UserInfo userInfo=new UserInfo(String.valueOf(user.getId()), user.getNickname(), 
+							(user.getAvatar() != null) ? Uri.parse(user.getAvatar()): null);
+					RongIM.getInstance().refreshUserInfoCache(userInfo);
+				}
+			}
+			
+			@Override
+			public void onError() {
+				// TODO Auto-generated method stub
+				
+			}
+		}, id);
 	}
 
 	/**

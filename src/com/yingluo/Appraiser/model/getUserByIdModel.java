@@ -12,6 +12,7 @@ import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.config.UrlUtil;
+import com.yingluo.Appraiser.inter.onBasicView;
 
 /**
  * @author ytmfdw 根据用户id获取用户详情
@@ -20,6 +21,7 @@ import com.yingluo.Appraiser.config.UrlUtil;
 public class getUserByIdModel extends BaseModel {
 
 	UserInfo user = null;
+	private onBasicView<UserInfo> lis;
 
 	public getUserByIdModel() {
 		// TODO Auto-generated constructor stub
@@ -74,14 +76,14 @@ public class getUserByIdModel extends BaseModel {
 		// "qq": "00",
 		// "email": "99"
 		// }
-		user = new UserInfo();
 		JSONObject json = new JSONObject(data);
 		if (json != null) {
+			user = new UserInfo();
 			user.setId(json.getLong("user_id"));
 			user.setNickname(json.getString("authName"));
 			user.setUser_level(json.getInt("authLevel"));
 			user.setUser_type(json.getInt("authType"));
-			user.setImage_token(json.getString("authImage"));
+			user.setAvatar(json.getString("authImage"));
 			user.setQq(json.getString("qq"));
 			user.setEmail(json.getString("email"));
 		}
@@ -101,9 +103,6 @@ public class getUserByIdModel extends BaseModel {
 	}
 
 	public UserInfo getResult() {
-		if(user==null){
-			user=new UserInfo();
-		}
 		return user;
 	}
 }
