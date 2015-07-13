@@ -211,9 +211,9 @@ public class ViewOtherTreasure extends LinearLayout {
 				break;
 
 			case R.id.imageview_small_icon: {
-				Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
-				mIntent.putExtra(Const.ENTITY, currnt);
-				getContext().startActivity((mIntent));
+//				Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+//				mIntent.putExtra(Const.ENTITY, currnt);
+//				getContext().startActivity((mIntent));
 			}
 				break;
 			}

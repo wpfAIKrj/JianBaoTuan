@@ -28,6 +28,7 @@ import com.yingluo.Appraiser.ui.adapter.KindAdapter;
 import com.yingluo.Appraiser.ui.adapter.KindTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
+import com.yingluo.Appraiser.utils.ToastUtils;
 
 public class KindOfPreciousActivity extends BaseActivity {
 
@@ -49,6 +50,8 @@ public class KindOfPreciousActivity extends BaseActivity {
 	public static int currentType = 0;
 
 	private KindAdapter kindadapter;
+
+	private int getType;
 	@OnClick({ R.id.btn_back, R.id.layout_search, R.id.layout_all_kind,R.id.bt_sure })
 	public void doClick(View view) {
 		switch (view.getId()) {
@@ -72,7 +75,12 @@ public class KindOfPreciousActivity extends BaseActivity {
 		}
 			break;
 		case R.id.bt_sure:
-
+			if(getType==1){
+			if(!kindadapter.selectType.isChild){
+				new ToastUtils(this, R.string.help_msg_18);
+				return;
+			}
+			}
 			Intent mIntent = getIntent();
 			TreasureType type=kindadapter.selectType;
 			int kindid=0;
@@ -126,7 +134,8 @@ public class KindOfPreciousActivity extends BaseActivity {
 //				finish();
 //			}
 //		});
-		if(getIntent().getIntExtra(Const.SHOW_TYPE, 0)==1){
+		getType=getIntent().getIntExtra(Const.SHOW_TYPE, 0);
+		if(getType==1){
 			all_kind.setVisibility(View.GONE);
 		}
 

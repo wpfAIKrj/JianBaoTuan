@@ -89,7 +89,15 @@ public class PublishedNextActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_publishednext);
 		ViewUtils.inject(this);
-		initView();
+		title.setText(R.string.publish_title);
+		type=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
+		if(type==null){
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
+			return ;
+		}
+		imageAll=getIntent().getStringArrayListExtra(Const.IMAGEPATH_PANORAMIC);
+		imageTest=getIntent().getStringArrayListExtra(Const.IMAGEPATH_FEATURE);
 		mypresenter=new PublishPresenter(netlis);
 		rampresenter=new RamdomAdasiterPresenter(lis);
 		if(dialog==null){
@@ -99,14 +107,7 @@ public class PublishedNextActivity extends BaseActivity {
 		rampresenter.startGet(type.getId());
 	}
 
-	private void initView() {
-		// TODO Auto-generated method stub
-		title.setText(R.string.publish_title);
-		type=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
-		imageAll=getIntent().getStringArrayListExtra(Const.IMAGEPATH_PANORAMIC);
-		imageTest=getIntent().getStringArrayListExtra(Const.IMAGEPATH_FEATURE);
 
-	}
 
 	@Override
 	protected void onResume() {
@@ -124,15 +125,19 @@ public class PublishedNextActivity extends BaseActivity {
 			finish();
 			break;
 		case R.id.send_identy://发表宝贝
-			if(select_user!=(-1)){
-				context=ed_info.getText().toString();
-				if(context!=null&&!context.isEmpty()){
-					startPublish(type,context,select_user);
+			if(type!=null){
+				if(select_user!=(-1)){
+					context=ed_info.getText().toString();
+					if(context!=null&&!context.isEmpty()){
+						startPublish(type,context,select_user);
+					}else{
+						new ToastUtils(PublishedNextActivity.this, R.string.help_msg_11);
+					}
 				}else{
-					new ToastUtils(PublishedNextActivity.this, R.string.help_msg_11);
-				}
+					new ToastUtils(PublishedNextActivity.this, R.string.help_msg_10);
+				}	
 			}else{
-				new ToastUtils(PublishedNextActivity.this, R.string.help_msg_10);
+				new ToastUtils(PublishedNextActivity.this, R.string.help_msg_17);
 			}
 			
 			break;

@@ -116,7 +116,7 @@ public class RongImUtils {
 				}
 				return imuser;
 			}
-        }, false);
+        }, true);
 	}
 
 	/**
