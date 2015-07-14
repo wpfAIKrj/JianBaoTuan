@@ -155,5 +155,10 @@ public class Const {
 	 * 发布宝物的跳转后，取出全部分类
 	 */
 	public static final String SHOW_TYPE = "show_kinds_type";
+	
+	/**
+	 * 更新个人信息
+	 */
+	public static final int TO_UPDATA_USER_INFO = 21;
 
 }

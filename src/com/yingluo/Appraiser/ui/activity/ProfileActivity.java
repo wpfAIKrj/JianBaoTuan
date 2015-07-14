@@ -138,7 +138,9 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		ItApplication.getcurrnUser().setEmail(user.getEmail());
 		ItApplication.getcurrnUser().setNickname(user.getNickname());
 		EventBus.getDefault().post(new MyEvent(0,user));
-		new ToastUtils(this, "个人信息更新成功！");
+
+		setResult(RESULT_OK, getIntent());
+		finish();
 	}
 
 

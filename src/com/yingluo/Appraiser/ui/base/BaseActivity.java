@@ -52,6 +52,13 @@ public class BaseActivity extends Activity {
 	        win.setAttributes(winParams);
 	}
 	
+//	
+//	@Override
+//	public void onBackPressed() {
+//		// TODO Auto-generated method stub
+//		setResult(RESULT_CANCELED, getIntent());
+//		finish();
+//	}
 	
 	/**
      * 隐藏软键盘

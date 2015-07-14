@@ -151,7 +151,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		final String pwd=ed_pwd.getText().toString();
 		 if(TelNumMath.isMobileNO(name)){
 			 if(!pwd.isEmpty()&&pwd.length()>5){
-				 dialog=DialogUtil.createLoadingDialog(this, "登陆中.....");
+				 dialog=DialogUtil.createLoadingDialog(this, "登录中...");
 				 dialog.show();
 				 mpresenter.startLogin(name, pwd);
 			 }else{

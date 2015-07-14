@@ -68,7 +68,7 @@ public class UserSetActivity extends BaseActivity {
 			finish();
 		}
 		if (v.getId() == R.id.layout_item1) {// 跳转到个人资料
-			startActivity(new Intent(UserSetActivity.this, ProfileActivity.class));
+			startActivityForResult(new Intent(UserSetActivity.this, ProfileActivity.class),Const.TO_UPDATA_USER_INFO);
 		}
 		if (v.getId() == R.id.layout_item2) {// 修改密码
 			startActivityForResult(new Intent(UserSetActivity.this,
@@ -126,4 +126,14 @@ public class UserSetActivity extends BaseActivity {
     		cache_number.setText(number+" ");
     	}
     }
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==Const.TO_UPDATA_USER_INFO&&resultCode==RESULT_OK){
+			new ToastUtils(this, "个人信息更新成功！");	
+		}
+	}
 }

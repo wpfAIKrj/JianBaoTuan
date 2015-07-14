@@ -33,6 +33,7 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.DialogForResult;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
@@ -376,6 +377,7 @@ public class ActivityUserDelails extends BaseActivity {
 				loaddialog.dismiss();
 			}
 			new ToastUtils(ActivityUserDelails.this, errorMsg);
+			
 		}
 	};
 	
@@ -460,7 +462,8 @@ public class ActivityUserDelails extends BaseActivity {
 				resultadapter.setData(infoModel.treasureList);
 				resultadapter.setListViewHeightBasedOnChildren(peopleview);
 		}else{//隐藏鉴定结果
-			
+			setResult(RESULT_CANCELED, getIntent());
+			finish();
 		}
 	}
 
