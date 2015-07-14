@@ -115,6 +115,7 @@
             android:background="@color/bt_color"
             android:gravity="center"
             android:text="评 论"
+             android:layout_marginRight="@dimen/x10"
             android:textColor="@color/wite"
             android:textSize="@dimen/x30" />
 
@@ -122,13 +123,14 @@
             android:id="@+id/btn_goto"
             android:layout_width="@dimen/x168"
             android:layout_height="@dimen/y94"
-            android:layout_marginLeft="@dimen/x10"
+           
             android:layout_marginRight="@dimen/x14"
             android:background="@color/dialog_title_color"
             android:gravity="center"
             android:text="@string/identiy_by_me"
             android:textColor="@color/wite"
-            android:textSize="@dimen/x30" />
+            android:textSize="@dimen/x30" 
+            android:visibility="gone"/>
     </LinearLayout>
 
 

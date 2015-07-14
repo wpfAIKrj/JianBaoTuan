@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -66,7 +67,7 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.detail_back)
 	private View detail_back;
 	@ViewInject(R.id.btn_goto)
-	private View btn_goto;
+	private Button btn_goto;
 
 	@ViewInject(R.id.ed_context)
 	private EditText ed_text;
@@ -126,7 +127,7 @@ public class ActivityUserDelails extends BaseActivity {
 	
 	
 	public long to_user_id=0;
-	
+
 	
 	@OnClick({R.id.tv_other_title,R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
 	public void doClick(View view) {
@@ -360,6 +361,9 @@ public class ActivityUserDelails extends BaseActivity {
 			if(entity.status==2){
 				tag.setText("(已鉴定)");
 				tag.setVisibility(View.VISIBLE);
+				btn_goto.setVisibility(View.GONE);
+			}else{
+				btn_goto.setVisibility(View.VISIBLE);
 			}
 			addOtherTreasure();
 			addPeopleidentity();
