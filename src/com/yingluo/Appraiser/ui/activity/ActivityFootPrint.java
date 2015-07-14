@@ -96,18 +96,23 @@ public class ActivityFootPrint extends Activity implements
 			break;
 		case R.id.cancle_all_bt:// 退出选择模式
 		{
-			layout_delet.setVisibility(View.GONE);
-			mAdapter.setScorll(false);
-			mAdapter.notifyDataSetChanged();
-			mAdapter.exitDelete();
+			exitDelete();
 		}
 			break;
 		case R.id.delete_all_bt: {
 			//删除
-			mAdapter.deleteAll(delModel);
+			mAdapter.deleteAll(this,delModel);
 		}
 			break;
 		}
+	}
+
+	public void exitDelete() {
+		// TODO Auto-generated method stub
+		layout_delet.setVisibility(View.GONE);
+		mAdapter.setScorll(false);
+		mAdapter.notifyDataSetChanged();
+		mAdapter.exitDelete();
 	}
 
 	@Override

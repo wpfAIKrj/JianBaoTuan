@@ -17,6 +17,7 @@ import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
+import com.yingluo.Appraiser.ui.activity.ActivityFootPrint;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter.MyViewHolder;
 import com.yingluo.Appraiser.view.home.ViewHots;
 import com.yingluo.Appraiser.view.viewholder.AcrivleFootVIewholder;
@@ -142,7 +143,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	}
 
-	public void deleteAll(deleteMyFootPrintsModel delModel) {
+	public void deleteAll(final ActivityFootPrint footPrint, deleteMyFootPrintsModel delModel) {
 		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		if (deleteIds.size() < 0)
@@ -162,13 +163,13 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 					list.remove(id);
 				}
 				notifyDataSetChanged();
-
+				footPrint.exitDelete();
 			}
 
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
+				
 			}
 		}, sb.toString());
 

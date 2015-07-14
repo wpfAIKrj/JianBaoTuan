@@ -113,6 +113,7 @@ public class RongImUtils {
 				UserInfo imuser=getUserInfoFromLocalCache(arg0);
 				if(imuser==null){
 					getUserInfoForId(arg0);
+					imuser=new UserInfo(arg0, "", null);
 				}
 				return imuser;
 			}
