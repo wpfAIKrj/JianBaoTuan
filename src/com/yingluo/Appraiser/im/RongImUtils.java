@@ -78,6 +78,7 @@ public class RongImUtils {
 				LogUtils.d("聊天连接成功！");
 				isconnect=true;
 			    RongCloudEvent.getInstance().setOtherListener();
+			    setUserInfo();
 			   
 			}
 			
