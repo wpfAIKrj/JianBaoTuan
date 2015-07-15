@@ -184,20 +184,34 @@
          <service android:name=".ui.server.HomeService"></service>     
          
          
+       
+         
          
           <activity android:name=".ui.activity.IMListActivity"
+          android:launchMode="singleTask"
             android:screenOrientation="portrait"
-             android:launchMode="singleTask"
-         >
-           <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
+            android:windowSoftInputMode="stateHidden|adjustResize">
 
-          		 <data
+        
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
                     android:host="com.yingluo.Appraiser"
                     android:pathPrefix="/conversationlist"
                     android:scheme="rong" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.yingluo.Appraiser"
+                    android:pathPrefix="/friend/"
+                    android:scheme="rong" />
+            </intent-filter>
+
               
           </activity>  
          
@@ -206,6 +220,7 @@
                 android:screenOrientation="portrait"
                  android:launchMode="singleTask"
               >
+           
                <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
