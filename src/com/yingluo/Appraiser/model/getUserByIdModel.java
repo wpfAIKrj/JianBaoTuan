@@ -22,10 +22,16 @@ public class getUserByIdModel extends BaseModel {
 
 	UserInfo user = null;
 	private onBasicView<UserInfo> lis;
-
+	private long id;
+	
 	public getUserByIdModel() {
 		// TODO Auto-generated constructor stub
 		httpmodel = HttpMethod.GET;
+	}
+	
+	public void getUserInfoForId(long id,onBasicView<UserInfo> listener) {
+		this.lis=listener;
+		this.id=id;
 		url = UrlUtil.getUserById();
 		StringBuffer sb = new StringBuffer(url);
 		if (NetConst.SESSIONID != null) {
@@ -34,48 +40,16 @@ public class getUserByIdModel extends BaseModel {
 		} else {
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
-		url = sb.toString();
-	}
 
-	public void sendHttp(final CommonCallBack callBack, long id) {
-		final HttpUtils httpUtils = new HttpUtils(connTimeout);
-		StringBuffer sb=new StringBuffer(url);
 		sb.append("&user_id=").append(id);
 		url=sb.toString();
-		LogUtils.d("getuser by id:"+id);
-		LogUtils.d("getuser by id: url="+url);
-		httpUtils.send(httpmodel, url, params, new RequestCallBack<String>() {
-
-			@Override
-			public void onSuccess(ResponseInfo<String> responseInfo) {
-				// TODO Auto-generated method stub
-				onSuccessForString(responseInfo.result);
-				callBack.onSuccess();
-			}
-
-			@Override
-			public void onFailure(HttpException error, String msg) {
-				// TODO Auto-generated method stub
-				onFailureForString(error.getMessage(), msg);
-				callBack.onError();
-			}
-
-		});
+		sendHttp();
 	}
+
 
 	@Override
 	public void analyzeData(String data) throws Exception {
 		// TODO Auto-generated method stub
-		// "data": {
-		// "authName": "佚名",
-		// "user_id": "1",
-		// "authLevel": "0",
-		// "authType": "0",
-		// "authImage":
-		// "http: //7xiz0t.com1.z0.glb.clouddn.com/6b18cb3a2dcfa980a3f4601f0b05ddb2.jpg",
-		// "qq": "00",
-		// "email": "99"
-		// }
 		JSONObject json = new JSONObject(data);
 		if (json != null) {
 			user = new UserInfo();
@@ -86,7 +60,10 @@ public class getUserByIdModel extends BaseModel {
 			user.setAvatar(json.getString("authImage"));
 			user.setQq(json.getString("qq"));
 			user.setEmail(json.getString("email"));
+			user.setIs_system(json.getInt("isSystem"));
+			user.setDescription(json.getString("description"));
 		}
+		lis.onSucess(user);
 
 	}
 
@@ -99,7 +76,7 @@ public class getUserByIdModel extends BaseModel {
 	@Override
 	public void onFailureForString(String error, String msg) {
 		// TODO Auto-generated method stub
-
+		lis.onFail(error, msg);
 	}
 
 	public UserInfo getResult() {

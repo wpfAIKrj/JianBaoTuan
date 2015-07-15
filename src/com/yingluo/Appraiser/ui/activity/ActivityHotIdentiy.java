@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,16 +23,23 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
+import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.im.RongImUtils;
+import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.model.MyTreasureOtherModel;
 import com.yingluo.Appraiser.model.getTreasureByIdModel;
 import com.yingluo.Appraiser.model.getTreasureByOtherIdModel;
+import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
+import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
+import com.yingluo.Appraiser.utils.ToastUtils;
 
 /**
  * 个人详情页面
@@ -42,6 +52,14 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	BitmapsUtils bitmapUtils;
 	@ViewInject(R.id.btn_back)
 	private View btn_back;
+	
+	
+	@ViewInject(R.id.button_text_title)
+	private Button tv_text_title;
+	
+	@ViewInject(R.id.context)
+	private WebView context;
+	
 	@ViewInject(R.id.iv_icon)
 	ImageView iv_icon;
 	@ViewInject(R.id.tv_name)
@@ -57,8 +75,12 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	ViewGroup btn_identified;
 
 	CollectionTreasure entity;
+	UserInfo userinfo;
+	
 	@ViewInject(R.id.btn_msg)
 	Button btn_msg;
+	
+
 	@ViewInject(R.id.swipe_refresh_widget)
 	SwipeRefreshLayout swipe_refresh_widget;
 	@ViewInject(R.id.recyclerview)
@@ -70,6 +92,9 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	getTreasureByOtherIdModel treasureModel = null;
 
 	MyTreasureOtherModel identifyModel = null;
+	
+	
+	getUserByIdModel userinfoModel=null;
 
 	private boolean isone=true;
 	private boolean istwo=true;
@@ -96,35 +121,46 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_identifing: {
-				// 设置View
-				if(isone){
-				treasureModel.sendHttp(new CommonCallBack() {
+		
+				if(userinfo!=null){
+					if(userinfo.getIs_system()==1){
+						swipe_refresh_widget.setVisibility(View.VISIBLE);
+						context.setVisibility(View.GONE);
+					}else{
+						// 设置View
+						if(isone){
+						treasureModel.sendHttp(new CommonCallBack() {
 
-					@Override
-					public void onSuccess() {
-						// TODO Auto-generated method stub
-						isone=false;
-						swipe_refresh_widget.setRefreshing(false);
-						mAdapter.setData(treasureModel.getResult());
+							@Override
+							public void onSuccess() {
+								// TODO Auto-generated method stub
+								
+								isone=false;
+								swipe_refresh_widget.setRefreshing(false);
+								mAdapter.setData(treasureModel.getResult());
 
+							}
+
+							@Override
+							public void onError() {
+								// TODO Auto-generated method stub
+								swipe_refresh_widget.setRefreshing(false);
+
+							}
+						}, 0, entity.user_id);
+						}else{
+							swipe_refresh_widget.setRefreshing(false);
+							mAdapter.setData(treasureModel.getResult());
+						}
 					}
-
-					@Override
-					public void onError() {
-						// TODO Auto-generated method stub
-						swipe_refresh_widget.setRefreshing(false);
-
-					}
-				}, 0, entity.user_id);
-				}else{
-					swipe_refresh_widget.setRefreshing(false);
-					mAdapter.setData(treasureModel.getResult());
 				}
 			}
 
 				break;
 
 			case R.id.btn_identified: {
+				context.setVisibility(View.GONE);
+				swipe_refresh_widget.setVisibility(View.VISIBLE);
 				if(istwo){
 				identifyModel.sendHttp(new CommonCallBack() {
 
@@ -155,6 +191,8 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 
 		}
 	};
+	private Dialog loaddialog;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +209,7 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		btn_identified.setOnClickListener(identifyListener);
 		treasureModel = new getTreasureByOtherIdModel();
 		identifyModel = new MyTreasureOtherModel();
+		userinfoModel=new getUserByIdModel();
 		initViews();
 	}
 
@@ -187,38 +226,25 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 		}else{
 			tv_grade_name.setText("普通用户");
 		}
-		// if (entity.authLevel < 6) {
-		//
-		// iv_grade.setImageResource(R.drawable.level01
-		// + (entity.authLevel - 1));
-		// } else {
-		// iv_grade.setImageResource(R.drawable.level06);
-		// }
-//		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		GridLayoutManager layoutManager=new GridLayoutManager(this, 2);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
 		mAdapter = new OtherTreasureAdapter();
 		recyclerview.setAdapter(mAdapter);
-		treasureModel.sendHttp(new CommonCallBack() {
+		context.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		context.getSettings().setDomStorageEnabled(true); 
+		context.getSettings().setDatabaseEnabled(true); 
+		context.getSettings().setDatabasePath(FileUtils.getInstance().getUpImage()); 
+		context.getSettings().setAppCachePath(FileUtils.getInstance().getUpImage()); 
+		context.getSettings().setAppCacheEnabled(true); 
+		
+		if(loaddialog==null)loaddialog=DialogUtil.createLoadingDialog(this, "加载数据中...");
+			loaddialog.show();
+		
+		userinfoModel.getUserInfoForId(entity.user_id, listener);
+		
+		
 
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				isone=false;
-				swipe_refresh_widget.setRefreshing(false);
-				mAdapter.setData(treasureModel.getResult());
-
-			}
-
-			@Override
-			public void onError() {
-				// TODO Auto-generated method stub
-				swipe_refresh_widget.setRefreshing(false);
-
-			}
-		}, 0, entity.user_id);
 	}
 
 	@Override
@@ -265,5 +291,74 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 			break;
 		}
 	}
+	
+	
+	
+	private onBasicView<UserInfo> listener=new onBasicView<UserInfo>() {
+		
+		@Override
+		public void onSucess(UserInfo data) {
+			// TODO Auto-generated method stub
+			if(data!=null){
+				userinfo=data;
+				SqlDataUtil.getInstance().saveUserInfo(userinfo);
+				if(userinfo.getIs_system()==1){
+					tv_text_title.setText(R.string.other_info_text);
+					if(loaddialog!=null&&loaddialog.isShowing()){
+						loaddialog.dismiss();
+					}
+					if(userinfo.getDescription()!=null){
+						   context.getSettings().setJavaScriptEnabled(true);
+						   context.loadData("<html>"+userinfo.getDescription()+"</html>",
+								   "text/html; charset=UTF-8", null);
+					}else{
+						
+					}
+				}else{
+					tv_text_title.setText(R.string.other_identitycollectinfo_text);
+					context.setVisibility(View.GONE);
+					swipe_refresh_widget.setVisibility(View.VISIBLE);
+					treasureModel.sendHttp(new CommonCallBack() {
+								@Override
+								public void onSuccess() {
+									// TODO Auto-generated method stub
+									if(loaddialog!=null&&loaddialog.isShowing()){
+										loaddialog.dismiss();
+									}
+									isone=false;
+									swipe_refresh_widget.setRefreshing(false);
+									mAdapter.setData(treasureModel.getResult());
+								}
+								@Override
+								public void onError() {
+									// TODO Auto-generated method stub
+									if(loaddialog!=null&&loaddialog.isShowing()){
+										loaddialog.dismiss();
+									}
+									swipe_refresh_widget.setRefreshing(false);
+					
+								}
+							}, 0, userinfo.getId());
+				}
+				
+				
+			}else{
+				if(loaddialog!=null&&loaddialog.isShowing()){
+					loaddialog.dismiss();
+				}
+				ActivityHotIdentiy.this.finish();
+			}
+		}
+		
+		@Override
+		public void onFail(String errorCode, String errorMsg) {
+			// TODO Auto-generated method stub
+			if(loaddialog!=null&&loaddialog.isShowing()){
+				loaddialog.dismiss();
+			}
+			new ToastUtils(ActivityHotIdentiy.this, errorMsg);
+			ActivityHotIdentiy.this.finish();
+		}
+	};
 
 }

@@ -45,6 +45,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         public final static Property Treasure_number = new Property(19, Integer.class, "treasure_number", false, "TREASURE_NUMBER");
         public final static Property Treasure_record_number = new Property(20, Integer.class, "treasure_record_number", false, "TREASURE_RECORD_NUMBER");
         public final static Property Foot_number = new Property(21, Integer.class, "foot_number", false, "FOOT_NUMBER");
+        public final static Property Description = new Property(22, String.class, "description", false, "DESCRIPTION");
     };
 
 
@@ -81,7 +82,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
                 "'EMAIL' TEXT," + // 18: email
                 "'TREASURE_NUMBER' INTEGER," + // 19: treasure_number
                 "'TREASURE_RECORD_NUMBER' INTEGER," + // 20: treasure_record_number
-                "'FOOT_NUMBER' INTEGER);"); // 21: foot_number
+                "'FOOT_NUMBER' INTEGER," + // 21: foot_number
+                "'DESCRIPTION' TEXT);"); // 22: description
     }
 
     /** Drops the underlying database table. */
@@ -204,6 +206,11 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         if (foot_number != null) {
             stmt.bindLong(22, foot_number);
         }
+ 
+        String description = entity.getDescription();
+        if (description != null) {
+            stmt.bindString(23, description);
+        }
     }
 
     /** @inheritdoc */
@@ -237,7 +244,8 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
             cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // email
             cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19), // treasure_number
             cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20), // treasure_record_number
-            cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21) // foot_number
+            cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21), // foot_number
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22) // description
         );
         return entity;
     }
@@ -267,6 +275,7 @@ public class UserInfoDao extends AbstractDao<UserInfo, Long> {
         entity.setTreasure_number(cursor.isNull(offset + 19) ? null : cursor.getInt(offset + 19));
         entity.setTreasure_record_number(cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20));
         entity.setFoot_number(cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21));
+        entity.setDescription(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
      }
     
     /** @inheritdoc */

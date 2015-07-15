@@ -26,6 +26,7 @@ import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.ImUserInfo;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
@@ -129,10 +130,10 @@ public class RongImUtils {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(arg0);
 		userinfoModel=new getUserByIdModel();
-		userinfoModel.sendHttp(new CommonCallBack() {
+		userinfoModel.getUserInfoForId(id,new onBasicView<com.yingluo.Appraiser.bean.UserInfo>() {
 			
 			@Override
-			public void onSuccess() {
+			public void onSucess(com.yingluo.Appraiser.bean.UserInfo data) {
 				// TODO Auto-generated method stub
 				com.yingluo.Appraiser.bean.UserInfo user = userinfoModel.getResult();
 				if(user!=null){
@@ -147,11 +148,11 @@ public class RongImUtils {
 			}
 			
 			@Override
-			public void onError() {
+			public void onFail(String errorCode, String errorMsg) {
 				// TODO Auto-generated method stub
 				
 			}
-		}, id);
+		});
 	}
 
 	/**

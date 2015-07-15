@@ -124,9 +124,15 @@ public class SqlDataUtil {
 	 * @param moblie
 	 */
 	public UserInfo getUserForPhone(String moblie) {
-		QueryBuilder<UserInfo> qb = userdao.queryBuilder();
-		qb.where(UserInfoDao.Properties.Mobile.eq(moblie));
-		UserInfo user = qb.unique();
+		UserInfo user=null;
+		try {
+			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
+			qb.where(UserInfoDao.Properties.Mobile.eq(moblie));
+			user = qb.unique();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return user;
 	}
 
