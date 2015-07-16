@@ -154,7 +154,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 				}
 			}
 		});
-		mRecyclerView.setOnScrollListener(Scrolllistener);
+		//mRecyclerView.setOnScrollListener(Scrolllistener);
 
 		mRecyclerView.setHasFixedSize(true);
 

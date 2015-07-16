@@ -89,7 +89,7 @@ public class BitmapsUtils {
 		.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
 		.bitmapConfig(Bitmap.Config.RGB_565)
 		.resetViewBeforeLoading(true)
-		.displayer(new FadeInBitmapDisplayer(200))
+		.displayer(new FadeInBitmapDisplayer(1000))
 		.build();
 		config.defaultDisplayImageOptions(options);
 		// Initialize ImageLoader with configuration.

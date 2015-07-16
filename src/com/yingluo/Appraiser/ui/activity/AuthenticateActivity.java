@@ -50,7 +50,7 @@ public class AuthenticateActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		Intent intent;
 		switch (v.getId()) {
-		case R.id.button_category://返回上层
+		case R.id.btn_back://返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			finish();
