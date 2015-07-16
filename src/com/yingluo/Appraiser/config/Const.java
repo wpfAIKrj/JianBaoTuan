@@ -160,5 +160,9 @@ public class Const {
 	 * 更新个人信息
 	 */
 	public static final int TO_UPDATA_USER_INFO = 21;
+	/**
+	 * 当前选择的图片序号
+	 */
+	public static final String SELECT_INDEX = "select_image_index";
 
 }

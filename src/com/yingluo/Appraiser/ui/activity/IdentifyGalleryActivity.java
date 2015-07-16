@@ -52,6 +52,8 @@ public class IdentifyGalleryActivity extends BaseActivity{
 	
 	public ArrayList<String> selectList;
 	public int type;
+	
+	public int currentItem;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class IdentifyGalleryActivity extends BaseActivity{
 		del_bt.setOnClickListener(new DelListener());
 		type=getIntent().getIntExtra(Const.SELECT_ALBUM_TYPE, 0);
 		selectList=getIntent().getStringArrayListExtra(Const.ENTITY);
-		
+		currentItem=getIntent().getIntExtra(Const.SELECT_INDEX, 0);
 		RelativeLayout layout=(RelativeLayout)findViewById(R.id.bottom_layout);
 		layout.setVisibility(View.GONE);
 		isShowOkBt();
@@ -81,7 +83,7 @@ public class IdentifyGalleryActivity extends BaseActivity{
 		adapter = new MyPageAdapter(listViews);
 		pager.setAdapter(adapter);
 		pager.setPageMargin(20);
-		pager.setCurrentItem(0);
+		pager.setCurrentItem(currentItem);
 	}
 	
 	private OnPageChangeListener pageChangeListener = new OnPageChangeListener() {

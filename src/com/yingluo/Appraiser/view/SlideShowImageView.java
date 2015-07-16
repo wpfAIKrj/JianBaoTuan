@@ -396,6 +396,7 @@ public class SlideShowImageView extends FrameLayout {
 			if(imageRes!=null){
 				Intent mIntent = new Intent(getContext(), IdentifyGalleryActivity.class);
 				mIntent.putExtra(Const.ENTITY, imageRes);
+				mIntent.putExtra(Const.SELECT_INDEX, currentItem);
 				getContext().startActivity(mIntent);
 			}
 		}
