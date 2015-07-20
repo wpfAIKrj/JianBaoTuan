@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.view.home;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
@@ -46,6 +47,8 @@ public class ViewArticles extends LinearLayout {
 
 	private ContentInfo currnt;
 
+	private Context mContext;
+	
 	public ViewArticles(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -76,6 +79,7 @@ public class ViewArticles extends LinearLayout {
 	}
 
 	private void init(Context context) {
+		this.mContext = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_3, this);
 		ViewUtils.inject(this);
 	}
@@ -92,7 +96,6 @@ public class ViewArticles extends LinearLayout {
 		bitmapUtils.display(iv, item.getImage(), BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.getTitle());
 		tv_num.setText(item.getView_times() + "");
-
 	}
 
 	/**
@@ -106,17 +109,14 @@ public class ViewArticles extends LinearLayout {
 	 *            高亮颜色
 	 * @return
 	 */
-	private SpannableStringBuilder highlightText(String all, String target,
-			int color) {
+	private SpannableStringBuilder highlightText(String all, String target, int color) {
 		SpannableStringBuilder spannable = new SpannableStringBuilder(all);
 		CharacterStyle span = null;
 		Pattern p = Pattern.compile(target);
 		Matcher m = p.matcher(all);
 		while (m.find()) {
-			span = new ForegroundColorSpan(getContext().getResources()
-					.getColor(color));// 需要重复！
-			spannable.setSpan(span, m.start(), m.end(),
-					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			span = new ForegroundColorSpan(getContext().getResources().getColor(color));// 需要重复！
+			spannable.setSpan(span, m.start(), m.end(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		return spannable;
 	}
@@ -128,11 +128,12 @@ public class ViewArticles extends LinearLayout {
 		}
 		switch (v.getId()) {
 		case R.id.iv_item3: {
-//			ContentInfo contentInfo = (ContentInfo) v.getTag();
-			Intent intent = new Intent(getContext(),
-					InformationDetailsActivity.class);
+			// ContentInfo contentInfo = (ContentInfo) v.getTag();
+			Intent intent = new Intent(getContext(), InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, currnt);
 			getContext().startActivity(intent);
+			Activity act = (Activity) mContext;
+			act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 

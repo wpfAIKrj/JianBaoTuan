@@ -80,7 +80,7 @@ public class BitmapsUtils {
 		config.imageDownloader(new BaseImageDownloader(context, 5*1000, 10*1000));
 		config.writeDebugLogs(); // Remove for release app
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
-		.showImageOnLoading(R.drawable.loading_bg)
+//		.showImageOnLoading(R.drawable.loading_bg)
 		.showImageForEmptyUri(R.drawable.load_fail)
 		.showImageOnFail(R.drawable.load_fail)
 		.considerExifParams(true)

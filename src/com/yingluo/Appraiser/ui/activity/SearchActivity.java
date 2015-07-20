@@ -31,8 +31,7 @@ import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class SearchActivity extends BaseActivity implements
-RefreshLoadMoreListener{
+public class SearchActivity extends BaseActivity implements RefreshLoadMoreListener {
 
 	@ViewInject(R.id.button_category)
 	ImageView button_category;
@@ -49,41 +48,39 @@ RefreshLoadMoreListener{
 	@ViewInject(R.id.home_title)
 	private TextView home_title;
 
-
 	int type = 2;
 
 	int current_page = 0;
 
 	private List<CollectionTreasure> list = null;
 
-	
+	private int kindId = 0;
 
-	private int kindId= 0;
-	
 	private IdentifyPresenter identifyPresenter;
 	private TreasureType treasuretype;
-	
-	private boolean isFirest=true;
-	
+
+	private boolean isFirest = true;
+
 	private Dialog dialog;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		treasuretype=(TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
-		if(treasuretype==null){
-			kindId=0;
-		}else{
-			kindId=treasuretype.getId().intValue();
+		treasuretype = (TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
+		if (treasuretype == null) {
+			kindId = 0;
+		} else {
+			kindId = treasuretype.getId().intValue();
 		}
 		setContentView(R.layout.layout_identiy);
 		ViewUtils.inject(this);
 		initViews();
 	}
-	
+
 	protected void initViews() {
 		home_title.setText(treasuretype.name);
-		identifyPresenter=new IdentifyPresenter(netlistener1);
+		identifyPresenter = new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
 		list = new ArrayList<CollectionTreasure>();
 		if (list != null && list.size() != 0) {
@@ -97,42 +94,49 @@ RefreshLoadMoreListener{
 		// prrv.refresh();
 
 	}
-	private onListView<CollectionTreasure> netlistener1=new onListView<CollectionTreasure>() {
-		
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
+	private onListView<CollectionTreasure> netlistener1 = new onListView<CollectionTreasure>() {
+
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
 			// TODO Auto-generated method stub
-			isFirest=false;
+			isFirest = false;
 			prrv.stopRefresh();
 			if (data.size() == 0) {
 				new ToastUtils(SearchActivity.this, "没有更多数据");
 			}
 			mAdapter.setData(data);
-			if(dialog!=null&&dialog.isShowing()){
+			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
 			prrv.stopRefresh();
-			if(dialog!=null&&dialog.isShowing()){
+			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
 			new ToastUtils(SearchActivity.this, errorMsg);
 		}
 	};
-	
-	 	@Override
-	    protected void onResume() {
-	    	// TODO Auto-generated method stub
-	    	super.onResume();
-	    	if(isFirest){
-	    		getIndentity();
-	    	}
-	    }
-	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (isFirest) {
+			getIndentity();
+		}
+	}
 
 	@Override
 	public void onRefresh() {
@@ -144,11 +148,11 @@ RefreshLoadMoreListener{
 
 	private void getIndentity() {
 		// TODO Auto-generated method stub
-		if(dialog==null){
-			dialog=DialogUtil.createLoadingDialog(this, "获取鉴定宝物中....");
+		if (dialog == null) {
+			dialog = DialogUtil.createLoadingDialog(this, "获取鉴定宝物中....");
 		}
 		dialog.show();
-		identifyPresenter.getIdentity(kindId,type);
+		identifyPresenter.getIdentity(kindId, type);
 	}
 
 	@Override
@@ -156,39 +160,31 @@ RefreshLoadMoreListener{
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void setIdentifyBackground(int id) {
 		switch (id) {
 		case R.id.btn_identifing: {
 			// 先设置背景
-			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
-			btn_identifing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources().getColor(R.color.bt_color));
+			btn_identifing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.bt_color));
 
-			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_identified.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_identified.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_identified.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 
 			break;
 
 		case R.id.btn_identifed: {
-			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_identifing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_identifing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 
-			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.bt_color));
-			btn_identified.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.bt_color));
+			((Button) btn_identified.getChildAt(0)).setTextColor(getResources().getColor(R.color.bt_color));
+			btn_identified.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.bt_color));
 		}
 			break;
 		}
 	}
-	
+
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
 		// TODO Auto-generated method stub
@@ -197,6 +193,7 @@ RefreshLoadMoreListener{
 		case R.id.button_category: {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 			break;
 		case R.id.btn_identifing: {
@@ -205,7 +202,7 @@ RefreshLoadMoreListener{
 			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
-	
+
 			getIndentity();
 
 		}
@@ -218,7 +215,7 @@ RefreshLoadMoreListener{
 			prrv.stopRefresh();
 			prrv.setLoadMoreCompleted();
 			getIndentity();
-	
+
 		}
 
 			break;

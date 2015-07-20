@@ -1,6 +1,8 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,6 +20,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.R;
@@ -69,6 +72,10 @@ public class MainActivity extends FragmentActivity implements
 	private SelectPhotoDialog photodialog;
 	private ImageUtils imageUtils;
 	private Dialog Logodialong;
+
+	//用于判断第二次点击退出
+	private static Boolean isExit = false;
+	private static Boolean hasTask = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -181,21 +188,29 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-
-		// if(keyCode==KeyEvent.KEYCODE_BACK){
-		// if (System.currentTimeMillis() - this.mkeyTime > 2000L){
-		// this.mkeyTime = System.currentTimeMillis();
-		// return false;
-		// }else{
-		// //
-		// return false;
-		// }
-		//
-		// }
-		return super.onKeyDown(keyCode, event);
-	}
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (isExit == false) {
+                isExit = true;
+                Toast.makeText(this, "再按一次将退出程序",Toast.LENGTH_SHORT).show();
+                if (!hasTask) {
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            isExit = false;
+                            hasTask = false;
+                        }
+                    }, 3000);
+                }
+            } else {
+                finish(); // 退出应用
+                System.exit(0);
+            }
+        } else if (event.getRepeatCount() != 0) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 	@Override
 	public void onTabSelected(int index) {
@@ -219,6 +234,8 @@ public class MainActivity extends FragmentActivity implements
 			} else {
 				transaction.show(mHomeFragment);
 			}
+			mHomeFragment.lazyLoad();
+			
 			break;
 		case 1:
 			if (null == mIdentiyFragment) {

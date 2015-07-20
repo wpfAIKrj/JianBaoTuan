@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -75,10 +76,8 @@ public class SlideShowView extends FrameLayout {
 
 	};
 
+	private List<CollectionTreasure> imageRes = null;
 
-
-	private List<CollectionTreasure> imageRes=null;	
-	
 	public SlideShowView(Context context) {
 		this(context, null);
 		// TODO Auto-generated constructor stub
@@ -104,11 +103,11 @@ public class SlideShowView extends FrameLayout {
 
 	/**
 	 * 设置数据
-	 * */
+	 */
 	public void prepareData(List<CollectionTreasure> imageRes) {
 		if (imageRes == null)
 			return;
-		this.imageRes=imageRes;
+		this.imageRes = imageRes;
 		String[] list = new String[imageRes.size()];
 		for (int i = 0; i < list.length; i++) {
 			list[i] = imageRes.get(i).image;
@@ -124,8 +123,7 @@ public class SlideShowView extends FrameLayout {
 	 */
 	private void startPlay() {
 		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-		scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4,
-				TimeUnit.SECONDS);
+		scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -153,8 +151,7 @@ public class SlideShowView extends FrameLayout {
 		if (imageUrls == null || imageUrls.length == 0)
 			return;
 
-		LayoutInflater.from(context).inflate(R.layout.layout_home_banner, this,
-				true);
+		LayoutInflater.from(context).inflate(R.layout.layout_home_banner, this, true);
 
 		LinearLayout dotLayout = (LinearLayout) findViewById(R.id.llPoints);
 		dotLayout.removeAllViews();
@@ -163,7 +160,7 @@ public class SlideShowView extends FrameLayout {
 		for (int i = 0; i < imageUrls.length; i++) {
 			ImageView view = new ImageView(context);
 			view.setTag(imageUrls[i]);
-			if (i == 0)// 给一个默认图
+			if (i == 0) // 给一个默认图
 				view.setBackgroundResource(R.drawable.loading_bg);
 			view.setScaleType(ScaleType.FIT_XY);
 			view.setOnClickListener(onclick);
@@ -171,7 +168,7 @@ public class SlideShowView extends FrameLayout {
 
 			ImageView dotView = new ImageView(context);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					(int)getResources().getDimension(R.dimen.x16), (int)getResources().getDimension(R.dimen.x16));
+					(int) getResources().getDimension(R.dimen.x16), (int) getResources().getDimension(R.dimen.x16));
 			params.leftMargin = 10;
 			params.rightMargin = 10;
 			params.bottomMargin = 20;
@@ -203,8 +200,7 @@ public class SlideShowView extends FrameLayout {
 		public Object instantiateItem(View container, int position) {
 			ImageView imageView = imageViewsList.get(position);
 			// imageLoader.displayImage(imageView.getTag() + "", imageView);
-			bitmapsUtils.display(imageView, (String) imageView.getTag(),
-					BitmapsUtils.TYPE_YES);
+			bitmapsUtils.display(imageView, (String) imageView.getTag(), BitmapsUtils.TYPE_YES);
 			((ViewPager) container).addView(imageViewsList.get(position));
 			return imageViewsList.get(position);
 		}
@@ -267,14 +263,12 @@ public class SlideShowView extends FrameLayout {
 				break;
 			case 0:// 滑动结束，即切换完毕或者加载完毕
 					// 当前为最后一张，此时从右向左滑，则切换到第一张
-				if (viewPager.getCurrentItem() == viewPager.getAdapter()
-						.getCount() - 1 && !isAutoPlay) {
+				if (viewPager.getCurrentItem() == viewPager.getAdapter().getCount() - 1 && !isAutoPlay) {
 					viewPager.setCurrentItem(0);
 				}
 				// 当前为第一张，此时从左向右滑，则切换到最后一张
 				else if (viewPager.getCurrentItem() == 0 && !isAutoPlay) {
-					viewPager
-							.setCurrentItem(viewPager.getAdapter().getCount() - 1);
+					viewPager.setCurrentItem(viewPager.getAdapter().getCount() - 1);
 				}
 				break;
 			}
@@ -283,7 +277,7 @@ public class SlideShowView extends FrameLayout {
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
@@ -293,11 +287,9 @@ public class SlideShowView extends FrameLayout {
 			currentItem = pos;
 			for (int i = 0; i < dotViewsList.size(); i++) {
 				if (i == pos) {
-					((View) dotViewsList.get(pos))
-							.setBackgroundResource(R.drawable.ball_select);
+					((View) dotViewsList.get(pos)).setBackgroundResource(R.drawable.ball_select);
 				} else {
-					((View) dotViewsList.get(i))
-							.setBackgroundResource(R.drawable.ball_normal);
+					((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.ball_normal);
 				}
 			}
 		}
@@ -372,20 +364,21 @@ public class SlideShowView extends FrameLayout {
 		}
 	}
 
-	
-	private OnClickListener onclick=new OnClickListener() {
-		
+	private OnClickListener onclick = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if(imageRes!=null){
+			if (imageRes != null) {
 				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
 				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
 				getContext().startActivity(mIntent);
+				Activity act = (Activity) context;
+				act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		}
 	};
-	
+
 	/**
 	 * ImageLoader 图片组件初始化
 	 * 

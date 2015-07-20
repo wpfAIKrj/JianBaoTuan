@@ -40,8 +40,7 @@ import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class IdentiyFragment extends BaseFragment implements
-		RefreshLoadMoreListener {
+public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreListener {
 
 	@ViewInject(R.id.button_category)
 	ImageView button_category;
@@ -68,8 +67,7 @@ public class IdentiyFragment extends BaseFragment implements
 	private IdentifyPresenter identifyPresenter;
 
 	private Dialog dialog;
-	
-	
+
 	@ViewInject(R.id.tv_show_no_data)
 	private TextView tv_show_no_data;
 
@@ -79,8 +77,7 @@ public class IdentiyFragment extends BaseFragment implements
 		setIdentifyBackground(v.getId());
 		switch (v.getId()) {
 		case R.id.button_category: {
-			Intent mIntent = new Intent(getActivity(),
-					KindOfPreciousActivity.class);
+			Intent mIntent = new Intent(getActivity(), KindOfPreciousActivity.class);
 			mActivity.startActivityForResult(mIntent, Const.TO_INDENTIFY);
 		}
 			break;
@@ -90,7 +87,7 @@ public class IdentiyFragment extends BaseFragment implements
 			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
-			showImageData(type,kindId);
+			showImageData(type, kindId);
 			if (app != null) {
 				if (kindId == 0) {
 					if (app.getHasIdentify() != null) {
@@ -113,7 +110,7 @@ public class IdentiyFragment extends BaseFragment implements
 			// 获取已经鉴定数据
 			type = 2;
 			prrv.stopRefresh();
-			showImageData(type,kindId);
+			showImageData(type, kindId);
 			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
 			if (app != null) {
@@ -137,28 +134,27 @@ public class IdentiyFragment extends BaseFragment implements
 
 	private void showImageData(int type, long kindId) {
 		// TODO Auto-generated method stub
-		String str=FileUtils.getInstance().getFileForKindJson(kindId, type);
-		if(str!=null){
+		String str = FileUtils.getInstance().getFileForKindJson(kindId, type);
+		if (str != null) {
 			try {
 				Gson gson = new Gson();
 				List<CollectionTreasure> arrlist = gson.fromJson(str, new TypeToken<List<CollectionTreasure>>() {
 				}.getType());
-				if(arrlist!=null&&arrlist.size()>0){
+				if (arrlist != null && arrlist.size() > 0) {
 					tv_show_no_data.setVisibility(View.GONE);
 					mAdapter.setData(arrlist);
-				}else{
+				} else {
 					tv_show_no_data.setVisibility(View.VISIBLE);
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 		}
-		
+
 	}
 
 	@Override
-	protected View createView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_identiy, container, false);
 	}
@@ -197,29 +193,21 @@ public class IdentiyFragment extends BaseFragment implements
 		switch (id) {
 		case R.id.btn_identifing: {
 			// 先设置背景
-			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.dialog_title_color));
-			btn_identifing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.dialog_title_color));
+			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_identifing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 
-			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_identified.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_identified.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_identified.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 
 			break;
 
 		case R.id.btn_identifed: {
-			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_identifing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_identifing.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_identifing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 
-			((Button) btn_identified.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.dialog_title_color));
-			btn_identified.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.dialog_title_color));
+			((Button) btn_identified.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_identified.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 		}
 			break;
 		}
@@ -244,9 +232,8 @@ public class IdentiyFragment extends BaseFragment implements
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == Const.TO_INDENTIFY
-				|| resultCode == Activity.RESULT_OK) {
-			kindId =  data.getIntExtra(Const.KIND_ID, 0);
+		if (requestCode == Const.TO_INDENTIFY || resultCode == Activity.RESULT_OK) {
+			kindId = data.getIntExtra(Const.KIND_ID, 0);
 			showImageData(type, kindId);
 			getIndentity();
 		}
@@ -261,7 +248,7 @@ public class IdentiyFragment extends BaseFragment implements
 			if (data.size() == 0) {
 				tv_show_no_data.setVisibility(View.VISIBLE);
 				new ToastUtils(mActivity, "没有更多数据");
-			}else{
+			} else {
 				tv_show_no_data.setVisibility(View.GONE);
 			}
 			mAdapter.setData(data);

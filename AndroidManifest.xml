@@ -44,7 +44,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:name="com.yingluo.Appraiser.app.ItApplication">
+        android:theme="@android:style/Theme.Black.NoTitleBar" android:name="com.yingluo.Appraiser.app.ItApplication">
         
            <meta-data
               android:name="RONG_CLOUD_APP_KEY"

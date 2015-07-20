@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.json.JSONException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
@@ -61,6 +62,8 @@ public class ViewHots extends LinearLayout {
 
 	BitmapsUtils bitmapUtils;
 
+	private Context mContext;
+
 	private CollectionTreasure currnt;
 
 	public ViewHots(Context context) {
@@ -93,19 +96,20 @@ public class ViewHots extends LinearLayout {
 	}
 
 	private void init(Context context) {
+		mContext = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
-
 		ViewUtils.inject(this);
-
 		iv_big.setClickable(true);
-
 		iv_small.setClickable(true);
-
 	}
 
 	public void setItem(CollectionTreasure item) {
 		if (item == null) {
 			LogUtils.e("Hots  CollectionEntity is null");
+			return;
+		}
+		if (iv_big.getTag() != null) {
+			// 防止闪烁
 			return;
 		}
 		currnt = item;
@@ -189,17 +193,14 @@ public class ViewHots extends LinearLayout {
 	 *            高亮颜色
 	 * @return
 	 */
-	private SpannableStringBuilder highlightText(String all, String target,
-			int color) {
+	private SpannableStringBuilder highlightText(String all, String target, int color) {
 		SpannableStringBuilder spannable = new SpannableStringBuilder(all);
 		CharacterStyle span = null;
 		Pattern p = Pattern.compile(target);
 		Matcher m = p.matcher(all);
 		while (m.find()) {
-			span = new ForegroundColorSpan(getContext().getResources()
-					.getColor(color));// 需要重复！
-			spannable.setSpan(span, m.start(), m.end(),
-					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			span = new ForegroundColorSpan(getContext().getResources().getColor(color));// 需要重复！
+			spannable.setSpan(span, m.start(), m.end(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		return spannable;
 	}
@@ -214,15 +215,18 @@ public class ViewHots extends LinearLayout {
 			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
 			mIntent.putExtra(Const.ENTITY, currnt);
 			getContext().startActivity(mIntent);
+			Activity act = (Activity) mContext;
+			act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 
 		}
-
 			break;
 
 		case R.id.imageview_small_icon: {
 			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, currnt);
 			getContext().startActivity((mIntent));
+			Activity act = (Activity) mContext;
+			act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 		}

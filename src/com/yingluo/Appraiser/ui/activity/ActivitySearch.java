@@ -103,10 +103,18 @@ public class ActivitySearch extends BaseActivity {
 				// TODO Auto-generated method stub
 				setResult(RESULT_CANCELED,getIntent());
 				finish();
+				overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			}
 		});
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	class MyAdapter extends BaseAdapter {
 
 		Context mContext;
@@ -168,6 +176,7 @@ public class ActivitySearch extends BaseActivity {
 		if(requestCode==Const.TO_KIND_INDENTIFY&&resultCode==RESULT_OK){
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 	}
 

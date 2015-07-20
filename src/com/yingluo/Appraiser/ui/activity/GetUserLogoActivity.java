@@ -90,6 +90,13 @@ public class GetUserLogoActivity extends BaseActivity  {
 		
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	private void init() {
 		// TODO Auto-generated method stub
 		try {
@@ -130,11 +137,13 @@ public class GetUserLogoActivity extends BaseActivity  {
 			FileUtils.getInstance().deleteFile(path);
 			setResult(RESULT_CANCELED);
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		case R.id.button_category:
 			FileUtils.getInstance().deleteFile(path);
 			setResult(RESULT_CANCELED);
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		}
 	}

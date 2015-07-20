@@ -35,35 +35,33 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
+
 /**
  * 文章详细页面
+ * 
  * @author Administrator
  *
  */
 public class InformationDetailsActivity extends BaseActivity {
 
-	
 	@ViewInject(R.id.detail_share)
 	private ImageView share;
-	
+
 	@ViewInject(R.id.detail_collect)
 	private ImageView collect;
-	
+
 	@ViewInject(R.id.detail_cancle_collect)
 	private ImageView canclecollect;
 	@ViewInject(R.id.title)
 	private TextView title;
-	
-	
+
 	@ViewInject(R.id.logo)
 	private ImageView logo;
-	
-	
+
 	@ViewInject(R.id.context)
 	private WebView context;
-	
+
 	private ContentInfo info;
-	
 
 	private Dialog dialog1;
 
@@ -72,101 +70,95 @@ public class InformationDetailsActivity extends BaseActivity {
 	protected Dialog loaddialog;
 
 	private getdetailInfoPresenter getdetailPresenter;
-	
-	private boolean isFirest=true;
-	
+
+	private boolean isFirest = true;
+
 	private Dialog loaddialog2;
-	
+
 	private Dialog loaddialog3;
 	private deleteInfoPresenter deletePresenter;
 
-
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_informationdetail);
 		ViewUtils.inject(this);
-		
-		info=(ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
-		collectPresenter=new collectInfoPresenter(listener);
-		getdetailPresenter=new getdetailInfoPresenter(listener1);
-		deletePresenter=new deleteInfoPresenter(listener2);
+
+		info = (ContentInfo) getIntent().getSerializableExtra(Const.ArticleId);
+		collectPresenter = new collectInfoPresenter(listener);
+		getdetailPresenter = new getdetailInfoPresenter(listener1);
+		deletePresenter = new deleteInfoPresenter(listener2);
 		context.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-		context.getSettings().setDomStorageEnabled(true); 
-		context.getSettings().setDatabaseEnabled(true); 
-		context.getSettings().setDatabasePath(FileUtils.getInstance().getUpImage()); 
-		context.getSettings().setAppCachePath(FileUtils.getInstance().getUpImage()); 
-		context.getSettings().setAppCacheEnabled(true); 
+		context.getSettings().setDomStorageEnabled(true);
+		context.getSettings().setDatabaseEnabled(true);
+		context.getSettings().setDatabasePath(FileUtils.getInstance().getUpImage());
+		context.getSettings().setAppCachePath(FileUtils.getInstance().getUpImage());
+		context.getSettings().setAppCacheEnabled(true);
 		initData();
 	}
-	
+
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		if(isFirest){
-			isFirest=false;
+		if (isFirest) {
+			isFirest = false;
 			getdetailPresenter.getDetailInfo(info.getId());
-			loaddialog2=DialogUtil.createLoadingDialog(this, "获取详细文章中....");
+			loaddialog2 = DialogUtil.createLoadingDialog(this, "获取详细文章中....");
 			loaddialog2.show();
 		}
 	}
-	
-
 
 	private void initData() {
 		// TODO Auto-generated method stub
 
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
-		if(info.getContent()!=null){
-			   context.getSettings().setJavaScriptEnabled(true);
-			   context.loadData("<html>"+info.getContent()+"</html>",
-					   "text/html; charset=UTF-8", null);
-		}else{
+		if (info.getContent() != null) {
+			context.getSettings().setJavaScriptEnabled(true);
+			context.loadData("<html>" + info.getContent() + "</html>", "text/html; charset=UTF-8", null);
+		} else {
 		}
-		if(info.getIsCollected()!=null&&info.getIsCollected()!=0){
+		if (info.getIsCollected() != null && info.getIsCollected() != 0) {
 			collect.setVisibility(View.GONE);
 			canclecollect.setVisibility(View.VISIBLE);
-		}else{
+		} else {
 			collect.setVisibility(View.VISIBLE);
 			canclecollect.setVisibility(View.GONE);
 		}
 	}
 
-
-	@OnClick({R.id.detail_back,R.id.detail_share,R.id.detail_collect,R.id.detail_cancle_collect})
+	@OnClick({ R.id.detail_back, R.id.detail_share, R.id.detail_collect, R.id.detail_cancle_collect })
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.detail_back://返回上层
+		case R.id.detail_back:// 返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;
-		case R.id.detail_share://分享
-			if(ItApplication.getcurrnUser()!=null){
-				
-			}else{
+		case R.id.detail_share:// 分享
+			if (ItApplication.getcurrnUser() != null) {
+
+			} else {
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
-		case R.id.detail_collect://收藏
-			if(ItApplication.getcurrnUser()!=null){
-				dialog1=DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
+		case R.id.detail_collect:// 收藏
+			if (ItApplication.getcurrnUser() != null) {
+				dialog1 = DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);
 				dialog1.show();
-				
-			}else{
+
+			} else {
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
-		case R.id.detail_cancle_collect://取消收藏
-			if(ItApplication.getcurrnUser()!=null){
-				dialog1=DialogUtil.createShowDialog(this, "是否取消收藏文章？", lis2);
+		case R.id.detail_cancle_collect:// 取消收藏
+			if (ItApplication.getcurrnUser() != null) {
+				dialog1 = DialogUtil.createShowDialog(this, "是否取消收藏文章？", lis2);
 				dialog1.show();
-				
-			}else{
+
+			} else {
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
@@ -175,130 +167,128 @@ public class InformationDetailsActivity extends BaseActivity {
 		}
 	}
 
-	
-	private DialogForResult lis1=new DialogForResult() {
-		
+	private DialogForResult lis1 = new DialogForResult() {
+
 		@Override
 		public void onSucess() {
 			// TODO Auto-generated method stub
-			if(dialog1!=null){
+			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
 			collectPresenter.collectInfo(info.getId());
-			loaddialog=DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
+			loaddialog = DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
 			loaddialog.show();
 		}
-		
+
 		@Override
 		public void onCancel() {
 			// TODO Auto-generated method stub
-			if(dialog1!=null){
+			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
 		}
 	};
-	
-	private DialogForResult lis2=new DialogForResult() {
-		
+
+	private DialogForResult lis2 = new DialogForResult() {
+
 		@Override
 		public void onSucess() {
 			// TODO Auto-generated method stub
-			if(dialog1!=null){
+			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
 			deletePresenter.deleteInfo(String.valueOf(info.getId()));
-			loaddialog3=DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
+			loaddialog3 = DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
 			loaddialog3.show();
 		}
-		
+
 		@Override
 		public void onCancel() {
 			// TODO Auto-generated method stub
-			if(dialog1!=null){
+			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
 		}
 	};
-	
+
 	/**
 	 * 收藏文章
 	 */
-	private onBasicView<String> listener=new onBasicView<String>() {
-		
+	private onBasicView<String> listener = new onBasicView<String>() {
+
 		@Override
 		public void onSucess(String data) {
 			// TODO Auto-generated method stub
-			if(loaddialog!=null){
+			if (loaddialog != null) {
 				loaddialog.dismiss();
 			}
 			info.setIsCollected(1);
 			initData();
 			new ToastUtils(InformationDetailsActivity.this, "该文章收藏成功！");
-			
+
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
-			if(loaddialog!=null){
+			if (loaddialog != null) {
 				loaddialog.dismiss();
 			}
 			new ToastUtils(InformationDetailsActivity.this, errorMsg);
 		}
 	};
-	
+
 	/**
 	 * 取消收藏文章的结果
 	 */
-	private onBasicView<String> listener2=new onBasicView<String>() {
-		
+	private onBasicView<String> listener2 = new onBasicView<String>() {
+
 		@Override
 		public void onSucess(String data) {
 			// TODO Auto-generated method stub
-			if(loaddialog3!=null){
+			if (loaddialog3 != null) {
 				loaddialog3.dismiss();
 			}
 			info.setIsCollected(0);
 			initData();
 			new ToastUtils(InformationDetailsActivity.this, "该文章取消收藏成功！");
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
-			if(loaddialog3!=null){
+			if (loaddialog3 != null) {
 				loaddialog3.dismiss();
 			}
 			new ToastUtils(InformationDetailsActivity.this, errorMsg);
 		}
 	};
-	
+
 	/**
 	 * 获取详细文章的详细
 	 */
-	private onBasicView<ContentInfo> listener1=new onBasicView<ContentInfo>() {
-		
+	private onBasicView<ContentInfo> listener1 = new onBasicView<ContentInfo>() {
+
 		@Override
 		public void onSucess(ContentInfo data) {
 			// TODO Auto-generated method stub
-			if(data!=null){
-				info=data;
-			}		
+			if (data != null) {
+				info = data;
+			}
 			initData();
-			if(loaddialog2!=null){
+			if (loaddialog2 != null) {
 				loaddialog2.dismiss();
 			}
 		}
-		
+
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
-			if(loaddialog2!=null){
+			if (loaddialog2 != null) {
 				loaddialog2.dismiss();
 			}
 			new ToastUtils(InformationDetailsActivity.this, errorMsg);
 		}
 	};
-	
-	
+
 }

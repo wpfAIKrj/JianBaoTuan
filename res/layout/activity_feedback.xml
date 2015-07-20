@@ -2,48 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/wite"
-    
     android:fitsSystemWindows="true"
-    
-     >
+    android:orientation="vertical" >
 
-    	<include layout="@layout/layout_head"/>
+    <include layout="@layout/layout_head" />
 
-    
-    	<EditText
-    	     android:layout_marginTop="@dimen/x30"
-    	    android:id="@+id/et_context"
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/ed_feed_layout_height"
-    	    android:ems="10"
-    	    android:background="@drawable/item_layout_padd"
-    	    android:inputType="text" 
-    	    android:gravity="left"
-    	    android:hint="@string/feednack_hint"
-    	    
-    	    style="@style/my_title_style3"
-    	    android:layout_marginLeft="@dimen/x14"
-    	    android:layout_marginRight="@dimen/x14"
-    	    android:imeOptions="actionDone"
-    	    
-    	    android:cursorVisible="true"
-    	    android:textCursorDrawable="@drawable/color_cursor"
-    	    >
+    <EditText
+        android:id="@+id/et_context"
+        style="@style/my_title_style3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ed_feed_layout_height"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginTop="@dimen/x30"
+        android:background="@drawable/item_layout_padd"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="@string/feednack_hint"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:textCursorDrawable="@drawable/color_cursor" >
 
-    	    <requestFocus />
-    	</EditText>
-  
-    	
-		<Button
-		    android:id="@+id/bt_save"
-		    android:layout_width="match_parent"
-		    android:layout_height="@dimen/y94"
-		    android:text="@string/feednack_bt"
-		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/x14"
-		    android:layout_marginRight="@dimen/x14"
-		   android:layout_marginTop="@dimen/y100"/>
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/bt_save"
+        style="@style/bt_login_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginTop="@dimen/y100"
+        android:text="@string/feednack_bt" />
 
 </LinearLayout>

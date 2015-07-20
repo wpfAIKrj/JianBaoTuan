@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.view.home;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
@@ -34,10 +35,8 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
  *
  */
 
-public class ViewChoices extends LinearLayout  {
+public class ViewChoices extends LinearLayout {
 
-	
-	
 	// screen height,and width,in px
 	@ViewInject(R.id.imageview_big_icon)
 	private ImageView iv_big;
@@ -45,18 +44,22 @@ public class ViewChoices extends LinearLayout  {
 	private ImageView iv_small;
 	@ViewInject(R.id.imageview_grade)
 	private ImageView iv_grade;
-	
+
 	@ViewInject(R.id.textview_name)
 	private TextView tv_name;
-	
+
 	@ViewInject(R.id.textview_num)
 	private TextView tv_num;
 
 	BitmapsUtils bitmapUtils;
-	
+
 	@ViewInject(R.id.layout_treasurs)
 	private LinearLayout mylayout;
-	private CollectionTreasure currnt=null;
+	
+	private CollectionTreasure currnt = null;
+
+	private Context mContext;
+	
 	public ViewChoices(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -87,6 +90,7 @@ public class ViewChoices extends LinearLayout  {
 	}
 
 	private void init(Context context) {
+		this.mContext = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_0, this);
 		ViewUtils.inject(this);
 		iv_big.setClickable(true);
@@ -98,14 +102,14 @@ public class ViewChoices extends LinearLayout  {
 			LogUtils.e("Choices  CollectionEntity is null");
 			return;
 		}
-		currnt=item;
+		currnt = item;
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		iv_big.setTag(currnt);
 		iv_small.setTag(currnt);
 		// 设置大图片
-		if (item.image==null||TextUtils.equals(item.image, "")) {
+		if (item.image == null || TextUtils.equals(item.image, "")) {
 
 			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		} else {
@@ -150,22 +154,19 @@ public class ViewChoices extends LinearLayout  {
 	 *            高亮颜色
 	 * @return
 	 */
-	private SpannableStringBuilder highlightText(String all, String target,
-			int color) {
+	private SpannableStringBuilder highlightText(String all, String target, int color) {
 		SpannableStringBuilder spannable = new SpannableStringBuilder(all);
 		CharacterStyle span = null;
 		Pattern p = Pattern.compile(target);
 		Matcher m = p.matcher(all);
 		while (m.find()) {
-			span = new ForegroundColorSpan(getContext().getResources()
-					.getColor(color));// 需要重复！
-			spannable.setSpan(span, m.start(), m.end(),
-					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			span = new ForegroundColorSpan(getContext().getResources().getColor(color));// 需要重复！
+			spannable.setSpan(span, m.start(), m.end(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 		return spannable;
 	}
 
-	@OnClick({R.id.imageview_small_icon,R.id.imageview_big_icon})
+	@OnClick({ R.id.imageview_small_icon, R.id.imageview_big_icon })
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		CollectionTreasure entity = (CollectionTreasure) v.getTag();
@@ -177,7 +178,8 @@ public class ViewChoices extends LinearLayout  {
 			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
 			mIntent.putExtra(Const.ENTITY, entity);
 			getContext().startActivity(mIntent);
-
+			Activity act = (Activity)mContext;
+			act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 
@@ -186,6 +188,8 @@ public class ViewChoices extends LinearLayout  {
 			Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, entity);
 			getContext().startActivity(mIntent);
+			Activity act = (Activity)mContext;
+			act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 		}

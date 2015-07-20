@@ -73,6 +73,13 @@ public class ActivityFootPrint extends Activity implements
 		}
 	};
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	@OnClick({ R.id.btn_back, R.id.btn_delete, R.id.delete_all_bt,
 			R.id.all_checkbox, R.id.cancle_all_bt })
 	public void doClick(View view) {

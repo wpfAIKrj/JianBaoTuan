@@ -56,9 +56,12 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
-		bitmapsUtils.display(holder.iv, list.get(position).authImage,
-				BitmapsUtils.TYPE_YES);
+		if(holder.iv.getTag() == null) {
+			BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
+			bitmapsUtils.display(holder.iv, list.get(position).authImage,
+					BitmapsUtils.TYPE_YES);
+			holder.iv.setTag(list.get(position).authImage);
+		}
 		// holder.iv.setImageResource(R.drawable.user_logo);
 		if(mindex==position){
 			holder.iv.setAlpha(1);

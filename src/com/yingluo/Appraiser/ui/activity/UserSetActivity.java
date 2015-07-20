@@ -61,11 +61,18 @@ public class UserSetActivity extends BaseActivity {
 		setCacheNumber(FileUtils.getInstance().getCacheFileSize());
 	}
 	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
 	@OnClick({R.id.btn_back,R.id.layout_item1,R.id.layout_item2,R.id.layout_item3,R.id.layout_item4,R.id.layout_item5,R.id.layout_item6})
 	public void onclick(View v){
 		if(v.getId()==R.id.btn_back){
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 		if (v.getId() == R.id.layout_item1) {// 跳转到个人资料
 			startActivityForResult(new Intent(UserSetActivity.this, ProfileActivity.class),Const.TO_UPDATA_USER_INFO);
@@ -108,7 +115,7 @@ public class UserSetActivity extends BaseActivity {
 			ItApplication.cleanCurrnUser();
 			setResult(Const.TO_EXITS_USER, getIntent());
 			finish();
-
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 
 		@Override

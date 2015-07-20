@@ -75,7 +75,12 @@ public class AcrivleFootVIewholder extends ViewHolder {
 	}
 
 	public void setItem(CollectionTreasure arcitite) {
+		if(iv.getTag()!=null) {
+			//不在重新加载，防止闪烁
+			return;
+		}
 		currnt = arcitite;
+		iv.setTag(currnt);
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}

@@ -1,55 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:id="@+id/headview"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/y88"
         android:background="@color/dialog_title_color"
-        android:gravity="center_vertical"
-        >
+        android:gravity="center_vertical" >
+
         <ImageView
-            android:textSize="14sp"
-            android:textColor="#fff"
             android:id="@+id/gallery_back"
-         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:paddingBottom="@dimen/button_padd"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30"
-        android:paddingTop="@dimen/button_padd"
-        android:src="@drawable/back_botton" 
-            />
-        <ImageView
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/button_padd"
+            android:paddingLeft="@dimen/x30"
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/button_padd"
+            android:src="@drawable/back_botton"
             android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <ImageView
             android:id="@+id/gallery_del"
-          android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:paddingBottom="@dimen/button_padd"
-        android:paddingLeft="@dimen/x30"
-        android:paddingRight="@dimen/x30"
-        android:paddingTop="@dimen/button_padd"
-        android:src="@drawable/delect_bg" 
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/button_padd"
+            android:paddingLeft="@dimen/x30"
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/button_padd"
+            android:src="@drawable/delect_bg"
+            android:textColor="#fff"
+            android:textSize="14sp" />
     </RelativeLayout>
-    
-     <RelativeLayout
+
+    <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y100"
         android:layout_alignParentBottom="true"
         android:background="@color/wite" >
- 		
+
         <TextView
             android:id="@+id/send_button"
             android:layout_width="wrap_content"
@@ -62,18 +60,16 @@
             android:text="完成"
             android:textColor="@color/wite"
             android:textSize="@dimen/x28" />
-
     </RelativeLayout>
-    
+
     <com.yingluo.Appraiser.utils.photo.ViewPagerFixed
-      android:id="@+id/gallery01" 
-      android:layout_width="fill_parent" 
-      android:layout_height="wrap_content"
-      android:layout_above="@id/bottom_layout"
-      android:layout_below="@id/headview"
-      android:layout_centerHorizontal="true"
-      android:unselectedAlpha="1">
-   	</com.yingluo.Appraiser.utils.photo.ViewPagerFixed>
-   
+        android:id="@+id/gallery01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_layout"
+        android:layout_below="@id/headview"
+        android:layout_centerHorizontal="true"
+        android:unselectedAlpha="1" >
+    </com.yingluo.Appraiser.utils.photo.ViewPagerFixed>
+
 </RelativeLayout>
-  

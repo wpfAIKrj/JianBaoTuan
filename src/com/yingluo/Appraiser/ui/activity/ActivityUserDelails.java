@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.InputMethodManager;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +50,7 @@ import com.yingluo.Appraiser.ui.adapter.commentListAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.HelpUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.ImageViewWithBorder;
 import com.yingluo.Appraiser.view.SlideShowImageView;
@@ -60,7 +64,7 @@ import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
  * @author xy418
  *
  */
-public class ActivityUserDelails extends BaseActivity {
+public class ActivityUserDelails extends Activity {
 
 	private BitmapsUtils bitmapUtils;
 
@@ -124,11 +128,12 @@ public class ActivityUserDelails extends BaseActivity {
 	protected Dialog loaddialog;
 
 	private boolean isFirst=true;
-	
+	private ArrayList<String> str;
 	
 	public long to_user_id=0;
 
-	
+	@ViewInject(R.id.btn_send_comment)
+	public Button bt_send_comment;
 	@OnClick({R.id.tv_other_title,R.id.btn_send_comment,R.id.detail_back, R.id.btn_goto, R.id.detail_collect,R.id.detail_cancle_collect })
 	public void doClick(View view) {
 		switch (view.getId()) {
@@ -144,14 +149,14 @@ public class ActivityUserDelails extends BaseActivity {
 			break;
 		case R.id.btn_send_comment://发布评论
 			if (ItApplication.getcurrnUser() != null) {
-			String content=ed_text.getText().toString().trim();
-			if(content!=null&&!content.isEmpty()){
+				String content=ed_text.getText().toString().trim();
+				if(content!=null&&content.length()!=0){
 				loaddialog=DialogUtil.createLoadingDialog(this, "发表评论中....");
 				loaddialog.show();
 				sendCommentModel.sendTreasureComment(entity.treasure_id, to_user_id, content);
-			}else{
+				}else{
 				new ToastUtils(this, "请输入评论内容！");
-			}}else{
+				}}else{
 				new ToastUtils(this, "请先登陆！");
 			}
 			break;
@@ -424,6 +429,7 @@ public class ActivityUserDelails extends BaseActivity {
 					@Override
 					public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
 						// TODO Auto-generated method stub
+						new ToastUtils(ActivityUserDelails.this, "发表评论失败！");
 						if(loaddialog!=null&&loaddialog.isShowing()){
 							loaddialog.dismiss();
 						}
@@ -435,7 +441,7 @@ public class ActivityUserDelails extends BaseActivity {
 		// TODO Auto-generated method stub
 //		LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
 //				(int) getResources().getDimension(R.dimen.y500));
-		ArrayList<String> str=new ArrayList<String>();
+		str=new ArrayList<String>();
 		if(entity.images1!=null&&entity.images1.length>0){
 			for (int i = 0; i < entity.images1.length; i++) {
 				str.add(entity.images1[i]);
@@ -506,6 +512,27 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 		
 	};
+	
+	
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// TODO Auto-generated method stub
+		 if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+			 
+	            // 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
+	            View v = getCurrentFocus();
+	 
+	            if (HelpUtils.isShouldHideInput(v, ev)) {
+	                InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	                HelpUtils.hideSoftInput(v.getWindowToken(), im);
+	            }
+	            if(v==bt_send_comment){
+	            	return true;
+	            }
+	        }
+		return super.dispatchTouchEvent(ev);
+	}
+
 
 	
 }

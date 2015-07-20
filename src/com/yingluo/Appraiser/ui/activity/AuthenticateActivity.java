@@ -43,7 +43,12 @@ public class AuthenticateActivity extends BaseActivity {
 		title.setText(R.string.authenticate_title);
 	}
 
-
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
 
 	@OnClick({R.id.btn_back,R.id.attest_agency_layout,R.id.attest_personal_layout})
 	public void onClick(View v) {
@@ -52,8 +57,8 @@ public class AuthenticateActivity extends BaseActivity {
 		switch (v.getId()) {
 		case R.id.btn_back://返回上层
 			setResult(RESULT_CANCELED, getIntent());
-			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		case R.id.attest_agency_layout://机构认证
 			 intent=new Intent(this, AttestAgencyActivity.class);

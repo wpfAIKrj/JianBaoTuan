@@ -18,10 +18,10 @@ public class HelpUtils {
 		if (v != null && (v instanceof EditText)) {
 			int[] l = { 0, 0 };
 			v.getLocationInWindow(l);
-			int left = l[0], top = l[1], bottom = top + v.getHeight(), right = left
-					+ v.getWidth();
-			if (event.getX() > left && event.getX() < right
-					&& event.getY() > top && event.getY() < bottom) {
+			int left = l[0], top = l[1], bottom = top + v.getMeasuredHeight(), right = left
+					+ v.getMeasuredWidth();
+			if (left<=event.getX() && event.getX() <= right
+					&&top<=event.getY()  && event.getY() <= bottom) {
 				// 点击EditText的事件，忽略它。
 				return false;
 			} else {

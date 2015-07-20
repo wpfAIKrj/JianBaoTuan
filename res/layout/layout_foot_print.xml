@@ -21,7 +21,7 @@
             android:layout_marginTop="@dimen/y20"
             android:paddingLeft="@dimen/x14"
             android:paddingRight="@dimen/x14" 
-            android:layout_above="@+id/bottom"
+            android:layout_above="@+id/layout_delet"
             />
 
         <TextView
@@ -38,7 +38,7 @@
             android:id="@+id/iv_loading"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:src="@drawable/loading"
             android:visibility="gone" />
 

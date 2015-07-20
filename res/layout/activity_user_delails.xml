@@ -103,8 +103,6 @@
             android:textColor="@color/black"
             android:textSize="@dimen/x30"
              >
-
-            <requestFocus />
         </EditText>
 
         <Button

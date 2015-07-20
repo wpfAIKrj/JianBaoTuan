@@ -52,13 +52,7 @@ public class BaseActivity extends Activity {
 	        win.setAttributes(winParams);
 	}
 	
-//	
-//	@Override
-//	public void onBackPressed() {
-//		// TODO Auto-generated method stub
-//		setResult(RESULT_CANCELED, getIntent());
-//		finish();
-//	}
+
 	
 	/**
      * 隐藏软键盘
@@ -67,10 +61,8 @@ public class BaseActivity extends Activity {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         // TODO Auto-generated method stub
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
- 
             // 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
             View v = getCurrentFocus();
- 
             if (HelpUtils.isShouldHideInput(v, ev)) {
                 InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 HelpUtils.hideSoftInput(v.getWindowToken(), im);

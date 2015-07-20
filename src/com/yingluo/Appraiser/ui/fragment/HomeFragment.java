@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.ui.fragment;
 
 import android.R.integer;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,7 +11,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ScrollView;
 
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -31,8 +34,7 @@ import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
 import de.greenrobot.event.EventBus;
 
-public class HomeFragment extends BaseFragment implements OnItemClickListener,
-		OnClickListener {
+public class HomeFragment extends BaseFragment implements OnItemClickListener, OnClickListener {
 
 	private SlideShowView head;
 
@@ -47,8 +49,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 	ViewHots viewhots_0, viewhots_1, viewhots_2, viewhots_3;
 	ViewArticles articles_0, articles_1;
 
-	ViewGroup layout_home_item0, layout_home_item3, layout_home_item2,
-			layout_home_item1;
+	ViewGroup layout_home_item0, layout_home_item3, layout_home_item2, layout_home_item1;
 
 	ViewHomeWhoWellKnow wellKnow;
 
@@ -56,9 +57,19 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 
 	private int index = 0;
 
+	@ViewInject(R.id.scrollview)
+	private ScrollView scrollView;
+
+	private Activity mActivity;
+    
+    
+    @Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		this.mActivity = activity;
+	}
 	@Override
-	protected View createView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_home, container, false);
 	}
@@ -66,32 +77,34 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
-		layout_home_item0 = (ViewGroup) view
-				.findViewById(R.id.layout_home_item0);
-		layout_home_item3 = (ViewGroup) view
-				.findViewById(R.id.layout_home_item3);
-		layout_home_item2 = (ViewGroup) view
-				.findViewById(R.id.layout_home_item2);
-		layout_home_item1 = (ViewGroup) view
-				.findViewById(R.id.layout_home_item1);
+		layout_home_item0 = (ViewGroup) view.findViewById(R.id.layout_home_item0);
+		layout_home_item3 = (ViewGroup) view.findViewById(R.id.layout_home_item3);
+		layout_home_item2 = (ViewGroup) view.findViewById(R.id.layout_home_item2);
+		layout_home_item1 = (ViewGroup) view.findViewById(R.id.layout_home_item1);
+		//精品藏品
 		choices_0 = (ViewChoices) view.findViewById(R.id.choices_0);
 		choices_1 = (ViewChoices) view.findViewById(R.id.choices_1);
 		choices_2 = (ViewChoices) view.findViewById(R.id.choices_2);
 		choices_3 = (ViewChoices) view.findViewById(R.id.choices_3);
+		//热门鉴定
 		viewhots_0 = (ViewHots) view.findViewById(R.id.viewhots_0);
 		viewhots_1 = (ViewHots) view.findViewById(R.id.viewhots_1);
 		viewhots_2 = (ViewHots) view.findViewById(R.id.viewhots_2);
 		viewhots_3 = (ViewHots) view.findViewById(R.id.viewhots_3);
+		//不知道做什么的
 		articles_0 = (ViewArticles) view.findViewById(R.id.articles_0);
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
+		
 		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
+		
 		wellKnow.setListener(user_listener);
 		tv_goto_infor = view.findViewById(R.id.tv_goto_infor);
 		tv_goto_identify = view.findViewById(R.id.tv_goto_identiy);
 		tv_goto_identify.setOnClickListener(this);
 		tv_goto_infor.setOnClickListener(this);
-
+		//顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
+		
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
 		btn_search = view.findViewById(R.id.btn_search);
@@ -101,44 +114,42 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				startActivity(new Intent(getActivity(), ActivitySearch.class));
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		});
 
-		homeEntity = ((ItApplication) getActivity().getApplication())
-				.getHomeEntity();
+		homeEntity = ((ItApplication) getActivity().getApplication()).getHomeEntity();
 		if (homeEntity == null) {
 			// 说明没有下载数据，就要去联网加载
 			hideViews(true, (short) 7);
 		} else {
 			hideViews(false, (short) 7);
-			if (homeEntity.getAdvertising() != null
-					&& homeEntity.getAdvertising().size() > 0) {
+			if (homeEntity.getAdvertising() != null && homeEntity.getAdvertising().size() > 0) {
 				head.prepareData(homeEntity.getAdvertising());
 			} else {
 
 			}
 			try {
-				if (homeEntity.getChoices() != null
-						&& homeEntity.getChoices().size() >0) {
-					if(homeEntity.getChoices().size()==1){
+				if (homeEntity.getChoices() != null && homeEntity.getChoices().size() > 0) {
+					if (homeEntity.getChoices().size() == 1) {
 						choices_0.setItem(homeEntity.getChoices().get(0));
 						choices_1.setVisibility(View.GONE);
 						choices_2.setVisibility(View.GONE);
 						choices_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getChoices().size()==2){
+					if (homeEntity.getChoices().size() == 2) {
 						choices_0.setItem(homeEntity.getChoices().get(0));
 						choices_1.setItem(homeEntity.getChoices().get(1));
 						choices_2.setVisibility(View.GONE);
 						choices_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getChoices().size()==3){
+					if (homeEntity.getChoices().size() == 3) {
 						choices_0.setItem(homeEntity.getChoices().get(0));
 						choices_1.setItem(homeEntity.getChoices().get(1));
 						choices_2.setItem(homeEntity.getChoices().get(2));
 						choices_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getChoices().size()==4){
+					if (homeEntity.getChoices().size() == 4) {
 						choices_0.setItem(homeEntity.getChoices().get(0));
 						choices_1.setItem(homeEntity.getChoices().get(1));
 						choices_2.setItem(homeEntity.getChoices().get(2));
@@ -153,27 +164,26 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 				hideViews(true, (short) 0);
 			}
 			try {
-				if (homeEntity.getHots() != null
-						&& homeEntity.getHots().size() >0) {
-					if(homeEntity.getHots().size()==1){
+				if (homeEntity.getHots() != null && homeEntity.getHots().size() > 0) {
+					if (homeEntity.getHots().size() == 1) {
 						viewhots_0.setItem(homeEntity.getHots().get(0));
 						viewhots_1.setVisibility(View.GONE);
 						viewhots_2.setVisibility(View.GONE);
 						viewhots_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getHots().size()==2){
+					if (homeEntity.getHots().size() == 2) {
 						viewhots_0.setItem(homeEntity.getHots().get(0));
 						viewhots_1.setItem(homeEntity.getHots().get(1));
 						viewhots_2.setVisibility(View.GONE);
 						viewhots_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getHots().size()==3){
+					if (homeEntity.getHots().size() == 3) {
 						viewhots_0.setItem(homeEntity.getHots().get(0));
 						viewhots_1.setItem(homeEntity.getHots().get(1));
 						viewhots_2.setItem(homeEntity.getHots().get(2));
 						viewhots_3.setVisibility(View.GONE);
 					}
-					if(homeEntity.getHots().size()==4){
+					if (homeEntity.getHots().size() == 4) {
 						viewhots_0.setItem(homeEntity.getHots().get(0));
 						viewhots_1.setItem(homeEntity.getHots().get(1));
 						viewhots_2.setItem(homeEntity.getHots().get(2));
@@ -188,17 +198,14 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 				e.printStackTrace();
 				hideViews(true, (short) 1);
 			}
-			if (homeEntity.getArticles() != null
-					&& homeEntity.getArticles().size() >= 2) {
+			if (homeEntity.getArticles() != null && homeEntity.getArticles().size() >= 2) {
 				articles_0.setItem(homeEntity.getArticles().get(0));
 				articles_1.setItem(homeEntity.getArticles().get(1));
 			} else {
 				hideViews(true, (short) 2);
 			}
-			if (homeEntity.getAuthors() != null
-					&& homeEntity.getAuthors().size() > 0) {
-				adapter = new WellKnowPeopleAdapter(getActivity(),
-						homeEntity.getAuthors());
+			if (homeEntity.getAuthors() != null && homeEntity.getAuthors().size() > 0) {
+				adapter = new WellKnowPeopleAdapter(getActivity(), homeEntity.getAuthors());
 				hsv.setAdapter(adapter);
 				if (adapter.getCount() > 0) {// 设置第一个选中
 					index = 0;
@@ -222,18 +229,24 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 	@Override
 	public void lazyLoad() {
 		// TODO Auto-generated method stub
-
+		if (scrollView != null) {
+			mhandler.post(new Runnable() {
+				@Override
+				public void run() {
+					scrollView.scrollTo(0, 0);
+				}
+			});
+		}
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		// TODO Auto-generated method stub
 		if (adapter != null) {
 			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
-			mIntent.putExtra(Const.ENTITY, homeEntity.getAuthors()
-					.get(position));
+			mIntent.putExtra(Const.ENTITY, homeEntity.getAuthors().get(position));
 			mActivity.startActivity(mIntent);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 	}
 
@@ -312,17 +325,17 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,
 		}
 
 	}
-	
-	
-	private OnClickListener user_listener=new OnClickListener() {
-		
+
+	private OnClickListener user_listener = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			CollectionTreasure entity=(CollectionTreasure) v.getTag();
+			CollectionTreasure entity = (CollectionTreasure) v.getTag();
 			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, entity);
 			mActivity.startActivity(mIntent);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 	};
 }

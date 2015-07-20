@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
@@ -226,6 +227,7 @@ public class AttestAgencyActivity extends BaseActivity {
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
+			Toast.makeText(AttestAgencyActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
 			if(loading!=null){
 				loading.dismiss();
 			}

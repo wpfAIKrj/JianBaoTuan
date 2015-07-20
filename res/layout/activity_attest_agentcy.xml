@@ -33,6 +33,8 @@
     	    style="@style/my_title_style3"
     	    android:paddingLeft="@dimen/x30"
     	    android:imeOptions="actionNext"
+    	    android:textColor="@color/black"
+    	    android:textColorHint="@color/black"
     	    
     	    >
 

@@ -215,6 +215,7 @@ public class AttestPersionalActivity extends BaseActivity {
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			// TODO Auto-generated method stub
+			Toast.makeText(AttestPersionalActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
 			if(loading!=null){
 				loading.dismiss();
 			}

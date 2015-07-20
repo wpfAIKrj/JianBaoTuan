@@ -86,10 +86,10 @@
        			style="@style/edit_login_style"
               android:cursorVisible="true"
                 android:hint="@string/login_pwd_hint" 
-          android:textCursorDrawable="@drawable/color_cursor"
+          		android:textCursorDrawable="@drawable/color_cursor"
                 >
 
-                <requestFocus />
+            
             </EditText>
         </LinearLayout>
     </LinearLayout>

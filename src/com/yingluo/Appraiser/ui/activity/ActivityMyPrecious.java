@@ -62,8 +62,6 @@ public class ActivityMyPrecious extends BaseActivity {
 	MyTreasureModel model;
 
 	MyTreasureAdapter mAdapter;
-
-	
 	
 	private int Treadsure_type;
 
@@ -104,6 +102,13 @@ public class ActivityMyPrecious extends BaseActivity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	private void initViews() {
 		// TODO Auto-generated method stub
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);

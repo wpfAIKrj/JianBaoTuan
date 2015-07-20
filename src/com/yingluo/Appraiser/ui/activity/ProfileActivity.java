@@ -68,6 +68,12 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		initView();
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
 	
 	
 	private void initView() {
@@ -92,6 +98,7 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		case R.id.btn_back://返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		case R.id.bt_save://保存
 			saveInfo();
@@ -141,6 +148,7 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 
 		setResult(RESULT_OK, getIntent());
 		finish();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
 

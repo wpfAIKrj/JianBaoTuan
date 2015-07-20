@@ -38,26 +38,20 @@ import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ListLoadType;
 import com.yingluo.Appraiser.view.listview.XListView;
 import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
+
 /**
  * 聊天页面
+ * 
  * @author Administrator
  *
  */
-public class IMListActivity extends FragmentActivity{
+public class IMListActivity extends FragmentActivity {
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
-	
+
 	@ViewInject(R.id.button_delect)
 	private ImageView iv_delete;
-	
-
-
-	
-
-
-	
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,24 +63,20 @@ public class IMListActivity extends FragmentActivity{
 		initView();
 
 	}
-	
+
 	protected void initView() {
 		// TODO Auto-generated method stub
 
 		title.setText("聊天");
 		iv_delete.setVisibility(View.GONE);
-		
+
 	}
 
-
-
-
-
-	@OnClick({R.id.button_category})
+	@OnClick({ R.id.button_category })
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.button_category://跳转到
+		case R.id.button_category:// 跳转到
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			break;
@@ -95,7 +85,5 @@ public class IMListActivity extends FragmentActivity{
 			break;
 		}
 	}
-
-	
 
 }
