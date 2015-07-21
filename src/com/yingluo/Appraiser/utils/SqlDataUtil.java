@@ -51,8 +51,7 @@ public class SqlDataUtil {
 
 	private SqlDataUtil(Context context) {
 		if (daoMaster == null) {
-			DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "if",
-					null);
+			DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, "if", null);
 			try {
 				db = helper.getWritableDatabase();
 				daoMaster = new DaoMaster(db);
@@ -109,8 +108,7 @@ public class SqlDataUtil {
 	public void saveUserInfo(UserInfo user) {
 		try {
 			userdao.insertOrReplace(user);
-			ImUserInfo im = new ImUserInfo(user.getId(), user.getNickname(),
-					user.getAvatar());
+			ImUserInfo im = new ImUserInfo(user.getId(), user.getNickname(), user.getAvatar());
 			saveIMUserinfo(im);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -124,7 +122,7 @@ public class SqlDataUtil {
 	 * @param moblie
 	 */
 	public UserInfo getUserForPhone(String moblie) {
-		UserInfo user=null;
+		UserInfo user = null;
 		try {
 			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
 			qb.where(UserInfoDao.Properties.Mobile.eq(moblie));
@@ -165,8 +163,8 @@ public class SqlDataUtil {
 				TreasureType newdata = data.get(i);
 				qb = typeDao.queryBuilder();
 				/*
-				 * qb.where(TreasureTypeDao.Properties.Type.eq(newdata.getType())
-				 * ,
+				 * qb.where(TreasureTypeDao.Properties.Type.eq(newdata.getType()
+				 * ) ,
 				 * TreasureTypeDao.Properties.Currnt_id.eq(newdata.getCurrnt_id
 				 * ())
 				 * ,TreasureTypeDao.Properties.Parent_id.eq(newdata.getParent_id
@@ -215,8 +213,7 @@ public class SqlDataUtil {
 		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
 		 */
-		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
-				: new ArrayList<TreasureType>();
+		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list() : new ArrayList<TreasureType>();
 		return list;
 	}
 
@@ -235,8 +232,7 @@ public class SqlDataUtil {
 		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
 		 */
-		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
-				: new ArrayList<TreasureType>();
+		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list() : new ArrayList<TreasureType>();
 
 		return list;
 	}
@@ -260,7 +256,6 @@ public class SqlDataUtil {
 
 	}
 
-	
 	/**
 	 * 获取指定等级目录
 	 * 
@@ -275,14 +270,14 @@ public class SqlDataUtil {
 		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
 		 */
-		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
-				: new ArrayList<TreasureType>();
+		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list() : new ArrayList<TreasureType>();
 
 		return list;
 	}
 
 	/**
 	 * 获取该父类下下一级子类1
+	 * 
 	 * @param treasureType
 	 * @return
 	 */
@@ -295,8 +290,7 @@ public class SqlDataUtil {
 		 * qb.where(TreasureTypeDao.Properties.Type.eq(TreasureType.TYPE_FIRST))
 		 * .orderAsc(TreasureTypeDao.Properties.Currnt_id);
 		 */
-		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
-				: new ArrayList<TreasureType>();
+		list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list() : new ArrayList<TreasureType>();
 
 		return list;
 	}
@@ -343,8 +337,7 @@ public class SqlDataUtil {
 		TreasureType data = null;
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
 		try {
-			qb.where(TreasureTypeDao.Properties.Type.eq(type),
-					TreasureTypeDao.Properties.Id.eq(id));
+			qb.where(TreasureTypeDao.Properties.Type.eq(type), TreasureTypeDao.Properties.Id.eq(id));
 			data = qb.uniqueOrThrow();
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
@@ -367,10 +360,8 @@ public class SqlDataUtil {
 		ArrayList<TreasureType> list = new ArrayList<TreasureType>();
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
 		try {
-			qb.where(TreasureTypeDao.Properties.Type.eq(type),
-					TreasureTypeDao.Properties.Parent_id.eq(parent_id));
-			list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list()
-					: new ArrayList<TreasureType>();
+			qb.where(TreasureTypeDao.Properties.Type.eq(type), TreasureTypeDao.Properties.Parent_id.eq(parent_id));
+			list = (qb.list() != null) ? (ArrayList<TreasureType>) qb.list() : new ArrayList<TreasureType>();
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
@@ -389,9 +380,8 @@ public class SqlDataUtil {
 		List<TreasureType> list = new ArrayList<TreasureType>();
 
 		QueryBuilder<TreasureType> qb = typeDao.queryBuilder();
-		qb.where(TreasureTypeDao.Properties.IsChild.eq(true),
-				TreasureTypeDao.Properties.Name.like(name + "%"));// ,
-																		// TreasureTypeDao.Properties.Name.eq());
+		qb.where(TreasureTypeDao.Properties.IsChild.eq(true), TreasureTypeDao.Properties.Name.like(name + "%"));// ,
+																												// TreasureTypeDao.Properties.Name.eq());
 		list = qb.list();
 		if (list == null) {
 			list = new ArrayList<TreasureType>();
@@ -424,8 +414,7 @@ public class SqlDataUtil {
 			ImUserInfo old = qb.unique();
 			if (old != null) {
 				user = new io.rong.imlib.model.UserInfo(arg0, old.getName(),
-						(old.getIcon() != null) ? Uri.parse(old.getIcon())
-								: null);
+						(old.getIcon() != null) ? Uri.parse(old.getIcon()) : null);
 			}
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
@@ -464,8 +453,7 @@ public class SqlDataUtil {
 	public void saveSystemInfo(SystemInfoEntity entity) {
 		QueryBuilder<SystemInfoEntity> qb = systemdao.queryBuilder();
 		qb.where(SystemInfoEntityDao.Properties.Mobile.eq(entity.getMobile()),
-				SystemInfoEntityDao.Properties.Treasure_id
-						.eq(entity.treasure_id),
+				SystemInfoEntityDao.Properties.Treasure_id.eq(entity.treasure_id),
 				SystemInfoEntityDao.Properties.Time.eq(entity.time));
 		SystemInfoEntity old = qb.unique();
 		if (old != null) {
@@ -492,6 +480,5 @@ public class SqlDataUtil {
 		}
 		return (ArrayList<SystemInfoEntity>) list;
 	}
-
 
 }

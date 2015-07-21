@@ -6,6 +6,7 @@ import java.util.List;
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.bean.UserInfo;
+import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import android.content.Context;
@@ -28,10 +29,11 @@ public class SelectMoilbWindow extends PopupWindow {
 	private ListView listView;
 	private Context mContext;
 	private MoilbAdapter maAdapter;
-
+	private List<UserInfo> list;
+	
 	public SelectMoilbWindow(Context context, OnItemClickListener listener) {
 		mContext = context;
-		List<UserInfo> list = SqlDataUtil.getInstance().getUserList();
+		list = SqlDataUtil.getInstance().getUserList();
 		Log.e("list_size", list.size()+"");
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		conentView = inflater.inflate(R.layout.moilb_popup_dialog, null);
@@ -51,7 +53,11 @@ public class SelectMoilbWindow extends PopupWindow {
 			// 设置SelectPicPopupWindow弹出窗体的宽
 			this.setWidth(w);
 			// 设置SelectPicPopupWindow弹出窗体的高
-			this.setHeight(LayoutParams.WRAP_CONTENT);
+			if(list.size()<5) {
+				this.setHeight(LayoutParams.WRAP_CONTENT);
+			} else {
+				this.setHeight(5*DensityUtil.dip2px(mContext, 30));
+			}
 			// 设置SelectPicPopupWindow弹出窗体可点击
 			this.setFocusable(true);
 			this.setOutsideTouchable(true);
