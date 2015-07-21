@@ -26,67 +26,68 @@ import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
 public class UserSetActivity extends BaseActivity {
-	
+
 	@ViewInject(R.id.home_title)
 	private TextView title;
-	
+
 	@ViewInject(R.id.btn_back)
 	private ImageView back;
-	
 
 	@ViewInject(R.id.cache_number)
-    private TextView cache_number;
-    
+	private TextView cache_number;
+
 	private Dialog Logodialong;
 
 	private ExitPresenter exitpresenter;
-    
-    private Handler mhandler=new Handler();
 
-	private long TIME_LONG=3000;
+	private Handler mhandler = new Handler();
+
+	private long TIME_LONG = 3000;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO 自动生成的方法存根
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_seting);
 		ViewUtils.inject(this);
 		exitpresenter = new ExitPresenter(listener);
 		initView();
 	}
-	
+
 	private void initView() {
-		// TODO 自动生成的方法存根
 		title.setText(R.string.seting_title);
 		back.setImageResource(R.drawable.back_botton);
 		setCacheNumber(FileUtils.getInstance().getCacheFileSize());
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	@OnClick({R.id.btn_back,R.id.layout_item1,R.id.layout_item2,R.id.layout_item3,R.id.layout_item4,R.id.layout_item5,R.id.layout_item6})
-	public void onclick(View v){
-		if(v.getId()==R.id.btn_back){
+
+	@OnClick({ R.id.btn_back, R.id.layout_item1, R.id.layout_item2, R.id.layout_item3, R.id.layout_item4,
+			R.id.layout_item5, R.id.layout_item6 })
+	public void onclick(View v) {
+		if (v.getId() == R.id.btn_back) {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 		if (v.getId() == R.id.layout_item1) {// 跳转到个人资料
-			startActivityForResult(new Intent(UserSetActivity.this, ProfileActivity.class),Const.TO_UPDATA_USER_INFO);
+			startActivityForResult(new Intent(UserSetActivity.this, ProfileActivity.class), Const.TO_UPDATA_USER_INFO);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 		if (v.getId() == R.id.layout_item2) {// 修改密码
-			startActivityForResult(new Intent(UserSetActivity.this,
-					PasswordActivity.class), Const.TO_UPDATA_PWD);
+			startActivityForResult(new Intent(UserSetActivity.this, PasswordActivity.class), Const.TO_UPDATA_PWD);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 		if (v.getId() == R.id.layout_item3) {// 意见反馈
-			startActivityForResult(new Intent(UserSetActivity.this,
-					FeedbackActivity.class), Const.TO_FEEDBACK);
+			startActivityForResult(new Intent(UserSetActivity.this, FeedbackActivity.class), Const.TO_FEEDBACK);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 		if (v.getId() == R.id.layout_item4) {// 检测更新
 			startActivity(new Intent(UserSetActivity.this, UpdaateActivity.class));
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 		if (v.getId() == R.id.layout_item5) {// 清楚缓存
 			FileUtils.getInstance().deleteDirectory(1);
@@ -104,6 +105,7 @@ public class UserSetActivity extends BaseActivity {
 			exitpresenter.sendExit();
 		}
 	}
+
 	private onBasicView<String> listener = new onBasicView<String>() {
 
 		@Override
@@ -127,20 +129,19 @@ public class UserSetActivity extends BaseActivity {
 			new ToastUtils(UserSetActivity.this, errorMsg);
 		}
 	};
-	
-	public void setCacheNumber(String number){
-    	if(cache_number!=null){
-    		cache_number.setText(number+" ");
-    	}
-    }
-	
-	
+
+	public void setCacheNumber(String number) {
+		if (cache_number != null) {
+			cache_number.setText(number + " ");
+		}
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==Const.TO_UPDATA_USER_INFO&&resultCode==RESULT_OK){
-			new ToastUtils(this, "个人信息更新成功！");	
+		if (requestCode == Const.TO_UPDATA_USER_INFO && resultCode == RESULT_OK) {
+			new ToastUtils(this, "个人信息更新成功！");
 		}
 	}
 }

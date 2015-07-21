@@ -175,7 +175,6 @@ public class MyFragment extends BaseFragment {
 			R.id.my_layout_collect, R.id.my_layout_foot, R.id.my_layout_identif, R.id.my_tab1, R.id.my_tab2,
 			R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.login_user_head:// 更新头像
 			if (onlongListner != null) {

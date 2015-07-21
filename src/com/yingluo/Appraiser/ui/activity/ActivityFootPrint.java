@@ -26,8 +26,7 @@ import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class ActivityFootPrint extends Activity implements
-		RefreshLoadMoreListener {
+public class ActivityFootPrint extends Activity implements RefreshLoadMoreListener {
 
 	@ViewInject(R.id.btn_back)
 	View btn_back;
@@ -51,23 +50,21 @@ public class ActivityFootPrint extends Activity implements
 	MyFootAdapter mAdapter = null;
 
 	getMyFootPrintsModel model = null;
-	deleteMyFootPrintsModel delModel=null;
+	deleteMyFootPrintsModel delModel = null;
 
 	private OnClickListener onarcitilis = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			// TODO 自动生成的方法存根
 
 			CollectionTreasure treasure = (CollectionTreasure) v.getTag();
 
 			ContentInfo contentInfo = new ContentInfo();
 			contentInfo.setId(treasure.article_id);
 			contentInfo.setTitle(treasure.msg);
-			contentInfo.setView_times((int)treasure.viewTimes);
+			contentInfo.setView_times((int) treasure.viewTimes);
 			contentInfo.setImage(treasure.image);
-			Intent intent = new Intent(ActivityFootPrint.this,
-					InformationDetailsActivity.class);
+			Intent intent = new Intent(ActivityFootPrint.this, InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, contentInfo);
 			startActivity(intent);
 		}
@@ -79,9 +76,8 @@ public class ActivityFootPrint extends Activity implements
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
-	@OnClick({ R.id.btn_back, R.id.btn_delete, R.id.delete_all_bt,
-			R.id.all_checkbox, R.id.cancle_all_bt })
+
+	@OnClick({ R.id.btn_back, R.id.btn_delete, R.id.delete_all_bt, R.id.all_checkbox, R.id.cancle_all_bt })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.btn_back:
@@ -107,8 +103,8 @@ public class ActivityFootPrint extends Activity implements
 		}
 			break;
 		case R.id.delete_all_bt: {
-			//删除
-			mAdapter.deleteAll(this,delModel);
+			// 删除
+			mAdapter.deleteAll(this, delModel);
 		}
 			break;
 		}
@@ -130,7 +126,7 @@ public class ActivityFootPrint extends Activity implements
 		setContentView(R.layout.layout_foot_print);
 		ViewUtils.inject(this);
 		model = new getMyFootPrintsModel();
-		delModel=new deleteMyFootPrintsModel();
+		delModel = new deleteMyFootPrintsModel();
 		mAdapter = new MyFootAdapter(onarcitilis);
 
 		prrv.setRefreshLoadMoreListener(this);

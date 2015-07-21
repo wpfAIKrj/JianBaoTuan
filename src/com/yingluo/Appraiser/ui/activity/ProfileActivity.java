@@ -27,28 +27,30 @@ import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.EmailAutoCompleteTextView;
 
 import de.greenrobot.event.EventBus;
+
 /**
  * 个人信息完善
+ * 
  * @author Administrator
  *
  */
-public class ProfileActivity extends BaseActivity implements onBasicView<UserInfo>{
+public class ProfileActivity extends BaseActivity implements onBasicView<UserInfo> {
 
 	@ViewInject(R.id.button_category)
 	private ImageView ivBack;
-	
+
 	@ViewInject(R.id.home_title)
 	private TextView title;
-	
+
 	@ViewInject(R.id.et_qq)
 	private EditText edQQ;
-	
+
 	@ViewInject(R.id.et_email)
 	private EmailAutoCompleteTextView edEmail;
-	
+
 	@ViewInject(R.id.et_name)
 	private EditText edName;
-	
+
 	private UploadLogoPresenter mpresenter;
 	private String qq;
 	private String email;
@@ -57,50 +59,43 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	private Dialog Logodialong;
 
 	private String name;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
 		ViewUtils.inject(this);
-		mpresenter=new UploadLogoPresenter(this);
+		mpresenter = new UploadLogoPresenter(this);
 		initView();
 	}
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
-	
+
 	private void initView() {
-		// TODO Auto-generated method stub
 		title.setText(R.string.profile_title);
-		if(ItApplication.getcurrnUser()!=null){
-		String string = ItApplication.getcurrnUser().getPersonal_data();
-		key=ItApplication.getcurrnUser().getPortrait();
-		name=ItApplication.getcurrnUser().getNickname();
-		edQQ.setText(ItApplication.getcurrnUser().getQq());
-		edEmail.setText(ItApplication.getcurrnUser().getEmail());
-		edName.setText(ItApplication.getcurrnUser().getNickname());
+		if (ItApplication.getcurrnUser() != null) {
+			String string = ItApplication.getcurrnUser().getPersonal_data();
+			key = ItApplication.getcurrnUser().getPortrait();
+			name = ItApplication.getcurrnUser().getNickname();
+			edQQ.setText(ItApplication.getcurrnUser().getQq());
+			edEmail.setText(ItApplication.getcurrnUser().getEmail());
+			edName.setText(ItApplication.getcurrnUser().getNickname());
 		}
 	}
 
-
-
-	@OnClick({R.id.btn_back,R.id.bt_save})
+	@OnClick({ R.id.btn_back, R.id.bt_save })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.btn_back://返回上层
+		case R.id.btn_back:// 返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
-		case R.id.bt_save://保存
+		case R.id.bt_save:// 保存
 			saveInfo();
 			break;
 		default:
@@ -108,60 +103,49 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 		}
 	}
 
-
-
 	private void saveInfo() {
-		// TODO Auto-generated method stub
-		 name=edName.getText().toString();
-		if(!name.isEmpty()){
-		String qq=edQQ.getText().toString();
-		if(!qq.isEmpty()&&(qq.length()>=6)){
-			String email=edEmail.getText().toString();
-			if(!email.isEmpty()){
-				Logodialong=DialogUtil.createLoadingDialog(this, "正在更新个人信息中");
-				Logodialong.show();
-				mpresenter.startExtra(key, name, email, qq);
-			}else{
-				new ToastUtils(this, "请输入正确的email号码！");
+		name = edName.getText().toString();
+		if (!name.isEmpty()) {
+			String qq = edQQ.getText().toString();
+			if (!qq.isEmpty() && (qq.length() >= 6)) {
+				String email = edEmail.getText().toString();
+				if (!email.isEmpty()) {
+					Logodialong = DialogUtil.createLoadingDialog(this, "正在更新个人信息中");
+					Logodialong.show();
+					mpresenter.startExtra(key, name, email, qq);
+				} else {
+					new ToastUtils(this, "请输入正确的email号码！");
+				}
+			} else {
+				new ToastUtils(this, "请输入正确的qq号码！");
 			}
-		}else{
-			new ToastUtils(this, "请输入正确的qq号码！");
-		}
-		}else{
+		} else {
 			new ToastUtils(this, "请输入昵称！");
 		}
 	}
 
-
-	
 	@Override
 	public void onSucess(UserInfo user) {
-		// TODO Auto-generated method stub
-		if(Logodialong!=null){
+		if (Logodialong != null) {
 			Logodialong.dismiss();
 		}
 		ItApplication.getcurrnUser().setAvatar(user.getAvatar());
 		ItApplication.getcurrnUser().setQq(user.getQq());
 		ItApplication.getcurrnUser().setEmail(user.getEmail());
 		ItApplication.getcurrnUser().setNickname(user.getNickname());
-		EventBus.getDefault().post(new MyEvent(0,user));
+		EventBus.getDefault().post(new MyEvent(0, user));
 
 		setResult(RESULT_OK, getIntent());
 		finish();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
-
-
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
-		if(Logodialong!=null){
+		if (Logodialong != null) {
 			Logodialong.dismiss();
 		}
 		new ToastUtils(this, errorMsg);
 	}
-	
-	
-	
+
 }

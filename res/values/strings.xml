@@ -2,137 +2,133 @@
 <resources>
 
     <string name="app_name">鉴宝团</string>
-  <string name="information">知识学堂</string>
-  <string name="home">首页</string>
-  <string name="identiy">鉴定大厅</string>
-  <string name="my">我的</string>
-  <string name="guide_text_01">专家在线鉴定宝贝</string>
-  <string name="guide_text_02">让你宝贝更放心</string>
-  <string name="home_title">鉴宝团</string>
-  <string name="seting_title">设置</string>
-  
-   <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="information">知识学堂</string>
+    <string name="home">首页</string>
+    <string name="identiy">鉴定大厅</string>
+    <string name="my">我的</string>
+    <string name="guide_text_01">专家在线鉴定宝贝</string>
+    <string name="guide_text_02">让你宝贝更放心</string>
+    <string name="home_title">鉴宝团</string>
+    <string name="seting_title">设置</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">没有更多数据</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
-    
-    
     <string name="all_kind_identity_title">所有%1$s类</string>
     <!-- 登陆页面 -->
     <string name="login_name_hint">手机号</string>
     <string name="login_pwd_hint">密码</string>
     <string name="login_forgeot">忘记密码</string>
     <string name="login_register">注册账号</string>
-    
+
     <!-- 注册页面 -->
-      <string name="register_name_hint">请输入手机号</string>
-      <string name="register_code_ed_hint">验证码</string>
-      <string name="register_code_bt_hint">获取验证码</string>
-      <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
-      <string name="regitster_bt">确定</string>
-      <string name="register_result_succes_title">注册成功</string>
-      <string name="register_result_succes_msg">欢迎您加入鉴定师</string>
-      
-      <!-- 发布 -->
-      <string name="button_carme_title">拍照</string>
-      <string name="button_ablum_title">从相册选取</string>
-      <!-- 我的页面 -->
-      
-      <string name="my_title_collect">我的宝物</string>
-      <string name="my_title_footprint">我的足迹</string>
-      <string name="my_title_appraisal">我的鉴定</string>
-      <string name="other_info_text">专家简介</string>
-        <string name="other_identityinfolist">TA的鉴定</string>
-        <string name="other_identitycollectinfo_text">TA的宝物</string>
-      <!-- 个人资料 -->
-      <string name="profile_title">个人资料</string>
-      <string name="profile_qq">QQ号:</string>
-      <string name="profile_name">用户昵称:</string>
-      <string name="profile_email">邮箱:</string>
-      <string name="profile_bt_save">保存修改</string>
-      
-       <!-- 修改密码 -->
-      <string name="password_title">修改密码</string>
-      <string name="password_old">旧密码:</string>
-      <string name="password_new">新密码:</string>
-      <string name="password_renew">确认新密码:</string>
-      
-      <!-- 意见反馈 -->
-      <string name="feednack_title">意见反馈</string>
-      <string name="feednack_hint">请尽量详细描述反馈，鉴定师平台会尽快帮你解决...</string>
-       <string name="feednack_bt">提交</string>
-       
-       <!--  认证鉴定师-->
-       <string name="authenticate_title">认证鉴定师</string>
-       <string name="other_home_title">Ta的主页</string>
-       <!--  成长体系-->
-       <string name="level_title">成长体系</string>
-       
-       <!-- 发布鉴定 -->
-       <string name="publish_title">添加宝贝信息</string>
-       
-      <!-- 检测更新 -->
-      <string name="update_title">检测更新</string>
-      <string name="update_bt">版本更新</string>
-      
-      <string name="publih_text_title">为了确保鉴定的准确性，请你按照要求分享宝贝照片及信息</string>
-       <string name="str_kind">请判别宝贝类别</string>
-      <string name="str_idenify_declare">鉴定说明</string>
-      <string name="str_kind_of_precious">宝贝类别</string>
-      <string name="str_first_item_kind_of_precious">找不到分类，试试搜一搜</string>
-      <string name="str_second_item_kind_of_precious">全部分类</string>
-       <string name="identiy_by_me">我来鉴定</string>
-       <string name="str_good_precious">精品藏品</string>
-       <string name="str_hot_precious">热门鉴定</string>
-       <string name="str_article">文玩杂学</string>
-       <string name="str_know_people">知名专家</string>
-       <string name="str_my_foot">我的足迹</string>
-       <string name="str_similar">同类鉴定</string>
-       <string name="str_identify_result">鉴定结果</string>
-       <string name="str_hot_discuss">藏友热议</string>
-  		<string name="comment_list_bt">回复</string>
-       <string name="comment_list_tag">回复  ‘%1$s’</string>
-       <string name="type_collect">成为网络鉴定师</string>
-       <string name="type_identiy">网络鉴定师</string>
-       <string name="title_send_comment_hint">回复  %1$s :</string>
-		<string name="title_number">%1$s楼</string>
-      <string name="str_none_msg">没有找到宝贝</string>
-      <string name="identity_ishava">已鉴定</string>
-      <string name="identity_isno">未鉴定</string>
-      <string name="collect_info_title">收藏文章</string>
-      <string name="str_result">查看结果</string>
-      <string name="system_info_title">系统通知</string>
-      <string name="title_attestagency">机构认证</string>
-       <string name="title_personal">个人认证</string>
-       <string name="attest_help_titls">为了你的认证可以及时通过审核，请认证填写相关信息</string>
-       <string name="attest_hiht_name">真实姓名:</string>
-       <string name="attest_hiht_number">身份证号：</string>
-       <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
-      	<string name="attest_helps_title3">营业执照</string>
-   	<string name="attest_hiht_agentcy_name">机构全称：</string>
-   	
-   		<string name="user_type_level1">普通用户</string>
-   	 	<string name="user_type_level2">个人认定鉴定师</string>
-   	 	<string name="user_type_level3">权威机构认定鉴定师</string>
-   	  <string name="help_msg_01">你已经为网络鉴定师</string>
-      <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
-      <string name="help_msg_03">请先检测网络环境</string>
-      <string name="help_msg_04">请输入旧的密码</string>
- 	  <string name="help_msg_05">请输入新的密码</string>
- 	  <string name="help_msg_06">请输入验证密码</string>
- 	  <string name="help_msg_07">请重新输入正确的密码和验证密码！</string>
- 	  <string name="help_msg_08">密码长度请输入6位数以上！</string>
- 	  <string name="help_msg_09">请输入你的建议！</string>
- 	  <string name="help_msg_10">请选择一位鉴定师！</string>
- 	  <string name="help_msg_11">为了帮助我们鉴定你的宝物，请你输入你的宝物详细描述！</string>
- 	  <string name="help_msg_12">请选择宝物的种类！</string>
- 	  <string name="help_msg_13">请写下你对宝物的分析</string>
- 	  <string name="help_msg_14">请选择全景图片</string>
- 	   <string name="help_msg_15">请选择局部图片</string>
- 	    <string name="help_msg_16">已经选择了3张图片！不能在选择了！</string>
- 	      <string name="help_msg_17">没有选择宝物，请返回上一步重新选择宝物类型！</string>
- 	      <string name="help_msg_18">你选择的宝物不是最详细的分类，请选择详细的分类！</string>
- 	    <string name="finish">完成</string>
+    <string name="register_name_hint">请输入手机号</string>
+    <string name="register_code_ed_hint">验证码</string>
+    <string name="register_code_bt_hint">获取验证码</string>
+    <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
+    <string name="regitster_bt">确定</string>
+    <string name="register_result_succes_title">注册成功</string>
+    <string name="register_result_succes_msg">欢迎您加入鉴定师</string>
+
+    <!-- 发布 -->
+    <string name="button_carme_title">拍照</string>
+    <string name="button_ablum_title">从相册选取</string>
+    <!-- 我的页面 -->
+
+    <string name="my_title_collect">我的宝物</string>
+    <string name="my_title_footprint">我的足迹</string>
+    <string name="my_title_appraisal">我的鉴定</string>
+    <string name="other_info_text">专家简介</string>
+    <string name="other_identityinfolist">TA的鉴定</string>
+    <string name="other_identitycollectinfo_text">TA的宝物</string>
+    <!-- 个人资料 -->
+    <string name="profile_title">个人资料</string>
+    <string name="profile_qq">QQ号:</string>
+    <string name="profile_name">用户昵称:</string>
+    <string name="profile_email">邮箱:</string>
+    <string name="profile_bt_save">保存修改</string>
+
+    <!-- 修改密码 -->
+    <string name="password_title">修改密码</string>
+    <string name="password_old">旧密码:</string>
+    <string name="password_new">新密码:</string>
+    <string name="password_renew">确认新密码:</string>
+
+    <!-- 意见反馈 -->
+    <string name="feednack_title">意见反馈</string>
+    <string name="feednack_hint">请尽量详细描述反馈，鉴定师平台会尽快帮你解决...</string>
+    <string name="feednack_bt">提交</string>
+
+    <!-- 认证鉴定师 -->
+    <string name="authenticate_title">认证鉴定师</string>
+    <string name="other_home_title">Ta的主页</string>
+    <!-- 成长体系 -->
+    <string name="level_title">成长体系</string>
+
+    <!-- 发布鉴定 -->
+    <string name="publish_title">添加宝贝信息</string>
+
+    <!-- 检测更新 -->
+    <string name="update_title">检测更新</string>
+    <string name="update_bt">版本更新</string>
+    <string name="publih_text_title">为了确保鉴定的准确性，请你按照要求分享宝贝照片及信息</string>
+    <string name="str_kind">请判别宝贝类别</string>
+    <string name="str_idenify_declare">鉴定说明</string>
+    <string name="str_kind_of_precious">宝贝类别</string>
+    <string name="str_first_item_kind_of_precious">找不到分类，试试搜一搜</string>
+    <string name="str_second_item_kind_of_precious">全部分类</string>
+    <string name="identiy_by_me">我来鉴定</string>
+    <string name="str_good_precious">精品藏品</string>
+    <string name="str_hot_precious">热门鉴定</string>
+    <string name="str_article">文玩杂学</string>
+    <string name="str_know_people">知名专家</string>
+    <string name="str_my_foot">我的足迹</string>
+    <string name="str_similar">同类鉴定</string>
+    <string name="str_identify_result">鉴定结果</string>
+    <string name="str_hot_discuss">藏友热议</string>
+    <string name="comment_list_bt">回复</string>
+    <string name="comment_list_tag">回复  ‘%1$s’</string>
+    <string name="type_collect">成为网络鉴定师</string>
+    <string name="type_identiy">网络鉴定师</string>
+    <string name="title_send_comment_hint">回复  %1$s :</string>
+    <string name="title_number">%1$s楼</string>
+    <string name="str_none_msg">没有找到宝贝</string>
+    <string name="identity_ishava">已鉴定</string>
+    <string name="identity_isno">未鉴定</string>
+    <string name="collect_info_title">收藏文章</string>
+    <string name="str_result">查看结果</string>
+    <string name="system_info_title">系统通知</string>
+    <string name="title_attestagency">机构认证</string>
+    <string name="title_personal">个人认证</string>
+    <string name="attest_help_titls">为了你的认证可以及时通过审核，请认证填写相关信息</string>
+    <string name="attest_hiht_name">真实姓名:</string>
+    <string name="attest_hiht_number">身份证号：</string>
+    <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
+    <string name="attest_helps_title3">营业执照</string>
+    <string name="attest_hiht_agentcy_name">机构全称：</string>
+    <string name="user_type_level1">普通用户</string>
+    <string name="user_type_level2">个人认定鉴定师</string>
+    <string name="user_type_level3">权威机构认定鉴定师</string>
+    <string name="help_msg_01">你已经为网络鉴定师</string>
+    <string name="help_msg_02">请先登陆，登陆用户才能发布鉴定</string>
+    <string name="help_msg_03">请先检测网络环境</string>
+    <string name="help_msg_04">请输入旧的密码</string>
+    <string name="help_msg_05">请输入新的密码</string>
+    <string name="help_msg_06">请输入验证密码</string>
+    <string name="help_msg_07">请重新输入正确的密码和验证密码！</string>
+    <string name="help_msg_08">密码长度请输入6位数以上！</string>
+    <string name="help_msg_09">请输入你的建议！</string>
+    <string name="help_msg_10">请选择一位鉴定师！</string>
+    <string name="help_msg_11">为了帮助我们鉴定你的宝物，请你输入你的宝物详细描述！</string>
+    <string name="help_msg_12">请选择宝物的种类！</string>
+    <string name="help_msg_13">请写下你对宝物的分析</string>
+    <string name="help_msg_14">请选择全景图片</string>
+    <string name="help_msg_15">请选择局部图片</string>
+    <string name="help_msg_16">已经选择了3张图片！不能在选择了！</string>
+    <string name="help_msg_17">没有选择宝物，请返回上一步重新选择宝物类型！</string>
+    <string name="help_msg_18">你选择的宝物不是最详细的分类，请选择详细的分类！</string>
+    <string name="finish">完成</string>
+
 </resources>
