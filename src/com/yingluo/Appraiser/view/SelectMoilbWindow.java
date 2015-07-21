@@ -34,6 +34,15 @@ public class SelectMoilbWindow extends PopupWindow {
 	public SelectMoilbWindow(Context context, OnItemClickListener listener) {
 		mContext = context;
 		list = SqlDataUtil.getInstance().getUserList();
+		int lenth = list.size();
+		for(int i=0; i<lenth;i++) {
+			UserInfo each = list.get(i);
+			if(each.getMobile() == null || each.getMobile().equals("")){
+				list.remove(each);
+				i--;
+				lenth = list.size();
+			}
+		}
 		Log.e("list_size", list.size()+"");
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		conentView = inflater.inflate(R.layout.moilb_popup_dialog, null);

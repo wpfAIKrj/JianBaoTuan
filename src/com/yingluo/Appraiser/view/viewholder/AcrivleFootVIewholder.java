@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.view.viewholder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -37,10 +38,9 @@ public class AcrivleFootVIewholder extends ViewHolder {
 
 	CollectionTreasure currnt;
 
-	private ArrayList<CollectionTreasure> list;
+	private List<CollectionTreasure> list;
 
-	public AcrivleFootVIewholder(View itemView, final OnClickListener lis,
-			ArrayList<CollectionTreasure> ids) {
+	public AcrivleFootVIewholder(View itemView, final OnClickListener lis, List<CollectionTreasure> ids) {
 		super(itemView);
 		// TODO 自动生成的构造函数存根
 		list = ids;
@@ -56,35 +56,39 @@ public class AcrivleFootVIewholder extends ViewHolder {
 				}
 			}
 		});
-		delete_checkbox
-				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		delete_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						// TODO Auto-generated method stub
-						if (currnt != null) {
-							if (isChecked) {
-								list.add(currnt);
-							} else {
-								list.remove(currnt);
-							}
-						}
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if (currnt != null) {
+					if (isChecked) {
+						list.add(currnt);
+					} else {
+						list.remove(currnt);
 					}
-				});
+				}
+			}
+		});
 	}
 
+	
+	public void setList(ArrayList<CollectionTreasure> list) {
+		this.list = list;
+	}
+
+
 	public void setItem(CollectionTreasure arcitite) {
-		
+
 		currnt = arcitite;
 		iv.setTag(currnt);
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		if(iv.getTag()==null) {
+		if (iv.getTag() == null) {
 			bitmapUtils.displayForxy(iv, currnt.getImage());
 		}
-		
+
 		tv_msg.setText(currnt.msg);
 		tv_num.setText(currnt.viewTimes + "");
 		delete_checkbox.setChecked(arcitite.isSelect);

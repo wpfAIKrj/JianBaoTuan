@@ -68,30 +68,26 @@ public class ViewHots extends LinearLayout {
 
 	public ViewHots(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewHots(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewHots(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
+		init(context);
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
-		// TODO Auto-generated method stub
 		super.onAttachedToWindow();
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
@@ -108,25 +104,25 @@ public class ViewHots extends LinearLayout {
 			LogUtils.e("Hots  CollectionEntity is null");
 			return;
 		}
-		if (iv_big.getTag() != null) {
-			// 防止闪烁
-			return;
-		}
+
 		currnt = item;
-		iv_big.setTag(item);
-		iv_small.setTag(item);
+
+		
 
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		// 设置大图片
-		if (item.images != null && item.images.length > 0) {
-
+		if (item.images != null && item.images.length > 0 && iv_big.getTag() == null) {
 			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		}
+		iv_big.setTag(item);
 		setSmallImage(iv_big, item.images);
 		// 设置头像
-		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
+		if(iv_small == null) {
+			bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
+		}
+		iv_small.setTag(item);
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字

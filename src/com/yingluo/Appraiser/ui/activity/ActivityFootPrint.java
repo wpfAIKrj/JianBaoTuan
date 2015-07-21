@@ -88,12 +88,12 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 			mAdapter.setScorll(true);
 			mAdapter.notifyDataSetChanged();
 			layout_delet.setVisibility(View.VISIBLE);
-
 		}
 			break;
 		case R.id.all_checkbox: {
 			// 全选
 			mAdapter.selectAll(all_checkbox.isChecked());
+			mAdapter.notifyDataSetChanged();
 		}
 			break;
 		case R.id.cancle_all_bt: {

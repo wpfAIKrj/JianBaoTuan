@@ -29,8 +29,6 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private OnClickListener lis;
 	private boolean isScorll = false;
 
-	private ArrayList<CollectionTreasure> deleteIds = new ArrayList<CollectionTreasure>();
-
 	public MyFootAdapter(OnClickListener lis, List<CollectionTreasure> list) {
 		this.list = list;
 		this.lis = lis;
@@ -70,16 +68,16 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	}
 
 	@Override
-	public void onBindViewHolder(ViewHolder arg0, int arg1) {
+	public void onBindViewHolder(ViewHolder arg0, int position) {
 		if (arg0 instanceof AcrivleFootVIewholder) {// 文章
 			AcrivleFootVIewholder av = (AcrivleFootVIewholder) arg0;
-			CollectionTreasure entity = list.get(arg1);
+			CollectionTreasure entity = list.get(position);
 			av.setItem(entity);
 			av.setDataFromDelete(isScorll);
 		}
 		if (arg0 instanceof IdentityFootViewholder) {// 宝物
 			IdentityFootViewholder vh = (IdentityFootViewholder) arg0;
-			CollectionTreasure entity = list.get(arg1);
+			CollectionTreasure entity = list.get(position);
 			vh.hotsView.setItem(entity);
 			vh.hotsView.setDataFromDelete(isScorll);
 		}
@@ -88,24 +86,19 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
 		if (arg1 == 1) {
-			View view = LayoutInflater.from(arg0.getContext()).inflate(
-					R.layout.item_foot_info, arg0, false);
+			View view = LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_foot_info, arg0, false);
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-					(int) arg0.getContext().getResources()
-							.getDimension(R.dimen.y568));
+					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
-			return new AcrivleFootVIewholder(view, lis, deleteIds);
-
+			return new AcrivleFootVIewholder(view, lis, list);
 		}
 		if (arg1 == 0) {
-			View view = LayoutInflater.from(arg0.getContext()).inflate(
-					R.layout.item_identified, arg0, false);
+			View view = LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identified, arg0, false);
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
-					(int) arg0.getContext().getResources()
-							.getDimension(R.dimen.y568));
+					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
 			// ViewHolder参数一定要是Item的Root节点.
-			return new IdentityFootViewholder(view, deleteIds);
+			return new IdentityFootViewholder(view, list);
 		}
 		return null;
 	}
@@ -119,7 +112,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	}
 
 	public void exitDelete() {
-		deleteIds.clear();
+		list.clear();
 	}
 
 	// 全选
@@ -128,18 +121,13 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 		for (int i = 0; i < len; i++) {
 			list.get(i).isSelect = isSelect;
 		}
-		deleteIds.clear();
-		if (isSelect) {
-			deleteIds.addAll(list);
-		}
-		notifyDataSetChanged();
 	}
 
 	public void deleteAll(final ActivityFootPrint footPrint, deleteMyFootPrintsModel delModel) {
 		StringBuilder sb = new StringBuilder();
-		if (deleteIds.size() < 0)
+		if (list.size() < 0)
 			return;
-		for (final CollectionTreasure id : deleteIds) {
+		for (final CollectionTreasure id : list) {
 			sb.append(id.delete_id).append(",");
 		}
 		sb.deleteCharAt(sb.length() - 1);
@@ -150,7 +138,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 			public void onSuccess() {
 				// TODO Auto-generated method stub
 				LogUtils.i("delete id: +  success!!!");
-				for (final CollectionTreasure id : deleteIds) {
+				for (final CollectionTreasure id : list) {
 					list.remove(id);
 				}
 				notifyDataSetChanged();
@@ -160,7 +148,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		}, sb.toString());
 
