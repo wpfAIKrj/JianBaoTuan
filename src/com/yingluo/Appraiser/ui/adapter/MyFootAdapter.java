@@ -32,13 +32,11 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private ArrayList<CollectionTreasure> deleteIds = new ArrayList<CollectionTreasure>();
 
 	public MyFootAdapter(OnClickListener lis, List<CollectionTreasure> list) {
-		// TODO Auto-generated constructor stub
 		this.list = list;
 		this.lis = lis;
 	}
 
 	public MyFootAdapter(OnClickListener lis) {
-		// TODO Auto-generated constructor stub
 		list = new ArrayList<CollectionTreasure>();
 		this.lis = lis;
 	}
@@ -59,13 +57,11 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
 		return list.size();
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		// TODO 自动生成的方法存根
 		if (list.get(position).type == 0)
 			return 0;
 		if (list.get(position).type == 1)
@@ -75,7 +71,6 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	@Override
 	public void onBindViewHolder(ViewHolder arg0, int arg1) {
-		// TODO 自动生成的方法存根
 		if (arg0 instanceof AcrivleFootVIewholder) {// 文章
 			AcrivleFootVIewholder av = (AcrivleFootVIewholder) arg0;
 			CollectionTreasure entity = list.get(arg1);
@@ -92,7 +87,6 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
-		// TODO 自动生成的方法存根
 		if (arg1 == 1) {
 			View view = LayoutInflater.from(arg0.getContext()).inflate(
 					R.layout.item_foot_info, arg0, false);
@@ -130,7 +124,6 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	// 全选
 	public void selectAll(boolean isSelect) {
-		// TODO Auto-generated method stub
 		int len = list.size();
 		for (int i = 0; i < len; i++) {
 			list.get(i).isSelect = isSelect;
@@ -140,11 +133,9 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 			deleteIds.addAll(list);
 		}
 		notifyDataSetChanged();
-
 	}
 
 	public void deleteAll(final ActivityFootPrint footPrint, deleteMyFootPrintsModel delModel) {
-		// TODO Auto-generated method stub
 		StringBuilder sb = new StringBuilder();
 		if (deleteIds.size() < 0)
 			return;

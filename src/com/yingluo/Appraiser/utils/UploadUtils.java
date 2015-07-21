@@ -35,87 +35,80 @@ import com.yingluo.Appraiser.model.GetImageTokenModel;
  */
 public class UploadUtils {
 
-
-
-	
 	/**
 	 * 上传文件
-	 * @param filePath 文件路径
-	 * @param listener 回调接口
+	 * 
+	 * @param filePath
+	 *            文件路径
+	 * @param listener
+	 *            回调接口
 	 */
-	public static void UploadPortrait(String filePath,final UpLoadFileInterface listener){
-		UploadManager uploadManager=new UploadManager();
-		if(NetConst.UPTOKEN==null) NetConst.UPTOKEN=ItApplication.getcurrnUser().getImage_token();
+	public static void UploadPortrait(String filePath, final UpLoadFileInterface listener) {
+		UploadManager uploadManager = new UploadManager();
+		if (NetConst.UPTOKEN == null)
+			NetConst.UPTOKEN = ItApplication.getcurrnUser().getImage_token();
 		uploadManager.put(filePath, null, NetConst.UPTOKEN, new UpCompletionHandler() {
-			
+
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {
-				// TODO Auto-generated method stub
-				LogUtils.d("key"+arg0);
-				LogUtils.d("info"+arg1);
-				LogUtils.d("json"+arg2);
-				if(listener!=null){
-					listener.complete(arg0, arg1, arg2);	
+				LogUtils.d("key" + arg0);
+				LogUtils.d("info" + arg1);
+				LogUtils.d("json" + arg2);
+				if (listener != null) {
+					listener.complete(arg0, arg1, arg2);
 				}
-				if(!arg1.isOK()){
-					final GetImageTokenModel getImageToke=new GetImageTokenModel();
+				if (!arg1.isOK()) {
+					final GetImageTokenModel getImageToke = new GetImageTokenModel();
 					getImageToke.GetIMageToken(new onBasicView<String>() {
-						
+
 						@Override
 						public void onSucess(String data) {
 							// TODO Auto-generated method stub
-							NetConst.UPTOKEN=data;
+							NetConst.UPTOKEN = data;
 							UserInfo user = ItApplication.getcurrnUser();
-							if(user!=null){
+							if (user != null) {
 								user.setImage_token(data);
 								SqlDataUtil.getInstance().saveUserInfo(user);
 								ItApplication.setCurrnUser(user);
 							}
 						}
-						
+
 						@Override
 						public void onFail(String errorCode, String errorMsg) {
 							// TODO Auto-generated method stub
-							
+
 						}
-					});	
+					});
 				}
 			}
-			
-			
+
 		}, new UploadOptions(null, "", true, new UpProgressHandler() {
-			
+
 			@Override
 			public void progress(String arg0, double arg1) {
 				// TODO Auto-generated method stub
-				LogUtils.d(arg0+"上传进度："+arg1);
-				if(listener!=null){
+				LogUtils.d(arg0 + "上传进度：" + arg1);
+				if (listener != null) {
 					listener.progress(arg0, arg1);
 				}
 			}
-			
-			
+
 		}, new UpCancellationSignal() {
-			
+
 			@Override
 			public boolean isCancelled() {
 				// TODO Auto-generated method stub
-				if(listener!=null){
+				if (listener != null) {
 					return listener.isCancelled();
-				}else{
+				} else {
 					return false;
 				}
 			}
 		}));
-		
+
 	}
-	
-	
-	
+
 	private static final String MAC_NAME = "HmacSHA1";
 	private static final String ENCODING = "UTF-8";
-
-
-
 
 }

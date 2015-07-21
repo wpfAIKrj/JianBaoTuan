@@ -48,23 +48,18 @@ public class PullRefreshRecyclerView extends LinearLayout {
 	public PullRefreshRecyclerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LinearLayout rootLl = new LinearLayout(context);
-		rootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		rootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		mExceptView = initExceptionView(context);
-		mExceptView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		mExceptView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		mExceptView.setVisibility(View.GONE);
 		swipeRfl = new SwipeRefreshLayout(context);
-		swipeRfl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		swipeRfl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		FrameLayout bootLl = new FrameLayout(context);
-		bootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
+		bootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		recyclerView = new RecyclerView(context);
 		recyclerView.setVerticalScrollBarEnabled(true);
 		recyclerView.setHorizontalScrollBarEnabled(true);
-		recyclerView.setLayoutParams(new LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		recyclerView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		bootLl.addView(recyclerView);
 		bootLl.addView(mExceptView);
 		swipeRfl.addView(bootLl);
@@ -86,10 +81,8 @@ public class PullRefreshRecyclerView extends LinearLayout {
 			@Override
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
-				int lastVisibleItem = layoutManager
-						.findLastVisibleItemPosition();
-				int firstVisibleItem = layoutManager
-						.findFirstCompletelyVisibleItemPosition();
+				int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+				int firstVisibleItem = layoutManager.findFirstCompletelyVisibleItemPosition();
 				if (firstVisibleItem == 0) {
 					setPullRefreshEnable(true);
 				} else {
@@ -106,8 +99,7 @@ public class PullRefreshRecyclerView extends LinearLayout {
 				/**
 				 * 无论水平还是垂直
 				 */
-				if (hasMore && (lastVisibleItem >= totalItemCount - 1)
-						&& !isLoadMore) {
+				if (hasMore && (lastVisibleItem >= totalItemCount - 1) && !isLoadMore) {
 					isLoadMore = true;
 					loadMore();
 				}
@@ -219,8 +211,7 @@ public class PullRefreshRecyclerView extends LinearLayout {
 
 	private LinearLayout initExceptionView(Context context) {
 		LinearLayout rootLl = new LinearLayout(context);
-		rootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		rootLl.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		rootLl.setOrientation(VERTICAL);
 		rootLl.setGravity(Gravity.CENTER);
 		exceptIv = new ImageView(context);
@@ -237,8 +228,7 @@ public class PullRefreshRecyclerView extends LinearLayout {
 			}
 		});
 		// 底部边距
-		LinearLayout.LayoutParams ll = new LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams ll = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		ll.setMargins(0, 0, 0, 32);
 		exceptIv.setLayoutParams(ll);
 		exceptTv = new TextView(context);

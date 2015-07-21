@@ -18,7 +18,6 @@ public class IdentityFootViewholder extends ViewHolder {
 
 	public IdentityFootViewholder(View itemView, ArrayList<CollectionTreasure> list) {
 		super(itemView);
-		// TODO 自动生成的构造函数存根
 		this.ids = list;
 		hotsView = (ViewHots) itemView.findViewById(R.id.hot);
 		hotsView.delete_checkbox
@@ -27,8 +26,6 @@ public class IdentityFootViewholder extends ViewHolder {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						// TODO Auto-generated method stub
-						// TODO Auto-generated method stub
 						if (hotsView.getItem() != null) {
 							if (isChecked) {
 								ids.add(hotsView.getItem());

@@ -63,6 +63,11 @@ public class AttestAgencyActivity extends BaseActivity {
 		initData();
 	}
 	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
 	
 	private void initView() {
 		// TODO Auto-generated method stub
@@ -81,6 +86,7 @@ public class AttestAgencyActivity extends BaseActivity {
 		case R.id.btn_back://返回上一层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		case R.id.bt_attest://提交认证信息
 			name=et_name.getText().toString();

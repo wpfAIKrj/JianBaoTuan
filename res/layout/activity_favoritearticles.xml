@@ -2,88 +2,82 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/wite" >
+    android:background="@color/wite"
+    android:orientation="vertical" >
 
-  <include
-      layout="@layout/article_head" android:id="@+id/layout_head"/>
-  
-	  <android.support.v4.widget.SwipeRefreshLayout
-	      xmlns:tools="http://schemas.android.com/tools"
-	      android:id="@+id/swipe_refresh_widget"
-	      android:layout_width="match_parent"
-	      android:layout_height="match_parent"
-	      android:layout_below="@id/layout_head" >
+    <include
+        android:id="@+id/layout_head"
+        layout="@layout/article_head" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview1"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/swipe_refresh_widget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="@null"
-        android:scrollbars="vertical" />
-</android.support.v4.widget.SwipeRefreshLayout>
-  
+        android:layout_below="@id/layout_head" >
 
-	  <RelativeLayout
-	      android:id="@+id/layout_delet"
-	      android:layout_width="match_parent"
-	      android:layout_height="@dimen/layout_item_height"
-	      android:layout_alignParentBottom="true"
-	      android:layout_centerHorizontal="true"
-	      android:background="@color/layout_bg_color"
-	      android:visibility="gone" >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:scrollbars="vertical" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-	      <CheckBox
-	          android:id="@+id/all_checkbox"
-	          style="@style/delete_checkbox_all_style"
-	          android:layout_width="wrap_content"
-	          android:layout_height="wrap_content"
-	          android:layout_centerVertical="true"
-	          android:layout_marginLeft="14dp" 
-	         />
+    <RelativeLayout
+        android:id="@+id/layout_delet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_item_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/layout_bg_color"
+        android:visibility="gone" >
 
-	      <TextView
-	          android:id="@+id/textView1"
-	          android:layout_width="wrap_content"
-	          android:layout_height="wrap_content"
-	          android:layout_alignBaseline="@+id/all_checkbox"
-	          android:layout_alignBottom="@+id/all_checkbox"
-	          android:layout_toRightOf="@+id/all_checkbox"
-	          android:layout_marginLeft="@dimen/layouts_marginleft"
-	          android:text="全选" 
-	          style="@style/my_title_style1"
-	          />
+        <CheckBox
+            android:id="@+id/all_checkbox"
+            style="@style/delete_checkbox_all_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp" />
 
-	      <Button
-	          android:id="@+id/delete_all_bt"
-	          android:layout_width="wrap_content"
-	          android:layout_height="wrap_content"
-	          android:layout_alignParentRight="true"
-	          android:layout_centerVertical="true"
-	          android:layout_marginRight="@dimen/detail_text_padd"
-	          android:text="删除"
-	          android:gravity="center"
-	           android:background="@drawable/delete_button_bg"
-	           android:textColor="@color/dialog_title_color"
-	           android:textSize="@dimen/x30"
-	           />
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/my_title_style1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/all_checkbox"
+            android:layout_alignBottom="@+id/all_checkbox"
+            android:layout_marginLeft="@dimen/layouts_marginleft"
+            android:layout_toRightOf="@+id/all_checkbox"
+            android:text="全选" />
 
-	      <Button
-	          android:id="@+id/cancle_all_bt"
-	          android:layout_width="wrap_content"
-	          android:layout_height="wrap_content"
-	          android:layout_alignBaseline="@+id/delete_all_bt"
-	          android:layout_alignBottom="@+id/delete_all_bt"
-	   
-	          android:layout_toLeftOf="@+id/delete_all_bt"
-	          android:text="取消"
-	          android:gravity="center"
-	           android:background="@drawable/canle_button_bg"
-	           android:textColor="@color/number_color"
-	           android:textSize="@dimen/x30" 
-	           android:layout_marginRight="@dimen/button_layout_margin"
-	           />
+        <Button
+            android:id="@+id/delete_all_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/detail_text_padd"
+            android:background="@drawable/delete_button_bg"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/dialog_title_color"
+            android:textSize="@dimen/x30" />
 
-	  </RelativeLayout>
+        <Button
+            android:id="@+id/cancle_all_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/delete_all_bt"
+            android:layout_alignBottom="@+id/delete_all_bt"
+            android:layout_marginRight="@dimen/button_layout_margin"
+            android:layout_toLeftOf="@+id/delete_all_bt"
+            android:background="@drawable/canle_button_bg"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/number_color"
+            android:textSize="@dimen/x30" />
+    </RelativeLayout>
 
 </RelativeLayout>

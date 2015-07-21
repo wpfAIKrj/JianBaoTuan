@@ -173,7 +173,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 		prrv.setRefreshLoadMoreListener(this);
 		prrv.setVertical();
 		prrv.setAdapter(mAdapter);
-		// prrv.refresh();
 
 	}
 
@@ -189,6 +188,13 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 		System.out.println(getClass().getName() + "正在加载数据");
 	}
 
+	/**
+	 * 刷新页面
+	 */
+	public void refresh() {
+		prrv.refresh();
+	}
+	
 	public void setIdentifyBackground(int id) {
 		switch (id) {
 		case R.id.btn_identifing: {
@@ -215,16 +221,11 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
-		// current_page++;
-
 		getIndentity();
-
 	}
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 
 	}
 

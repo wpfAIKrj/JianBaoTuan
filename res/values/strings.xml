@@ -104,10 +104,10 @@
     <string name="title_personal">个人认证</string>
     <string name="attest_help_titls">为了你的认证可以及时通过审核，请认证填写相关信息</string>
     <string name="attest_hiht_name">真实姓名:</string>
-    <string name="attest_hiht_number">身份证号：</string>
+    <string name="attest_hiht_number">身份证号:</string>
     <string name="attest_helps_title2">个人证书（国家认证资格证书或珠宝鉴宝机构培训证书等）</string>
     <string name="attest_helps_title3">营业执照</string>
-    <string name="attest_hiht_agentcy_name">机构全称：</string>
+    <string name="attest_hiht_agentcy_name">机构全称:</string>
     <string name="user_type_level1">普通用户</string>
     <string name="user_type_level2">个人认定鉴定师</string>
     <string name="user_type_level3">权威机构认定鉴定师</string>

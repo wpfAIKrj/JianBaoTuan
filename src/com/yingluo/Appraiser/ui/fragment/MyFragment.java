@@ -106,33 +106,32 @@ public class MyFragment extends BaseFragment {
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_my, container, false);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this);
 	}
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
 	}
 
 	public void onEventMainThread(MyEvent event) {
 		switch (event.type) {
-		case 0:// 更新人物头像
+		case 0:
+			// 更新人物头像
 			if (ItApplication.getcurrnUser() != null) {
 				tv_name.setText(ItApplication.getcurrnUser().getNickname());
 				BitmapsUtils.getInstance().display(user_logo, ItApplication.getcurrnUser().getAvatar());
 			}
 			break;
-		case 1:// 更新个人信息
+		case 1:
+			// 更新个人信息
 			lazyLoad();
 			break;
 		default:
@@ -142,18 +141,15 @@ public class MyFragment extends BaseFragment {
 
 	@Override
 	protected void initViews(View view) {
-		// TODO Auto-generated method stub
 		ViewUtils.inject(this, view);
 		getPresenter = new getUserInfoLPresenter(viewlis);
 		LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
 		manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 		listView.setLayoutManager(manager);
-
 	}
 
 	@Override
 	protected void initDisplay() {
-		// TODO Auto-generated method stub
 		initData();
 		if (!isgete) {
 			getPresenter.getUserInfo();
@@ -163,7 +159,6 @@ public class MyFragment extends BaseFragment {
 
 	@Override
 	public void lazyLoad() {
-		// TODO Auto-generated method stub
 		initDisplay();
 	}
 
@@ -176,26 +171,31 @@ public class MyFragment extends BaseFragment {
 			R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.login_user_head:// 更新头像
+		case R.id.login_user_head:
+			// 更新头像
 			if (onlongListner != null) {
 				onlongListner.onClick(v);
 			}
 			break;
-		case R.id.my_iv_level:// 跳转到等级说明
+		case R.id.my_iv_level:
+			// 跳转到等级说明
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_bt_showmenu:// 右侧菜单
+		case R.id.my_bt_showmenu:
+			// 右侧菜单
 			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class), Const.TO_USER_SET);
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tv_authenticate:// 跳转到认证鉴定师
+		case R.id.my_tv_authenticate:
+			// 跳转到认证鉴定师
 			if (ItApplication.getcurrnUser() != null && ItApplication.getcurrnUser().getUser_type() == 0) {
 				mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
 				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 			break;
 
-		case R.id.my_layout_collect:// 跳转收藏宝贝页面
+		case R.id.my_layout_collect:
+			// 跳转收藏宝贝页面
 		{
 			Intent mIntent = new Intent(mActivity, ActivityMyPrecious.class);
 			mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
@@ -203,11 +203,13 @@ public class MyFragment extends BaseFragment {
 		}
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_layout_foot:// 跳转到我的足迹
+		case R.id.my_layout_foot:
+			// 跳转到我的足迹
 			startActivity(new Intent(mActivity, ActivityFootPrint.class));
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_layout_identif:// 跳转到我的鉴定
+		case R.id.my_layout_identif:
+			// 跳转到我的鉴定
 		{
 			Intent mIntent = new Intent(mActivity, ActivityMyPrecious.class);
 			mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.IDENTIFY);
@@ -215,7 +217,8 @@ public class MyFragment extends BaseFragment {
 		}
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tab1:// 跳转到我的宝贝
+		case R.id.my_tab1:
+			// 跳转到我的宝贝
 		{
 			Intent mIntent = new Intent(mActivity, ActivityMyPrecious.class);
 			mIntent.putExtra(Const.GOTO_MY_PRECIOUS, Const.COLLECT);
@@ -223,20 +226,23 @@ public class MyFragment extends BaseFragment {
 		}
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tab2:// 跳转到收藏文章
-
+		case R.id.my_tab2:
+			// 跳转到收藏文章
 			mActivity.startActivityForResult(new Intent(mActivity, FavoriteArticlesActivity.class),
 					Const.TO_COLLECT_INFO);
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tab3:// 跳转我的私信
+		case R.id.my_tab3:
+			// 跳转我的私信
 			RongIM.getInstance().startConversationList(mActivity);
 			break;
-		case R.id.my_tab4:// 跳转到系统通知
+		case R.id.my_tab4:
+			// 跳转到系统通知
 			mActivity.startActivityForResult(new Intent(mActivity, SystemInfoActivity.class), Const.TO_SYSTEM_INFO);
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tab5:// 跳转到认证鉴定师
+		case R.id.my_tab5:
+			// 跳转到认证鉴定师
 			if (ItApplication.getcurrnUser() != null && ItApplication.getcurrnUser().getUser_type() == 0) {
 				mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
 				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);

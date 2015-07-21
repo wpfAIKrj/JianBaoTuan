@@ -1,94 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/wite"
-    
     android:fitsSystemWindows="true"
-    
-     xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
+    android:orientation="vertical" >
 
-    	<include layout="@layout/layout_head"/>
-    	<TextView 
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y80"
-    	    android:text="@string/attest_help_titls"
-    	    style="@style/my_titl_style4"
-    	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/x30"
-    		
-    	    />
+    <include layout="@layout/layout_head" />
 
-    
-    	<EditText
-    	    android:id="@+id/et_name"
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y94"
-    	    android:ems="10"
-    	    android:background="@drawable/item_layout_padd"
-    	    android:inputType="text" 
-    	    android:gravity="center_vertical|left"
-    	    android:hint="@string/attest_hiht_agentcy_name"
-    	    style="@style/my_title_style3"
-    	    android:paddingLeft="@dimen/x30"
-    	    android:imeOptions="actionNext"
-    	    android:textColor="@color/black"
-    	    android:textColorHint="@color/black"
-    	    
-    	    >
+    <TextView
+        style="@style/my_titl_style4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x30"
+        android:text="@string/attest_help_titls" />
 
-    	    <requestFocus />
-    	</EditText>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ed_layout_height"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@drawable/item_layout_padd">
+        <TextView 
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        	android:paddingLeft="@dimen/x30"
+            android:text="@string/attest_hiht_agentcy_name"
+            android:textColor="@color/black"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            />
     
-    	<TextView 
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y80"
-    	    android:text="@string/attest_helps_title3"
-    	    style="@style/my_titl_style5"
-    	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/x30"
-    	    />
-		<com.yingluo.Appraiser.view.CircleImageView
-			android:id="@+id/imageView01"
-			android:layout_width="@dimen/y200"
-			android:layout_height="@dimen/y200"
-			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/x30"
-			android:layout_marginLeft="@dimen/x14"
-			app:border_width="@dimen/x1"
-			app:border_color="@color/black"/>
-    	<TextView 
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y80"
-    	    android:text="@string/attest_helps_title2"
-    	    style="@style/my_titl_style5"
-    	    android:gravity="center_vertical"
-    		android:paddingLeft="@dimen/x30"
-    		android:layout_marginTop="@dimen/y20"
-    	    />
-		<com.yingluo.Appraiser.view.CircleImageView
-			android:id="@+id/imageView02"
-			android:layout_width="@dimen/y200"
-			android:layout_height="@dimen/y200"
-			android:src="@drawable/add_image_bg" 
-			android:paddingLeft="@dimen/x30"
-			android:layout_marginLeft="@dimen/x14"
-			android:layout_marginTop="@dimen/y20"
-			app:border_width="@dimen/x1"
-			app:border_color="@color/black"
-			/>
+        <EditText
+	        android:id="@+id/et_name"
+	        style="@style/my_title_style3"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:cursorVisible="true"
+	        android:ems="10"
+	        android:layout_toRightOf="@+id/tv_name"
+	        android:layout_marginLeft="5dp"
+	        android:background="@null"
+	        android:layout_centerVertical="true"
+	        android:imeOptions="actionNext"
+	        android:inputType="text"
+	        android:textCursorDrawable="@drawable/color_cursor" >
 	
-		<Button
-		    android:id="@+id/bt_attest"
-		    android:layout_width="match_parent"
-		    android:layout_height="@dimen/y94"
-		    android:text="@string/feednack_bt"
-		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/x14"
-		    android:layout_marginRight="@dimen/x14"
-		    android:layout_marginTop="@dimen/y100" />
+	        <requestFocus />
+	    </EditText>
+        
+    </RelativeLayout>
 
+    <TextView
+        style="@style/my_titl_style5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x30"
+        android:text="@string/attest_helps_title3" />
 
+    <com.yingluo.Appraiser.view.CircleImageView
+        android:id="@+id/imageView01"
+        android:layout_width="@dimen/y200"
+        android:layout_height="@dimen/y200"
+        android:layout_marginLeft="@dimen/x14"
+        android:paddingLeft="@dimen/x30"
+        android:src="@drawable/add_image_bg"
+        app:border_color="@color/black"
+        app:border_width="@dimen/x1" />
+
+    <TextView
+        style="@style/my_titl_style5"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:layout_marginTop="@dimen/y20"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/x30"
+        android:text="@string/attest_helps_title2" />
+
+    <com.yingluo.Appraiser.view.CircleImageView
+        android:id="@+id/imageView02"
+        android:layout_width="@dimen/y200"
+        android:layout_height="@dimen/y200"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginTop="@dimen/y20"
+        android:paddingLeft="@dimen/x30"
+        android:src="@drawable/add_image_bg"
+        app:border_color="@color/black"
+        app:border_width="@dimen/x1" />
+
+    <Button
+        android:id="@+id/bt_attest"
+        style="@style/bt_login_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginTop="@dimen/y100"
+        android:text="@string/feednack_bt" />
 
 </LinearLayout>

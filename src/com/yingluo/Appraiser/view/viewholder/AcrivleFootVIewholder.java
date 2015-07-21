@@ -75,16 +75,16 @@ public class AcrivleFootVIewholder extends ViewHolder {
 	}
 
 	public void setItem(CollectionTreasure arcitite) {
-		if(iv.getTag()!=null) {
-			//不在重新加载，防止闪烁
-			return;
-		}
+		
 		currnt = arcitite;
 		iv.setTag(currnt);
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.displayForxy(iv, currnt.getImage());
+		if(iv.getTag()==null) {
+			bitmapUtils.displayForxy(iv, currnt.getImage());
+		}
+		
 		tv_msg.setText(currnt.msg);
 		tv_num.setText(currnt.viewTimes + "");
 		delete_checkbox.setChecked(arcitite.isSelect);

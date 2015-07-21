@@ -75,7 +75,6 @@ public class PublishedActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_published);
 		ViewUtils.inject(this);
@@ -83,7 +82,6 @@ public class PublishedActivity extends BaseActivity {
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		imageUtils = new ImageUtils(this);
 		title.setText(R.string.publish_title);
 
@@ -91,18 +89,17 @@ public class PublishedActivity extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
-		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+		overridePendingTransition(R.anim.hold, R.anim.right_out);
 	}
 	
 	@OnClick({ R.id.btn_back, R.id.published_bt, R.id.imageView01, R.id.imageView02, R.id.imageView03, R.id.imageView04,
 			R.id.imageView05, R.id.imageView06, R.id.bt_next })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		Intent intent = null;
 		switch (v.getId()) {
-		case R.id.btn_back:// 返回上层
+		case R.id.btn_back:
+			// 返回上层
 			for (String path : selectListAll) {
 				if (path != null && !path.isEmpty()) {
 					FileUtils.getInstance().deleteFile(path);
@@ -115,9 +112,10 @@ public class PublishedActivity extends BaseActivity {
 			}
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
-			overridePendingTransition(R.anim.right_in, R.anim.right_out);
+			overridePendingTransition(R.anim.hold, R.anim.right_out);
 			break;
-		case R.id.published_bt:// 跳转到搜索
+		case R.id.published_bt:
+			// 跳转到搜索
 			intent = new Intent(PublishedActivity.this, KindOfPreciousActivity.class);
 			intent.putExtra(Const.SHOW_TYPE, 1);
 			startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);

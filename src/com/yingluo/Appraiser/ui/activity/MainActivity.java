@@ -57,8 +57,7 @@ import de.greenrobot.event.EventBus;
  * @author Administrator
  *
  */
-public class MainActivity extends FragmentActivity implements
-		OnTabSelectedListener {
+public class MainActivity extends FragmentActivity implements OnTabSelectedListener {
 
 	private FragmentManager mFragmentManager;
 	private HomeFragment mHomeFragment;
@@ -73,9 +72,9 @@ public class MainActivity extends FragmentActivity implements
 	private ImageUtils imageUtils;
 	private Dialog Logodialong;
 
-	//用于判断第二次点击退出
+	// 用于判断第二次点击退出
 	private long mExitTime;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,7 +86,6 @@ public class MainActivity extends FragmentActivity implements
 		EventBus.getDefault().register(this);
 	}
 
-
 	public void onEventMainThread(MainEvent event) {
 		switch (event.type) {
 		case 0:// 返回首页，切换到首页
@@ -98,11 +96,11 @@ public class MainActivity extends FragmentActivity implements
 			Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
 			startActivityForResult(intent, Const.TO_LOGIN);
 			break;
-		case 2://跳转到鉴定大厅
+		case 2:// 跳转到鉴定大厅
 			mIndex = 1;
 			setOnTabselected();
 			break;
-		case 3://跳转到知识学堂
+		case 3:// 跳转到知识学堂
 			mIndex = 2;
 			setOnTabselected();
 			break;
@@ -113,15 +111,11 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		EventBus.getDefault().unregister(this);
 		super.onDestroy();
 	}
 
-
-
 	private void init() {
-		// TODO Auto-generated method stub
 		mFragmentManager = getSupportFragmentManager();
 		mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
 		LinearLayout viewSnsLayout = (LinearLayout) findViewById(R.id.viewSnsLayout);
@@ -131,33 +125,30 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (ItApplication.getcurrnUser() != null) {
-					Intent intent = new Intent(MainActivity.this,
-							PublishedActivity.class);
+					Intent intent = new Intent(MainActivity.this, PublishedActivity.class);
 					startActivityForResult(intent, Const.TO_SEND_IDENTIY);
+					overridePendingTransition(R.anim.toast_in, R.anim.hold);
 				} else {
 					new ToastUtils(MainActivity.this, R.string.help_msg_02);
 				}
 			}
 		});
 		uplogopresenter = new UploadLogoPresenter(listener);
-	
+
 		imageUtils = new ImageUtils(this);
 	}
 
 	private void initEvents() {
-		// TODO Auto-generated method stub
 		mTabWidget.setOnTabSelectedListener(this);
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-//		if (ItApplication.currnUser == null) {
-//			mIndex = 0;
-//		}
+		// if (ItApplication.currnUser == null) {
+		// mIndex = 0;
+		// }
 		setOnTabselected();
 	}
 
@@ -178,37 +169,32 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void getSave(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		if (savedInstanceState != null) {
 			mIndex = savedInstanceState.getInt(Const.MINDEX, 0);
-	
-			
 		}
 	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-                if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                        Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                        mExitTime = System.currentTimeMillis();
-
-                } else {
-                        finish();
-                }
-                return true;
-        }
-        return super.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if ((System.currentTimeMillis() - mExitTime) > 2000) {
+				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+				mExitTime = System.currentTimeMillis();
+			} else {
+				finish();
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
 	public void onTabSelected(int index) {
-		// TODO Auto-generated method stub
-		if (index == 3) {// 我的页面
+		if (index == 3) {
+			// 我的页面
 			if (ItApplication.getcurrnUser() == null) {
 				mIndex = 0;
-				Intent intent = new Intent(MainActivity.this,
-						LoginAcitivity.class);
+				Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
 				startActivityForResult(intent, Const.TO_LOGIN);
 				return;
 			}
@@ -224,7 +210,7 @@ public class MainActivity extends FragmentActivity implements
 				transaction.show(mHomeFragment);
 			}
 			mHomeFragment.lazyLoad();
-			
+
 			break;
 		case 1:
 			if (null == mIdentiyFragment) {
@@ -232,6 +218,9 @@ public class MainActivity extends FragmentActivity implements
 				transaction.add(R.id.center_layout, mIdentiyFragment);
 			} else {
 				transaction.show(mIdentiyFragment);
+			}
+			if(mIndex == 1) {
+				mIdentiyFragment.refresh();
 			}
 			break;
 		case 2:
@@ -242,6 +231,9 @@ public class MainActivity extends FragmentActivity implements
 			} else {
 				transaction.show(mInformationFragment);
 			}
+			if(mIndex == 2) {
+				mInformationFragment.refresh();
+			}
 			break;
 		case 3:
 			if (null == mMyFragment) {
@@ -250,10 +242,8 @@ public class MainActivity extends FragmentActivity implements
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						if (photodialog == null) {
-							photodialog = new SelectPhotoDialog(
-									MainActivity.this, ImageListner);
+							photodialog = new SelectPhotoDialog(MainActivity.this, ImageListner);
 						}
 						if (!photodialog.isShowing()) {
 							photodialog.show();
@@ -275,7 +265,6 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void hideFragments(FragmentTransaction transaction) {
-		// TODO Auto-generated method stub
 		if (null != mHomeFragment) {
 			transaction.hide(mHomeFragment);
 		}
@@ -290,8 +279,6 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-
-
 	@Override
 	public void startActivity(Intent intent) {
 		// TODO Auto-generated method stub
@@ -302,7 +289,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
 		// TODO Auto-generated method stub
-		if(arg0==Const.TO_USER_SET&&arg1==Const.TO_EXITS_USER){
+		if (arg0 == Const.TO_USER_SET && arg1 == Const.TO_EXITS_USER) {
 			new ToastUtils(MainActivity.this, "退出账户成功！");
 			mIndex = 0;
 			setOnTabselected();
@@ -335,8 +322,7 @@ public class MainActivity extends FragmentActivity implements
 				imageUtils.crop(Uri.fromFile((new File(imageUtils.PICPATH))));
 			}
 		}
-		if (arg0 == ImageUtils.GET_IMAGE_FROM_PHONE
-				&& arg1 == Activity.RESULT_OK) {// 我的页面，获取照片地址获取到图片（相册）
+		if (arg0 == ImageUtils.GET_IMAGE_FROM_PHONE && arg1 == Activity.RESULT_OK) {// 我的页面，获取照片地址获取到图片（相册）
 			if (arg2 != null && arg2.getData() != null) {
 				imageUtils.crop(arg2.getData());
 			}
@@ -351,8 +337,7 @@ public class MainActivity extends FragmentActivity implements
 		if (arg0 == ImageUtils.PHOTO_REQUEST_CUT && arg1 == RESULT_OK) {// 获取剪切好的人物头像
 			if (arg2 != null) {
 
-				uploadLogo(FileUtils.getInstance().getLogoPath()
-						.getAbsolutePath());
+				uploadLogo(FileUtils.getInstance().getLogoPath().getAbsolutePath());
 			}
 
 		}
@@ -365,7 +350,7 @@ public class MainActivity extends FragmentActivity implements
 		disshowPhoto();
 		if (ItApplication.getcurrnUser() != null) {
 			String qq = ItApplication.getcurrnUser().getQq();
-			String email =ItApplication.getcurrnUser().getEmail();
+			String email = ItApplication.getcurrnUser().getEmail();
 			String name = ItApplication.getcurrnUser().getNickname();
 			uplogopresenter.startUpLoadLogo(path, email, qq, name);
 			Logodialong = DialogUtil.createLoadingDialog(this, "正在更新头像中");
@@ -409,13 +394,10 @@ public class MainActivity extends FragmentActivity implements
 		}
 	};
 
-	
-
 	private OnClickListener ImageListner = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.btn_take_photo:// 相机获取
 				imageUtils.openCameraImage();

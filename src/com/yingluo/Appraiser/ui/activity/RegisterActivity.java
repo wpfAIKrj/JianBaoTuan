@@ -112,21 +112,18 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		SMSSDK.unregisterEventHandler(eh);
 		super.onDestroy();
 	}
 
 	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.title_back:// 返回登陆页面
 			setResult(RESULT_CANCELED, getIntent());
@@ -148,7 +145,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	 * 验证手机码是否正确
 	 */
 	private void checkSms() {
-		// TODO Auto-generated method stub
 		phone = ed_phone.getText().toString();
 		if (TelNumMath.isMobileNO(phone)) {
 			pwd = ed_pwd.getText().toString().trim();
@@ -174,7 +170,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	 * 发送短信
 	 */
 	private void sendSms() {
-		// TODO Auto-generated method stub
 		phone = ed_phone.getText().toString();
 		if (TelNumMath.isMobileNO(phone)) {
 			SMSSDK.getVerificationCode("86", phone);
@@ -186,7 +181,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	}
 
 	protected void register() {
-		// TODO Auto-generated method stub
 		dialog = DialogUtil.createLoadingDialog(this, "注册中.....");
 		dialog.show();
 		mpresenter.startRegister(phone, pwd);
@@ -232,7 +226,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	 * 倒计时
 	 */
 	protected void reSendSMS() {
-		// TODO Auto-generated method stub
 		System.out.println("获取验证码成功");
 		send_code.setEnabled(false);
 		timer = new CountDownTimer(TIME_COUNT, TIME_LONG) {
@@ -258,14 +251,12 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 	@Override
 	public void startActivity(Intent intent) {
-		// TODO Auto-generated method stub
 		super.startActivity(intent);
 		overridePendingTransition(R.anim.left_in, R.anim.left_out);
 	}
 
 	@Override
 	public void onSucess(UserInfo user) {
-		// TODO Auto-generated method stub
 		if (dialog != null) {
 			dialog.dismiss();
 		}
@@ -292,7 +283,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		if (dialog != null) {
 			dialog.dismiss();
 		}

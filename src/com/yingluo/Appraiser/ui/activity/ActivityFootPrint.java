@@ -72,7 +72,6 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -97,8 +96,8 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 			mAdapter.selectAll(all_checkbox.isChecked());
 		}
 			break;
-		case R.id.cancle_all_bt:// 退出选择模式
-		{
+		case R.id.cancle_all_bt: {
+			// 退出选择模式
 			exitDelete();
 		}
 			break;
