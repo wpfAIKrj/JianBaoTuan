@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/wite">
+    android:background="@color/wite"
+    android:orientation="vertical" >
 
-		<TextView 
-	      android:id="@+id/tv"
-          android:padding="8dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp" />
 
 </LinearLayout>

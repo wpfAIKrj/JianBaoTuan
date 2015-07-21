@@ -74,8 +74,7 @@ public class MainActivity extends FragmentActivity implements
 	private Dialog Logodialong;
 
 	//用于判断第二次点击退出
-	private static Boolean isExit = false;
-	private static Boolean hasTask = false;
+	private long mExitTime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -188,29 +187,19 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (isExit == false) {
-                isExit = true;
-                Toast.makeText(this, "再按一次将退出程序",Toast.LENGTH_SHORT).show();
-                if (!hasTask) {
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            isExit = false;
-                            hasTask = false;
-                        }
-                    }, 3000);
+                if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                        Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                        mExitTime = System.currentTimeMillis();
+
+                } else {
+                        finish();
                 }
-            } else {
-                finish(); // 退出应用
-                System.exit(0);
-            }
-        } else if (event.getRepeatCount() != 0) {
-            return true;
+                return true;
         }
         return super.onKeyDown(keyCode, event);
-    }
+	}
 
 	@Override
 	public void onTabSelected(int index) {

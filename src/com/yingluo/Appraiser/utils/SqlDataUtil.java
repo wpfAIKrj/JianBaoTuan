@@ -147,7 +147,6 @@ public class SqlDataUtil {
 			QueryBuilder<UserInfo> qb = userdao.queryBuilder();
 			list = qb.list();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;

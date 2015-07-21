@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
@@ -11,27 +11,23 @@
         android:id="@+id/include1"
         layout="@layout/layout_activity_head" />
 
-  
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_below="@+id/include1"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-      	android:layout_below="@+id/include1"
-        android:orientation="vertical" 
-       
         android:layout_marginTop="@dimen/y262"
-        >
+        android:orientation="vertical" >
 
         <LinearLayout
+            android:id="@+id/name_layout"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/y94"
-           android:background="@drawable/login_edit_bg"
+            android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
-            android:id="@+id/name_layout"
             android:orientation="horizontal" >
 
             <EditText
@@ -41,14 +37,13 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1.11"
                 android:background="@null"
+                android:cursorVisible="true"
                 android:ems="11"
                 android:hint="@string/login_name_hint"
                 android:imeOptions="actionNext"
                 android:inputType="phone"
-                android:singleLine="true" 
-            	 android:cursorVisible="true"
-                android:textCursorDrawable="@drawable/color_cursor"
-                >
+                android:singleLine="true"
+                android:textCursorDrawable="@drawable/color_cursor" >
 
                 <requestFocus />
             </EditText>
@@ -58,38 +53,32 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-               
-                android:src="@drawable/login_input_arrow"
                 android:padding="@dimen/button_padd"
-                 />
-
+                android:src="@drawable/login_input_arrow" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/y94"
             android:layout_marginTop="@dimen/y20"
-             android:background="@drawable/login_edit_bg"
+            android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <EditText
                 android:id="@+id/login_edit_password"
+                style="@style/edit_login_style"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-             	android:background="@null"
+                android:background="@null"
+                android:cursorVisible="true"
                 android:ems="10"
+                android:hint="@string/login_pwd_hint"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
-       			style="@style/edit_login_style"
-              android:cursorVisible="true"
-                android:hint="@string/login_pwd_hint" 
-          		android:textCursorDrawable="@drawable/color_cursor"
-                >
-
-            
+                android:textCursorDrawable="@drawable/color_cursor" >
             </EditText>
         </LinearLayout>
     </LinearLayout>
@@ -108,16 +97,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/login_forgeot" 
             android:gravity="center"
-            />
-	
-        <View 
+            android:text="@string/login_forgeot" />
+
+        <View
             android:layout_width="@dimen/x1"
             android:layout_height="match_parent"
-            android:background="@color/wite"
             android:layout_marginBottom="@dimen/y10"
-            />
+            android:background="@color/wite" />
+
         <Button
             android:id="@+id/login_bt_register"
             style="@style/bt_smart_style"
@@ -125,9 +113,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/login_register"
-             android:gravity="center"
-             />
+            android:gravity="center"
+            android:text="@string/login_register" />
     </LinearLayout>
 
     <Button
@@ -136,9 +123,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y94"
         android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y146"
         android:text="登 录" />
 
@@ -146,7 +133,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
         android:layout_above="@+id/linearLayout3"
-
         android:background="@color/wite" />
 
 </RelativeLayout>

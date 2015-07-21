@@ -66,7 +66,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		ViewUtils.inject(this);
@@ -81,15 +80,13 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
+
 	@OnClick({ R.id.title_back, R.id.login_bt_clear, R.id.login_bt_login, R.id.login_bt_register,
 			R.id.login_bt_forgot })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		Intent intent = null;
 		switch (v.getId()) {
 		case R.id.title_back:// 返回主界面
@@ -124,7 +121,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	 * 隐藏下拉框
 	 */
 	private void disPopWinddos() {
-		// TODO Auto-generated method stub
 		isShow = false;
 		popwindow.showPopupWindow(namelayout);
 	}
@@ -133,8 +129,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	 * 显示本地数据库中的用户
 	 */
 	private void showPopWinddos() {
-		// TODO Auto-generated method stub
-
 		isShow = true;
 		popwindow.showPopupWindow(namelayout);
 	}
@@ -143,7 +137,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	 * 登陆
 	 */
 	private void startLogin() {
-		// TODO Auto-generated method stub
 		final String name = ed_name.getText().toString();
 		final String pwd = ed_pwd.getText().toString();
 		if (TelNumMath.isMobileNO(name)) {
@@ -164,7 +157,9 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void onSucess(UserInfo user) {
-		// TODO Auto-generated method stub
+		if(user == null) {
+			return;
+		}
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		SqlDataUtil.getInstance().saveUserInfo(user);
@@ -179,7 +174,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		if (dialog != null) {
 			dialog.dismiss();
 		}
@@ -188,7 +182,6 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		// TODO Auto-generated method stub
 		UserInfo user = popwindow.getUserInfo(position);
 		ed_name.setText(user.getMobile());
 		popwindow.showPopupWindow(namelayout);
@@ -197,14 +190,12 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void startActivity(Intent intent) {
-		// TODO Auto-generated method stub
 		super.startActivity(intent);
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_REGISTER) {
 			if (resultCode == RESULT_OK) {// 注册成功

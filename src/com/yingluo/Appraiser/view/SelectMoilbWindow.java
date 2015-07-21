@@ -10,6 +10,7 @@ import com.yingluo.Appraiser.utils.SqlDataUtil;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,28 +24,27 @@ import android.widget.TextView;
 
 public class SelectMoilbWindow extends PopupWindow {
 
-	
 	private View conentView;
 	private ListView listView;
 	private Context mContext;
 	private MoilbAdapter maAdapter;
-	public SelectMoilbWindow(Context context,OnItemClickListener listener) {
-		// TODO Auto-generated constructor stub
-		mContext=context;
+
+	public SelectMoilbWindow(Context context, OnItemClickListener listener) {
+		mContext = context;
 		List<UserInfo> list = SqlDataUtil.getInstance().getUserList();
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		Log.e("list_size", list.size()+"");
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		conentView = inflater.inflate(R.layout.moilb_popup_dialog, null);
-		listView=(ListView)conentView.findViewById(R.id.listview1);
-		 maAdapter=new MoilbAdapter(list);
+		listView = (ListView) conentView.findViewById(R.id.listview1);
+		maAdapter = new MoilbAdapter(list);
 		listView.setAdapter(maAdapter);
 		listView.setOnItemClickListener(listener);
-		
+
 		// 设置SelectPicPopupWindow的View
 		this.setContentView(conentView);
 
 	}
-	
+
 	public void showPopupWindow(View parent) {
 		if (!this.isShowing()) {
 			int w = parent.getWidth();
@@ -67,57 +67,53 @@ public class SelectMoilbWindow extends PopupWindow {
 			this.dismiss();
 		}
 	}
-	
-	public UserInfo getUserInfo(int position){
+
+	public UserInfo getUserInfo(int position) {
 		return maAdapter.getItem(position);
 	}
-	
-	private class MoilbAdapter extends BaseAdapter{
-		private List<UserInfo> users=null;
-		
+
+	private class MoilbAdapter extends BaseAdapter {
+		private List<UserInfo> users = null;
+
 		public MoilbAdapter(List<UserInfo> list) {
-			// TODO Auto-generated constructor stub
-			this.users=list;
-			if(users==null){
-				users=new ArrayList<UserInfo>();
+			this.users = list;
+			if (users == null) {
+				users = new ArrayList<UserInfo>();
 			}
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
-			return  users.size();
+			return users.size();
 		}
 
 		@Override
 		public UserInfo getItem(int position) {
-			// TODO Auto-generated method stub
 			return users.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			  Viewhandler vh=null;
-			  if(convertView==null){
-				  convertView=LayoutInflater.from(mContext).inflate(R.layout.register_auto_complete_item, parent, false);
-				  vh=new Viewhandler();
-				  vh.tv=(TextView) convertView.findViewById(R.id.tv);
-				  convertView.setTag(vh);
-			  }else{
-				  vh=(Viewhandler) convertView.getTag();
-			  }
-			  vh.tv.setText(users.get(position).getMobile());
-			  return convertView;
+			Viewhandler vh = null;
+			if (convertView == null) {
+				convertView = LayoutInflater.from(mContext).inflate(R.layout.register_auto_complete_item, parent,
+						false);
+				vh = new Viewhandler();
+				vh.tv = (TextView) convertView.findViewById(R.id.tv);
+				convertView.setTag(vh);
+			} else {
+				vh = (Viewhandler) convertView.getTag();
+			}
+			vh.tv.setText(users.get(position).getMobile());
+			return convertView;
 		}
-		
-		public class Viewhandler{
+
+		public class Viewhandler {
 			public TextView tv;
 		}
 	}
