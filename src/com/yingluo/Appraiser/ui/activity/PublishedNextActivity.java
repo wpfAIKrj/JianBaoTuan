@@ -92,6 +92,7 @@ public class PublishedNextActivity extends BaseActivity {
 		if (type == null) {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			return;
 		}
 		imageAll = getIntent().getStringArrayListExtra(Const.IMAGEPATH_PANORAMIC);
@@ -104,7 +105,7 @@ public class PublishedNextActivity extends BaseActivity {
 		dialog.show();
 		rampresenter.startGet(type.getId());
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub

@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.view.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,19 +36,17 @@ public class ViewHomeWhoWellKnow extends LinearLayout {
 
 	public ViewHomeWhoWellKnow(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewHomeWhoWellKnow(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewHomeWhoWellKnow(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
+		init(context);
 	}
 
 	
@@ -81,6 +80,7 @@ public class ViewHomeWhoWellKnow extends LinearLayout {
 	public void setItem(CollectionTreasure entity) {
 		this.entity=entity;
 		BitmapsUtils.getInstance().display(iv_head, entity.authImage);
+//		iv_head.setImageDrawable(drawable);
 		tv_name.setText(entity.authName);
 		tv_identify_place.setText(entity.company);
 		tv_msg.setText(entity.goodAt);
