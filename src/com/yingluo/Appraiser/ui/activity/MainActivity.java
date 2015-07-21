@@ -95,6 +95,7 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		case 1:// 登录
 			Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
 			startActivityForResult(intent, Const.TO_LOGIN);
+			overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			break;
 		case 2:// 跳转到鉴定大厅
 			mIndex = 1;
@@ -130,7 +131,10 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 					startActivityForResult(intent, Const.TO_SEND_IDENTIY);
 					overridePendingTransition(R.anim.toast_in, R.anim.hold);
 				} else {
-					new ToastUtils(MainActivity.this, R.string.help_msg_02);
+//					new ToastUtils(MainActivity.this, R.string.help_msg_02);
+					Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
+					startActivityForResult(intent, Const.TO_LOGIN);
+					overridePendingTransition(R.anim.toast_in, R.anim.hold);
 				}
 			}
 		});
@@ -196,6 +200,7 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 				mIndex = 0;
 				Intent intent = new Intent(MainActivity.this, LoginAcitivity.class);
 				startActivityForResult(intent, Const.TO_LOGIN);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 				return;
 			}
 		}

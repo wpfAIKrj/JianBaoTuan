@@ -158,7 +158,10 @@ public class ActivityUserDelails extends Activity {
 					new ToastUtils(this, "请输入评论内容！");
 				}
 			} else {
-				new ToastUtils(this, "请先登陆！");
+//				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 			break;
 		case R.id.btn_goto: // 我要鉴定
@@ -172,7 +175,10 @@ public class ActivityUserDelails extends Activity {
 				intent.putExtra(Const.ENTITY, entity);
 				startActivityForResult(intent, Const.TO_MY_INDENTITY);
 			} else {
-				new ToastUtils(this, "请先登陆！");
+//				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 		}
 			break;
@@ -181,9 +187,11 @@ public class ActivityUserDelails extends Activity {
 			if (ItApplication.getcurrnUser() != null) {
 				dialog1 = DialogUtil.createShowDialog(this, "是否收藏该宝物？", lis1);
 				dialog1.show();
-
 			} else {
-				new ToastUtils(this, "请先登陆！");
+//				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 		}
 			break;
@@ -194,7 +202,10 @@ public class ActivityUserDelails extends Activity {
 				dialog1.show();
 
 			} else {
-				new ToastUtils(this, "请先登陆！");
+//				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 		}
 			break;

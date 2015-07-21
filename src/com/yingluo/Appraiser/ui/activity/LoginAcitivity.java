@@ -81,7 +81,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+		overridePendingTransition(R.anim.hold, R.anim.toast_out);
 	}
 
 	@OnClick({ R.id.title_back, R.id.login_bt_clear, R.id.login_bt_login, R.id.login_bt_register,
@@ -92,7 +92,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		case R.id.title_back:// 返回主界面
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
-			overridePendingTransition(R.anim.right_in, R.anim.right_out);
+			overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			break;
 		case R.id.login_bt_clear:// 显示下拉用户框
 			if (!isShow) {

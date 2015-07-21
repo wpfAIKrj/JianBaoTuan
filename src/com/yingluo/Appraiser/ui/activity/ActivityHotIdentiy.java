@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.ui.activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,6 +23,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
@@ -99,8 +101,14 @@ public class ActivityHotIdentiy extends Activity implements OnClickListener {
 	public void doClick(View view) {
 		// startActivity(new Intent(ActivityHotIdentiy.this,
 		// IMListActivity.class));
-		String userid = String.valueOf(entity.user_id);
-		RongImUtils.getInstance().startPrivateChat(this, userid, entity.authName);
+		if(ItApplication.getcurrnUser() != null){
+			String userid = String.valueOf(entity.user_id);
+			RongImUtils.getInstance().startPrivateChat(this, userid, entity.authName);
+		} else {
+			Intent intent = new Intent(ActivityHotIdentiy.this, LoginAcitivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.toast_in, R.anim.hold);
+		}
 
 	}
 
