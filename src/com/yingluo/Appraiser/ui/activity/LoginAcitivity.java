@@ -162,6 +162,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		}
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
+		//保存密码，不知道有用没有，看需求吧
+		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(),user.getPassword());
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		ItApplication.getcurrnUser();
 		if (dialog != null) {

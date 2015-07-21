@@ -102,6 +102,15 @@ public class SharedPreferencesUtils {
 	}
 	
 	/**
+	 * 保存登录用户的密码（和账号匹配）
+	 * @param mobli
+	 */
+	public void saveLoginUserPassword(String moblie,String password){
+		save(moblie, password);
+	}
+	
+	
+	/**
 	 * 获取登录用户的名字
 	 * @return 用户名
 	 */
