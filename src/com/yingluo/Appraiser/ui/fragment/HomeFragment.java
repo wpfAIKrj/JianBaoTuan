@@ -95,6 +95,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		articles_0 = (ViewArticles) view.findViewById(R.id.articles_0);
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
 		
+		//知名专家的第一行
 		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
 		
 		wellKnow.setListener(user_listener);
@@ -105,6 +106,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		//顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
 		
+		//知名专家第二行
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
 		btn_search = view.findViewById(R.id.btn_search);
@@ -254,13 +256,11 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			while (true) {
 				try {
 					Thread.sleep(5000);
 					mhandler.sendEmptyMessage(0);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

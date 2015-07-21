@@ -18,6 +18,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -57,48 +58,38 @@ public class SlideShowView extends FrameLayout {
 	private List<View> dotViewsList;
 
 	private ViewPager viewPager;
-	// 当前轮播页
-	private int currentItem = 0;
 	// 定时任务
 	private ScheduledExecutorService scheduledExecutorService;
 
 	private Context context;
 
-	// Handler
+	private List<CollectionTreasure> imageRes = null;
+	
+	/**
+	 * 用于循环播放banner
+	 */
 	private Handler handler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
 			super.handleMessage(msg);
-			viewPager.setCurrentItem(currentItem);
+			viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
 		}
 
 	};
 
-	private List<CollectionTreasure> imageRes = null;
-
 	public SlideShowView(Context context) {
 		this(context, null);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SlideShowView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SlideShowView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		this.context = context;
 		bitmapsUtils = BitmapsUtils.getInstance();
-		// initImageLoader(context);
-
-		// initData();
-		// if(isAutoPlay){
-		// startPlay();
-		// }
-
 	}
 
 	/**
@@ -160,8 +151,6 @@ public class SlideShowView extends FrameLayout {
 		for (int i = 0; i < imageUrls.length; i++) {
 			ImageView view = new ImageView(context);
 			view.setTag(imageUrls[i]);
-			if (i == 0) // 给一个默认图
-				view.setBackgroundResource(R.drawable.loading_bg);
 			view.setScaleType(ScaleType.FIT_XY);
 			view.setOnClickListener(onclick);
 			imageViewsList.add(view);
@@ -191,54 +180,25 @@ public class SlideShowView extends FrameLayout {
 
 		@Override
 		public void destroyItem(View container, int position, Object object) {
-			// TODO Auto-generated method stub
-			// ((ViewPag.er)container).removeView((View)object);
-			((ViewPager) container).removeView(imageViewsList.get(position));
+			((ViewPager) container).removeView(imageViewsList.get(position%imageViewsList.size()));
 		}
 
 		@Override
 		public Object instantiateItem(View container, int position) {
-			ImageView imageView = imageViewsList.get(position);
-			// imageLoader.displayImage(imageView.getTag() + "", imageView);
+			ImageView imageView = imageViewsList.get(position%imageViewsList.size());
 			bitmapsUtils.display(imageView, (String) imageView.getTag(), BitmapsUtils.TYPE_YES);
-			((ViewPager) container).addView(imageViewsList.get(position));
-			return imageViewsList.get(position);
+			((ViewPager) container).addView(imageViewsList.get(position%imageViewsList.size()));
+			return imageViewsList.get(position%imageViewsList.size());
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
-			return imageViewsList.size();
+			return Integer.MAX_VALUE;
 		}
 
 		@Override
 		public boolean isViewFromObject(View arg0, Object arg1) {
-			// TODO Auto-generated method stub
 			return arg0 == arg1;
-		}
-
-		@Override
-		public void restoreState(Parcelable arg0, ClassLoader arg1) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public Parcelable saveState() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public void startUpdate(View arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void finishUpdate(View arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 	}
@@ -261,33 +221,19 @@ public class SlideShowView extends FrameLayout {
 			case 2:// 界面切换中
 				isAutoPlay = true;
 				break;
-			case 0:// 滑动结束，即切换完毕或者加载完毕
-					// 当前为最后一张，此时从右向左滑，则切换到第一张
-				if (viewPager.getCurrentItem() == viewPager.getAdapter().getCount() - 1 && !isAutoPlay) {
-					viewPager.setCurrentItem(0);
-				}
-				// 当前为第一张，此时从左向右滑，则切换到最后一张
-				else if (viewPager.getCurrentItem() == 0 && !isAutoPlay) {
-					viewPager.setCurrentItem(viewPager.getAdapter().getCount() - 1);
-				}
-				break;
 			}
 		}
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onPageSelected(int pos) {
-			// TODO Auto-generated method stub
-
-			currentItem = pos;
 			for (int i = 0; i < dotViewsList.size(); i++) {
-				if (i == pos) {
-					((View) dotViewsList.get(pos)).setBackgroundResource(R.drawable.ball_select);
+				if (i == pos%imageViewsList.size()) {
+					((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.ball_select);
 				} else {
 					((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.ball_normal);
 				}
@@ -306,32 +252,30 @@ public class SlideShowView extends FrameLayout {
 		public void run() {
 			// TODO Auto-generated method stub
 			synchronized (viewPager) {
-				currentItem = (currentItem + 1) % imageViewsList.size();
 				handler.obtainMessage().sendToTarget();
 			}
 		}
 
 	}
 
-	/**
-	 * 销毁ImageView资源，回收内存
-	 * 
-	 */
-	private void destoryBitmaps() {
-
-		for (int i = 0; i < IMAGE_COUNT; i++) {
-			ImageView imageView = imageViewsList.get(i);
-			Drawable drawable = imageView.getDrawable();
-			if (drawable != null) {
-				// 解除drawable对view的引用
-				drawable.setCallback(null);
-			}
-		}
-	}
+//	/**
+//	 * 销毁ImageView资源，回收内存
+//	 * 
+//	 */
+//	private void destoryBitmaps() {
+//
+//		for (int i = 0; i < IMAGE_COUNT; i++) {
+//			ImageView imageView = imageViewsList.get(i);
+//			Drawable drawable = imageView.getDrawable();
+//			if (drawable != null) {
+//				// 解除drawable对view的引用
+//				drawable.setCallback(null);
+//			}
+//		}
+//	}
 
 	/**
 	 * 异步任务,获取数据
-	 * 
 	 */
 	class GetListTask extends AsyncTask<String, Integer, Boolean> {
 
@@ -364,6 +308,9 @@ public class SlideShowView extends FrameLayout {
 		}
 	}
 
+	/**
+	 * 每个图片的点击事件
+	 */
 	private OnClickListener onclick = new OnClickListener() {
 
 		@Override
@@ -371,31 +318,11 @@ public class SlideShowView extends FrameLayout {
 			// TODO Auto-generated method stub
 			if (imageRes != null) {
 				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-				mIntent.putExtra(Const.ENTITY, imageRes.get(currentItem));
+				mIntent.putExtra(Const.ENTITY, imageRes.get(viewPager.getCurrentItem()%imageRes.size()));
 				getContext().startActivity(mIntent);
 				Activity act = (Activity) context;
 				act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		}
 	};
-
-	/**
-	 * ImageLoader 图片组件初始化
-	 * 
-	 * @param context
-	 */
-	/*
-	 * public static void initImageLoader(Context context) { // This
-	 * configuration tuning is custom. You can tune every option, you // may
-	 * tune some of them, // or you can create default configuration by //
-	 * ImageLoaderConfiguration.createDefault(this); // method.
-	 * ImageLoaderConfiguration config = new
-	 * ImageLoaderConfiguration.Builder(context
-	 * ).threadPriority(Thread.NORM_PRIORITY -
-	 * 2).denyCacheImageMultipleSizesInMemory().discCacheFileNameGenerator(new
-	 * Md5FileNameGenerator
-	 * ()).tasksProcessingOrder(QueueProcessingType.LIFO).writeDebugLogs() //
-	 * Remove // for // release // app .build(); // Initialize ImageLoader with
-	 * configuration. ImageLoader.getInstance().init(config); }
-	 */
 }

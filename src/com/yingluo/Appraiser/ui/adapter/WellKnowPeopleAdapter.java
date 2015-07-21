@@ -17,7 +17,8 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 
 	Context mContext;
 	List<CollectionTreasure> list;
-	int mindex=0;
+	int mindex = 0;
+
 	public WellKnowPeopleAdapter(Context context, List<CollectionTreasure> strs) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
@@ -33,7 +34,7 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 	@Override
 	public CollectionTreasure getItem(int position) {
 		// TODO Auto-generated method stub
-		mindex=position;
+		mindex = position;
 		return list.get(position);
 	}
 
@@ -48,24 +49,22 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		ViewHolder holder = null;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.item_well_know_adapter, parent, false);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.item_well_know_adapter, parent, false);
 			holder = new ViewHolder();
 			holder.iv = (CircleImageView) convertView.findViewById(R.id.iv);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		if(holder.iv.getTag() == null) {
+		if (holder.iv.getTag() == null) {
 			BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
-			bitmapsUtils.display(holder.iv, list.get(position).authImage,
-					BitmapsUtils.TYPE_YES);
+			bitmapsUtils.display(holder.iv, list.get(position).authImage, BitmapsUtils.TYPE_YES);
 			holder.iv.setTag(list.get(position).authImage);
 		}
 		// holder.iv.setImageResource(R.drawable.user_logo);
-		if(mindex==position){
+		if (mindex == position) {
 			holder.iv.setAlpha(1);
-		}else{
+		} else {
 			holder.iv.setAlpha(0.6f);
 		}
 		return convertView;
