@@ -1,82 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_bg_color"
     android:orientation="vertical" >
-     <include
-      android:id="@+id/top"
+
+    <include
+        android:id="@+id/top"
         layout="@layout/layout_detail_head" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom"
         android:layout_below="@+id/top"
-        android:scrollbars="none"
-        >
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/wite"
             android:orientation="vertical" >
-		<LinearLayout 
-              
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical" >
+
                 <com.yingluo.Appraiser.view.SlideShowImageView
                     android:id="@+id/show_images"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y500"
-                    android:visibility="gone"
-                    ></com.yingluo.Appraiser.view.SlideShowImageView>
+                    android:visibility="gone" >
+                </com.yingluo.Appraiser.view.SlideShowImageView>
             </LinearLayout>
-   			<View 
-           
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y1"
-            android:background="@drawable/item_layout_padd"
-            />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="@drawable/item_layout_padd" />
+
             <include layout="@layout/item_delails_user" />
 
-            
-             <View 
-           
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:background="@drawable/item_layout_padd"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y30"
+                android:background="@drawable/item_layout_padd" />
+
             <include layout="@layout/layout_user_delais_similar_item" />
- 		<View 
-            android:layout_marginTop="@dimen/y20"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:background="@drawable/item_layout_padd"
-            />
-            <include layout="@layout/layout_user_delais_identify_result"  
-                />
-             <View 
-            android:layout_marginTop="@dimen/y20"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:background="@drawable/item_layout_padd"
-            />
-            <include layout="@layout/layout_treasure__comment"/>
-            
-            <View 
-            android:layout_marginTop="@dimen/y20"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y30"
-            android:background="@drawable/item_layout_padd"
-            />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y30"
+                android:layout_marginTop="@dimen/y20"
+                android:background="@drawable/item_layout_padd" />
+
+            <include layout="@layout/layout_user_delais_identify_result" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y30"
+                android:layout_marginTop="@dimen/y20"
+                android:background="@drawable/item_layout_padd" />
+
+            <include layout="@layout/layout_treasure__comment" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y30"
+                android:layout_marginTop="@dimen/y20"
+                android:background="@drawable/item_layout_padd" />
         </LinearLayout>
     </ScrollView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
-        android:background="@color/item_space_color" 
-        android:layout_above="@+id/bottom"/>
+        android:layout_above="@+id/bottom"
+        android:background="@color/item_space_color" />
+
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
@@ -85,10 +87,8 @@
         android:layout_alignParentLeft="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:orientation="horizontal" 
-        
         android:gravity="center_vertical"
-        >
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/ed_context"
@@ -101,8 +101,7 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:textColor="@color/black"
-            android:textSize="@dimen/x30"
-             >
+            android:textSize="@dimen/x30" >
         </EditText>
 
         <Button
@@ -110,10 +109,10 @@
             android:layout_width="@dimen/x128"
             android:layout_height="@dimen/y94"
             android:layout_marginLeft="@dimen/x10"
+            android:layout_marginRight="@dimen/x10"
             android:background="@color/bt_color"
             android:gravity="center"
             android:text="评 论"
-             android:layout_marginRight="@dimen/x10"
             android:textColor="@color/wite"
             android:textSize="@dimen/x30" />
 
@@ -121,16 +120,13 @@
             android:id="@+id/btn_goto"
             android:layout_width="@dimen/x168"
             android:layout_height="@dimen/y94"
-           
             android:layout_marginRight="@dimen/x14"
             android:background="@color/dialog_title_color"
             android:gravity="center"
             android:text="@string/identiy_by_me"
             android:textColor="@color/wite"
-            android:textSize="@dimen/x30" 
-            android:visibility="gone"/>
+            android:textSize="@dimen/x30"
+            android:visibility="gone" />
     </LinearLayout>
-
-
 
 </RelativeLayout>

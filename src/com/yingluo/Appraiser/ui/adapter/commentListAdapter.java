@@ -29,14 +29,12 @@ public class commentListAdapter extends BaseAdapter {
 	private OnClickListener listner;
 	private Context mContext;
 	public commentListAdapter(Context context,OnClickListener listner) {
-		// TODO 自动生成的构造函数存根
 		list=new ArrayList<CommentEntity>();
 		this.listner=listner;
 		mContext=context;
 	}
 	
 	public void setData(List<CommentEntity> commentlist) {
-		// TODO 自动生成的方法存根
 		Collections.reverse(commentlist);
 		list=commentlist;
 		notifyDataSetChanged();
@@ -44,25 +42,21 @@ public class commentListAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO 自动生成的方法存根
 		return list.size();
 	}
 
 	@Override
 	public CommentEntity getItem(int position) {
-		// TODO 自动生成的方法存根
 		return list.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO 自动生成的方法存根
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO 自动生成的方法存根
 		commentItemViewHolder vh=null;
 		if(convertView==null){
 			convertView=LayoutInflater.from(mContext).inflate(R.layout.item_user_delais_comment, parent, false);
