@@ -79,6 +79,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 		case R.id.button_category: {
 			Intent mIntent = new Intent(getActivity(), KindOfPreciousActivity.class);
 			mActivity.startActivityForResult(mIntent, Const.TO_INDENTIFY);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 		case R.id.btn_identifing: {

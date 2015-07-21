@@ -64,6 +64,7 @@ public class KindOfPreciousActivity extends BaseActivity {
 		case R.id.layout_search: {
 			Intent mIntent = new Intent(KindOfPreciousActivity.this, ActivitySearch.class);
 			startActivity(mIntent);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 			break;
 		case R.id.layout_all_kind: {
@@ -140,7 +141,7 @@ public class KindOfPreciousActivity extends BaseActivity {
 		}
 
 	}
-	
+
 	/** 隐藏搜索和全部，当进入二级以下分类时，隐藏，进入一级分类时，显示 */
 	public void hideSearchAndAll(boolean flag) {
 		all_kind.setVisibility(flag ? View.GONE : View.VISIBLE);

@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -68,39 +69,26 @@ public class ActivitySearch extends BaseActivity {
 				
 			}
 		});
-		edittext_search.addTextChangedListener(new TextWatcher() {
+		
+		edittext_search.setOnKeyListener(new OnKeyListener() {
 			
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO 自动生成的方法存根
-				
-			}
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO 自动生成的方法存根
-				
-				String name=edittext_search.getText().toString();
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
+					String name=edittext_search.getText().toString();
 
-				if(name!=null&&!TextUtils.isEmpty(name)){
-					adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
-					adapter.notifyDataSetChanged();	
+					if(name!=null&&!TextUtils.isEmpty(name)){
+						adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
+						adapter.notifyDataSetChanged();	
+					}
 				}
+				return false;
 			}
 		});
-		
 		home_title.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				setResult(RESULT_CANCELED,getIntent());
 				finish();
 				overridePendingTransition(R.anim.right_in, R.anim.right_out);
@@ -110,7 +98,6 @@ public class ActivitySearch extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -121,32 +108,27 @@ public class ActivitySearch extends BaseActivity {
 		List<TreasureType> list;
 
 		public MyAdapter(Context context, List<TreasureType> list) {
-			// TODO Auto-generated constructor stub
 			this.mContext = context;
 			this.list = list;
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return list.size();
 		}
 
 		@Override
 		public TreasureType getItem(int position) {
-			// TODO Auto-generated method stub
 			return list.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			ViewHolder vh = null;
 			if (convertView == null) {
 				convertView = LayoutInflater.from(mContext).inflate(

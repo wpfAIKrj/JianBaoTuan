@@ -61,13 +61,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 	private ScrollView scrollView;
 
 	private Activity mActivity;
-    
-    
-    @Override
+
+	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.mActivity = activity;
 	}
+
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -81,32 +81,32 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		layout_home_item3 = (ViewGroup) view.findViewById(R.id.layout_home_item3);
 		layout_home_item2 = (ViewGroup) view.findViewById(R.id.layout_home_item2);
 		layout_home_item1 = (ViewGroup) view.findViewById(R.id.layout_home_item1);
-		//精品藏品
+		// 精品藏品
 		choices_0 = (ViewChoices) view.findViewById(R.id.choices_0);
 		choices_1 = (ViewChoices) view.findViewById(R.id.choices_1);
 		choices_2 = (ViewChoices) view.findViewById(R.id.choices_2);
 		choices_3 = (ViewChoices) view.findViewById(R.id.choices_3);
-		//热门鉴定
+		// 热门鉴定
 		viewhots_0 = (ViewHots) view.findViewById(R.id.viewhots_0);
 		viewhots_1 = (ViewHots) view.findViewById(R.id.viewhots_1);
 		viewhots_2 = (ViewHots) view.findViewById(R.id.viewhots_2);
 		viewhots_3 = (ViewHots) view.findViewById(R.id.viewhots_3);
-		//不知道做什么的
+		// 不知道做什么的
 		articles_0 = (ViewArticles) view.findViewById(R.id.articles_0);
 		articles_1 = (ViewArticles) view.findViewById(R.id.articles_1);
-		
-		//知名专家的第一行
+
+		// 知名专家的第一行
 		wellKnow = (ViewHomeWhoWellKnow) view.findViewById(R.id.wellKnow);
-		
+
 		wellKnow.setListener(user_listener);
 		tv_goto_infor = view.findViewById(R.id.tv_goto_infor);
 		tv_goto_identify = view.findViewById(R.id.tv_goto_identiy);
 		tv_goto_identify.setOnClickListener(this);
 		tv_goto_infor.setOnClickListener(this);
-		//顶部轮播图
+		// 顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
-		
-		//知名专家第二行
+
+		// 知名专家第二行
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
 		btn_search = view.findViewById(R.id.btn_search);

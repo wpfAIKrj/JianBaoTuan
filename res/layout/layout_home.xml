@@ -23,6 +23,20 @@
             <include layout="@layout/layout_home_item0" />
 
             <include layout="@layout/layout_home_item3" />
+            
+            <include layout="@layout/layout_home_item1" />
+
+            <TextView
+                android:id="@+id/tv_goto_identiy"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y80"
+                android:layout_marginBottom="@dimen/y10"
+                android:layout_marginTop="@dimen/y10"
+                android:background="@color/wite"
+                android:gravity="center"
+                android:text="@string/identiy"
+                android:textColor="@color/dialog_title_color"
+                android:textSize="@dimen/x36" />
 
             <include layout="@layout/layout_home_item2" />
 
@@ -38,19 +52,7 @@
                 android:textColor="@color/dialog_title_color"
                 android:textSize="@dimen/x36" />
 
-            <include layout="@layout/layout_home_item1" />
-
-            <TextView
-                android:id="@+id/tv_goto_identiy"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y80"
-                android:layout_marginBottom="@dimen/y10"
-                android:layout_marginTop="@dimen/y10"
-                android:background="@color/wite"
-                android:gravity="center"
-                android:text="@string/identiy"
-                android:textColor="@color/dialog_title_color"
-                android:textSize="@dimen/x36" />
+            
         </LinearLayout>
     </ScrollView>
 

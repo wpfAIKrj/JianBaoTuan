@@ -8,10 +8,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/x40"
-        android:layout_marginTop="@dimen/x10"
-        android:layout_marginRight="@dimen/x30"
         android:layout_marginBottom="@dimen/x10"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_marginTop="@dimen/x10"
         android:layout_weight="1.0"
         android:background="@drawable/search_white_bg"
         android:focusable="true"
@@ -33,11 +33,12 @@
             android:layout_marginLeft="@dimen/x20"
             android:layout_marginRight="@dimen/x20"
             android:background="@android:color/transparent"
+            android:cursorVisible="true"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
             android:textColor="@color/ed_login_color"
-            android:textSize="@dimen/x36"
-             android:cursorVisible="true"
-             android:textCursorDrawable="@drawable/color_cursor"
-             >
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="@dimen/x36" >
         </EditText>
     </LinearLayout>
 
@@ -48,11 +49,10 @@
         android:layout_height="match_parent"
         android:layout_marginRight="@dimen/x14"
         android:clickable="true"
-        android:text="取消" 
-        android:textSize="@dimen/x32"
         android:gravity="center"
         android:paddingLeft="@dimen/x14"
         android:paddingRight="@dimen/x14"
-        />
+        android:text="取消"
+        android:textSize="@dimen/x32" />
 
 </LinearLayout>
