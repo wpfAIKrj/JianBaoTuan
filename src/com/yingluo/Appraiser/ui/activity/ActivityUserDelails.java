@@ -96,8 +96,9 @@ public class ActivityUserDelails extends Activity {
 	@ViewInject(R.id.tv_other_title)
 	private TextView tv_other_title;
 
-	@ViewInject(R.id.show_images)
-	private SlideShowImageView showimage;
+	@ViewInject(R.id.ll_show_images)
+	private LinearLayout showimage;
+	
 	@ViewInject(R.id.layout_treasure)
 	private LinearLayout treasurelayout;
 
@@ -434,10 +435,6 @@ public class ActivityUserDelails extends Activity {
 
 	// 加载宝物图片
 	protected void showTreasureImage() {
-		// TODO Auto-generated method stub
-		// LinearLayout.LayoutParams params=new
-		// LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-		// (int) getResources().getDimension(R.dimen.y500));
 		str = new ArrayList<String>();
 		if (entity.images1 != null && entity.images1.length > 0) {
 			for (int i = 0; i < entity.images1.length; i++) {
@@ -450,8 +447,14 @@ public class ActivityUserDelails extends Activity {
 			}
 		}
 		if (str.size() > 0) {
-			showimage.setVisibility(View.VISIBLE);
-			showimage.prepareData(str);
+			int length = str.size();
+			for(int i=0;i<length;i++) {
+				ImageView image = new ImageView(this);
+				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,(int) getResources().getDimension(R.dimen.y500));
+				image.setLayoutParams(params);
+				showimage.addView(image);
+				BitmapsUtils.getInstance().display(image, str.get(i));
+			}
 		}
 
 	}

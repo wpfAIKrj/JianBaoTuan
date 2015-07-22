@@ -20,6 +20,32 @@
             style="@style/tv_edit_login_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/profile_phone" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            style="@style/my_title_style3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:textCursorDrawable="@drawable/color_cursor" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        android:layout_marginTop="@dimen/x30"
+        android:background="@drawable/item_layout_padd"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x30" >
+
+        <TextView
+            style="@style/tv_edit_login_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/profile_name" />
 
         <EditText

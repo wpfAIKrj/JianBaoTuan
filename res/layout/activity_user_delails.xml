@@ -23,16 +23,11 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/ll_show_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
-                <com.yingluo.Appraiser.view.SlideShowImageView
-                    android:id="@+id/show_images"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y500"
-                    android:visibility="gone" >
-                </com.yingluo.Appraiser.view.SlideShowImageView>
+                
             </LinearLayout>
 
             <View

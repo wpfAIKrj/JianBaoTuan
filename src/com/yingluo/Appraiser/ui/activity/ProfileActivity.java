@@ -51,14 +51,13 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 	@ViewInject(R.id.et_name)
 	private EditText edName;
 
+	@ViewInject(R.id.tv_phone)
+	private TextView tvPhone;
+	
 	private UploadLogoPresenter mpresenter;
-	private String qq;
-	private String email;
-	private String key;
-
+	private String qq,email,key,phone,name;
+	
 	private Dialog Logodialong;
-
-	private String name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +80,12 @@ public class ProfileActivity extends BaseActivity implements onBasicView<UserInf
 			String string = ItApplication.getcurrnUser().getPersonal_data();
 			key = ItApplication.getcurrnUser().getPortrait();
 			name = ItApplication.getcurrnUser().getNickname();
+			phone = ItApplication.getcurrnUser().getMobile();
+			
 			edQQ.setText(ItApplication.getcurrnUser().getQq());
 			edEmail.setText(ItApplication.getcurrnUser().getEmail());
 			edName.setText(ItApplication.getcurrnUser().getNickname());
+			tvPhone.setText(phone);
 		}
 	}
 

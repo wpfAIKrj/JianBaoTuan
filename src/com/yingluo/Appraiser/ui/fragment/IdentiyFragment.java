@@ -156,7 +156,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_identiy, container, false);
 	}
 
@@ -195,7 +194,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	public void refresh() {
 		prrv.refresh();
 	}
-	
+
 	public void setIdentifyBackground(int id) {
 		switch (id) {
 		case R.id.btn_identifing: {
