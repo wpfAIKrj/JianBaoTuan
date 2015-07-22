@@ -108,10 +108,12 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		case R.id.login_bt_register:// 跳转到注册页面
 			intent = new Intent(LoginAcitivity.this, RegisterActivity.class);
 			startActivityForResult(intent, Const.TO_REGISTER);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.login_bt_forgot:// 找回密码界面
 			intent = new Intent(LoginAcitivity.this, ForgotActivity.class);
 			startActivityForResult(intent, Const.TO_FOGOT);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		default:
 			break;

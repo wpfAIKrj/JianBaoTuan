@@ -232,7 +232,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				// TODO Auto-generated method stub
 				send_code.setEnabled(false);
 				String s = String.format(send_help, (millisUntilFinished / 1000));
 				System.out.println(s);
@@ -241,7 +240,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 			@Override
 			public void onFinish() {
-				// TODO Auto-generated method stub
 				send_code.setEnabled(true);
 				send_code.setText(R.string.register_code_bt_hint);
 			}
@@ -270,13 +268,13 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				if (registerdialog != null) {
 					registerdialog.dismiss();
 				}
+				new ToastUtils(RegisterActivity.this,"注册成功");
 				setResult(Activity.RESULT_OK, getIntent());
 				finish();
-				overridePendingTransition(R.anim.right_in, R.anim.right_out);
+				overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			}
 		}, 5000);
 	}
@@ -286,6 +284,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		if (dialog != null) {
 			dialog.dismiss();
 		}
-		new ToastUtils(this, errorCode + "," + errorMsg);
+		new ToastUtils(this,errorMsg);
 	}
 }
