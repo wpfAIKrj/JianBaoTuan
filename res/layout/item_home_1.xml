@@ -30,36 +30,23 @@
             android:visibility="gone" />
     </FrameLayout>
 
-    <HorizontalScrollView
-        android:id="@+id/listview_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/y10"
-        android:layout_marginTop="@dimen/y10"
-        android:paddingLeft="@dimen/x1"
-        android:paddingRight="@dimen/x1"
-        android:scrollbars="none" >
-
-        <LinearLayout
-            android:id="@+id/layout_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/y106"
-            android:orientation="horizontal" >
-        </LinearLayout>
-    </HorizontalScrollView>
-
     <TextView
         android:id="@+id/tv_info"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y46"
-        android:background="#DFDFDF"
+        android:layout_height="@dimen/y92"
         android:gravity="center_vertical"
         android:textColor="@color/black_2"
         android:textSize="@dimen/x24"
-        android:singleLine="true"
-        android:ellipsize = "end"
-         />
+        android:paddingLeft="@dimen/x8"
+        android:paddingRight="@dimen/x8"
+        android:lines="2"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x3"
+        android:background="#DFDFDF"
+        />
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

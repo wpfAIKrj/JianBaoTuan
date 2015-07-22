@@ -57,8 +57,6 @@ public class ViewHots extends LinearLayout {
 
 	@ViewInject(R.id.tv_info)
 	public TextView tv_title;
-	@ViewInject(R.id.layout_menu)
-	LinearLayout layout_menu;
 
 	BitmapsUtils bitmapUtils;
 
@@ -115,7 +113,6 @@ public class ViewHots extends LinearLayout {
 			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
 		}
 		iv_big.setTag(item);
-		setSmallImage(iv_big, item.images);
 		// 设置头像
 		if (iv_small.getTag() == null) {
 			bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
@@ -152,28 +149,6 @@ public class ViewHots extends LinearLayout {
 	public void setNum(String num) {
 		String all = num + "人浏览过";
 		tv_num.setText(highlightText(all, num, R.color.home_head_color));
-	}
-
-	// 设置小图片
-	public void setSmallImage(final ImageView iv, final String[] urls) {
-		layout_menu.removeAllViews();
-		if (urls == null || urls.length == 0) {
-			return;
-		}
-		int count = urls.length;
-		for (int i = 0; i < count; i++) {
-			final String url = urls[i];
-			MyButton button = new MyButton(getContext(), iv_big, urls[i]);
-			button.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					bitmapUtils.display(iv, url);
-				}
-			});
-			layout_menu.addView(button);
-		}
 	}
 
 	/**
