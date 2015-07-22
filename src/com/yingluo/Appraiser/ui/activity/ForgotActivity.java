@@ -100,6 +100,7 @@ public class ForgotActivity extends BaseActivity {
 		send_help = getString(R.string.register_code_bt_text);
 		presenter = new ForgetPresenter(iview);
 		tvLast.setText("输入新密码");
+		send_code.setText("确定");
 	}
 	
 	@Override

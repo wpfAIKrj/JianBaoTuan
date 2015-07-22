@@ -107,8 +107,6 @@ public class ViewHots extends LinearLayout {
 
 		currnt = item;
 
-		
-
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
@@ -119,7 +117,7 @@ public class ViewHots extends LinearLayout {
 		iv_big.setTag(item);
 		setSmallImage(iv_big, item.images);
 		// 设置头像
-		if(iv_small == null) {
+		if (iv_small.getTag() == null) {
 			bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
 		}
 		iv_small.setTag(item);

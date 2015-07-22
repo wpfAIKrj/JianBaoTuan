@@ -29,6 +29,7 @@
     <string name="register_code_bt_hint">获取验证码</string>
     <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
     <string name="regitster_bt">确定</string>
+    <string name="regitster_next">下一步</string>
     <string name="register_result_succes_title">注册成功</string>
     <string name="register_result_succes_msg">欢迎您加入鉴定师</string>
 
@@ -49,7 +50,7 @@
     <string name="profile_name">用户昵称:</string>
     <string name="profile_email">邮箱:</string>
     <string name="profile_bt_save">保存修改</string>
-
+	<string name="profile_set_name">昵称:</string>
     <!-- 修改密码 -->
     <string name="password_title">修改密码</string>
     <string name="password_old">旧密码:</string>

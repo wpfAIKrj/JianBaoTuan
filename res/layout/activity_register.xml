@@ -152,6 +152,6 @@
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/y146"
-        android:text="@string/regitster_bt" />
+        android:text="@string/regitster_next" />
 
 </LinearLayout>

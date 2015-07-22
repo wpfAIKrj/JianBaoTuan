@@ -273,9 +273,9 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 					registerdialog.dismiss();
 				}
 				new ToastUtils(RegisterActivity.this,"注册成功");
-				setResult(Activity.RESULT_OK, getIntent());
-				finish();
-				overridePendingTransition(R.anim.hold, R.anim.toast_out);
+				Intent intent = new Intent(RegisterActivity.this, SetNameActivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		}, 5000);
 	}

@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -58,6 +59,11 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@ViewInject(R.id.login_edit_password)
 	private EditText ed_pwd;
 
+	@ViewInject(R.id.cb_rember_password)
+	private CheckBox cbPassword;
+	@ViewInject(R.id.cb_rember_zhuangtai)
+	private CheckBox cbZhuangTai;
+	
 	private boolean isShow = false;
 
 	private SelectMoilbWindow popwindow;
@@ -107,7 +113,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			break;
 		case R.id.login_bt_register:// 跳转到注册页面
 			intent = new Intent(LoginAcitivity.this, RegisterActivity.class);
-			startActivityForResult(intent, Const.TO_REGISTER);
+			startActivity(intent);
 			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.login_bt_forgot:// 找回密码界面
@@ -163,10 +169,18 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		if (user == null) {
 			return;
 		}
+		new ToastUtils(this,"登陆成功");
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		// 保存密码，不知道有用没有，看需求吧
-		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
+		if(cbPassword.isChecked()) {
+			SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
+		}
+//		if(cbZhuangTai.isChecked()) {
+//			
+//		} else {
+//			SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+//		}
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		ItApplication.getcurrnUser();
 		if (dialog != null) {
@@ -182,7 +196,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		if (dialog != null) {
 			dialog.dismiss();
 		}
-		new ToastUtils(this, errorCode + "," + errorMsg);
+		new ToastUtils(this,errorMsg);
 	}
 
 	@Override
@@ -203,11 +217,11 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_REGISTER) {
-			if (resultCode == RESULT_OK) {// 注册成功
-				setResult(Activity.RESULT_OK, getIntent());
-				finish();
-				overridePendingTransition(R.anim.right_in, R.anim.right_out);
-			}
+//			if (resultCode == RESULT_OK) {// 注册成功
+//				setResult(Activity.RESULT_OK, getIntent());
+//				finish();
+//				overridePendingTransition(R.anim.right_in, R.anim.right_out);
+//			}
 		}
 		if (requestCode == Const.TO_FOGOT && resultCode == RESULT_OK) {
 			new ToastUtils(LoginAcitivity.this, "找回密码成功！");

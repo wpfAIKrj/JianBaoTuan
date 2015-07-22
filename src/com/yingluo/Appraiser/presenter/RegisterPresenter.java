@@ -7,43 +7,33 @@ import com.yingluo.Appraiser.model.LoginModel;
 import com.yingluo.Appraiser.model.RegisterModel;
 
 public class RegisterPresenter implements OnBasicDataLoadListener<UserInfo> {
-	
-	
+
 	private onBasicView<UserInfo> mview;
 	private RegisterModel mModel;
-	
+
 	public RegisterPresenter(onBasicView iview) {
-		// TODO Auto-generated constructor stub
-		mview=iview;
+		mview = iview;
 	}
 
-	public void startRegister(String name,String pwd){
-		mModel=new RegisterModel();
+	public void startRegister(String name, String pwd) {
+		mModel = new RegisterModel();
 		mModel.setUserInfo(name, pwd, this);
 		mModel.addRequestParams();
 		mModel.sendHttp();
 	}
-	
-	
-	
-	
+
 	@Override
 	public void onBaseDataLoaded(UserInfo data) {
-		// TODO Auto-generated method stub
-		if(data==null){
+		if (data == null) {
 			mview.onFail("-1", "服务器异常");
-		}else{
+		} else {
 			mview.onSucess(data);
 		}
 	}
 
 	@Override
 	public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
-		mview.onFail(errorCode,errorMsg);
+		mview.onFail(errorCode, errorMsg);
 	}
-	
-
-
 
 }

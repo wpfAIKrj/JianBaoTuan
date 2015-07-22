@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical" >
+    android:fitsSystemWindows="true" >
 
     <include
         android:id="@+id/include1"
@@ -32,42 +31,42 @@
             <LinearLayout
                 android:layout_width="232dp"
                 android:layout_height="@dimen/y94"
-                android:layout_toLeftOf="@+id/login_bt_clear"
                 android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/login_bt_clear"
                 android:paddingLeft="@dimen/x20" >
 
-		        <TextView 
-		            style="@style/tv_edit_login_left"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/login_name_hint"
-		            />
-		        <EditText
-			        android:id="@+id/login_edit_name"
-			        style="@style/my_title_style3"
-			        android:layout_width="match_parent"
-			        android:layout_height="match_parent"
-			        android:cursorVisible="true"
-			        android:ems="11"
-			        android:layout_marginLeft="5dp"
-			        android:background="@null"
-			        android:layout_centerVertical="true"
-			        android:imeOptions="actionNext"
-			        android:inputType="phone"
-                	android:singleLine="true"
-			        android:textCursorDrawable="@drawable/color_cursor" >
-			        <requestFocus />
-			    </EditText>
-		        
-		    </LinearLayout>
+                <TextView
+                    style="@style/tv_edit_login_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_name_hint" />
+
+                <EditText
+                    android:id="@+id/login_edit_name"
+                    style="@style/my_title_style3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:ems="11"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/color_cursor" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/login_bt_clear"
                 android:layout_width="34dp"
                 android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="@dimen/button_padd"
-                android:layout_alignParentRight="true"
                 android:src="@drawable/login_input_arrow" />
         </RelativeLayout>
 
@@ -77,31 +76,96 @@
             android:layout_marginTop="@dimen/y20"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/x20"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x20" >
 
-            <TextView 
+            <TextView
                 style="@style/tv_edit_login_left"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/login_pwd_hint"
-	            />
-            
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_pwd_hint" />
+
             <EditText
                 android:id="@+id/login_edit_password"
                 style="@style/edit_login_style"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@null"
                 android:cursorVisible="true"
-			    android:layout_marginLeft="5dp"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textCursorDrawable="@drawable/color_cursor" >
             </EditText>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x30" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/cb_rember_password"
+                style="@style/delete_checkbox_all_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_gravity="center_vertical"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:text="记住密码"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/x1"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/y10"
+            android:background="@color/wite" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/cb_rember_zhuangtai"
+                style="@style/delete_checkbox_all_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_gravity="center_vertical"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x30"
+                android:text="记住登录状态"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -144,7 +208,7 @@
         style="@style/bt_login_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y94"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_below="@+id/linearLayout4"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
