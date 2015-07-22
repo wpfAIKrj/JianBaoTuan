@@ -73,7 +73,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 	@OnClick({ R.id.btn_identifing, R.id.btn_identifed, R.id.button_category })
 	public void doClick(View v) {
-		// TODO Auto-generated method stub
 		setIdentifyBackground(v.getId());
 		switch (v.getId()) {
 		case R.id.button_category: {
@@ -134,7 +133,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	}
 
 	private void showImageData(int type, long kindId) {
-		// TODO Auto-generated method stub
 		String str = FileUtils.getInstance().getFileForKindJson(kindId, type);
 		if (str != null) {
 			try {
@@ -148,7 +146,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 					tv_show_no_data.setVisibility(View.VISIBLE);
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 		}
 
@@ -178,13 +176,11 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 	@Override
 	protected void initDisplay() {
-		// TODO Auto-generated method stub
 		getIndentity();
 	}
 
 	@Override
 	public void lazyLoad() {
-		// TODO Auto-generated method stub
 		System.out.println(getClass().getName() + "正在加载数据");
 	}
 
@@ -231,7 +227,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_INDENTIFY || resultCode == Activity.RESULT_OK) {
 			kindId = data.getIntExtra(Const.KIND_ID, 0);
@@ -244,7 +239,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
-			// TODO Auto-generated method stub
 			prrv.stopRefresh();
 			if (data.size() == 0) {
 				tv_show_no_data.setVisibility(View.VISIBLE);
@@ -260,7 +254,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			prrv.stopRefresh();
 			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
@@ -270,7 +263,6 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	};
 
 	private void getIndentity() {
-		// TODO Auto-generated method stub
 		if (dialog == null) {
 			dialog = DialogUtil.createLoadingDialog(mActivity, "获取鉴定宝物中....");
 		}
