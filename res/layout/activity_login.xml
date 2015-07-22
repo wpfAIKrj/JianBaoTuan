@@ -22,40 +22,54 @@
         android:layout_marginTop="@dimen/y262"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/name_layout"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/y94"
             android:background="@drawable/login_edit_bg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:gravity="center_vertical" >
 
-            <EditText
-                android:id="@+id/login_edit_name"
-                style="@style/edit_login_style"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1.11"
-                android:background="@null"
-                android:cursorVisible="true"
-                android:ems="11"
-                android:hint="@string/login_name_hint"
-                android:imeOptions="actionNext"
-                android:inputType="phone"
-                android:singleLine="true"
-                android:textCursorDrawable="@drawable/color_cursor" >
+            <LinearLayout
+                android:layout_width="232dp"
+                android:layout_height="@dimen/y94"
+                android:layout_toLeftOf="@+id/login_bt_clear"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="@dimen/x20" >
 
-                <requestFocus />
-            </EditText>
+		        <TextView 
+		            style="@style/tv_edit_login_left"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/login_name_hint"
+		            />
+		        <EditText
+			        android:id="@+id/login_edit_name"
+			        style="@style/my_title_style3"
+			        android:layout_width="match_parent"
+			        android:layout_height="match_parent"
+			        android:cursorVisible="true"
+			        android:ems="11"
+			        android:layout_marginLeft="5dp"
+			        android:background="@null"
+			        android:layout_centerVertical="true"
+			        android:imeOptions="actionNext"
+			        android:inputType="phone"
+                	android:singleLine="true"
+			        android:textCursorDrawable="@drawable/color_cursor" >
+			        <requestFocus />
+			    </EditText>
+		        
+		    </LinearLayout>
 
             <ImageView
                 android:id="@+id/login_bt_clear"
-                android:layout_width="0dp"
+                android:layout_width="34dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1"
+                android:layout_centerVertical="true"
                 android:padding="@dimen/button_padd"
+                android:layout_alignParentRight="true"
                 android:src="@drawable/login_input_arrow" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -63,8 +77,16 @@
             android:layout_marginTop="@dimen/y20"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x20"
             android:orientation="horizontal" >
 
+            <TextView 
+                style="@style/tv_edit_login_left"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/login_pwd_hint"
+	            />
+            
             <EditText
                 android:id="@+id/login_edit_password"
                 style="@style/edit_login_style"
@@ -73,8 +95,8 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:cursorVisible="true"
+			    android:layout_marginLeft="5dp"
                 android:ems="10"
-                android:hint="@string/login_pwd_hint"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"

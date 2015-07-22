@@ -2,15 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
     android:background="@drawable/main_background"
-    android:fitsSystemWindows="true">
-    
- <include
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include
         android:id="@+id/include1"
         layout="@layout/layout_activity_head" />
-
-   
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -22,32 +20,40 @@
         android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/y100"
         android:orientation="vertical" >
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/y94"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x20"
             android:orientation="horizontal" >
 
+            <TextView 
+                style="@style/tv_edit_login_left"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/register_name_hint"
+	            />
+            
             <EditText
                 android:id="@+id/register_edit_phone"
+                style="@style/edit_login_style"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:cursorVisible="true"
                 android:ems="10"
+                android:imeOptions="actionNext"
                 android:inputType="phone"
-          		android:imeOptions="actionNext"
                 android:singleLine="true"
-                 style="@style/edit_login_style"
-                 android:hint="@string/register_name_hint"
-                  android:cursorVisible="true"
-            android:textCursorDrawable="@drawable/color_cursor"
-                 >
+                android:textCursorDrawable="@drawable/color_cursor" >
 
                 <requestFocus />
             </EditText>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="@dimen/y94"
@@ -55,38 +61,50 @@
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <EditText
-                android:id="@+id/register_edit_code"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
+            <LinearLayout 
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/ed_code_bg"
-                android:ems="10"
-              	android:imeOptions="actionNext"
-                android:inputType="number"
-                android:singleLine="true"
-                style="@style/edit_login_style"
-                android:alpha="10"
-                 android:cursorVisible="true"
-               android:textCursorDrawable="@drawable/color_cursor"
-                android:hint="@string/register_code_ed_hint"
+                android:paddingLeft="@dimen/y20"
                 >
-
-                <requestFocus />
-            </EditText>
+                
+                <TextView 
+		            style="@style/tv_edit_login_left"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="@string/register_code_ed_hint"
+		            />
+	            
+	            <EditText
+	                android:id="@+id/register_edit_code"
+	                style="@style/edit_login_style"
+	                android:layout_width="0dp"
+	                android:layout_height="fill_parent"
+	                android:layout_weight="1"
+	                android:alpha="10"
+	                android:cursorVisible="true"
+	                android:ems="10"
+	                android:background="@null"
+	                android:imeOptions="actionNext"
+	                android:inputType="number"
+	                android:singleLine="true"
+	                android:textCursorDrawable="@drawable/color_cursor" >
+	
+	            </EditText>
+            
+            </LinearLayout>
 
             <Button
                 android:id="@+id/register_send_code"
                 android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/x10"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x10"
                 android:layout_weight="1"
-                android:text="@string/register_code_bt_hint" 
-                android:textSize="@dimen/x30"
-                android:gravity="center"
                 android:background="@drawable/bt_code_bg"
-                android:textColor="@color/bt_color"/>
-            
+                android:gravity="center"
+                android:text="@string/register_code_bt_hint"
+                android:textColor="@color/bt_color"
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,33 +113,37 @@
             android:layout_marginTop="@dimen/y20"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
+            android:paddingLeft="@dimen/y20"
             android:orientation="horizontal" >
 
+            <TextView 
+	            style="@style/tv_edit_login_left"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/login_pwd_hint"
+	            />
+            
             <EditText
                 android:id="@+id/register_edit_password"
+                style="@style/edit_login_style"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@null"
+                android:cursorVisible="true"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                style="@style/edit_login_style" 
-                android:hint="@string/login_pwd_hint"
-                 android:cursorVisible="true"
-                  android:textCursorDrawable="@drawable/color_cursor"
-                >
+                android:textCursorDrawable="@drawable/color_cursor" >
 
-                <requestFocus />
             </EditText>
         </LinearLayout>
     </LinearLayout>
 
-
-
     <Button
         android:id="@+id/register_button"
+        style="@style/bt_login_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y94"
         android:layout_below="@+id/linearLayout2"
@@ -129,7 +151,6 @@
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/y146"
-  		style="@style/bt_login_style"
         android:text="@string/regitster_bt" />
 
 </LinearLayout>

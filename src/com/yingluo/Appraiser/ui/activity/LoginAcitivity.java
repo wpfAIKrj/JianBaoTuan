@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
@@ -62,7 +63,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	private SelectMoilbWindow popwindow;
 
 	@ViewInject(R.id.name_layout)
-	private LinearLayout namelayout;
+	private RelativeLayout namelayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -157,13 +158,13 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	@Override
 	public void onSucess(UserInfo user) {
-		if(user == null) {
+		if (user == null) {
 			return;
 		}
 		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
-		//保存密码，不知道有用没有，看需求吧
-		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(),user.getPassword());
+		// 保存密码，不知道有用没有，看需求吧
+		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		ItApplication.getcurrnUser();
 		if (dialog != null) {

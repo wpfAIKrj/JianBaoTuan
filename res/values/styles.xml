@@ -13,26 +13,26 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" >
+    <style name="AppTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-     <style name="loading_dialog" parent="android:style/Theme.Holo.DialogWhenLarge">  
-        <item name="android:windowFrame">@null</item>  
-        <item name="android:windowNoTitle">true</item>   
-        <item name="android:windowBackground">@drawable/dialog</item>  
-        <item name="android:windowIsFloating">true</item>  
-        <item name="android:windowContentOverlay">@null</item>  
+
+    <style name="loading_dialog" parent="android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/dialog</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
-    
-  
-       <style name="home_textview_item_title">
+
+    <style name="home_textview_item_title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">#FF000000</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">center</item>
     </style>
+
     <style name="home_title">
         <item name="android:textColor">@color/wite</item>
         <item name="android:textSize">@dimen/x38</item>
@@ -43,88 +43,95 @@
         <item name="android:textColor">@color/wite</item>
         <item name="android:background">@drawable/login_bt</item>
         <item name="android:gravity">center</item>
-   		<item name="android:textSize">@dimen/x40</item>
+        <item name="android:textSize">@dimen/x40</item>
     </style>
-    
+
     <style name="edit_login_style">
-         <item name="android:textColor">@color/ed_login_color</item>
-         <item name="android:textSize">@dimen/x30</item>
-         <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:textColor">@color/ed_login_color</item>
+        <item name="android:textSize">@dimen/x30</item>
+        <item name="android:textColorHint">@color/hint_color</item>
         <item name="android:gravity">center_vertical|left</item>
         <item name="android:paddingLeft">@dimen/x20</item>
     </style>
-      <style name="bt_smart_style">
+    
+    <style name="tv_edit_login_left">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+    
+    <style name="bt_smart_style">
         <item name="android:textSize">@dimen/x30</item>
         <item name="android:textColor">@color/wite</item>
     </style>
-    
-      
-      <style name="item_text_style">
-          <item name="android:textSize">@dimen/x24</item>
-          <item name="android:textColor">@color/ed_login_color</item>
-      </style>
-      
-      
-      <style name="detail_title_style">
-          <item name="android:textColor">@color/dialog_title_color</item>
-          <item name="android:textSize">@dimen/x24</item>
-      </style>
-	   <style name="detail_info_style">
-	          <item name="android:textColor">@color/ed_login_color</item>
-	          <item name="android:textSize">@dimen/x24</item>
-	          <item name="android:lineSpacingExtra">@dimen/x16</item>
-	      </style>
-	      
-	   <style name="my_name_style">
-        <item name="android:textColor">@color/wite</item>
-   		<item name="android:textSize">@dimen/x30</item>
-    	</style>
-    	<style name="my_level_style">
-        <item name="android:textColor">@color/wite</item>
-   		<item name="android:textSize">@dimen/x24</item>
-    	</style>
-    	
-    	<style name="my_up_style">
+
+    <style name="item_text_style">
+        <item name="android:textSize">@dimen/x24</item>
+        <item name="android:textColor">@color/ed_login_color</item>
+    </style>
+
+    <style name="detail_title_style">
         <item name="android:textColor">@color/dialog_title_color</item>
-   		<item name="android:textSize">@dimen/x24</item>
-    	</style>
-    	
-    	<style name="my_title_style1">
-    	 <item name="android:textColor">@color/ed_login_color</item>
-   		<item name="android:textSize">@dimen/x30</item>
-    	</style>
-    	<style name="my_title_style2">
-    	 <item name="android:textColor">@color/dialog_title_color</item>
-   		<item name="android:textSize">@dimen/x30</item>
-    	</style>
-    	
-    	<style name="my_title_style3">
-    	 <item name="android:textColor">@color/number_color</item>
-   		<item name="android:textSize">@dimen/x30</item>
-    	</style>
-    	
-    	<style name="show_no_data_text_style">
-    	 <item name="android:textColor">@color/black</item>
-   		<item name="android:textSize">@dimen/x30</item>
-    	</style>
-    	<style name="my_titl_style4">
-    	 	<item name="android:textColor">@color/number_color</item>
-   			<item name="android:textSize">@dimen/x26</item>
-    	</style>
-    	
-    	<style name="my_titl_style5">
-    	 	<item name="android:textColor">@color/ed_login_color</item>
-   			<item name="android:textSize">@dimen/x26</item>
-    	</style>
-    	
+        <item name="android:textSize">@dimen/x24</item>
+    </style>
+
+    <style name="detail_info_style">
+        <item name="android:textColor">@color/ed_login_color</item>
+        <item name="android:textSize">@dimen/x24</item>
+        <item name="android:lineSpacingExtra">@dimen/x16</item>
+    </style>
+
+    <style name="my_name_style">
+        <item name="android:textColor">@color/wite</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+
+    <style name="my_level_style">
+        <item name="android:textColor">@color/wite</item>
+        <item name="android:textSize">@dimen/x24</item>
+    </style>
+
+    <style name="my_up_style">
+        <item name="android:textColor">@color/dialog_title_color</item>
+        <item name="android:textSize">@dimen/x24</item>
+    </style>
+
+    <style name="my_title_style1">
+        <item name="android:textColor">@color/ed_login_color</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+
+    <style name="my_title_style2">
+        <item name="android:textColor">@color/dialog_title_color</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+
+    <style name="my_title_style3">
+        <item name="android:textColor">@color/number_color</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+
+    <style name="show_no_data_text_style">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/x30</item>
+    </style>
+
+    <style name="my_titl_style4">
+        <item name="android:textColor">@color/number_color</item>
+        <item name="android:textSize">@dimen/x26</item>
+    </style>
+
+    <style name="my_titl_style5">
+        <item name="android:textColor">@color/ed_login_color</item>
+        <item name="android:textSize">@dimen/x26</item>
+    </style>
+
     <style name="AnimBottom" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
-   
-    
-    <style name="dialog_style" parent="android:style/Theme.Holo.DialogWhenLarge">  
-               <item name="android:windowAnimationStyle">@style/AnimBottom</item>
+
+    <style name="dialog_style" parent="android:style/Theme.Holo.DialogWhenLarge">
+        <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -132,16 +139,17 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
     <style name="checkbox_identy_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox01</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">@dimen/x1</item>
     </style>
-    
-     <style name="dialogWindowAnim" parent="android:Animation" mce_bogus="1">  
-        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>  
-        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>  
-    </style>  
+
+    <style name="dialogWindowAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+    </style>
     <!-- 全屏幕拉伸 -->
     <style name="w_h_full">
         <item name="android:layout_width">fill_parent</item>
@@ -189,44 +197,44 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">0.0dp</item>
     </style>
-    
+
     <style name="shadow" parent="w_wrap_h_wrap">
-         <item name="android:shadowDx">2</item>
+        <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
-         <item name="android:shadowRadius">3</item>
+        <item name="android:shadowRadius">3</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
-    
+
     <style name="shadow_w_full" parent="w_full_h_wrap">
-         <item name="android:shadowDx">2</item>
+        <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
-         <item name="android:shadowRadius">3</item>
+        <item name="android:shadowRadius">3</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
-    
+
     <style name="shadow_w_weight" parent="w_weight_h_wrap">
-         <item name="android:shadowDx">2</item>
+        <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
-         <item name="android:shadowRadius">3</item>
+        <item name="android:shadowRadius">3</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
+
     <style name="shadow_h_weight" parent="h_weight_w_wrap">
-         <item name="android:shadowDx">2</item>
+        <item name="android:shadowDx">2</item>
         <item name="android:shadowDy">2</item>
-         <item name="android:shadowRadius">3</item>
+        <item name="android:shadowRadius">3</item>
         <item name="android:shadowColor">@android:color/black</item>
     </style>
-    
+
     <!-- 单选的删除 -->
     <style name="delete_checkbox_logo_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/delete_checkbox</item>
         <item name="android:background">@drawable/delete_checkbox_bg</item>
     </style>
     <!-- 全选的删除 -->
-        <style name="delete_checkbox_all_style" parent="@android:style/Widget.CompoundButton.CheckBox">
+    <style name="delete_checkbox_all_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/delete_all_checkbox</item>
         <item name="android:background">@drawable/select_delete_checkbox_bg</item>
     </style>
-    
 
 </resources>
