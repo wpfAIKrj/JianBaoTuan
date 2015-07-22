@@ -21,13 +21,11 @@ public class likeViewHolder extends ViewHolder {
 	
 	public likeViewHolder(View itemView,final OnClickListener lisntener) {
 		super(itemView);
-		// TODO Auto-generated constructor stub
 		ViewUtils.inject(this, itemView);
 		itemView.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				v.setTag(entity);
 				if(lisntener!=null){
 					lisntener.onClick(v);
@@ -38,6 +36,7 @@ public class likeViewHolder extends ViewHolder {
 	
 	public void showData(CollectionTreasure entity){
 		this.entity=entity;
+		
 		BitmapsUtils.getInstance().display(logo, entity.image);
 	}
 

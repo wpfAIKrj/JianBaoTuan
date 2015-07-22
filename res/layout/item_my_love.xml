@@ -2,19 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/x7" 
-    android:paddingBottom="@dimen/x7" 
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingBottom="@dimen/x7"
+    android:paddingLeft="@dimen/x7" >
 
-
-
-        <com.yingluo.Appraiser.view.CircleImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/y168"
-            android:layout_height="@dimen/y168"
-          	app:border_color="@color/cricle_color"
-            app:border_width="@dimen/x1"
-            
-            />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/y234"
+        android:layout_height="@dimen/y234"
+        android:scaleType="fitXY"
+         />
 
 </RelativeLayout>

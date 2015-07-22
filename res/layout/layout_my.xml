@@ -387,7 +387,7 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/horizontalListView1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/y168"
+                    android:layout_height="@dimen/y234"
                     android:layout_marginTop="@dimen/y10"
                     android:background="@color/wite" />
 
