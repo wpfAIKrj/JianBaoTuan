@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +40,6 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 		mindex = position;
 		return list.get(position);
 	}
-
-	public Drawable getDrawable(int position) {
-		ViewHolder holder = maps.get(Integer.valueOf(position));
-		return holder.iv.getDrawable();
-	}
 	
 	@Override
 	public long getItemId(int position) {
@@ -58,15 +54,18 @@ public class WellKnowPeopleAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 			holder.iv = (CircleImageView) convertView.findViewById(R.id.iv);
 			convertView.setTag(holder);
+			maps.put(Integer.valueOf(position), holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
-		}
+		} 
+		Log.e("test image", "初始化"+holder.iv);
 		if (holder.iv.getTag() == null) {
+			Log.e("test image", "又加载了一遍？");
 			BitmapsUtils bitmapsUtils = BitmapsUtils.getInstance();
 			bitmapsUtils.display(holder.iv, list.get(position).authImage, BitmapsUtils.TYPE_YES);
 			holder.iv.setTag(list.get(position).authImage);
 		}
-		maps.put(Integer.valueOf(position), holder);
+		
 		if (mindex == position) {
 			holder.iv.setAlpha(1);
 		} else {

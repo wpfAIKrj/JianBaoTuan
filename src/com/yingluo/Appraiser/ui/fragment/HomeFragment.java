@@ -276,7 +276,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 					if (index >= adapter.getCount()) {
 						index = 0;
 					}
-					wellKnow.setItem(adapter.getItem(index));
+//					wellKnow.setItem(adapter.getItem(index));
 					adapter.notifyDataSetChanged();
 				}
 				break;

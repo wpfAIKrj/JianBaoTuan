@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/x7" 
     android:paddingBottom="@dimen/x7" 
-    xmlns:app="http://schemas.android.com/apk/res/com.yingluo.Appraiser">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 

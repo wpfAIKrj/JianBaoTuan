@@ -251,10 +251,10 @@ public class MyFragment extends BaseFragment {
 			}
 			break;
 		case R.id.my_tab6:// 跳转到人工客服
-			String strMobile = "10086";
-			// TODO 此处应该对电话号码进行验证。。
-			Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + strMobile));
-			mActivity.startActivity(intent);
+//			String strMobile = "10086";
+//			// TODO 此处应该对电话号码进行验证。。
+//			Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + strMobile));
+//			mActivity.startActivity(intent);
 			break;
 		default:
 			break;
