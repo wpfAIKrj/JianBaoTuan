@@ -37,6 +37,8 @@ public class ActivityMyPrecious extends BaseActivity {
 	// View view_all, view_identifing, view_identified;
 	@ViewInject(R.id.btn_all)
 	ViewGroup btn_all;
+	@ViewInject(R.id.btn_no)
+	ViewGroup btn_no;
 	@ViewInject(R.id.btn_identifing)
 	ViewGroup btn_ing;
 	@ViewInject(R.id.btn_identified)
@@ -62,13 +64,12 @@ public class ActivityMyPrecious extends BaseActivity {
 	MyTreasureModel model;
 
 	MyTreasureAdapter mAdapter;
-	
+
 	private int Treadsure_type;
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_my_precious);
@@ -79,7 +80,7 @@ public class ActivityMyPrecious extends BaseActivity {
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 
 		model.setType(type);
-		Treadsure_type=MyTreasureModel.TYPE_ALL;
+		Treadsure_type = MyTreasureModel.TYPE_ALL;
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
 			btn_delete.setVisibility(View.GONE);
@@ -104,13 +105,11 @@ public class ActivityMyPrecious extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
+
 	private void initViews() {
-		// TODO Auto-generated method stub
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		recyclerview.setLayoutManager(layoutManager);
@@ -120,21 +119,18 @@ public class ActivityMyPrecious extends BaseActivity {
 		swipe_refresh_widget.setOnRefreshListener(new OnRefreshListener() {
 
 			@Override
-			public void onRefresh() {//刷新
-				// TODO Auto-generated method stub
-					ActivityMyPrecious.this.onRefresh();
+			public void onRefresh() {// 刷新
+				ActivityMyPrecious.this.onRefresh();
 			}
 		});
 	}
 
 	protected void onRefresh() {
-		// TODO Auto-generated method stub
 		model.setType(type);
 		model.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
 				swipe_refresh_widget.setRefreshing(false);
 				mAdapter.setData(model.getResult());
 
@@ -142,7 +138,6 @@ public class ActivityMyPrecious extends BaseActivity {
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
 				swipe_refresh_widget.setRefreshing(false);
 
 			}
@@ -151,8 +146,7 @@ public class ActivityMyPrecious extends BaseActivity {
 
 	OnClickListener ivListener = new OnClickListener() {
 		public void onClick(View v) {
-			startActivity(new Intent(ActivityMyPrecious.this,
-					ActivityUserDelails.class));
+			startActivity(new Intent(ActivityMyPrecious.this, ActivityUserDelails.class));
 		};
 	};
 
@@ -160,23 +154,27 @@ public class ActivityMyPrecious extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			swipe_refresh_widget.setRefreshing(true);
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {
-				Treadsure_type=MyTreasureModel.TYPE_ALL;
+				Treadsure_type = MyTreasureModel.TYPE_ALL;
+				onRefresh();
+			}
+				break;
+			case R.id.btn_no: {
+				Treadsure_type = MyTreasureModel.TYPE_ALL;
 				onRefresh();
 			}
 				break;
 			case R.id.btn_identifing: {
-				Treadsure_type=MyTreasureModel.TYPE_IDENTIFIED;
+				Treadsure_type = MyTreasureModel.TYPE_IDENTIFIED;
 				onRefresh();
 
 			}
 				break;
 			case R.id.btn_identified: {
-				Treadsure_type=MyTreasureModel.TYPE_IDENTIFYING;
+				Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
 				onRefresh();
 			}
 				break;
@@ -192,76 +190,76 @@ public class ActivityMyPrecious extends BaseActivity {
 		switch (id) {
 		case R.id.btn_all: {
 			// 先设置背景
-			((Button) btn_all.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.dialog_title_color));
-			btn_all.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.dialog_title_color));
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 
-			((Button) btn_ed.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_ed.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
-			((Button) btn_ing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_ing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_no.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_no.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_ed.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ed.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_ing.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 
 			break;
+			
+		case R.id.btn_no: {
+			// 先设置背景
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_no.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_no.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			
+			((Button) btn_ed.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ed.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_ing.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+		}
+
+			break;
+			
 
 		case R.id.btn_identifing: {
-			((Button) btn_all.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_all.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
-
-			((Button) btn_ed.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_ed.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
-			((Button) btn_ing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.dialog_title_color));
-			btn_ing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.dialog_title_color));
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_no.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_no.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			
+			((Button) btn_ed.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ed.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_ing.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_ing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 		}
 			break;
 		case R.id.btn_identified: {
-			((Button) btn_all.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_all.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_no.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_no.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 
-			((Button) btn_ed.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.dialog_title_color));
-			btn_ed.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.dialog_title_color));
-			((Button) btn_ing.getChildAt(0)).setTextColor(getResources()
-					.getColor(R.color.black_2));
-			btn_ing.getChildAt(1).setBackgroundColor(
-					getResources().getColor(R.color.wite));
+			((Button) btn_ed.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_ed.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			((Button) btn_ing.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_ing.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 			break;
 		}
 	}
 
-	private OnClickListener lis=new OnClickListener() {
-		
+	private OnClickListener lis = new OnClickListener() {
+
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			TreasureEntity entity=(TreasureEntity) v.getTag();
-			CollectionTreasure id=new CollectionTreasure();
-			id.treasure_id=entity.treasure_id;
-			id.image=entity.image;
-			id.name=entity.title;
-			
+			TreasureEntity entity = (TreasureEntity) v.getTag();
+			CollectionTreasure id = new CollectionTreasure();
+			id.treasure_id = entity.treasure_id;
+			id.image = entity.image;
+			id.name = entity.title;
+
 			Intent mIntent = new Intent(ActivityMyPrecious.this, ActivityUserDelails.class);
 			mIntent.putExtra(Const.ENTITY, id);
 			startActivity(mIntent);
 		}
 	};
-	
-	
-	
-	
+
 }

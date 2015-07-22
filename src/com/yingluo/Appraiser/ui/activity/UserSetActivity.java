@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -36,6 +37,9 @@ public class UserSetActivity extends BaseActivity {
 	@ViewInject(R.id.cache_number)
 	private TextView cache_number;
 
+	@ViewInject(R.id.pb_cache_number)
+	private ProgressBar pbCache;
+	
 	private Dialog Logodialong;
 
 	private ExitPresenter exitpresenter;
@@ -44,6 +48,8 @@ public class UserSetActivity extends BaseActivity {
 
 	private long TIME_LONG = 3000;
 
+	private long currentTime;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,12 +95,13 @@ public class UserSetActivity extends BaseActivity {
 			startActivity(new Intent(UserSetActivity.this, UpdaateActivity.class));
 			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
-		if (v.getId() == R.id.layout_item5) {// 清楚缓存
+		if (v.getId() == R.id.layout_item5) {// 清除缓存
+			cache_number.setVisibility(View.GONE);
+			pbCache.setVisibility(View.VISIBLE);
 			FileUtils.getInstance().deleteDirectory(1);
 			mhandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					setCacheNumber(FileUtils.getInstance().getCacheFileSize());
 				}
 			}, TIME_LONG);
@@ -110,7 +117,6 @@ public class UserSetActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(String data) {
-			// TODO 自动生成的方法存根
 			if (Logodialong != null) {
 				Logodialong.dismiss();
 			}
@@ -122,7 +128,6 @@ public class UserSetActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO 自动生成的方法存根
 			if (Logodialong != null) {
 				Logodialong.dismiss();
 			}
@@ -132,13 +137,14 @@ public class UserSetActivity extends BaseActivity {
 
 	public void setCacheNumber(String number) {
 		if (cache_number != null) {
+			cache_number.setVisibility(View.VISIBLE);
+			pbCache.setVisibility(View.GONE);
 			cache_number.setText(number + " ");
 		}
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_UPDATA_USER_INFO && resultCode == RESULT_OK) {
 			new ToastUtils(this, "个人信息更新成功！");

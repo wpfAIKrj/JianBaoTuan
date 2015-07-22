@@ -496,11 +496,13 @@ public class ActivityUserDelails extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO 自动生成的方法存根
 			CommentEntity comment = (CommentEntity) v.getTag();
 			to_user_id = comment.user_id;
 			String str = String.format(getResources().getString(R.string.title_send_comment_hint), comment.authName);
 			ed_text.setHint(str);
+			ed_text.requestFocus();
+			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	        imm.showSoftInput(ed_text, InputMethodManager.SHOW_FORCED);
 		}
 	};
 
@@ -514,15 +516,19 @@ public class ActivityUserDelails extends Activity {
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
-		// TODO Auto-generated method stub
 		if (ev.getAction() == MotionEvent.ACTION_DOWN) {
 
 			// 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
 			View v = getCurrentFocus();
 
 			if (HelpUtils.isShouldHideInput(v, ev)) {
+				to_user_id = 0;
+				ed_text.setHint("");
+				ed_text.setText("");
+				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				HelpUtils.hideSoftInput(v.getWindowToken(), im);
+				
 			}
 			if (v == bt_send_comment) {
 				return true;

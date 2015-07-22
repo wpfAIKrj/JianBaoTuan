@@ -96,6 +96,7 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:textColor="@color/black"
+            android:paddingLeft="@dimen/x8"
             android:textSize="@dimen/x30" >
         </EditText>
 

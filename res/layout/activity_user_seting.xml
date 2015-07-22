@@ -8,268 +8,237 @@
 
     <include layout="@layout/layout_head" />
 
+    <LinearLayout
+        android:id="@+id/layout_right_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/menu_background"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/y50" >
 
-        <LinearLayout
-                android:id="@+id/layout_right_menu"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/menu_background"
-                android:paddingTop="@dimen/y50"
-                >
-		<RelativeLayout 
-		      android:id="@+id/layout_item1"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-              android:background="@drawable/login_edit_bg"
-              >
+        <RelativeLayout
+            android:id="@+id/layout_item1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="个人资料"
-		            />
-		
-		    <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerVertical="true"
-		        android:scaleType="centerCrop" 
-		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/x14"/>
-		
-		  
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="个人资料"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
 
-	</RelativeLayout>
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/y1"
-		android:background="@color/number_color"
-	    />
-	<RelativeLayout 
-	    android:id="@+id/layout_item2"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-              
-              android:background="@drawable/login_edit_bg"
-              >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/next_bg"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="修改密码"
-		            
-		            />
-		
-		    <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerVertical="true"
-		        android:scaleType="centerCrop" 
-		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/x14"/>
-		
-		
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@color/number_color" />
 
-	</RelativeLayout>
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/y1"
-		android:background="@color/number_color"
-	    />
-	<RelativeLayout 
-	    	android:id="@+id/layout_item3"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-     
-              android:background="@drawable/login_edit_bg"
-              >
+        <RelativeLayout
+            android:id="@+id/layout_item2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="意见反馈"
-		            
-		            />
-		
-		    <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerVertical="true"
-		        android:scaleType="centerCrop" 
-		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/x14"/>
-		
-		   
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="修改密码"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
 
-	</RelativeLayout>
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/y1"
-		android:background="@color/number_color"
-	    />
-	<RelativeLayout 
-	   	android:id="@+id/layout_item4"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-  
-              android:background="@drawable/login_edit_bg"
-              >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/next_bg"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="检测更新"
-		            
-		            />
-		
-		    <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerVertical="true"
-		        android:scaleType="centerCrop" 
-		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/x14"
-		  
-		        />
-		
-		    
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@color/number_color" />
 
-	</RelativeLayout>
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/y1"
-		android:background="@color/number_color"
-	    />
-	<RelativeLayout 
-	    android:id="@+id/layout_item5"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-           
-              android:background="@drawable/login_edit_bg"
-              >
+        <RelativeLayout
+            android:id="@+id/layout_item3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="清除本地缓存"
-		            
-		            />
-		
-		    <ImageView
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_alignParentRight="true"
-		        android:layout_centerVertical="true"
-		        android:scaleType="centerCrop" 
-		        android:background="@drawable/next_bg"
-		        android:layout_marginRight="@dimen/x14"
-		         android:id="@+id/iv_icon"
-		        />
-		<TextView
-		        android:id="@+id/cache_number"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		    		android:layout_centerVertical="true"
-		        android:layout_toLeftOf="@+id/iv_icon"
-		        android:text="32.5K" 
-		        android:textSize="@dimen/x24"
-		        android:textColor="@color/ed_login_color"
-		        android:layout_marginRight="@dimen/x12"/>
-		 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="意见反馈"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
 
-	</RelativeLayout>
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="@dimen/y1"
-		android:background="@color/number_color"
-	    />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/next_bg"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
 
-	<View
-	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
-		android:background="@color/number_color"
-	    />
-	<RelativeLayout 
-	      android:id="@+id/layout_item6"
-		      android:descendantFocusability="beforeDescendants"
-              android:orientation="horizontal"
-              android:layout_width="match_parent"
-              android:layout_height="@dimen/y94"
-              android:gravity="center_vertical"
-      		 android:layout_marginTop="@dimen/y100"
-              android:background="@drawable/login_edit_bg"
-              >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@color/number_color" />
 
-		    <TextView
-		    
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:textColor="@color/ed_login_color"
-		            android:layout_alignParentLeft="true"
-		           	android:layout_centerVertical="true"
-		            android:textSize="@dimen/x28"
-		            android:layout_marginLeft="@dimen/x20"
-		            android:text="退出当前账号"
-		            
-		            />
-		
+        <RelativeLayout
+            android:id="@+id/layout_item4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-		</RelativeLayout>
-		<View
-	    android:layout_width="match_parent"
-	    android:layout_height="1dp"
-		android:background="@color/number_color"
-	    />
-        </LinearLayout>
- 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="检测更新"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/next_bg"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@color/number_color" />
+
+        <RelativeLayout
+            android:id="@+id/layout_item5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="清除本地缓存"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/next_bg"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/cache_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x12"
+                android:layout_toLeftOf="@+id/iv_icon"
+                android:text="32.5K"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x24" />
+
+            <ProgressBar
+                android:id="@+id/pb_cache_number"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/x12"
+                android:layout_toLeftOf="@+id/iv_icon"
+                android:visibility="gone"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y1"
+            android:background="@color/number_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/number_color" />
+
+        <RelativeLayout
+            android:id="@+id/layout_item6"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y94"
+            android:layout_marginTop="@dimen/y100"
+            android:background="@drawable/login_edit_bg"
+            android:descendantFocusability="beforeDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="退出当前账号"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/number_color" />
+    </LinearLayout>
+
 </LinearLayout>

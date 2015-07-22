@@ -25,6 +25,8 @@ public class MyTreasureModel extends BaseModel {
 
 	// 全部宝物
 	public static final int TYPE_ALL = 0;
+	// 未审核
+	public static final int TYPE_NO = 0;
 	// 未鉴定的
 	public static final int TYPE_IDENTIFYING = 1;
 	// 已鉴定的
