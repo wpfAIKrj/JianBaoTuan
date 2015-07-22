@@ -14,14 +14,11 @@
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-           
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
             android:paddingLeft="@dimen/x30"
             android:paddingRight="@dimen/x30"
-          
-            android:src="@drawable/back_botton" 
-            android:layout_gravity="center"
-            android:layout_alignParentLeft="true"
-            />
+            android:src="@drawable/back_botton" />
     </RelativeLayout>
 
     <LinearLayout
@@ -41,11 +38,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical" 
-            android:layout_marginTop="@dimen/y16"
             android:layout_marginLeft="@dimen/x15"
-            >
+            android:layout_marginTop="@dimen/y16"
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/tv_name"
@@ -59,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
-     			android:layout_marginTop="@dimen/y7"
+                android:layout_marginTop="@dimen/y7"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -75,7 +71,7 @@
                     android:id="@+id/iv_grade"
                     android:layout_width="@dimen/y34"
                     android:layout_height="@dimen/y34"
-                   	android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginLeft="@dimen/x10"
                     android:src="@drawable/level01" />
             </LinearLayout>
         </LinearLayout>

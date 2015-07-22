@@ -21,9 +21,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -42,56 +44,75 @@ public class ActivitySearch extends BaseActivity {
 	@ViewInject(R.id.home_title)
 	View home_title;
 
+	@ViewInject(R.id.btn_back)
+	ImageView back;
+
 	@ViewInject(R.id.edittext_search)
 	EditText edittext_search;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_search);
 		ViewUtils.inject(this);
-		
+
 		list = new ArrayList<TreasureType>();
-	
+
 		adapter = new MyAdapter(this, list);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				TreasureType type = adapter.list.get(position);
-				Intent mIntent = new Intent(ActivitySearch.this,
-						SearchActivity.class);
+				Intent mIntent = new Intent(ActivitySearch.this, SearchActivity.class);
 				mIntent.putExtra(Const.KIND_ID, type);
 				startActivityForResult(mIntent, Const.TO_KIND_INDENTIFY);
-				
+
 			}
 		});
-		
+
 		edittext_search.setOnKeyListener(new OnKeyListener() {
-			
+
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
-					String name=edittext_search.getText().toString();
+				if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+					String name = edittext_search.getText().toString();
 
-					if(name!=null&&!TextUtils.isEmpty(name)){
-						adapter.list=SqlDataUtil.getInstance().getSelectTreasureType(name);
-						adapter.notifyDataSetChanged();	
+					if (name != null && !TextUtils.isEmpty(name)) {
+						adapter.list = SqlDataUtil.getInstance().getSelectTreasureType(name);
+						adapter.notifyDataSetChanged();
+					} else {
+						Toast.makeText(ActivitySearch.this, "输入内容不能为空", Toast.LENGTH_SHORT).show();
 					}
 				}
 				return false;
 			}
 		});
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				setResult(RESULT_CANCELED, getIntent());
+				finish();
+				overridePendingTransition(R.anim.right_in, R.anim.right_out);
+			}
+		});
+
 		home_title.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				setResult(RESULT_CANCELED,getIntent());
-				finish();
-				overridePendingTransition(R.anim.right_in, R.anim.right_out);
+				String name = edittext_search.getText().toString();
+
+				if (name != null && !TextUtils.isEmpty(name)) {
+					adapter.list = SqlDataUtil.getInstance().getSelectTreasureType(name);
+					adapter.notifyDataSetChanged();
+				} else {
+					Toast.makeText(ActivitySearch.this, "输入内容不能为空", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
@@ -101,7 +122,7 @@ public class ActivitySearch extends BaseActivity {
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
+
 	class MyAdapter extends BaseAdapter {
 
 		Context mContext;
@@ -131,8 +152,7 @@ public class ActivitySearch extends BaseActivity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			ViewHolder vh = null;
 			if (convertView == null) {
-				convertView = LayoutInflater.from(mContext).inflate(
-						R.layout.item_search, null);
+				convertView = LayoutInflater.from(mContext).inflate(R.layout.item_search, null);
 				vh = new ViewHolder();
 				vh.tv = (TextView) convertView.findViewById(R.id.tv);
 				convertView.setTag(vh);
@@ -150,12 +170,12 @@ public class ActivitySearch extends BaseActivity {
 			TextView tv;
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		if(requestCode==Const.TO_KIND_INDENTIFY&&resultCode==RESULT_OK){
+		if (requestCode == Const.TO_KIND_INDENTIFY && resultCode == RESULT_OK) {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);

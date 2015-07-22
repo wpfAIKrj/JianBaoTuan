@@ -224,9 +224,6 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 			} else {
 				transaction.show(mIdentiyFragment);
 			}
-			if(mIndex == 1) {
-				mIdentiyFragment.refresh();
-			}
 			break;
 		case 2:
 			EventBus.getDefault().post(new InfoEvent(0, null));
@@ -235,9 +232,6 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 				transaction.add(R.id.center_layout, mInformationFragment);
 			} else {
 				transaction.show(mInformationFragment);
-			}
-			if(mIndex == 2) {
-				mInformationFragment.refresh();
 			}
 			break;
 		case 3:

@@ -70,6 +70,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	private CountDownTimer timer;
 
 	private String send_help;
+	
 	private Handler mhandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {

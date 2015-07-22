@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -50,13 +51,16 @@ public class ForgotActivity extends BaseActivity {
 	@ViewInject(R.id.register_send_code)
 	private Button send_code;
 
+	@ViewInject(R.id.tv_register_edit_password)
+	private TextView tvLast;
+	
 	private ForgetPresenter presenter;
 
 	private static final int TIME_COUNT = 61000;// 时间防止从119s开始显示（以倒计时120s为例子）
 	private static final int TIME_LONG = 1000;
 
 	private CountDownTimer timer;
-
+	
 	private String send_help;
 	private Handler mhandler = new Handler() {
 		@Override
@@ -88,7 +92,6 @@ public class ForgotActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		ViewUtils.inject(this);
@@ -96,11 +99,11 @@ public class ForgotActivity extends BaseActivity {
 		SMSSDK.registerEventHandler(eh); // 注册短信回调
 		send_help = getString(R.string.register_code_bt_text);
 		presenter = new ForgetPresenter(iview);
+		tvLast.setText("输入新密码");
 	}
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -109,7 +112,6 @@ public class ForgotActivity extends BaseActivity {
 	 * 重新修改密码
 	 */
 	protected void forgot() {
-		// TODO 自动生成的方法存根
 		dialog = DialogUtil.createLoadingDialog(this, "注册中.....");
 		dialog.show();
 		presenter.startForgetPwd(phone, pwd);
@@ -117,7 +119,6 @@ public class ForgotActivity extends BaseActivity {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		SMSSDK.unregisterEventHandler(eh);
 		super.onDestroy();
 	}
@@ -158,7 +159,6 @@ public class ForgotActivity extends BaseActivity {
 
 	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.title_back:// 返回登陆页面
 			setResult(RESULT_CANCELED, getIntent());
@@ -180,7 +180,6 @@ public class ForgotActivity extends BaseActivity {
 	 * 验证手机码是否正确
 	 */
 	private void checkSms() {
-		// TODO Auto-generated method stub
 		phone = ed_phone.getText().toString();
 		if (TelNumMath.isMobileNO(phone)) {
 			pwd = ed_pwd.getText().toString().trim();
@@ -206,14 +205,12 @@ public class ForgotActivity extends BaseActivity {
 	 * 倒计时
 	 */
 	protected void reSendSMS() {
-		// TODO Auto-generated method stub
 		System.out.println("获取验证码成功");
 		send_code.setEnabled(false);
 		timer = new CountDownTimer(TIME_COUNT, TIME_LONG) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
-				// TODO Auto-generated method stub
 				send_code.setEnabled(false);
 				String s = String.format(send_help, (millisUntilFinished / 1000));
 				System.out.println(s);
@@ -222,7 +219,6 @@ public class ForgotActivity extends BaseActivity {
 
 			@Override
 			public void onFinish() {
-				// TODO Auto-generated method stub
 				send_code.setEnabled(true);
 				send_code.setText(R.string.register_code_bt_hint);
 			}
@@ -234,7 +230,6 @@ public class ForgotActivity extends BaseActivity {
 	 * 发送短信验证码
 	 */
 	private void sendSms() {
-		// TODO Auto-generated method stub
 		phone = ed_phone.getText().toString();
 		if (TelNumMath.isMobileNO(phone)) {
 			SMSSDK.getVerificationCode("86", phone);
@@ -249,7 +244,6 @@ public class ForgotActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(UserInfo data) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}
@@ -262,7 +256,6 @@ public class ForgotActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}
