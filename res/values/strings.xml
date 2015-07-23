@@ -51,7 +51,7 @@
     <string name="profile_phone">手机号:</string>
     <string name="profile_email">邮箱:</string>
     <string name="profile_bt_save">保存修改</string>
-	<string name="profile_set_name">昵称:</string>
+    <string name="profile_set_name">昵称:</string>
     <!-- 修改密码 -->
     <string name="password_title">修改密码</string>
     <string name="password_old">旧密码:</string>

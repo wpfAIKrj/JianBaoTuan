@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <RelativeLayout 
+        android:id="@+id/include1"
+	    android:layout_width="match_parent"
+	    android:layout_height="@dimen/y88" >
+	
+	    <ImageView
+	        android:id="@+id/title_back"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:layout_gravity="center_vertical"
+	        android:paddingBottom="@dimen/y10"
+	        android:paddingLeft="@dimen/x30"
+	        android:paddingRight="@dimen/x30"
+	        android:paddingTop="@dimen/y10"
+	        android:visibility="gone"
+	        android:src="@drawable/back_botton" />
+	    
+	    <TextView 
+	        android:id="@+id/tv_tiao"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_alignParentRight="true"
+	        android:text="跳过"
+	        android:textColor="@color/wite"
+	        android:textSize="13sp"
+	        android:layout_centerVertical="true"
+	        android:paddingBottom="@dimen/y10"
+	        android:paddingLeft="@dimen/x30"
+	        android:paddingRight="@dimen/x30"
+	        android:paddingTop="@dimen/y10"
+	        android:gravity="center"
+	        />
+	
+	</RelativeLayout>
+
+    <com.yingluo.Appraiser.view.CircleImageView
+        android:id="@+id/login_user_head"
+        android:layout_width="@dimen/y168"
+        android:layout_height="@dimen/y168"
+        android:layout_marginTop="@dimen/y150"
+        android:layout_below="@+id/include1"
+        android:src="@drawable/user_logo"
+        android:layout_centerHorizontal="true"
+        app:border_color="@color/cricle_color"
+        app:border_width="@dimen/x1" />
+
+    <LinearLayout
+        android:id="@+id/ll_nickname"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/y94"
+        android:layout_below="@+id/login_user_head"
+        android:layout_marginTop="@dimen/y20"
+        android:background="@drawable/login_edit_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/x20" >
+
+        <TextView
+            style="@style/tv_edit_login_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_set_name" />
+
+        <EditText
+            android:id="@+id/et_nickname"
+            style="@style/edit_login_style"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/color_cursor" >
+        </EditText>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_yes"
+        style="@style/bt_login_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        android:layout_below="@+id/ll_nickname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_marginTop="@dimen/y146"
+        android:text="确 定" />
+    
+</RelativeLayout>

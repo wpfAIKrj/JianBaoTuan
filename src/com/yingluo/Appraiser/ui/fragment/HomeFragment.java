@@ -13,7 +13,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
@@ -21,10 +24,13 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.view.SlideShowView;
 import com.yingluo.Appraiser.view.home.ViewArticles;
 import com.yingluo.Appraiser.view.home.ViewChoices;
@@ -59,11 +65,9 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	@ViewInject(R.id.scrollview)
 	private PullToRefreshScrollView mScrollView;
-
-	private ScrollView scrollView;
 	
 	private Activity mActivity;
-
+	private HomeModel homeModel;
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -78,8 +82,40 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	@Override
 	protected void initViews(View view) {
-		// TODO Auto-generated method stub
-		scrollView = mScrollView.getRefreshableView();
+		homeModel = new HomeModel();
+//		scrollView = mScrollView.getRefreshableView();
+//		mScrollView.setMode(Mode.PULL_FROM_START); 
+//		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+//
+//			@Override
+//			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+//				homeModel.sendHttp(new CommonCallBack() {
+//
+//					@Override
+//					public void onSuccess() {
+//						mScrollView.onRefreshComplete();
+//						homeEntity = homeModel.getResult();
+//						setDate();
+//					}
+//
+//					@Override
+//					public void onError() {
+//						// TODO Auto-generated method stub
+//						String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
+//						if(str!=null){
+//							try {
+//								homeModel.analyzeData(str);
+//								homeEntity = homeModel.getResult();
+//								setDate();
+//							} catch (Exception e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//						}
+//					}
+//				});
+//			}
+//		});
 		layout_home_item0 = (ViewGroup) view.findViewById(R.id.layout_home_item0);
 		layout_home_item3 = (ViewGroup) view.findViewById(R.id.layout_home_item3);
 		layout_home_item2 = (ViewGroup) view.findViewById(R.id.layout_home_item2);
@@ -124,6 +160,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		});
 
 		homeEntity = ((ItApplication) getActivity().getApplication()).getHomeEntity();
+		setDate();
+
+	}
+
+
+	private void setDate() {
 		if (homeEntity == null) {
 			// 说明没有下载数据，就要去联网加载
 			hideViews(true, (short) 7);
@@ -164,7 +206,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 					hideViews(true, (short) 0);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				hideViews(true, (short) 0);
 			}
@@ -223,30 +264,26 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 			}
 
 		}
-
 	}
-
+	
 	@Override
 	protected void initDisplay() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void lazyLoad() {
-		// TODO Auto-generated method stub
-		if (scrollView != null) {
-			mhandler.post(new Runnable() {
-				@Override
-				public void run() {
-					scrollView.scrollTo(0, 0);
-				}
-			});
-		}
+//		if (mScrollView != null) {
+//			mhandler.post(new Runnable() {
+//				@Override
+//				public void run() {
+//					mScrollView.scrollTo(0, 0);
+//				}
+//			});
+//		}
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		// TODO Auto-generated method stub
 		if (adapter != null) {
 			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, homeEntity.getAuthors().get(position));
