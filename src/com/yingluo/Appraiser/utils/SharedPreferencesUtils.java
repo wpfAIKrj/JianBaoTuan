@@ -13,11 +13,6 @@ public class SharedPreferencesUtils {
 	public static final String SP_NAME="appraister";
 	
 	/**
-	 * 是否已经登录
-	 */
-	public static final String ISLOGIN="islogin";
-	
-	/**
 	 * 登录用户
 	 */
 	public static final String USER_NAME="user_name";
@@ -74,24 +69,37 @@ public class SharedPreferencesUtils {
 		preferences.edit().putBoolean(s, s1).commit();
 	}
 
+//	/**
+//	 * 保存是否登录
+//	 * @param islogin
+//	 */
+//	public void saveForIsLogin(String phoneNum,boolean islogin){
+//		save(phoneNum, islogin);
+//	}
+//	
+//	
+//	/**
+//	 * 获取是否登录
+//	 * @return islogin true为登录了，false为没有登录
+//	 */
+//	public boolean getIsHaveLogin(String phoneNum){
+//		return preferences.getBoolean(phoneNum, false);
+//	}
+	
 	/**
-	 * 保存是否登录
-	 * @param islogin
+	 * 保存是否长期登录状态
 	 */
-	public void saveForIsLogin(boolean islogin){
-		save(ISLOGIN, islogin);
+	public void saveForIsLoginSave(String phoneNum,boolean isloginsave){
+		save(phoneNum, isloginsave);
 	}
 	
 	
 	/**
-	 * 获取是否登录
-	 * @return islogin true为登录了，false为没有登录
+	 * 获取是否长期登录状态
 	 */
-	public boolean  getIsHaveLogin(){
-		return preferences.getBoolean(ISLOGIN, false);
+	public boolean getIsHaveLoginSave(String phoneNum){
+		return preferences.getBoolean(phoneNum, false);
 	}
-	
-	
 	
 	/**
 	 * 保存登录用户的帐号
@@ -109,6 +117,13 @@ public class SharedPreferencesUtils {
 		save(moblie, password);
 	}
 	
+	/**
+	 * 获取登录用户的密码
+	 * @return 用户名
+	 */
+	public String getLoginUserPassword(String moblie){
+		return preferences.getString(moblie, null);
+	}
 	
 	/**
 	 * 获取登录用户的名字

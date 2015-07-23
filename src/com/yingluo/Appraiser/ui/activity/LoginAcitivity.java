@@ -82,7 +82,19 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			isShow = true;
 		}
 		popwindow = new SelectMoilbWindow(this, this);
-
+		ed_pwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {  
+		      
+		    @Override  
+		    public void onFocusChange(View v, boolean hasFocus) {  
+		        if(hasFocus){//获得焦点 
+		        	String phone = ed_name.getText().toString();
+		        	if(phone != null && phone.length()!=0) {
+		        		change(phone);
+		        	}
+		        }else{//失去焦点  
+		        }  
+		    }             
+		});
 	}
 
 	@Override
@@ -170,17 +182,12 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			return;
 		}
 		new ToastUtils(this,"登陆成功");
-		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		// 保存密码，不知道有用没有，看需求吧
 		if(cbPassword.isChecked()) {
 			SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
 		}
-//		if(cbZhuangTai.isChecked()) {
-//			
-//		} else {
-//			SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-//		}
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(user.getMobile(), cbZhuangTai.isChecked());
 		SqlDataUtil.getInstance().saveUserInfo(user);
 		ItApplication.getcurrnUser();
 		if (dialog != null) {
@@ -188,7 +195,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		}
 		setResult(Activity.RESULT_OK, getIntent());
 		finish();
-		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+		overridePendingTransition(R.anim.hold, R.anim.toast_out);
 	}
 
 	@Override
@@ -202,11 +209,34 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		UserInfo user = popwindow.getUserInfo(position);
-		ed_name.setText(user.getMobile());
+		String phone = user.getMobile();
+		if(phone == null) {
+			return;
+		}
+		ed_name.setText(phone);
+		ed_name.setSelection(phone.length());
+		change(phone);
 		popwindow.showPopupWindow(namelayout);
 		isShow = false;
 	}
 
+	public void change(String phone) {
+		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
+			cbZhuangTai.setChecked(true);
+		} else {
+			cbZhuangTai.setChecked(false);
+		}
+		
+		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone);
+		if(pas != null) {
+			ed_pwd.setText(pas);
+			ed_pwd.setSelection(pas.length());
+			cbPassword.setChecked(true);
+		} else {
+			cbPassword.setChecked(false);
+		}
+	}
+	
 	@Override
 	public void startActivity(Intent intent) {
 		super.startActivity(intent);

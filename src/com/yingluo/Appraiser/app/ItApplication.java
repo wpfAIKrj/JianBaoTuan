@@ -99,22 +99,18 @@ public class ItApplication extends Application {
     	if(currnUser!=null){
     		return currnUser;
     	}
-    	if(SharedPreferencesUtils.getInstance().getIsHaveLogin()){
-			String name=SharedPreferencesUtils.getInstance().getLoginUserName();
-			if(name==null){
-				SharedPreferencesUtils.getInstance().saveForIsLogin(false);
+    	String name=SharedPreferencesUtils.getInstance().getLoginUserName();
+    	if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(name)){
+			
+			currnUser=SqlDataUtil.getInstance().getUserForPhone(name);
+			if(currnUser!=null){
+				NetConst.SESSIONID=ItApplication.currnUser.getSession_id();
+				NetConst.UPTOKEN=ItApplication.currnUser.getImage_token();
+				NetConst.IMTOKEN=ItApplication.currnUser.getMessage_token();
+				RongImUtils.getInstance().connect(NetConst.IMTOKEN);
+		    	return currnUser;
+			}else{
 				return null;
-			}else{	
-				currnUser=SqlDataUtil.getInstance().getUserForPhone(name);
-				if(currnUser!=null){
-					NetConst.SESSIONID=ItApplication.currnUser.getSession_id();
-					NetConst.UPTOKEN=ItApplication.currnUser.getImage_token();
-					NetConst.IMTOKEN=ItApplication.currnUser.getMessage_token();
-					RongImUtils.getInstance().connect(NetConst.IMTOKEN);
-			    	return currnUser;
-				}else{
-					return null;
-				}
 			}
     	}else{
     		return null;
@@ -134,7 +130,7 @@ public class ItApplication extends Application {
     public static void cleanCurrnUser(){
     	RongImUtils.getInstance().disconnect();
 		ItApplication.currnUser = null;
-		SharedPreferencesUtils.getInstance().saveForIsLogin(false);
-		SharedPreferencesUtils.getInstance().saveLoginUserName(null);
+		String name=SharedPreferencesUtils.getInstance().getLoginUserName();
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, false);
     }
 }

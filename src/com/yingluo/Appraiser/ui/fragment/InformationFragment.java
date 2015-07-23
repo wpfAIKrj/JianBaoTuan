@@ -1,18 +1,13 @@
 package com.yingluo.Appraiser.ui.fragment;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
@@ -22,9 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +26,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.InfoEvent;
-import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
@@ -45,8 +36,6 @@ import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.ListLoadType;
 import com.yingluo.Appraiser.utils.ToastUtils;
-import com.yingluo.Appraiser.view.listview.XListView;
-import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
 
 import de.greenrobot.event.EventBus;
 
@@ -54,8 +43,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	private ArticleAdapter madapter;
 
-	@ViewInject(R.id.button_category)
-	private ImageView back;
 	@ViewInject(R.id.home_title)
 	private TextView title;
 
@@ -83,14 +70,12 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this);
 	}
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		EventBus.getDefault().unregister(this);
 	}
@@ -106,28 +91,13 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		}
 	}
 
-	@OnClick({ R.id.button_category })
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.button_category:
-			Intent intent = new Intent(mActivity, KindOfPreciousActivity.class);
-			mActivity.startActivityForResult(intent, Const.TO_SELECT_TYPE);
-			break;
-
-		default:
-			break;
-		}
-	}
-
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_info, container, false);
 	}
 
 	@Override
 	protected void initViews(View view) {
-		// TODO Auto-generated method stub
 		ViewUtils.inject(this, view);
 		title.setText(R.string.information);
 		list = new ArrayList<ContentInfo>();

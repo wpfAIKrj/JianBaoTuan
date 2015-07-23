@@ -261,7 +261,8 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		}
 		ItApplication.setCurrnUser(user);
 		SqlDataUtil.getInstance().saveUserInfo(user);
-		SharedPreferencesUtils.getInstance().saveForIsLogin(true);
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(user.getMobile(), true);
+		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		registerdialog = new RegisterDialog(this);
 		registerdialog.show();
@@ -275,7 +276,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 				new ToastUtils(RegisterActivity.this,"注册成功");
 				Intent intent = new Intent(RegisterActivity.this, SetNameActivity.class);
 				startActivity(intent);
-				overridePendingTransition(R.anim.left_in, R.anim.left_out);
+				overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			}
 		}, 5000);
 	}
