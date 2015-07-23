@@ -217,7 +217,6 @@ public class ActivityUserDelails extends Activity {
 
 		@Override
 		public void onSucess() {
-			// TODO Auto-generated method stub
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}

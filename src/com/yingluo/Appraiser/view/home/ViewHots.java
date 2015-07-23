@@ -131,7 +131,6 @@ public class ViewHots extends LinearLayout {
 	}
 
 	public void setTitle(String name) {
-		// TODO 自动生成的方法存根
 		tv_title.setText(name);
 	}
 
@@ -176,7 +175,6 @@ public class ViewHots extends LinearLayout {
 
 	@OnClick({ R.id.imageview_big_icon, R.id.imageview_small_icon })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if (currnt == null)
 			return;
 		switch (v.getId()) {

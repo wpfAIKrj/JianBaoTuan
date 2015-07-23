@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y60" />
 
+    <!--android:layout_height="@dimen/y60"-->
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="match_parent"

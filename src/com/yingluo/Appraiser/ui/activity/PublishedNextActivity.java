@@ -83,7 +83,6 @@ public class PublishedNextActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_publishednext);
 		ViewUtils.inject(this);
@@ -108,14 +107,12 @@ public class PublishedNextActivity extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
 	@OnClick({ R.id.btn_back, R.id.send_identy })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_back:// 返回上层
 			setResult(RESULT_CANCELED, getIntent());
@@ -127,7 +124,13 @@ public class PublishedNextActivity extends BaseActivity {
 				if (select_user != (-1)) {
 					context = ed_info.getText().toString();
 					if (context != null && !context.isEmpty()) {
-						startPublish(type, context, select_user);
+						if(context.length()<14) {
+							new ToastUtils(PublishedNextActivity.this, R.string.help_msg_19);
+						} else if(context.length()>200) {
+							new ToastUtils(PublishedNextActivity.this, R.string.help_msg_20);
+						} else {
+							startPublish(type, context, select_user);
+						}
 					} else {
 						new ToastUtils(PublishedNextActivity.this, R.string.help_msg_11);
 					}
@@ -145,7 +148,6 @@ public class PublishedNextActivity extends BaseActivity {
 	}
 
 	private void startPublish(TreasureType type, String context, int select_user) {
-		// TODO 自动生成的方法存根
 		UserInfo user = null;
 		if (select_user == 4) {
 			user = null;
@@ -161,7 +163,6 @@ public class PublishedNextActivity extends BaseActivity {
 
 		@Override
 		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			// TODO 自动生成的方法存根
 			if (isChecked) {
 				for (int i = 0; i < checkboxs.length; i++) {
 					CheckBox box = checkboxs[i];
@@ -177,7 +178,6 @@ public class PublishedNextActivity extends BaseActivity {
 
 	@OnCompoundButtonCheckedChange({ R.id.checkBox1 })
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		// TODO 自动生成的方法存根
 		if (isChecked) {
 			select_user = 4;
 			if (checkboxs != null) {
@@ -193,7 +193,6 @@ public class PublishedNextActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(ArrayList<UserInfo> data) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}
@@ -216,7 +215,6 @@ public class PublishedNextActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}

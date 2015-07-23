@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.utils;
 
 import android.content.Context;  
 import android.content.res.Resources;
+import android.view.WindowManager;
   
 public class DensityUtil {  
   
@@ -42,4 +43,18 @@ public class DensityUtil {
     	 final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;  
      return (int) (pxValue / fontScale + 0.5f);
     }
+    
+    /**
+     * 返回屏幕宽度
+     * 
+     * @Title: getScreenWidth
+     * @param context
+     * @return int
+     */
+    @SuppressWarnings("deprecation")
+    public static int getScreenWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getWidth();
+    }
+    
 }  

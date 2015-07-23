@@ -12,6 +12,7 @@ import android.R.integer;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,9 +78,16 @@ public class TagLinearLayout extends ViewGroup {
 		int left = 0;
 		int top = (int) getResources().getDimension(R.dimen.y20);
 		int count = getChildCount();
+		Log.e("number of tags", count+"");
+		int lines = 0;
 		for (int i = 0; i < count; i++) {
 			View child = getChildAt(i);
-			child.layout(left, top, left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+			if(left + child.getMeasuredWidth()>DensityUtil.getScreenWidth(getContext())) {
+				lines ++;
+				left = 0;
+			}
+			Log.e("number of height", top+lines*(top + child.getMeasuredHeight())+"");
+			child.layout(left, top+lines*(top + child.getMeasuredHeight()), left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
 			left = left + child.getMeasuredWidth() + top;
 		}
 	}
