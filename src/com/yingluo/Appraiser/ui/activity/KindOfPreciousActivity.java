@@ -44,7 +44,7 @@ public class KindOfPreciousActivity extends BaseActivity {
 
 	private int getType;
 
-	@OnClick({ R.id.btn_back, R.id.layout_all_kind, R.id.bt_sure})
+	@OnClick({ R.id.btn_back, R.id.layout_all_kind, R.id.bt_sure })
 	public void doClick(View view) {
 		switch (view.getId()) {
 		case R.id.btn_back:

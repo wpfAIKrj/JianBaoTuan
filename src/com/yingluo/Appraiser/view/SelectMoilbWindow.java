@@ -65,7 +65,7 @@ public class SelectMoilbWindow extends PopupWindow {
 			if(list.size()<5) {
 				this.setHeight(LayoutParams.WRAP_CONTENT);
 			} else {
-				this.setHeight(5*DensityUtil.dip2px(mContext, 30));
+				this.setHeight((int) (5*mContext.getResources().getDimension(R.dimen.y80)));
 			}
 			// 设置SelectPicPopupWindow弹出窗体可点击
 			this.setFocusable(true);

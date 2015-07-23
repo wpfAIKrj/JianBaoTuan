@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
@@ -22,7 +23,6 @@ import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
-import com.yingluo.Appraiser.ui.activity.MainActivity;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.view.SlideShowView;
@@ -58,8 +58,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 	private int index = 0;
 
 	@ViewInject(R.id.scrollview)
-	private ScrollView scrollView;
+	private PullToRefreshScrollView mScrollView;
 
+	private ScrollView scrollView;
+	
 	private Activity mActivity;
 
 	@Override
@@ -77,6 +79,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 	@Override
 	protected void initViews(View view) {
 		// TODO Auto-generated method stub
+		scrollView = mScrollView.getRefreshableView();
 		layout_home_item0 = (ViewGroup) view.findViewById(R.id.layout_home_item0);
 		layout_home_item3 = (ViewGroup) view.findViewById(R.id.layout_home_item3);
 		layout_home_item2 = (ViewGroup) view.findViewById(R.id.layout_home_item2);

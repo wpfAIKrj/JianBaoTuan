@@ -285,7 +285,6 @@ public class MyFragment extends BaseFragment {
 
 		@Override
 		public void onSucess(String data) {
-			// TODO Auto-generated method stub
 			try {
 				JSONObject obj = new JSONObject(data);
 				ItApplication.getcurrnUser().setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
@@ -305,7 +304,7 @@ public class MyFragment extends BaseFragment {
 				}
 
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			} finally {
 				if (dialog != null) {
 					dialog.dismiss();
@@ -328,7 +327,6 @@ public class MyFragment extends BaseFragment {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			isgete = false;
 			if (errorCode.equals(String.valueOf(NetConst.CODE_ERROR8))) {
 				EventBus.getDefault().post(new MainEvent(0, null));
@@ -344,11 +342,11 @@ public class MyFragment extends BaseFragment {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			CollectionTreasure entity = (CollectionTreasure) v.getTag();
 			Intent mIntent = new Intent(mActivity, ActivityUserDelails.class);
 			mIntent.putExtra(Const.ENTITY, entity);
 			mActivity.startActivity(mIntent);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 	};
 }

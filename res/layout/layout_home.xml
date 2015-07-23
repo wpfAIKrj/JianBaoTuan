@@ -7,7 +7,7 @@
 
     <include layout="@layout/layout_home_head" />
 
-    <ScrollView
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:id="@+id/scrollview"
         style="@style/w_h_full"
         android:scrollbars="none" >
@@ -54,6 +54,6 @@
 
             
         </LinearLayout>
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 </LinearLayout>
