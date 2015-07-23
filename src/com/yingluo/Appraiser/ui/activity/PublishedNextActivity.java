@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -81,6 +83,9 @@ public class PublishedNextActivity extends BaseActivity {
 	@ViewInject(R.id.send_identy)
 	private Button sendbt;
 
+	@ViewInject(R.id.tv_number)
+	private TextView number;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,6 +99,27 @@ public class PublishedNextActivity extends BaseActivity {
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			return;
 		}
+		ed_info.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String themsg = ed_info.getText().toString();
+
+                if (themsg.length() <= 200) {
+                    number.setText(themsg.length() + "/200");
+                } else {
+                	ed_info.setKeyListener(null);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 		imageAll = getIntent().getStringArrayListExtra(Const.IMAGEPATH_PANORAMIC);
 		imageTest = getIntent().getStringArrayListExtra(Const.IMAGEPATH_FEATURE);
 		mypresenter = new PublishPresenter(netlis);

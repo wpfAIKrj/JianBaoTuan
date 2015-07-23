@@ -31,25 +31,41 @@
             android:layout_marginRight="@dimen/detail_text_padd"
             android:layout_marginTop="@dimen/layout_margin_top"
             android:background="@color/item_space_color" />
-        
-        <EditText
-            android:id="@+id/ed_info"
-            style="@style/my_title_style3"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y400"
-            android:inputType="textMultiLine"
-            android:maxLines="8"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
-            android:layout_marginLeft="@dimen/x14"
-            android:layout_marginRight="@dimen/x14"
-            android:background="@drawable/item_layout_padd"
-            android:gravity="left"
-            android:hint="请尽量说明你的宝贝信息，如何获得时间，价格,途径等"
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:singleLine="false" />
+            android:layout_height="@dimen/y400" >
+            <EditText
+                android:id="@+id/ed_info"
+                style="@style/my_title_style3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y400"
+                android:layout_marginLeft="@dimen/x14"
+                android:layout_marginRight="@dimen/x14"
+                android:background="@drawable/item_layout_padd"
+                android:gravity="left"
+                android:hint="请尽量说明你的宝贝信息，如何获得时间，价格,途径等"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:singleLine="false"
+                android:textCursorDrawable="@drawable/color_cursor" />
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+            	android:layout_marginRight="@dimen/x28"
+            	android:layout_marginBottom="@dimen/y20"
+                android:text="0/200"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
