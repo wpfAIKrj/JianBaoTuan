@@ -166,7 +166,7 @@ public class MyFragment extends BaseFragment {
 		this.onlongListner = onlongListner;
 	}
 
-	@OnClick({ R.id.login_user_head, R.id.my_iv_level, R.id.my_bt_showmenu, R.id.my_tv_authenticate,
+	@OnClick({ R.id.login_user_head, R.id.ll_level, R.id.my_bt_showmenu, R.id.my_tv_authenticate,
 			R.id.my_layout_collect, R.id.my_layout_foot, R.id.my_layout_identif, R.id.my_tab1, R.id.my_tab2,
 			R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
 	public void onClick(View v) {
@@ -177,8 +177,9 @@ public class MyFragment extends BaseFragment {
 				onlongListner.onClick(v);
 			}
 			break;
-		case R.id.my_iv_level:
+		case R.id.ll_level:
 			// 跳转到等级说明
+			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.my_bt_showmenu:

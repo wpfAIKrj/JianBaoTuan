@@ -32,7 +32,6 @@ public class LevelActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_level);
 		ViewUtils.inject(this);
@@ -40,7 +39,6 @@ public class LevelActivity extends BaseActivity {
 	}
 
 	private void initView() {
-		// TODO Auto-generated method stub
 		title.setText(R.string.authenticate_title);
 		tv.setText("");
 		ImageGetter imageGetter = new ImageGetter() {
