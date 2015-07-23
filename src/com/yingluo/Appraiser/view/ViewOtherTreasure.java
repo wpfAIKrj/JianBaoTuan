@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.view;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Spannable;
@@ -55,6 +56,8 @@ public class ViewOtherTreasure extends LinearLayout {
 	@ViewInject(R.id.tv_info)
 	public TextView tv_title;
 
+	private Context context;
+	
 	BitmapsUtils bitmapUtils;
 
 	private CollectionTreasure currnt;
@@ -89,6 +92,7 @@ public class ViewOtherTreasure extends LinearLayout {
 	}
 
 	private void init(Context context) {
+		this.context = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
 
 		ViewUtils.inject(this);
@@ -118,6 +122,22 @@ public class ViewOtherTreasure extends LinearLayout {
 		}
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);
+		iv_small.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent mIntent = new Intent(getContext(), ActivityHotIdentiy.class);
+				CollectionTreasure currnt1 = new CollectionTreasure();
+				currnt1.setAuthName(currnt.getAuthName());
+				currnt1.setAuthImage(currnt.getAuthImage());
+				currnt1.setCompany(currnt.getCompany());
+				currnt1.setUser_id(currnt.getUser_id());
+				mIntent.putExtra(Const.ENTITY, currnt1);
+				getContext().startActivity((mIntent));
+				Activity act = (Activity) context;
+				act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+			}
+		});
 		// 设置等级
 		setGradeImage(item.authLevel);
 		// 设置名字
