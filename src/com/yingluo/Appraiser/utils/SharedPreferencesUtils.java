@@ -17,7 +17,6 @@ public class SharedPreferencesUtils {
 	 */
 	public static final String USER_NAME="user_name";
 	
-	
 	private  SharedPreferences preferences =null;
 	
 	public static SharedPreferencesUtils b=null;
@@ -25,7 +24,6 @@ public class SharedPreferencesUtils {
 	private SharedPreferencesUtils(Context context){
 		preferences=context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
 	}
-	
 	
 	public static SharedPreferencesUtils getInstance(){
 
@@ -68,23 +66,6 @@ public class SharedPreferencesUtils {
 	private void save(String s,boolean s1){
 		preferences.edit().putBoolean(s, s1).commit();
 	}
-
-//	/**
-//	 * 保存是否登录
-//	 * @param islogin
-//	 */
-//	public void saveForIsLogin(String phoneNum,boolean islogin){
-//		save(phoneNum, islogin);
-//	}
-//	
-//	
-//	/**
-//	 * 获取是否登录
-//	 * @return islogin true为登录了，false为没有登录
-//	 */
-//	public boolean getIsHaveLogin(String phoneNum){
-//		return preferences.getBoolean(phoneNum, false);
-//	}
 	
 	/**
 	 * 保存是否长期登录状态

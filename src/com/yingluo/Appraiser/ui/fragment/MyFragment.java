@@ -273,7 +273,7 @@ public class MyFragment extends BaseFragment {
 			} else {
 				tv_authenticate.setText(R.string.type_identiy);
 			}
-			madapter = new MyLikeAdapter(list, itemListner);
+			madapter = new MyLikeAdapter(mActivity,list, itemListner);
 			listView.setAdapter(madapter);
 			tv_collect_number.setText("" + ItApplication.getcurrnUser().getTreasure_number());
 			tv_fooler_number.setText("" + ItApplication.getcurrnUser().getFoot_number());
@@ -310,7 +310,7 @@ public class MyFragment extends BaseFragment {
 					dialog.dismiss();
 				}
 				isgete = false;
-				madapter = new MyLikeAdapter(list, itemListner);
+				madapter = new MyLikeAdapter(mActivity,list, itemListner);
 				listView.setAdapter(madapter);
 				if (ItApplication.getcurrnUser().getUser_type() == 0) {
 					tv_authenticate.setText(R.string.type_collect);

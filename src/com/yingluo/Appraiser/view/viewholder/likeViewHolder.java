@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.view.viewholder;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.yingluo.Appraiser.R;
@@ -10,6 +11,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
+import com.yingluo.Appraiser.utils.DensityUtil;
 
 public class likeViewHolder extends ViewHolder {
 
@@ -34,9 +36,12 @@ public class likeViewHolder extends ViewHolder {
 		});
 	}
 	
-	public void showData(CollectionTreasure entity){
+	public void showData(CollectionTreasure entity,int width){
 		this.entity=entity;
-		
+		ViewGroup.LayoutParams rlParams = logo.getLayoutParams();
+        rlParams.width = width;
+        rlParams.height = width;
+        logo.setLayoutParams(rlParams);
 		BitmapsUtils.getInstance().display(logo, entity.image);
 	}
 

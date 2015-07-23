@@ -81,14 +81,14 @@ public class AcrivleFootVIewholder extends ViewHolder {
 	public void setItem(CollectionTreasure arcitite) {
 
 		currnt = arcitite;
-		iv.setTag(currnt);
+		
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
 		if (iv.getTag() == null) {
 			bitmapUtils.displayForxy(iv, currnt.getImage());
 		}
-
+		iv.setTag(currnt);
 		tv_msg.setText(currnt.msg);
 		tv_num.setText(currnt.viewTimes + "");
 		delete_checkbox.setChecked(arcitite.isSelect);

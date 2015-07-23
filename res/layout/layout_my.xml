@@ -59,8 +59,8 @@
                     <View 
                         android:id="@+id/view_middle"
                         android:layout_width="1dp"
-                        android:layout_height="10dp"
-                        android:background="@android:color/black"
+                        android:layout_height="11dp"
+                        android:background="@android:color/transparent"
                         android:layout_centerInParent="true"
                         />
                     <TextView

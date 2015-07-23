@@ -182,14 +182,15 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			return;
 		}
 		new ToastUtils(this,"登陆成功");
+		SqlDataUtil.getInstance().saveUserInfo(user);
+		ItApplication.setCurrnUser(user);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
 		// 保存密码，不知道有用没有，看需求吧
 		if(cbPassword.isChecked()) {
 			SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
 		}
 		SharedPreferencesUtils.getInstance().saveForIsLoginSave(user.getMobile(), cbZhuangTai.isChecked());
-		SqlDataUtil.getInstance().saveUserInfo(user);
-		ItApplication.getcurrnUser();
+		
 		if (dialog != null) {
 			dialog.dismiss();
 		}
@@ -221,20 +222,20 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	}
 
 	public void change(String phone) {
-		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
-			cbZhuangTai.setChecked(true);
-		} else {
-			cbZhuangTai.setChecked(false);
-		}
-		
-		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone);
-		if(pas != null) {
-			ed_pwd.setText(pas);
-			ed_pwd.setSelection(pas.length());
-			cbPassword.setChecked(true);
-		} else {
-			cbPassword.setChecked(false);
-		}
+//		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
+//			cbZhuangTai.setChecked(true);
+//		} else {
+//			cbZhuangTai.setChecked(false);
+//		}
+//		
+//		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone);
+//		if(pas != null) {
+//			ed_pwd.setText(pas);
+//			ed_pwd.setSelection(pas.length());
+//			cbPassword.setChecked(true);
+//		} else {
+//			cbPassword.setChecked(false);
+//		}
 	}
 	
 	@Override
