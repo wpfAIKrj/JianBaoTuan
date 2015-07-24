@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -46,7 +47,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	HomeEntity homeEntity;
 
-	private View btn_search;
+	private ImageView btn_search;
 	HorizontalListView hsv;
 
 	WellKnowPeopleAdapter adapter;
@@ -148,12 +149,11 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		// 知名专家第二行
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
-		btn_search = view.findViewById(R.id.btn_search);
+		btn_search = (ImageView)view.findViewById(R.id.bt_sure);
 		btn_search.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				startActivity(new Intent(getActivity(), ActivitySearch.class));
 				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
