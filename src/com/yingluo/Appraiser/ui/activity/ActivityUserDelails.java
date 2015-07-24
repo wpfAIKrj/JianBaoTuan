@@ -150,7 +150,8 @@ public class ActivityUserDelails extends Activity {
 			break;
 		case R.id.btn_send_comment:// 发布评论
 			if (ItApplication.getcurrnUser() != null) {
-				String content = ed_text.getText().toString().trim();
+				String con = ed_text.getText().toString();
+				String content = con.trim();
 				if (content != null && content.length() != 0) {
 					loaddialog = DialogUtil.createLoadingDialog(this, "发表评论中....");
 					loaddialog.show();
@@ -521,9 +522,6 @@ public class ActivityUserDelails extends Activity {
 			View v = getCurrentFocus();
 
 			if (HelpUtils.isShouldHideInput(v, ev)) {
-				to_user_id = 0;
-				ed_text.setHint("");
-				ed_text.setText("");
 				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				HelpUtils.hideSoftInput(v.getWindowToken(), im);
