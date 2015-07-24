@@ -81,7 +81,7 @@
             android:cursorVisible="true"
             android:ems="10"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/color_cursor" >
         </EditText>
