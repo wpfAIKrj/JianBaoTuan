@@ -136,8 +136,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	
 	@Override
 	protected void initDisplay() {
-		// TODO Auto-generated method stub
-
 		if (isFiset) {
 			mSwipeRefreshWidget.setRefreshing(true);
 			onRefresh();
@@ -147,7 +145,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void lazyLoad() {
-		// TODO Auto-generated method stub
 		if (isFiset) {
 			mSwipeRefreshWidget.setRefreshing(true);
 			onRefresh();
@@ -162,7 +159,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			ContentInfo contentInfo = (ContentInfo) v.getTag();
 			Intent intent = new Intent(mActivity, InformationDetailsActivity.class);
 			intent.putExtra(Const.ArticleId, contentInfo);
@@ -172,7 +168,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onSucess(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		if (currt == ListLoadType.LoadMore) {// 加载更多
 			addList(data);
 		}
@@ -191,7 +186,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		new ToastUtils(mActivity, errorMsg);
 		mSwipeRefreshWidget.setRefreshing(false);
 		isLoadMore = true;
@@ -204,7 +198,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	 * @param data
 	 */
 	public void addList(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		if (list.size() == 0) {
 			list.addAll(data);
 		} else {
@@ -221,7 +214,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			// TODO Auto-generated method stub
 			super.onScrolled(recyclerView, dx, dy);
 			LayoutManager lm = recyclerView.getLayoutManager();
 			if (lm instanceof LinearLayoutManager) {// 竖向
@@ -262,7 +254,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		currt = ListLoadType.Refresh;
 		isRefreshing = false;
 		isLoadMore = false;
@@ -274,7 +265,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		currt = ListLoadType.LoadMore;
 		isLoadMore = false;
 		isRefreshing = false;
@@ -286,7 +276,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		// super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_SELECT_TYPE && resultCode == Activity.RESULT_OK) {
 			try {
@@ -296,7 +285,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 				onRefresh();
 				isFiset = false;
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

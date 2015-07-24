@@ -94,6 +94,7 @@ public class ActivityMyPrecious extends BaseActivity {
 			btn_delete.setVisibility(View.GONE);
 		}
 		btn_all.setOnClickListener(listener);
+		btn_no.setOnClickListener(listener);
 		btn_ing.setOnClickListener(listener);
 		btn_ed.setOnClickListener(listener);
 
