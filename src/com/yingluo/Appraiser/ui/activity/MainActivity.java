@@ -39,6 +39,7 @@ import com.yingluo.Appraiser.ui.fragment.HomeFragment;
 import com.yingluo.Appraiser.ui.fragment.IdentiyFragment;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.ui.fragment.MyFragment;
+import com.yingluo.Appraiser.utils.ActivityTaskManager;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ImageUtils;
@@ -81,6 +82,7 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		getSave(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		ActivityTaskManager.getInstance().putActivity(this.getClass().getName(), this);
 		init();
 		initEvents();
 		EventBus.getDefault().register(this);
@@ -113,6 +115,7 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	@Override
 	protected void onDestroy() {
 		EventBus.getDefault().unregister(this);
+		ActivityTaskManager.getInstance().removeActivity(this.getClass().getName());
 		super.onDestroy();
 	}
 
@@ -185,7 +188,9 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 				Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
 				mExitTime = System.currentTimeMillis();
 			} else {
-				finish();
+//				for(Activit act : ActivityTaskManager.getInstance())
+//				finish();
+				System.exit(0);
 			}
 			return true;
 		}

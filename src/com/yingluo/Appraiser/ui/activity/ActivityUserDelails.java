@@ -64,7 +64,7 @@ import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
  * @author xy418
  *
  */
-public class ActivityUserDelails extends Activity {
+public class ActivityUserDelails extends BaseActivity {
 
 	private BitmapsUtils bitmapUtils;
 

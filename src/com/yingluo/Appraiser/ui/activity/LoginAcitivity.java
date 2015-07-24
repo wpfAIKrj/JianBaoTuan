@@ -179,14 +179,21 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			return;
 		}
 		new ToastUtils(this,"登陆成功");
-		SqlDataUtil.getInstance().saveUserInfo(user);
+		String name = ed_name.getText().toString();
+		String pas = ed_pwd.getText().toString();
+		
+		if(SqlDataUtil.getInstance().getUserForPhone(name) == null) {
+			SqlDataUtil.getInstance().saveUserInfo(user);
+		}
 		ItApplication.setCurrnUser(user);
-		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
+		SharedPreferencesUtils.getInstance().saveLoginUserName(name);
 		// 保存密码，不知道有用没有，看需求吧
 		if(cbPassword.isChecked()) {
-			SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
+			SharedPreferencesUtils.getInstance().saveLoginUserPassword(name+"1", pas);
+		} else {
+			SharedPreferencesUtils.getInstance().saveLoginUserPassword(name+"1", null);
 		}
-		SharedPreferencesUtils.getInstance().saveForIsLoginSave(user.getMobile(), cbZhuangTai.isChecked());
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, cbZhuangTai.isChecked());
 		
 		if (dialog != null) {
 			dialog.dismiss();
@@ -219,20 +226,20 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	}
 
 	public void change(String phone) {
-//		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
-//			cbZhuangTai.setChecked(true);
-//		} else {
-//			cbZhuangTai.setChecked(false);
-//		}
-//		
-//		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone);
-//		if(pas != null) {
-//			ed_pwd.setText(pas);
-//			ed_pwd.setSelection(pas.length());
-//			cbPassword.setChecked(true);
-//		} else {
-//			cbPassword.setChecked(false);
-//		}
+		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
+			cbZhuangTai.setChecked(true);
+		} else {
+			cbZhuangTai.setChecked(false);
+		}
+		
+		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone+"1");
+		if(pas != null) {
+			ed_pwd.setText(pas);
+			ed_pwd.setSelection(pas.length());
+			cbPassword.setChecked(true);
+		} else {
+			cbPassword.setChecked(false);
+		}
 	}
 	
 	@Override

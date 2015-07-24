@@ -24,6 +24,7 @@ import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
 public class UserSetActivity extends BaseActivity {
@@ -99,6 +100,8 @@ public class UserSetActivity extends BaseActivity {
 			cache_number.setVisibility(View.GONE);
 			pbCache.setVisibility(View.VISIBLE);
 			FileUtils.getInstance().deleteDirectory(1);
+			SqlDataUtil.getInstance().clearUserinfo();
+			SharedPreferencesUtils.getInstance().clear();
 			mhandler.postDelayed(new Runnable() {
 				@Override
 				public void run() {

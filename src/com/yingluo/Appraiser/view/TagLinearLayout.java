@@ -62,27 +62,40 @@ public class TagLinearLayout extends ViewGroup {
 		int count = getChildCount();
 		int width = 0;
 		int height = 0;
+		int lines = 0;
+		int maxWidth = (int) (DensityUtil.getScreenWidth(getContext())-getContext().getResources().getDimension(R.dimen.x100));
 		for (int i = 0; i < count; i++) {
 			View child = this.getChildAt(i);
 			width = width + child.getMeasuredWidth() + 20;
-			height = Math.max(height, child.getMeasuredHeight());
+			if(width>maxWidth) {
+				i--;
+				width = 0;
+				lines++;
+			}
+			height = Math.max(height, lines*(child.getMeasuredHeight()+20)+child.getMeasuredHeight());
 		}
-
-		setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? widthsize : width,
-				(hightMode == MeasureSpec.EXACTLY) ? hightsize : height);
+		if(lines>0) {
+			setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? widthsize : maxWidth,
+					(hightMode == MeasureSpec.EXACTLY) ? hightsize : height);
+		} else {
+			setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? widthsize : width,
+					(hightMode == MeasureSpec.EXACTLY) ? hightsize : height);
+		}
 
 	}
 
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		int left = 0;
-		int top = (int) getResources().getDimension(R.dimen.y20);
+//		int top = (int) getResources().getDimension(R.dimen.y20);
+		int top = 0;
 		int count = getChildCount();
 		Log.e("number of tags", count+"");
 		int lines = 0;
+		int maxWidth = (int) (DensityUtil.getScreenWidth(getContext())-getContext().getResources().getDimension(R.dimen.x100));
 		for (int i = 0; i < count; i++) {
 			View child = getChildAt(i);
-			if(left + child.getMeasuredWidth()>DensityUtil.getScreenWidth(getContext())) {
+			if(left + child.getMeasuredWidth()>maxWidth) {
 				lines ++;
 				left = 0;
 			}

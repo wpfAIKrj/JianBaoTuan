@@ -23,10 +23,11 @@ import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class ActivityFootPrint extends Activity implements RefreshLoadMoreListener {
+public class ActivityFootPrint extends BaseActivity implements RefreshLoadMoreListener {
 
 	@ViewInject(R.id.btn_back)
 	View btn_back;

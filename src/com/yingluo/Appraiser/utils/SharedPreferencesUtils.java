@@ -79,6 +79,9 @@ public class SharedPreferencesUtils {
 	 * 获取是否长期登录状态
 	 */
 	public boolean getIsHaveLoginSave(String phoneNum){
+		if(!preferences.contains(phoneNum)) {
+			return false;
+		}
 		return preferences.getBoolean(phoneNum, false);
 	}
 	
@@ -103,6 +106,9 @@ public class SharedPreferencesUtils {
 	 * @return 用户名
 	 */
 	public String getLoginUserPassword(String moblie){
+		if(!preferences.contains(moblie)) {
+			return null;
+		}
 		return preferences.getString(moblie, null);
 	}
 	
@@ -111,6 +117,9 @@ public class SharedPreferencesUtils {
 	 * @return 用户名
 	 */
 	public String getLoginUserName(){
+		if(!preferences.contains(USER_NAME)) {
+			return null;
+		}
 		return preferences.getString(USER_NAME, null);
 	}
 	

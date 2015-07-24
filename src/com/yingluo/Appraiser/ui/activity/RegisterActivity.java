@@ -80,7 +80,6 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	private Handler mhandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
 			switch (msg.what) {
 			case 0:
 				reSendSMS();
@@ -280,10 +279,14 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 			dialog.dismiss();
 		}
 		ItApplication.setCurrnUser(user);
-		SqlDataUtil.getInstance().saveUserInfo(user);
-		SharedPreferencesUtils.getInstance().saveForIsLoginSave(user.getMobile(), true);
-		SharedPreferencesUtils.getInstance().saveLoginUserPassword(user.getMobile(), user.getPassword());
-		SharedPreferencesUtils.getInstance().saveLoginUserName(user.getMobile());
+		String phone = ed_phone.getText().toString();
+		String pass = ed_pwd.getText().toString();
+		if(SqlDataUtil.getInstance().getUserForPhone(phone) == null) {
+			SqlDataUtil.getInstance().saveUserInfo(user);
+		}
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(phone, true);
+		SharedPreferencesUtils.getInstance().saveLoginUserPassword(phone+"1", pass);
+		SharedPreferencesUtils.getInstance().saveLoginUserName(phone);
 		registerdialog = new RegisterDialog(this);
 		registerdialog.show();
 		mhandler.postDelayed(new Runnable() {

@@ -1,264 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/wite"
-    
-    
-     xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical" >
 
-    	<include layout="@layout/layout_head"/>
+    <include layout="@layout/layout_head" />
 
-    	<TextView
-    	    android:id="@+id/textView1"
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y100"
-    	    android:text="@string/publih_text_title"
-    	    android:textSize="@dimen/x24"
-    	    android:textColor="@color/number_color" 
-    	    android:background="@color/layout_bg_color"
-    	    android:paddingLeft="@dimen/x20"
-    	    android:gravity="center_vertical|left"
-    	    />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:background="@color/layout_bg_color"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="@dimen/x20"
+        android:text="@string/publih_text_title"
+        android:textColor="@color/number_color"
+        android:textSize="@dimen/x24" />
 
-    	<View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y1"
-    	     android:background="@color/item_space_color"
-    	    />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
 
-    	<LinearLayout
-    	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
-    	    android:orientation="vertical"
-    	    android:layout_marginLeft="@dimen/x14"
-  
-    	     >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x14"
+        android:orientation="vertical" >
 
- 
-    			<TextView
-    			    android:layout_width="match_parent"
-    			    android:layout_height="match_parent"
-    			    android:text="请判断宝贝类型"
-    			    android:gravity="center_vertical"
-    			    android:textSize="@dimen/x30"
-    	    		android:textColor="@color/ed_login_color" 
-    	    		android:layout_marginTop="@dimen/y30"
-    	    		
-    			     />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y30"
+            android:gravity="center_vertical"
+            android:text="请判断宝贝类型"
+            android:textColor="@color/ed_login_color"
+            android:textSize="@dimen/x30" />
 
- 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/y10"
+            android:paddingTop="@dimen/y10" >
 
-    		<LinearLayout
-    		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content"
-    		    android:orientation="horizontal"
-    		    android:gravity="center_vertical"
-   			
-    		     >
+            <ImageView
+                android:id="@+id/published_bt"
+                android:layout_width="@dimen/y70"
+                android:layout_height="@dimen/y70"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/published_bt_bg" />
 
-    			<ImageView
-    			    android:id="@+id/published_bt"
-    			    android:layout_width="@dimen/y70"
-    			    android:layout_height="@dimen/y70"
-    			    android:src="@drawable/published_bt_bg" 
-    			    android:layout_marginTop="@dimen/y10"
-    			   android:layout_marginBottom="@dimen/y10"/>
+            <com.yingluo.Appraiser.view.TagLinearLayout
+                android:id="@+id/tag_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_blue"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/x30" />
+        </LinearLayout>
+    </LinearLayout>
 
-   
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:layout_marginTop="@dimen/y30"
+        android:background="@color/item_space_color" />
 
-    			<com.yingluo.Appraiser.view.TagLinearLayout
-    			   android:id="@+id/tag_layout"
-    			    android:layout_width="match_parent"
-    			  	android:layout_height="match_parent" 
-					android:layout_marginLeft="@dimen/x30"
-    			   />
-    		
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x14" >
 
-    		</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y20"
+            android:gravity="center_vertical|left"
+            android:text="宝贝全景(建议与参照物一起拍照,如烟盒,硬币,尺子等)"
+            android:textColor="@color/ed_login_color"
+            android:textSize="@dimen/x24" />
 
-    	</LinearLayout>
-  <View
-    	    android:layout_width="match_parent"
-    	    android:layout_height="@dimen/y1"
-    	     android:background="@color/item_space_color"
-    	     android:layout_marginTop="@dimen/y30"
-    	    />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y200"
+            android:layout_marginTop="@dimen/y20"
+            android:orientation="horizontal" >
 
-    	<LinearLayout
-    	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
-    	    android:orientation="vertical"
-    	    android:paddingLeft="@dimen/x14"
-    	     >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-    		<TextView
-    		
-    		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content"
-    		    android:text="宝贝全景(建议与参照物一起拍照,如烟盒,硬币,尺子等)"
-    	    	android:textSize="@dimen/x24"
-    	   	 	android:textColor="@color/ed_login_color" 
-    	    
-    	    	android:gravity="center_vertical|left" 
-    	    	android:layout_marginTop="@dimen/y20"/>
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
 
-    		<LinearLayout
-    		    android:layout_width="match_parent"
-    		    android:layout_height="@dimen/y200" 
-    		    android:orientation="horizontal"
-    		    android:layout_marginTop="@dimen/y20"
-    		    >
-				<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView01"
-					    android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg" 
-					    app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					    />
-				    
-				</LinearLayout>
-					<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView02"
-					    android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg" 
-					     app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					    />
-				    
-				</LinearLayout>
-					<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView03"
-					    android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg"
-					     app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					     />
-				    
-				</LinearLayout>
-				
-    		</LinearLayout>
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
-    	</LinearLayout>
-    	<LinearLayout
-    	    android:layout_width="match_parent"
-    	    android:layout_height="wrap_content"
-    	    android:orientation="vertical" 
-    	    android:layout_marginTop="@dimen/y20"
-    	    android:paddingLeft="@dimen/x14"
-    	    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y20"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/x14" >
 
-    		<TextView
-    		   
-    		    android:layout_width="match_parent"
-    		    android:layout_height="wrap_content"
-    		    android:text="宝贝特写"
-    	    	android:textSize="@dimen/x24"
-    	   	 	android:textColor="@color/ed_login_color" 
-    	   
-    	    	android:gravity="center_vertical|left" 
-    	    	/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:text="宝贝特写"
+            android:textColor="@color/ed_login_color"
+            android:textSize="@dimen/x24" />
 
-    		<LinearLayout
-    		    android:layout_width="match_parent"
-    		    android:layout_height="@dimen/y200" 
-    		    android:orientation="horizontal"
-    		    android:layout_marginTop="@dimen/y20"
-    		    >
-				<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y200"
+            android:layout_marginTop="@dimen/y20"
+            android:orientation="horizontal" >
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView04"
-					      android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg"
-					     app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					     />
-				    
-				</LinearLayout>
-					<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView05"
-					    android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg"
-					     app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					     />
-				    
-				</LinearLayout>
-					<LinearLayout 
-				    android:layout_width="0dp"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:orientation="horizontal"
-				    android:gravity="center"
-				    >
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
 
-					<com.yingluo.Appraiser.view.CircleImageView
-						android:id="@+id/imageView06"
-				    android:layout_width="match_parent"
-					    android:layout_height="match_parent"
-					    android:src="@drawable/add_image_bg" 
-					     app:border_width="@dimen/y1"
-					    app:border_color="@color/item_space_color"
-					    />
-				    
-				</LinearLayout>
-				
-    		</LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
-    	</LinearLayout>
-		<Button
-		    android:id="@+id/bt_next"
-		    android:layout_width="match_parent"
-		    android:layout_height="@dimen/y100"
-		    android:text="下一步"
-		    style="@style/bt_login_style"
-		    android:layout_marginLeft="@dimen/x14"
-		    android:layout_marginRight="@dimen/x14"
-		   android:layout_marginTop="@dimen/y100"/>
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/imageView06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/add_image_bg"
+                    app:border_color="@color/item_space_color"
+                    app:border_width="@dimen/y1" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_next"
+        style="@style/bt_login_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginRight="@dimen/x14"
+        android:layout_marginTop="@dimen/y100"
+        android:text="下一步" />
 
 </LinearLayout>

@@ -395,6 +395,10 @@ public class SqlDataUtil {
 	public void clearUserinfo() {
 		// TODO 自动生成的方法存根
 		userdao.deleteAll();
+		infoDao.deleteAll();
+		typeDao.deleteAll();
+		systemdao.deleteAll();
+		imdao.deleteAll();
 	}
 
 	/**

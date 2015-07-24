@@ -37,6 +37,7 @@ import com.yingluo.Appraiser.model.getTreasureByOtherIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
+import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
@@ -49,7 +50,7 @@ import com.yingluo.Appraiser.utils.ToastUtils;
  * @author xy418
  *
  */
-public class ActivityHotIdentiy extends Activity implements OnClickListener {
+public class ActivityHotIdentiy extends BaseActivity implements OnClickListener {
 
 	BitmapsUtils bitmapUtils;
 	@ViewInject(R.id.btn_back)
