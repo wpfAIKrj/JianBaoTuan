@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.R.integer;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Toast;
 
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.R;
@@ -28,13 +30,17 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private List<CollectionTreasure> list;
 	private OnClickListener lis;
 	private boolean isScorll = false;
-
-	public MyFootAdapter(OnClickListener lis, List<CollectionTreasure> list) {
+	private Context context;
+	private List<CollectionTreasure> delist;
+	
+	public MyFootAdapter(Context context,OnClickListener lis, List<CollectionTreasure> list) {
+		this.context = context;
 		this.list = list;
 		this.lis = lis;
 	}
 
-	public MyFootAdapter(OnClickListener lis) {
+	public MyFootAdapter(Context context,OnClickListener lis) {
+		this.context = context;
 		list = new ArrayList<CollectionTreasure>();
 		this.lis = lis;
 	}
@@ -45,6 +51,11 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 		} else {
 			this.list.clear();
 			this.list.addAll(list);
+		}
+		if(delist == null) {
+			delist = new ArrayList<CollectionTreasure>();
+		} else {
+			delist.clear();
 		}
 		notifyDataSetChanged();
 	}
@@ -90,7 +101,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
 					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
-			return new AcrivleFootVIewholder(view, lis, list);
+			return new AcrivleFootVIewholder(view, lis, delist);
 		}
 		if (arg1 == 0) {
 			View view = LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identified, arg0, false);
@@ -98,7 +109,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
 			// ViewHolder参数一定要是Item的Root节点.
-			return new IdentityFootViewholder(view, list);
+			return new IdentityFootViewholder(view, delist);
 		}
 		return null;
 	}
@@ -112,7 +123,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 	}
 
 	public void exitDelete() {
-		list.clear();
+		delist.clear();
 	}
 
 	// 全选
@@ -125,21 +136,32 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	public void deleteAll(final ActivityFootPrint footPrint, deleteMyFootPrintsModel delModel) {
 		StringBuilder sb = new StringBuilder();
-		if (list.size() < 0)
+		if (delist.size() <= 0) {
+			Toast.makeText(context, "请至少选择一个", Toast.LENGTH_SHORT).show();
 			return;
-		for (final CollectionTreasure id : list) {
-			sb.append(id.delete_id).append(",");
 		}
+		for (final CollectionTreasure id : delist) {
+			sb.append(id.delete_id).append(",");
+//			for()
+//			notifyItemRsemoved(position);
+		}
+		
 		sb.deleteCharAt(sb.length() - 1);
 		LogUtils.i("ids=" + sb.toString());
 		delModel.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
 				LogUtils.i("delete id: +  success!!!");
-				for (final CollectionTreasure id : list) {
-					list.remove(id);
+				Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
+				for (final CollectionTreasure id : delist) {
+					for(CollectionTreasure ids : list) {
+						if(ids.getArticle_id() == id.getArticle_id()) {
+							list.remove(ids);
+							break;
+						}
+					}
+					delist.remove(id);
 				}
 				notifyDataSetChanged();
 				footPrint.exitDelete();
@@ -147,8 +169,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
-
+				Toast.makeText(context, "删除失败", Toast.LENGTH_SHORT).show();
 			}
 		}, sb.toString());
 

@@ -52,13 +52,15 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 	getMyFootPrintsModel model = null;
 	deleteMyFootPrintsModel delModel = null;
 
+	private boolean isRefresh;
+	/**
+	 * 点击跳转
+	 */
 	private OnClickListener onarcitilis = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-
 			CollectionTreasure treasure = (CollectionTreasure) v.getTag();
-
 			ContentInfo contentInfo = new ContentInfo();
 			contentInfo.setId(treasure.article_id);
 			contentInfo.setTitle(treasure.msg);
@@ -110,7 +112,6 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 	}
 
 	public void exitDelete() {
-		// TODO Auto-generated method stub
 		layout_delet.setVisibility(View.GONE);
 		mAdapter.setScorll(false);
 		mAdapter.notifyDataSetChanged();
@@ -119,14 +120,14 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_foot_print);
 		ViewUtils.inject(this);
+		isRefresh = false;
 		model = new getMyFootPrintsModel();
 		delModel = new deleteMyFootPrintsModel();
-		mAdapter = new MyFootAdapter(onarcitilis);
+		mAdapter = new MyFootAdapter(this,onarcitilis);
 
 		prrv.setRefreshLoadMoreListener(this);
 		prrv.setVertical();
@@ -137,11 +138,19 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 		prrv.setVisibility(View.GONE);
 		iv_loading.setVisibility(View.VISIBLE);
 
+//		getInfo();
+
+	}
+
+	public void getInfo() {
 		model.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
+				if(isRefresh) {
+					isRefresh = false;
+					prrv.stopRefresh();
+				}
 				prrv.setVisibility(View.VISIBLE);
 				iv_loading.setVisibility(View.GONE);
 				mAdapter.setData(model.getResult());
@@ -155,23 +164,20 @@ public class ActivityFootPrint extends Activity implements RefreshLoadMoreListen
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
 
 			}
 		});
-
 	}
-
+	
 	@Override
 	public void onRefresh() {
-		// TODO Auto-generated method stub
-		prrv.stopRefresh();
+		isRefresh = true;
+		getInfo();
 
 	}
 
 	@Override
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 
 	}
 

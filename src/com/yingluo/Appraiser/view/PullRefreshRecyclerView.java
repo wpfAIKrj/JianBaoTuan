@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,6 +60,7 @@ public class PullRefreshRecyclerView extends LinearLayout {
 		recyclerView = new RecyclerView(context);
 		recyclerView.setVerticalScrollBarEnabled(true);
 		recyclerView.setHorizontalScrollBarEnabled(true);
+		recyclerView.setItemAnimator(new DefaultItemAnimator());
 		recyclerView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		bootLl.addView(recyclerView);
 		bootLl.addView(mExceptView);
