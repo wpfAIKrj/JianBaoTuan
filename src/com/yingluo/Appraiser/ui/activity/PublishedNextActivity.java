@@ -108,7 +108,8 @@ public class PublishedNextActivity extends BaseActivity {
                 if (themsg.length() <= 200) {
                     number.setText(themsg.length() + "/200");
                 } else {
-                	ed_info.setKeyListener(null);
+                	ed_info.setText(themsg.subSequence(0, 200));
+                	ed_info.setSelection(200);
                 }
             }
 
