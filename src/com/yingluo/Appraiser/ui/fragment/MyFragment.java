@@ -19,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
@@ -92,6 +93,11 @@ public class MyFragment extends BaseFragment {
 	@ViewInject(R.id.my_type_msg)
 	private TextView my_type_msg;
 
+	@ViewInject(R.id.pb_jngyan)
+	private ProgressBar pbJingYan;
+	@ViewInject(R.id.tv_jingyan)
+	private TextView tvJingyan;
+	
 	private getUserInfoLPresenter getPresenter;
 
 	private int[] levels = { R.drawable.level01, R.drawable.level02, R.drawable.level03, R.drawable.level04,

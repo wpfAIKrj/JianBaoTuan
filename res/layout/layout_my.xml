@@ -56,6 +56,29 @@
                         app:border_color="@color/cricle_color"
                         app:border_width="@dimen/x1" />
 
+                    <ProgressBar
+                        android:id="@+id/pb_jngyan"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="@dimen/x400"
+                        android:layout_height="@dimen/y20"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/y40" 
+                        android:layout_below="@+id/login_user_head"
+                        android:progress="10"
+                        android:progressDrawable="@drawable/progressbar_color"
+                        />
+                    
+                    <TextView 
+                        android:id="@+id/tv_jingyan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/pb_jngyan"
+                        android:layout_alignBottom="@+id/pb_jngyan"
+                        android:textColor="@color/black"
+                        android:textSize="7sp"
+                        android:text="1/5"
+                        android:layout_centerHorizontal="true"
+                        />
                     <View 
                         android:id="@+id/view_middle"
                         android:layout_width="1dp"
@@ -93,30 +116,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/y20"
                         android:layout_marginLeft="@dimen/y8"
+                        android:visibility="gone"
                         android:text="成为网络鉴定师" />
 
                     <RelativeLayout
                         android:id="@+id/ll_level"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/x150"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/my_type_msg"
                         android:layout_alignTop="@+id/my_type_msg"
                         android:layout_alignBottom="@+id/my_type_msg"
-                        android:background="@drawable/ed_code_bg"
-                        android:gravity="center"
-                        android:orientation="horizontal" >
+                        android:background="@drawable/ed_code_bg" >
 
                         <TextView
+                            android:id="@+id/tv_zhang"
                             style="@style/my_up_style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/x8"
                             android:text="成长体系" />
 
                         <ImageView
                             android:id="@+id/my_iv_level"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="@dimen/x8"
+                            android:layout_toRightOf="@+id/tv_zhang"
                             android:src="@drawable/levelicon01" />
                     </RelativeLayout>
                     
