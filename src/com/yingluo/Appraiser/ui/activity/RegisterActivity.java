@@ -18,6 +18,7 @@ import android.provider.ContactsContract.DataUsageFeedback;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,6 +63,11 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	@ViewInject(R.id.register_send_code)
 	private Button send_code;
 
+	@ViewInject(R.id.tv_xieyi)
+	private TextView tvXieYi;
+	@ViewInject(R.id.cb_xieyi)
+	private CheckBox cbXieYi;
+	
 	private RegisterPresenter mpresenter;
 
 	private static final int TIME_COUNT = 61000;// 时间防止从119s开始显示（以倒计时120s为例子）
@@ -122,7 +128,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		super.onDestroy();
 	}
 
-	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back })
+	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back,R.id.tv_xieyi})
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.title_back:// 返回登陆页面
@@ -136,6 +142,9 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		case R.id.register_send_code:// 发送短信
 			sendSms();
 			break;
+		case R.id.tv_xieyi:// 查看协议
+			seeXieYi();
+			break;
 		default:
 			break;
 		}
@@ -145,6 +154,10 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	 * 验证手机码是否正确
 	 */
 	private void checkSms() {
+		if(!cbXieYi.isChecked()) {
+			new ToastUtils(this, "请同意用户协议");
+			return;
+		}
 		phone = ed_phone.getText().toString();
 		if (TelNumMath.isMobileNO(phone)) {
 			pwd = ed_pwd.getText().toString().trim();
@@ -180,6 +193,14 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		}
 	}
 
+	/**
+	 * 查看协议
+	 */
+	public void seeXieYi() {
+		startActivity(new Intent(this,ActivityXieYi.class));
+		overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
+	
 	protected void register() {
 		dialog = DialogUtil.createLoadingDialog(this, "注册中.....");
 		dialog.show();

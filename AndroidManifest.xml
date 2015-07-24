@@ -209,6 +209,10 @@
             android:name=".ui.activity.IdentifyGalleryActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ui.activity.ActivityXieYi"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <service android:name=".ui.server.HomeService" >
         </service>

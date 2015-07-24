@@ -48,9 +48,6 @@ import com.yingluo.Appraiser.view.SelectMoilbWindow;
  */
 public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo>, OnItemClickListener {
 
-	@ViewInject(R.id.login_user_head)
-	private CircleImageView user_logo;
-
 	private LoginPresenter mpresenter;
 	private Dialog dialog;
 

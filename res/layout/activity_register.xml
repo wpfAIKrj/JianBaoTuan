@@ -26,16 +26,15 @@
             android:layout_height="@dimen/y94"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/x20"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/x20" >
 
-            <TextView 
+            <TextView
                 style="@style/tv_edit_login_left"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/register_name_hint"
-	            />
-            
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_name_hint" />
+
             <EditText
                 android:id="@+id/register_edit_phone"
                 style="@style/edit_login_style"
@@ -61,37 +60,33 @@
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
-            <LinearLayout 
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/ed_code_bg"
-                android:paddingLeft="@dimen/y20"
-                >
-                
-                <TextView 
-		            style="@style/tv_edit_login_left"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/register_code_ed_hint"
-		            />
-	            
-	            <EditText
-	                android:id="@+id/register_edit_code"
-	                style="@style/edit_login_style"
-	                android:layout_width="0dp"
-	                android:layout_height="fill_parent"
-	                android:layout_weight="1"
-	                android:alpha="10"
-	                android:cursorVisible="true"
-	                android:ems="10"
-	                android:background="@null"
-	                android:imeOptions="actionNext"
-	                android:inputType="number"
-	                android:singleLine="true"
-	                android:textCursorDrawable="@drawable/color_cursor" >
-	
-	            </EditText>
-            
+                android:paddingLeft="@dimen/y20" >
+
+                <TextView
+                    style="@style/tv_edit_login_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_code_ed_hint" />
+
+                <EditText
+                    android:id="@+id/register_edit_code"
+                    style="@style/edit_login_style"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:alpha="10"
+                    android:background="@null"
+                    android:cursorVisible="true"
+                    android:ems="10"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/color_cursor" >
+                </EditText>
             </LinearLayout>
 
             <Button
@@ -113,17 +108,16 @@
             android:layout_marginTop="@dimen/y20"
             android:background="@drawable/login_edit_bg"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/y20"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/y20" >
 
-            <TextView 
+            <TextView
                 android:id="@+id/tv_register_edit_password"
-	            style="@style/tv_edit_login_left"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/login_pwd_hint"
-	            />
-            
+                style="@style/tv_edit_login_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_pwd_hint" />
+
             <EditText
                 android:id="@+id/register_edit_password"
                 style="@style/edit_login_style"
@@ -137,10 +131,36 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textCursorDrawable="@drawable/color_cursor" >
-
             </EditText>
         </LinearLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_marginTop="@dimen/y46" >
+
+        <CheckBox
+            android:id="@+id/cb_xieyi"
+            style="@style/delete_checkbox_all_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:checked="true"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tv_xieyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/cb_xieyi"
+            android:paddingLeft="@dimen/x10"
+            android:text="用户协议"
+            android:textColor="#ff0000" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/register_button"
@@ -151,7 +171,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="@dimen/y146"
+        android:layout_marginTop="@dimen/y100"
         android:text="@string/regitster_next" />
 
 </LinearLayout>
