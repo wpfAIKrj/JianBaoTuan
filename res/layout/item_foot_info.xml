@@ -20,9 +20,12 @@
         style="@style/delete_checkbox_logo_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:checked="false"
-        android:visibility="gone" />
+        android:layout_gravity="right|top"
+        android:layout_marginRight="@dimen/x16"
+        android:layout_marginTop="@dimen/y16"
+        android:checked="false" 
+        android:visibility="gone"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

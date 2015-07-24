@@ -18,6 +18,8 @@ public class TreasureType implements Serializable{
     public long parent_id;//父类id
     public Boolean isChild;
 
+    public int position;
+    
     public TreasureType() {
     }
 
@@ -88,6 +90,14 @@ public class TreasureType implements Serializable{
     public void setIsChild(Boolean isChild) {
         this.isChild = isChild;
     }
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
     
     
 

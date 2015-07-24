@@ -34,6 +34,7 @@ public class KindSecondViewHolder extends ViewHolder {
 			@Override
 			public void onClick(View v) {
 				if (listener != null) {
+					type.setPosition(0);
 					v.setTag(type);
 					listener.onClick(v);
 				}

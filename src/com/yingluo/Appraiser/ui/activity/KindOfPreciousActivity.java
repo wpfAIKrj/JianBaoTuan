@@ -144,7 +144,7 @@ public class KindOfPreciousActivity extends BaseActivity {
 		@Override
 		public void onClick(View v) {
 			TreasureType type = (TreasureType) v.getTag();
-			if (type.isChild) {
+			if (type.isChild || type.getPosition() == -1) {
 				// 没有下一级
 				kindadapter.selectType = type;
 				kindadapter.notifyDataSetChanged();

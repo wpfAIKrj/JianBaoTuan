@@ -42,14 +42,12 @@ public class AcrivleFootVIewholder extends ViewHolder {
 
 	public AcrivleFootVIewholder(View itemView, final OnClickListener lis, List<CollectionTreasure> ids) {
 		super(itemView);
-		// TODO 自动生成的构造函数存根
 		list = ids;
 		ViewUtils.inject(this, itemView);
 		itemView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO 自动生成的方法存根
 				if (lis != null) {
 					v.setTag(currnt);
 					lis.onClick(v);
@@ -60,7 +58,6 @@ public class AcrivleFootVIewholder extends ViewHolder {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (currnt != null) {
 					if (isChecked) {
 						list.add(currnt);

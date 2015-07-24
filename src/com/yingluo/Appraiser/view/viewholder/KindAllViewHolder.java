@@ -27,7 +27,7 @@ public class KindAllViewHolder extends ViewHolder {
 	private ImageView iv_enter;
 	private TextView label;
 	private String str = null;
-
+	
 	public KindAllViewHolder(View itemView, final OnClickListener listener) {
 		super(itemView);
 		str = itemView.getContext().getResources().getString(R.string.all_kind_identity_title);
@@ -37,6 +37,7 @@ public class KindAllViewHolder extends ViewHolder {
 			@Override
 			public void onClick(View v) {
 				if (listener != null) {
+					type.setPosition(-1);
 					v.setTag(type);
 					listener.onClick(v);
 				}
