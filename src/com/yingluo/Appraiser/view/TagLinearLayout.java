@@ -87,8 +87,8 @@ public class TagLinearLayout extends ViewGroup {
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
 		int left = 0;
-//		int top = (int) getResources().getDimension(R.dimen.y20);
-		int top = 0;
+		int top = (int) getResources().getDimension(R.dimen.y20);
+//		int top = 0;
 		int count = getChildCount();
 		Log.e("number of tags", count+"");
 		int lines = 0;
@@ -100,7 +100,8 @@ public class TagLinearLayout extends ViewGroup {
 				left = 0;
 			}
 			Log.e("number of height", top+lines*(top + child.getMeasuredHeight())+"");
-			child.layout(left, top+lines*(top + child.getMeasuredHeight()), left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+//			child.layout(left, top+lines*(top + child.getMeasuredHeight()), left + child.getMeasuredWidth(), top + child.getMeasuredHeight());
+			child.layout(left, lines*(top + child.getMeasuredHeight()), left + child.getMeasuredWidth(), lines*(top + child.getMeasuredHeight())+child.getMeasuredHeight());
 			left = left + child.getMeasuredWidth() + top;
 		}
 	}

@@ -58,7 +58,6 @@
                 android:id="@+id/tag_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_blue"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/x30" />
         </LinearLayout>
