@@ -33,6 +33,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
@@ -67,8 +68,8 @@ public class IdentiyFragment extends BaseFragment {
 
 	private IdentifyPresenter identifyPresenter;
 
-	private Dialog dialog;
-
+	private boolean isRefresh = false;
+	
 	@ViewInject(R.id.tv_show_no_data)
 	private TextView tv_show_no_data;
 
@@ -158,6 +159,13 @@ public class IdentiyFragment extends BaseFragment {
 		return inflater.inflate(R.layout.layout_identiy, container, false);
 	}
 
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		prrvRe.setToRefreshing();
+	}
+
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
@@ -170,8 +178,24 @@ public class IdentiyFragment extends BaseFragment {
 
 			mAdapter.setData(list);
 		}
-//		prrv.setRefreshLoadMoreListener(this);
-//		prrv.setVertical();
+//		prrvRe.setToRefreshing();
+		prrvRe.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+            	isRefresh = true;
+            	getIndentity();
+            }
+
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
 		prrv.setAdapter(mAdapter);
 
 	}
@@ -183,14 +207,7 @@ public class IdentiyFragment extends BaseFragment {
 
 	@Override
 	public void lazyLoad() {
-		System.out.println(getClass().getName() + "正在加载数据");
-	}
-
-	/**
-	 * 刷新页面
-	 */
-	public void refresh() {
-//		prrv.refresh();
+		Toast.makeText(mActivity, "正在加载数据", Toast.LENGTH_SHORT).show();
 	}
 
 	public void setIdentifyBackground(int id) {
@@ -217,14 +234,6 @@ public class IdentiyFragment extends BaseFragment {
 		}
 	}
 
-	public void onRefresh() {
-		getIndentity();
-	}
-
-	public void onLoadMore() {
-
-	}
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -239,7 +248,10 @@ public class IdentiyFragment extends BaseFragment {
 
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
-			prrvRe.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				prrvRe.refreshOver(null);
+			}
 			if (data.size() == 0) {
 				tv_show_no_data.setVisibility(View.VISIBLE);
 				new ToastUtils(mActivity, "没有更多数据");
@@ -247,26 +259,16 @@ public class IdentiyFragment extends BaseFragment {
 				tv_show_no_data.setVisibility(View.GONE);
 			}
 			mAdapter.setData(data);
-			if (dialog != null && dialog.isShowing()) {
-				dialog.dismiss();
-			}
 		}
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			prrvRe.refreshOver(null);
-			if (dialog != null && dialog.isShowing()) {
-				dialog.dismiss();
-			}
 			new ToastUtils(mActivity, errorMsg);
 		}
 	};
 
 	private void getIndentity() {
-		if (dialog == null) {
-			dialog = DialogUtil.createLoadingDialog(mActivity, "获取鉴定宝物中....");
-		}
-		dialog.show();
 		identifyPresenter.getIdentity(kindId, type);
 	}
 

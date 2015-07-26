@@ -23,6 +23,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
@@ -120,6 +121,12 @@ public class ActivityFootPrint extends BaseActivity {
 		mAdapter.notifyDataSetChanged();
 		mAdapter.exitDelete();
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		prrvRe.setToRefreshing();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,16 +139,31 @@ public class ActivityFootPrint extends BaseActivity {
 		delModel = new deleteMyFootPrintsModel();
 		mAdapter = new MyFootAdapter(this,onarcitilis);
 		prrv = (RecyclerView)prrvRe.getRefreshView();
-//		prrv.setRefreshLoadMoreListener(this);
-//		prrv.setVertical();
+		
+//		prrvRe.setToRefreshing();
+		prrvRe.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+//            	prrvRe.refreshOver(null);
+            	isRefresh = true;
+        		getInfo();
+            }
+
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
 
 		prrv.setAdapter(mAdapter);
-//		prrv.refresh();
 
 		prrv.setVisibility(View.GONE);
 		iv_loading.setVisibility(View.VISIBLE);
-
-//		getInfo();
 
 	}
 
@@ -170,16 +192,6 @@ public class ActivityFootPrint extends BaseActivity {
 
 			}
 		});
-	}
-	
-	public void onRefresh() {
-		isRefresh = true;
-		getInfo();
-
-	}
-
-	public void onLoadMore() {
-
 	}
 
 }

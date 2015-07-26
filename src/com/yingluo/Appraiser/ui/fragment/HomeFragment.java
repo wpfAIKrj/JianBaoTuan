@@ -75,7 +75,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_home, container, false);
 	}
 	
@@ -107,7 +106,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 								homeEntity = homeModel.getResult();
 								setDate();
 							} catch (Exception e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -239,7 +237,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 					hideViews(true, (short) 1);
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				hideViews(true, (short) 1);
 			}
@@ -271,14 +268,14 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	@Override
 	public void lazyLoad() {
-//		if (mScrollView != null) {
-//			mhandler.post(new Runnable() {
-//				@Override
-//				public void run() {
-//					mScrollView.scrollTo(0, 0);
-//				}
-//			});
-//		}
+		if (mScrollView != null) {
+			mhandler.post(new Runnable() {
+				@Override
+				public void run() {
+					mScrollView.scrollTo(0, 0);
+				}
+			});
+		}
 	}
 
 	@Override

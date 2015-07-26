@@ -50,7 +50,7 @@ public abstract class RefreshLayout extends FrameLayout{
     private int mOriginalOffsetTop;
 
     /** the distance of refresh*/
-    private int mNeedRefreshDeltaY = 120;
+    private int mNeedRefreshDeltaY = 60;
 
 
     OnRefreshListener mRefreshListener;
@@ -93,6 +93,7 @@ public abstract class RefreshLayout extends FrameLayout{
         mContentLy.setOrientation(LinearLayout.VERTICAL);
         mRefreshHeaderView = (View)createHeaderView();
         mContentLy.addView(mRefreshHeaderView);
+        
         mRefreshView = createRefreshView();
         mContentLy.addView(mRefreshView);
         mRefreshView.setFadingEdgeLength(0);
@@ -300,7 +301,7 @@ public abstract class RefreshLayout extends FrameLayout{
     }
 
 
-    private void setOffsetTopAndBottom(int offset){
+    public void setOffsetTopAndBottom(int offset){
         mContentLy.offsetTopAndBottom(offset);
     }
 

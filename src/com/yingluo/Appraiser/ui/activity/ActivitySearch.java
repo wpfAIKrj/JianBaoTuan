@@ -65,7 +65,6 @@ public class ActivitySearch extends BaseActivity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// TODO Auto-generated method stub
 				TreasureType type = adapter.list.get(position);
 				Intent mIntent = new Intent(ActivitySearch.this, SearchActivity.class);
 				mIntent.putExtra(Const.KIND_ID, type);

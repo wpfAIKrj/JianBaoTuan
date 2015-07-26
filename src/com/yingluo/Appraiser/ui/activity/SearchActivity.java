@@ -26,6 +26,7 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
@@ -63,11 +64,9 @@ public class SearchActivity extends BaseActivity {
 
 	private boolean isFirest = true;
 
-	private Dialog dialog;
-
+	private boolean isRefresh;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		treasuretype = (TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
 		if (treasuretype == null) {
@@ -80,6 +79,12 @@ public class SearchActivity extends BaseActivity {
 		initViews();
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		prrvRe.setToRefreshing();
+	}
+	
 	protected void initViews() {
 		home_title.setText(treasuretype.name);
 		prrv = (RecyclerView)prrvRe.getRefreshView();
@@ -90,11 +95,27 @@ public class SearchActivity extends BaseActivity {
 
 			mAdapter.setData(list);
 		}
-		button_category.setImageResource(R.drawable.back_botton);
-//		prrv.setRefreshLoadMoreListener(this);
-//		prrv.setVertical();
+//		prrvRe.setToRefreshing();
+		prrvRe.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+            	isRefresh = true;
+            	getIndentity();
+            }
+
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
 		prrv.setAdapter(mAdapter);
-		// prrv.refresh();
+		
+		button_category.setImageResource(R.drawable.back_botton);
 
 	}
 
@@ -110,54 +131,33 @@ public class SearchActivity extends BaseActivity {
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
 			isFirest = false;
-			prrvRe.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				prrvRe.refreshOver(null);
+			}
 			if (data.size() == 0) {
 				new ToastUtils(SearchActivity.this, "没有更多数据");
 			}
 			mAdapter.setData(data);
-			if (dialog != null && dialog.isShowing()) {
-				dialog.dismiss();
-			}
 		}
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
 			prrvRe.refreshOver(null);
-			if (dialog != null && dialog.isShowing()) {
-				dialog.dismiss();
-			}
 			new ToastUtils(SearchActivity.this, errorMsg);
 		}
 	};
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		if (isFirest) {
-			getIndentity();
-		}
-	}
-
-	public void onRefresh() {
-		// TODO Auto-generated method stub
-		// current_page++;
-		getIndentity();
-
-	}
+//	@Override
+//	protected void onResume() {
+//		super.onResume();
+//		if (isFirest) {
+//			getIndentity();
+//		}
+//	}
 
 	private void getIndentity() {
-		// TODO Auto-generated method stub
-		if (dialog == null) {
-			dialog = DialogUtil.createLoadingDialog(this, "获取鉴定宝物中....");
-		}
-		dialog.show();
 		identifyPresenter.getIdentity(kindId, type);
-	}
-
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void setIdentifyBackground(int id) {

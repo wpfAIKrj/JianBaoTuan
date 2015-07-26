@@ -83,7 +83,6 @@
         android:layout_above="@+id/view1"
         android:layout_below="@+id/view2"
         android:layout_alignParentLeft="true"
-        android:background="@color/light_blue"
         android:paddingLeft="@dimen/x14"
         android:paddingRight="@dimen/x14">
     </com.yingluo.Appraiser.refresh.PullRefreshRecyclerView>
