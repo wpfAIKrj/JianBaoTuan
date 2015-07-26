@@ -141,6 +141,7 @@ public class ActivityUserDelails extends BaseActivity {
 		case R.id.detail_back: {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 			break;
 		case R.id.tv_other_title:// 跳转到个人详情
@@ -214,6 +215,13 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	private DialogForResult lis1 = new DialogForResult() {
 
 		@Override

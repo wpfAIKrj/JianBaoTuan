@@ -161,8 +161,8 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 							break;
 						}
 					}
-					delist.remove(id);
 				}
+				delist.clear();
 				notifyDataSetChanged();
 				footPrint.exitDelete();
 			}
