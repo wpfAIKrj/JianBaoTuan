@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,16 +32,15 @@ import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreListener {
+public class IdentiyFragment extends BaseFragment {
 
 	@ViewInject(R.id.button_category)
 	ImageView button_category;
@@ -50,7 +50,8 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	@ViewInject(R.id.btn_identifed)
 	ViewGroup btn_identified;
 	@ViewInject(R.id.prrv)
-	PullRefreshRecyclerView prrv;
+	PullRefreshRecyclerView prrvRe;
+	RecyclerView prrv;
 
 	IdentiyAdapter mAdapter = null;
 
@@ -83,8 +84,8 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 			break;
 		case R.id.btn_identifing: {
 			type = 1;
-			prrv.stopRefresh();
-			prrv.setLoadMoreCompleted();
+//			prrv.stopRefresh();
+//			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
 			showImageData(type, kindId);
@@ -109,9 +110,9 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 		case R.id.btn_identifed: {
 			// 获取已经鉴定数据
 			type = 2;
-			prrv.stopRefresh();
+//			prrv.stopRefresh();
 			showImageData(type, kindId);
-			prrv.setLoadMoreCompleted();
+//			prrv.setLoadMoreCompleted();
 			Log.i("ytmfdw", "get identifed");
 			if (app != null) {
 				if (kindId == 0) {
@@ -160,6 +161,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
+		prrv = (RecyclerView)prrvRe.getRefreshView();
 		identifyPresenter = new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
 		app = (ItApplication) getActivity().getApplication();
@@ -168,8 +170,8 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 			mAdapter.setData(list);
 		}
-		prrv.setRefreshLoadMoreListener(this);
-		prrv.setVertical();
+//		prrv.setRefreshLoadMoreListener(this);
+//		prrv.setVertical();
 		prrv.setAdapter(mAdapter);
 
 	}
@@ -188,7 +190,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 	 * 刷新页面
 	 */
 	public void refresh() {
-		prrv.refresh();
+//		prrv.refresh();
 	}
 
 	public void setIdentifyBackground(int id) {
@@ -215,12 +217,10 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 		}
 	}
 
-	@Override
 	public void onRefresh() {
 		getIndentity();
 	}
 
-	@Override
 	public void onLoadMore() {
 
 	}
@@ -239,7 +239,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
-			prrv.stopRefresh();
+			prrvRe.refreshOver(null);
 			if (data.size() == 0) {
 				tv_show_no_data.setVisibility(View.VISIBLE);
 				new ToastUtils(mActivity, "没有更多数据");
@@ -254,7 +254,7 @@ public class IdentiyFragment extends BaseFragment implements RefreshLoadMoreList
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			prrv.stopRefresh();
+			prrvRe.refreshOver(null);
 			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}

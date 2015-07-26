@@ -1,9 +1,7 @@
 package com.yingluo.Appraiser.ui.fragment;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,9 +15,7 @@ import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -104,7 +100,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 					@Override
 					public void onError() {
-						// TODO Auto-generated method stub
 						String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
 						if(str!=null){
 							try {
@@ -333,7 +328,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.tv_goto_infor:
 			EventBus.getDefault().post(new MainEvent(3, ""));

@@ -39,7 +39,6 @@
             <View
                 android:layout_width="@dimen/x126"
                 android:layout_height="@dimen/y2"
-           
                 android:background="@color/dialog_title_color" />
         </LinearLayout>
 
@@ -65,39 +64,38 @@
             <View
                 android:layout_width="@dimen/x126"
                 android:layout_height="@dimen/y2"
-               
                 android:background="@color/wite" />
         </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y30"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@color/item_space_color" />
-
-    <com.yingluo.Appraiser.view.PullRefreshRecyclerView
-        android:id="@+id/prrv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/view1"
-        android:layout_below="@+id/view2"
-        android:layout_alignParentLeft="true"
-        android:background="@color/wite"
-        android:paddingLeft="@dimen/x14"
-        android:paddingRight="@dimen/x14"
-        android:layout_marginTop="@dimen/y20" >
-    </com.yingluo.Appraiser.view.PullRefreshRecyclerView>
-
-    <View
+     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y20"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
         android:background="@color/item_space_color" />
+
+    <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
+        android:id="@+id/prrv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view1"
+        android:layout_below="@+id/view2"
+        android:layout_alignParentLeft="true"
+        android:background="@color/light_blue"
+        android:paddingLeft="@dimen/x14"
+        android:paddingRight="@dimen/x14">
+    </com.yingluo.Appraiser.refresh.PullRefreshRecyclerView>
+
+     <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/item_space_color" />
+   
 
     <TextView
         android:id="@+id/tv_show_no_data"

@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -21,18 +22,19 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class ActivityFootPrint extends BaseActivity implements RefreshLoadMoreListener {
+public class ActivityFootPrint extends BaseActivity {
 
 	@ViewInject(R.id.btn_back)
 	View btn_back;
 	@ViewInject(R.id.prrv)
-	PullRefreshRecyclerView prrv;
+	PullRefreshRecyclerView prrvRe;
+	RecyclerView prrv;
+	
 	@ViewInject(R.id.tv_none)
 	TextView tv_none;
 	@ViewInject(R.id.iv_loading)
@@ -129,12 +131,12 @@ public class ActivityFootPrint extends BaseActivity implements RefreshLoadMoreLi
 		model = new getMyFootPrintsModel();
 		delModel = new deleteMyFootPrintsModel();
 		mAdapter = new MyFootAdapter(this,onarcitilis);
-
-		prrv.setRefreshLoadMoreListener(this);
-		prrv.setVertical();
+		prrv = (RecyclerView)prrvRe.getRefreshView();
+//		prrv.setRefreshLoadMoreListener(this);
+//		prrv.setVertical();
 
 		prrv.setAdapter(mAdapter);
-		prrv.refresh();
+//		prrv.refresh();
 
 		prrv.setVisibility(View.GONE);
 		iv_loading.setVisibility(View.VISIBLE);
@@ -150,7 +152,7 @@ public class ActivityFootPrint extends BaseActivity implements RefreshLoadMoreLi
 			public void onSuccess() {
 				if(isRefresh) {
 					isRefresh = false;
-					prrv.stopRefresh();
+					prrvRe.refreshOver(null);
 				}
 				prrv.setVisibility(View.VISIBLE);
 				iv_loading.setVisibility(View.GONE);
@@ -170,14 +172,12 @@ public class ActivityFootPrint extends BaseActivity implements RefreshLoadMoreLi
 		});
 	}
 	
-	@Override
 	public void onRefresh() {
 		isRefresh = true;
 		getInfo();
 
 	}
 
-	@Override
 	public void onLoadMore() {
 
 	}

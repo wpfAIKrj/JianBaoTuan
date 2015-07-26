@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +25,13 @@ import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView;
-import com.yingluo.Appraiser.view.PullRefreshRecyclerView.RefreshLoadMoreListener;
 
-public class SearchActivity extends BaseActivity implements RefreshLoadMoreListener {
+public class SearchActivity extends BaseActivity {
 
 	@ViewInject(R.id.button_category)
 	ImageView button_category;
@@ -41,8 +41,10 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 	@ViewInject(R.id.btn_identifed)
 	ViewGroup btn_identified;
 	@ViewInject(R.id.prrv)
-	PullRefreshRecyclerView prrv;
+	PullRefreshRecyclerView prrvRe;
 
+	RecyclerView prrv;
+	
 	IdentiyAdapter mAdapter = null;
 
 	@ViewInject(R.id.home_title)
@@ -80,6 +82,7 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 
 	protected void initViews() {
 		home_title.setText(treasuretype.name);
+		prrv = (RecyclerView)prrvRe.getRefreshView();
 		identifyPresenter = new IdentifyPresenter(netlistener1);
 		mAdapter = new IdentiyAdapter();
 		list = new ArrayList<CollectionTreasure>();
@@ -88,8 +91,8 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 			mAdapter.setData(list);
 		}
 		button_category.setImageResource(R.drawable.back_botton);
-		prrv.setRefreshLoadMoreListener(this);
-		prrv.setVertical();
+//		prrv.setRefreshLoadMoreListener(this);
+//		prrv.setVertical();
 		prrv.setAdapter(mAdapter);
 		// prrv.refresh();
 
@@ -106,9 +109,8 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 
 		@Override
 		public void onSucess(ArrayList<CollectionTreasure> data) {
-			// TODO Auto-generated method stub
 			isFirest = false;
-			prrv.stopRefresh();
+			prrvRe.refreshOver(null);
 			if (data.size() == 0) {
 				new ToastUtils(SearchActivity.this, "没有更多数据");
 			}
@@ -120,8 +122,7 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
-			prrv.stopRefresh();
+			prrvRe.refreshOver(null);
 			if (dialog != null && dialog.isShowing()) {
 				dialog.dismiss();
 			}
@@ -138,7 +139,6 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 		}
 	}
 
-	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
 		// current_page++;
@@ -155,7 +155,6 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 		identifyPresenter.getIdentity(kindId, type);
 	}
 
-	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
 
@@ -198,8 +197,8 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 			break;
 		case R.id.btn_identifing: {
 			type = 1;
-			prrv.stopRefresh();
-			prrv.setLoadMoreCompleted();
+			prrvRe.refreshOver(null);
+//			prrv.setLoadMoreCompleted();
 			// 获取正在鉴定数据
 			Log.i("ytmfdw", "get identifing");
 
@@ -212,8 +211,8 @@ public class SearchActivity extends BaseActivity implements RefreshLoadMoreListe
 		case R.id.btn_identifed: {
 			// 获取已经鉴定数据
 			type = 2;
-			prrv.stopRefresh();
-			prrv.setLoadMoreCompleted();
+			prrvRe.refreshOver(null);
+//			prrv.setLoadMoreCompleted();
 			getIndentity();
 
 		}

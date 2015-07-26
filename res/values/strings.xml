@@ -72,6 +72,11 @@
     <!-- 发布鉴定 -->
     <string name="publish_title">添加宝贝信息</string>
 
+    <!-- 下拉刷新 -->
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="refreshing">刷新中...</string>
+    <string name="release_to_refresh">松手刷新</string>
+    
     <!-- 检测更新 -->
     <string name="update_title">检测更新</string>
     <string name="update_bt">版本更新</string>
