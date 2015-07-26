@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.fragment;
 import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -64,11 +65,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	private int index = 0;
 
-	@ViewInject(R.id.scrollview)
 	private PullToRefreshScrollView mScrollView;
 	
 	private Activity mActivity;
 	private HomeModel homeModel;
+	private boolean isRefresh;
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -80,43 +82,45 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.layout_home, container, false);
 	}
-
+	
 	@Override
 	protected void initViews(View view) {
 		homeModel = new HomeModel();
-//		scrollView = mScrollView.getRefreshableView();
-//		mScrollView.setMode(Mode.PULL_FROM_START); 
-//		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
-//
-//			@Override
-//			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				homeModel.sendHttp(new CommonCallBack() {
-//
-//					@Override
-//					public void onSuccess() {
-//						mScrollView.onRefreshComplete();
-//						homeEntity = homeModel.getResult();
-//						setDate();
-//					}
-//
-//					@Override
-//					public void onError() {
-//						// TODO Auto-generated method stub
-//						String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
-//						if(str!=null){
-//							try {
-//								homeModel.analyzeData(str);
-//								homeEntity = homeModel.getResult();
-//								setDate();
-//							} catch (Exception e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
-//						}
-//					}
-//				});
-//			}
-//		});
+		isRefresh = false;
+		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
+		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				isRefresh = true;
+				homeModel.sendHttp(new CommonCallBack() {
+
+					@Override
+					public void onSuccess() {
+						mScrollView.onRefreshComplete();
+						homeEntity = homeModel.getResult();
+						setDate();
+					}
+
+					@Override
+					public void onError() {
+						// TODO Auto-generated method stub
+						String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
+						if(str!=null){
+							try {
+								homeModel.analyzeData(str);
+								homeEntity = homeModel.getResult();
+								setDate();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				});
+			}
+		});
+		
 		layout_home_item0 = (ViewGroup) view.findViewById(R.id.layout_home_item0);
 		layout_home_item3 = (ViewGroup) view.findViewById(R.id.layout_home_item3);
 		layout_home_item2 = (ViewGroup) view.findViewById(R.id.layout_home_item2);
@@ -171,10 +175,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 			hideViews(true, (short) 7);
 		} else {
 			hideViews(false, (short) 7);
-			if (homeEntity.getAdvertising() != null && homeEntity.getAdvertising().size() > 0) {
+			if (homeEntity.getAdvertising() != null && homeEntity.getAdvertising().size() > 0 && !isRefresh) {
 				head.prepareData(homeEntity.getAdvertising());
 			} else {
-
+				
 			}
 			try {
 				if (homeEntity.getChoices() != null && homeEntity.getChoices().size() > 0) {
