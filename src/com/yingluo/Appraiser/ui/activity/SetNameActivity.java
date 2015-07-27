@@ -125,6 +125,7 @@ public class SetNameActivity extends BaseActivity implements AskNetWorkCallBack{
 		public void onSucess(UserInfo user) {
 			if (ItApplication.getcurrnUser() != null) {
 				ItApplication.getcurrnUser().setAvatar(user.getAvatar());
+				ItApplication.getcurrnUser().setNickname(nickName.getText().toString());
 				SqlDataUtil.getInstance().saveUserInfo(ItApplication.getcurrnUser());
 			}
 			EventBus.getDefault().post(new MyEvent(0, user));
