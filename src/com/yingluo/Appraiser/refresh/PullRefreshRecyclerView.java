@@ -1,9 +1,9 @@
 package com.yingluo.Appraiser.refresh;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -13,12 +13,15 @@ import android.view.View;
  */
 public class PullRefreshRecyclerView extends RefreshLayout{
 
+	private Context context;
+	
     public PullRefreshRecyclerView(Context context){
         this(context, null);
     }
 
     public PullRefreshRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
     }
 
     @Override
@@ -27,9 +30,8 @@ public class PullRefreshRecyclerView extends RefreshLayout{
         RecyclerView rv =  new RecyclerView(getContext());
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         lm.setOrientation(LinearLayoutManager.VERTICAL);
-        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);//表示两列，并且是竖直方向的瀑布流
-    	rv.setLayoutManager(mStaggeredGridLayoutManager);
-//        rv.setLayoutManager(lm);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,2);//表示两列，并且是竖直方向的瀑布流
+    	rv.setLayoutManager(gridLayoutManager);
         return rv;
     }
 

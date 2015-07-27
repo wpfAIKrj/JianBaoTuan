@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
 /**
  * 加载文章列表
+ * 
  * @author Administrator
  *
  */
@@ -31,24 +33,21 @@ public class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private ListviewLoadListener listview;
 	private static final int TYPE_ITEM = 0;
 	private static final int TYPE_FOOTER = 1;
-	
-	private int load_type=2;
-	public ArticleAdapter(Context context,ArrayList<ContentInfo> list,OnClickListener listner,ListviewLoadListener listview) {
-		// TODO Auto-generated constructor stub
-		this.context=context;
-		mInflater=LayoutInflater.from(context);
-		this.list=list;
-		this.onclick=listner;
-		this.listview=listview;
-		load_type=2;
+
+	private int load_type = 2;
+
+	public ArticleAdapter(Context context, ArrayList<ContentInfo> list, OnClickListener listner,
+			ListviewLoadListener listview) {
+		this.context = context;
+		mInflater = LayoutInflater.from(context);
+		this.list = list;
+		this.onclick = listner;
+		this.listview = listview;
+		load_type = 2;
 	}
-	
 
-
-	
 	@Override
 	public int getItemViewType(int position) {
-		// TODO Auto-generated method stub
 		if (position + 1 == getItemCount()) {
 			return TYPE_FOOTER;
 		} else {
@@ -58,54 +57,47 @@ public class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
-		return list.size()+1;
+		return list.size() + 1;
 	}
 
 	@Override
 	public void onBindViewHolder(ViewHolder arg0, int arg1) {
-		// TODO Auto-generated method stub
-		if(arg0 instanceof footerViewHolder ){
-			footerViewHolder foot=(footerViewHolder) arg0;
+		if (arg0 instanceof footerViewHolder) {
+			footerViewHolder foot = (footerViewHolder) arg0;
 			foot.showloadMore(load_type);
 		}
-		
-		if(arg0 instanceof ArticleViewHolder){
-			ArticleViewHolder articie=(ArticleViewHolder) arg0;
+
+		if (arg0 instanceof ArticleViewHolder) {
+			ArticleViewHolder articie = (ArticleViewHolder) arg0;
 			articie.showData(list.get(arg1));
 		}
-		
+
 	}
 
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
-		// TODO Auto-generated method stub
-		if(arg1==TYPE_FOOTER){
-			return new footerViewHolder(mInflater.inflate(R.layout.xlistview_footer, arg0, false),listview);
+		if (arg1 == TYPE_FOOTER) {
+			return new footerViewHolder(mInflater.inflate(R.layout.xlistview_footer, arg0, false), listview);
 		}
-		if(arg1==TYPE_ITEM){
-			return new ArticleViewHolder(mInflater.inflate(R.layout.item_info, arg0, false),onclick);
+		if (arg1 == TYPE_ITEM) {
+			return new ArticleViewHolder(mInflater.inflate(R.layout.item_info, arg0, false), onclick);
 		}
 		return null;
 	}
 
-	
 	/**
 	 * 更改footview显示效果
-	 * @param type 0加载更多，1为正在加载， 2为隐藏
+	 * 
+	 * @param type
+	 *            0加载更多，1为正在加载， 2为隐藏
 	 */
 	public void setFootType(int type) {
-		// TODO Auto-generated method stub
-		load_type=type;
-		
+		load_type = type;
+
 	}
 
 	public void setListData(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
-		list=data;
+		list = data;
 	}
-	
-	
-	
 
 }

@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -119,6 +120,7 @@ public class PublishedActivity extends BaseActivity {
 			intent = new Intent(PublishedActivity.this, KindOfPreciousActivity.class);
 			intent.putExtra(Const.SHOW_TYPE, 1);
 			startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.imageView01:
 			showGetPhotoDialog(0);
@@ -211,12 +213,14 @@ public class PublishedActivity extends BaseActivity {
 					selectListAll.add(imageUtils.PICPATH);
 					// 更新媒体库
 					Uri url = Uri.parse("file://" + imageUtils.PICPATH);
+					Log.e("show image", url+"");
 					sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, url));
 					showAllImage();
 				} else {// 特写
 					selectListTest.add(imageUtils.PICPATH);
 					// 更新媒体库
 					Uri url = Uri.parse("file://" + imageUtils.PICPATH);
+					Log.e("show image", url+"");
 					sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, url));
 					showTestImage();
 				}

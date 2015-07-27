@@ -30,6 +30,8 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.ArticlePresenter;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.activity.InformationDetailsActivity;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
@@ -50,10 +52,8 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	private ArticlePresenter articlePresenter;
 
-	@ViewInject(R.id.swipe_refresh_widget)
-	private SwipeRefreshLayout mSwipeRefreshWidget;
 	@ViewInject(R.id.recyclerview1)
-	private RecyclerView mRecyclerView;
+	private PullRefreshRecyclerView mRecyclerView;
 
 	protected boolean isLoadMore = false;
 	private boolean isRefreshing = true;
@@ -102,42 +102,45 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		title.setText(R.string.information);
 		list = new ArrayList<ContentInfo>();
 		articlePresenter = new ArticlePresenter(this);
+		RecyclerView recyclerView = (RecyclerView)mRecyclerView.getRefreshView();
 		LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-		mRecyclerView.setLayoutManager(layoutManager);
-		mSwipeRefreshWidget.setOnRefreshListener(new OnRefreshListener() {
+		recyclerView.setLayoutManager(layoutManager);
+		
+		mRecyclerView.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
 
-			@Override
-			public void onRefresh() {// 刷新
-				// TODO Auto-generated method stub
-				if (isRefreshing) {
+            }
+
+            @Override
+            public void onRefresh() {
+            	if (isRefreshing) {
 					InformationFragment.this.onRefresh();
 				} else {
 					Log.d("helper", "正在刷新中!");
-					mSwipeRefreshWidget.setRefreshing(false);
+					mRecyclerView.refreshOver(null);
 				}
-			}
-		});
-		// mRecyclerView.setOnScrollListener(Scrolllistener);
+            	
+            }
 
-		mRecyclerView.setHasFixedSize(true);
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
+
+		recyclerView.setHasFixedSize(true);
 
 		madapter = new ArticleAdapter(mActivity, list, lisntener, InformationFragment.this);
 
-		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-		mRecyclerView.setAdapter(madapter);
+		recyclerView.setAdapter(madapter);
 	}
 
-	/**
-	 * 刷新页面
-	 */
-	public void refresh() {
-		lazyLoad();
-	}
 	
 	@Override
 	protected void initDisplay() {
 		if (isFiset) {
-			mSwipeRefreshWidget.setRefreshing(true);
+			mRecyclerView.setToRefreshing();
 			onRefresh();
 			isFiset = false;
 		}
@@ -146,7 +149,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	@Override
 	public void lazyLoad() {
 		if (isFiset) {
-			mSwipeRefreshWidget.setRefreshing(true);
+			mRecyclerView.setToRefreshing();
 			onRefresh();
 			isFiset = false;
 		}
@@ -176,7 +179,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		}
 		madapter.setListData(list);
 		currt = ListLoadType.Nomal;
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		isLoadMore = true;
 		isRefreshing = true;
 		madapter.notifyDataSetChanged();
@@ -187,7 +190,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
 		new ToastUtils(mActivity, errorMsg);
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		isLoadMore = true;
 		isRefreshing = true;
 		madapter.setFootType(0);
@@ -268,7 +271,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		currt = ListLoadType.LoadMore;
 		isLoadMore = false;
 		isRefreshing = false;
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
 		articlePresenter.getArticleList("0", ground_id);
@@ -281,7 +284,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 			try {
 				int kindid = data.getIntExtra(Const.KIND_ID, 0);
 				ground_id = String.valueOf(kindid);
-				mSwipeRefreshWidget.setRefreshing(true);
+				mRecyclerView.setToRefreshing();
 				onRefresh();
 				isFiset = false;
 			} catch (Exception e) {

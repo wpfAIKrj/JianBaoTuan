@@ -1,6 +1,5 @@
 package com.yingluo.Appraiser.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +23,6 @@ import com.yingluo.Appraiser.model.deleteMyFootPrintsModel;
 import com.yingluo.Appraiser.model.getMyFootPrintsModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
-import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyFootAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 
