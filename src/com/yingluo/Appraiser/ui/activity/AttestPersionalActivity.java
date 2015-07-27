@@ -10,7 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.ResponseToken;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
+
+import org.json.JSONException;
+
+import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.inter.onBasicView;
@@ -25,7 +34,7 @@ import com.yingluo.Appraiser.utils.StringUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
 
-public class AttestPersionalActivity extends BaseActivity {
+public class AttestPersionalActivity extends BaseActivity implements AskNetWorkCallBack{
 
 	private SelectPhotoDialog dialog;
 
@@ -51,11 +60,15 @@ public class AttestPersionalActivity extends BaseActivity {
 
 	private AttestPersonalPresenter mypresenter;
 
+	private AskNetWork askNet;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_attest_personal);
 		ViewUtils.inject(this);
+		askNet = new AskNetWork(NetConst.TOKEN,this);
+		askNet.ask(HttpRequest.HttpMethod.GET);
 		initView();
 		initData();
 	}
@@ -127,7 +140,6 @@ public class AttestPersionalActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.btn_take_photo:// 相机获取
 				imageUtils.openCameraImage();
@@ -179,7 +191,6 @@ public class AttestPersionalActivity extends BaseActivity {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		if (path != null) {
 			FileUtils.getInstance().deleteFile(path);
 		}
@@ -187,7 +198,6 @@ public class AttestPersionalActivity extends BaseActivity {
 	}
 
 	private void saveImage() {
-		// TODO Auto-generated method stub
 		if (path != null) {
 			FileUtils.getInstance().deleteFile(path);
 		}
@@ -199,7 +209,6 @@ public class AttestPersionalActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(String data) {
-			// TODO Auto-generated method stub
 			if (loading != null) {
 				loading.dismiss();
 			}
@@ -209,7 +218,6 @@ public class AttestPersionalActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			Toast.makeText(AttestPersionalActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
 			if (loading != null) {
 				loading.dismiss();
@@ -218,4 +226,17 @@ public class AttestPersionalActivity extends BaseActivity {
 		}
 	};
 
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		ResponseToken rt = new Gson().fromJson(msg, ResponseToken.class);
+		if(rt.getCode()==100000) {
+			Toast.makeText(this, "更新token"+rt.getData().getToken(), Toast.LENGTH_SHORT).show();
+			NetConst.UPTOKEN= rt.getData().getToken();
+		}
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		
+	}
 }

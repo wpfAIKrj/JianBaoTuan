@@ -10,12 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import de.greenrobot.event.EventBus;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
@@ -137,6 +139,7 @@ public class UserSetActivity extends BaseActivity {
 			if(errorCode.equals("110010")) {
 				String name = SharedPreferencesUtils.getInstance().getLoginUserName();
 				SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, false);
+//				EventBus.getDefault().post(new MyEvent(0, user));
 			}
 			new ToastUtils(UserSetActivity.this, errorMsg);
 		}

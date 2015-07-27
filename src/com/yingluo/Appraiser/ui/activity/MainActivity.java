@@ -100,10 +100,12 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		ActivityTaskManager.getInstance().putActivity(this.getClass().getName(), this);
 		
 		String name = SharedPreferencesUtils.getInstance().getLoginUserName();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mobile", name);
-		askNewWork = new AskNetWork(map, NetConst.IS_DEL, this);
-		askNewWork.ask(null);
+		if(name != null) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("mobile", name);
+			askNewWork = new AskNetWork(map, NetConst.IS_DEL, this);
+			askNewWork.ask(null);
+		}
 		init();
 		initEvents();
 		EventBus.getDefault().register(this);

@@ -1,12 +1,10 @@
 package com.yingluo.Appraiser.ui.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,7 +61,6 @@ public class ActivityIdentifyByMe extends BaseActivity {
 	}
 
 	private void initView() {
-		// TODO 自动生成的方法存根
 		title = (TextView) findViewById(R.id.tv_title);
 		title.setText("我来鉴定");
 		iv_delete.setVisibility(View.GONE);
@@ -71,7 +68,6 @@ public class ActivityIdentifyByMe extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -89,6 +85,7 @@ public class ActivityIdentifyByMe extends BaseActivity {
 			intent = new Intent(ActivityIdentifyByMe.this, KindOfPreciousActivity.class);
 			intent.putExtra(Const.SHOW_TYPE, 1);
 			startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
 		case R.id.btn_publish:// 我要鉴定
 			if (type != null) {

@@ -2,6 +2,8 @@ package com.yingluo.Appraiser.ui.activity;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +22,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
+import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lidroid.xutils.view.annotation.event.OnCompoundButtonCheckedChange;
@@ -30,6 +35,9 @@ import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.ResponseToken;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.PublishPresenter;
@@ -47,7 +55,7 @@ import com.yingluo.Appraiser.view.CircleImageView;
  * @author Administrator
  *
  */
-public class PublishedNextActivity extends BaseActivity {
+public class PublishedNextActivity extends BaseActivity implements AskNetWorkCallBack{
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
@@ -85,6 +93,8 @@ public class PublishedNextActivity extends BaseActivity {
 
 	@ViewInject(R.id.tv_number)
 	private TextView number;
+	
+	private AskNetWork askNet;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +140,8 @@ public class PublishedNextActivity extends BaseActivity {
 		}
 		dialog.show();
 		rampresenter.startGet(type.getId());
+		askNet = new AskNetWork(NetConst.TOKEN,this);
+		askNet.ask(HttpRequest.HttpMethod.GET);
 	}
 
 	@Override
@@ -275,4 +287,17 @@ public class PublishedNextActivity extends BaseActivity {
 		}
 	};
 
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		ResponseToken rt = new Gson().fromJson(msg, ResponseToken.class);
+		if(rt.getCode()==100000) {
+			Toast.makeText(this, "更新token"+rt.getData().getToken(), Toast.LENGTH_SHORT).show();
+			NetConst.UPTOKEN= rt.getData().getToken();
+		}
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		
+	}
 }
