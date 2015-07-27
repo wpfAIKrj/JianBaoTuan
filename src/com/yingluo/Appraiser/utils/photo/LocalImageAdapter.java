@@ -106,7 +106,7 @@ public class LocalImageAdapter extends BaseAdapter {
 					checkChangeL.onChange();
 				}
 				else{
-					if(selectList.size()<3){
+					if(selectList.size()<6){
 						addItem(getItem(position));	
 						checkView.setChecked(!ischecked);
 						checkChangeL.onChange();

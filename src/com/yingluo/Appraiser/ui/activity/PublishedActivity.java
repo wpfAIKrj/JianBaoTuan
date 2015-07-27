@@ -91,7 +91,7 @@ public class PublishedActivity extends BaseActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		overridePendingTransition(R.anim.hold, R.anim.right_out);
+		overridePendingTransition(R.anim.hold, R.anim.toast_out);
 	}
 	
 	@OnClick({ R.id.btn_back, R.id.published_bt, R.id.imageView01, R.id.imageView02, R.id.imageView03, R.id.imageView04,
@@ -113,7 +113,7 @@ public class PublishedActivity extends BaseActivity {
 			}
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
-			overridePendingTransition(R.anim.hold, R.anim.right_out);
+			overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			break;
 		case R.id.published_bt:
 			// 跳转到搜索
@@ -232,9 +232,19 @@ public class PublishedActivity extends BaseActivity {
 				int type = data.getIntExtra(Const.SELECT_ALBUM_TYPE, 0);
 				if (type == 0) {
 					selectListAll = data.getStringArrayListExtra(Const.SELECT_LIST);
+					for(String each : selectListTest){
+						if(selectListAll.contains(each)) {
+							selectListAll.remove(each);
+						}
+					}
 					showAllImage();
 				} else {
 					selectListTest = data.getStringArrayListExtra(Const.SELECT_LIST);
+					for(String each : selectListAll){
+						if(selectListTest.contains(each)) {
+							selectListTest.remove(each);
+						}
+					}
 					showTestImage();
 				}
 			}
@@ -248,7 +258,6 @@ public class PublishedActivity extends BaseActivity {
 
 	// 显示特写图片
 	private void showTestImage() {
-		// TODO 自动生成的方法存根
 		if (selectListTest.size() == 0) {
 			iv4.setImageResource(R.drawable.add_image_bg);
 			iv5.setImageResource(R.drawable.add_image_bg);
@@ -314,11 +323,15 @@ public class PublishedActivity extends BaseActivity {
 				intent = new Intent(PublishedActivity.this, AlbumActivity.class);
 				if (getPhoto < 3) {// 全景
 					intent.putExtra(Const.SELECT_ALBUM_TYPE, 0);
-					intent.putExtra(Const.SELECT_LIST, selectListAll);
+					
 				} else {// 特写
 					intent.putExtra(Const.SELECT_ALBUM_TYPE, 1);
 					intent.putExtra(Const.SELECT_LIST, selectListTest);
 				}
+				ArrayList<String> select = new ArrayList<String>();
+				select.addAll(selectListAll);
+				select.addAll(selectListTest);
+				intent.putExtra(Const.SELECT_LIST, select);
 				startActivityForResult(intent, Const.TO_SELECT_ALBUM);
 
 				break;

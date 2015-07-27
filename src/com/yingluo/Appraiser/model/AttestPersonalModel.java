@@ -32,13 +32,11 @@ public class AttestPersonalModel extends BaseModel {
 	
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		lis.onBaseDataLoaded(data);
 	}
 
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 		params=new RequestParams();
 		params.addBodyParameter("realname", name);
 		params.addBodyParameter("card_id", number);
