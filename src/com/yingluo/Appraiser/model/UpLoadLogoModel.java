@@ -38,7 +38,6 @@ public class UpLoadLogoModel extends BaseModel {
 	
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 		params=new RequestParams();
 		params.addBodyParameter(NetConst.EXTRA_LOGO, portrait);
 		params.addBodyParameter(NetConst.EXTRA_NAME, name);
@@ -48,13 +47,11 @@ public class UpLoadLogoModel extends BaseModel {
 
 	@Override
 	public void onFailureForString(String error, String msg) {
-		// TODO Auto-generated method stub
 		listener.onBaseDataLoadErrorHappened(error, msg);
 	}
 
 	@Override
 	public void analyzeData(String data) {
-		// TODO Auto-generated method stub
 		Gson gson=new Gson();
 		UserInfo user=gson.fromJson(data, UserInfo.class);
 		listener.onBaseDataLoaded(user);

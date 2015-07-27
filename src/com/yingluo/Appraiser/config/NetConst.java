@@ -94,6 +94,8 @@ public class NetConst {
 	public static final String PUBLISH_TREASURES = "Material/addAction";// 发布藏品
 	public static final String SYSTEMNOTICE = "Users/systemNoticeAction";// 获取系统消息列表
 
+	public static final String TOKEN = "Home/qiniuTokenAction"; //获取上传图片的token
+	
 	public static CookieStore COOKIESTORE = null;// 初始化为null
 
 	public static String SESSIONID = null;// 默认为空 注册登陆后赋值

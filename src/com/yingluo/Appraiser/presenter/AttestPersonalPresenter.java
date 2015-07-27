@@ -21,7 +21,6 @@ public class AttestPersonalPresenter implements OnBasicDataLoadListener<String>,
 	
 	private AttestPersonalModel model;
 	public AttestPersonalPresenter(onBasicView<String> View) {
-		// TODO Auto-generated constructor stub
 		 mView=View;
 	}
 	
@@ -41,7 +40,6 @@ public class AttestPersonalPresenter implements OnBasicDataLoadListener<String>,
 
 	@Override
 	public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {
-		// TODO Auto-generated method stub
 		if(arg2!=null){
 			try {
 				key=arg2.getString(NetConst.UPKEY);
