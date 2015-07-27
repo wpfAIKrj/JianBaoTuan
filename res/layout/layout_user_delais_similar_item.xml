@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/y20"
     android:background="@color/wite"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:layout_marginTop="@dimen/y20"
-     >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/float_head"
         style="@style/w_full_h_wrap"
-        android:background="@drawable/home_menu_back" 
-        >
+        android:background="@drawable/home_menu_back" >
 
         <TextView
             android:id="@+id/title"
@@ -25,15 +23,12 @@
     </RelativeLayout>
 
     <LinearLayout
-         android:id="@+id/layout_treasure"
+        android:id="@+id/layout_treasure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/y20"
-        android:orientation="horizontal" 
-         android:background="@color/wite"
-        >
-
-   
+        android:background="@color/wite"
+        android:orientation="horizontal" >
     </LinearLayout>
 
 </LinearLayout>
