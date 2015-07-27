@@ -1,8 +1,12 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -22,16 +26,25 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
+import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.InfoEvent;
 import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.bean.MyEvent;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.config.UrlUtil;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.ResponseIsDel;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
+import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.ExitPresenter;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
 import com.yingluo.Appraiser.ui.dialog.SelectPhotoDialog;
@@ -58,7 +71,7 @@ import de.greenrobot.event.EventBus;
  * @author Administrator
  *
  */
-public class MainActivity extends FragmentActivity implements OnTabSelectedListener {
+public class MainActivity extends FragmentActivity implements OnTabSelectedListener,AskNetWorkCallBack {
 
 	private FragmentManager mFragmentManager;
 	private HomeFragment mHomeFragment;
@@ -72,9 +85,11 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	private SelectPhotoDialog photodialog;
 	private ImageUtils imageUtils;
 	private Dialog Logodialong;
-
+	
 	// 用于判断第二次点击退出
 	private long mExitTime;
+	
+	private AskNetWork askNewWork;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +98,12 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		ActivityTaskManager.getInstance().putActivity(this.getClass().getName(), this);
+		
+		String name = SharedPreferencesUtils.getInstance().getLoginUserName();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mobile", name);
+		askNewWork = new AskNetWork(map, NetConst.IS_DEL, this);
+		askNewWork.ask(null);
 		init();
 		initEvents();
 		EventBus.getDefault().register(this);
@@ -419,4 +440,20 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 			}
 		}
 	};
+
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		ResponseIsDel rr = new Gson().fromJson(msg, ResponseIsDel.class);
+		if(rr.getCode()==110010) {
+			String name = SharedPreferencesUtils.getInstance().getLoginUserName();
+			SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, false);
+		}
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		
+	}
+	
+	
 }

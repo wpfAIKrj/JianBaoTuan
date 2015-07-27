@@ -134,6 +134,10 @@ public class UserSetActivity extends BaseActivity {
 			if (Logodialong != null) {
 				Logodialong.dismiss();
 			}
+			if(errorCode.equals("110010")) {
+				String name = SharedPreferencesUtils.getInstance().getLoginUserName();
+				SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, false);
+			}
 			new ToastUtils(UserSetActivity.this, errorMsg);
 		}
 	};

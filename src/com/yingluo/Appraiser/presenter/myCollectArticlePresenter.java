@@ -6,7 +6,6 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
-import com.yingluo.Appraiser.model.ArticleModel;
 import com.yingluo.Appraiser.model.getCollectArticleModel;
 
 import android.content.Context;

@@ -49,7 +49,6 @@ import com.yingluo.Appraiser.inter.deleteItemlistener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.getCollectArticleModel;
-import com.yingluo.Appraiser.presenter.ArticlePresenter;
 import com.yingluo.Appraiser.presenter.deleteInfoPresenter;
 import com.yingluo.Appraiser.presenter.myCollectArticlePresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;

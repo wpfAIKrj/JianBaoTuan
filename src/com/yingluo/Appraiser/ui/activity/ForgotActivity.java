@@ -51,6 +51,9 @@ public class ForgotActivity extends BaseActivity {
 	@ViewInject(R.id.register_send_code)
 	private Button send_code;
 
+	@ViewInject(R.id.register_button)
+	private Button queDing;
+	
 	@ViewInject(R.id.tv_register_edit_password)
 	private TextView tvLast;
 	
@@ -65,7 +68,6 @@ public class ForgotActivity extends BaseActivity {
 	private Handler mhandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
 			switch (msg.what) {
 			case 0:
 				reSendSMS();
@@ -100,7 +102,7 @@ public class ForgotActivity extends BaseActivity {
 		send_help = getString(R.string.register_code_bt_text);
 		presenter = new ForgetPresenter(iview);
 		tvLast.setText("输入新密码");
-		send_code.setText("确定");
+		queDing.setText("确定");
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ public class UrlUtil {
 
 	/**
 	 * 主页URL
-	 * */
+	 */
 	public static String getHomePageURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/home/indexAction");
@@ -20,7 +20,7 @@ public class UrlUtil {
 
 	/**
 	 * 鉴定大厅
-	 * */
+	 */
 	public static String getIdentifyPageURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/home/hallAction");
@@ -29,59 +29,61 @@ public class UrlUtil {
 
 	/**
 	 * 我的足迹
-	 * */
+	 */
 	public static String getMyFootPrintsURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/myFootPrintsListAction");
 		return url.toString();
 	}
+
 	/**
-	 *删除 我的足迹
-	 * */
+	 * 删除 我的足迹
+	 */
 	public static String deleteMyFootPrintsURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/deleteFootPrintsAction");
 		return url.toString();
 	}
+
 	/**
 	 * 我的宝物
-	 * */
+	 */
 	public static String getTreasureByIdURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Users/myTreasuresAction");
 		return url.toString();
 	}
-	
+
 	/**
 	 * 他的宝物
-	 * */
+	 */
 	public static String getTreasureByOtherIdURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Home/otherTreasuresAction");
 		return url.toString();
 	}
 
-
 	/**
 	 * 他的收藏
-	 * */
-	public static String getOtherCollectionURL() {		
+	 */
+	public static String getOtherCollectionURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Home/otherTreasureListAction");
 		return url.toString();
 	}
-	
+
 	/**
 	 * 我的收藏
-	 * */
+	 */
 	public static String getMyCollectionURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/myCollectionsAction");
 		return url.toString();
 	}
+
 	/**
 	 * 我的鉴定
-	 * */
+	 */
 	public static String getMyIdentifyURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Users/treasureListAction");
@@ -90,40 +92,43 @@ public class UrlUtil {
 
 	/**
 	 * 所有分类
-	 * */
+	 */
 	public static String getAllKinds() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/kindsAction");
 		return url.toString();
 	}
+
 	/**
 	 * 根据ID获取用户详情
-	 * */
+	 */
 	public static String getUserById() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Users/detailAction");
 		return url.toString();
 	}
+
 	/**
 	 * 根据宝物id来收藏
-	 * */
+	 */
 	public static String collectTreasureById() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/collectAction");
 		return url.toString();
 	}
+
 	/**
 	 * 根据宝物id来取消收藏
-	 * */
+	 */
 	public static String deleteCollectTreasureById() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/deleteCollectionsAction");
 		return url.toString();
 	}
-	
+
 	/**
 	 * 获取宝贝详情
-	 * */
+	 */
 	public static String getTreasureAllInfoByIdURL() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Material/detailAction");
@@ -132,6 +137,7 @@ public class UrlUtil {
 
 	/**
 	 * 获取宝贝评论列表
+	 * 
 	 * @return
 	 */
 	public static String getTreasureCommentListByIdURL() {
@@ -143,6 +149,7 @@ public class UrlUtil {
 
 	/**
 	 * 发表宝贝评论
+	 * 
 	 * @return
 	 */
 	public static String sendTreasureCommentURL() {
@@ -154,6 +161,7 @@ public class UrlUtil {
 
 	/**
 	 * 我要鉴定
+	 * 
 	 * @return
 	 */
 	public static String sendTreasureIdentityURL() {
@@ -162,16 +170,16 @@ public class UrlUtil {
 		url.append(BASE_URL).append("/Users/addTreasureAction");
 		return url.toString();
 	}
-	
+
 	/**
 	 * 获取图片下载连接
+	 * 
 	 * @return
 	 */
-	public static String getImageTokenUrl(){
+	public static String getImageTokenUrl() {
 		StringBuilder url = new StringBuilder();
 		url.append(BASE_URL).append("/Home/token");
 		return url.toString();
 	}
-	
 
 }
