@@ -138,6 +138,7 @@
     <string name="help_msg_18">你选择的宝物不是最详细的分类，请选择详细的分类！</string>
     <string name="help_msg_19">宝贝描述不能少于14字！</string>
     <string name="help_msg_20">宝贝描述不能多于200字！</string>
+    <string name="help_msg_21">新老密码不能相同</string>
     <string name="finish">完成</string>
 
 </resources>

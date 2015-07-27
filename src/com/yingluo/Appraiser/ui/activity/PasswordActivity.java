@@ -51,7 +51,6 @@ public class PasswordActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_password);
 		ViewUtils.inject(this);
@@ -60,7 +59,6 @@ public class PasswordActivity extends BaseActivity {
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -73,7 +71,6 @@ public class PasswordActivity extends BaseActivity {
 
 	@OnClick({ R.id.btn_back, R.id.pwd_save })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_back:// 返回上层
 			setResult(RESULT_CANCELED, getIntent());
@@ -87,16 +84,20 @@ public class PasswordActivity extends BaseActivity {
 				if (newpassword != null && !newpassword.isEmpty()) {
 					repassword = repwd.getText().toString();
 					if (repassword != null && !repassword.isEmpty()) {
-						if (repassword.length() >= 6) {
-							if (newpassword.equals(repassword)) {
-								startUpdatePwd(oldpassword, newpassword);
+						if(!oldpassword.equals(newpassword)) {
+							if (repassword.length() >= 6) {
+								if (newpassword.equals(repassword)) {
+									startUpdatePwd(oldpassword, newpassword);
+								} else {
+									repwd.setText("");
+									newpwd.setText("");
+									new ToastUtils(this, R.string.help_msg_07);
+								}
 							} else {
-								repwd.setText("");
-								newpwd.setText("");
-								new ToastUtils(this, R.string.help_msg_07);
+								new ToastUtils(this, R.string.help_msg_08);
 							}
 						} else {
-							new ToastUtils(this, R.string.help_msg_08);
+							new ToastUtils(this, R.string.help_msg_21);
 						}
 					} else {
 						new ToastUtils(this, R.string.help_msg_06);
