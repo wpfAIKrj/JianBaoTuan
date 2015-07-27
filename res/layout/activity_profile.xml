@@ -58,7 +58,7 @@
             android:cursorVisible="true"
             android:ems="10"
             android:imeOptions="actionNext"
-            android:inputType="number"
+            android:inputType="text"
             android:textCursorDrawable="@drawable/color_cursor" >
 
             <requestFocus />
