@@ -82,10 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/view1"
         android:layout_below="@+id/view2"
-        android:layout_alignParentLeft="true"
-        android:paddingLeft="@dimen/x14"
-        android:paddingRight="@dimen/x14">
-    </com.yingluo.Appraiser.refresh.PullRefreshRecyclerView>
+        android:layout_alignParentLeft="true"/>
 
      <View
         android:id="@+id/view1"
