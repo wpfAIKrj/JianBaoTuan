@@ -110,6 +110,10 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@ViewInject(R.id.title_tag)
 	private TextView tag;// 鉴定结果旁边的提示
+	
+	@ViewInject(R.id.bottom)
+	private LinearLayout bottom;
+	
 	CollectTreasureByIdModel collectModel;// 收藏
 
 	getTreasureAllInfoByIdModel infoModel;// 宝物详情
@@ -317,7 +321,6 @@ public class ActivityUserDelails extends BaseActivity {
 	}
 
 	private void initViews() {
-		// TODO Auto-generated method stub
 		// bitmapUtils.display(iv_head, entity.authImage);
 		// tv_name.setText(entity.authName);
 		// tv_msg.setText(entity.name);
@@ -329,7 +332,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		if (isFirst) {
 			loaddialog = DialogUtil.createLoadingDialog(this, "正在获取宝物详情...");
@@ -469,7 +471,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 	// 添加鉴定结果
 	protected void addPeopleidentity() {
-		// TODO Auto-generated method stub
 		if (infoModel.treasureList != null && infoModel.treasureList.size() > 0) {
 			resultadapter.setData(infoModel.treasureList);
 			resultadapter.setListViewHeightBasedOnChildren(peopleview);
@@ -480,7 +481,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 	// 添加其他宝物
 	protected void addOtherTreasure() {
-		// TODO Auto-generated method stub
 		treasurelayout.removeAllViews();
 
 		if (infoModel.otherTreasure != null && infoModel.otherTreasure.size() > 0) {
@@ -529,12 +529,15 @@ public class ActivityUserDelails extends BaseActivity {
 			// 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
 			View v = getCurrentFocus();
 
-			if (HelpUtils.isShouldHideInput(v, ev)) {
+			if (HelpUtils.isShouldHideInput(v, ev,bottom)) {
 				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				HelpUtils.hideSoftInput(v.getWindowToken(), im);
-				
+				to_user_id = 0;
+				ed_text.setHint("");
+				ed_text.setText("");
 			}
+			
 			if (v == bt_send_comment) {
 				return true;
 			}

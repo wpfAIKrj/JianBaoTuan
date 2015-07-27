@@ -49,20 +49,20 @@ public class BaseActivity extends Activity {
 		win.setAttributes(winParams);
 	}
 
-	/**
-	 * 隐藏软键盘
-	 */
-	@Override
-	public boolean dispatchTouchEvent(MotionEvent ev) {
-		// TODO Auto-generated method stub
-		if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-			// 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
-			View v = getCurrentFocus();
-			if (HelpUtils.isShouldHideInput(v, ev)) {
-				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				HelpUtils.hideSoftInput(v.getWindowToken(), im);
-			}
-		}
-		return super.dispatchTouchEvent(ev);
-	}
+//	/**
+//	 * 隐藏软键盘
+//	 */
+//	@Override
+//	public boolean dispatchTouchEvent(MotionEvent ev) {
+//		// TODO Auto-generated method stub
+//		if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+//			// 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
+//			View v = getCurrentFocus();
+//			if (HelpUtils.isShouldHideInput(v, ev)) {
+//				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//				HelpUtils.hideSoftInput(v.getWindowToken(), im);
+//			}
+//		}
+//		return super.dispatchTouchEvent(ev);
+//	}
 }

@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class HelpUtils {
 	/**
@@ -14,18 +15,19 @@ public class HelpUtils {
 	 * @param event
 	 * @return
 	 */
-	public static boolean isShouldHideInput(View v, MotionEvent event) {
+	public static boolean isShouldHideInput(View v, MotionEvent event,LinearLayout bottomView) {
 		if (v != null && (v instanceof EditText)) {
 			int[] l = { 0, 0 };
-			v.getLocationInWindow(l);
-			int left = l[0], top = l[1], bottom = top + v.getMeasuredHeight(), right = left
-					+ v.getMeasuredWidth();
+			bottomView.getLocationInWindow(l);
+			int left = l[0], top = l[1];
+			int bottom = top + bottomView.getMeasuredHeight();
+			int right = left + bottomView.getMeasuredWidth();
+			
 			if (left<=event.getX() && event.getX() <= right
 					&&top<=event.getY()  && event.getY() <= bottom) {
 				// 点击EditText的事件，忽略它。
 				return false;
 			} else {
-				// hideSoftInput(v.getWindowToken());
 				return true;
 			}
 		}
