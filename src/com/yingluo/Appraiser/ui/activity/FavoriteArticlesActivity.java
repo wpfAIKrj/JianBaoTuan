@@ -52,6 +52,8 @@ import com.yingluo.Appraiser.model.getCollectArticleModel;
 import com.yingluo.Appraiser.presenter.ArticlePresenter;
 import com.yingluo.Appraiser.presenter.deleteInfoPresenter;
 import com.yingluo.Appraiser.presenter.myCollectArticlePresenter;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
@@ -70,7 +72,7 @@ import de.greenrobot.event.EventBus;
  * @author Administrator
  *
  */
-public class FavoriteArticlesActivity extends BaseActivity implements ListviewLoadListener, onListView<ContentInfo> {
+public class FavoriteArticlesActivity extends BaseActivity implements onListView<ContentInfo> {
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
@@ -78,10 +80,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 	private MyArticleAdapter madapter;
 	private ArrayList<ContentInfo> list;
 
-	@ViewInject(R.id.swipe_refresh_widget)
-	private SwipeRefreshLayout mSwipeRefreshWidget;
 	@ViewInject(R.id.recyclerview1)
-	private RecyclerView mRecyclerView;
+	private PullRefreshRecyclerView mRecyclerView;
 
 	private int length = 30;
 
@@ -144,43 +144,51 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		list = new ArrayList<ContentInfo>();
 		myPresenter = new myCollectArticlePresenter(this);
 		deletePresenter = new deleteInfoPresenter(netlistener);
+		
+		RecyclerView recyclerView = (RecyclerView) mRecyclerView.getRefreshView();
+		
 		LayoutManager layoutManager = new LinearLayoutManager(this);
-		mRecyclerView.setLayoutManager(layoutManager);
-		mSwipeRefreshWidget.setDistanceToTriggerSync(200);
-		mSwipeRefreshWidget.setOnRefreshListener(new OnRefreshListener() {
+		recyclerView.setLayoutManager(layoutManager);
+		
+		mRecyclerView.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
 
-			@Override
-			public void onRefresh() {// 刷新
-				// TODO Auto-generated method stub
-				if (isRefreshing) {
+            }
+
+            @Override
+            public void onRefresh() {
+            	if (isRefreshing) {
 					FavoriteArticlesActivity.this.onRefresh();
 				} else {
 					Log.d("helper", "正在刷新中!");
-					mSwipeRefreshWidget.setRefreshing(false);
+					mRecyclerView.refreshOver(null);
 				}
-			}
-		});
+            }
 
-		mRecyclerView.setHasFixedSize(true);
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
 
-		madapter = new MyArticleAdapter(this, list, listener, FavoriteArticlesActivity.this, deleteItemlistener);
+		recyclerView.setHasFixedSize(true);
+
+		madapter = new MyArticleAdapter(this, list, listener, deleteItemlistener);
 		madapter.setMode(Attributes.Mode.Single);
 		madapter.setScorll(true);
 
-		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-		mRecyclerView.setAdapter(madapter);
+		recyclerView.setItemAnimator(new DefaultItemAnimator());
+		recyclerView.setAdapter(madapter);
 		dialogLoad = DialogUtil.createLoadingDialog(this, "正在删除");
 	}
 
 	protected void initData() {
-		// TODO Auto-generated method stub
-
 		deleteInfos = new HashMap<String, Integer>();
 	}
 
 	@OnClick({ R.id.button_delect, R.id.button_category, R.id.delete_all_bt, R.id.cancle_all_bt })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.button_category:// 跳转到
 			setResult(RESULT_CANCELED, getIntent());
@@ -250,7 +258,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		}
 		madapter.setListData(list);
 		currt = ListLoadType.Nomal;
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		isLoadMore = true;
 		isRefreshing = true;
 		madapter.notifyDataSetChanged();
@@ -260,9 +268,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 
 	@Override
 	public void onFail(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		new ToastUtils(this, errorMsg);
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		isLoadMore = true;
 		isRefreshing = true;
 		madapter.setFootType(0);
@@ -285,7 +292,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		}
 	}
 
-	@Override
 	public void onRefresh() {
 		// TODO Auto-generated method stub
 		currt = ListLoadType.Refresh;
@@ -297,13 +303,12 @@ public class FavoriteArticlesActivity extends BaseActivity implements ListviewLo
 		myPresenter.getArticleList("0", length);
 	}
 
-	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
 		currt = ListLoadType.LoadMore;
 		isLoadMore = false;
 		isRefreshing = false;
-		mSwipeRefreshWidget.setRefreshing(false);
+		mRecyclerView.refreshOver(null);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
 		myPresenter.getArticleList("0", (length + 1));

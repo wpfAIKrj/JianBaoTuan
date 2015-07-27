@@ -9,20 +9,13 @@
         android:id="@+id/layout_head"
         layout="@layout/article_head" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/swipe_refresh_widget"
+    <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
+        android:id="@+id/recyclerview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/layout_head" >
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="@null"
-            android:scrollbars="vertical" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_below="@id/layout_head"
+        android:cacheColorHint="@null"
+        android:scrollbars="vertical" />
 
     <RelativeLayout
         android:id="@+id/layout_delet"

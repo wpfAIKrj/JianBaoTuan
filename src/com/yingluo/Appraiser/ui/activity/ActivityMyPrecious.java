@@ -25,6 +25,8 @@ import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
@@ -49,10 +51,8 @@ public class ActivityMyPrecious extends BaseActivity {
 	View btn_delete;
 	@ViewInject(R.id.btn_back)
 	View btn_back;
-	@ViewInject(R.id.swipe_refresh_widget)
-	SwipeRefreshLayout swipe_refresh_widget;
 	@ViewInject(R.id.recyclerview)
-	RecyclerView recyclerview;
+	PullRefreshRecyclerView mRecyclerview;
 
 	@OnClick(R.id.btn_back)
 	public void back_click(View view) {
@@ -115,19 +115,32 @@ public class ActivityMyPrecious extends BaseActivity {
 	}
 
 	private void initViews() {
+		RecyclerView recyclerview = (RecyclerView)mRecyclerview.getRefreshView();
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
+		
 		mAdapter = new MyTreasureAdapter(lis);
 		recyclerview.setAdapter(mAdapter);
-		swipe_refresh_widget.setOnRefreshListener(new OnRefreshListener() {
+		
+		mRecyclerview.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
 
-			@Override
-			public void onRefresh() {// 刷新
-				ActivityMyPrecious.this.onRefresh();
-			}
-		});
+            }
+
+            @Override
+            public void onRefresh() {
+            	ActivityMyPrecious.this.onRefresh();
+            }
+
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
+		
 	}
 
 	protected void onRefresh() {
@@ -136,15 +149,13 @@ public class ActivityMyPrecious extends BaseActivity {
 
 			@Override
 			public void onSuccess() {
-				swipe_refresh_widget.setRefreshing(false);
+				mRecyclerview.refreshOver(null);
 				mAdapter.setData(model.getResult());
-
 			}
 
 			@Override
 			public void onError() {
-				swipe_refresh_widget.setRefreshing(false);
-
+				mRecyclerview.refreshOver(null);
 			}
 		}, Treadsure_type);
 	}
@@ -159,7 +170,7 @@ public class ActivityMyPrecious extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			swipe_refresh_widget.setRefreshing(true);
+			mRecyclerview.setToRefreshing();
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {

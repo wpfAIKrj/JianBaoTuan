@@ -41,7 +41,7 @@ import com.yingluo.Appraiser.utils.ToastUtils;
 
 import de.greenrobot.event.EventBus;
 
-public class InformationFragment extends BaseFragment implements onListView<ContentInfo>, ListviewLoadListener {
+public class InformationFragment extends BaseFragment implements onListView<ContentInfo> {
 
 	private ArticleAdapter madapter;
 
@@ -131,7 +131,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 		recyclerView.setHasFixedSize(true);
 
-		madapter = new ArticleAdapter(mActivity, list, lisntener, InformationFragment.this);
+		madapter = new ArticleAdapter(mActivity, list, lisntener);
 
 		recyclerView.setAdapter(madapter);
 	}
@@ -255,7 +255,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		};
 	};
 
-	@Override
 	public void onRefresh() {
 		currt = ListLoadType.Refresh;
 		isRefreshing = false;
@@ -266,7 +265,6 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		articlePresenter.getArticleList("0", ground_id);
 	}
 
-	@Override
 	public void onLoadMore() {
 		currt = ListLoadType.LoadMore;
 		isLoadMore = false;
