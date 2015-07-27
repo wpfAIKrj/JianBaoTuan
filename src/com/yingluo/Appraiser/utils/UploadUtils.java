@@ -63,7 +63,6 @@ public class UploadUtils {
 
 						@Override
 						public void onSucess(String data) {
-							// TODO Auto-generated method stub
 							NetConst.UPTOKEN = data;
 							UserInfo user = ItApplication.getcurrnUser();
 							if (user != null) {
@@ -75,7 +74,6 @@ public class UploadUtils {
 
 						@Override
 						public void onFail(String errorCode, String errorMsg) {
-							// TODO Auto-generated method stub
 
 						}
 					});

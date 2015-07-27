@@ -1,6 +1,10 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -27,6 +31,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -34,6 +40,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
+import com.yingluo.Appraiser.bean.ImUserInfo;
+import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.DialogForResult;
@@ -51,6 +59,7 @@ import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.HelpUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.ImageViewWithBorder;
 import com.yingluo.Appraiser.view.SlideShowImageView;
@@ -126,6 +135,10 @@ public class ActivityUserDelails extends BaseActivity {
 
 	commentListAdapter commentadapter;// 评论列表
 
+	public CollectionTreasure curnt = null;
+	public List<CollectionTreasure> otherTreasure = null;
+	public List<CommentEntity> treasureList = null;
+	
 	private Dialog dialog1;
 
 	protected Dialog loaddialog;
@@ -346,7 +359,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 		@Override
 		public void onBaseDataLoaded(String data) {
-			// TODO Auto-generated method stub
 			if (loaddialog != null && loaddialog.isShowing()) {
 				loaddialog.dismiss();
 			}

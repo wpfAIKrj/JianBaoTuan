@@ -18,7 +18,6 @@ public class getUserInfoLPresenter implements OnStringDataLoadListener {
 	private getUserInfoModel model;
 	
 	public getUserInfoLPresenter(onBasicView<String> view) {
-		// TODO Auto-generated constructor stub
 		mView=view;
 	}
 	
@@ -31,13 +30,11 @@ public class getUserInfoLPresenter implements OnStringDataLoadListener {
 	
 	@Override
 	public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		mView.onFail(errorCode, errorMsg);
 	}
 
 	@Override
 	public void onBaseDataLoaded(String data) {
-		// TODO Auto-generated method stub
 		mView.onSucess(data);
 	}
 

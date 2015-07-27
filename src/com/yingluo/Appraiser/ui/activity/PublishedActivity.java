@@ -180,7 +180,6 @@ public class PublishedActivity extends BaseActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_PUBLISH_SELECT_TYPE) {// 选择宝物
 			if (resultCode == RESULT_OK) {
