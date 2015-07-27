@@ -70,19 +70,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh_widget"
+        <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone" >
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:cacheColorHint="@null"
-                android:scrollbars="vertical" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+            android:cacheColorHint="@null"
+            android:scrollbars="vertical" />
 
         <WebView
             android:id="@+id/context"

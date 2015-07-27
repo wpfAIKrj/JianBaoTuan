@@ -35,6 +35,7 @@ import com.yingluo.Appraiser.model.MyTreasureOtherModel;
 import com.yingluo.Appraiser.model.getTreasureByIdModel;
 import com.yingluo.Appraiser.model.getTreasureByOtherIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
+import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
@@ -82,10 +83,8 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 	@ViewInject(R.id.btn_msg)
 	Button btn_msg;
 
-	@ViewInject(R.id.swipe_refresh_widget)
-	SwipeRefreshLayout swipe_refresh_widget;
 	@ViewInject(R.id.recyclerview)
-	RecyclerView recyclerview;
+	PullRefreshRecyclerView mRecyclerview;
 
 	OtherTreasureAdapter mAdapter = null;
 
@@ -119,7 +118,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			// 取消刷新动画
-			swipe_refresh_widget.setRefreshing(false);
+			mRecyclerview.refreshOver(null);
 			// 先清空数据
 			mAdapter.getData().clear();
 			// 先设置背景
@@ -129,7 +128,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 				if (userinfo != null) {
 					if (userinfo.getIs_system() == 1) {
-						swipe_refresh_widget.setVisibility(View.VISIBLE);
 						context.setVisibility(View.GONE);
 					} else {
 						// 设置View
@@ -138,23 +136,19 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 								@Override
 								public void onSuccess() {
-									// TODO Auto-generated method stub
-
 									isone = false;
-									swipe_refresh_widget.setRefreshing(false);
+									mRecyclerview.refreshOver(null);
 									mAdapter.setData(treasureModel.getResult());
 
 								}
 
 								@Override
 								public void onError() {
-									// TODO Auto-generated method stub
-									swipe_refresh_widget.setRefreshing(false);
-
+									mRecyclerview.refreshOver(null);
 								}
 							}, 0, entity.user_id);
 						} else {
-							swipe_refresh_widget.setRefreshing(false);
+							mRecyclerview.refreshOver(null);
 							mAdapter.setData(treasureModel.getResult());
 						}
 					}
@@ -165,28 +159,24 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 			case R.id.btn_identified: {
 				context.setVisibility(View.GONE);
-				swipe_refresh_widget.setVisibility(View.VISIBLE);
 				if (istwo) {
 					identifyModel.sendHttp(new CommonCallBack() {
 
 						@Override
 						public void onSuccess() {
-							// TODO Auto-generated method stub
 							istwo = false;
-							swipe_refresh_widget.setRefreshing(false);
+							mRecyclerview.refreshOver(null);
 							mAdapter.setData(identifyModel.getResult());
 
 						}
 
 						@Override
 						public void onError() {
-							// TODO Auto-generated method stub
-							swipe_refresh_widget.setRefreshing(false);
-
+							mRecyclerview.refreshOver(null);
 						}
 					}, 0, entity.user_id);
 				} else {
-					swipe_refresh_widget.setRefreshing(false);
+					mRecyclerview.refreshOver(null);
 					mAdapter.setData(identifyModel.getResult());
 				}
 			}
@@ -200,7 +190,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.layout_first_page_user);
@@ -236,6 +225,8 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		} else {
 			tv_grade_name.setText("普通用户");
 		}
+		
+		RecyclerView recyclerview = (RecyclerView) mRecyclerview.getRefreshView();
 		GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
@@ -316,26 +307,23 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 				} else {
 					tv_text_title.setText(R.string.other_identitycollectinfo_text);
 					context.setVisibility(View.GONE);
-					swipe_refresh_widget.setVisibility(View.VISIBLE);
 					treasureModel.sendHttp(new CommonCallBack() {
 						@Override
 						public void onSuccess() {
-							// TODO Auto-generated method stub
 							if (loaddialog != null && loaddialog.isShowing()) {
 								loaddialog.dismiss();
 							}
 							isone = false;
-							swipe_refresh_widget.setRefreshing(false);
+							mRecyclerview.refreshOver(null);
 							mAdapter.setData(treasureModel.getResult());
 						}
 
 						@Override
 						public void onError() {
-							// TODO Auto-generated method stub
 							if (loaddialog != null && loaddialog.isShowing()) {
 								loaddialog.dismiss();
 							}
-							swipe_refresh_widget.setRefreshing(false);
+							mRecyclerview.refreshOver(null);
 
 						}
 					}, 0, userinfo.getId());
