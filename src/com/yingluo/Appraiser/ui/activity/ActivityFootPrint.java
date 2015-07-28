@@ -119,12 +119,6 @@ public class ActivityFootPrint extends BaseActivity {
 		mAdapter.notifyDataSetChanged();
 		mAdapter.exitDelete();
 	}
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		prrvRe.setToRefreshing();
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +132,7 @@ public class ActivityFootPrint extends BaseActivity {
 		mAdapter = new MyFootAdapter(this,onarcitilis);
 		prrv = (RecyclerView)prrvRe.getRefreshView();
 		
-//		prrvRe.setToRefreshing();
+		prrvRe.setToRefreshing();
 		prrvRe.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
             public void onPullDown(float y) {
