@@ -64,30 +64,25 @@ public class ViewOtherTreasure extends LinearLayout {
 
 	public ViewOtherTreasure(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewOtherTreasure(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewOtherTreasure(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
-		// TODO Auto-generated method stub
 		super.onAttachedToWindow();
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
@@ -195,29 +190,15 @@ public class ViewOtherTreasure extends LinearLayout {
 		return spannable;
 	}
 
-	@OnClick({ R.id.imageview_big_icon, R.id.imageview_small_icon })
+	@OnClick(R.id.imageview_big_icon)
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		if (currnt == null)
 			return;
-		switch (v.getId()) {
-		case R.id.imageview_big_icon: {
-			Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-			mIntent.putExtra(Const.ENTITY, currnt);
-			getContext().startActivity(mIntent);
-
-		}
-
-			break;
-
-		case R.id.imageview_small_icon: {
-			// Intent mIntent = new Intent(getContext(),
-			// ActivityHotIdentiy.class);
-			// mIntent.putExtra(Const.ENTITY, currnt);
-			// getContext().startActivity((mIntent));
-		}
-			break;
-		}
+		Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
+		mIntent.putExtra(Const.ENTITY, currnt);
+		getContext().startActivity(mIntent);
+		Activity act = (Activity)getContext();
+		act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 	}
 
 	public void setDataFromDelete(boolean isDelete) {
