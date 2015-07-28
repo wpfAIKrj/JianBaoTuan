@@ -80,6 +80,7 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 			treasure.authType = json.getInt("authType");
 			treasure.isCollected = json.getBoolean("isCollected");
 			treasure.status = json.getInt("status");
+			treasure.authorityData = json.getString("authorityData");
 			ImUserInfo user = new ImUserInfo();
 			user.setId(treasure.user_id);
 			user.setName(treasure.authName);

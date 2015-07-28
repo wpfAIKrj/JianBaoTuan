@@ -39,6 +39,9 @@ public class CollectionTreasure implements Serializable {
 	@SerializedName("goodAt")
 	public String goodAt;
 
+	@SerializedName("authorityData")
+	public String authorityData;
+	
 	public int authType;
 	public String[] images1;
 	public String[] images2;
@@ -71,7 +74,7 @@ public class CollectionTreasure implements Serializable {
 
 	public CollectionTreasure(String authName, int authLevel, long user_id, String authImage, String name,
 			String linkaddress, long viewTimes, String image, String[] images, long treasure_id, String company,
-			String goodAt) {
+			String goodAt,String authorityData) {
 		super();
 		this.authName = authName;
 		this.authLevel = authLevel;
@@ -85,6 +88,7 @@ public class CollectionTreasure implements Serializable {
 		this.treasure_id = treasure_id;
 		this.company = company;
 		this.goodAt = goodAt;
+		this.authorityData = authorityData;
 	}
 
 	public String getAuthName() {
@@ -177,6 +181,14 @@ public class CollectionTreasure implements Serializable {
 
 	public String getGoodAt() {
 		return goodAt;
+	}
+
+	public String getAuthorityData() {
+		return authorityData;
+	}
+
+	public void setAuthorityData(String authorityData) {
+		this.authorityData = authorityData;
 	}
 
 	public String[] getImages1() {

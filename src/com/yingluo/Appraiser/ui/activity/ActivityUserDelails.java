@@ -111,6 +111,9 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.layout_treasure)
 	private LinearLayout treasurelayout;
 
+	@ViewInject(R.id.tv_offer)
+	private TextView tvOffer;
+	
 	@ViewInject(R.id.people_recyclerview)
 	private ListView peopleview;
 
@@ -233,7 +236,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
@@ -383,6 +385,8 @@ public class ActivityUserDelails extends BaseActivity {
 			if (entity.status == 2) {
 				tag.setText("(已鉴定)");
 				tag.setVisibility(View.VISIBLE);
+//				tvOffer.setVisibility(View.VISIBLE);
+//				tvOffer.setText(text);
 				btn_goto.setVisibility(View.GONE);
 			} else {
 				btn_goto.setVisibility(View.VISIBLE);

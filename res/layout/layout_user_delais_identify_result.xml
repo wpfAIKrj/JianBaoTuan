@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/y20"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" 
     android:background="@color/wite"
-    >
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/float_head"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y72"
-         android:background="@color/wite"
-        >
+        android:background="@color/wite" >
 
         <TextView
             android:id="@+id/title"
@@ -25,24 +23,33 @@
 
         <TextView
             android:id="@+id/title_tag"
-       		style="@style/w_wrap_h_wrap"
+            style="@style/w_wrap_h_wrap"
             android:layout_alignBaseline="@+id/title"
             android:layout_alignBottom="@+id/title"
             android:layout_toRightOf="@+id/title"
-             android:text="@string/str_identify_result"
+            android:text="@string/str_identify_result"
             android:textColor="@color/dialog_title_color"
             android:textSize="@dimen/x30"
-            android:visibility="gone"
-             />
-
+            android:visibility="gone" />
     </RelativeLayout>
-  <View 
-           
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y1"
-            android:background="@drawable/item_layout_padd"
-            />
-         <ListView
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@drawable/item_layout_padd" />
+
+    <TextView
+        android:id="@+id/tv_offer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/x30"
+        android:visibility="gone"
+        />
+
+    <ListView
         android:id="@+id/people_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
