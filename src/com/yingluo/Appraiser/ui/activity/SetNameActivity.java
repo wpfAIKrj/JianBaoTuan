@@ -182,10 +182,8 @@ public class SetNameActivity extends BaseActivity implements AskNetWorkCallBack{
 		}
 		if (arg0 == ImageUtils.PHOTO_REQUEST_CUT && arg1 == RESULT_OK) {// 获取剪切好的人物头像
 			if (arg2 != null) {
-
 				uploadLogo(FileUtils.getInstance().getLogoPath().getAbsolutePath(), arg2);
 			}
-
 		}
 		disshowPhoto();
 

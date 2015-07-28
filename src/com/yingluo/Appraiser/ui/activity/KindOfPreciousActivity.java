@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
@@ -18,6 +21,8 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.ui.adapter.KindAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
@@ -38,6 +43,8 @@ public class KindOfPreciousActivity extends BaseActivity {
 	@ViewInject(R.id.layout_all_kind)
 	View all_kind;
 
+	@ViewInject(R.id.pb_wait)
+	ProgressBar pb;
 	public static int currentType = 0;
 
 	private KindAdapter kindadapter;
@@ -84,32 +91,40 @@ public class KindOfPreciousActivity extends BaseActivity {
 		currentType = 0;
 		LinearLayoutManager manager = new LinearLayoutManager(this);
 		treeView.setLayoutManager(manager);
-
-		kindadapter = new KindAdapter(this, listener, currentType);
-		treeView.setAdapter(kindadapter);
-
-		// mAdapter.setData(first);
-		// mAdapter.setOnClickListener(new OnKindClickListener() {
-		//
-		// @Override
-		// public void onClick(TreasureType type) {
-		// // TODO Auto-generated method stub
-		// Intent mIntent = getIntent();
-		// int kindid=type.getId().intValue();
-		// LogUtils.d("选择宝物的id"+kindid);
-		// LogUtils.d("选择宝物的id"+type.toString());
-		// mIntent.putExtra(Const.KIND_ID,kindid );
-		// setResult(RESULT_OK, mIntent);
-		// finish();
-		// }
-		// });
+		
 		getType = getIntent().getIntExtra(Const.SHOW_TYPE, 0);
 		if (getType == 1) {
 			all_kind.setVisibility(View.GONE);
 		}
+		
+		List<TreasureType> list=SqlDataUtil.getInstance().getTreasureType(0);
+		if(list.size() == 0) {
+			pb.setVisibility(View.VISIBLE);
+			final getAllKind_X_Model allKinds = new getAllKind_X_Model();
+			allKinds.sendHttp(new CommonCallBack() {
+
+				@Override
+				public void onSuccess() {
+					pb.setVisibility(View.GONE);
+					setInput();
+				}
+
+				@Override
+				public void onError() {
+					Toast.makeText(KindOfPreciousActivity.this, "获取分类信息失败", Toast.LENGTH_SHORT).show();;
+				}
+			});
+		} else {
+			setInput();
+		}
 
 	}
 
+	public void setInput() {
+		kindadapter = new KindAdapter(this, listener, currentType);
+		treeView.setAdapter(kindadapter);
+	}
+	
 	/** 隐藏搜索和全部，当进入二级以下分类时，隐藏，进入一级分类时，显示 */
 	public void hideSearchAndAll(boolean flag) {
 		all_kind.setVisibility(flag ? View.GONE : View.VISIBLE);

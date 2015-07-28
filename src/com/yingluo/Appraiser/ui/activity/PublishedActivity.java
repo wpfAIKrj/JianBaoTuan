@@ -8,12 +8,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
@@ -23,6 +25,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.ui.dialog.SelectPhotoDialog;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
@@ -214,6 +218,7 @@ public class PublishedActivity extends BaseActivity {
 					Uri url = Uri.parse("file://" + imageUtils.PICPATH);
 					Log.e("show image", url+"");
 					sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, url));
+					
 					showAllImage();
 				} else {// 特写
 					selectListTest.add(imageUtils.PICPATH);

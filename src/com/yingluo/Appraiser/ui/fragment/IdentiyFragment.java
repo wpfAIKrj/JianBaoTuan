@@ -31,6 +31,7 @@ import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.IdentifyModel;
+import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.presenter.IdentifyPresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
@@ -39,6 +40,7 @@ import com.yingluo.Appraiser.ui.adapter.IdentiyAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
 public class IdentiyFragment extends BaseFragment {

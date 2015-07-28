@@ -1,19 +1,14 @@
 package com.yingluo.Appraiser.ui.server;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.app.ItApplication;
-import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
-import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.GetImageTokenModel;
@@ -29,41 +24,34 @@ public class HomeService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
 		http = new HttpUtils();
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
+		Log.d("server is running", "onStartCommand");
 		final HomeModel homeModel = new HomeModel();
 		homeModel.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
-				((ItApplication) getApplication()).setHomeEntity(homeModel
-						.getResult());
+				((ItApplication) getApplication()).setHomeEntity(homeModel.getResult());
 			}
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
-				String str=FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
-				if(str!=null){
+				String str = FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
+				if (str != null) {
 					try {
 						homeModel.analyzeData(str);
-						((ItApplication) getApplication()).setHomeEntity(homeModel
-								.getResult());
+						((ItApplication) getApplication()).setHomeEntity(homeModel.getResult());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -75,30 +63,25 @@ public class HomeService extends Service {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
-				((ItApplication) getApplication()).setHasIdentify(identify
-						.getResult());
+				((ItApplication) getApplication()).setHasIdentify(identify.getResult());
 			}
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
 
 			}
 		}, 1);
+		
 		final IdentifyModel unIdentify = new IdentifyModel();
 		unIdentify.sendHttp(new CommonCallBack() {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
-				((ItApplication) getApplication()).setUnIdentify(unIdentify
-						.getResult());
+				((ItApplication) getApplication()).setUnIdentify(unIdentify.getResult());
 			}
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
 
 			}
 		}, 2);
@@ -121,40 +104,35 @@ public class HomeService extends Service {
 
 			@Override
 			public void onSuccess() {
-				// TODO Auto-generated method stub
-			
+
 			}
 
 			@Override
 			public void onError() {
-				// TODO Auto-generated method stub
-				
+
 			}
 		});
 
-		final GetImageTokenModel getImageToke=new GetImageTokenModel();
+		final GetImageTokenModel getImageToke = new GetImageTokenModel();
 		getImageToke.GetIMageToken(new onBasicView<String>() {
-			
+
 			@Override
 			public void onSucess(String data) {
-				// TODO Auto-generated method stub
-				NetConst.UPTOKEN=data;
+				NetConst.UPTOKEN = data;
 				UserInfo user = ItApplication.getcurrnUser();
-				if(user!=null){
+				if (user != null) {
 					user.setImage_token(data);
 					SqlDataUtil.getInstance().saveUserInfo(user);
 					ItApplication.setCurrnUser(user);
 				}
 			}
-			
+
 			@Override
 			public void onFail(String errorCode, String errorMsg) {
-				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
-		
+
 		return super.onStartCommand(intent, flags, startId);
 	}
 }

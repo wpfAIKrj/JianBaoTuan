@@ -107,7 +107,7 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@ViewInject(R.id.ll_show_images)
 	private LinearLayout showimage;
-	
+
 	@ViewInject(R.id.layout_treasure)
 	private LinearLayout treasurelayout;
 
@@ -119,10 +119,10 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@ViewInject(R.id.title_tag)
 	private TextView tag;// 鉴定结果旁边的提示
-	
+
 	@ViewInject(R.id.bottom)
 	private LinearLayout bottom;
-	
+
 	CollectTreasureByIdModel collectModel;// 收藏
 
 	getTreasureAllInfoByIdModel infoModel;// 宝物详情
@@ -138,7 +138,7 @@ public class ActivityUserDelails extends BaseActivity {
 	public CollectionTreasure curnt = null;
 	public List<CollectionTreasure> otherTreasure = null;
 	public List<CommentEntity> treasureList = null;
-	
+
 	private Dialog dialog1;
 
 	protected Dialog loaddialog;
@@ -178,7 +178,6 @@ public class ActivityUserDelails extends BaseActivity {
 					new ToastUtils(this, "请输入评论内容！");
 				}
 			} else {
-//				new ToastUtils(this, "请先登陆！");
 				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
 				startActivity(intent);
 				overridePendingTransition(R.anim.toast_in, R.anim.hold);
@@ -194,8 +193,8 @@ public class ActivityUserDelails extends BaseActivity {
 				Intent intent = new Intent(ActivityUserDelails.this, ActivityIdentifyByMe.class);
 				intent.putExtra(Const.ENTITY, entity);
 				startActivityForResult(intent, Const.TO_MY_INDENTITY);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			} else {
-//				new ToastUtils(this, "请先登陆！");
 				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
 				startActivity(intent);
 				overridePendingTransition(R.anim.toast_in, R.anim.hold);
@@ -208,7 +207,7 @@ public class ActivityUserDelails extends BaseActivity {
 				dialog1 = DialogUtil.createShowDialog(this, "是否收藏该宝物？", lis1);
 				dialog1.show();
 			} else {
-//				new ToastUtils(this, "请先登陆！");
+				// new ToastUtils(this, "请先登陆！");
 				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
 				startActivity(intent);
 				overridePendingTransition(R.anim.toast_in, R.anim.hold);
@@ -222,7 +221,7 @@ public class ActivityUserDelails extends BaseActivity {
 				dialog1.show();
 
 			} else {
-//				new ToastUtils(this, "请先登陆！");
+				// new ToastUtils(this, "请先登陆！");
 				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
 				startActivity(intent);
 				overridePendingTransition(R.anim.toast_in, R.anim.hold);
@@ -238,7 +237,7 @@ public class ActivityUserDelails extends BaseActivity {
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
-	
+
 	private DialogForResult lis1 = new DialogForResult() {
 
 		@Override
@@ -470,9 +469,10 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 		if (str.size() > 0) {
 			int length = str.size();
-			for(int i=0;i<length;i++) {
+			for (int i = 0; i < length; i++) {
 				ImageView image = new ImageView(this);
-				LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,(int) getResources().getDimension(R.dimen.y500));
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+						(int) getResources().getDimension(R.dimen.y500));
 				image.setLayoutParams(params);
 				showimage.addView(image);
 				BitmapsUtils.getInstance().display(image, str.get(i));
@@ -522,7 +522,7 @@ public class ActivityUserDelails extends BaseActivity {
 			ed_text.setHint(str);
 			ed_text.requestFocus();
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-	        imm.showSoftInput(ed_text, InputMethodManager.SHOW_FORCED);
+			imm.showSoftInput(ed_text, InputMethodManager.SHOW_FORCED);
 		}
 	};
 
@@ -541,7 +541,7 @@ public class ActivityUserDelails extends BaseActivity {
 			// 获得当前得到焦点的View，一般情况下就是EditText（特殊情况就是轨迹求或者实体案件会移动焦点）
 			View v = getCurrentFocus();
 
-			if (HelpUtils.isShouldHideInput(v, ev,bottom)) {
+			if (HelpUtils.isShouldHideInput(v, ev, bottom)) {
 				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				HelpUtils.hideSoftInput(v.getWindowToken(), im);
@@ -549,7 +549,7 @@ public class ActivityUserDelails extends BaseActivity {
 				ed_text.setHint("");
 				ed_text.setText("");
 			}
-			
+
 			if (v == bt_send_comment) {
 				return true;
 			}

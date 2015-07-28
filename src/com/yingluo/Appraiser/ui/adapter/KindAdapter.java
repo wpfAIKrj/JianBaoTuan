@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 import android.view.ViewGroup;
 
 /**
@@ -39,6 +40,9 @@ public class KindAdapter extends RecyclerView.Adapter<ViewHolder> {
 		this.type=type;
 		treasureType=null;
 		list=SqlDataUtil.getInstance().getTreasureType(type);
+		if(list.size() == 0) {
+			Toast.makeText(context, "获取数据失败", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	@Override

@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -17,6 +20,8 @@ import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.model.CommonCallBack;
+import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.model.sendTreasureIdentityModel;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
