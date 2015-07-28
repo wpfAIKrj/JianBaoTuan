@@ -5,6 +5,7 @@ import java.util.List;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DensityUtil;
@@ -15,6 +16,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,8 +24,6 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class ViewTreasure extends ViewHolder {
 
-	
-	
 	BitmapsUtils bitmapUtils;
 	@ViewInject(R.id.iv_icon)
 	ImageView iv_icon;
@@ -35,22 +35,23 @@ public class ViewTreasure extends ViewHolder {
 	TextView tv_status;
 	@ViewInject(R.id.btn_result)
 	Button btn_result;
-
-	TreasureEntity currn;
+	@ViewInject(R.id.delete_checkbox)
+	CheckBox cbDel;
 	
+	TreasureEntity currn;
+
 	private Context mContext;
-	public ViewTreasure(View itemView,final OnClickListener lis) {
+
+	public ViewTreasure(View itemView, final OnClickListener lis) {
 		super(itemView);
-		// TODO Auto-generated constructor stub
-		ViewUtils.inject(this,itemView);
-		mContext=itemView.getContext();
+		ViewUtils.inject(this, itemView);
+		mContext = itemView.getContext();
 		bitmapUtils = BitmapsUtils.getInstance();
 		btn_result.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if(lis!=null){
+				if (lis != null) {
 					v.setTag(currn);
 					lis.onClick(v);
 				}
@@ -62,7 +63,7 @@ public class ViewTreasure extends ViewHolder {
 		if (item == null) {
 			return;
 		}
-		currn=item;
+		currn = item;
 		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.title);
 		switch (item.status) {
@@ -78,32 +79,30 @@ public class ViewTreasure extends ViewHolder {
 		}
 		layout_kind.removeAllViews();
 		List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds = item.kinds;
-		
-		if (kinds != null) {
-			LayoutParams params =null;
 
-			int size=0;
-			int width=0;
-			int onewidth=(int) mContext.getResources().getDimension(R.dimen.x60);
-			int height=(int) mContext.getResources().getDimension(R.dimen.y30);
-			int textsize=DensityUtil.px2sp( mContext,  mContext.getResources().getDimension(R.dimen.x20));
-			
+		if (kinds != null) {
+			LayoutParams params = null;
+
+			int size = 0;
+			int width = 0;
+			int onewidth = (int) mContext.getResources().getDimension(R.dimen.x60);
+			int height = (int) mContext.getResources().getDimension(R.dimen.y30);
+			int textsize = DensityUtil.px2sp(mContext, mContext.getResources().getDimension(R.dimen.x20));
+
 			int len = kinds.size();
 			for (int i = 0; i < len; i++) {
-				size=kinds.get(i).name.length();
-				if(size>8){
-					size=7;
+				size = kinds.get(i).name.length();
+				if (size > 8) {
+					size = 7;
 				}
-				width=(size/2)*onewidth+(size%2)*onewidth;
-				params=new LayoutParams(width,
-							height);
+				width = (size / 2) * onewidth + (size % 2) * onewidth;
+				params = new LayoutParams(width, height);
 				params.setMargins(0, 0, 20, 0);
 				TextView view = new TextView(mContext);
 				view.setTextSize(textsize);
 				view.setTextColor(mContext.getResources().getColor(R.color.wite));
-				view.setBackgroundColor(mContext.getResources().getColor(
-						R.color.number_color));
-//				view.setPadding(10, 0, 10, 0);
+				view.setBackgroundColor(mContext.getResources().getColor(R.color.number_color));
+				// view.setPadding(10, 0, 10, 0);
 				view.setGravity(Gravity.CENTER);
 				view.setText(kinds.get(i).name);
 				view.setTag(kinds.get(i).id);
@@ -114,4 +113,17 @@ public class ViewTreasure extends ViewHolder {
 		}
 	}
 
+	/**
+	 * 选择删除模式
+	 * @param conInfo
+	 * @param isselect 
+	 */
+	public void showDataForDelete(TreasureEntity item, boolean isselect){
+		cbDel.setVisibility(View.VISIBLE);
+//		this.contentinfo=contentinfo;
+//		name.setText(contentinfo.getTitle());
+//		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
+//		number.setText(""+contentinfo.getView_times());
+		cbDel.setChecked(isselect);
+	}
 }

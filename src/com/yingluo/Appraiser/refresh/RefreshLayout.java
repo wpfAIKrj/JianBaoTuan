@@ -1,8 +1,10 @@
 package com.yingluo.Appraiser.refresh;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -33,7 +35,9 @@ public abstract class RefreshLayout extends FrameLayout{
     private static final int DEFAULT_HEAD_HEIGHT = 200;
 
 
+    //要刷新的View
     View mRefreshView;
+    //下拉刷新的头部
     View mRefreshHeaderView;
 
     LinearLayout mContentLy;
@@ -100,6 +104,7 @@ public abstract class RefreshLayout extends FrameLayout{
         mRefreshView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         mCurStatus = NORMAL_STATUS;
         addView(mContentLy);
+        
     }
 
     public View getRefreshView(){
@@ -111,7 +116,6 @@ public abstract class RefreshLayout extends FrameLayout{
     }
 
     protected abstract View createRefreshView();
-
 
 
     @Override
@@ -126,12 +130,11 @@ public abstract class RefreshLayout extends FrameLayout{
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int headHeight = mHeaderViewHeight;
-        mContentLy.layout(l, t - headHeight, r, b);
+        mContentLy.layout(l, -headHeight, r, b);
     }
 
 
     Animation mAnimateToPosition = new Animation() {
-
 
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -262,7 +265,7 @@ public abstract class RefreshLayout extends FrameLayout{
                     if(offset < 0 && curTop + offset <= -mHeaderViewHeight){
                         offset = -mHeaderViewHeight - curTop;
                     }
-
+                    Log.d("这个数据是多少", offset+"");
                     setOffsetTopAndBottom((int) (offset));
                     if(mRefreshListener != null){
                        mRefreshListener.onPullDown(y);

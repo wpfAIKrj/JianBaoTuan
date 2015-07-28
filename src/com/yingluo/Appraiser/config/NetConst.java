@@ -63,6 +63,8 @@ public class NetConst {
 	
 	public static final String IS_DEL = "Users/existAction";// 判断用户是不是已经在服务器端删除
 	
+	public static final String DEL_MY_LOVE = "Material/deleteCollectionsAction";// 判断我的收藏
+	
 	public static final String RAMDOMAPPRAISER = "Material/randomAppraiserAction";// 获取鉴定师
 
 	public static final String MINEACTION = "home/mineAction";// 获取我的页面入口数据

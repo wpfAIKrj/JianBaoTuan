@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.refresh;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +31,7 @@ public class PullRefreshRecyclerView extends RefreshLayout{
         RecyclerView rv =  new RecyclerView(getContext());
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
         lm.setOrientation(LinearLayoutManager.VERTICAL);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,2);//表示两列，并且是竖直方向的瀑布流
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context,2);//表示两列
     	rv.setLayoutManager(gridLayoutManager);
         return rv;
     }

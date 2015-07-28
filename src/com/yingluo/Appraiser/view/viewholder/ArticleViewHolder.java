@@ -56,11 +56,12 @@ public class ArticleViewHolder extends ViewHolder {
 	public void showData(ContentInfo contentinfo) {
 		this.contentinfo = contentinfo;
 		title.setText(contentinfo.getTitle());
-		if(logo == null) {
+		if(logo.getTag() == null) {
 			BitmapsUtils.getInstance().display(logo, contentinfo.getImage(), logo.getMeasuredWidth(),
 					logo.getMeasuredHeight());
+			logo.setTag(contentinfo);
 		}
-		logo.setTag(contentinfo);
+		
 		number.setText("" + contentinfo.getView_times());
 		box.setVisibility(View.GONE);
 	}

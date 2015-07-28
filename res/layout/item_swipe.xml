@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical" >
 
-    <com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    <com.daimajia.swipe.SwipeLayout
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y120"
         swipe:leftEdgeSwipeOffset="0dp"
-        swipe:rightEdgeSwipeOffset="0dp">
+        swipe:rightEdgeSwipeOffset="0dp" >
 
         <LinearLayout
             android:layout_width="@dimen/x120"
@@ -18,30 +18,30 @@
             android:background="#FB0100"
             android:gravity="center"
             android:orientation="vertical"
-            android:weightSum="10">
+            android:weightSum="10" >
 
             <TextView
                 android:id="@+id/delete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="删除" 
                 android:gravity="center"
+                android:text="删除"
                 android:textColor="@color/wite"
-                android:textSize="@dimen/x30"
-                />
-		
+                android:textSize="@dimen/x30" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/context"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y120"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/x14">
-         
+            android:layout_marginLeft="@dimen/x14"
+            android:orientation="horizontal" >
         </LinearLayout>
     </com.daimajia.swipe.SwipeLayout>
-<View android:layout_width="match_parent"
-    android:layout_height="@dimen/y1"
-    android:background="@color/item_space_color"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/item_space_color" />
+
 </LinearLayout>

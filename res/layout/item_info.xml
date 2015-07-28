@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" 
-  	xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical" >
 
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y120"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        >
-            <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:src="@color/cricle_color"
-        android:layout_marginLeft="@dimen/detail_text_padd"
-         >
+        android:orientation="horizontal" >
 
-        <com.yingluo.Appraiser.view.CircleImageView
-            android:id="@+id/acticle_logo"
-            android:layout_width="@dimen/y82"
-            android:layout_height="@dimen/y82"
-            android:src="@drawable/loading_bg" 
-               app:border_color="@color/cricle_color"
-            app:border_width="@dimen/x1"
-            />
-
-        <CheckBox
-            android:id="@+id/delete_checkbox"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-  			android:checked="false"
-            android:layout_centerInParent="true"
-           	style="@style/delete_checkbox_logo_style" />
-        
-    </RelativeLayout>
-  	<RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="@dimen/x10"
-        >
+            android:layout_marginLeft="@dimen/detail_text_padd"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:src="@color/cricle_color" >
 
-  		<TextView
-  		    android:id="@+id/article_title"
-  		    android:layout_width="match_parent"
-  		    android:layout_height="wrap_content"
-  		    android:layout_alignParentLeft="true"
-  		    android:layout_centerVertical="true"
-  		    android:layout_toLeftOf="@+id/imageView2"
-  		    android:ellipsize="end"
-  		    android:singleLine="true"
-  		    android:text="何为三界偷拍"
-  		    android:textColor="@color/ed_login_color"
-  		    android:textSize="@dimen/x28" />
+            <com.yingluo.Appraiser.view.CircleImageView
+                android:id="@+id/acticle_logo"
+                android:layout_width="@dimen/y82"
+                android:layout_height="@dimen/y82"
+                android:src="@drawable/loading_bg"
+                app:border_color="@color/cricle_color"
+                app:border_width="@dimen/x1" />
 
+            <CheckBox
+                android:id="@+id/delete_checkbox"
+                style="@style/delete_checkbox_logo_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:checked="false" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x10"
+            android:layout_weight="1" >
 
-  		<ImageView
-  		    android:id="@+id/imageView2"
-  		    android:layout_width="wrap_content"
-  		    android:layout_height="wrap_content"
-  		 
-  		    android:layout_toLeftOf="@+id/article_number"
-  		     android:layout_centerVertical="true"
-  		     android:layout_marginRight="@dimen/x10"
-  		    android:src="@drawable/point_bg" />
-  		  		<TextView
-  		    android:id="@+id/article_number"
-  		    android:layout_width="wrap_content"
-  		    android:layout_height="wrap_content"
-  			 android:layout_centerVertical="true"
-  		    android:layout_alignParentRight="true"
-  		    android:text="1024" 
-  		    android:textColor="@color/number_color"
-  		    android:textSize="@dimen/x30"
-  		    android:layout_marginRight="@dimen/x14"/>
-        
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/article_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageView2"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="何为三界偷拍"
+                android:textColor="@color/ed_login_color"
+                android:textSize="@dimen/x28" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_toLeftOf="@+id/article_number"
+                android:src="@drawable/point_bg" />
+
+            <TextView
+                android:id="@+id/article_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x14"
+                android:text="1024"
+                android:textColor="@color/number_color"
+                android:textSize="@dimen/x30" />
+        </RelativeLayout>
     </LinearLayout>
-    <View 
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
-        android:background="@color/item_space_color"
-        />
+        android:background="@color/item_space_color" />
+
 </LinearLayout>

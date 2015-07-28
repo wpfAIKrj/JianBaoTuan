@@ -82,6 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/view1"
         android:layout_below="@+id/view2"
+        android:background="@color/cricle_color"
         android:layout_alignParentLeft="true"/>
 
      <View

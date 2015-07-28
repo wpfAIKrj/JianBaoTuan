@@ -14,15 +14,28 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yingluo.Appraiser.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.json.JSONException;
+
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
@@ -30,8 +43,9 @@ import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
+import com.yingluo.Appraiser.utils.ToastUtils;
 
-public class ActivityMyPrecious extends BaseActivity {
+public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBack{
 
 	@ViewInject(R.id.tv_title)
 	TextView title;
@@ -54,9 +68,51 @@ public class ActivityMyPrecious extends BaseActivity {
 	@ViewInject(R.id.recyclerview)
 	PullRefreshRecyclerView mRecyclerview;
 
-	@OnClick(R.id.btn_back)
+	@ViewInject(R.id.layout_delet)
+	private RelativeLayout layout_delet;
+	@ViewInject(R.id.all_checkbox)
+	private CheckBox allcheckbox;
+	
+	private List<String> dels;
+	private AskNetWork askNewWork;
+	
+	@OnClick({R.id.btn_back,R.id.btn_delete})
 	public void back_click(View view) {
-		onBackPressed();
+		switch (view.getId()) {
+		case R.id.btn_back:
+			onBackPressed();
+			return ;
+//		case R.id.btn_delete:
+//			askNewWork = new AskNetWork(NetConst.DEL_MY_LOVE, this);
+//			askNewWork.ask(HttpRequest.HttpMethod.GET,null);
+//			return;
+//		case R.id.btn_delete:// 删除模式
+//			madapter.setScorll(false);
+//			madapter.notifyDataSetChanged();
+//			layout_delet.setVisibility(View.VISIBLE);
+//			break;
+//		case R.id.delete_all_bt:// 删除
+//			deleteInfos = madapter.getSelectForMap();
+//			if (deleteInfos.keySet().size() > 0) {
+//				dialogLoad.show();
+//				StringBuffer sb = new StringBuffer();
+//				Set<String> ids = deleteInfos.keySet();
+//				for (String string : ids) {
+//					sb.append(string).append(",");
+//				}
+//				sb.deleteCharAt(sb.length() - 1);
+//				deletePresenter.deleteInfo(String.valueOf(sb.toString()));
+//			} else {
+//				new ToastUtils(this, "请选择后在点击删除按钮");
+//			}
+//			break;
+//		case R.id.cancle_all_bt:// 退出选择模式
+//			layout_delet.setVisibility(View.GONE);
+//			allcheckbox.setChecked(false);
+//			madapter.setScorll(true);
+//			madapter.exitSelectMode();
+//			break;
+		}
 	}
 
 	int type = Const.PRECIOUS;
@@ -78,22 +134,23 @@ public class ActivityMyPrecious extends BaseActivity {
 		model = new MyTreasureModel();
 
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
-
+		dels = new ArrayList<String>();
 		model.setType(type);
 		Treadsure_type = MyTreasureModel.TYPE_ALL;
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
 			btn_delete.setVisibility(View.GONE);
+			btn_delete.setClickable(false);
 		} else if (type == Const.COLLECT) {
-			
 			title.setText("收藏宝物");
-			btn_delete.setVisibility(View.GONE);
+			btn_delete.setVisibility(View.VISIBLE);
+			btn_delete.setClickable(true);
 			btn_no.setVisibility(View.GONE);
 			btn_no.setClickable(false);
 		} else if (type == Const.IDENTIFY) {
-
 			title.setText("我的鉴定");
 			btn_delete.setVisibility(View.GONE);
+			btn_delete.setClickable(false);
 			btn_no.setVisibility(View.GONE);
 			btn_no.setClickable(false);
 		}
@@ -103,7 +160,7 @@ public class ActivityMyPrecious extends BaseActivity {
 		btn_ed.setOnClickListener(listener);
 
 		btn_all.callOnClick();
-
+		
 		initViews();
 
 	}
@@ -277,5 +334,15 @@ public class ActivityMyPrecious extends BaseActivity {
 			startActivity(mIntent);
 		}
 	};
+
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		
+	}
 
 }

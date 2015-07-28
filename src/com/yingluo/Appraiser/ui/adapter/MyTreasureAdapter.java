@@ -23,18 +23,14 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewTreasure> {
 	private List<TreasureEntity> hots;
 	private OnClickListener lis;
 
-	
-
-	public MyTreasureAdapter(List<TreasureEntity> list,OnClickListener lis) {
-		// TODO Auto-generated constructor stub
+	public MyTreasureAdapter(List<TreasureEntity> list, OnClickListener lis) {
 		this.hots = list;
-		this.lis=lis;
+		this.lis = lis;
 	}
 
 	public MyTreasureAdapter(OnClickListener lis) {
-		// TODO Auto-generated constructor stub
 		hots = new ArrayList<TreasureEntity>();
-		this.lis=lis;
+		this.lis = lis;
 	}
 
 	public void setData(List<TreasureEntity> list) {
@@ -53,13 +49,11 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewTreasure> {
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
 		return hots.size();
 	}
 
 	@Override
 	public void onBindViewHolder(ViewTreasure holder, int position) {
-		// TODO Auto-generated method stub
 		TreasureEntity entity = hots.get(position);
 		holder.setItem(entity);
 
@@ -67,11 +61,9 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewTreasure> {
 
 	@Override
 	public ViewTreasure onCreateViewHolder(ViewGroup viewGroup, int arg1) {
-		// TODO Auto-generated method stub
-		View view = LayoutInflater.from(viewGroup.getContext()).inflate(
-				R.layout.view_my_treasure, viewGroup, false);
+		View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.view_my_treasure, viewGroup, false);
 		// ViewHolder参数一定要是Item的Root节点.
-		return new ViewTreasure(view,lis);
+		return new ViewTreasure(view, lis);
 	}
 
 }

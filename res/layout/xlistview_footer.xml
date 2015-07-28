@@ -2,16 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-     >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/xlistview_footer_content"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/y100"
-     
-		android:orientation="horizontal"
-		android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal" >
 
         <ProgressBar
             android:id="@+id/xlistview_footer_progressbar"
@@ -25,13 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:text="@string/xlistview_footer_hint_normal"
             android:textColor="@color/ed_login_color"
-            android:textSize="@dimen/x24"
-            android:text="@string/xlistview_footer_hint_normal" />
+            android:textSize="@dimen/x24" />
     </LinearLayout>
-  <View 
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
-        android:background="@color/item_space_color"
-        />
+        android:background="@color/item_space_color" />
+
 </LinearLayout>

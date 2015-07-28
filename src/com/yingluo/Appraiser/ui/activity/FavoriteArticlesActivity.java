@@ -114,7 +114,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (ItApplication.getcurrnUser() == null) {
 			EventBus.getDefault().post(new MainEvent(0, null));
@@ -132,13 +131,11 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
 	protected void initView() {
-		// TODO Auto-generated method stub
 		title.setText(R.string.collect_info_title);
 		list = new ArrayList<ContentInfo>();
 		myPresenter = new myCollectArticlePresenter(this);

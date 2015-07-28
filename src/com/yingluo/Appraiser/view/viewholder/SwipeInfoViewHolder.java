@@ -58,7 +58,10 @@ public class SwipeInfoViewHolder extends RecyclerView.ViewHolder {
 		deletecheckbox.setVisibility(View.GONE);
 		this.contentinfo=contentinfo;
 		name.setText(contentinfo.getTitle());
-		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
+		if(logo.getTag() == null) {
+			BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
+			logo.setTag(contentinfo);
+		}	
 		number.setText(""+contentinfo.getView_times());
 	}
 
@@ -72,7 +75,10 @@ public class SwipeInfoViewHolder extends RecyclerView.ViewHolder {
 		deletecheckbox.setVisibility(View.VISIBLE);
 		this.contentinfo=contentinfo;
 		name.setText(contentinfo.getTitle());
-		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
+		if(logo.getTag() == null) {
+			BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
+			logo.setTag(conInfo);
+		}
 		number.setText(""+contentinfo.getView_times());
 		deletecheckbox.setChecked(isselect);
 	}

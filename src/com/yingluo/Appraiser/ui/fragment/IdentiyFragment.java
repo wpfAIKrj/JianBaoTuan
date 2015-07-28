@@ -161,13 +161,6 @@ public class IdentiyFragment extends BaseFragment {
 		return inflater.inflate(R.layout.layout_identiy, container, false);
 	}
 
-	
-	@Override
-	public void onResume() {
-		super.onResume();
-		prrvRe.setToRefreshing();
-	}
-
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);

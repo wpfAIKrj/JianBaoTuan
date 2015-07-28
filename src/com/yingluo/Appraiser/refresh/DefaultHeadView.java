@@ -17,14 +17,12 @@ import android.widget.TextView;
  */
 public class DefaultHeadView extends RelativeLayout implements ILoadingLayout{
 
-
     private Animation mDownToUpAnim;
     private Animation mUpToDownAnim;
     private View mLeftProgress;
     private ImageView mLeftImage;
     private TextView mTitle;
     private boolean mImageIsUp;
-
 
     public DefaultHeadView(Context context){
         this(context, null);

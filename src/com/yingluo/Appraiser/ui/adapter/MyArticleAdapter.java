@@ -52,7 +52,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 	public MyArticleAdapter(Context context, ArrayList<ContentInfo> list, OnClickListener listner,
 			deleteItemlistener delete) {
-		// TODO Auto-generated constructor stub
 		this.context = context;
 		mInflater = LayoutInflater.from(context);
 		this.list = list;
@@ -64,7 +63,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 	@Override
 	public int getItemViewType(int position) {
-		// TODO Auto-generated method stub
 		if (position + 1 == getItemCount()) {
 			return TYPE_FOOTER;
 		} else {
@@ -74,13 +72,11 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
 		return list.size() + 1;
 	}
 
 	@Override
 	public void onBindViewHolder(ViewHolder arg0, final int arg1) {
-		// TODO Auto-generated method stub
 		if (arg0 instanceof footerViewHolder) {
 			footerViewHolder foot = (footerViewHolder) arg0;
 			foot.showloadMore(load_type);
@@ -151,7 +147,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
-		// TODO Auto-generated method stub
 		if (arg1 == TYPE_FOOTER) {
 			return new footerViewHolder(mInflater.inflate(R.layout.xlistview_footer, arg0, false), listview);
 		}
