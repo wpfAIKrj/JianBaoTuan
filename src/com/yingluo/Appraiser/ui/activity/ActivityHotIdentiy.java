@@ -36,6 +36,7 @@ import com.yingluo.Appraiser.model.getTreasureByIdModel;
 import com.yingluo.Appraiser.model.getTreasureByOtherIdModel;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
+import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
@@ -227,6 +228,24 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		}
 		
 		RecyclerView recyclerview = (RecyclerView) mRecyclerview.getRefreshView();
+		mRecyclerview.setToRefreshing();
+		mRecyclerview.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onPullDown(float y) {
+
+            }
+
+            @Override
+            public void onRefresh() {
+            	userinfoModel.getUserInfoForId(entity.user_id, listener);
+            }
+
+            @Override
+            public void onRefreshOver(Object obj) {
+            	
+            }
+        });
+		
 		GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
@@ -242,8 +261,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		if (loaddialog == null)
 			loaddialog = DialogUtil.createLoadingDialog(this, "加载数据中...");
 		loaddialog.show();
-
-		userinfoModel.getUserInfoForId(entity.user_id, listener);
 
 	}
 
@@ -289,6 +306,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		@Override
 		public void onSucess(UserInfo data) {
 			// TODO Auto-generated method stub
+			mRecyclerview.refreshOver(null);
 			if (data != null) {
 				userinfo = data;
 				SqlDataUtil.getInstance().saveUserInfo(userinfo);
@@ -314,7 +332,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 								loaddialog.dismiss();
 							}
 							isone = false;
-							mRecyclerview.refreshOver(null);
 							mAdapter.setData(treasureModel.getResult());
 						}
 
@@ -323,8 +340,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 							if (loaddialog != null && loaddialog.isShowing()) {
 								loaddialog.dismiss();
 							}
-							mRecyclerview.refreshOver(null);
-
 						}
 					}, 0, userinfo.getId());
 				}
@@ -339,7 +354,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
+			mRecyclerview.refreshOver(null);
 			if (loaddialog != null && loaddialog.isShowing()) {
 				loaddialog.dismiss();
 			}

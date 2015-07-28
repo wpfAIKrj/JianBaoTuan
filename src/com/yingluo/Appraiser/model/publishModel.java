@@ -19,6 +19,8 @@ import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.UploadUtils;
 
+import android.widget.Toast;
+
 public class publishModel extends BaseModel {
 	
 	
@@ -179,6 +181,7 @@ public class publishModel extends BaseModel {
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {
 				// TODO 自动生成的方法存根
+//				Toast.makeText(context, arg1+""+arg2, 1000).show;
 				if(arg2!=null){
 					try {
 						fearsb.append(arg2.getString(NetConst.UPKEY)).append(",");

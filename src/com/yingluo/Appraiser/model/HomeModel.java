@@ -118,7 +118,7 @@ public class HomeModel extends BaseModel {
 					CollectionTreasure user=new CollectionTreasure();
 					user.authName=obj.getString("authName");
 					user.authImage=obj.getString("authImage");
-					user.user_id=obj.getLong("author_id");
+					user.user_id=obj.getLong("user_id");
 					user.goodAt=obj.getString("goodAt");
 					user.company=obj.getString("company");
 					list_authors.add(user);

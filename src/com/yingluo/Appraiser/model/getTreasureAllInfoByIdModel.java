@@ -123,7 +123,7 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 					other.authImage = obj.getString("authImage");
 					other.authLevel = obj.getInt("authLevel");
 					other.name = obj.getString("name");
-					other.user_id = obj.getLong("authId");
+					other.user_id = obj.getLong("user_id");
 					
 					String otherimages = obj.getString("images");
 					images = gson.fromJson(otherimages, new TypeToken<List<String>>() {
