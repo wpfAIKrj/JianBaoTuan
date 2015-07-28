@@ -14,7 +14,9 @@ import com.lidroid.xutils.bitmap.core.BitmapSize;
 import com.lidroid.xutils.bitmap.factory.BitmapFactory;
 import com.lidroid.xutils.cache.FileNameGenerator;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -52,35 +54,25 @@ public class BitmapsUtils {
 //	private BitmapDisplayConfig config;// 显示使用的
 
 	private BitmapsUtils(Context context) {
-//		utils = new BitmapUtils(context);
-//		utils.configDefaultConnectTimeout(10000);
-//		utils.configDefaultImageLoadAnimation(AnimationUtils.loadAnimation(
-//				context, R.anim.bitmap_show));
-//		utils.configDefaultLoadFailedImage(R.drawable.load_fail);
-//		utils.configDefaultLoadingImage(R.drawable.loading_bg);
-//		utils.configDefaultReadTimeout(10000);
-//		utils.configDiskCacheEnabled(true);
-//		utils.configMemoryCacheEnabled(true);
-//		config = new BitmapDisplayConfig();
-//		config.setLoadingDrawable(context.getResources().getDrawable(
-//				R.drawable.loading_bg));
-//		config.setLoadFailedDrawable(context.getResources().getDrawable(
-//				R.drawable.load_fail));
-//		config.setAnimation(AnimationUtils.loadAnimation(context,
-//				R.anim.bitmap_show));
 
-		
+		//设置缓存的路径
+        File cacheDir = new File(FileUtils.getInstance().getUpImage());
+		if (!cacheDir.exists()) {
+			cacheDir.mkdir();
+		}
+        
 		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
 		config.threadPriority(3);
 		config.denyCacheImageMultipleSizesInMemory();
 		config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
 		config.diskCacheSize(50 * 1024 * 1024); // 50 MiB
-		config.memoryCacheSize(2*1024*1024);
+		config.diskCache(new UnlimitedDiskCache(cacheDir));
+		config.memoryCache(new UsingFreqLimitedMemoryCache(2*1024*1024));
 		config.tasksProcessingOrder(QueueProcessingType.LIFO);
 		config.imageDownloader(new BaseImageDownloader(context, 5*1000, 10*1000));
 		config.writeDebugLogs(); // Remove for release app
+		
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
-//		.showImageOnLoading(R.drawable.loading_bg)
 		.showImageForEmptyUri(R.drawable.load_fail)
 		.showImageOnFail(R.drawable.load_fail)
 		.considerExifParams(true)
@@ -91,8 +83,8 @@ public class BitmapsUtils {
 		.resetViewBeforeLoading(true)
 		.displayer(new FadeInBitmapDisplayer(1000))
 		.build();
+		
 		config.defaultDisplayImageOptions(options);
-		// Initialize ImageLoader with configuration.
 		ImageLoader.getInstance().init(config.build());
 	}
 
