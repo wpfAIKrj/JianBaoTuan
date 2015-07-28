@@ -28,7 +28,7 @@ import com.yingluo.Appraiser.ui.activity.InformationDetailsActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
- * @author ytmfdw 主页 [热门鉴定]下的选项 根据屏幕宽高来计算图片大小
+ * @author ytmfdw 主页 [文玩杂学]下的选项 根据屏幕宽高来计算图片大小
  *
  */
 
@@ -51,30 +51,25 @@ public class ViewArticles extends LinearLayout {
 	
 	public ViewArticles(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewArticles(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		init(context);
 	}
 
 	public ViewArticles(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void onAttachedToWindow() {
-		// TODO Auto-generated method stub
 		super.onAttachedToWindow();
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 

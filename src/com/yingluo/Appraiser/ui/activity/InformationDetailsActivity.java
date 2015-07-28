@@ -80,7 +80,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_informationdetail);
 		ViewUtils.inject(this);
@@ -100,7 +99,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		if (isFirest) {
 			isFirest = false;
@@ -110,8 +108,13 @@ public class InformationDetailsActivity extends BaseActivity {
 		}
 	}
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	private void initData() {
-		// TODO Auto-generated method stub
 
 		title.setText(info.getTitle());
 		BitmapsUtils.getInstance().display(logo, info.getImage());
@@ -131,11 +134,11 @@ public class InformationDetailsActivity extends BaseActivity {
 
 	@OnClick({ R.id.detail_back, R.id.detail_share, R.id.detail_collect, R.id.detail_cancle_collect })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.detail_back:// 返回上层
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 		case R.id.detail_share:// 分享
 			if (ItApplication.getcurrnUser() != null) {
@@ -171,7 +174,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onSucess() {
-			// TODO Auto-generated method stub
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
@@ -182,7 +184,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onCancel() {
-			// TODO Auto-generated method stub
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
@@ -193,7 +194,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onSucess() {
-			// TODO Auto-generated method stub
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
@@ -204,7 +204,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onCancel() {
-			// TODO Auto-generated method stub
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
@@ -218,7 +217,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(String data) {
-			// TODO Auto-generated method stub
 			if (loaddialog != null) {
 				loaddialog.dismiss();
 			}
@@ -230,7 +228,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			if (loaddialog != null) {
 				loaddialog.dismiss();
 			}
@@ -245,7 +242,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(String data) {
-			// TODO Auto-generated method stub
 			if (loaddialog3 != null) {
 				loaddialog3.dismiss();
 			}
@@ -256,7 +252,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			if (loaddialog3 != null) {
 				loaddialog3.dismiss();
 			}
@@ -271,7 +266,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onSucess(ContentInfo data) {
-			// TODO Auto-generated method stub
 			if (data != null) {
 				info = data;
 			}
@@ -283,7 +277,6 @@ public class InformationDetailsActivity extends BaseActivity {
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			if (loaddialog2 != null) {
 				loaddialog2.dismiss();
 			}
