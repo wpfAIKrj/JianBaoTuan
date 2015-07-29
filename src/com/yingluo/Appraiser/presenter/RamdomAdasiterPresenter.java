@@ -18,7 +18,6 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 	private getRandomInfoModel model;
 	private onListView<UserInfo> mView;
 	public RamdomAdasiterPresenter(onListView<UserInfo> view) {
-		// TODO Auto-generated constructor stub
 		this.mView=view;
 	}
 	
@@ -29,13 +28,11 @@ public class RamdomAdasiterPresenter implements OnListDataLoadListener<UserInfo>
 	
 	@Override
 	public void onListDataLoaded(ArrayList<UserInfo> data) {
-		// TODO Auto-generated method stub
 		mView.onSucess(data);
 	}
 
 	@Override
 	public void onListDataLoadErrorHappened(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		mView.onFail(errorCode, errorMsg);
 	}
 

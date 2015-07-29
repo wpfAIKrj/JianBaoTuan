@@ -22,32 +22,30 @@ import com.yingluo.Appraiser.utils.UploadUtils;
 import android.widget.Toast;
 
 public class publishModel extends BaseModel {
-	
-	
-	
+
 	private OnBasicDataLoadListener<String> listener;
-	
+
 	private String user_id;
 	private String kind_name;
 	private String kind_id;
 	private String context;
-	
-	private StringBuffer allsb=new StringBuffer();
-	private StringBuffer fearsb=new StringBuffer();
-	private boolean isUploadall=false;
-	private boolean isuoloadfear=false;
+
+	private StringBuffer allsb = new StringBuffer();
+	private StringBuffer fearsb = new StringBuffer();
+	private boolean isUploadall = false;
+	private boolean isuoloadfear = false;
 
 	private ArrayList<String> imageAll;
 
 	private ArrayList<String> imageTest;
+
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
-		params=new RequestParams();
+		params = new RequestParams();
 		params.addBodyParameter("description", context);
 		params.addBodyParameter("allviewimages", allsb.toString());
-		params.addBodyParameter("otherimages",fearsb.toString() );
-		params.addBodyParameter("kindname",kind_name );
+		params.addBodyParameter("otherimages", fearsb.toString());
+		params.addBodyParameter("kindname", kind_name);
 		params.addBodyParameter("kindid", kind_id);
 		params.addBodyParameter("appraiser_id", user_id);
 	}
@@ -64,83 +62,80 @@ public class publishModel extends BaseModel {
 		listener.onBaseDataLoaded(data);
 	}
 
-	
-	public void startSendTreasure(UserInfo user, TreasureType type,
-			String context, ArrayList<String> imageAll, ArrayList<String> imageTest, OnBasicDataLoadListener<String> listener) {
+	public void startSendTreasure(UserInfo user, TreasureType type, String context, ArrayList<String> imageAll,
+			ArrayList<String> imageTest, OnBasicDataLoadListener<String> listener) {
 		// TODO 自动生成的方法存根
-		this.listener=listener;
-		isuoloadfear=false;
-		isUploadall=false;
-		this.context=context;
-		this.imageAll=imageAll;
-		this.imageTest=imageTest;
-		if(user!=null){
-			user_id=String.valueOf(user.getId());
-		}else{
-			user_id=String.valueOf(0);
+		this.listener = listener;
+		isuoloadfear = false;
+		isUploadall = false;
+		this.context = context;
+		this.imageAll = imageAll;
+		this.imageTest = imageTest;
+		if (user != null) {
+			user_id = String.valueOf(user.getId());
+		} else {
+			user_id = String.valueOf(0);
 		}
-		kind_id=String.valueOf(type.getId());
-		kind_name=type.getName();
-		
-		StringBuffer sb=new StringBuffer(url);
+		kind_id = String.valueOf(type.getId());
+		kind_name = type.getName();
+
+		StringBuffer sb = new StringBuffer(url);
 		sb.append(NetConst.PUBLISH_TREASURES);
-		if(NetConst.SESSIONID!=null){
+		if (NetConst.SESSIONID != null) {
 			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		}
-		url=sb.toString();
+		url = sb.toString();
 		startUploadImage();
 	}
 
-
-
 	private void startUploadImage() {
 		// TODO 自动生成的方法存根
-		if(imageAll!=null&&imageAll.size()>0){
-			startuploadImageAll(0);	
-		}else{
-			if(imageTest!=null&&imageTest.size()>0){
-				startuploadImagefear(0);	
-			}else{
+		if (imageAll != null && imageAll.size() > 0) {
+			startuploadImageAll(0);
+		} else {
+			if (imageTest != null && imageTest.size() > 0) {
+				startuploadImagefear(0);
+			} else {
 				startSend();
 			}
 		}
 	}
 
-	private void startuploadImageAll( final int index) {
+	private void startuploadImageAll(final int index) {
 		// TODO 自动生成的方法存根
-		if(ItApplication.getcurrnUser()==null){
+		if (ItApplication.getcurrnUser() == null) {
 			listener.onBaseDataLoadErrorHappened("-1", "未登录！");
 			return;
 		}
-		String path=FileUtils.getInstance().saveUpImageForCamera(imageAll.get(index));
+		String path = FileUtils.getInstance().saveUpImageForCamera(imageAll.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
-			
+
 			@Override
 			public void progress(String arg0, double arg1) {
 				// TODO 自动生成的方法存根
-				
+
 			}
-			
+
 			@Override
 			public boolean isCancelled() {
 				// TODO 自动生成的方法存根
 				return false;
 			}
-			
+
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {
 				// TODO 自动生成的方法存根
-				if(arg2!=null){
+				if (arg2 != null) {
 					try {
 						allsb.append(arg2.getString(NetConst.UPKEY)).append(",");
-						int newindex=index+1;
-						if(imageAll.size()>newindex){//继续上传上一张
+						int newindex = index + 1;
+						if (imageAll.size() > newindex) {// 继续上传上一张
 							startuploadImageAll(newindex);
-						}else{//上传完毕
-							isUploadall=true;
-							if(imageTest!=null&&imageTest.size()>0){
-								startuploadImagefear(0);	
-							}else{
+						} else {// 上传完毕
+							isUploadall = true;
+							if (imageTest != null && imageTest.size() > 0) {
+								startuploadImagefear(0);
+							} else {
 								startSend();
 							}
 						}
@@ -148,7 +143,7 @@ public class publishModel extends BaseModel {
 						// TODO 自动生成的 catch 块
 						e.printStackTrace();
 					}
-				}else{
+				} else {
 					listener.onBaseDataLoadErrorHappened("-1", "上传图片失败");
 				}
 			}
@@ -159,44 +154,44 @@ public class publishModel extends BaseModel {
 
 	private void startuploadImagefear(final int index) {
 		// TODO 自动生成的方法存根
-		if(ItApplication.getcurrnUser()==null){
+		if (ItApplication.getcurrnUser() == null) {
 			listener.onBaseDataLoadErrorHappened("-1", "未登录！");
 			return;
 		}
-		String path=FileUtils.getInstance().saveUpImageForCamera(imageTest.get(index));
+		String path = FileUtils.getInstance().saveUpImageForCamera(imageTest.get(index));
 		UploadUtils.UploadPortrait(path, new UpLoadFileInterface() {
-			
+
 			@Override
 			public void progress(String arg0, double arg1) {
 				// TODO 自动生成的方法存根
-				
+
 			}
-			
+
 			@Override
 			public boolean isCancelled() {
 				// TODO 自动生成的方法存根
 				return false;
 			}
-			
+
 			@Override
 			public void complete(String arg0, ResponseInfo arg1, JSONObject arg2) {
 				// TODO 自动生成的方法存根
-//				Toast.makeText(context, arg1+""+arg2, 1000).show;
-				if(arg2!=null){
+				// Toast.makeText(context, arg1+""+arg2, 1000).show;
+				if (arg2 != null) {
 					try {
 						fearsb.append(arg2.getString(NetConst.UPKEY)).append(",");
-						int newindex=index+1;
-						if(imageTest.size()>newindex){//继续上传上一张
+						int newindex = index + 1;
+						if (imageTest.size() > newindex) {// 继续上传上一张
 							startuploadImagefear(newindex);
-						}else{//上传完毕
-							isuoloadfear=true;
+						} else {// 上传完毕
+							isuoloadfear = true;
 							startSend();
 						}
 					} catch (JSONException e) {
 						// TODO 自动生成的 catch 块
 						e.printStackTrace();
 					}
-				}else{
+				} else {
 					listener.onBaseDataLoadErrorHappened("-1", "上传图片失败");
 				}
 			}
@@ -204,20 +199,16 @@ public class publishModel extends BaseModel {
 		});
 	}
 
-	
 	protected void startSend() {
-		// TODO 自动生成的方法存根
-		if(!allsb.toString().isEmpty()){
-		allsb.deleteCharAt(allsb.length()-1);
+		if (!allsb.toString().isEmpty()) {
+			allsb.deleteCharAt(allsb.length() - 1);
 		}
-		if(!fearsb.toString().isEmpty()){
-			fearsb.deleteCharAt(fearsb.length()-1);
+		if (!fearsb.toString().isEmpty()) {
+			fearsb.deleteCharAt(fearsb.length() - 1);
 		}
 		addRequestParams();
 		setHTTPMODE(HttpMethod.POST);
 		sendHttp();
-	}	
-
-	
+	}
 
 }

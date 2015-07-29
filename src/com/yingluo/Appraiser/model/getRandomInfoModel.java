@@ -40,12 +40,8 @@ public class getRandomInfoModel extends BaseModel{
 		sendHttp();
 	}
 	
-	
-	
-	
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 	
 	}
 	
@@ -53,7 +49,6 @@ public class getRandomInfoModel extends BaseModel{
 
 	@Override
 	public void onFailureForString(String error, String msg) {
-		// TODO Auto-generated method stub
 		lisntenr.onListDataLoadErrorHappened(error, msg);
 	}
 

@@ -5,21 +5,15 @@ import java.util.ArrayList;
 import org.json.JSONException;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +36,6 @@ import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.PublishPresenter;
 import com.yingluo.Appraiser.presenter.RamdomAdasiterPresenter;
-import com.yingluo.Appraiser.ui.adapter.identiySelectAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
@@ -101,6 +94,7 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_publishednext);
 		ViewUtils.inject(this);
+		list = new ArrayList<UserInfo>();
 		title.setText(R.string.publish_title);
 		type = (TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
 		if (type == null) {
@@ -235,12 +229,22 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 			if (dialog != null) {
 				dialog.dismiss();
 			}
-			list = data;
+			for(UserInfo each:data) {
+				int length = list.size(),i;
+				for(i=0;i< length;i++) {
+					if(each.getMobile().equals(list.get(i).getMobile())) {
+						break;
+					}
+				}
+				if(i==length) {
+					list.add(each);
+				}
+			}
 			other_layout.setVisibility(View.VISIBLE);
 			threadlayout.removeAllViews();
-			checkboxs = new CheckBox[data.size()];
-			for (int i = 0; i < data.size(); i++) {
-				UserInfo user = data.get(i);
+			checkboxs = new CheckBox[list.size()];
+			for (int i = 0; i < list.size(); i++) {
+				UserInfo user = list.get(i);
 				View layout = LinearLayout.inflate(PublishedNextActivity.this, R.layout.item_identy_people, null);
 				checkboxs[i] = (CheckBox) layout.findViewById(R.id.user_checkbox);
 				checkboxs[i].setOnCheckedChangeListener(listener);
