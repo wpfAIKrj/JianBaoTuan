@@ -101,7 +101,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 			LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,
 					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
-			return new AcrivleFootVIewholder(view, lis, delist);
+			return new AcrivleFootVIewholder(view, lis, delist,list);
 		}
 		if (arg1 == 0) {
 			View view = LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identified, arg0, false);
@@ -109,7 +109,7 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 					(int) arg0.getContext().getResources().getDimension(R.dimen.y568));
 			view.setLayoutParams(params);
 			// ViewHolder参数一定要是Item的Root节点.
-			return new IdentityFootViewholder(view, delist);
+			return new IdentityFootViewholder(view, delist,list);
 		}
 		return null;
 	}
@@ -124,6 +124,9 @@ public class MyFootAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	public void exitDelete() {
 		delist.clear();
+		for(CollectionTreasure each:list) {
+			each.isSelect = false;
+		}
 	}
 
 	// 全选

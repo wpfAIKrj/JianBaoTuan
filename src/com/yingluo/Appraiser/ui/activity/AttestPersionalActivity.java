@@ -68,7 +68,7 @@ public class AttestPersionalActivity extends BaseActivity implements AskNetWorkC
 		setContentView(R.layout.activity_attest_personal);
 		ViewUtils.inject(this);
 		askNet = new AskNetWork(NetConst.TOKEN,this);
-		askNet.ask(HttpRequest.HttpMethod.GET);
+		askNet.ask(HttpRequest.HttpMethod.GET,null);
 		initView();
 		initData();
 	}

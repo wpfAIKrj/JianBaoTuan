@@ -17,9 +17,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout.LayoutParams;
 
 public class ViewTreasure extends ViewHolder {
@@ -38,16 +40,18 @@ public class ViewTreasure extends ViewHolder {
 	@ViewInject(R.id.delete_checkbox)
 	CheckBox cbDel;
 	
-	TreasureEntity currn;
+	private TreasureEntity currn;
 
 	private Context mContext;
-
-	public ViewTreasure(View itemView, final OnClickListener lis) {
+	private List<TreasureEntity> all;
+	
+	public ViewTreasure(View itemView, final OnClickListener lis,final List<TreasureEntity> dels,List<TreasureEntity> allLists) {
 		super(itemView);
 		ViewUtils.inject(this, itemView);
+		this.all = allLists;
 		mContext = itemView.getContext();
 		bitmapUtils = BitmapsUtils.getInstance();
-		btn_result.setOnClickListener(new OnClickListener() {
+		itemView.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -57,6 +61,24 @@ public class ViewTreasure extends ViewHolder {
 				}
 			}
 		});
+		
+		cbDel.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				
+				for(TreasureEntity each :all) {
+					if(each.treasure_id == currn.treasure_id) {
+						each.isSelect = isChecked;
+					}
+				}
+				
+				if (isChecked) {
+					dels.add(currn);
+				} else {
+					dels.remove(currn);
+				}
+			}
+		});	
 	}
 
 	public void setItem(TreasureEntity item,boolean isDel) {
@@ -70,10 +92,11 @@ public class ViewTreasure extends ViewHolder {
 		}
 		if(isDel) {
 			cbDel.setVisibility(View.VISIBLE);
+			cbDel.setChecked(item.isSelect);
 		} else {
 			cbDel.setVisibility(View.GONE);
 		}
-		
+		cbDel.setTag(item);
 		tv_msg.setText(item.title);
 		switch (item.status) {
 		case 1:

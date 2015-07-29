@@ -25,6 +25,9 @@ public class TreasureEntity implements Serializable {
 	// 状态
 	public int status;
 
+	// 删除是否被选择
+	public boolean isSelect = false;
+		
 	public TreasureEntity(String image, String title, List<Kind> kinds,
 			long treasure_id,long user_id) {
 		super();

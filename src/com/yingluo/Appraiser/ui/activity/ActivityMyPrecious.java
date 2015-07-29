@@ -1,6 +1,7 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import org.json.JSONException;
 
 import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -33,11 +35,10 @@ import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.http.AskNetWork;
-import com.yingluo.Appraiser.http.ResponseToken;
 import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
+import com.yingluo.Appraiser.http.ResponseIsDel;
 import com.yingluo.Appraiser.http.ResponseMyBaby;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
-import com.yingluo.Appraiser.inter.deleteItemlistener;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
@@ -45,12 +46,13 @@ import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
+import com.yingluo.Appraiser.utils.ToastUtils;
 
-public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBack,ListviewLoadListener {
+public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBack, ListviewLoadListener {
 
 	@ViewInject(R.id.tv_title)
 	TextView title;
-	
+
 	@ViewInject(R.id.btn_all)
 	ViewGroup btn_all;
 	@ViewInject(R.id.btn_no)
@@ -85,40 +87,48 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 	private int Treadsure_type;
 
 	private List<TreasureEntity> lists;
+	//用于访问接口
+	private Long uid;
 	
-	@OnClick({ R.id.btn_back, R.id.btn_delete })
+	@OnClick({R.id.btn_back, R.id.btn_delete,R.id.all_checkbox,R.id.delete_all_bt,R.id.cancle_all_bt})
 	public void back_click(View view) {
 		switch (view.getId()) {
 		case R.id.btn_back:
 			onBackPressed();
 			return;
-			
 		case R.id.btn_delete:// 删除模式
 			mAdapter.setDel(true);
 			mAdapter.notifyDataSetChanged();
 			layout_delet.setVisibility(View.VISIBLE);
 			break;
-		// case R.id.delete_all_bt:// 删除
-		// deleteInfos = madapter.getSelectForMap();
-		// if (deleteInfos.keySet().size() > 0) {
-		// dialogLoad.show();
-		// StringBuffer sb = new StringBuffer();
-		// Set<String> ids = deleteInfos.keySet();
-		// for (String string : ids) {
-		// sb.append(string).append(",");
-		// }
-		// sb.deleteCharAt(sb.length() - 1);
-		// deletePresenter.deleteInfo(String.valueOf(sb.toString()));
-		// } else {
-		// new ToastUtils(this, "请选择后在点击删除按钮");
-		// }
-		// break;
-		// case R.id.cancle_all_bt:// 退出选择模式
-		// layout_delet.setVisibility(View.GONE);
-		// allcheckbox.setChecked(false);
-		// madapter.setScorll(true);
-		// madapter.exitSelectMode();
-		// break;
+		case R.id.all_checkbox:
+			// 全选
+			mAdapter.selectAll(allcheckbox.isChecked());
+			mAdapter.notifyDataSetChanged();
+			break;
+		case R.id.delete_all_bt:// 删除
+			List<TreasureEntity> deleteInfos = mAdapter.getDels();
+			if (deleteInfos.size() > 0) {
+				StringBuffer sb = new StringBuffer();
+				for (TreasureEntity each : deleteInfos) {
+					sb.append(each.treasure_id).append(",");
+				}
+				sb.deleteCharAt(sb.length() - 1);
+				askNewWork = new AskNetWork(NetConst.DEL_MY_LOVE,ActivityMyPrecious.this);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("user_id", uid);
+				map.put("ids", sb);
+				askNewWork.ask(HttpRequest.HttpMethod.GET,map);
+			} else {
+				new ToastUtils(this, "请选择后在点击删除按钮");
+			}
+			break;
+		case R.id.cancle_all_bt:// 退出选择模式
+			layout_delet.setVisibility(View.GONE);
+			allcheckbox.setChecked(false);
+			mAdapter.setDel(false);
+			mAdapter.exitSelectMode();
+			break;
 		}
 	}
 
@@ -132,9 +142,9 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 		lists = new ArrayList<TreasureEntity>();
 		model = new MyTreasureModel();
-
+		uid = SharedPreferencesUtils.getInstance().getLoginUserID();
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
-		
+
 		dels = new ArrayList<String>();
 		model.setType(type);
 		Treadsure_type = MyTreasureModel.TYPE_ALL;
@@ -179,11 +189,10 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 		recyclerview.setLayoutManager(layoutManager);
 		recyclerview.setHasFixedSize(true);
 
-		mAdapter = new MyTreasureAdapter(this, lists, listener, deleteItemlistener,this);
+		mAdapter = new MyTreasureAdapter(this, lists, lis, this);
 		mAdapter.setType(type);
-		
+
 		recyclerview.setAdapter(mAdapter);
-//		mRecyclerview.setToRefreshing();
 		mRecyclerview.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
 			@Override
 			public void onPullDown(float y) {
@@ -205,21 +214,20 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 	@Override
 	public void onRefresh() {
-		Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
-		if(type == Const.PRECIOUS) {
+		if (type == Const.PRECIOUS) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("user_id", uid);
-			if(Treadsure_type == MyTreasureModel.TYPE_ALL) {
+			if (Treadsure_type == MyTreasureModel.TYPE_ALL) {
 				map.put("status", -1);
-			} else if(Treadsure_type == MyTreasureModel.TYPE_NO) {
+			} else if (Treadsure_type == MyTreasureModel.TYPE_NO) {
 				map.put("status", 0);
 			} else {
 				map.put("status", Treadsure_type);
 			}
 			map.put("page", 0);
-			askNewWork = new AskNetWork(map,NetConst.SAVE_BAOBEI, ActivityMyPrecious.this);
+			askNewWork = new AskNetWork(map, NetConst.SAVE_BAOBEI, ActivityMyPrecious.this);
 			Map<String, Object> param = new HashMap<String, Object>();
-			param.put(NetConst.SID,NetConst.SESSIONID);
+			param.put(NetConst.SID, NetConst.SESSIONID);
 			askNewWork.ask(param);
 		} else {
 			model.setType(type);
@@ -237,29 +245,10 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 				public void onError() {
 					mRecyclerview.refreshOver(null);
 				}
-			}, Treadsure_type,uid);
+			}, Treadsure_type, uid);
 		}
-		
+
 	}
-
-	private deleteItemlistener<TreasureEntity> deleteItemlistener = new deleteItemlistener<TreasureEntity>() {
-
-		@Override
-		public void ondeleteItem(TreasureEntity item, int id) {
-//			dialogLoad.show();
-//			deleteInfos.put(String.valueOf(item.getId()), id);
-//			deletePresenter.deleteInfo(String.valueOf(item.getId()));
-//			askNewWork = new AskNetWork(NetConst.DEL_MY_LOVE, ActivityMyPrecious.this);
-//			 askNewWork.ask(HttpRequest.HttpMethod.GET,null);
-
-		}
-	};
-	
-	OnClickListener ivListener = new OnClickListener() {
-		public void onClick(View v) {
-			startActivity(new Intent(ActivityMyPrecious.this, ActivityUserDelails.class));
-		};
-	};
 
 	OnClickListener listener = new OnClickListener() {
 
@@ -360,41 +349,51 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 		@Override
 		public void onClick(View v) {
+			// 跳转到宝贝详情页
 			TreasureEntity entity = (TreasureEntity) v.getTag();
 			CollectionTreasure id = new CollectionTreasure();
 			id.treasure_id = entity.treasure_id;
-			id.image = entity.image;
-			id.name = entity.title;
-
+			
 			Intent mIntent = new Intent(ActivityMyPrecious.this, ActivityUserDelails.class);
 			mIntent.putExtra(Const.ENTITY, id);
 			startActivity(mIntent);
+			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 	};
 
 	@Override
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
-		if(param.equals(NetConst.SAVE_BAOBEI)) {
-			//获得我的收藏里面的数据
+		if (param.equals(NetConst.SAVE_BAOBEI)) {
+			// 获得我的收藏里面的数据
+			mRecyclerview.refreshOver(null);
 			ResponseMyBaby rt = new Gson().fromJson(msg, ResponseMyBaby.class);
-			if(rt.getCode()==100000) {
+			if (rt.getCode() == 100000) {
 				lists = rt.getData().getList();
 				mAdapter.setData(lists);
 			}
-		} else if(param.equals(NetConst.DEL_MY_LOVE)) {
-			//删除我的收藏里面的数据
+		} else if (param.equals(NetConst.DEL_MY_LOVE)) {
+			// 删除我的收藏里面的数据
+			ResponseIsDel rt = new Gson().fromJson(msg, ResponseIsDel.class);
+			if (rt.getCode() == 100000) {
+				Toast.makeText(ActivityMyPrecious.this, "删除成功", Toast.LENGTH_SHORT).show();
+				mAdapter.delOk();
+			} else {
+				Toast.makeText(ActivityMyPrecious.this, "删除失败", Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 
 	@Override
 	public void getNetWorkMsgError(String msg, String param) throws JSONException {
-
+		if (param.equals(NetConst.SAVE_BAOBEI)) {
+			mRecyclerview.refreshOver(null);
+		}
 	}
 
 	@Override
 	public void onLoadMore() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

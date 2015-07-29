@@ -79,7 +79,7 @@ public class SetNameActivity extends BaseActivity implements AskNetWorkCallBack{
 		imageUtils = new ImageUtils(this);
 		uplogopresenter = new UploadLogoPresenter(listener);
 		askNet = new AskNetWork(NetConst.TOKEN,this);
-		askNet.ask(HttpRequest.HttpMethod.GET);
+		askNet.ask(HttpRequest.HttpMethod.GET,null);
 	}
 
 	@Override

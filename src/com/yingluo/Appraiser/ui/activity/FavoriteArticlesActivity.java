@@ -215,6 +215,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 				Intent intent = new Intent(FavoriteArticlesActivity.this, InformationDetailsActivity.class);
 				intent.putExtra(Const.ArticleId, info);
 				startActivity(intent);
+				overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		}
 	};

@@ -1,6 +1,5 @@
 package com.yingluo.Appraiser.view.viewholder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -17,15 +16,23 @@ public class IdentityFootViewholder extends ViewHolder {
 	public ViewHots hotsView;
 	private List<CollectionTreasure> ids;
 
-	public IdentityFootViewholder(View itemView, List<CollectionTreasure> list) {
+	private List<CollectionTreasure> allList;
+	public IdentityFootViewholder(View itemView, List<CollectionTreasure> list,List<CollectionTreasure> all) {
 		super(itemView);
-		this.ids = list;
+		ids = list;
+		allList = all;
 		hotsView = (ViewHots) itemView.findViewById(R.id.hot);
 		hotsView.delete_checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (hotsView.getItem() != null) {
+					
+					for(CollectionTreasure each : allList) {
+						if(each.getArticle_id() == hotsView.getItem().getArticle_id()) {
+							each.isSelect=isChecked;
+						}
+					}
+					
 					if (isChecked) {
 						ids.add(hotsView.getItem());
 					} else {

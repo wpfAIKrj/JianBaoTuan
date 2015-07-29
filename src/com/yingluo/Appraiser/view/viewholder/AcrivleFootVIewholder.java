@@ -39,10 +39,11 @@ public class AcrivleFootVIewholder extends ViewHolder {
 	CollectionTreasure currnt;
 
 	private List<CollectionTreasure> list;
-
-	public AcrivleFootVIewholder(View itemView, final OnClickListener lis, List<CollectionTreasure> ids) {
+	private List<CollectionTreasure> allList;
+	public AcrivleFootVIewholder(View itemView, final OnClickListener lis, List<CollectionTreasure> dels,List<CollectionTreasure> all) {
 		super(itemView);
-		list = ids;
+		list = dels;
+		allList = all;
 		ViewUtils.inject(this, itemView);
 		itemView.setOnClickListener(new OnClickListener() {
 
@@ -59,6 +60,11 @@ public class AcrivleFootVIewholder extends ViewHolder {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if (currnt != null) {
+					for(CollectionTreasure each : allList) {
+						if(each.getArticle_id() == currnt.getArticle_id()) {
+							each.isSelect=isChecked;
+						}
+					}
 					if (isChecked) {
 						list.add(currnt);
 					} else {

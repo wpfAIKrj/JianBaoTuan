@@ -141,7 +141,7 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 		dialog.show();
 		rampresenter.startGet(type.getId());
 		askNet = new AskNetWork(NetConst.TOKEN,this);
-		askNet.ask(HttpRequest.HttpMethod.GET);
+		askNet.ask(HttpRequest.HttpMethod.GET,null);
 	}
 
 	@Override
