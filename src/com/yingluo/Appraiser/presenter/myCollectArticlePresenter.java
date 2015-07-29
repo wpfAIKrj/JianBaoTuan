@@ -19,7 +19,6 @@ public class myCollectArticlePresenter implements OnListDataLoadListener<Content
 	private onListView<ContentInfo> mView;
 	private getCollectArticleModel model;
 	public myCollectArticlePresenter(onListView<ContentInfo> view) {
-		// TODO Auto-generated constructor stub
 		this.mView=view;
 	}
 	
@@ -32,13 +31,11 @@ public class myCollectArticlePresenter implements OnListDataLoadListener<Content
 	}
 	@Override
 	public void onListDataLoaded(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		mView.onSucess(data);
 	}
 
 	@Override
 	public void onListDataLoadErrorHappened(String errorCode, String errorMsg) {
-		// TODO Auto-generated method stub
 		mView.onFail(errorCode, errorMsg);
 	}
 

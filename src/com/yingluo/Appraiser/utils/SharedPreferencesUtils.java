@@ -17,6 +17,11 @@ public class SharedPreferencesUtils {
 	 */
 	public static final String USER_NAME="user_name";
 	
+	/**
+	 * 用户id
+	 */
+	public static final String USER_ID="user_id";
+	
 	private  SharedPreferences preferences =null;
 	
 	public static SharedPreferencesUtils b=null;
@@ -94,6 +99,14 @@ public class SharedPreferencesUtils {
 	}
 	
 	/**
+	 * 保存登录用户的id
+	 * @param mobli
+	 */
+	public void saveLoginUserID(long id){
+		save(USER_ID, id);
+	}
+	
+	/**
 	 * 保存登录用户的密码（和账号匹配）
 	 * @param mobli
 	 */
@@ -123,6 +136,16 @@ public class SharedPreferencesUtils {
 		return preferences.getString(USER_NAME, null);
 	}
 	
+	/**
+	 * 获取登录用户的名字
+	 * @return 用户名
+	 */
+	public long getLoginUserID(){
+		if(!preferences.contains(USER_ID)) {
+			return -1;
+		}
+		return preferences.getLong(USER_ID, -1);
+	}
 	
     /** 
      * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类 

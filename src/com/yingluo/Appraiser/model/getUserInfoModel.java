@@ -5,6 +5,7 @@ import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.OnBasicDataLoadListener;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 
 public class getUserInfoModel extends BaseModel{
 	
@@ -20,7 +21,8 @@ public class getUserInfoModel extends BaseModel{
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.MINEACTION);
 		if(NetConst.SESSIONID!=null){
-			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
+			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID).
+			append("&user_id=").append(SharedPreferencesUtils.getInstance().getLoginUserID());
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}

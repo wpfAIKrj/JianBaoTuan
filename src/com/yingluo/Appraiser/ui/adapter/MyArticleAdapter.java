@@ -51,7 +51,7 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 	public Map<Integer, Boolean> map = new HashMap<Integer, Boolean>();// 选择删除
 
 	public MyArticleAdapter(Context context, ArrayList<ContentInfo> list, OnClickListener listner,
-			deleteItemlistener delete) {
+			deleteItemlistener<ContentInfo> delete,ListviewLoadListener listview) {
 		this.context = context;
 		mInflater = LayoutInflater.from(context);
 		this.list = list;
@@ -113,9 +113,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 						if (delete != null) {
 							delete.ondeleteItem(list.get(arg1), arg1);
 						}
-						// Toast.makeText(view.getContext(), "Deleted " +
-						// viewHolder.textViewData.getText().toString() + "!",
-						// Toast.LENGTH_SHORT).show();
 					}
 				});
 				mItemManger.bindView(articie.itemView, arg1);
@@ -126,7 +123,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						// TODO Auto-generated method stub
 						if (isChecked) {
 							if (!map.containsKey(arg1)) {
 								map.put(arg1, isChecked);
@@ -163,13 +159,11 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 	 *            0加载更多，1为正在加载， 2为隐藏
 	 */
 	public void setFootType(int type) {
-		// TODO Auto-generated method stub
 		load_type = type;
 
 	}
 
 	public void setListData(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		list = data;
 	}
 
@@ -183,7 +177,6 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 
 	@Override
 	public int getSwipeLayoutResourceId(int arg0) {
-		// TODO Auto-generated method stub
 		return R.id.swipe;
 	}
 
@@ -202,11 +195,9 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 	/**
 	 * 创建选择
 	 * 
-	 * @param b
-	 *            true全选，false飞全选
+	 * @param b true全选，false非全选
 	 */
 	public void setSelectDelete(boolean b) {
-		// TODO Auto-generated method stub
 		if (b) {
 			for (int i = 0; i < getItemCount() - 1; i++) {
 				map.put(i, true);
@@ -229,9 +220,7 @@ public class MyArticleAdapter extends RecyclerSwipeAdapter<ViewHolder> {
 	}
 
 	public void exitSelectMode() {
-		// TODO Auto-generated method stub
 		map.clear();
 		notifyDataSetChanged();
-
 	}
 }

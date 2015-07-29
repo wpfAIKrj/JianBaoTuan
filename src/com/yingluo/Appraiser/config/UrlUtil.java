@@ -50,7 +50,7 @@ public class UrlUtil {
 	 */
 	public static String getTreasureByIdURL() {
 		StringBuilder url = new StringBuilder();
-		url.append(BASE_URL).append("/Users/myTreasuresAction");
+		url.append(BASE_URL).append("/Material/treasureByStatusAction");
 		return url.toString();
 	}
 

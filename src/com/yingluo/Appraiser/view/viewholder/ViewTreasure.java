@@ -59,12 +59,21 @@ public class ViewTreasure extends ViewHolder {
 		});
 	}
 
-	public void setItem(TreasureEntity item) {
+	public void setItem(TreasureEntity item,boolean isDel) {
 		if (item == null) {
 			return;
 		}
 		currn = item;
-		bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
+		if(iv_icon.getTag() == null) {
+			bitmapUtils.display(iv_icon, item.image, BitmapsUtils.TYPE_YES);
+			iv_icon.setTag(currn);
+		}
+		if(isDel) {
+			cbDel.setVisibility(View.VISIBLE);
+		} else {
+			cbDel.setVisibility(View.GONE);
+		}
+		
 		tv_msg.setText(item.title);
 		switch (item.status) {
 		case 1:
@@ -77,6 +86,7 @@ public class ViewTreasure extends ViewHolder {
 			tv_status.setText(R.string.identity_ishava);
 			break;
 		}
+		
 		layout_kind.removeAllViews();
 		List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds = item.kinds;
 
@@ -119,11 +129,6 @@ public class ViewTreasure extends ViewHolder {
 	 * @param isselect 
 	 */
 	public void showDataForDelete(TreasureEntity item, boolean isselect){
-		cbDel.setVisibility(View.VISIBLE);
-//		this.contentinfo=contentinfo;
-//		name.setText(contentinfo.getTitle());
-//		BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
-//		number.setText(""+contentinfo.getView_times());
 		cbDel.setChecked(isselect);
 	}
 }

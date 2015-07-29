@@ -57,20 +57,22 @@ public class AskNetWork {
         }
 	}
 	
-	public void ask(Object... params) 
+	public void ask(Map<String, Object> paramMap) 
 	{
-		String httpurl = UrlUtil.BASE_URL +"/"+ this.param;
-		if(params!=null)
+		StringBuffer httpurl = new StringBuffer(UrlUtil.BASE_URL +"/"+ this.param+"?");
+		if(paramMap!=null)
 		{
-			for (Object s : params)
-			{
-				httpurl=httpurl+"/"+s;
-			}
+			for (String key : paramMap.keySet()) {
+				httpurl.append(key);
+				httpurl.append("=");
+				httpurl.append(paramMap.get(key));
+				httpurl.append("&");
+	        }
 		}
-		
+		String url = httpurl.substring(0, httpurl.length()-1);
 		HttpUtils http = new HttpUtils();
 		http.configTimeout(5000);
-	    http.send(HttpRequest.HttpMethod.POST, httpurl, this.params,new RequestCallBack<String>() {
+	    http.send(HttpRequest.HttpMethod.POST, url, this.params,new RequestCallBack<String>() {
 	
 	        @Override
 	        public void onSuccess(ResponseInfo<String> responseInfo) {

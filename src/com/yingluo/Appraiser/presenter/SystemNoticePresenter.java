@@ -16,7 +16,6 @@ public class SystemNoticePresenter  implements OnListDataLoadListener<SystemInfo
 	private onListView<SystemInfoEntity> mView;
 	private GetSystemInfoModel model;
 	public SystemNoticePresenter(onListView<SystemInfoEntity> view) {
-		// TODO Auto-generated constructor stub
 		this.mView=view;
 	}
 	

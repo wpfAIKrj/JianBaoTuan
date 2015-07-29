@@ -221,7 +221,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 		bitmapUtils.display(iv_icon, entity.authImage);
 		tv_name.setText(entity.authName);
 		if (!TextUtils.equals(entity.company, "")) {
-
 			tv_grade_name.setText(entity.company);
 		} else {
 			tv_grade_name.setText("普通用户");

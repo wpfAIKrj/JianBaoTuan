@@ -20,16 +20,19 @@ public class TreasureEntity implements Serializable {
 	public List<Kind> kinds;
 	@SerializedName("treasure_id")
 	public long treasure_id;
+	@SerializedName("user_id")
+	public long user_id;
 	// 状态
 	public int status;
 
 	public TreasureEntity(String image, String title, List<Kind> kinds,
-			long treasure_id) {
+			long treasure_id,long user_id) {
 		super();
 		this.image = image;
 		this.title = title;
 		this.kinds = kinds;
 		this.treasure_id = treasure_id;
+		this.user_id = user_id;
 	}
 
 	public TreasureEntity() {

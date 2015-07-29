@@ -89,9 +89,11 @@ public class ViewHots extends LinearLayout {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
+	
 	private void init(Context context) {
 		mContext = context;
 		LayoutInflater.from(context).inflate(R.layout.item_home_1, this);
+		
 		ViewUtils.inject(this);
 		iv_big.setClickable(true);
 		iv_small.setClickable(true);

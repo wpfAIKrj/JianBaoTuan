@@ -4,37 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import android.R.integer;
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.NetworkInfo.DetailedState;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
-import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.daimajia.swipe.util.Attributes;
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.R.string;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -44,24 +30,18 @@ import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
-import com.yingluo.Appraiser.inter.OnListDataLoadListener;
 import com.yingluo.Appraiser.inter.deleteItemlistener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.inter.onListView;
-import com.yingluo.Appraiser.model.getCollectArticleModel;
 import com.yingluo.Appraiser.presenter.deleteInfoPresenter;
 import com.yingluo.Appraiser.presenter.myCollectArticlePresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
-import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.adapter.MyArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
-import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ListLoadType;
 import com.yingluo.Appraiser.utils.ToastUtils;
-import com.yingluo.Appraiser.view.listview.XListView;
-import com.yingluo.Appraiser.view.listview.XListView.IXListViewListener;
 
 import de.greenrobot.event.EventBus;
 
@@ -71,7 +51,7 @@ import de.greenrobot.event.EventBus;
  * @author Administrator
  *
  */
-public class FavoriteArticlesActivity extends BaseActivity implements onListView<ContentInfo> {
+public class FavoriteArticlesActivity extends BaseActivity implements onListView<ContentInfo>,ListviewLoadListener {
 
 	@ViewInject(R.id.home_title)
 	private TextView title;
@@ -142,10 +122,10 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 		deletePresenter = new deleteInfoPresenter(netlistener);
 		
 		RecyclerView recyclerView = (RecyclerView) mRecyclerView.getRefreshView();
-		
 		LayoutManager layoutManager = new LinearLayoutManager(this);
 		recyclerView.setLayoutManager(layoutManager);
 		
+		mRecyclerView.setToRefreshing();
 		mRecyclerView.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
             public void onPullDown(float y) {
@@ -170,7 +150,7 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 		recyclerView.setHasFixedSize(true);
 
-		madapter = new MyArticleAdapter(this, list, listener, deleteItemlistener);
+		madapter = new MyArticleAdapter(this, list, listener, deleteItemlistener,this);
 		madapter.setMode(Attributes.Mode.Single);
 		madapter.setScorll(true);
 
@@ -229,7 +209,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			if (!ismodel) {
 				ContentInfo info = (ContentInfo) v.getTag();
 				info.setIsCollected(1);
@@ -242,7 +221,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 	@Override
 	public void onSucess(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		if (currt == ListLoadType.LoadMore) {// 加载更多
 			addList(data);
 		}
@@ -276,7 +254,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 	 * @param data
 	 */
 	public void addList(ArrayList<ContentInfo> data) {
-		// TODO Auto-generated method stub
 		if (list.size() == 0) {
 			list.addAll(data);
 		} else {
@@ -289,7 +266,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 	}
 
 	public void onRefresh() {
-		// TODO Auto-generated method stub
 		currt = ListLoadType.Refresh;
 		isRefreshing = false;
 		isLoadMore = false;
@@ -300,7 +276,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 	}
 
 	public void onLoadMore() {
-		// TODO Auto-generated method stub
 		currt = ListLoadType.LoadMore;
 		isLoadMore = false;
 		isRefreshing = false;
@@ -310,17 +285,17 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 		myPresenter.getArticleList("0", (length + 1));
 	}
 
-	private deleteItemlistener deleteItemlistener = new deleteItemlistener<ContentInfo>() {
+	private deleteItemlistener<ContentInfo> deleteItemlistener = new deleteItemlistener<ContentInfo>() {
 
 		@Override
 		public void ondeleteItem(ContentInfo item, int id) {
-			// TODO Auto-generated method stub
 			dialogLoad.show();
 			deleteInfos.put(String.valueOf(item.getId()), id);
 			deletePresenter.deleteInfo(String.valueOf(item.getId()));
 
 		}
 	};
+	
 	/**
 	 * 删除结果
 	 */
@@ -328,7 +303,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 		@Override
 		public void onSucess(String data) {
-			// TODO Auto-generated method stub
 
 			try {
 				StringBuffer sb = new StringBuffer(data);
@@ -340,12 +314,10 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 					sb.deleteCharAt(0);
 					sb.deleteCharAt(sb.length() - 1);
 					int id = deleteInfos.get(sb.toString());
-
 					madapter.deleteItem(id);
 				}
 				deleteInfos.clear();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				madapter.closeAllItems();
 			}
@@ -364,7 +336,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 
 			if (dialogLoad != null) {
 				dialogLoad.dismiss();
@@ -375,7 +346,6 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 
 	@OnCompoundButtonCheckedChange(R.id.all_checkbox)
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		// TODO Auto-generated method stub
 		if (isChecked) {
 			madapter.setSelectDelete(true);
 		} else {

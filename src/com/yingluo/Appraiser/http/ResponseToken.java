@@ -12,4 +12,18 @@ public class ResponseToken extends ResponseRoot{
 		this.data = data;
 	}
     
+	public class TokenBean{
+
+	    private String token;
+
+		public String getToken() {
+			return token;
+		}
+
+		public void setToken(String token) {
+			this.token = token;
+		}
+	    
+	}
 }
+

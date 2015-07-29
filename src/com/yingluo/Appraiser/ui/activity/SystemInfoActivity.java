@@ -123,7 +123,6 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 	}
 
 	protected void initView() {
-		// TODO Auto-generated method stub
 		title.setText(R.string.system_info_title);
 		list = SqlDataUtil.getInstance().getSystemInfoList(ItApplication.getcurrnUser().getMobile());
 		myPresenter = new SystemNoticePresenter(this);

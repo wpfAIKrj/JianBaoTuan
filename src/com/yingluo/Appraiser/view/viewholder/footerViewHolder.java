@@ -28,14 +28,12 @@ public class footerViewHolder extends ViewHolder{
 	private View mview;
 	public footerViewHolder(View itemView,final ListviewLoadListener lis) {
 		super(itemView);
-		// TODO Auto-generated constructor stub
 		mview=itemView;
 		ViewUtils.inject(this, itemView);
 		itemView.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if(lis!=null){
 					lis.onLoadMore();
 				}

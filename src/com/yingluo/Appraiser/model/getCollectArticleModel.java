@@ -42,9 +42,6 @@ public class getCollectArticleModel extends BaseModel{
 		url=sb.toString();
 	}
 	
-	
-	
-	
 	@Override
 	public void addRequestParams() {
 		// TODO Auto-generated method stub

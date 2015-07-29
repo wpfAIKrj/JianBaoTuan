@@ -26,7 +26,7 @@ public class MyTreasureModel extends BaseModel {
 	// 全部宝物
 	public static final int TYPE_ALL = 0;
 	// 未审核
-	public static final int TYPE_NO = 0;
+	public static final int TYPE_NO = 3;
 	// 未鉴定的
 	public static final int TYPE_IDENTIFYING = 1;
 	// 已鉴定的
@@ -37,13 +37,11 @@ public class MyTreasureModel extends BaseModel {
 	private int type = TYPE_ALL;
 
 	public MyTreasureModel() {
-		// TODO Auto-generated constructor stub
 		httpmodel = HttpMethod.GET;
 		url = UrlUtil.getMyCollectionURL();
 		StringBuffer sb = new StringBuffer(url);
 		if (NetConst.SESSIONID != null) {
-			sb.append("?").append(NetConst.SID).append("=")
-					.append(NetConst.SESSIONID);
+			sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 		} else {
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
@@ -56,8 +54,7 @@ public class MyTreasureModel extends BaseModel {
 			url = UrlUtil.getMyCollectionURL();
 			StringBuffer sb = new StringBuffer(url);
 			if (NetConst.SESSIONID != null) {
-				sb.append("?").append(NetConst.SID).append("=")
-						.append(NetConst.SESSIONID);
+				sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 			} else {
 				sb.append("?").append(NetConst.SID).append("=").append("");
 			}
@@ -68,8 +65,7 @@ public class MyTreasureModel extends BaseModel {
 			url = UrlUtil.getTreasureByIdURL();
 			StringBuffer sb = new StringBuffer(url);
 			if (NetConst.SESSIONID != null) {
-				sb.append("?").append(NetConst.SID).append("=")
-						.append(NetConst.SESSIONID);
+				sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 			} else {
 				sb.append("?").append(NetConst.SID).append("=").append("");
 			}
@@ -80,8 +76,7 @@ public class MyTreasureModel extends BaseModel {
 			url = UrlUtil.getMyIdentifyURL();
 			StringBuffer sb = new StringBuffer(url);
 			if (NetConst.SESSIONID != null) {
-				sb.append("?").append(NetConst.SID).append("=")
-						.append(NetConst.SESSIONID);
+				sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
 			} else {
 				sb.append("?").append(NetConst.SID).append("=").append("");
 			}
@@ -94,21 +89,20 @@ public class MyTreasureModel extends BaseModel {
 		}
 	}
 
-	public void sendHttp(final CommonCallBack callBack, int type) {
-		if(list!=null){
-		list.clear();
+	public void sendHttp(final CommonCallBack callBack, int type,Long uid) {
+		if (list != null) {
+			list.clear();
 		}
 		final HttpUtils httpUtils = new HttpUtils(connTimeout);
 		StringBuffer sb = new StringBuffer(url);
 		sb.append("&status=").append(type);
-		sb.append("&user_id=");
+		sb.append("&user_id=").append(uid);
 		// params.addBodyParameter("length", String.valueOf(type));
 		url = sb.toString();
 		LogUtils.d("ytmfdw  url=" + url);
 		httpUtils.send(httpmodel, url, params, new RequestCallBack<String>() {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
-				// TODO Auto-generated method stub
 				LogUtils.i("onSucess responseInfo=" + responseInfo);
 				onSuccessForString(responseInfo.result);
 				callBack.onSuccess();
@@ -116,7 +110,6 @@ public class MyTreasureModel extends BaseModel {
 
 			@Override
 			public void onFailure(HttpException error, String msg) {
-				// TODO Auto-generated method stub
 				onFailureForString(error.getMessage(), msg);
 				callBack.onError();
 			}
@@ -126,7 +119,6 @@ public class MyTreasureModel extends BaseModel {
 
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		try {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");
@@ -134,20 +126,17 @@ public class MyTreasureModel extends BaseModel {
 			list = gson.fromJson(data, new TypeToken<List<TreasureEntity>>() {
 			}.getType());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onFailureForString(String error, String msg) {
-		// TODO Auto-generated method stub
 
 	}
 

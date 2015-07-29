@@ -187,6 +187,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		}
 		ItApplication.setCurrnUser(user);
 		SharedPreferencesUtils.getInstance().saveLoginUserName(name);
+		SharedPreferencesUtils.getInstance().saveLoginUserID(user.getId());
+		
 		// 保存密码，不知道有用没有，看需求吧
 		if(cbPassword.isChecked()) {
 			SharedPreferencesUtils.getInstance().saveLoginUserPassword(name+"1", pas);

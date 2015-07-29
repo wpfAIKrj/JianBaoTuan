@@ -548,7 +548,7 @@ public class ActivityUserDelails extends BaseActivity {
 			if (HelpUtils.isShouldHideInput(v, ev, bottom)) {
 				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				HelpUtils.hideSoftInput(v.getWindowToken(), im);
+				im.hideSoftInputFromWindow(ed_text.getWindowToken(), 0);
 				to_user_id = 0;
 				ed_text.setHint("");
 				ed_text.setText("");

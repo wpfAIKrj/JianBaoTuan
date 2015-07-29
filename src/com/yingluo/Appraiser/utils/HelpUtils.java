@@ -15,16 +15,15 @@ public class HelpUtils {
 	 * @param event
 	 * @return
 	 */
-	public static boolean isShouldHideInput(View v, MotionEvent event,LinearLayout bottomView) {
+	public static boolean isShouldHideInput(View v, MotionEvent event, LinearLayout bottomView) {
 		if (v != null && (v instanceof EditText)) {
 			int[] l = { 0, 0 };
 			bottomView.getLocationInWindow(l);
 			int left = l[0], top = l[1];
 			int bottom = top + bottomView.getMeasuredHeight();
 			int right = left + bottomView.getMeasuredWidth();
-			
-			if (left<=event.getX() && event.getX() <= right
-					&&top<=event.getY()  && event.getY() <= bottom) {
+
+			if (left <= event.getX() && event.getX() <= right && top <= event.getY() && event.getY() <= bottom) {
 				// 点击EditText的事件，忽略它。
 				return false;
 			} else {
@@ -42,8 +41,7 @@ public class HelpUtils {
 	 */
 	public static void hideSoftInput(IBinder token, InputMethodManager im) {
 		if (token != null) {
-			im.hideSoftInputFromWindow(token,
-					InputMethodManager.HIDE_NOT_ALWAYS);
+			im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
 		}
 	}
 }
