@@ -63,6 +63,15 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewHolder> {
 	}
 
 	/**
+	 * 返回是不是删除
+	 * 
+	 * @return
+	 */
+	public boolean isDel() {
+		return isDel;
+	}
+
+	/**
 	 * 设置页面的类型
 	 * 
 	 * @param type

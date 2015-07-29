@@ -99,13 +99,13 @@ public class ViewTreasure extends ViewHolder {
 		cbDel.setTag(item);
 		tv_msg.setText(item.title);
 		switch (item.status) {
-		case 1:
+		case 0:
 			tv_status.setText(R.string.identity_isno);
 			break;
-		case 2:
-			tv_status.setText(R.string.identity_ishava);
+		case 1:
+			tv_status.setText(R.string.identity_ing);
 			break;
-		default:
+		case 2:
 			tv_status.setText(R.string.identity_ishava);
 			break;
 		}

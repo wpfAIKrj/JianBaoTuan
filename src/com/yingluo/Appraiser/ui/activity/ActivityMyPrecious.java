@@ -170,10 +170,8 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 		btn_ing.setOnClickListener(listener);
 		btn_ed.setOnClickListener(listener);
 
-		btn_all.callOnClick();
-
 		initViews();
-
+		btn_all.callOnClick();
 	}
 
 	@Override
@@ -254,28 +252,32 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 		@Override
 		public void onClick(View v) {
+			if(type == Const.COLLECT) {
+				if(mAdapter.isDel()) {
+					layout_delet.setVisibility(View.GONE);
+					allcheckbox.setChecked(false);
+					mAdapter.setDel(false);
+					mAdapter.exitSelectMode();
+				}
+			}
+			
 			mRecyclerview.setToRefreshing();
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_all: {
 				Treadsure_type = MyTreasureModel.TYPE_ALL;
-				onRefresh();
 			}
 				break;
 			case R.id.btn_no: {
 				Treadsure_type = MyTreasureModel.TYPE_NO;
-				onRefresh();
 			}
 				break;
 			case R.id.btn_identifing: {
 				Treadsure_type = MyTreasureModel.TYPE_IDENTIFIED;
-				onRefresh();
-
 			}
 				break;
 			case R.id.btn_identified: {
 				Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
-				onRefresh();
 			}
 				break;
 
