@@ -274,7 +274,7 @@ public class MyFragment extends BaseFragment {
 			BitmapsUtils.getInstance().display(user_logo, ItApplication.getcurrnUser().getAvatar());
 			if (ItApplication.getcurrnUser().getUser_type() == 0) {
 				tv_authenticate.setText(R.string.type_collect);
-				iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
+//				iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 			} else {
 				tv_authenticate.setText(R.string.type_identiy);
 			}
@@ -290,13 +290,19 @@ public class MyFragment extends BaseFragment {
 
 		@Override
 		public void onSucess(String data) {
+			JSONObject obj = null;
+			int currentLevel = 0,levelNumber = 0,levelUpNeedNumber = 0;
 			try {
-				JSONObject obj = new JSONObject(data);
+				obj = new JSONObject(data);
 				ItApplication.getcurrnUser().setTreasure_number(obj.getInt(NetConst.TREASURE_NUMBER));
 				ItApplication.getcurrnUser().setTreasure_record_number(obj.getInt(NetConst.TREASURE_RECORD_NUMBER));
 				ItApplication.getcurrnUser().setFoot_number(obj.getInt(NetConst.FOOT_NUMBER));
 				ItApplication.getcurrnUser().setUser_type(obj.getInt(NetConst.USER_TYPE));
-				ItApplication.getcurrnUser().setUser_level(obj.getInt(NetConst.USER_LEVE));
+//				ItApplication.getcurrnUser().setUser_level(obj.getInt(NetConst.USER_LEVE));
+				currentLevel = obj.getInt("currentLevel");
+				levelNumber = obj.getInt("levelNumber");
+				levelUpNeedNumber = obj.getInt("levelUpNeedNumber");
+				
 				SqlDataUtil.getInstance().saveUserInfo(ItApplication.getcurrnUser());
 				JSONArray arrays = obj.getJSONArray(NetConst.LIKES);
 				list.clear();
@@ -319,10 +325,15 @@ public class MyFragment extends BaseFragment {
 				listView.setAdapter(madapter);
 				if (ItApplication.getcurrnUser().getUser_type() == 0) {
 					tv_authenticate.setText(R.string.type_collect);
-					iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
+					iv_level.setImageResource(levels[currentLevel-1]);
+//					iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 				} else {
 					tv_authenticate.setText(R.string.type_identiy);
 				}
+				int all = levelNumber+levelUpNeedNumber;
+				pbJingYan.setMax(all);
+				pbJingYan.setProgress(levelNumber);
+				tvJingyan.setText(levelNumber+"/"+all);
 				tv_collect_number.setText("" + ItApplication.getcurrnUser().getTreasure_number());
 				tv_fooler_number.setText("" + ItApplication.getcurrnUser().getFoot_number());
 				tv_identiy_number.setText("" + ItApplication.getcurrnUser().getTreasure_record_number());
