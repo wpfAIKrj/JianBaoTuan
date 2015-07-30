@@ -55,7 +55,7 @@ public class getUserByIdModel extends BaseModel {
 			user = new UserInfo();
 			user.setId(json.getLong("user_id"));
 			user.setNickname(json.getString("nickname"));
-			user.setUser_level(json.getInt("authLevel"));
+//			user.setUser_level(json.getInt("authLevel"));
 			user.setUser_type(json.getInt("authType"));
 			user.setAvatar(json.getString("authImage"));
 			user.setQq(json.getString("qq"));

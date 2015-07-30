@@ -137,14 +137,15 @@
                             android:layout_marginLeft="@dimen/x8"
                             android:text="成长体系" />
 
-                        <ImageView
-                            android:id="@+id/my_iv_level"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/x8"
-                            android:layout_toRightOf="@+id/tv_zhang"
-                            android:src="@drawable/levelicon01" />
                     </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/my_iv_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@+id/login_user_head"
+                        android:layout_below="@+id/my_type_msg"
+                        android:src="@drawable/levelicon01" />
                     
                 </RelativeLayout>
 

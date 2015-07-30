@@ -28,11 +28,16 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -58,6 +63,7 @@ import com.yingluo.Appraiser.ui.adapter.commentListAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
+import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.HelpUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
@@ -126,6 +132,9 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.bottom)
 	private LinearLayout bottom;
 
+	@ViewInject(R.id.prs_main)
+	private PullToRefreshScrollView scrollview;
+	
 	CollectTreasureByIdModel collectModel;// 收藏
 
 	getTreasureAllInfoByIdModel infoModel;// 宝物详情
@@ -151,6 +160,8 @@ public class ActivityUserDelails extends BaseActivity {
 
 	public long to_user_id = 0;
 
+	private boolean isRefresh,isLoadMore;
+	
 	@ViewInject(R.id.btn_send_comment)
 	public Button bt_send_comment;
 
@@ -321,6 +332,7 @@ public class ActivityUserDelails extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_delails);
 		ViewUtils.inject(this);
+		isRefresh = isLoadMore = false;
 		entity = (CollectionTreasure) getIntent().getSerializableExtra(Const.ENTITY);
 		if (entity == null) {
 			setResult(RESULT_CANCELED, getIntent());
@@ -332,12 +344,28 @@ public class ActivityUserDelails extends BaseActivity {
 		commentListModel = new getTreasureCommentListByIdModel(netListner2);
 		sendCommentModel = new sendTreasureCommentModel(netListner3);
 		initViews();
+		scrollview.setOnRefreshListener(new OnRefreshListener2<ScrollView>(){
+
+			@Override
+			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+//				Toast.makeText(ActivityUserDelails.this, "下拉刷新了", Toast.LENGTH_SHORT).show();	
+				isRefresh = true;
+				infoModel.getInfoTreasure(entity.treasure_id);
+				commentListModel.getInfoTreasure(entity.treasure_id);
+			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+//				Toast.makeText(ActivityUserDelails.this, "上拉加载更多了", Toast.LENGTH_SHORT).show();		
+				isLoadMore = true;
+				
+			}
+
+		});
+
 	}
 
 	private void initViews() {
-		// bitmapUtils.display(iv_head, entity.authImage);
-		// tv_name.setText(entity.authName);
-		// tv_msg.setText(entity.name);
 		commentadapter = new commentListAdapter(this, listner);
 		commentview.setAdapter(commentadapter);
 		resultadapter = new IndentiyResultAdapter(this);
@@ -364,6 +392,10 @@ public class ActivityUserDelails extends BaseActivity {
 				loaddialog.dismiss();
 			}
 			isFirst = false;
+			if(isRefresh) {
+				isRefresh = true;
+				scrollview.onRefreshComplete();
+			}
 			// 加载宝贝详情
 			entity = infoModel.curnt;
 			bitmapUtils.display(iv_head, entity.authImage);

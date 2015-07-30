@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_bg_color"
@@ -9,10 +10,13 @@
         android:id="@+id/top"
         layout="@layout/layout_detail_head" />
 
-    <ScrollView
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/prs_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both"
         android:layout_below="@+id/top"
         android:scrollbars="none" >
 
@@ -66,7 +70,7 @@
                 android:layout_marginTop="@dimen/y20"
                 android:background="@drawable/item_layout_padd" />
         </LinearLayout>
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
     <View
         android:layout_width="match_parent"
