@@ -7,6 +7,139 @@
 
     <include layout="@layout/layout_article_head" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/wite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_all_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="全部"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y1"
+                android:background="@color/wite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_good_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="精品"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y1"
+                android:background="@color/wite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_new_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="新品"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y1"
+                android:background="@color/wite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_truefalse_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="辨伪"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y1"
+                android:background="@color/wite" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/ll_person_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y94"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="人物"
+                android:textColor="@color/dialog_title_color" />
+
+            <View
+                android:layout_width="@dimen/x126"
+                android:layout_height="@dimen/y1"
+                android:background="@color/dialog_title_color" />
+        </LinearLayout>
+    </LinearLayout>
+    
     <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
         android:id="@+id/recyclerview1"
         android:layout_width="match_parent"

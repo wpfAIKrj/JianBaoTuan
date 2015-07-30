@@ -1,7 +1,7 @@
 package com.yingluo.Appraiser.ui.fragment;
 
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import com.yingluo.Appraiser.bean.InfoEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.onListView;
+import com.yingluo.Appraiser.model.MyTreasureModel;
 import com.yingluo.Appraiser.presenter.ArticlePresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
@@ -55,6 +57,17 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 	@ViewInject(R.id.recyclerview1)
 	private PullRefreshRecyclerView mRecyclerView;
 
+	@ViewInject(R.id.ll_all_info)
+	ViewGroup btn_all;
+	@ViewInject(R.id.ll_good_info)
+	ViewGroup btn_good;
+	@ViewInject(R.id.ll_new_info)
+	ViewGroup btn_new;
+	@ViewInject(R.id.ll_truefalse_info)
+	ViewGroup btn_true;
+	@ViewInject(R.id.ll_person_info)
+	ViewGroup btn_person;
+	
 	protected boolean isLoadMore = false;
 	private boolean isRefreshing = true;
 
@@ -68,6 +81,8 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 
 	private String ground_id = "0";
 
+	private int type;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,6 +111,7 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 		return inflater.inflate(R.layout.layout_info, container, false);
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
@@ -129,6 +145,13 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
             }
         });
 
+		btn_all.setOnClickListener(listener);
+		btn_good.setOnClickListener(listener);
+		btn_new.setOnClickListener(listener);
+		btn_true.setOnClickListener(listener);
+		btn_person.setOnClickListener(listener);
+		
+		btn_all.callOnClick();
 		recyclerView.setHasFixedSize(true);
 
 		madapter = new ArticleAdapter(mActivity, list, lisntener);
@@ -288,6 +311,131 @@ public class InformationFragment extends BaseFragment implements onListView<Cont
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	OnClickListener listener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			
+			mRecyclerView.setToRefreshing();
+			setIdentifyBackground(v.getId());
+			switch (v.getId()) {
+			case R.id.ll_all_info: {
+				//全部
+//				Treadsure_type = MyTreasureModel.TYPE_ALL;
+			}
+				break;
+			case R.id.ll_good_info: {
+				//精品
+//				Treadsure_type = MyTreasureModel.TYPE_NO;
+			}
+				break;
+			case R.id.ll_new_info: {
+				//新品
+//				Treadsure_type = MyTreasureModel.TYPE_IDENTIFIED;
+			}
+				break;
+			case R.id.ll_truefalse_info: {
+				//辨伪
+//				Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+			}
+				break;
+			case R.id.ll_person_info: {
+				//人物
+//				Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+			}
+				break;
+
+			default:
+				break;
+			}
+
+		}
+	};
+
+	public void setIdentifyBackground(int id) {
+		switch (id) {
+		case R.id.ll_all_info: {
+			// 先设置背景
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+
+			((Button) btn_good.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_good.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_new.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_new.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_true.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_true.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_person.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+		}
+
+			break;
+
+		case R.id.ll_good_info: {
+			// 先设置背景
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			
+			((Button) btn_good.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_good.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			
+			((Button) btn_new.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_new.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_true.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_true.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_person.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+		}
+
+			break;
+
+		case R.id.ll_new_info: {
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_good.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_good.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			
+			((Button) btn_new.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_new.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			
+			((Button) btn_true.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_true.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_person.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+		}
+			break;
+		case R.id.ll_truefalse_info: {
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_good.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_good.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_new.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_new.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			
+			((Button) btn_true.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_true.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			
+			((Button) btn_person.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+		}
+			break;
+		case R.id.ll_person_info: {
+			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_good.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_good.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_new.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_new.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			((Button) btn_true.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
+			btn_true.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			
+			((Button) btn_person.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
+			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+		}
+			break;
 		}
 	}
 }
