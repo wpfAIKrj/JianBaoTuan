@@ -35,7 +35,10 @@ public class footerViewHolder extends ViewHolder{
 			@Override
 			public void onClick(View v) {
 				if(lis!=null){
-					lis.onLoadMore();
+					if(currnt_type == 0) {
+						showloadMore(1);
+						lis.onLoadMore();
+					}
 				}
 			}
 		});
@@ -45,19 +48,20 @@ public class footerViewHolder extends ViewHolder{
 	public void showloadMore(int type){
 		currnt_type=type;
 		switch (type) {
-		case 0://加载更多
+		case 0: //点击加载更多
 			mview.setVisibility(View.VISIBLE);
 			bar.setVisibility(View.GONE);
-			title.setText(R.string.xlistview_footer_hint_normal);
+			title.setText(R.string.xlistview_footer_hint_click);
 			break;
-		case 1:
+		case 1: //正在加载
 			mview.setVisibility(View.VISIBLE);
 			bar.setVisibility(View.VISIBLE);
 			title.setText(R.string.xlistview_header_hint_loading);
 			break;
-		case 2://隐藏布局
-			mview.setVisibility(View.GONE);
-			
+		case 2: //没有更多
+			mview.setVisibility(View.VISIBLE);
+			bar.setVisibility(View.GONE);
+			title.setText(R.string.xlistview_footer_hint_normal);
 			break;
 		default:
 			break;

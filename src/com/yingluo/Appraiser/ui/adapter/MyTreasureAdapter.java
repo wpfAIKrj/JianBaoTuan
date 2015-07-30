@@ -148,6 +148,15 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewHolder> {
 		return dels;
 	}
 
+	/**
+	 * 更改footview显示效果
+	 * 
+	 * @param type 0点击加载更多，1为正在加载， 2为没有更多
+	 */
+	public void setFootType(int type) {
+		load_type = type;
+	}
+	
 	public void exitSelectMode() {
 		dels.clear();
 		for(TreasureEntity each:hots) {

@@ -41,7 +41,6 @@ import com.yingluo.Appraiser.ui.activity.ActivityMyPrecious;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.ui.activity.AuthenticateActivity;
 import com.yingluo.Appraiser.ui.activity.FavoriteArticlesActivity;
-import com.yingluo.Appraiser.ui.activity.IMListActivity;
 import com.yingluo.Appraiser.ui.activity.LevelActivity;
 import com.yingluo.Appraiser.ui.activity.MainActivity;
 import com.yingluo.Appraiser.ui.activity.SystemInfoActivity;

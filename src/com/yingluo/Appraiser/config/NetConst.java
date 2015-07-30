@@ -98,6 +98,10 @@ public class NetConst {
 
 	public static final String SAVE_BAOBEI =  "Material/treasureByStatusAction"; //收藏宝贝
 			
+	public static final String MY_COLLECTION = "Material/myCollectionsAction"; //我的收藏
+	
+	public static final String MY_JiANDING = "Users/treasureListAction"; //我的鉴定
+	
 	public static final String TOKEN = "Home/qiniuTokenAction"; //获取上传图片的token
 	
 	public static CookieStore COOKIESTORE = null;// 初始化为null

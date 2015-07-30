@@ -80,15 +80,16 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 	int type = Const.PRECIOUS;
 
-	MyTreasureModel model;
-
 	MyTreasureAdapter mAdapter;
 
 	private int Treadsure_type;
 
 	private List<TreasureEntity> lists;
+	
+	private boolean isRefresh,isLoadMore;
 	//用于访问接口
 	private Long uid;
+	private int page;
 	
 	@OnClick({R.id.btn_back, R.id.btn_delete,R.id.all_checkbox,R.id.delete_all_bt,R.id.cancle_all_bt})
 	public void back_click(View view) {
@@ -140,13 +141,15 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 		setContentView(R.layout.activity_my_precious);
 		ViewUtils.inject(this);
 
+		isRefresh = isLoadMore = false;
+		
+		page = 1;
 		lists = new ArrayList<TreasureEntity>();
-		model = new MyTreasureModel();
 		uid = SharedPreferencesUtils.getInstance().getLoginUserID();
 		type = getIntent().getIntExtra(Const.GOTO_MY_PRECIOUS, Const.PRECIOUS);
 
 		dels = new ArrayList<String>();
-		model.setType(type);
+		
 		Treadsure_type = MyTreasureModel.TYPE_ALL;
 		if (type == Const.PRECIOUS) {
 			title.setText("我的宝物");
@@ -212,8 +215,25 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 	@Override
 	public void onRefresh() {
-		if (type == Const.PRECIOUS) {
+		if(!isLoadMore) {
+			isRefresh = true;
+			page = 1;
+			askNet();
+		}
+	}
+
+	@Override
+	public void onLoadMore() {
+		if(!isRefresh) {
+			isLoadMore = true;
+			askNet();
+		}
+	}
+	
+	public void askNet() {
+		if(type == Const.PRECIOUS) {
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("page", page);
 			map.put("user_id", uid);
 			if (Treadsure_type == MyTreasureModel.TYPE_ALL) {
 				map.put("status", -1);
@@ -222,32 +242,25 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 			} else {
 				map.put("status", Treadsure_type);
 			}
-			map.put("page", 0);
 			askNewWork = new AskNetWork(map, NetConst.SAVE_BAOBEI, ActivityMyPrecious.this);
 			Map<String, Object> param = new HashMap<String, Object>();
 			param.put(NetConst.SID, NetConst.SESSIONID);
 			askNewWork.ask(param);
 		} else {
-			model.setType(type);
-			model.sendHttp(new CommonCallBack() {
-
-				@Override
-				public void onSuccess() {
-					mRecyclerview.refreshOver(null);
-					lists.clear();
-					lists.addAll(model.getResult());
-					mAdapter.setData(lists);
-				}
-
-				@Override
-				public void onError() {
-					mRecyclerview.refreshOver(null);
-				}
-			}, Treadsure_type, uid);
+			if(type == Const.COLLECT) {
+				askNewWork = new AskNetWork(NetConst.MY_COLLECTION, ActivityMyPrecious.this);
+			} else {
+				askNewWork = new AskNetWork(NetConst.MY_JiANDING, ActivityMyPrecious.this);
+			}
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put(NetConst.SID, NetConst.SESSIONID);
+			param.put("page", page);
+			param.put("user_id", uid);
+			param.put("status", Treadsure_type);
+			askNewWork.ask(HttpRequest.HttpMethod.GET,param);
 		}
-
 	}
-
+	
 	OnClickListener listener = new OnClickListener() {
 
 		@Override
@@ -365,15 +378,7 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 
 	@Override
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
-		if (param.equals(NetConst.SAVE_BAOBEI)) {
-			// 获得我的收藏里面的数据
-			mRecyclerview.refreshOver(null);
-			ResponseMyBaby rt = new Gson().fromJson(msg, ResponseMyBaby.class);
-			if (rt.getCode() == 100000) {
-				lists = rt.getData().getList();
-				mAdapter.setData(lists);
-			}
-		} else if (param.equals(NetConst.DEL_MY_LOVE)) {
+		if (param.equals(NetConst.DEL_MY_LOVE)) {
 			// 删除我的收藏里面的数据
 			ResponseIsDel rt = new Gson().fromJson(msg, ResponseIsDel.class);
 			if (rt.getCode() == 100000) {
@@ -382,20 +387,44 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 			} else {
 				Toast.makeText(ActivityMyPrecious.this, "删除失败", Toast.LENGTH_SHORT).show();
 			}
+		} else {
+			// 获得我的收藏里面的数据
+			if(isRefresh) {
+				isRefresh = false;
+				mAdapter.setFootType(0);
+				mRecyclerview.refreshOver(null);
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+			}
+			ResponseMyBaby rt = new Gson().fromJson(msg, ResponseMyBaby.class);
+			if (rt.getCode() == 100000) {
+				page = rt.getData().getNextPage();
+				List<TreasureEntity> res = rt.getData().getList();
+				if(res.size() == 0) {
+					mAdapter.setFootType(2);
+				} else {
+					mAdapter.setFootType(0);
+					lists.addAll(res);
+				}
+				mAdapter.setData(lists);
+			}
 		}
 	}
 
 	@Override
 	public void getNetWorkMsgError(String msg, String param) throws JSONException {
 		if (param.equals(NetConst.SAVE_BAOBEI)) {
-			mRecyclerview.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				mRecyclerview.refreshOver(null);
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+				mAdapter.setFootType(0);
+				mAdapter.notifyDataSetChanged();
+			}
 		}
-	}
-
-	@Override
-	public void onLoadMore() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

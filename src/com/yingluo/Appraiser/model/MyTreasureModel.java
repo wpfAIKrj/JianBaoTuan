@@ -61,17 +61,6 @@ public class MyTreasureModel extends BaseModel {
 			url = sb.toString();
 		}
 			break;
-		case Const.PRECIOUS: {// 我的宝物
-			url = UrlUtil.getTreasureByIdURL();
-			StringBuffer sb = new StringBuffer(url);
-			if (NetConst.SESSIONID != null) {
-				sb.append("?").append(NetConst.SID).append("=").append(NetConst.SESSIONID);
-			} else {
-				sb.append("?").append(NetConst.SID).append("=").append("");
-			}
-			url = sb.toString();
-		}
-			break;
 		case Const.IDENTIFY: {// 我的鉴定
 			url = UrlUtil.getMyIdentifyURL();
 			StringBuffer sb = new StringBuffer(url);
