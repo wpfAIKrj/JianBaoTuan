@@ -369,7 +369,9 @@ public class ActivityUserDelails extends BaseActivity {
 			bitmapUtils.display(iv_head, entity.authImage);
 			tv_name.setText(entity.authName);
 			tv_msg.setText(entity.name);
-			taglayout.addTag(entity.kind);
+			if(entity.kind != null) {
+				taglayout.addTag(entity.kind);
+			}
 			showTreasureImage();
 			if (entity.isCollected) {
 				detail_collect.setVisibility(View.GONE);

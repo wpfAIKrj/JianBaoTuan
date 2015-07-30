@@ -109,7 +109,9 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				key.name = kind.getString("name");
 				key.type = i;
 			}
-			treasure.kind = key;
+			if(kinds.length()!=0) {
+				treasure.kind = key;
+			}
 			curnt = treasure;
 			// 解析热门宝物
 			JSONArray array1 = json.getJSONArray("others");
