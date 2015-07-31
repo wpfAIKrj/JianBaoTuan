@@ -27,9 +27,9 @@ public class ArticlePresenter implements OnListDataLoadListener<ContentInfo> {
 	 * @param type 知识类型
 	 * @param group_id 宝贝分类id
 	 */
-	public void getArticleList(String type,String group_id){
+	public void getArticleList(String type,String group_id,int page){
 		model=new ArticleModel();
-		model.getArticleList(type, group_id, this);
+		model.getArticleList(type, group_id, page, this);
 		model.addRequestParams();
 		model.setHTTPMODE(HttpMethod.GET);
 		model.sendHttp();

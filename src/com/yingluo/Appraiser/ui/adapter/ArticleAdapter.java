@@ -36,12 +36,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
 
 	private int load_type = 2;
 
-	public ArticleAdapter(Context context, ArrayList<ContentInfo> list, OnClickListener listner) {
+	public ArticleAdapter(Context context, ArrayList<ContentInfo> list, OnClickListener listner,
+			ListviewLoadListener listview) {
 		this.context = context;
 		mInflater = LayoutInflater.from(context);
 		this.list = list;
 		this.onclick = listner;
-		load_type = 2;
+		load_type = 0;
+		this.listview = listview;
 	}
 
 	@Override

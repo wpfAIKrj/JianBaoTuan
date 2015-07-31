@@ -393,6 +393,7 @@ public class ActivityMyPrecious extends BaseActivity implements AskNetWorkCallBa
 				isRefresh = false;
 				mAdapter.setFootType(0);
 				mRecyclerview.refreshOver(null);
+				lists.clear();
 			} 
 			if(isLoadMore) {
 				isLoadMore = false;

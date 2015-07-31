@@ -29,7 +29,7 @@ public class ArticleModel extends BaseModel {
 	private String type;
 	private String group_id;
 
-	public void getArticleList(String type, String group_id, OnListDataLoadListener<ContentInfo> lis) {
+	public void getArticleList(String type, String group_id, int page, OnListDataLoadListener<ContentInfo> lis) {
 		this.lisntenr = lis;
 		this.type = type;
 		this.group_id = group_id;
@@ -40,30 +40,27 @@ public class ArticleModel extends BaseModel {
 		} else {
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
-		sb.append("&type=").append(type).append("&group_id=").append(String.valueOf(group_id));
+		sb.append("&type=").append(type).append("&group_id=").append(String.valueOf(group_id)).
+		append("&page=").append(String.valueOf(page));
 		url = sb.toString();
 	}
 
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void onFailureForString(String error, String msg) {
-		// TODO Auto-generated method stub
 		lisntenr.onListDataLoadErrorHappened(error, msg);
 	}
 
 	@Override
 	public void setHTTPMODE(HttpMethod httpmodel) {
-		// TODO Auto-generated method stub
 		this.httpmodel = httpmodel;
 	}
 
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		// JSONObject jason=new JSONObject(data);
 		// String lists=jason.getString(NetConst.LISTSDATA);
 		if (data.equals("null")) {
