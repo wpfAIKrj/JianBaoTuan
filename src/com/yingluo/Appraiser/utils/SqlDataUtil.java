@@ -107,9 +107,18 @@ public class SqlDataUtil {
 	 */
 	public void saveUserInfo(UserInfo user) {
 		try {
+			List<UserInfo> list = getUserList();
+			int length = list.size(),i;
+			for(i=0;i<length;i++) {
+				UserInfo each = list.get(i);
+				if(each.getMobile().equals(user.getMobile())){
+					return;
+				}
+			}
 			userdao.insertOrReplace(user);
 			ImUserInfo im = new ImUserInfo(user.getId(), user.getNickname(), user.getAvatar());
 			saveIMUserinfo(im);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
