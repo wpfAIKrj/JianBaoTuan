@@ -29,6 +29,7 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
+import com.yingluo.Appraiser.utils.DensityUtil;
 
 /**
  * @author ytmfdw 主页 [精品藏品]下的选项 根据屏幕宽高来计算图片大小
@@ -110,11 +111,11 @@ public class ViewChoices extends LinearLayout {
 		iv_small.setTag(currnt);
 		// 设置大图片
 		if (item.image == null || TextUtils.equals(item.image, "")) {
-
-			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
+			String url = BitmapsUtils.makeQiNiuRrl(item.images[0] , iv_big.getWidth(), iv_big.getHeight());
+			bitmapUtils.display(iv_big, url, BitmapsUtils.TYPE_YES);
 		} else {
-
-			bitmapUtils.display(iv_big, item.image, BitmapsUtils.TYPE_YES);
+			String url = BitmapsUtils.makeQiNiuRrl(item.image , iv_big.getWidth(), iv_big.getHeight());
+			bitmapUtils.display(iv_big, url, BitmapsUtils.TYPE_YES);
 		}
 		// 设置头像
 		bitmapUtils.display(iv_small, item.authImage, BitmapsUtils.TYPE_YES);

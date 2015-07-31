@@ -88,7 +88,8 @@ public class ViewArticles extends LinearLayout {
 		if (bitmapUtils == null) {
 			bitmapUtils = BitmapsUtils.getInstance();
 		}
-		bitmapUtils.display(iv, item.getImage(), BitmapsUtils.TYPE_YES);
+		String url = BitmapsUtils.makeQiNiuRrl(item.getImage() , iv.getWidth(), iv.getHeight());
+		bitmapUtils.display(iv, url, BitmapsUtils.TYPE_YES);
 		tv_msg.setText(item.getTitle());
 		tv_num.setText(item.getView_times() + "");
 	}

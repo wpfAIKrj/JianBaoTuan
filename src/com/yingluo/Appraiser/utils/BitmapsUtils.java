@@ -200,6 +200,12 @@ public class BitmapsUtils {
 		}
 	}
 
+	public static String makeQiNiuRrl(String url,int width,int height) {
+		StringBuffer buffer = new StringBuffer(url);
+		buffer.append("?imageView2/4/w/"+width+"/h/"+height);
+		return buffer.toString();
+	}
+	
 //	/**
 //	 * 图片加载
 //	 * 

@@ -186,6 +186,7 @@ public class SlideShowView extends FrameLayout {
 		@Override
 		public Object instantiateItem(View container, int position) {
 			ImageView imageView = imageViewsList.get(position%imageViewsList.size());
+//			String url = BitmapsUtils.makeQiNiuRrl((String) imageView.getTag() , iv.getWidth(), iv.getHeight());
 			bitmapsUtils.display(imageView, (String) imageView.getTag(), BitmapsUtils.TYPE_YES);
 			((ViewPager) container).addView(imageViewsList.get(position%imageViewsList.size()));
 			return imageViewsList.get(position%imageViewsList.size());

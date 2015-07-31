@@ -9,7 +9,9 @@
     <com.yingluo.Appraiser.view.TagLinearLayout
         android:id="@+id/tag_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y60" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/x15"
+         />
 
     <!--android:layout_height="@dimen/y60"-->
     <TextView

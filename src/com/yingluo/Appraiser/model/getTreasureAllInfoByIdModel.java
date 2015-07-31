@@ -39,7 +39,6 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 	public List<CommentEntity> treasureList = null;
 
 	public getTreasureAllInfoByIdModel(OnStringDataLoadListener listener) {
-		// TODO Auto-generated constructor stub
 		this.listener = listener;
 		httpmodel = HttpMethod.GET;
 		url = UrlUtil.getTreasureAllInfoByIdURL();
@@ -62,7 +61,6 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		try {
 			Gson gson = new Gson();
 			// String json_data = json.getString("data");

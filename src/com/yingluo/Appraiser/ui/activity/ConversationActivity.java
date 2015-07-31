@@ -31,7 +31,6 @@ public class ConversationActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle arg0) {
-		// TODO Auto-generated method stub
 		super.onCreate(arg0);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_conversation); // 加载会话页面 Fragment。
@@ -41,7 +40,6 @@ public class ConversationActivity extends FragmentActivity {
 	}
 
 	private void initView() {
-		// TODO 自动生成的方法存根
 		targetId = getIntent().getData().getQueryParameter("targetId");
 		title = getIntent().getData().getQueryParameter("title");
 		tvtitle.setText(title);
@@ -50,14 +48,12 @@ public class ConversationActivity extends FragmentActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 
 	@OnClick({ R.id.button_category })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.button_category:// 跳转到
 			finish();

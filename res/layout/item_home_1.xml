@@ -19,7 +19,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y1"
             android:contentDescription="@null"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
 
         <CheckBox
             android:id="@+id/delete_checkbox"

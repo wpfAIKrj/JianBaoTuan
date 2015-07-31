@@ -3,25 +3,15 @@ package com.yingluo.Appraiser.ui.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,11 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
@@ -45,33 +32,25 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
-import com.yingluo.Appraiser.bean.ImUserInfo;
-import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.DialogForResult;
 import com.yingluo.Appraiser.inter.OnStringDataLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CollectTreasureByIdModel;
-import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.getTreasureAllInfoByIdModel;
 import com.yingluo.Appraiser.model.getTreasureCommentListByIdModel;
-import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.model.sendTreasureCommentModel;
 import com.yingluo.Appraiser.ui.adapter.IndentiyResultAdapter;
 import com.yingluo.Appraiser.ui.adapter.commentListAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
+import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.utils.DialogUtil;
-import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.HelpUtils;
-import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
-import com.yingluo.Appraiser.view.ImageViewWithBorder;
-import com.yingluo.Appraiser.view.SlideShowImageView;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 import com.yingluo.Appraiser.view.ViewOtherTreasure;
-import com.yingluo.Appraiser.view.home.ViewUserDelaisIdentifyResult;
 
 /**
  * 宝贝详情
@@ -509,11 +488,13 @@ public class ActivityUserDelails extends BaseActivity {
 			int length = str.size();
 			for (int i = 0; i < length; i++) {
 				ImageView image = new ImageView(this);
-				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-						(int) getResources().getDimension(R.dimen.y500));
+				int height = (int) ((DensityUtil.getScreenWidth(this)*3.0)/4);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,height);
+				image.setScaleType(ScaleType.CENTER_CROP);
 				image.setLayoutParams(params);
 				showimage.addView(image);
-				BitmapsUtils.getInstance().display(image, str.get(i));
+				String url = BitmapsUtils.makeQiNiuRrl(str.get(i), DensityUtil.getScreenWidth(this), height);
+				BitmapsUtils.getInstance().display(image, url);
 			}
 		}
 

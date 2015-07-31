@@ -112,7 +112,8 @@ public class ViewHots extends LinearLayout {
 		}
 		// 设置大图片
 		if (item.images != null && item.images.length > 0 && iv_big.getTag() == null) {
-			bitmapUtils.display(iv_big, item.images[0], BitmapsUtils.TYPE_YES);
+			String url = BitmapsUtils.makeQiNiuRrl(item.images[0] , iv_big.getWidth(), iv_big.getHeight());
+			bitmapUtils.display(iv_big, url, BitmapsUtils.TYPE_YES);
 		}
 		iv_big.setTag(item);
 		// 设置头像
