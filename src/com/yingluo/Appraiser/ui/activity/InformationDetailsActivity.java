@@ -4,6 +4,7 @@ import org.xml.sax.XMLReader;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -153,7 +154,9 @@ public class InformationDetailsActivity extends BaseActivity {
 				dialog1.show();
 
 			} else {
-				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(InformationDetailsActivity.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 			break;
 		case R.id.detail_cancle_collect:// 取消收藏
@@ -162,7 +165,9 @@ public class InformationDetailsActivity extends BaseActivity {
 				dialog1.show();
 
 			} else {
-				new ToastUtils(this, "请先登陆！");
+				Intent intent = new Intent(InformationDetailsActivity.this, LoginAcitivity.class);
+				startActivity(intent);
+				overridePendingTransition(R.anim.toast_in, R.anim.hold);
 			}
 			break;
 		default:
