@@ -33,7 +33,6 @@ public class IMListActivity extends FragmentActivity {
 		setContentView(R.layout.activity_imlistview);
 		ViewUtils.inject(this);
 		initView();
-
 	}
 
 	@Override
@@ -55,7 +54,6 @@ public class IMListActivity extends FragmentActivity {
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
-
 		default:
 			break;
 		}
