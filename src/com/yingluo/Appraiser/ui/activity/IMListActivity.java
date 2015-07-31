@@ -28,7 +28,6 @@ public class IMListActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_imlistview);
@@ -37,21 +36,24 @@ public class IMListActivity extends FragmentActivity {
 
 	}
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
+	}
+	
 	protected void initView() {
-		// TODO Auto-generated method stub
-
 		title.setText("聊天");
 		iv_delete.setVisibility(View.GONE);
-
 	}
 
 	@OnClick({ R.id.button_category })
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.button_category:// 跳转到
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
 
 		default:
