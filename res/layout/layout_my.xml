@@ -148,110 +148,15 @@
                         android:src="@drawable/levelicon01" />
                     
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y100"
-                    android:layout_below="@+id/linearLayout1"
-                    android:layout_marginTop="@dimen/x30"
-                    android:background="@drawable/login_edit_bg"
-                    android:orientation="horizontal" >
-
-                    <LinearLayout
-                        android:id="@+id/my_layout_collect"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            style="@style/my_title_style1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/my_title_collect" />
-
-                        <TextView
-                            android:id="@+id/my_tv_collect_number"
-                            style="@style/my_title_style2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/x1"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/x16"
-                        android:layout_marginTop="@dimen/x16"
-                        android:background="@color/wite" />
-
-                    <LinearLayout
-                        android:id="@+id/my_layout_identif"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            style="@style/my_title_style1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/my_title_appraisal" />
-
-                        <TextView
-                            android:id="@+id/my_identiy_number"
-                            style="@style/my_title_style2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/x1"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/x16"
-                        android:layout_marginTop="@dimen/x16"
-                        android:background="@color/wite" />
-
-                    <LinearLayout
-                        android:id="@+id/my_layout_foot"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            style="@style/my_title_style1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/my_title_footprint" />
-
-                        <TextView
-                            android:id="@+id/my_fooler_number"
-                            style="@style/my_title_style2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center" />
-                    </LinearLayout>
-                </LinearLayout>
+                
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y500"
-                android:orientation="vertical" >
+                android:layout_height="@dimen/y750"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                 >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -259,6 +164,76 @@
                     android:background="@color/layout_bg_color"
                     android:orientation="vertical" >
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+
+                        <LinearLayout
+                            android:id="@+id/my_layout_collect"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bt_collect_bg" />
+
+                            <TextView
+                                style="@style/my_title_style3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x14"
+                                android:text="我的宝物" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/my_layout_identif"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bt_info_bg" />
+
+                            <TextView
+                                style="@style/my_title_style3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x14"
+                                android:text="我鉴定的" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/my_layout_foot"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bt_im_bg" />
+
+                            <TextView
+                                style="@style/my_title_style3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/x14"
+                                android:text="我的私信" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

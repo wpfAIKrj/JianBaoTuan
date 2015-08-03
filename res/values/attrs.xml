@@ -16,11 +16,11 @@
         <attr name="border_width" format="dimension" />
         <attr name="border_color" format="color" />
     </declare-styleable>
+    
     <declare-styleable name="ImageViewWithBorder">
         <attr name="borderwidth" format="dimension" />
         <attr name="boraercolor" format="color" />
     </declare-styleable>
-
     
     <declare-styleable name="SwipeLayout">
         <attr name="drag_edge">
@@ -38,6 +38,10 @@
             <enum name="pull_out" value="1" />
         </attr>
         <attr name="clickToClose" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="inputRel">
+        <attr name="title_value" format="string" />
     </declare-styleable>
     
 </resources>

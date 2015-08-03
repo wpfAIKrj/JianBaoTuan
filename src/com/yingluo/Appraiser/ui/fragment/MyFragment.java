@@ -72,15 +72,6 @@ public class MyFragment extends BaseFragment {
 	@ViewInject(R.id.my_tv_authenticate)
 	private TextView tv_authenticate;
 
-	@ViewInject(R.id.my_tv_collect_number)
-	private TextView tv_collect_number;
-
-	@ViewInject(R.id.my_identiy_number)
-	private TextView tv_identiy_number;
-
-	@ViewInject(R.id.my_fooler_number)
-	private TextView tv_fooler_number;
-
 	@ViewInject(R.id.my_iv_level)
 	private ImageView iv_level;
 
@@ -280,9 +271,6 @@ public class MyFragment extends BaseFragment {
 			}
 			madapter = new MyLikeAdapter(mActivity,list, itemListner);
 			listView.setAdapter(madapter);
-			tv_collect_number.setText("" + ItApplication.getcurrnUser().getTreasure_number());
-			tv_fooler_number.setText("" + ItApplication.getcurrnUser().getFoot_number());
-			tv_identiy_number.setText("" + ItApplication.getcurrnUser().getTreasure_record_number());
 		}
 	}
 
@@ -333,9 +321,6 @@ public class MyFragment extends BaseFragment {
 				pbJingYan.setMax(levelUpNeedNumber);
 				pbJingYan.setProgress(levelNumber);
 				tvJingyan.setText(levelNumber+"/"+levelUpNeedNumber);
-				tv_collect_number.setText("" + ItApplication.getcurrnUser().getTreasure_number());
-				tv_fooler_number.setText("" + ItApplication.getcurrnUser().getFoot_number());
-				tv_identiy_number.setText("" + ItApplication.getcurrnUser().getTreasure_record_number());
 
 			}
 		}

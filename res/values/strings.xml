@@ -143,4 +143,8 @@
     <string name="help_msg_21">新老密码不能相同</string>
     <string name="finish">完成</string>
 
+    <string name="new_str_midu">密度（g/cm </string>
+    <string name="new_str_three">3</string>
+    <string name="new_str_midu_right">）：</string>
+    <string name="new_str_midu_hint">添加信息，我们可以帮您计算好你的宝贝密度哟！</string>
 </resources>

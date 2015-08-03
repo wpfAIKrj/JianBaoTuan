@@ -1,0 +1,123 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/wite" >
+
+    <RelativeLayout
+        android:id="@+id/rl_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp" >
+
+        <TextView
+            android:id="@+id/tv_midu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/new_str_midu" />
+        
+        <TextView
+            android:id="@+id/tv_lifang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tv_midu"
+            android:layout_alignTop="@+id/tv_midu"
+            android:layout_marginLeft="13dp"
+            android:textSize="10sp"
+            android:text="@string/new_str_three" />
+        
+        <TextView 
+            android:id="@+id/tv_right_kuo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_lifang"
+            android:text="@string/new_str_midu_right"
+            />
+        
+        <TextView 
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_right_kuo"
+            android:singleLine="true"
+            />
+    </RelativeLayout>
+
+    <TextView 
+        android:id="@+id/tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/new_str_midu_hint"
+        />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            
+            <com.yingluo.Appraiser.view.InputToolView
+                android:id="@+id/itv_height"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:title_value="高度（cm）"/>
+            
+            <com.yingluo.Appraiser.view.InputToolView
+                android:id="@+id/itv_weight"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:title_value="重量（g）"/>
+            
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            
+            <com.yingluo.Appraiser.view.InputToolView
+                android:id="@+id/itv_circle"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:title_value="直径（cm）"/>
+            
+            <com.yingluo.Appraiser.view.InputToolView
+                android:id="@+id/itv_number"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                app:title_value="数量（个）"/>
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <TextView 
+        android:id="@+id/tv_jisuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tool_jisuan_bak"
+        android:text="计算"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>
