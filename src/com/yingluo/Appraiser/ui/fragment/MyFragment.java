@@ -330,10 +330,9 @@ public class MyFragment extends BaseFragment {
 				} else {
 					tv_authenticate.setText(R.string.type_identiy);
 				}
-				int all = levelNumber+levelUpNeedNumber;
-				pbJingYan.setMax(all);
+				pbJingYan.setMax(levelUpNeedNumber);
 				pbJingYan.setProgress(levelNumber);
-				tvJingyan.setText(levelNumber+"/"+all);
+				tvJingyan.setText(levelNumber+"/"+levelUpNeedNumber);
 				tv_collect_number.setText("" + ItApplication.getcurrnUser().getTreasure_number());
 				tv_fooler_number.setText("" + ItApplication.getcurrnUser().getFoot_number());
 				tv_identiy_number.setText("" + ItApplication.getcurrnUser().getTreasure_record_number());

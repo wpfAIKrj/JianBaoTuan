@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="wite">#ffffff</color>
     <color name="black">#000000</color>
     <color name="layout_bg_color">#EEEEEE</color>
@@ -15,13 +16,16 @@
     <color name="kind_all_color">#C22927</color>
     <color name="item_space_color">#d5d5d5</color>
     <color name="number_color">#8d8d8d</color>
-     <color name="home_banner_back">#242423</color>
+    <color name="home_banner_back">#242423</color>
     <color name="home_head_edit_color">#d42d00</color>
     <color name="home_item_big_stroke">#d2d2d2</color>
     <color name="home_item_layout_padd">#eeeeee</color>
     <color name="home_item_small_stroke">#d8d8d8</color>
     <color name="home_head_color">#FF4400</color>
-     <color name="black_2">#262626</color>
-     <color name="tab_line_color">#b2b2b2</color>
-     <color name="dialog_bg">#ccffffff</color>
+    <color name="black_2">#262626</color>
+    <color name="tab_line_color">#b2b2b2</color>
+    <color name="dialog_bg">#ccffffff</color>
+
+    <color name="msg_all_bak">#141414</color>
+    <color name="hintcolor">#949494</color>
 </resources>

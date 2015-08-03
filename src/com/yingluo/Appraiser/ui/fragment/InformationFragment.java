@@ -348,6 +348,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 			break;
+			
 		case R.id.ll_truefalse_info: {
 			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
 			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
@@ -363,6 +364,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 			btn_person.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 		}
 			break;
+			
 		case R.id.ll_person_info: {
 			((Button) btn_all.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
 			btn_all.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
