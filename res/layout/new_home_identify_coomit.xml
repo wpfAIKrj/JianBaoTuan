@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/wite" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+
+        <TextView
+            android:id="@+id/tv_canshu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="高度（cm）" />
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_canshu"
+            android:layout_alignTop="@+id/tv_canshu"
+            android:layout_toRightOf="@+id/tv_canshu"
+            android:background="@null"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_width="40dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/et_input"
+            android:layout_toRightOf="@+id/tv_canshu"
+            android:background="@color/black" />
+    </RelativeLayout>
+
+</RelativeLayout>

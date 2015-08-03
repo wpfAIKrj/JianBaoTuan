@@ -28,4 +28,6 @@
 
     <color name="msg_all_bak">#141414</color>
     <color name="hintcolor">#949494</color>
+    <color name="new_line_color">#edecec</color>
+    <color name="new_time_color">#7f7f7f</color>
 </resources>

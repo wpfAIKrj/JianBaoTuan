@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:orientation="vertical"
+    android:background="@color/wite">
+
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        >
+        <com.yingluo.Appraiser.view.CircleImageView 
+            android:id="@+id/tv_home_arrow"
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y80"
+            android:paddingLeft="@dimen/x20"
+            android:layout_centerVertical="true"
+            />
+        
+        <TextView 
+            android:id="@+id/tv_home_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_home_arrow"
+            android:layout_marginTop="@dimen/y21"
+            android:layout_marginLeft="@dimen/x20"
+            android:textSize="16sp"
+            android:text="方德磊是浪货"
+            />
+        
+        <TextView 
+            android:id="@+id/tv_home_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="王亚立像黄渤"
+            android:textColor="@color/new_time_color"  
+            android:layout_below="@+id/tv_home_name"
+            android:layout_alignLeft="@+id/tv_home_name"   
+            android:layout_marginTop="@dimen/y4"       
+            />
+    </RelativeLayout>
+    
+    <ImageView 
+        android:id="@+id/iv_home_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y560"
+        android:scaleType="centerCrop"
+        />
+    
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:text="壮哉大石家庄永昌，干掉国安，我们就是亚冠，加油！！必须的，史上最牛黑马，谁说我们是保级球队？？"
+        android:layout_margin="@dimen/x20"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+    
+    <View 
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/y1"
+        android:background="@color/new_line_color"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView 
+	            android:id="@+id/tv_home_identify"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:text="@string/new_str_identify"
+	            android:gravity="center"
+	            />
+	        <View 
+	            android:layout_width="@dimen/x1"
+	            android:layout_height="@dimen/y50"
+	            android:layout_alignParentRight="true"
+	            android:layout_centerVertical="true"
+	            android:background="@color/new_line_color"
+	            />
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+	        <TextView 
+	            android:id="@+id/tv_home_commit"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:text="@string/new_str_commit"
+	            android:gravity="center"
+	            />
+	        <View 
+	            android:layout_width="@dimen/x1"
+	            android:layout_height="@dimen/y50"
+	            android:layout_alignParentRight="true"
+	            android:layout_centerVertical="true"
+	            android:background="@color/new_line_color"
+	            />
+        </RelativeLayout>
+        
+        
+        
+        <TextView 
+            android:id="@+id/tv_home_share"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/new_str_share"
+            android:gravity="center"
+            />
+    </LinearLayout>
+</LinearLayout>
