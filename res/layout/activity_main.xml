@@ -36,15 +36,12 @@
 
     <Button
         android:id="@+id/circle_btn"
-        android:layout_width="@dimen/y88"
-        android:layout_height="@dimen/y88"
+        android:layout_width="@dimen/y100"
+        android:layout_height="@dimen/y100"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/y6"
-        android:background="@drawable/selector_btn_bk"
-        android:gravity="center"
-        android:text="我要\n鉴定"
-        android:textColor="@color/wite"
-        android:textSize="@dimen/x20" />
+        android:layout_marginBottom="@dimen/y10"
+        android:background="@drawable/wojianding"
+        android:gravity="center"/>
 
 </RelativeLayout>

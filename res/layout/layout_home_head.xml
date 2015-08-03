@@ -4,22 +4,13 @@
     android:layout_height="@dimen/y88"
     android:background="@color/home_head_color" >
 
-    <TextView
-        style="@style/w_wrap_h_wrap"
+     <!-- 头部切换区域 -->
+    <include
+        android:id="@+id/sab_news_bar"
+        layout="@layout/chang_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/x46"
-        android:text="@string/home_title"
-        android:textColor="@color/wite"
-        android:textSize="@dimen/x40" />
-
-    <ImageView
-        android:id="@+id/bt_sure"
-        android:layout_width="@dimen/y40"
-        android:layout_height="@dimen/y40"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/x30"
-        android:src="@drawable/icon_search_black" >
-    </ImageView>
+         />
 
 </RelativeLayout>

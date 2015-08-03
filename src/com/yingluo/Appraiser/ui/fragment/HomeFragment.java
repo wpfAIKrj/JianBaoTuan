@@ -44,7 +44,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 
 	HomeEntity homeEntity;
 
-	private ImageView btn_search;
 	HorizontalListView hsv;
 
 	WellKnowPeopleAdapter adapter;
@@ -146,15 +145,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		// 知名专家第二行
 		hsv = (HorizontalListView) view.findViewById(R.id.hs_people);
 		hsv.setOnItemClickListener(this);
-		btn_search = (ImageView)view.findViewById(R.id.bt_sure);
-		btn_search.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(getActivity(), ActivitySearch.class));
-				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-			}
-		});
 
 		homeEntity = ((ItApplication) getActivity().getApplication()).getHomeEntity();
 		setDate();

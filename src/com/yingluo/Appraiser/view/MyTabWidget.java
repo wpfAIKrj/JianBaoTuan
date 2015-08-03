@@ -29,19 +29,18 @@ import android.widget.LinearLayout;
 public class MyTabWidget extends LinearLayout {
 
 	private static final String TAG = "MyTabWidget";
-	private int[] mDrawableIds = new int[] {R.drawable.tag_home,R.drawable.tag_identiy,
-			R.drawable.tag_information,R.drawable.tag_my};
+	private int[] mDrawableIds = new int[] { R.drawable.tag_home, R.drawable.tag_wenxue, R.drawable.tag_tool,
+			R.drawable.tag_my};
 	private List<CheckedTextView> mCheckedList = new ArrayList<CheckedTextView>();
-	private List<View> mViewList = new ArrayList<View>();
 	private List<ImageView> mIndicateImgs = new ArrayList<ImageView>();
 	private CharSequence[] mLabels;
 	private View fatherview;
+
 	@TargetApi(11)
-	public MyTabWidget(Context context, AttributeSet attrs, int defStyle ) {
+	public MyTabWidget(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 
-		TypedArray a = context.obtainStyledAttributes(attrs,
-				R.styleable.TabWidget, defStyle, 0);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TabWidget, defStyle, 0);
 		mLabels = context.getResources().getStringArray(R.array.bottom_bar_labels);
 
 		if (null == mLabels || mLabels.length <= 0) {
@@ -50,7 +49,7 @@ public class MyTabWidget extends LinearLayout {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				LogUtils.i( MyTabWidget.class.getSimpleName() + "类名");
+				LogUtils.i(MyTabWidget.class.getSimpleName() + "类名");
 			}
 			a.recycle();
 			return;
@@ -72,30 +71,25 @@ public class MyTabWidget extends LinearLayout {
 
 	private void init(final Context context) {
 
-		//父类
-		fatherview=LinearLayout.inflate(context, R.layout.tab_layout, this);
-		
-
+		// 父类
+		fatherview = LinearLayout.inflate(context, R.layout.tab_layout, this);
 
 		int size = mLabels.length;
-		for (int i = 0; i < size; i++) {	
+		for (int i = 0; i < size; i++) {
 			final int index = i;
-			final View view = fatherview.findViewById(R.id.tabwidget01+i);
+			final View view = fatherview.findViewById(R.id.tabwidget01 + i);
 
-			final CheckedTextView itemName = (CheckedTextView) view
-					.findViewById(R.id.item_name);
-	
-			itemName.setCompoundDrawablesWithIntrinsicBounds(null, context
-					.getResources().getDrawable(mDrawableIds[i]), null, null);
-			
+			final CheckedTextView itemName = (CheckedTextView) view.findViewById(R.id.item_name);
+
+			itemName.setCompoundDrawablesWithIntrinsicBounds(null, context.getResources().getDrawable(mDrawableIds[i]),
+					null, null);
+
 			itemName.setText(mLabels[i]);
 
-			final ImageView indicateImg = (ImageView) view
-					.findViewById(R.id.tab_item_img);
+			final ImageView indicateImg = (ImageView) view.findViewById(R.id.tab_item_img);
 			itemName.setTag(index);
 			mCheckedList.add(itemName);
 			mIndicateImgs.add(indicateImg);
-			mViewList.add(view);
 
 			view.setOnClickListener(new OnClickListener() {
 
@@ -105,7 +99,7 @@ public class MyTabWidget extends LinearLayout {
 					setTabsDisplay(context, index);
 
 					if (null != mTabListener) {
-				
+
 						mTabListener.onTabSelected(index);
 					}
 				}
@@ -113,25 +107,19 @@ public class MyTabWidget extends LinearLayout {
 
 			if (i == 0) {
 				itemName.setChecked(true);
-//				修改点击颜色
-				itemName.setTextColor(Color.rgb(255, 68, 0));
-				view.setBackgroundColor(Color.rgb(255, 255, 255));
+				// 修改点击颜色
+				itemName.setTextColor(getResources().getColor(R.color.home_head_color));
 			} else {
-				
+
 				itemName.setChecked(false);
-				//没有选择的颜色
-				itemName.setTextColor(Color.rgb(99,98,98));
-				view.setBackgroundColor(Color.rgb(255, 255, 255));
+				// 没有选择的颜色
+				itemName.setTextColor(Color.rgb(169, 169, 169));
 			}
-			}
-			
-				
-		
+		}
+
 	}
 
-
-	public void setIndicateDisplay(Context context, int position,
-			boolean visible) {
+	public void setIndicateDisplay(Context context, int position, boolean visible) {
 		int size = mIndicateImgs.size();
 		if (size <= position) {
 			return;
@@ -140,26 +128,21 @@ public class MyTabWidget extends LinearLayout {
 		indicateImg.setVisibility(visible ? View.VISIBLE : View.GONE);
 	}
 
-	
 	public void setTabsDisplay(Context context, int index) {
 		int size = mCheckedList.size();
 		for (int i = 0; i < size; i++) {
 			CheckedTextView checkedTextView = mCheckedList.get(i);
 			if ((Integer) (checkedTextView.getTag()) == index) {
-				LogUtils.d( mLabels[index] + " is selected...");
+				LogUtils.d(mLabels[index] + " is selected...");
 				checkedTextView.setChecked(true);
-				checkedTextView.setTextColor(Color.rgb(255, 68, 0));
-				mViewList.get(i).setBackgroundColor(Color.rgb(255, 255, 255));
+				checkedTextView.setTextColor(getResources().getColor(R.color.home_head_color));
 			} else {
 				checkedTextView.setChecked(false);
-				checkedTextView.setTextColor(Color.rgb(99,98,98));
-				mViewList.get(i).setBackgroundColor(Color.rgb(255, 255, 255));
+				checkedTextView.setTextColor(Color.rgb(169, 169, 169));
 			}
 		}
 	}
 
-
-	
 	private OnTabSelectedListener mTabListener;
 
 	public interface OnTabSelectedListener {

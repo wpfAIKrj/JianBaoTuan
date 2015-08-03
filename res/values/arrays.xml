@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="bottom_bar_labels">
         <item>@string/home</item>
         <item>@string/identiy</item>
         <item>@string/information</item>
         <item>@string/my</item>
     </string-array>
- 
     <string-array name="my_user_type">
-              <item >@string/type_collect</item>
-            <item >@string/type_identiy</item>
+        <item>@string/type_collect</item>
+        <item>@string/type_identiy</item>
     </string-array>
-    
     <string-array name="type_people_user">
-            <item >@string/user_type_level1</item>
-         <item >@string/user_type_level2</item>
-             <item >@string/user_type_level3</item>
+        <item>@string/user_type_level1</item>
+        <item>@string/user_type_level2</item>
+        <item>@string/user_type_level3</item>
     </string-array>
+
 </resources>

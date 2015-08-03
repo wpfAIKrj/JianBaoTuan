@@ -4,6 +4,6 @@
 
     <stroke
         android:width="@dimen/x2"
-        android:color="@color/tab_line_color" />
+        android:color="@color/wite" />
 
 </shape>
