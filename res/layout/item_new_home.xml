@@ -66,14 +66,19 @@
         android:background="@color/new_line_color"/>
     <FrameLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+        
         <com.yingluo.Appraiser.view.NewHomeCommitView
 	        android:id="@+id/hcv_identify"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        app:title="网友鉴定"
-	        />
+	        app:title="网友鉴定"/>
+        
+        <com.yingluo.Appraiser.view.NewHomeIdentifyView
+            android:id="@+id/nhv_has_identify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
     </FrameLayout>
     
     
