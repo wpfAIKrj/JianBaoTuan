@@ -405,10 +405,8 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 			for (int key : knowledgeMap.keySet()) {
 				ViewGroup view = knowledgeMap.get(key);
 				if(key == id) {
-					((Button) view.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
 					view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 				} else {
-					((Button) view.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
 					view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 				}
 			}
@@ -416,10 +414,8 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 			for (int key : newsMap.keySet()) {
 				ViewGroup view = newsMap.get(key);
 				if(key == id) {
-					((Button) view.getChildAt(0)).setTextColor(getResources().getColor(R.color.dialog_title_color));
 					view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
 				} else {
-					((Button) view.getChildAt(0)).setTextColor(getResources().getColor(R.color.black_2));
 					view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
 				}
 			}

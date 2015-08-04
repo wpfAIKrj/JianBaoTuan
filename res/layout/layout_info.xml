@@ -37,7 +37,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_all"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -62,7 +62,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_good"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -87,7 +87,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_new"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -112,7 +112,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_true"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -197,7 +197,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_activity"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -222,7 +222,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_buy"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"
@@ -247,7 +247,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_pian"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/dialog_title_color" />
 
                 <View
                     android:layout_width="@dimen/x126"

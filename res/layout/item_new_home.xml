@@ -64,13 +64,18 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/y1"
         android:background="@color/new_line_color"/>
-    
-    <com.yingluo.Appraiser.view.NewHomeCommitView
-        android:id="@+id/hcv_identify"
+    <FrameLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="网友鉴定"
-        />
+        >
+        <com.yingluo.Appraiser.view.NewHomeCommitView
+	        android:id="@+id/hcv_identify"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        app:title="网友鉴定"
+	        />
+    </FrameLayout>
+    
     
     <com.yingluo.Appraiser.view.NewHomeCommitView
         android:id="@+id/hcv_commit"
