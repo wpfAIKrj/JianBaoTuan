@@ -52,6 +52,7 @@ import com.yingluo.Appraiser.ui.fragment.HomeFragment;
 import com.yingluo.Appraiser.ui.fragment.IdentiyFragment;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.ui.fragment.MyFragment;
+import com.yingluo.Appraiser.ui.fragment.NewHomeFragment;
 import com.yingluo.Appraiser.utils.ActivityTaskManager;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
@@ -74,7 +75,9 @@ import de.greenrobot.event.EventBus;
 public class MainActivity extends FragmentActivity implements OnTabSelectedListener,AskNetWorkCallBack {
 
 	private FragmentManager mFragmentManager;
-	private HomeFragment mHomeFragment;
+//	private HomeFragment mHomeFragment;
+	private NewHomeFragment mNewHomeFragment;
+	
 	private IdentiyFragment mIdentiyFragment;
 	private InformationFragment mInformationFragment;
 	private MyFragment mMyFragment;
@@ -236,13 +239,13 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		hideFragments(transaction);
 		switch (index) {
 		case 0:
-			if (null == mHomeFragment) {
-				mHomeFragment = new HomeFragment();
-				transaction.add(R.id.center_layout, mHomeFragment);
+			if (null == mNewHomeFragment) {
+				mNewHomeFragment = new NewHomeFragment();
+				transaction.add(R.id.center_layout, mNewHomeFragment);
 			} else {
-				transaction.show(mHomeFragment);
+				transaction.show(mNewHomeFragment);
 			}
-			mHomeFragment.lazyLoad();
+			mNewHomeFragment.lazyLoad();
 
 			break;
 		case 1:
@@ -292,8 +295,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	}
 
 	private void hideFragments(FragmentTransaction transaction) {
-		if (null != mHomeFragment) {
-			transaction.hide(mHomeFragment);
+		if (null != mNewHomeFragment) {
+			transaction.hide(mNewHomeFragment);
 		}
 		if (null != mIdentiyFragment) {
 			transaction.hide(mIdentiyFragment);

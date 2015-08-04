@@ -1,70 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/y20"
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@color/wite"
-    android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y88"
-        android:background="@color/wite" >
+    <include
+        layout="@layout/layout_home_head" />
 
-        <RelativeLayout
-            android:id="@+id/rl_search"
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/linearlayout_body"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y68"
-            android:layout_marginLeft="@dimen/x20"
-            android:background="@drawable/seach_bak"
-            android:layout_toLeftOf="@+id/iv_category"
-            android:layout_centerVertical="true" >
+            android:layout_height="match_parent"
+            android:background="@color/light_blue"
+            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/iv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/y8"
-                android:layout_marginBottom="@dimen/y8"
-                android:layout_marginLeft="@dimen/x20"
-                android:src="@drawable/search" />
-            
-            <EditText 
+            <include layout="@layout/layout_home_body" />   
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y88"
+                android:background="@color/wite" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y68"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_toLeftOf="@+id/iv_category"
+                    android:background="@drawable/seach_bak" >
+
+                    <ImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="@dimen/y8"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:layout_marginTop="@dimen/y8"
+                        android:src="@drawable/search" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x13"
+                        android:layout_toRightOf="@+id/iv_search"
+                        android:text="点此搜索你想要的"
+                        android:textColor="@color/home_head_color"
+                        android:gravity="center_vertical"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/iv_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x20"
+                    android:src="@drawable/fenlei" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y10"
+                android:background="@color/new_line_color" />
+
+            <ListView
+                android:id="@+id/comment_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
-                android:layout_toRightOf="@+id/iv_search"
-                android:layout_marginLeft="@dimen/x13"
-                android:hint="点此搜索你想要的"
-                android:textSize="14sp"
-                android:textColorHint="@color/home_head_color"
-                />
-        </RelativeLayout>
-        
-        <ImageView 
-            android:id="@+id/iv_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/x20"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x20"
-            android:src="@drawable/fenlei"
-            />
-    </RelativeLayout>
-
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y10"
-        android:background="@color/new_line_color"
-        />
-    
-    <ListView
-        android:id="@+id/comment_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+                android:orientation="horizontal" />
+        </LinearLayout>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 </LinearLayout>

@@ -1,37 +1,57 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:background="@color/wite" >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/tv_identify_commit_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" >
-
-        <TextView
-            android:id="@+id/tv_canshu"
+        android:layout_margin="@dimen/x20"
+        android:text="网友评论"
+        android:textColor="@color/new_time_color"
+        android:textSize="14sp" />
+    
+    <LinearLayout
+        android:id="@+id/ll_identify_input"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_marginBottom="@dimen/y20">
+        
+        <TextView 
+            android:id="@+id/tv_identify_input1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="高度（cm）" />
-
-        <EditText
-            android:id="@+id/et_input"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_canshu"
-            android:layout_alignTop="@+id/tv_canshu"
-            android:layout_toRightOf="@+id/tv_canshu"
-            android:background="@null"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/tv_line"
-            android:layout_width="40dp"
-            android:layout_height="1dp"
-            android:layout_below="@+id/et_input"
-            android:layout_toRightOf="@+id/tv_canshu"
-            android:background="@color/black" />
-    </RelativeLayout>
-
-</RelativeLayout>
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:visibility="gone"
+            />
+        
+        <TextView 
+            android:id="@+id/tv_identify_input2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y10"
+            android:textSize="12sp"
+            android:visibility="gone"
+            />
+        
+        <TextView 
+            android:id="@+id/tv_identify_input3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y10"
+            android:textSize="12sp"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/y1"
+        android:background="@color/new_line_color"/>
+</LinearLayout>

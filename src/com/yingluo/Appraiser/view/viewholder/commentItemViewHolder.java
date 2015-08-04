@@ -1,7 +1,5 @@
 package com.yingluo.Appraiser.view.viewholder;
 
-import u.aly.cu;
-
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
@@ -10,7 +8,6 @@ import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
-import com.yingluo.Appraiser.utils.ImageUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
 
 import android.app.Activity;
