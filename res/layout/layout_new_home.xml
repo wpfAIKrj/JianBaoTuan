@@ -6,8 +6,7 @@
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include
-        layout="@layout/layout_home_head" />
+    <include layout="@layout/layout_home_head" />
 
     <com.handmark.pulltorefresh.library.PullToRefreshScrollView
         android:id="@+id/scrollview"

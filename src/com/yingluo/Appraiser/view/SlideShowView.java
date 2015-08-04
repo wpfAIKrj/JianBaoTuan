@@ -34,8 +34,6 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 /**
  * ViewPager实现的轮播图广告自定义视图，如京东首页的广告轮播图效果； 既支持自动轮播页面也支持手势滑动切换页面
- * 
- *
  */
 
 public class SlideShowView extends FrameLayout {
@@ -155,14 +153,28 @@ public class SlideShowView extends FrameLayout {
 			view.setOnClickListener(onclick);
 			imageViewsList.add(view);
 
-			ImageView dotView = new ImageView(context);
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					(int) getResources().getDimension(R.dimen.x16), (int) getResources().getDimension(R.dimen.x16));
-			params.leftMargin = 10;
-			params.rightMargin = 10;
-			params.bottomMargin = 20;
-			dotLayout.addView(dotView, params);
-			dotViewsList.add(dotView);
+			if(i==0) {
+				ImageView dotView = new ImageView(context);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+						(int) getResources().getDimension(R.dimen.x40), (int) getResources().getDimension(R.dimen.x10));
+				params.leftMargin = 10;
+				params.rightMargin = 10;
+				params.bottomMargin = 20;
+				dotView.setBackgroundResource(R.drawable.banner_choose);
+				dotLayout.addView(dotView, params);
+				dotViewsList.add(dotView);
+			} else {
+				ImageView dotView = new ImageView(context);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+						(int) getResources().getDimension(R.dimen.x10), (int) getResources().getDimension(R.dimen.x10));
+				params.leftMargin = 10;
+				params.rightMargin = 10;
+				params.bottomMargin = 20;
+				dotView.setBackgroundResource(R.drawable.banner_no_choose);
+				dotLayout.addView(dotView, params);
+				dotViewsList.add(dotView);
+			}
+			
 		}
 
 		viewPager = (ViewPager) findViewById(R.id.baner);
@@ -233,10 +245,19 @@ public class SlideShowView extends FrameLayout {
 		@Override
 		public void onPageSelected(int pos) {
 			for (int i = 0; i < dotViewsList.size(); i++) {
+				ImageView each = (ImageView) dotViewsList.get(i);
 				if (i == pos%imageViewsList.size()) {
-					((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.ball_select);
+					LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) each.getLayoutParams();
+					params.width = (int)getResources().getDimension(R.dimen.x40);
+					params.height = (int)getResources().getDimension(R.dimen.x10);
+					each.setLayoutParams(params);
+					each.setBackgroundResource(R.drawable.banner_choose);
 				} else {
-					((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.ball_normal);
+					LinearLayout.LayoutParams params = (android.widget.LinearLayout.LayoutParams) each.getLayoutParams();
+					params.width = (int)getResources().getDimension(R.dimen.x10);
+					params.height = (int)getResources().getDimension(R.dimen.x10);
+					each.setLayoutParams(params);
+					each.setBackgroundResource(R.drawable.banner_no_choose);
 				}
 			}
 		}

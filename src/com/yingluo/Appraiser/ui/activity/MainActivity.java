@@ -75,7 +75,7 @@ import de.greenrobot.event.EventBus;
 public class MainActivity extends FragmentActivity implements OnTabSelectedListener,AskNetWorkCallBack {
 
 	private FragmentManager mFragmentManager;
-//	private HomeFragment mHomeFragment;
+	private HomeFragment mHomeFragment;
 	private NewHomeFragment mNewHomeFragment;
 	
 	private IdentiyFragment mIdentiyFragment;
@@ -239,13 +239,13 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		hideFragments(transaction);
 		switch (index) {
 		case 0:
-			if (null == mNewHomeFragment) {
-				mNewHomeFragment = new NewHomeFragment();
-				transaction.add(R.id.center_layout, mNewHomeFragment);
+			if (null == mHomeFragment) {
+				mHomeFragment = new HomeFragment();
+				transaction.add(R.id.center_layout, mHomeFragment);
 			} else {
-				transaction.show(mNewHomeFragment);
+				transaction.show(mHomeFragment);
 			}
-			mNewHomeFragment.lazyLoad();
+			mHomeFragment.lazyLoad();
 
 			break;
 		case 1:
@@ -295,8 +295,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	}
 
 	private void hideFragments(FragmentTransaction transaction) {
-		if (null != mNewHomeFragment) {
-			transaction.hide(mNewHomeFragment);
+		if (null != mHomeFragment) {
+			transaction.hide(mHomeFragment);
 		}
 		if (null != mIdentiyFragment) {
 			transaction.hide(mIdentiyFragment);
