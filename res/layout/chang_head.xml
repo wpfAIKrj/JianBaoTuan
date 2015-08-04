@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
      <RadioGroup
-        android:id="@+id/rg_find_tab"
+        android:id="@+id/rg_find"
         android:layout_width="160dp"
         android:layout_height="29dp"
         android:layout_alignParentTop="true"
@@ -15,7 +15,7 @@
         android:padding="0.5dp">
 
         <RadioButton
-            android:id="@+id/rb_find_type"
+            android:id="@+id/rb_find_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
@@ -24,9 +24,10 @@
             android:gravity="center"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="已鉴定"
             android:textColor="@drawable/image_news_bar_color"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:checked="true"
+            />
 
         <View
             android:layout_width="0.5dp"
@@ -34,7 +35,7 @@
             android:background="@color/hintcolor" />
 
         <RadioButton
-            android:id="@+id/rb_find_star"
+            android:id="@+id/rb_find_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
@@ -43,7 +44,6 @@
             android:gravity="center"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:text="鉴定中"
             android:textColor="@drawable/image_news_bar_color"
             android:textSize="14sp" />
 

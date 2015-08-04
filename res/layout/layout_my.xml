@@ -50,20 +50,47 @@
                         android:layout_width="@dimen/y168"
                         android:layout_height="@dimen/y168"
                         android:layout_marginTop="@dimen/y2"
-                        android:layout_toLeftOf="@+id/view_middle"
                         android:src="@drawable/user_logo"
-                        android:layout_marginRight="@dimen/y8"
+                        android:layout_centerHorizontal="true"
                         app:border_color="@color/cricle_color"
                         app:border_width="@dimen/x1" />
+                    
+                    <ImageView
+                        android:id="@+id/my_iv_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/login_user_head"
+                        android:layout_alignRight="@+id/my_tv_name"
+                        android:src="@drawable/levelicon01" />
+                    
+                    <TextView
+                        android:id="@+id/my_tv_name"
+                        style="@style/my_name_style"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/login_user_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y15"
+                        android:text="测试名字" />
 
+                    <TextView
+                        android:id="@+id/my_type_msg"
+                        style="@style/my_level_style"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/my_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/y15"
+                        android:text="新手上路" />
+                    
                     <ProgressBar
                         android:id="@+id/pb_jngyan"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="@dimen/x400"
                         android:layout_height="@dimen/y20"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/y40" 
-                        android:layout_below="@+id/login_user_head"
+                        android:layout_marginTop="@dimen/y15" 
+                        android:layout_below="@+id/my_type_msg"
                         android:progress="10"
                         android:progressDrawable="@drawable/progressbar_color"
                         />
@@ -79,73 +106,6 @@
                         android:text="1/5"
                         android:layout_centerHorizontal="true"
                         />
-                    <View 
-                        android:id="@+id/view_middle"
-                        android:layout_width="1dp"
-                        android:layout_height="11dp"
-                        android:background="@android:color/transparent"
-                        android:layout_centerInParent="true"
-                        />
-                    <TextView
-                        android:id="@+id/my_tv_name"
-                        style="@style/my_name_style"
-                        android:layout_toRightOf="@+id/view_middle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/y20"
-                        android:layout_marginLeft="@dimen/y8"
-                        android:text="测试名字" />
-
-                    <TextView
-                        android:id="@+id/my_type_msg"
-                        style="@style/my_level_style"
-                        android:layout_toRightOf="@+id/view_middle"
-                        android:layout_below="@+id/my_tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/y20"
-                        android:layout_marginLeft="@dimen/y8"
-                        android:text="新手上路" />
-
-                    <TextView
-                        android:id="@+id/my_tv_authenticate"
-                        style="@style/my_up_style"
-                        android:layout_toRightOf="@+id/view_middle"
-                        android:layout_below="@+id/my_tv_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/y20"
-                        android:layout_marginLeft="@dimen/y8"
-                        android:visibility="gone"
-                        android:text="成为网络鉴定师" />
-
-                    <RelativeLayout
-                        android:id="@+id/ll_level"
-                        android:layout_width="@dimen/x150"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/my_type_msg"
-                        android:layout_alignTop="@+id/my_type_msg"
-                        android:layout_alignBottom="@+id/my_type_msg"
-                        android:background="@drawable/ed_code_bg" >
-
-                        <TextView
-                            android:id="@+id/tv_zhang"
-                            style="@style/my_up_style"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="@dimen/x8"
-                            android:text="成长体系" />
-
-                    </RelativeLayout>
-
-                    <ImageView
-                        android:id="@+id/my_iv_level"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignRight="@+id/login_user_head"
-                        android:layout_below="@+id/my_type_msg"
-                        android:src="@drawable/levelicon01" />
                     
                 </RelativeLayout>
                 
@@ -155,7 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y750"
                 android:orientation="vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                  >
 
                 <LinearLayout

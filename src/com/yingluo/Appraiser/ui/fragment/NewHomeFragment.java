@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -92,6 +94,11 @@ public class NewHomeFragment extends BaseFragment {
 		rlSearch = (RelativeLayout) view.findViewById(R.id.rl_search);
 		ivCategory = (ImageView) view.findViewById(R.id.iv_category);
 		lvHome = (ListView) view.findViewById(R.id.comment_listview);
+		
+		RadioButton rbLeft = (RadioButton) view.findViewById(R.id.rb_find_left);
+		RadioButton rbRight = (RadioButton) view.findViewById(R.id.rb_find_right);
+		rbLeft.setText("已鉴定");
+		rbRight.setText("鉴定中");
 		
 		list=new ArrayList<CommentEntity>();
 		CommentEntity each= new CommentEntity();

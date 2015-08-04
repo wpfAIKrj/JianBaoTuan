@@ -151,4 +151,16 @@
     <string name="new_str_share">分享</string>
     <string name="new_str_commit">评论</string>
     
+    <!-- 新版文学导读的string -->
+    <string name="new_str_knowdedge">知识学堂</string>
+    <string name="new_str_news">新闻公告</string>
+    <string name="new_str_all">全部</string>
+    <string name="new_str_activity">市场活动</string>
+    <string name="new_str_buy">拍卖行情</string>
+    <string name="new_str_pian">诈骗风险</string>
+    <string name="new_str_good">精品</string>
+    <string name="new_str_new">新品</string>
+    <string name="new_str_true">辨伪</string>
+    <string name="new_str_people">人物</string>
+    
 </resources>

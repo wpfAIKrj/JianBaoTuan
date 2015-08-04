@@ -5,141 +5,258 @@
     android:background="@color/wite"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_article_head" />
+    <include layout="@layout/layout_home_head" />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/wite"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:background="@color/wite" >
 
         <LinearLayout
-            android:id="@+id/ll_all_info"
+            android:id="@+id/ll_show_knowledge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
-            <Button
-                style="@style/bt_smart_style"
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y94"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:gravity="center"
-                android:text="全部"
-                android:textColor="@color/black" />
+            <LinearLayout
+                android:id="@+id/ll_all_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
 
-            <View
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y1"
-                android:background="@color/wite" />
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_all"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_good_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_good"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_new_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_new"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_truefalse_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_true"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_person_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_people"
+                    android:textColor="@color/dialog_title_color" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/dialog_title_color" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_good_info"
+            android:id="@+id/ll_show_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:background="@color/wite"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <Button
-                style="@style/bt_smart_style"
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y94"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:gravity="center"
-                android:text="精品"
-                android:textColor="@color/black" />
+            <LinearLayout
+                android:id="@+id/ll_all_new_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
 
-            <View
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y1"
-                android:background="@color/wite" />
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_all"
+                    android:textColor="@color/dialog_title_color" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/dialog_title_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_activity_new_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_activity"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_buy_new_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_buy"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pian_new_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <Button
+                    style="@style/bt_smart_style"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y94"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/new_str_pian"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y1"
+                    android:background="@color/wite" />
+            </LinearLayout>
         </LinearLayout>
+    </FrameLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_new_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <Button
-                style="@style/bt_smart_style"
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y94"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:gravity="center"
-                android:text="新品"
-                android:textColor="@color/black" />
-
-            <View
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y1"
-                android:background="@color/wite" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_truefalse_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <Button
-                style="@style/bt_smart_style"
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y94"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:gravity="center"
-                android:text="辨伪"
-                android:textColor="@color/black" />
-
-            <View
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y1"
-                android:background="@color/wite" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:id="@+id/ll_person_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <Button
-                style="@style/bt_smart_style"
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y94"
-                android:background="@android:color/transparent"
-                android:clickable="false"
-                android:gravity="center"
-                android:text="人物"
-                android:textColor="@color/dialog_title_color" />
-
-            <View
-                android:layout_width="@dimen/x126"
-                android:layout_height="@dimen/y1"
-                android:background="@color/dialog_title_color" />
-        </LinearLayout>
-    </LinearLayout>
-    
     <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
         android:id="@+id/recyclerview1"
         android:layout_width="match_parent"

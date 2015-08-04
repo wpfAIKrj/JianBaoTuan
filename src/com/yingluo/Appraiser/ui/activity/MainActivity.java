@@ -239,13 +239,13 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		hideFragments(transaction);
 		switch (index) {
 		case 0:
-			if (null == mHomeFragment) {
-				mHomeFragment = new HomeFragment();
-				transaction.add(R.id.center_layout, mHomeFragment);
+			if (null == mNewHomeFragment) {
+				mNewHomeFragment = new NewHomeFragment();
+				transaction.add(R.id.center_layout, mNewHomeFragment);
 			} else {
-				transaction.show(mHomeFragment);
+				transaction.show(mNewHomeFragment);
 			}
-			mHomeFragment.lazyLoad();
+			mNewHomeFragment.lazyLoad();
 
 			break;
 		case 1:
@@ -295,8 +295,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	}
 
 	private void hideFragments(FragmentTransaction transaction) {
-		if (null != mHomeFragment) {
-			transaction.hide(mHomeFragment);
+		if (null != mNewHomeFragment) {
+			transaction.hide(mNewHomeFragment);
 		}
 		if (null != mIdentiyFragment) {
 			transaction.hide(mIdentiyFragment);

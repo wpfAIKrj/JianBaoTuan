@@ -69,9 +69,6 @@ public class MyFragment extends BaseFragment {
 	@ViewInject(R.id.my_tv_name)
 	private TextView tv_name;
 
-	@ViewInject(R.id.my_tv_authenticate)
-	private TextView tv_authenticate;
-
 	@ViewInject(R.id.my_iv_level)
 	private ImageView iv_level;
 
@@ -162,9 +159,8 @@ public class MyFragment extends BaseFragment {
 		this.onlongListner = onlongListner;
 	}
 
-	@OnClick({ R.id.login_user_head, R.id.ll_level, R.id.my_bt_showmenu, R.id.my_tv_authenticate,
-			R.id.my_layout_collect, R.id.my_layout_foot, R.id.my_layout_identif, R.id.my_tab1, R.id.my_tab2,
-			R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
+	@OnClick({ R.id.login_user_head, R.id.my_bt_showmenu,R.id.my_layout_collect, R.id.my_layout_foot, 
+		R.id.my_layout_identif, R.id.my_tab1, R.id.my_tab2,R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.login_user_head:
@@ -173,23 +169,23 @@ public class MyFragment extends BaseFragment {
 				onlongListner.onClick(v);
 			}
 			break;
-		case R.id.ll_level:
-			// 跳转到等级说明
-			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
-			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-			break;
+//		case R.id.ll_level:
+//			// 跳转到等级说明
+//			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
+//			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+//			break;
 		case R.id.my_bt_showmenu:
 			// 右侧菜单
 			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class), Const.TO_USER_SET);
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			break;
-		case R.id.my_tv_authenticate:
-			// 跳转到认证鉴定师
-			if (ItApplication.getcurrnUser() != null && ItApplication.getcurrnUser().getUser_type() == 0) {
-				mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
-				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-			}
-			break;
+//		case R.id.my_tv_authenticate:
+//			// 跳转到认证鉴定师
+//			if (ItApplication.getcurrnUser() != null && ItApplication.getcurrnUser().getUser_type() == 0) {
+//				mActivity.startActivity(new Intent(mActivity, AuthenticateActivity.class));
+//				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+//			}
+//			break;
 
 		case R.id.my_layout_collect:
 			// 跳转收藏宝贝页面
@@ -264,10 +260,10 @@ public class MyFragment extends BaseFragment {
 			tv_name.setText(ItApplication.getcurrnUser().getNickname());
 			BitmapsUtils.getInstance().display(user_logo, ItApplication.getcurrnUser().getAvatar());
 			if (ItApplication.getcurrnUser().getUser_type() == 0) {
-				tv_authenticate.setText(R.string.type_collect);
+				my_type_msg.setText(R.string.type_collect);
 //				iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 			} else {
-				tv_authenticate.setText(R.string.type_identiy);
+				my_type_msg.setText(R.string.type_identiy);
 			}
 			madapter = new MyLikeAdapter(mActivity,list, itemListner);
 			listView.setAdapter(madapter);
@@ -312,11 +308,11 @@ public class MyFragment extends BaseFragment {
 				madapter = new MyLikeAdapter(mActivity,list, itemListner);
 				listView.setAdapter(madapter);
 				if (ItApplication.getcurrnUser().getUser_type() == 0) {
-					tv_authenticate.setText(R.string.type_collect);
+					my_type_msg.setText(R.string.type_collect);
 					iv_level.setImageResource(levels[currentLevel-1]);
 //					iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
 				} else {
-					tv_authenticate.setText(R.string.type_identiy);
+					my_type_msg.setText(R.string.type_identiy);
 				}
 				pbJingYan.setMax(levelUpNeedNumber);
 				pbJingYan.setProgress(levelNumber);
