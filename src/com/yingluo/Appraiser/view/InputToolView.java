@@ -36,6 +36,28 @@ public class InputToolView extends RelativeLayout {
             @Override    
             public void onTextChanged(CharSequence s, int start, int before,    
                     int count) {       
+            	if (s.toString().contains(".")) {
+                    if (s.length() - 1 - s.toString().indexOf(".") > 2) {
+                        s = s.toString().subSequence(0,
+                                s.toString().indexOf(".") + 3);
+                        etInput.setText(s);
+                        etInput.setSelection(s.length());
+                    }
+                }
+                if (s.toString().trim().substring(0).equals(".")) {
+                    s = "0" + s;
+                    etInput.setText(s);
+                    etInput.setSelection(2);
+                }
+ 
+                if (s.toString().startsWith("0")
+                        && s.toString().trim().length() > 1) {
+                    if (!s.toString().substring(1, 2).equals(".")) {
+                    	etInput.setText(s.subSequence(0, 1));
+                    	etInput.setSelection(1);
+                        return;
+                    }
+                }
             }    
     
             @Override    
@@ -44,25 +66,7 @@ public class InputToolView extends RelativeLayout {
             }    
     
             @Override    
-            public void afterTextChanged(Editable s) {     
-                  
-                String str = s.toString();    
-                int i,length = str.length();
-                
-                for (i = length - 1; i >= 0; i--) {    
-                    char c = str.charAt(i);    
-                    if ('.' == c) {   
-                        break;    
-                    }    
-                }    
-                if(str.length() - 1-i>2) {
-                	etInput.setText(str.substring(0, length-1));   
-                    etInput.setSelection(length-1);
-                } else {
-                	etInput.setText(str);
-                    etInput.setSelection(etInput.length());
-                }
-                
+            public void afterTextChanged(Editable s) {   
                   
             }    
         }); 
