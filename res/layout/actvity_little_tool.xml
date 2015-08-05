@@ -118,7 +118,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="@string/new_str_ball"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/iv_tool_ball"
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="@dimen/x10"
                     android:layout_centerVertical="true"
                     android:text="@string/new_str_zhu"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/iv_tool_zhu"

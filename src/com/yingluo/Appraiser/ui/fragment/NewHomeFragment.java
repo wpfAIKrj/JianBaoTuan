@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,17 @@ public class NewHomeFragment extends BaseFragment {
 	
 	private List<CommentEntity> list;
 	
+	//用于记录现在是哪一个tab
+	private int RadioType;
+	private TextView tvLeft;
+	private TextView tvRight;
+	
+	private final int KNOWLEDGE = 1;
+	private final int NEWSTYPE = 2;
+	
+	@ViewInject(R.id.iv_search)
+	private ImageView search;
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -89,16 +101,20 @@ public class NewHomeFragment extends BaseFragment {
 //				isRefresh = true;
 //			}
 //		});
+		search.setVisibility(View.GONE);
 		// 顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
 		rlSearch = (RelativeLayout) view.findViewById(R.id.rl_search);
 		ivCategory = (ImageView) view.findViewById(R.id.iv_category);
 		lvHome = (ListView) view.findViewById(R.id.comment_listview);
 		
-		RadioButton rbLeft = (RadioButton) view.findViewById(R.id.rb_find_left);
-		RadioButton rbRight = (RadioButton) view.findViewById(R.id.rb_find_right);
-		rbLeft.setText("已鉴定");
-		rbRight.setText("鉴定中");
+		RadioType = KNOWLEDGE;
+		tvLeft = (TextView) view.findViewById(R.id.tv_info_left);
+		tvRight = (TextView) view.findViewById(R.id.iv_info_right);
+		tvLeft.setOnClickListener(listenerTab);
+		tvRight.setOnClickListener(listenerTab);
+		tvLeft.setText("已鉴定");
+		tvRight.setText("鉴定中");
 		
 		list=new ArrayList<CommentEntity>();
 		CommentEntity each= new CommentEntity();
@@ -110,6 +126,32 @@ public class NewHomeFragment extends BaseFragment {
 		mAdapter.setData(list);
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
 	}
+	
+	OnClickListener listenerTab = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			if(v.getId() == R.id.tv_info_left) {
+				//点击了左边的按钮
+				if(RadioType != KNOWLEDGE) {
+					RadioType = KNOWLEDGE;
+					tvLeft.setBackgroundResource(R.drawable.knowledge_press);
+					tvLeft.setTextColor(getResources().getColor(R.color.home_head_color));
+					tvRight.setBackgroundResource(R.drawable.news_normal);
+					tvRight.setTextColor(getResources().getColor(R.color.wite));
+				}
+			} else {
+				//点击了右边的按钮
+				if(RadioType != NEWSTYPE) {
+					RadioType = NEWSTYPE;
+					tvRight.setBackgroundResource(R.drawable.news_press);
+					tvRight.setTextColor(getResources().getColor(R.color.home_head_color));
+					tvLeft.setBackgroundResource(R.drawable.knowledge_normal);
+					tvLeft.setTextColor(getResources().getColor(R.color.wite));
+				}
+			}
+		}
+	};
 	
 	@Override
 	protected void initDisplay() {

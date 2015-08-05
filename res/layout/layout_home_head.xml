@@ -13,4 +13,13 @@
         android:layout_centerInParent="true"
          />
 
+    <ImageView 
+        android:id="@+id/iv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_search"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/x20"
+        />
 </RelativeLayout>

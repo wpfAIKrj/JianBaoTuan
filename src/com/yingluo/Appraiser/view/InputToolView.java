@@ -35,7 +35,12 @@ public class InputToolView extends RelativeLayout {
            
             @Override    
             public void onTextChanged(CharSequence s, int start, int before,    
-                    int count) {       
+                    int count) {
+            	if(s.length()>3 && !s.toString().contains(".")) {
+            		s = s.toString().subSequence(0,3);
+                    etInput.setText(s);
+                    etInput.setSelection(s.length());
+            	}
             	if (s.toString().contains(".")) {
                     if (s.length() - 1 - s.toString().indexOf(".") > 2) {
                         s = s.toString().subSequence(0,
@@ -79,6 +84,9 @@ public class InputToolView extends RelativeLayout {
 	}
 	
 	public String getInputText() {
+		if(etInput.getText() == null) {
+			return "";
+		}
 		return etInput.getText().toString();
 	}
 	

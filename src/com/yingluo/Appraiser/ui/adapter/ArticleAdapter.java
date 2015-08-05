@@ -6,6 +6,7 @@ import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.inter.ListviewLoadListener;
+import com.yingluo.Appraiser.view.viewholder.ArticleNewViewHolder;
 import com.yingluo.Appraiser.view.viewholder.ArticleViewHolder;
 import com.yingluo.Appraiser.view.viewholder.footerViewHolder;
 
@@ -67,8 +68,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
 			foot.showloadMore(load_type);
 		}
 
-		if (arg0 instanceof ArticleViewHolder) {
-			ArticleViewHolder articie = (ArticleViewHolder) arg0;
+		if (arg0 instanceof ArticleNewViewHolder) {
+			ArticleNewViewHolder articie = (ArticleNewViewHolder) arg0;
 			articie.showData(list.get(arg1));
 		}
 
@@ -80,7 +81,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
 			return new footerViewHolder(mInflater.inflate(R.layout.xlistview_footer, arg0, false), listview);
 		}
 		if (arg1 == TYPE_ITEM) {
-			return new ArticleViewHolder(mInflater.inflate(R.layout.item_info, arg0, false), onclick);
+			return new ArticleNewViewHolder(context,mInflater.inflate(R.layout.item_new_info, arg0, false), onclick);
 		}
 		return null;
 	}

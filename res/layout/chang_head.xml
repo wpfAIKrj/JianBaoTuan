@@ -1,51 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
 
-     <RadioGroup
-        android:id="@+id/rg_find"
-        android:layout_width="160dp"
-        android:layout_height="29dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/shape_image_news_rb"
-        android:gravity="center"
-        android:checkedButton="@+id/rb_find_left"
-        android:orientation="horizontal"
-        android:padding="0.5dp">
-
-        <RadioButton
-            android:id="@+id/rb_find_left"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector_image_news_rb_bg_left"
-            android:button="@null"
-            android:gravity="center"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:textColor="@drawable/image_news_bar_color"
-            android:textSize="14sp"
-            />
-
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/hintcolor" />
-
-        <RadioButton
-            android:id="@+id/rb_find_right"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector_image_news_rb_bg_right"
-            android:button="@null"
-            android:gravity="center"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:textColor="@drawable/image_news_bar_color"
-            android:textSize="14sp" />
-
-    </RadioGroup>
+     <TextView 
+         android:id="@+id/tv_info_left"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="@color/home_head_color"
+         android:gravity="center"
+         android:background="@drawable/knowledge_press"/>
     
+     <TextView 
+         android:id="@+id/iv_info_right"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@drawable/news_normal"
+         android:textColor="@color/wite"
+         android:gravity="center"
+         android:layout_toRightOf="@+id/tv_info_left"/>
+     
 </RelativeLayout>

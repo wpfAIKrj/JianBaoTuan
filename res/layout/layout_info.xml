@@ -9,21 +9,21 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y88"
         android:background="@color/wite" >
 
         <LinearLayout
             android:id="@+id/ll_show_knowledge"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/wite"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
             <LinearLayout
                 android:id="@+id/ll_all_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -31,24 +31,25 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
                     android:text="@string/new_str_all"
+                    android:textSize="14sp"
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_good_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -56,8 +57,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -65,15 +66,15 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_new_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -81,8 +82,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -90,15 +91,15 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_truefalse_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -106,8 +107,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -115,15 +116,15 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_person_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -131,8 +132,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -140,8 +141,8 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/dialog_title_color" />
             </LinearLayout>
         </LinearLayout>
@@ -149,7 +150,7 @@
         <LinearLayout
             android:id="@+id/ll_show_news"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/y88"
             android:background="@color/wite"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -157,8 +158,8 @@
 
             <LinearLayout
                 android:id="@+id/ll_all_new_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -166,8 +167,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -175,15 +176,15 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/dialog_title_color" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_activity_new_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -191,8 +192,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -200,15 +201,15 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_buy_new_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center_horizontal"
@@ -216,8 +217,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -225,14 +226,14 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_pian_new_info"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
@@ -241,8 +242,8 @@
 
                 <Button
                     style="@style/bt_smart_style"
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y94"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y84"
                     android:background="@android:color/transparent"
                     android:clickable="false"
                     android:gravity="center"
@@ -250,13 +251,18 @@
                     android:textColor="@color/dialog_title_color" />
 
                 <View
-                    android:layout_width="@dimen/x126"
-                    android:layout_height="@dimen/y1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y4"
                     android:background="@color/wite" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y10"
+        android:background="@color/hintcolor"/>
+    
     <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
         android:id="@+id/recyclerview1"
         android:layout_width="match_parent"

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,6 +48,7 @@ import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.ArticlePresenter;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
+import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.activity.InformationDetailsActivity;
 import com.yingluo.Appraiser.ui.adapter.ArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
@@ -91,12 +93,13 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 	ViewGroup btn_pian_news;
 	
 	//头部切换
-	@ViewInject(R.id.rb_find_left) 
-	RadioButton rbLeft;
-	@ViewInject(R.id.rb_find_right)
-	RadioButton rbRight;
-	@ViewInject(R.id.rg_find)
-	RadioGroup rgChange;
+	@ViewInject(R.id.tv_info_left) 
+	TextView tvLeft;
+	@ViewInject(R.id.iv_info_right)
+	TextView tvRight;
+	
+	@ViewInject(R.id.iv_search)
+	ImageView search;
 	
 	//存储数据，用于切换时候显示效果
 	private Map<Integer,ViewGroup> knowledgeMap;
@@ -163,6 +166,8 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		ViewUtils.inject(this, view);
 		list = new ArrayList<ContentInfo>();
 
+		search.setVisibility(View.VISIBLE);
+		
 		RecyclerView recyclerView = (RecyclerView) mRecyclerView.getRefreshView();
 		LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
 		recyclerView.setLayoutManager(layoutManager);
@@ -185,6 +190,11 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		});
 		
 		RadioType = KNOWLEDGE;
+		
+		tvLeft.setText(getResources().getString(R.string.new_str_knowdedge));
+		tvRight.setText(getResources().getString(R.string.new_str_news));
+		tvLeft.setOnClickListener(listenerTab);
+		tvRight.setOnClickListener(listenerTab);
 		
 		knowledgeMap = new HashMap<Integer, ViewGroup>();
 		knowledgeMap.put(R.id.ll_all_info,btn_all);
@@ -212,37 +222,16 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		
 		btn_all.callOnClick();
 		recyclerView.setHasFixedSize(true);
-
-		rgChange.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if(checkedId == R.id.rb_find_left) {
-					//点击了左边的按钮
-					if(RadioType != KNOWLEDGE) {
-						RadioType = KNOWLEDGE;
-						llKonwledge.setVisibility(View.VISIBLE);
-						llNews.setVisibility(View.GONE);
-					}
-					
-				} else {
-					//点击了右边的按钮
-					if(RadioType != NEWSTYPE) {
-						RadioType = NEWSTYPE;
-						llKonwledge.setVisibility(View.GONE);
-						llNews.setVisibility(View.VISIBLE);
-					}
-				}
-			}
-		});
-		madapter = new ArticleAdapter(mActivity, list, lisntener, this);
-
-		rbLeft.setText(getResources().getString(R.string.new_str_knowdedge));
-		rbRight.setText(getResources().getString(R.string.new_str_news));
-		
+		madapter = new ArticleAdapter(mActivity,list,lisntener,this);
 		recyclerView.setAdapter(madapter);
 		
-		
+		search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mActivity.startActivity(new Intent(mActivity,ActivitySearch.class));
+			}
+		});
 	}
 
 	@Override
@@ -336,6 +325,36 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		}
 	}
 
+	OnClickListener listenerTab = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			if(v.getId() == R.id.tv_info_left) {
+				//点击了左边的按钮
+				if(RadioType != KNOWLEDGE) {
+					RadioType = KNOWLEDGE;
+					llKonwledge.setVisibility(View.VISIBLE);
+					llNews.setVisibility(View.GONE);
+					tvLeft.setBackgroundResource(R.drawable.knowledge_press);
+					tvLeft.setTextColor(getResources().getColor(R.color.home_head_color));
+					tvRight.setBackgroundResource(R.drawable.news_normal);
+					tvRight.setTextColor(getResources().getColor(R.color.wite));
+				}
+			} else {
+				//点击了右边的按钮
+				if(RadioType != NEWSTYPE) {
+					RadioType = NEWSTYPE;
+					llKonwledge.setVisibility(View.GONE);
+					llNews.setVisibility(View.VISIBLE);
+					tvRight.setBackgroundResource(R.drawable.news_press);
+					tvRight.setTextColor(getResources().getColor(R.color.home_head_color));
+					tvLeft.setBackgroundResource(R.drawable.knowledge_normal);
+					tvLeft.setTextColor(getResources().getColor(R.color.wite));
+				}
+			}
+		}
+	};
+	
 	OnClickListener listener = new OnClickListener() {
 
 		@Override
