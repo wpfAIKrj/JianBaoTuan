@@ -7,6 +7,7 @@ import java.util.List;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
+import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.view.viewholder.IndentityResultViewHolder;
 import com.yingluo.Appraiser.view.viewholder.NewItemViewHolder;
 import com.yingluo.Appraiser.view.viewholder.commentItemViewHolder;
@@ -26,18 +27,24 @@ import android.widget.ListView;
  */
 public class NewHomeListAdapter extends BaseAdapter {
 
-	private List<CommentEntity> list;
+	private List<HomeItem> list;
 	
 	private OnClickListener listner;
 	private Context mContext;
 	
-	public NewHomeListAdapter(List<CommentEntity> list,Context context,OnClickListener listner) {
+	private int type;
+	private static final int hasIdentify = 2;
+	private static final int indentifying = 1;
+	
+	public NewHomeListAdapter(int type,List<HomeItem> list,Context context,OnClickListener listner) {
+		this.type = type;
 		this.list = list;
 		this.listner=listner;
 		mContext=context;
 	}
 	
-	public void setData(List<CommentEntity> commentlist) {
+	public void setData(int type,List<HomeItem> commentlist) {
+		this.type = type;
 		Collections.reverse(commentlist);
 		list=commentlist;
 		notifyDataSetChanged();
@@ -49,7 +56,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public CommentEntity getItem(int position) {
+	public HomeItem getItem(int position) {
 		return list.get(position);
 	}
 
@@ -68,8 +75,9 @@ public class NewHomeListAdapter extends BaseAdapter {
 		}else{
 			vh=(NewItemViewHolder) convertView.getTag();
 		}
+		HomeItem each = list.get(position);
 		vh.clearAllView();
-		vh.setItem();
+		vh.setItem(type,each);
 		return convertView;
 	}
 

@@ -61,6 +61,10 @@ public class NetConst {
 
 	public static final String LIST_INFO = "Contents/listAction";// 获取知识大厅列表
 	
+	public static final String NEW_LIST_INFO = "home/contentsAction";// 新版第二页
+	
+	public static final String NEW_NEW_HOME = "home/homeAction";//新版首页
+	
 	public static final String IS_DEL = "Users/existAction";// 判断用户是不是已经在服务器端删除
 	
 	public static final String DEL_MY_LOVE = "Material/deleteCollectionsAction";// 判断我的收藏

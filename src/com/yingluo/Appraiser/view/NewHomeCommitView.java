@@ -1,6 +1,10 @@
 package com.yingluo.Appraiser.view;
 
+import java.util.List;
+
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.http.ResponseNewHome.Comment;
+import com.yingluo.Appraiser.http.ResponseNewHome.Record;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 public class NewHomeCommitView extends RelativeLayout {
 
 	private TextView tvTitle,tvCommit1,tvCommit2,tvCommit3;
+	private List<TextView> allTextView;
 	
 	public NewHomeCommitView(Context context) {
 		this(context,null);
@@ -31,6 +36,10 @@ public class NewHomeCommitView extends RelativeLayout {
 		tvCommit2 = (TextView) view.findViewById(R.id.tv_identify_input2);
 		tvCommit3 = (TextView) view.findViewById(R.id.tv_identify_input3);
 		
+		allTextView.add(tvCommit1);
+		allTextView.add(tvCommit2);
+		allTextView.add(tvCommit3);
+		
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.commitTitle);    
 		CharSequence text = a.getText(R.styleable.commitTitle_title);    
 		if(text != null) {
@@ -45,14 +54,24 @@ public class NewHomeCommitView extends RelativeLayout {
 		tvCommit3.setVisibility(View.GONE);
 	}
 	
-	public void setCommitOrIdentify() {
-		tvCommit1.setVisibility(View.VISIBLE);
-		tvCommit1.setText("方德磊玩lol不错哟");
+	public void setCommit(List<Comment> commts) {
+		for(int i=0;i<commts.size();i++) {
+			Comment oneComment = commts.get(i);
+			for(TextView each:allTextView) {
+				each.setVisibility(View.VISIBLE);
+				each.setText(oneComment.getTo_user_name()+":"+oneComment.getComment_data());
+			}
+		}
 	}
 	
 
-	public void setCommitOrIdentify(String str) {
-		tvCommit2.setVisibility(View.VISIBLE);
-		tvCommit1.setText("方德磊玩lol不错哟");
+	public void setRecord(List<Record> records) {
+		for(int i=0;i<records.size();i++) {
+			Record oneRecord = records.get(i);
+			for(TextView each:allTextView) {
+				each.setVisibility(View.VISIBLE);
+				each.setText(oneRecord.getUser_name()+":"+oneRecord.getAppraisal_data());
+			}
+		}
 	}
 }

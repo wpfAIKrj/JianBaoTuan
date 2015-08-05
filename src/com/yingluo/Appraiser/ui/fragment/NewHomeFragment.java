@@ -18,19 +18,32 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.json.JSONException;
+
+import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
+import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.HomeEntity;
 import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.ResponseGood;
+import com.yingluo.Appraiser.http.ResponseNewHome;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
+import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
@@ -39,6 +52,7 @@ import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.SlideShowView;
 import com.yingluo.Appraiser.view.home.ViewArticles;
 import com.yingluo.Appraiser.view.home.ViewChoices;
@@ -48,7 +62,7 @@ import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
 import de.greenrobot.event.EventBus;
 
-public class NewHomeFragment extends BaseFragment {
+public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack  {
 
 	/**
 	 * 定义一些控件
@@ -66,18 +80,21 @@ public class NewHomeFragment extends BaseFragment {
 	private Activity mActivity;
 	private boolean isRefresh;
 	
-	private List<CommentEntity> list;
+	private List<HomeItem> list;
 	
 	//用于记录现在是哪一个tab
 	private int RadioType;
 	private TextView tvLeft;
 	private TextView tvRight;
 	
-	private final int KNOWLEDGE = 1;
-	private final int NEWSTYPE = 2;
+	private final int KNOWLEDGE = 2;
+	private final int NEWSTYPE = 1;
 	
 	@ViewInject(R.id.iv_search)
 	private ImageView search;
+	
+	private int page;
+	private AskNetWork askNewWork;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -101,6 +118,9 @@ public class NewHomeFragment extends BaseFragment {
 //				isRefresh = true;
 //			}
 //		});
+		page = 1;
+		askNewWork = new AskNetWork(NetConst.NEW_NEW_HOME, this);
+		
 		search.setVisibility(View.GONE);
 		// 顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
@@ -116,15 +136,19 @@ public class NewHomeFragment extends BaseFragment {
 		tvLeft.setText("已鉴定");
 		tvRight.setText("鉴定中");
 		
-		list=new ArrayList<CommentEntity>();
-		CommentEntity each= new CommentEntity();
-		list.add(each);
-		list.add(each); 
-		mAdapter = new NewHomeListAdapter(list,mActivity,null);
+		list=new ArrayList<HomeItem>();
+		
+		mAdapter = new NewHomeListAdapter(RadioType,list,mActivity,null);
 		lvHome.setAdapter(mAdapter);
 		
-		mAdapter.setData(list);
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
+	}
+	
+	private void askNet() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("status", RadioType);
+		map.put("page", page);
+		askNewWork.ask(HttpRequest.HttpMethod.GET, map);
 	}
 	
 	OnClickListener listenerTab = new OnClickListener() {
@@ -166,7 +190,6 @@ public class NewHomeFragment extends BaseFragment {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			CollectionTreasure entity = (CollectionTreasure) v.getTag();
 			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, entity);
@@ -174,4 +197,24 @@ public class NewHomeFragment extends BaseFragment {
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		}
 	};
+
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);
+		if (rg.getCode() == 100000) {
+			page = rg.getData().getNextPage();
+			List<HomeItem> res = rg.getData().getList();
+			if(res.size() == 0) {
+				return ;
+			} else {
+				list.addAll(res);
+			}
+			mAdapter.setData(RadioType,list);
+		}
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		new ToastUtils(mActivity, "网络异常");
+	}
 }

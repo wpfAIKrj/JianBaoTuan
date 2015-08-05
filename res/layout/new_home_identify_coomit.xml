@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="12sp"
+            android:singleLine="true"
             android:visibility="gone"
             />
         
@@ -37,6 +38,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/y10"
             android:textSize="12sp"
+            android:singleLine="true"
             android:visibility="gone"
             />
         
@@ -46,6 +48,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/y10"
             android:textSize="12sp"
+            android:singleLine="true"
             android:visibility="gone"
             />
     </LinearLayout>

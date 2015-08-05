@@ -134,7 +134,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		page = 1;
 		chooseType = 0;
 		
-		askNewWork = new AskNetWork(NetConst.LIST_INFO, this);
+		askNewWork = new AskNetWork(NetConst.NEW_LIST_INFO, this);
 		EventBus.getDefault().register(this);
 	}
 
@@ -302,7 +302,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		}
 	}
 
-	public void askNet() {
+	private void askNet() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("type", chooseType);
 		map.put("group_id", ground_id);

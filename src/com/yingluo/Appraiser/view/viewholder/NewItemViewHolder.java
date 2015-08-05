@@ -7,6 +7,7 @@ import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
@@ -49,7 +50,7 @@ public class NewItemViewHolder extends ViewHolder {
 	private NewHomeCommitView commit;
 
 	public Context mContext;
-
+	
 	public NewItemViewHolder(View itemView, final OnClickListener listener) {
 		super(itemView);
 		mContext = itemView.getContext();
@@ -76,8 +77,9 @@ public class NewItemViewHolder extends ViewHolder {
 		}
 	}
 	
-	public void setItem() {
-		identify.setCommitOrIdentify();
+	public void setItem(int type,HomeItem item) {
+		identify.setRecord(item.getRecords());
+		commit.setCommit(item.getComments());
 	}
 	
 //	public void setItem(CommentEntity commentEntity) {
