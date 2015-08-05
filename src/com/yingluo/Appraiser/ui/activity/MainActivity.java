@@ -49,7 +49,7 @@ import com.yingluo.Appraiser.presenter.ExitPresenter;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
 import com.yingluo.Appraiser.ui.dialog.SelectPhotoDialog;
 import com.yingluo.Appraiser.ui.fragment.HomeFragment;
-import com.yingluo.Appraiser.ui.fragment.IdentiyFragment;
+import com.yingluo.Appraiser.ui.fragment.ToolFragment;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.ui.fragment.MyFragment;
 import com.yingluo.Appraiser.ui.fragment.NewHomeFragment;
@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	private HomeFragment mHomeFragment;
 	private NewHomeFragment mNewHomeFragment;
 	
-	private IdentiyFragment mIdentiyFragment;
+	private ToolFragment mToolFragment;
 	private InformationFragment mInformationFragment;
 	private MyFragment mMyFragment;
 	private long mkeyTime = 0;
@@ -249,20 +249,21 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 
 			break;
 		case 1:
-			if (null == mIdentiyFragment) {
-				mIdentiyFragment = new IdentiyFragment();
-				transaction.add(R.id.center_layout, mIdentiyFragment);
-			} else {
-				transaction.show(mIdentiyFragment);
-			}
-			break;
-		case 2:
 			EventBus.getDefault().post(new InfoEvent(0, null));
 			if (null == mInformationFragment) {
 				mInformationFragment = new InformationFragment();
 				transaction.add(R.id.center_layout, mInformationFragment);
 			} else {
 				transaction.show(mInformationFragment);
+			}
+			break;
+		case 2:
+			EventBus.getDefault().post(new InfoEvent(0, null));
+			if (null == mToolFragment) {
+				mToolFragment = new ToolFragment();
+				transaction.add(R.id.center_layout, mToolFragment);
+			} else {
+				transaction.show(mToolFragment);
 			}
 			break;
 		case 3:
@@ -298,8 +299,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		if (null != mNewHomeFragment) {
 			transaction.hide(mNewHomeFragment);
 		}
-		if (null != mIdentiyFragment) {
-			transaction.hide(mIdentiyFragment);
+		if (null != mToolFragment) {
+			transaction.hide(mToolFragment);
 		}
 		if (null != mInformationFragment) {
 			transaction.hide(mInformationFragment);
@@ -327,8 +328,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 		if (mInformationFragment != null) {
 			mInformationFragment.onActivityResult(arg0, arg1, arg2);
 		}
-		if (mIdentiyFragment != null) {
-			mIdentiyFragment.onActivityResult(arg0, arg1, arg2);
+		if (mToolFragment != null) {
+			mToolFragment.onActivityResult(arg0, arg1, arg2);
 		}
 		if (mMyFragment != null) {
 			mMyFragment.onActivityResult(arg0, arg1, arg2);

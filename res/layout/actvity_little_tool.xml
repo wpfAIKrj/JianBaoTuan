@@ -2,8 +2,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@color/wite" >
+    android:background="@color/wite"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:background="@color/home_head_color" >
+
+        <TextView
+            style="@style/home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/new_str_midutool" />
+        
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_result"
@@ -16,10 +30,10 @@
             android:id="@+id/tv_midu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:text="@string/new_str_midu" />
-        
+
         <TextView
             android:id="@+id/tv_lifang"
             android:layout_width="wrap_content"
@@ -27,97 +41,125 @@
             android:layout_alignRight="@+id/tv_midu"
             android:layout_alignTop="@+id/tv_midu"
             android:layout_marginLeft="13dp"
-            android:textSize="10sp"
-            android:text="@string/new_str_three" />
-        
-        <TextView 
+            android:text="@string/new_str_three"
+            android:textSize="10sp" />
+
+        <TextView
             android:id="@+id/tv_right_kuo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_lifang"
-            android:text="@string/new_str_midu_right"
-            />
-        
-        <TextView 
+            android:text="@string/new_str_midu_right" />
+
+        <TextView
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_right_kuo"
-            android:singleLine="true"
-            />
+            android:singleLine="true" />
     </RelativeLayout>
 
-    <TextView 
+    <TextView
         android:id="@+id/tv_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/new_str_midu_hint"
-        />
-    
-    <LinearLayout 
+        android:layout_marginTop="30dp"
+        android:text="@string/new_str_midu_hint" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        
-        <LinearLayout 
+        android:orientation="vertical" >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
-            
+            android:orientation="horizontal" >
+
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_height"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                app:title_value="高度（cm）"/>
-            
+                android:layout_weight="1"
+                app:title_value="@string/new_str_height" />
+
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_weight"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                app:title_value="重量（g）"/>
-            
+                android:layout_weight="1"
+                app:title_value="@string/new_str_weight" />
         </LinearLayout>
-        
-        <LinearLayout 
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
-            
+            android:orientation="horizontal" >
+
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_circle"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                app:title_value="直径（cm）"/>
-            
+                android:layout_weight="1"
+                app:title_value="@string/new_str_circle" />
+
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_number"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                app:title_value="数量（个）"/>
-            
+                android:layout_weight="1"
+                app:title_value="@string/new_str_number" />
         </LinearLayout>
-        
     </LinearLayout>
-    
-    <TextView 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y30"
+        android:orientation="horizontal" >
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/new_str_zhu"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/new_str_ball"
+                android:textColor="@color/black" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
         android:id="@+id/tv_jisuan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/tool_jisuan_bak"
-        android:text="计算"
-        android:padding="10dp"
         android:layout_gravity="center_horizontal"
-        />
+        android:layout_marginTop="@dimen/y30"
+        android:background="@drawable/tool_jisuan_bak"
+        android:padding="@dimen/x10"
+        android:text="计算" />
+
 </LinearLayout>

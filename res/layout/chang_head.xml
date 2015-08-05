@@ -10,7 +10,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/shape_image_news_rb"
         android:gravity="center"
-        android:checkedButton="@+id/rb_find_type"
+        android:checkedButton="@+id/rb_find_left"
         android:orientation="horizontal"
         android:padding="0.5dp">
 
@@ -26,7 +26,6 @@
             android:paddingRight="4dp"
             android:textColor="@drawable/image_news_bar_color"
             android:textSize="14sp"
-            android:checked="true"
             />
 
         <View
