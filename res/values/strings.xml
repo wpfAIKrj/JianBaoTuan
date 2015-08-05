@@ -164,10 +164,10 @@
     <string name="new_str_people">人物</string>
     
     <!-- 新版小工具下面的string -->
-    <string name="new_str_height">高度（cm）：</string>
-    <string name="new_str_weight">重量（g）：</string>
-    <string name="new_str_circle">直径（cm）：</string>
-    <string name="new_str_number">数量（个）：</string>
+    <string name="new_str_height">高度（cm）</string>
+    <string name="new_str_weight">重量（g）</string>
+    <string name="new_str_circle">直径（cm）</string>
+    <string name="new_str_number">数量（个）</string>
     <string name="new_str_midutool">密度计算小工具</string>
     <string name="new_str_ball">球体</string>
     <string name="new_str_zhu">柱体</string>

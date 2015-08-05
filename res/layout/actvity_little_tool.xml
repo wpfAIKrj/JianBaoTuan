@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/wite"
+    android:background="@color/new_line_color"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/new_str_midutool" />
-        
     </RelativeLayout>
 
     <RelativeLayout
@@ -24,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="52dp" >
+        android:layout_marginTop="@dimen/y150" >
 
         <TextView
             android:id="@+id/tv_midu"
@@ -32,16 +31,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/new_str_midu" />
+            android:text="@string/new_str_midu"
+            android:textColor="@color/new_tool_color"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_lifang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/tv_midu"
+            android:layout_toRightOf="@+id/tv_midu"
             android:layout_alignTop="@+id/tv_midu"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="@dimen/x5"
             android:text="@string/new_str_three"
+            android:textColor="@color/new_tool_color"
             android:textSize="10sp" />
 
         <TextView
@@ -49,14 +51,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_lifang"
-            android:text="@string/new_str_midu_right" />
+            android:text="@string/new_str_midu_right"
+            android:textColor="@color/new_tool_color"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_right_kuo"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/new_tool_color"
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <TextView
@@ -64,92 +70,115 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:text="@string/new_str_midu_hint" />
+        android:layout_marginTop="@dimen/y80"
+        android:text="@string/new_str_midu_hint"
+        android:textColor="@color/new_tool_color"
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_marginLeft="@dimen/x50"
+        android:layout_marginRight="@dimen/x50"
+        android:layout_marginTop="@dimen/y90"
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:layout_weight="1" >
 
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_height"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
+                android:layout_alignParentLeft="true"
                 app:title_value="@string/new_str_height" />
 
             <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_weight"
-                android:layout_width="match_parent"
+                android:id="@+id/itv_circle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:title_value="@string/new_str_weight" />
-        </LinearLayout>
+                android:layout_below="@+id/itv_height"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/y40"
+                app:title_value="@string/new_str_circle" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+            <RelativeLayout
+                android:id="@+id/rl_tool_ball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/itv_circle"
+                android:layout_marginTop="@dimen/y40" >
+
+                <TextView
+                    android:id="@+id/tv_tool_ball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/new_str_ball"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tool_ball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/x10"
+                    android:layout_toLeftOf="@+id/tv_tool_ball"
+                    android:src="@drawable/pero_choose"
+                     />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:layout_weight="1" >
 
             <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_circle"
-                android:layout_width="match_parent"
+                android:id="@+id/itv_weight"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
-                app:title_value="@string/new_str_circle" />
+                android:layout_alignParentRight="true"
+                app:title_value="@string/new_str_weight" />
 
             <com.yingluo.Appraiser.view.InputToolView
                 android:id="@+id/itv_number"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:layout_weight="1"
+                android:layout_below="@+id/itv_weight"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/y40"
                 app:title_value="@string/new_str_number" />
-        </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/y30"
-        android:orientation="horizontal" >
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/radioMale"
+            <RelativeLayout
+                android:id="@+id/rl_tool_zhu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:gravity="center"
-                android:text="@string/new_str_zhu"
-                android:textColor="@color/black" />
+                android:layout_below="@+id/itv_number"
+                android:layout_alignLeft="@+id/itv_number"
+                android:layout_marginTop="@dimen/y40">
 
-            <RadioButton
-                android:id="@+id/radioFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/new_str_ball"
-                android:textColor="@color/black" />
-        </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/iv_tool_zhu"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_centerVertical="true"
+                    android:text="@string/new_str_zhu"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/iv_tool_zhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/pero_no_choose" />
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <TextView
@@ -157,9 +186,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y30"
-        android:background="@drawable/tool_jisuan_bak"
-        android:padding="@dimen/x10"
-        android:text="计算" />
+        android:layout_marginTop="@dimen/y90"
+        android:text="计算"
+        android:gravity="center"
+        android:background="@drawable/jisuan_click"
+        android:textColor="@drawable/jisuan_text"
+        android:textSize="14sp" />
 
 </LinearLayout>
