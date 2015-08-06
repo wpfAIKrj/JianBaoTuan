@@ -59,6 +59,7 @@ import de.greenrobot.event.EventBus;
 
 public class InformationFragment extends BaseFragment implements AskNetWorkCallBack, ListviewLoadListener {
 
+	//-1知识学堂全部|-2新闻公告全部|0知识|1新闻|2公告|3精品|4新品|5辨伪|6人物|7市场活动|8拍卖行情|9诈骗风险
 	private ArticleAdapter madapter;
 
 	private ArrayList<ContentInfo> list;
@@ -132,7 +133,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		page = 1;
-		chooseType = 0;
+		chooseType = -1;
 		
 		askNewWork = new AskNetWork(NetConst.NEW_LIST_INFO, this);
 		EventBus.getDefault().register(this);
@@ -304,8 +305,8 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 
 	private void askNet() {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(NetConst.SID, NetConst.SESSIONID);
 		map.put("type", chooseType);
-		map.put("group_id", ground_id);
 		map.put("page", page);
 		askNewWork.ask(HttpRequest.HttpMethod.GET, map);
 	}
@@ -360,63 +361,62 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 		@Override
 		public void onClick(View v) {
 
-			mRecyclerView.setToRefreshing();
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			//下面是知识学堂
 			case R.id.ll_all_info: {
 				// 全部
-				// Treadsure_type = MyTreasureModel.TYPE_ALL;
+				chooseType = -1;
 			}
 				break;
 			case R.id.ll_good_info: {
 				// 精品
-				// Treadsure_type = MyTreasureModel.TYPE_NO;
+				chooseType = 3;
 			}
 				break;
 			case R.id.ll_new_info: {
 				// 新品
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFIED;
+				chooseType = 4;
 			}
 				break;
 			case R.id.ll_truefalse_info: {
 				// 辨伪
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+				chooseType = 5;
 			}
 				break;
 			case R.id.ll_person_info: {
 				// 人物
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+				chooseType = 6;
 			}
 				break;
 				
 			//下面是新闻公告	
 			case R.id.ll_all_new_info: {
 				// 全部
-				// Treadsure_type = MyTreasureModel.TYPE_NO;
+				chooseType = -2;
 			}
 				break;
 			case R.id.ll_activity_new_info: {
 				// 市场活动
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFIED;
+				chooseType = 7;
 			}
 				break;
 			case R.id.ll_buy_new_info: {
 				// 拍卖行情
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+				chooseType = 8;
 			}
 				break;
 			case R.id.ll_pian_new_info: {
 				// 诈骗风险
-				// Treadsure_type = MyTreasureModel.TYPE_IDENTIFYING;
+				chooseType = 9;
 			}
 				break;
 
 			default:
 				break;
 			}
-
-		}
+			mRecyclerView.setToRefreshing();
+		}	
 	};
 
 	public void setIdentifyBackground(int id) {
