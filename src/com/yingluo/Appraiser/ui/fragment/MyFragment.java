@@ -52,6 +52,7 @@ import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.CircleImageView;
+import com.yingluo.Appraiser.view.SpringProgressView;
 
 import de.greenrobot.event.EventBus;
 
@@ -81,7 +82,7 @@ public class MyFragment extends BaseFragment {
 	private TextView my_type_msg;
 
 	@ViewInject(R.id.pb_jngyan)
-	private ProgressBar pbJingYan;
+	private SpringProgressView pbJingYan;
 	@ViewInject(R.id.tv_jingyan)
 	private TextView tvJingyan;
 	
@@ -159,7 +160,7 @@ public class MyFragment extends BaseFragment {
 		this.onlongListner = onlongListner;
 	}
 
-	@OnClick({ R.id.login_user_head, R.id.my_bt_showmenu,R.id.my_layout_collect, R.id.my_layout_foot, 
+	@OnClick({ R.id.login_user_head, R.id.my_bt_showmenu,R.id.my_layout_collect, R.id.my_layout_foot, R.id.iv_my_wen,
 		R.id.my_layout_identif, R.id.my_tab1, R.id.my_tab2,R.id.my_tab3, R.id.my_tab4, R.id.my_tab5, R.id.my_tab6 })
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -169,11 +170,11 @@ public class MyFragment extends BaseFragment {
 				onlongListner.onClick(v);
 			}
 			break;
-//		case R.id.ll_level:
-//			// 跳转到等级说明
-//			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
-//			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-//			break;
+		case R.id.iv_my_wen:
+			// 跳转到等级说明
+			mActivity.startActivity(new Intent(mActivity, LevelActivity.class));
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+			break;
 		case R.id.my_bt_showmenu:
 			// 右侧菜单
 			mActivity.startActivityForResult(new Intent(mActivity, UserSetActivity.class), Const.TO_USER_SET);
@@ -314,8 +315,8 @@ public class MyFragment extends BaseFragment {
 				} else {
 					my_type_msg.setText(R.string.type_identiy);
 				}
-				pbJingYan.setMax(levelUpNeedNumber);
-				pbJingYan.setProgress(levelNumber);
+				pbJingYan.setMaxCount(levelUpNeedNumber);
+				pbJingYan.setCurrentCount(levelNumber);
 				tvJingyan.setText(levelNumber+"/"+levelUpNeedNumber);
 
 			}
