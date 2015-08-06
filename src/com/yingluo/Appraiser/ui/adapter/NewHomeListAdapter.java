@@ -33,8 +33,8 @@ public class NewHomeListAdapter extends BaseAdapter {
 	private Context mContext;
 	
 	private int type;
-	private static final int hasIdentify = 2;
-	private static final int indentifying = 1;
+	public static final int hasIdentify = 2;
+	public static final int indentifying = 1;
 	
 	public NewHomeListAdapter(int type,List<HomeItem> list,Context context,OnClickListener listner) {
 		this.type = type;
@@ -45,7 +45,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 	
 	public void setData(int type,List<HomeItem> commentlist) {
 		this.type = type;
-		Collections.reverse(commentlist);
+//		Collections.reverse(commentlist);
 		list=commentlist;
 		notifyDataSetChanged();
 	}
@@ -56,7 +56,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public HomeItem getItem(int position) {
+	public Object getItem(int position) {
 		return list.get(position);
 	}
 
@@ -70,7 +70,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 		NewItemViewHolder vh=null;
 		if(convertView==null){
 			convertView=LayoutInflater.from(mContext).inflate(R.layout.item_new_home, parent, false);
-			vh=new NewItemViewHolder(convertView, listner);
+			vh=new NewItemViewHolder(mContext,convertView, listner);
 			convertView.setTag(vh);
 		}else{
 			vh=(NewItemViewHolder) convertView.getTag();

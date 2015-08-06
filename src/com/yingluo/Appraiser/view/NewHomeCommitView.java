@@ -1,5 +1,6 @@
 package com.yingluo.Appraiser.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.yingluo.Appraiser.R;
@@ -36,6 +37,7 @@ public class NewHomeCommitView extends RelativeLayout {
 		tvCommit2 = (TextView) view.findViewById(R.id.tv_identify_input2);
 		tvCommit3 = (TextView) view.findViewById(R.id.tv_identify_input3);
 		
+		allTextView = new ArrayList<TextView>();
 		allTextView.add(tvCommit1);
 		allTextView.add(tvCommit2);
 		allTextView.add(tvCommit3);
@@ -55,23 +57,27 @@ public class NewHomeCommitView extends RelativeLayout {
 	}
 	
 	public void setCommit(List<Comment> commts) {
+		if(commts == null) {
+			return ;
+		}
 		for(int i=0;i<commts.size();i++) {
 			Comment oneComment = commts.get(i);
-			for(TextView each:allTextView) {
-				each.setVisibility(View.VISIBLE);
-				each.setText(oneComment.getTo_user_name()+":"+oneComment.getComment_data());
-			}
+			TextView each = allTextView.get(i);
+			each.setVisibility(View.VISIBLE);
+			each.setText(oneComment.getTo_user_name()+":"+oneComment.getComment_data());
 		}
 	}
 	
 
 	public void setRecord(List<Record> records) {
+		if(records == null) {
+			return ;
+		}
 		for(int i=0;i<records.size();i++) {
 			Record oneRecord = records.get(i);
-			for(TextView each:allTextView) {
-				each.setVisibility(View.VISIBLE);
-				each.setText(oneRecord.getUser_name()+":"+oneRecord.getAppraisal_data());
-			}
+			TextView each = allTextView.get(i);
+			each.setVisibility(View.VISIBLE);
+			each.setText(oneRecord.getUser_name()+":"+oneRecord.getAppraisal_data());
 		}
 	}
 }

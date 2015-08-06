@@ -9,9 +9,12 @@ import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
+import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.view.CircleImageView;
 import com.yingluo.Appraiser.view.NewHomeCommitView;
+import com.yingluo.Appraiser.view.NewHomeIdentifyView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +25,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,13 +52,19 @@ public class NewItemViewHolder extends ViewHolder {
 	private NewHomeCommitView identify;
 	@ViewInject(R.id.hcv_commit)
 	private NewHomeCommitView commit;
-
+	@ViewInject(R.id.nhv_has_identify)
+	private NewHomeIdentifyView hasIdentify;
+	
 	public Context mContext;
 	
-	public NewItemViewHolder(View itemView, final OnClickListener listener) {
+	public NewItemViewHolder(Context context,View itemView, final OnClickListener listener) {
 		super(itemView);
 		mContext = itemView.getContext();
 		ViewUtils.inject(this, itemView);
+		ViewGroup.LayoutParams rlParams = showImage.getLayoutParams();
+        rlParams.width = DensityUtil.getScreenWidth(context);
+        rlParams.height = (int) (DensityUtil.getScreenWidth(context)*3/4.0);
+        showImage.setLayoutParams(rlParams);
 	}
 
 	public void clearAllView() {
@@ -78,8 +88,47 @@ public class NewItemViewHolder extends ViewHolder {
 	}
 	
 	public void setItem(int type,HomeItem item) {
-		identify.setRecord(item.getRecords());
-		commit.setCommit(item.getComments());
+		
+		//设置时间和用户名
+		name.setText(item.getUser_name());
+		time.setText(item.getInsert_time());
+		//设置头像
+		if(item.getUser_portrait() != null) {
+			String urlArrow = BitmapsUtils.makeQiNiuRrl(item.getUser_portrait() , arrow.getWidth(), arrow.getHeight());
+			BitmapsUtils.getInstance().display(arrow, urlArrow, BitmapsUtils.TYPE_YES);
+		}
+		//设置图片
+		String url = BitmapsUtils.makeQiNiuRrl(item.getImages() , showImage.getWidth(), showImage.getHeight());
+		BitmapsUtils.getInstance().display(showImage, url, BitmapsUtils.TYPE_YES);
+		//设置描述
+		title.setText(item.getTreasure_description());
+		
+		//隐藏为null的
+		if(type == NewHomeListAdapter.indentifying) {
+			if(item.getRecords() == null) {
+				identify.setVisibility(View.GONE);
+			} else {
+				identify.setVisibility(View.VISIBLE);
+				identify.setRecord(item.getRecords());
+			}
+			if(item.getComments() == null) {
+				commit.setVisibility(View.GONE);
+			} else {
+				commit.setVisibility(View.VISIBLE);
+				commit.setCommit(item.getComments());
+			}
+			
+		} else {
+			identify.setVisibility(View.GONE);
+			hasIdentify.setVisibility(View.VISIBLE);
+			if(item.getComments() == null) {
+				commit.setVisibility(View.GONE);
+			} else {
+				commit.setVisibility(View.VISIBLE);
+				commit.setCommit(item.getComments());
+			}
+			commit.setCommit(item.getComments());
+		}
 	}
 	
 //	public void setItem(CommentEntity commentEntity) {

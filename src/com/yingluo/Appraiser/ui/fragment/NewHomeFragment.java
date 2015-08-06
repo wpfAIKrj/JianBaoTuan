@@ -90,7 +90,6 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	private final int KNOWLEDGE = 2;
 	private final int NEWSTYPE = 1;
 	
-	@ViewInject(R.id.iv_search)
 	private ImageView search;
 	
 	private int page;
@@ -110,17 +109,17 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	@Override
 	protected void initViews(View view) {
 		isRefresh = false;
-//		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
-//		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
-//
-//			@Override
-//			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				isRefresh = true;
-//			}
-//		});
+		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
+		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				isRefresh = true;
+			}
+		});
 		page = 1;
 		askNewWork = new AskNetWork(NetConst.NEW_NEW_HOME, this);
-		
+		search = (ImageView) view.findViewById(R.id.iv_search);
 		search.setVisibility(View.GONE);
 		// 顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
@@ -142,6 +141,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 		lvHome.setAdapter(mAdapter);
 		
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
+		askNet();
 	}
 	
 	private void askNet() {
@@ -210,6 +210,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 				list.addAll(res);
 			}
 			mAdapter.setData(RadioType,list);
+			NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
 		}
 	}
 
