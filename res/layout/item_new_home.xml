@@ -9,13 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y120"
         >
+        
         <com.yingluo.Appraiser.view.CircleImageView 
             android:id="@+id/tv_home_arrow"
             android:layout_width="@dimen/x80"
             android:layout_height="@dimen/y80"
             android:paddingLeft="@dimen/x20"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true"/>
+        
+        <ImageView 
+            android:id="@+id/tv_home_leve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_home_arrow"
+            android:layout_alignLeft="@+id/tv_home_arrow"
+            android:layout_marginLeft="@dimen/x64"
+            android:layout_marginTop="@dimen/y48"
+            android:src="@drawable/level01"/>
         
         <TextView 
             android:id="@+id/tv_home_name"
@@ -24,8 +34,8 @@
             android:layout_toRightOf="@+id/tv_home_arrow"
             android:layout_marginTop="@dimen/y21"
             android:layout_marginLeft="@dimen/x20"
+            android:textColor="@color/black"
             android:textSize="16sp"
-            android:text="方德磊是浪货"
             />
         
         <TextView 
@@ -33,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="王亚立像黄渤"
             android:textColor="@color/new_time_color"  
             android:layout_below="@+id/tv_home_name"
             android:layout_alignLeft="@+id/tv_home_name"   
@@ -54,7 +63,6 @@
         android:layout_height="match_parent"
         android:textSize="14sp"
         android:textColor="@color/black"
-        android:text="壮哉大石家庄永昌，干掉国安，我们就是亚冠，加油！！必须的，史上最牛黑马，谁说我们是保级球队？？"
         android:layout_margin="@dimen/x20"
         android:maxLines="2"
         android:ellipsize="end"

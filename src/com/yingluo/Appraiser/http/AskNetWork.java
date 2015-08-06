@@ -40,6 +40,10 @@ public class AskNetWork {
 		public void getNetWorkMsgError(String msg,String param) throws JSONException;
 	}
 	 
+	public AskNetWork(AskNetWorkCallBack askCallBack) {
+		this.askCallback = askCallBack;
+	}
+	
 	public AskNetWork(String param,AskNetWorkCallBack askCallBack) 
 	{
 		this.param = param;
@@ -55,6 +59,10 @@ public class AskNetWork {
         for (String key : map.keySet()) {
         	params.addBodyParameter(key, map.get(key).toString());
         }
+	}
+	
+	public void setParam(String param) {
+		this.param = param;
 	}
 	
 	public void ask(Map<String, Object> paramMap) 

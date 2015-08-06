@@ -63,7 +63,9 @@ public class NetConst {
 	
 	public static final String NEW_LIST_INFO = "home/contentsAction";// 新版第二页
 	
-	public static final String NEW_NEW_HOME = "home/homeAction";//新版首页
+	public static final String NEW_NEW_HOME_IDENTIFYED = "home/checkedAction";//新版首页-->已鉴定
+	
+	public static final String NEW_NEW_HOME_IDENTIFYING = "home/checkingAction"; //新版首页-->鉴定中
 	
 	public static final String IS_DEL = "Users/existAction";// 判断用户是不是已经在服务器端删除
 	

@@ -46,6 +46,8 @@ public class NewItemViewHolder extends ViewHolder {
 	private TextView time;
 	@ViewInject(R.id.iv_home_image)
 	private ImageView showImage;
+	@ViewInject(R.id.tv_home_leve)
+	private ImageView leve;
 	@ViewInject(R.id.tv_home_title)
 	private TextView title;
 	@ViewInject(R.id.hcv_identify)
@@ -56,6 +58,9 @@ public class NewItemViewHolder extends ViewHolder {
 	private NewHomeIdentifyView hasIdentify;
 	
 	public Context mContext;
+	
+	private int[] levels = { R.drawable.level01, R.drawable.level02, R.drawable.level03, R.drawable.level04,
+			R.drawable.level05, R.drawable.level06 };
 	
 	public NewItemViewHolder(Context context,View itemView, final OnClickListener listener) {
 		super(itemView);
@@ -97,6 +102,13 @@ public class NewItemViewHolder extends ViewHolder {
 			String urlArrow = BitmapsUtils.makeQiNiuRrl(item.getUser_portrait() , arrow.getWidth(), arrow.getHeight());
 			BitmapsUtils.getInstance().display(arrow, urlArrow, BitmapsUtils.TYPE_YES);
 		}
+		//设置等级
+		if(item.getCurrentLevel().equals("0")) {
+			leve.setVisibility(View.GONE);
+		} else {
+			leve.setVisibility(View.VISIBLE);
+			leve.setImageResource(levels[Integer.valueOf(item.getCurrentLevel())-1]);
+		}
 		//设置图片
 		String url = BitmapsUtils.makeQiNiuRrl(item.getImages() , showImage.getWidth(), showImage.getHeight());
 		BitmapsUtils.getInstance().display(showImage, url, BitmapsUtils.TYPE_YES);
@@ -105,13 +117,13 @@ public class NewItemViewHolder extends ViewHolder {
 		
 		//隐藏为null的
 		if(type == NewHomeListAdapter.indentifying) {
-			if(item.getRecords() == null) {
+			if(item.getRecords().size() == 0) {
 				identify.setVisibility(View.GONE);
 			} else {
 				identify.setVisibility(View.VISIBLE);
 				identify.setRecord(item.getRecords());
 			}
-			if(item.getComments() == null) {
+			if(item.getComments().size() == 0) {
 				commit.setVisibility(View.GONE);
 			} else {
 				commit.setVisibility(View.VISIBLE);
@@ -121,7 +133,10 @@ public class NewItemViewHolder extends ViewHolder {
 		} else {
 			identify.setVisibility(View.GONE);
 			hasIdentify.setVisibility(View.VISIBLE);
-			if(item.getComments() == null) {
+			if(item.getAppraiser() != null) {
+				hasIdentify.setItem(item.getAppraiser());
+			}  
+			if(item.getComments().size() == 0) {
 				commit.setVisibility(View.GONE);
 			} else {
 				commit.setVisibility(View.VISIBLE);

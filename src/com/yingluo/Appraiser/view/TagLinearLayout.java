@@ -30,7 +30,6 @@ import android.widget.TextView;
 public class TagLinearLayout extends ViewGroup {
 
 	private int textcolor = R.color.wite;
-	private int[] textbackgrounds = { R.color.number_color, R.color.bt_color };
 
 	public TagLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -128,8 +127,8 @@ public class TagLinearLayout extends ViewGroup {
 			tv.setGravity(Gravity.CENTER);
 			tv.setTextSize(textsize);
 			tv.setText(text);
-			tv.setTextColor(Color.WHITE);
-			tv.setBackgroundResource(textbackgrounds[cunrrnt.type % 2]);
+			tv.setTextColor(Color.BLACK);
+			tv.setBackgroundResource(R.drawable.seach_bak);
 			addView(tv);
 		}
 		invalidate();

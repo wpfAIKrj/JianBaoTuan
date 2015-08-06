@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
@@ -79,6 +80,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	
 	private Activity mActivity;
 	private boolean isRefresh;
+	private boolean isLoadMore;
 	
 	private List<HomeItem> list;
 	
@@ -108,21 +110,39 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	
 	@Override
 	protected void initViews(View view) {
-		isRefresh = false;
+		isRefresh = isLoadMore = false;
 		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
-		mScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+	
+		mScrollView.setOnRefreshListener(new OnRefreshListener2<ScrollView>(){
 
 			@Override
-			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-				isRefresh = true;
+			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				if(!isRefresh) {
+					isRefresh = true;
+					page = 1;
+					askNet();
+				}
 			}
+
+			@Override
+			public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {	
+				if(!isLoadMore) {
+					isLoadMore = true;
+					askNet();
+				}
+			}
+
 		});
+		
 		page = 1;
-		askNewWork = new AskNetWork(NetConst.NEW_NEW_HOME, this);
+		askNewWork = new AskNetWork(this);
+		askNewWork.setParam(NetConst.NEW_NEW_HOME_IDENTIFYED);
+		
 		search = (ImageView) view.findViewById(R.id.iv_search);
 		search.setVisibility(View.GONE);
 		// 顶部轮播图
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
+		
 		rlSearch = (RelativeLayout) view.findViewById(R.id.rl_search);
 		ivCategory = (ImageView) view.findViewById(R.id.iv_category);
 		lvHome = (ListView) view.findViewById(R.id.comment_listview);
@@ -163,6 +183,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 					tvLeft.setTextColor(getResources().getColor(R.color.home_head_color));
 					tvRight.setBackgroundResource(R.drawable.news_normal);
 					tvRight.setTextColor(getResources().getColor(R.color.wite));
+					askNewWork.setParam(NetConst.NEW_NEW_HOME_IDENTIFYED);
+					mScrollView.setRefreshing();
 				}
 			} else {
 				//点击了右边的按钮
@@ -172,6 +194,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 					tvRight.setTextColor(getResources().getColor(R.color.home_head_color));
 					tvLeft.setBackgroundResource(R.drawable.knowledge_normal);
 					tvLeft.setTextColor(getResources().getColor(R.color.wite));
+					askNewWork.setParam(NetConst.NEW_NEW_HOME_IDENTIFYING);
+					mScrollView.setRefreshing();
 				}
 			}
 		}
@@ -183,7 +207,6 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 
 	@Override
 	public void lazyLoad() {
-		
 	}
 
 	private OnClickListener user_listener = new OnClickListener() {
@@ -200,6 +223,17 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 
 	@Override
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		if(isRefresh) {
+			//下拉刷新了
+			isRefresh = false;
+			list.clear();
+		}
+		if(isLoadMore) {
+			//上拉加载更多了
+			isLoadMore = false;
+			
+		}
+		mScrollView.onRefreshComplete();
 		ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);
 		if (rg.getCode() == 100000) {
 			page = rg.getData().getNextPage();
@@ -217,5 +251,14 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	@Override
 	public void getNetWorkMsgError(String msg, String param) throws JSONException {
 		new ToastUtils(mActivity, "网络异常");
+		if(isRefresh) {
+			//下拉刷新了
+			isRefresh = false;
+		}
+		if(isLoadMore) {
+			//上拉加载更多了
+			isLoadMore = false;
+		}
+		mScrollView.onRefreshComplete();
 	}
 }

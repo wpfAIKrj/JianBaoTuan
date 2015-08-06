@@ -48,6 +48,9 @@ public class ResponseNewHome extends ResponseRoot{
     	private String images;
     	private String treasure_classify;
     	private String insert_time;
+    	private String currentLevel;
+    	private String currentLevelName;
+    	private Appraiser appraiser;
     	private List<Record> records;
     	private List<Comment> comments;
     	
@@ -99,6 +102,24 @@ public class ResponseNewHome extends ResponseRoot{
 		public void setInsert_time(String insert_time) {
 			this.insert_time = insert_time;
 		}
+		public String getCurrentLevel() {
+			return currentLevel;
+		}
+		public void setCurrentLevel(String currentLevel) {
+			this.currentLevel = currentLevel;
+		}
+		public String getCurrentLevelName() {
+			return currentLevelName;
+		}
+		public void setCurrentLevelName(String currentLevelName) {
+			this.currentLevelName = currentLevelName;
+		}
+		public Appraiser getAppraiser() {
+			return appraiser;
+		}
+		public void setAppraiser(Appraiser appraiser) {
+			this.appraiser = appraiser;
+		}
 		public List<Record> getRecords() {
 			return records;
 		}
@@ -112,6 +133,105 @@ public class ResponseNewHome extends ResponseRoot{
 			this.comments = comments;
 		}
 		
+    }
+    
+    public class Appraiser {
+    	private String id;
+    	private String user_id;
+    	private String user_name;
+    	private String user_portrait;
+    	private String user_description;
+    	private String appraisal_classify_id;
+    	private String appraisal_classify_name;
+    	private String appraisal_data;
+    	private String currentLevel;
+    	private String currentLevelName;
+    	private List<kinds> kinds;
+    	
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
+		public String getUser_id() {
+			return user_id;
+		}
+		public void setUser_id(String user_id) {
+			this.user_id = user_id;
+		}
+		public String getUser_name() {
+			return user_name;
+		}
+		public void setUser_name(String user_name) {
+			this.user_name = user_name;
+		}
+		public String getUser_portrait() {
+			return user_portrait;
+		}
+		public void setUser_portrait(String user_portrait) {
+			this.user_portrait = user_portrait;
+		}
+		public String getAppraisal_classify_id() {
+			return appraisal_classify_id;
+		}
+		public void setAppraisal_classify_id(String appraisal_classify_id) {
+			this.appraisal_classify_id = appraisal_classify_id;
+		}
+		public String getAppraisal_classify_name() {
+			return appraisal_classify_name;
+		}
+		public void setAppraisal_classify_name(String appraisal_classify_name) {
+			this.appraisal_classify_name = appraisal_classify_name;
+		}
+		public String getAppraisal_data() {
+			return appraisal_data;
+		}
+		public void setAppraisal_data(String appraisal_data) {
+			this.appraisal_data = appraisal_data;
+		}
+		public String getUser_description() {
+			return user_description;
+		}
+		public void setUser_description(String user_description) {
+			this.user_description = user_description;
+		}
+		public String getCurrentLevel() {
+			return currentLevel;
+		}
+		public void setCurrentLevel(String currentLevel) {
+			this.currentLevel = currentLevel;
+		}
+		public String getCurrentLevelName() {
+			return currentLevelName;
+		}
+		public void setCurrentLevelName(String currentLevelName) {
+			this.currentLevelName = currentLevelName;
+		}
+		public List<kinds> getKinds() {
+			return kinds;
+		}
+		public void setKinds(List<kinds> kinds) {
+			this.kinds = kinds;
+		}
+    
+    }
+    
+    public class kinds {
+    	private String name;
+    	private String id;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
     }
     
     public class Record {
