@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/y88"
-    android:background="#ffff4401"
+    android:background="@color/home_head_color"
     android:orientation="horizontal" >
 
     <ImageView
@@ -62,7 +62,7 @@
         android:gravity="center"
         android:paddingLeft="@dimen/x14"
         android:paddingRight="@dimen/x14"
-        android:text="确定"
+        android:text="搜索"
         android:textSize="@dimen/x32" />
 
 </LinearLayout>

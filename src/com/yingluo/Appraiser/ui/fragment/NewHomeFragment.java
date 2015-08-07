@@ -50,6 +50,7 @@ import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
+import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
@@ -158,6 +159,15 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 		head = (SlideShowView) view.findViewById(R.id.imageViewpage);
 		
 		rlSearch = (RelativeLayout) view.findViewById(R.id.rl_search);
+		rlSearch.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent mIntent = new Intent(mActivity, ActivitySearch.class);
+				startActivity(mIntent);
+			}
+		});
+		
 		ivCategory = (ImageView) view.findViewById(R.id.iv_category);
 		lvHome = (ListView) view.findViewById(R.id.comment_listview);
 		

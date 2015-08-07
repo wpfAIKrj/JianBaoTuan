@@ -1,9 +1,12 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import android.app.Activity;
+import org.json.JSONException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,18 +27,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.config.NetConst;
+import com.yingluo.Appraiser.http.AskNetWork;
+import com.yingluo.Appraiser.http.ResponseBanner;
+import com.yingluo.Appraiser.http.ResponseSearch;
+import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 
-public class ActivitySearch extends BaseActivity {
+public class ActivitySearch extends BaseActivity implements AskNetWorkCallBack {
 
 	@ViewInject(R.id.listview_search_result)
 	ListView lv;
@@ -50,6 +59,21 @@ public class ActivitySearch extends BaseActivity {
 	@ViewInject(R.id.edittext_search)
 	EditText edittext_search;
 
+	//下面是搜索的四个
+	@ViewInject(R.id.ll_saerch_good)
+	ViewGroup btn_serch_good;
+	@ViewInject(R.id.ll_search_person)
+	ViewGroup btn_search_person;
+	@ViewInject(R.id.ll_search_identifyer)
+	ViewGroup btn_search_identify;
+	@ViewInject(R.id.ll_search_aritcle)
+	ViewGroup btn_search_aritvle;
+	
+	private Map<Integer,ViewGroup> searchMap ;
+	private int chooseType;
+	
+	private AskNetWork askNetwork;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,22 +81,56 @@ public class ActivitySearch extends BaseActivity {
 		setContentView(R.layout.activity_search);
 		ViewUtils.inject(this);
 
+		searchMap = new HashMap<Integer, ViewGroup>();
+		searchMap.put(R.id.ll_saerch_good,btn_serch_good);
+		searchMap.put(R.id.ll_search_person,btn_search_person);
+		searchMap.put(R.id.ll_search_identifyer,btn_search_identify);
+		searchMap.put(R.id.ll_search_aritcle,btn_search_aritvle);
+		
+		btn_serch_good.setOnClickListener(listener);
+		btn_search_person.setOnClickListener(listener);
+		btn_search_identify.setOnClickListener(listener);
+		btn_search_aritvle.setOnClickListener(listener);
+		
 		list = new ArrayList<TreasureType>();
 
+		askNetwork = new AskNetWork(NetConst.NEW_SEARCH,this);
+		
 		adapter = new MyAdapter(this, list);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				TreasureType type = adapter.list.get(position);
-				Intent mIntent = new Intent(ActivitySearch.this, SearchActivity.class);
-				mIntent.putExtra(Const.KIND_ID, type);
-				startActivityForResult(mIntent, Const.TO_KIND_INDENTIFY);
+//				TreasureType type = adapter.list.get(position);
+//				Intent mIntent = new Intent(ActivitySearch.this, SearchActivity.class);
+//				mIntent.putExtra(Const.KIND_ID, type);
+//				startActivityForResult(mIntent, Const.TO_KIND_INDENTIFY);
 
 			}
 		});
 
+		edittext_search.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put(NetConst.SID, NetConst.SESSIONID);
+				map.put("key", s);
+				askNetwork.ask(HttpRequest.HttpMethod.GET, map);
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
+		
 		edittext_search.setOnKeyListener(new OnKeyListener() {
 
 			@Override
@@ -90,6 +148,7 @@ public class ActivitySearch extends BaseActivity {
 				return false;
 			}
 		});
+		
 		back.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -116,6 +175,49 @@ public class ActivitySearch extends BaseActivity {
 		});
 	}
 
+	OnClickListener listener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+
+			setIdentifyBackground(v.getId());
+			switch (v.getId()) {
+			//下面是知识学堂
+			case R.id.ll_all_info: {
+				// 全部
+				chooseType = 1;
+			}
+				break;
+			case R.id.ll_good_info: {
+				// 精品
+				chooseType = 2;
+			}
+				break;
+			case R.id.ll_new_info: {
+				// 新品
+				chooseType = 3;
+			}
+				break;
+			case R.id.ll_truefalse_info: {
+				// 辨伪
+				chooseType = 4;
+			}
+				break;
+			}
+		}	
+	};
+
+	public void setIdentifyBackground(int id) {
+		for (int key : searchMap.keySet()) {
+			ViewGroup view = searchMap.get(key);
+			if(key == id) {
+				view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.dialog_title_color));
+			} else {
+				view.getChildAt(1).setBackgroundColor(getResources().getColor(R.color.wite));
+			}
+		}	
+	}
+	
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -172,13 +274,25 @@ public class ActivitySearch extends BaseActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Const.TO_KIND_INDENTIFY && resultCode == RESULT_OK) {
 			setResult(RESULT_CANCELED, getIntent());
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
+	}
+
+	
+	@Override
+	public void getNetWorkMsg(String msg, String param) throws JSONException {
+		ResponseSearch rg = new Gson().fromJson(msg, ResponseSearch.class);
+		if(rg.getCode() == 100000) {
+		}
+	}
+
+	@Override
+	public void getNetWorkMsgError(String msg, String param) throws JSONException {
+		
 	}
 
 }

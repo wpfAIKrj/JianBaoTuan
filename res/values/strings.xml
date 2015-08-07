@@ -171,4 +171,10 @@
     <string name="new_str_midutool">密度计算小工具</string>
     <string name="new_str_ball">球体</string>
     <string name="new_str_zhu">柱体</string>
+    
+    <!-- 新版的搜索 -->
+    <string name="new_search_good">宝贝</string>
+    <string name="new_search_colletge">收藏家</string>
+    <string name="new_search_ident">鉴定师</string>
+    <string name="new_search_aritcle">文章</string>
 </resources>

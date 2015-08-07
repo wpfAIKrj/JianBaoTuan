@@ -7,12 +7,119 @@
 
     <include layout="@layout/search_page_head" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:background="@color/wite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/ll_saerch_good"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y84"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/new_search_good"
+                android:textColor="@color/dialog_title_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y4"
+                android:background="@color/dialog_title_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search_person"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y84"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/new_search_colletge"
+                android:textColor="@color/dialog_title_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y4"
+                android:background="@color/wite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search_identifyer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y84"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/new_search_ident"
+                android:textColor="@color/dialog_title_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y4"
+                android:background="@color/wite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search_aritcle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <Button
+                style="@style/bt_smart_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y84"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:gravity="center"
+                android:text="@string/new_search_aritcle"
+                android:textColor="@color/dialog_title_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y4"
+                android:background="@color/wite" />
+        </LinearLayout>
+    </LinearLayout>
+
     <ListView
         android:id="@+id/listview_search_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-		 >
+        android:scrollbars="none" >
     </ListView>
 
 </LinearLayout>
