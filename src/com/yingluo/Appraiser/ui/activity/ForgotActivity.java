@@ -54,9 +54,6 @@ public class ForgotActivity extends BaseActivity {
 	@ViewInject(R.id.register_button)
 	private Button queDing;
 	
-	@ViewInject(R.id.tv_register_edit_password)
-	private TextView tvLast;
-	
 	private ForgetPresenter presenter;
 
 	private static final int TIME_COUNT = 61000;// 时间防止从119s开始显示（以倒计时120s为例子）
@@ -101,7 +98,7 @@ public class ForgotActivity extends BaseActivity {
 		SMSSDK.registerEventHandler(eh); // 注册短信回调
 		send_help = getString(R.string.register_code_bt_text);
 		presenter = new ForgetPresenter(iview);
-		tvLast.setText("输入新密码");
+		ed_pwd.setHint("输入新密码");
 		queDing.setText("确定");
 	}
 	

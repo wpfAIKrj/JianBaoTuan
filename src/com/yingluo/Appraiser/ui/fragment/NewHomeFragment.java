@@ -52,6 +52,7 @@ import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
 import com.yingluo.Appraiser.utils.FileUtils;
@@ -65,7 +66,7 @@ import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
 import de.greenrobot.event.EventBus;
 
-public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack  {
+public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,ClickTabListener  {
 
 	/**
 	 * 定义一些控件
@@ -181,7 +182,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 		
 		list=new ArrayList<HomeItem>();
 		
-		mAdapter = new NewHomeListAdapter(RadioType,list,mActivity,null);
+		mAdapter = new NewHomeListAdapter(RadioType,list,mActivity,this);
 		lvHome.setAdapter(mAdapter);
 		
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
@@ -296,5 +297,11 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 			isLoadMore = false;
 		}
 		mScrollView.onRefreshComplete();
+	}
+
+	//点击了不同的按钮的响应事件
+	@Override
+	public void click(HomeItem item, int type) {
+		
 	}
 }

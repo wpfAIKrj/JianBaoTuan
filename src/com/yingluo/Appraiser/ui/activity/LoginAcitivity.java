@@ -65,8 +65,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 
 	private SelectMoilbWindow popwindow;
 
-	@ViewInject(R.id.name_layout)
-	private RelativeLayout namelayout;
+//	@ViewInject(R.id.name_layout)
+//	private RelativeLayout namelayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		overridePendingTransition(R.anim.hold, R.anim.toast_out);
 	}
 
-	@OnClick({ R.id.title_back, R.id.login_bt_clear, R.id.login_bt_login, R.id.login_bt_register,
+	@OnClick({ R.id.title_back, R.id.login_bt_login, R.id.login_bt_register,
 			R.id.login_bt_forgot })
 	public void onClick(View v) {
 		Intent intent = null;
@@ -110,13 +110,13 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			finish();
 			overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			break;
-		case R.id.login_bt_clear:// 显示下拉用户框
-			if (!isShow) {
-				showPopWinddos();
-			} else {
-				disPopWinddos();
-			}
-			break;
+//		case R.id.login_bt_clear:// 显示下拉用户框
+//			if (!isShow) {
+//				showPopWinddos();
+//			} else {
+//				disPopWinddos();
+//			}
+//			break;
 		case R.id.login_bt_login:// 登陆
 			startLogin();
 			break;
@@ -138,18 +138,18 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	/**
 	 * 隐藏下拉框
 	 */
-	private void disPopWinddos() {
-		isShow = false;
-		popwindow.showPopupWindow(namelayout);
-	}
+//	private void disPopWinddos() {
+//		isShow = false;
+//		popwindow.showPopupWindow(namelayout);
+//	}
 
 	/**
 	 * 显示本地数据库中的用户
 	 */
-	private void showPopWinddos() {
-		isShow = true;
-		popwindow.showPopupWindow(namelayout);
-	}
+//	private void showPopWinddos() {
+//		isShow = true;
+//		popwindow.showPopupWindow(namelayout);
+//	}
 
 	/**
 	 * 登陆
@@ -223,7 +223,7 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		ed_name.setText(phone);
 		ed_name.setSelection(phone.length());
 		change(phone);
-		popwindow.showPopupWindow(namelayout);
+//		popwindow.showPopupWindow(namelayout);
 		isShow = false;
 	}
 

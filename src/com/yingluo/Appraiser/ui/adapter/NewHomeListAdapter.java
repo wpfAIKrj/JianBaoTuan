@@ -29,17 +29,30 @@ public class NewHomeListAdapter extends BaseAdapter {
 
 	private List<HomeItem> list;
 	
-	private OnClickListener listner;
 	private Context mContext;
 	
 	private int type;
+	private ClickTabListener clickTabListener;
+	
 	public static final int hasIdentify = 2;
 	public static final int indentifying = 1;
 	
-	public NewHomeListAdapter(int type,List<HomeItem> list,Context context,OnClickListener listner) {
+	public static final int TYPE_HEAD = 10;
+	public static final int TYPE_IDENTIFY = 20;
+	public static final int TYPE_COMMIT = 30;
+	public static final int TYPE_SHARE = 40;
+	
+	public interface ClickTabListener {
+		/**
+		 * 点击底部的不同的按钮
+		 */
+		public void click(HomeItem item,int type);
+		
+	}
+	public NewHomeListAdapter(int type,List<HomeItem> list,Context context,ClickTabListener clickTabListener) {
 		this.type = type;
 		this.list = list;
-		this.listner=listner;
+		this.clickTabListener=clickTabListener;
 		mContext=context;
 	}
 	
@@ -70,7 +83,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 		NewItemViewHolder vh=null;
 		if(convertView==null){
 			convertView=LayoutInflater.from(mContext).inflate(R.layout.item_new_home, parent, false);
-			vh=new NewItemViewHolder(mContext,convertView, listner);
+			vh=new NewItemViewHolder(mContext,convertView, clickTabListener);
 			convertView.setTag(vh);
 		}else{
 			vh=(NewItemViewHolder) convertView.getTag();

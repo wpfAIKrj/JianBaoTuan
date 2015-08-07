@@ -10,6 +10,7 @@ import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.view.CircleImageView;
@@ -60,12 +61,14 @@ public class NewItemViewHolder extends ViewHolder {
 	@ViewInject(R.id.nhv_has_identify)
 	private NewHomeIdentifyView hasIdentify;
 	
-	public Context mContext;
+	private Context mContext;
+	private ClickTabListener listener;
+	private HomeItem item;
 	
 	private int[] levels = { R.drawable.level01, R.drawable.level02, R.drawable.level03, R.drawable.level04,
 			R.drawable.level05, R.drawable.level06 };
 	
-	public NewItemViewHolder(Context context,View itemView, final OnClickListener listener) {
+	public NewItemViewHolder(Context context,View itemView, final ClickTabListener listener) {
 		super(itemView);
 		mContext = itemView.getContext();
 		ViewUtils.inject(this, itemView);
@@ -73,6 +76,7 @@ public class NewItemViewHolder extends ViewHolder {
         rlParams.width = DensityUtil.getScreenWidth(context);
         rlParams.height = (int) (DensityUtil.getScreenWidth(context)*3/4.0);
         showImage.setLayoutParams(rlParams);
+        this.listener = listener;
 	}
 
 	public void clearAllView() {
@@ -80,23 +84,31 @@ public class NewItemViewHolder extends ViewHolder {
 		commit.clear();
 	}
 	
-	@OnClick({R.id.tv_home_identify,R.id.tv_home_commit,R.id.tv_home_share}) 
+	@OnClick({R.id.tv_home_arrow,R.id.tv_home_identify,R.id.tv_home_commit,R.id.tv_home_share}) 
 	public void clickMyView(View view) {
 		switch (view.getId()) {
+			case R.id.tv_home_arrow:
+				//用户头像
+				this.listener.click(item, NewHomeListAdapter.TYPE_HEAD);
+				break;
 			case R.id.tv_home_identify:
 				//鉴定
+				this.listener.click(item, NewHomeListAdapter.TYPE_IDENTIFY);
 				break;
 			case R.id.tv_home_commit:
 				//评论
+				this.listener.click(item, NewHomeListAdapter.TYPE_COMMIT);
 				break;
 			case R.id.tv_home_share:
 				//分享
+				this.listener.click(item, NewHomeListAdapter.TYPE_SHARE);
 				break;
 		}
 	}
 	
 	public void setItem(int type,HomeItem item) {
 		
+		this.item = item;
 		//设置时间和用户名
 		name.setText(item.getUser_name());
 		time.setText(item.getInsert_time());

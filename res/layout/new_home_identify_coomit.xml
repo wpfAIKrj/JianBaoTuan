@@ -30,7 +30,7 @@
             android:textSize="12sp"
             android:singleLine="true"
             android:visibility="gone"
-            />
+            android:textColor="@+id/new_time_color"/>
         
         <TextView 
             android:id="@+id/tv_identify_input2"
@@ -40,7 +40,7 @@
             android:textSize="12sp"
             android:singleLine="true"
             android:visibility="gone"
-            />
+            android:textColor="@+id/new_time_color"/>
         
         <TextView 
             android:id="@+id/tv_identify_input3"
@@ -50,7 +50,7 @@
             android:textSize="12sp"
             android:singleLine="true"
             android:visibility="gone"
-            />
+            android:textColor="@+id/new_time_color"/>
     </LinearLayout>
     
     <View 
