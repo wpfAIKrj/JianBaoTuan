@@ -67,6 +67,8 @@ public class NetConst {
 	
 	public static final String NEW_NEW_HOME_IDENTIFYING = "home/checkingAction"; //新版首页-->鉴定中
 	
+	public static final String NEW_HOMW_BANNER = "home/hotsAction"; //新版首页-->banner
+	
 	public static final String IS_DEL = "Users/existAction";// 判断用户是不是已经在服务器端删除
 	
 	public static final String DEL_MY_LOVE = "Material/deleteCollectionsAction";// 判断我的收藏

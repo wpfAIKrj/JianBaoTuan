@@ -28,6 +28,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -50,6 +51,8 @@ public class NewItemViewHolder extends ViewHolder {
 	private ImageView leve;
 	@ViewInject(R.id.tv_home_title)
 	private TextView title;
+	@ViewInject(R.id.rl_home_identify)
+	private RelativeLayout rlIdentify;
 	@ViewInject(R.id.hcv_identify)
 	private NewHomeCommitView identify;
 	@ViewInject(R.id.hcv_commit)
@@ -117,6 +120,8 @@ public class NewItemViewHolder extends ViewHolder {
 		
 		//隐藏为null的
 		if(type == NewHomeListAdapter.indentifying) {
+			rlIdentify.setVisibility(View.VISIBLE);
+			hasIdentify.setVisibility(View.GONE);
 			if(item.getRecords().size() == 0) {
 				identify.setVisibility(View.GONE);
 			} else {
@@ -131,6 +136,7 @@ public class NewItemViewHolder extends ViewHolder {
 			}
 			
 		} else {
+			rlIdentify.setVisibility(View.GONE);
 			identify.setVisibility(View.GONE);
 			hasIdentify.setVisibility(View.VISIBLE);
 			if(item.getAppraiser() != null) {
@@ -145,44 +151,5 @@ public class NewItemViewHolder extends ViewHolder {
 			commit.setCommit(item.getComments());
 		}
 	}
-	
-//	public void setItem(CommentEntity commentEntity) {
-//		currnt = commentEntity;
-//		BitmapsUtils.getInstance().display(logo, currnt.authImage);
-//		logo.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// 跳转到用户详情页
-//				Intent mIntent = new Intent(mContext, ActivityHotIdentiy.class);
-//				CollectionTreasure entity = new CollectionTreasure();
-//				entity.setAuthImage(currnt.authImage);
-//				entity.setAuthName(currnt.authName);
-//				entity.setCompany("");
-//				entity.setUser_id(currnt.user_id);
-//				
-//				mIntent.putExtra(Const.ENTITY, entity);
-//				mContext.startActivity(mIntent);
-//				Activity act = (Activity)mContext;
-//				act.overridePendingTransition(R.anim.left_in, R.anim.left_out);
-//				
-//			}
-//		});
-//		name.setText(currnt.authName);
-//		time.setText(currnt.insert_time);
-//		number.setText(String.format(numberstr, currnt.index));
-//		if (currnt.to_user_id != 0) {// 回复某人
-//			StringBuffer str = new StringBuffer(
-//					String.format(mContext.getResources().getString(R.string.comment_list_tag), currnt.to_user_name));
-//			int lenght = str.length();
-//			str.append("  " + currnt.content);
-//			int color = mContext.getResources().getColor(R.color.dialog_title_color);
-//			SpannableString ss = new SpannableString(str);
-//			ss.setSpan(new ForegroundColorSpan(color), 0, lenght, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//			msg.setText(ss);
-//		} else {// 单纯评论
-//			msg.setText(currnt.content);
-//		}
-//	}
 
 }

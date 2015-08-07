@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.http.ResponseBanner.Banner;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
@@ -61,7 +62,7 @@ public class SlideShowView extends FrameLayout {
 
 	private Context context;
 
-	private List<CollectionTreasure> imageRes = null;
+	private List<Banner> imageRes = null;
 	
 	/**
 	 * 用于循环播放banner
@@ -93,13 +94,13 @@ public class SlideShowView extends FrameLayout {
 	/**
 	 * 设置数据
 	 */
-	public void prepareData(List<CollectionTreasure> imageRes) {
+	public void prepareData(List<Banner> imageRes) {
 		if (imageRes == null)
 			return;
 		this.imageRes = imageRes;
 		String[] list = new String[imageRes.size()];
 		for (int i = 0; i < list.length; i++) {
-			list[i] = imageRes.get(i).image;
+			list[i] = imageRes.get(i).getImage();
 		}
 		initData(list);
 		if (isAutoPlay) {
@@ -337,10 +338,11 @@ public class SlideShowView extends FrameLayout {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			if (imageRes != null) {
 				Intent mIntent = new Intent(getContext(), ActivityUserDelails.class);
-				mIntent.putExtra(Const.ENTITY, imageRes.get(viewPager.getCurrentItem()%imageRes.size()));
+				CollectionTreasure col = new CollectionTreasure();
+				col.treasure_id = Long.valueOf(imageRes.get(viewPager.getCurrentItem()%imageRes.size()).getTreasure_id());
+				mIntent.putExtra(Const.ENTITY, col);
 				getContext().startActivity(mIntent);
 				Activity act = (Activity) context;
 				act.overridePendingTransition(R.anim.left_in, R.anim.left_out);

@@ -26,62 +26,8 @@
 
             <include layout="@layout/layout_home_body" />   
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y88"
-                android:background="@color/wite" >
-
-                <RelativeLayout
-                    android:id="@+id/rl_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y68"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:layout_toLeftOf="@+id/iv_category"
-                    android:background="@drawable/seach_bak" >
-
-                    <ImageView
-                        android:id="@+id/iv_search"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginBottom="@dimen/y8"
-                        android:layout_marginLeft="@dimen/x20"
-                        android:layout_marginTop="@dimen/y8"
-                        android:src="@drawable/search" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/x13"
-                        android:layout_toRightOf="@+id/iv_search"
-                        android:text="点此搜索你想要的"
-                        android:textColor="@color/home_head_color"
-                        android:gravity="center_vertical"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/iv_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x20"
-                    android:layout_marginRight="@dimen/x20"
-                    android:src="@drawable/fenlei" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y10"
-                android:background="@color/new_line_color" />
-
-            <ListView
-                android:id="@+id/comment_listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" />
+			<include layout="@layout/layout_home_list" />
+			
         </LinearLayout>
     </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 

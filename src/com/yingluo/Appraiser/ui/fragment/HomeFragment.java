@@ -159,7 +159,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener, O
 		} else {
 			hideViews(false, (short) 7);
 			if (homeEntity.getAdvertising() != null && homeEntity.getAdvertising().size() > 0 && !isRefresh) {
-				head.prepareData(homeEntity.getAdvertising());
+//				head.prepareData(homeEntity.getAdvertising());
 			} else {
 				
 			}

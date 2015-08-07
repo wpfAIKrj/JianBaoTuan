@@ -44,6 +44,7 @@ import com.yingluo.Appraiser.http.AskNetWork;
 import com.yingluo.Appraiser.http.ResponseGood;
 import com.yingluo.Appraiser.http.ResponseNewHome;
 import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
+import com.yingluo.Appraiser.http.ResponseBanner;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
@@ -78,6 +79,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	private PullToRefreshScrollView mScrollView;
 	private NewHomeListAdapter mAdapter;
 	
+	private ScrollView scrollView;
+	
 	private Activity mActivity;
 	private boolean isRefresh;
 	private boolean isLoadMore;
@@ -96,7 +99,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 	
 	private int page;
 	private AskNetWork askNewWork;
-	
+	private AskNetWork askNewWorkBanner;
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -108,16 +111,27 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 		return inflater.inflate(R.layout.layout_new_home, container, false);
 	}
 	
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		final int[] location = new int[2];   
+		mScrollView.getLocationOnScreen(location);  
+		int y = location[1];
+	}
+
 	@Override
 	protected void initViews(View view) {
 		isRefresh = isLoadMore = false;
 		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
-	
+		scrollView = mScrollView.getRefreshableView();
+		
 		mScrollView.setOnRefreshListener(new OnRefreshListener2<ScrollView>(){
 
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
 				if(!isRefresh) {
+					scrollView.fullScroll(ScrollView.FOCUS_UP);
 					isRefresh = true;
 					page = 1;
 					askNet();
@@ -162,11 +176,16 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 		
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
 		askNet();
+		askNewWorkBanner = new AskNetWork(this);
+		askNewWorkBanner.setParam(NetConst.NEW_HOMW_BANNER);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(NetConst.SID, NetConst.SESSIONID);
+		askNewWorkBanner.ask(HttpRequest.HttpMethod.GET, map);
 	}
 	
 	private void askNet() {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("status", RadioType);
+		map.put(NetConst.SID, NetConst.SESSIONID);
 		map.put("page", page);
 		askNewWork.ask(HttpRequest.HttpMethod.GET, map);
 	}
@@ -223,28 +242,35 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack 
 
 	@Override
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
-		if(isRefresh) {
-			//下拉刷新了
-			isRefresh = false;
-			list.clear();
-		}
-		if(isLoadMore) {
-			//上拉加载更多了
-			isLoadMore = false;
-			
-		}
-		mScrollView.onRefreshComplete();
-		ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);
-		if (rg.getCode() == 100000) {
-			page = rg.getData().getNextPage();
-			List<HomeItem> res = rg.getData().getList();
-			if(res.size() == 0) {
-				return ;
-			} else {
-				list.addAll(res);
+		if(param.equals(NetConst.NEW_HOMW_BANNER)) {		
+			ResponseBanner rg = new Gson().fromJson(msg, ResponseBanner.class);
+			if(rg.getCode() == 100000) {
+				head.prepareData(rg.getData());
+			}	
+		} else {
+			if(isRefresh) {
+				//下拉刷新了
+				isRefresh = false;
+				list.clear();
 			}
-			mAdapter.setData(RadioType,list);
-			NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
+			if(isLoadMore) {
+				//上拉加载更多了
+				isLoadMore = false;
+				
+			}
+			mScrollView.onRefreshComplete();
+			ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);
+			if (rg.getCode() == 100000) {
+				page = rg.getData().getNextPage();
+				List<HomeItem> res = rg.getData().getList();
+				if(res.size() == 0) {
+					return ;
+				} else {
+					list.addAll(res);
+				}
+				mAdapter.setData(RadioType,list);
+				NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
+			}
 		}
 	}
 
