@@ -69,6 +69,8 @@ public class NetConst {
 	
 	public static final String NEW_HOMW_BANNER = "home/hotsAction"; //新版首页-->banner
 	
+	public static final String NEW_SEND_MESSAGE = "Material/addCommentAction"; //发送评论
+	
 	public static final String NEW_SEARCH = "home/searchAction"; //新版的搜索
 	
 	public static final String IS_DEL = "Users/existAction";// 判断用户是不是已经在服务器端删除

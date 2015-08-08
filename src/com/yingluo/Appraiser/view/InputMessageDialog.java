@@ -71,8 +71,12 @@ public class InputMessageDialog extends Dialog {
      * 自定义接口，用于回调按钮点击事件到Activity
      */
     public interface SendMessageCallback {
-        public void textChange(String message);
 
+    	/**
+    	 * 发送消息
+    	 * 
+    	 * @param message
+    	 */
         public void sendMessage(String message);
     }
 
@@ -119,7 +123,7 @@ public class InputMessageDialog extends Dialog {
 //                    number.setTextColor(context.getResources().getColor(R.color.account_number_col));
 //                    number.setText(themsg.length() + "");
 //                }
-                mCallback.textChange(themsg);
+//                mCallback.textChange(themsg);
             }
 
             @Override

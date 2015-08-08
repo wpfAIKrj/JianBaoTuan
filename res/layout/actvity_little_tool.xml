@@ -18,179 +18,199 @@
             android:text="@string/new_str_midutool" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y150" >
-
-        <TextView
-            android:id="@+id/tv_midu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/new_str_midu"
-            android:textColor="@color/new_tool_color"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_lifang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_midu"
-            android:layout_alignTop="@+id/tv_midu"
-            android:layout_marginLeft="@dimen/x5"
-            android:text="@string/new_str_three"
-            android:textColor="@color/new_tool_color"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/tv_right_kuo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_lifang"
-            android:text="@string/new_str_midu_right"
-            android:textColor="@color/new_tool_color"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tv_right_kuo"
-            android:singleLine="true"
-            android:textColor="@color/new_tool_color"
-            android:textSize="14sp" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tv_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y80"
-        android:text="@string/new_str_midu_hint"
-        android:textColor="@color/new_tool_color"
-        android:textSize="14sp" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x50"
-        android:layout_marginRight="@dimen/x50"
-        android:layout_marginTop="@dimen/y90"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent" >
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_height"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                app:title_value="@string/new_str_height" />
-
-            <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/itv_height"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/y40"
-                app:title_value="@string/new_str_circle" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
             <RelativeLayout
-                android:id="@+id/rl_tool_ball"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/itv_circle"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
                 android:layout_marginTop="@dimen/y40" >
 
                 <TextView
-                    android:id="@+id/tv_tool_ball"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/new_str_ball"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/iv_tool_ball"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/x10"
-                    android:layout_toLeftOf="@+id/tv_tool_ball"
-                    android:src="@drawable/pero_choose"
-                     />
+                    android:text="选择宝贝"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
             </RelativeLayout>
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_weight"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                app:title_value="@string/new_str_weight" />
-
-            <com.yingluo.Appraiser.view.InputToolView
-                android:id="@+id/itv_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/itv_weight"
-                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
                 android:layout_marginTop="@dimen/y40"
-                app:title_value="@string/new_str_number" />
-
-            <RelativeLayout
-                android:id="@+id/rl_tool_zhu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/itv_number"
-                android:layout_alignLeft="@+id/itv_number"
-                android:layout_marginTop="@dimen/y40">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/iv_tool_zhu"
-                    android:layout_marginLeft="@dimen/x10"
-                    android:layout_centerVertical="true"
-                    android:text="@string/new_str_zhu"
-                    android:textSize="14sp" />
+                    android:text="选择形状"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                <ImageView
-                    android:id="@+id/iv_tool_zhu"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_marginTop="@dimen/y30"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y60"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/tv_tool_circle"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_tool_btn_press"
+                        android:gravity="center"
+                        android:text="圆珠"
+                        android:textColor="@color/wite" />
+
+                    <Button
+                        android:id="@+id/tv_tool_barrel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_tool_btn_normal"
+                        android:gravity="center"
+                        android:text="桶珠"
+                        android:textColor="@color/new_tool_color" />
+
+                    <TextView
+                        android:id="@+id/tv_tool_thrid"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/x35"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="填写尺寸"
+                android:layout_marginTop="@dimen/y40"
+                android:layout_marginLeft="@dimen/y40"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:src="@drawable/pero_no_choose" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
+                    android:layout_weight="1" >
 
-    <TextView
-        android:id="@+id/tv_jisuan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/y90"
-        android:text="计算"
-        android:gravity="center"
-        android:background="@drawable/jisuan_click"
-        android:textColor="@drawable/jisuan_text"
-        android:textSize="14sp" />
+                    <com.yingluo.Appraiser.view.InputToolView
+                        android:id="@+id/itv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        app:title_value="@string/new_str_height" />
+
+                    <com.yingluo.Appraiser.view.InputToolView
+                        android:id="@+id/itv_circle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/itv_height"
+                        android:layout_marginTop="@dimen/y40"
+                        app:title_value="@string/new_str_circle" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+
+                    <com.yingluo.Appraiser.view.InputToolView
+                        android:id="@+id/itv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        app:title_value="@string/new_str_weight" />
+
+                    <com.yingluo.Appraiser.view.InputToolView
+                        android:id="@+id/itv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/itv_weight"
+                        android:layout_marginTop="@dimen/y40"
+                        app:title_value="@string/new_str_number" />
+
+                </RelativeLayout>
+            </LinearLayout>
+            
+            <TextView
+                android:id="@+id/tv_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y30"
+                android:text="@string/new_str_midu_hint"
+                android:textColor="@color/new_tool_color"
+                android:textSize="12sp" />
+            
+            <TextView
+                android:id="@+id/tv_jisuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/y30"
+                android:background="@drawable/jisuan_click"
+                android:gravity="center"
+                android:text="计算"
+                android:textColor="@drawable/jisuan_text"
+                android:textSize="16sp" />
+            
+           <TextView 
+               android:id="@+id/tv_tool_average"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="你的星月的平均密度为：1000000"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="@dimen/y30"
+               android:textSize="11sp"
+               />
+           
+           <TextView 
+               android:id="@+id/tv_tool_you_average"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="你的星月的平均密度为：1000000"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="@dimen/y20"
+               android:textSize="13sp"
+               />
+           
+           <TextView 
+               android:id="@+id/tv_tool_average_result"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="你的星月的平均密度为：1000000"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="@dimen/y20"
+               android:textSize="11sp"
+               />
+            
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

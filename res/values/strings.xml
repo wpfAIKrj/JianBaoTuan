@@ -146,7 +146,7 @@
     <string name="new_str_midu">密度（g/cm </string>
     <string name="new_str_three">3</string>
     <string name="new_str_midu_right">）：</string>
-    <string name="new_str_midu_hint">添加信息，我们可以帮您计算好你的宝贝密度哟！</string>
+    <string name="new_str_midu_hint">该计算不保证准确，仅供参考与娱乐</string>
     <string name="new_str_identify">鉴定</string>
     <string name="new_str_share">分享</string>
     <string name="new_str_commit">评论</string>

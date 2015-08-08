@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import com.yingluo.Appraiser.view.InputToolView;
 
 public class ToolFragment extends BaseFragment {
 
-	@ViewInject(R.id.tv_result)
+	@ViewInject(R.id.tv_tool_you_average)
 	private TextView tvResult;
 	@ViewInject(R.id.itv_height)
 	private InputToolView height;
@@ -30,10 +31,10 @@ public class ToolFragment extends BaseFragment {
 	@ViewInject(R.id.itv_number)
 	private InputToolView number;
 
-	@ViewInject(R.id.iv_tool_ball)
-	private ImageView ballClick;
-	@ViewInject(R.id.iv_tool_zhu)
-	private ImageView zhuClick;
+	@ViewInject(R.id.tv_tool_circle)
+	private Button ballClick;
+	@ViewInject(R.id.tv_tool_barrel)
+	private Button zhuClick;
 	
 	private int type;
 	
@@ -43,7 +44,7 @@ public class ToolFragment extends BaseFragment {
 	private float res;
 	private String strHeight,strWeight,strCircle,strNumber;
 	
-	@OnClick({R.id.tv_jisuan,R.id.rl_tool_ball,R.id.rl_tool_zhu})
+	@OnClick({R.id.tv_jisuan,R.id.tv_tool_circle,R.id.tv_tool_barrel})
 	public void doClick(View v) {
 		
 		strHeight = height.getInputText().toString();
@@ -79,19 +80,23 @@ public class ToolFragment extends BaseFragment {
 			}
 			tvResult.setText(res+"");
 			break;
-		case R.id.rl_tool_ball:
+		case R.id.tv_tool_circle:
 			if(type == CHOOSE_ZHU)
 			{
-				ballClick.setImageResource(R.drawable.pero_choose);
-				zhuClick.setImageResource(R.drawable.pero_no_choose);
+				ballClick.setBackgroundResource(R.drawable.shape_tool_btn_press);
+				ballClick.setTextColor(getResources().getColor(R.color.wite));
+				zhuClick.setBackgroundResource(R.drawable.shape_tool_btn_normal);
+				zhuClick.setTextColor(getResources().getColor(R.color.new_tool_color));
 				type = CHOOSE_BALL;
 			}
 			break;
-		case R.id.rl_tool_zhu:
+		case R.id.tv_tool_barrel:
 			if(type == CHOOSE_BALL)
 			{
-				zhuClick.setImageResource(R.drawable.pero_choose);
-				ballClick.setImageResource(R.drawable.pero_no_choose);
+				zhuClick.setBackgroundResource(R.drawable.shape_tool_btn_press);
+				zhuClick.setTextColor(getResources().getColor(R.color.wite));
+				ballClick.setBackgroundResource(R.drawable.shape_tool_btn_normal);
+				ballClick.setTextColor(getResources().getColor(R.color.new_tool_color));
 				type = CHOOSE_ZHU;
 			}
 			break;

@@ -1,25 +1,19 @@
 package com.yingluo.Appraiser.ui.adapter;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionTreasure;
-import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
-import com.yingluo.Appraiser.view.viewholder.IndentityResultViewHolder;
 import com.yingluo.Appraiser.view.viewholder.NewItemViewHolder;
-import com.yingluo.Appraiser.view.viewholder.commentItemViewHolder;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
 /**
  * 新版首页列表
  * @author 王亚立
@@ -49,6 +43,7 @@ public class NewHomeListAdapter extends BaseAdapter {
 		public void click(HomeItem item,int type);
 		
 	}
+	
 	public NewHomeListAdapter(int type,List<HomeItem> list,Context context,ClickTabListener clickTabListener) {
 		this.type = type;
 		this.list = list;
@@ -58,7 +53,6 @@ public class NewHomeListAdapter extends BaseAdapter {
 	
 	public void setData(int type,List<HomeItem> commentlist) {
 		this.type = type;
-//		Collections.reverse(commentlist);
 		list=commentlist;
 		notifyDataSetChanged();
 	}

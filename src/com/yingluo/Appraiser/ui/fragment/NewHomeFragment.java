@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,14 +50,20 @@ import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
+import com.yingluo.Appraiser.ui.activity.ActivityIdentifyByMe;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
+import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
+import com.yingluo.Appraiser.ui.activity.LoginAcitivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
+import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
+import com.yingluo.Appraiser.view.InputMessageDialog;
+import com.yingluo.Appraiser.view.InputMessageDialog.SendMessageCallback;
 import com.yingluo.Appraiser.view.SlideShowView;
 import com.yingluo.Appraiser.view.home.ViewArticles;
 import com.yingluo.Appraiser.view.home.ViewChoices;
@@ -66,7 +73,7 @@ import com.yingluo.Appraiser.view.listview.HorizontalListView;
 
 import de.greenrobot.event.EventBus;
 
-public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,ClickTabListener  {
+public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,ClickTabListener,SendMessageCallback  {
 
 	/**
 	 * 定义一些控件
@@ -102,6 +109,9 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	private int page;
 	private AskNetWork askNewWork;
 	private AskNetWork askNewWorkBanner;
+	private InputMessageDialog inputMessage;
+	private HomeItem item;
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -126,6 +136,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	protected void initViews(View view) {
 		isRefresh = isLoadMore = false;
 		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
+		inputMessage = new InputMessageDialog(mActivity, this);
 		scrollView = mScrollView.getRefreshableView();
 		
 		mScrollView.setOnRefreshListener(new OnRefreshListener2<ScrollView>(){
@@ -258,6 +269,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 			if(rg.getCode() == 100000) {
 				head.prepareData(rg.getData());
 			}	
+		} else if(param.equals(NetConst.NEW_SEND_MESSAGE)){
+			
 		} else {
 			if(isRefresh) {
 				//下拉刷新了
@@ -302,6 +315,68 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	//点击了不同的按钮的响应事件
 	@Override
 	public void click(HomeItem item, int type) {
+		switch(type) {
+		case NewHomeListAdapter.TYPE_HEAD:
+			//点击了头像
+			CollectionTreasure entity = new CollectionTreasure();
+			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
+			entity.setUser_id(Long.valueOf(item.getUser_id()));
+			entity.setAuthName(item.getUser_name());
+			entity.setAuthImage(item.getUser_portrait());
+			entity.setCompany("");
+			mIntent.putExtra(Const.ENTITY, entity);
+			mActivity.startActivity(mIntent);
+			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+			break;
+		case NewHomeListAdapter.TYPE_IDENTIFY:
+			//点击了鉴定
+			if (ItApplication.getcurrnUser() != null) {
+				CollectionTreasure entitys = new CollectionTreasure();
+				Intent intent = new Intent(mActivity, ActivityIdentifyByMe.class);
+				entitys.setTreasure_id(Long.valueOf(item.getTreasure_id()));
+				intent.putExtra(Const.ENTITY, entitys);
+				startActivityForResult(intent, Const.TO_MY_INDENTITY);
+				mActivity.overridePendingTransition(R.anim.toast_in, R.anim.hold);
+			} else {
+				Intent intent = new Intent(mActivity, LoginAcitivity.class);
+				startActivity(intent);
+				mActivity.overridePendingTransition(R.anim.toast_in, R.anim.hold);
+			}
+			break;
+		case NewHomeListAdapter.TYPE_COMMIT:
+			//点击了评论
+			this.item = item;
+			inputMessage.show();
+			break;
+		case NewHomeListAdapter.TYPE_SHARE:
+			//点击了分享
+			Toast.makeText(mActivity, "点击了分享"+item, Toast.LENGTH_SHORT).show();
+			break;
+		}
+	}
+
+	@Override
+	public void sendMessage(String message) {
+		if (ItApplication.getcurrnUser() != null) {
+//			String content = message.trim();
+			if (message != null && message.length() != 0 && this.item != null) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("treasure_id", item.getTreasure_id());
+				map.put("to_user_id", item.getUser_id());
+				map.put("comment", message);
+				AskNetWork askCommit = new AskNetWork(map, NetConst.NEW_SEND_MESSAGE, this);
+				Map<String, Object> maps = new HashMap<String, Object>();
+				maps.put(NetConst.SID, NetConst.SESSIONID);
+				askCommit.ask(maps);
+//				sendCommentModel.sendTreasureComment(entity.treasure_id, to_user_id, message);
+			} else {
+				new ToastUtils(mActivity, "请输入评论内容！");
+			}
+		} else {
+			Intent intent = new Intent(mActivity, LoginAcitivity.class);
+			startActivity(intent);
+			mActivity.overridePendingTransition(R.anim.toast_in, R.anim.hold);
+		}
 		
 	}
 }

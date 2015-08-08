@@ -40,7 +40,7 @@ public class ResponseNewHome extends ResponseRoot{
     }
 	
     public class HomeItem {
-    	private String id;
+    	private String treasure_id;
     	private String user_id;
     	private String user_name;
     	private String user_portrait;
@@ -54,11 +54,12 @@ public class ResponseNewHome extends ResponseRoot{
     	private List<Record> records;
     	private List<Comment> comments;
     	
-		public String getId() {
-			return id;
+		
+		public String getTreasure_id() {
+			return treasure_id;
 		}
-		public void setId(String id) {
-			this.id = id;
+		public void setTreasure_id(String treasure_id) {
+			this.treasure_id = treasure_id;
 		}
 		public String getUser_id() {
 			return user_id;
