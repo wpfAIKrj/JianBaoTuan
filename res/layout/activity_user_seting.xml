@@ -20,7 +20,7 @@
             android:id="@+id/layout_item1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -54,7 +54,7 @@
             android:id="@+id/layout_item2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -88,7 +88,7 @@
             android:id="@+id/layout_item3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -122,7 +122,7 @@
             android:id="@+id/layout_item4"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -156,7 +156,7 @@
             android:id="@+id/layout_item5"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -219,7 +219,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y94"
             android:layout_marginTop="@dimen/y100"
-            android:background="@drawable/login_edit_bg"
+            android:background="@color/wite"
             android:descendantFocusability="beforeDescendants"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
@@ -227,11 +227,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/x20"
                 android:text="退出当前账号"
-                android:textColor="@color/ed_login_color"
+                android:layout_centerInParent="true"
+                android:textColor="@color/new_red"
                 android:textSize="@dimen/x28" />
         </RelativeLayout>
 

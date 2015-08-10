@@ -36,4 +36,5 @@
     <color name="new_time_color">#7f7f7f</color>
     <color name="new_tool_color">#919191</color>
     <color name="new_dialog_line">#cccccc</color>
+    <color name="new_red">#f00000</color>
 </resources>
