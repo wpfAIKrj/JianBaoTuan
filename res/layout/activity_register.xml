@@ -70,7 +70,7 @@
             android:background="@drawable/yzm_bak"
             android:gravity="center"
             android:text="@string/register_code_bt_hint"
-            android:textColor="@color/bt_color"
+            android:textColor="@color/home_head_color"
             android:textSize="@dimen/x30" />
     </RelativeLayout>
 
@@ -142,6 +142,7 @@
         android:background="@drawable/logo_btn_bak"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/y30"
-        android:text="@string/regitster_next" />
+        android:text="@string/regitster_next"
+        android:textColor="@color/home_head_color" />
 
 </RelativeLayout>

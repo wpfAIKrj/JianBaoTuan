@@ -114,7 +114,6 @@ public class ViewTreasure extends ViewHolder {
 		List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds = item.kinds;
 
 		if (kinds != null) {
-			LayoutParams params = null;
 
 			int size = 0;
 			int width = 0;
@@ -129,17 +128,16 @@ public class ViewTreasure extends ViewHolder {
 					size = 7;
 				}
 				width = (size / 2) * onewidth + (size % 2) * onewidth;
-				params = new LayoutParams(width, height);
-				params.setMargins(0, 0, 20, 0);
 				TextView view = new TextView(mContext);
+				view.setWidth(width);
+				view.setHeight(height);
 				view.setTextSize(textsize);
 				view.setTextColor(mContext.getResources().getColor(R.color.wite));
-				view.setBackgroundColor(mContext.getResources().getColor(R.color.number_color));
+				view.setBackgroundResource(R.drawable.seach_bak);
 				// view.setPadding(10, 0, 10, 0);
 				view.setGravity(Gravity.CENTER);
 				view.setText(kinds.get(i).name);
 				view.setTag(kinds.get(i).id);
-				view.setLayoutParams(params);
 				layout_kind.addView(view);
 			}
 

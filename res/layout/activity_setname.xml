@@ -30,7 +30,7 @@
 	        android:layout_height="match_parent"
 	        android:layout_alignParentRight="true"
 	        android:text="跳过"
-	        android:textColor="@color/wite"
+	        android:textColor="@color/home_head_color"
 	        android:textSize="13sp"
 	        android:layout_centerVertical="true"
 	        android:paddingBottom="@dimen/y10"
@@ -61,25 +61,18 @@
         android:layout_marginTop="@dimen/y20"
         android:background="@drawable/login_edit_bg"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/x20" >
-
-        <TextView
-            style="@style/tv_edit_login_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_set_name" />
+        android:orientation="horizontal" >
 
         <EditText
             android:id="@+id/et_nickname"
             style="@style/edit_login_style"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="@null"
             android:cursorVisible="true"
             android:ems="10"
+            android:hint="设置昵称"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:singleLine="true"
@@ -97,6 +90,9 @@
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
         android:layout_marginTop="@dimen/y146"
-        android:text="确 定" />
+        android:text="确 定"
+        android:textColor="@color/home_head_color"
+        android:background="@drawable/seach_bak"
+         />
     
 </RelativeLayout>
