@@ -23,6 +23,7 @@
         android:hint="@string/feednack_hint"
         android:imeOptions="actionDone"
         android:inputType="text"
+        android:padding="@dimen/x20"
         android:textCursorDrawable="@drawable/color_cursor" >
 
         <requestFocus />
@@ -33,9 +34,11 @@
         style="@style/bt_login_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y94"
+        android:background="@color/wite"
         android:layout_marginLeft="@dimen/x14"
         android:layout_marginRight="@dimen/x14"
         android:layout_marginTop="@dimen/y100"
-        android:text="@string/feednack_bt" />
+        android:text="@string/feednack_bt"
+        android:textColor="@color/home_head_color" />
 
 </LinearLayout>
