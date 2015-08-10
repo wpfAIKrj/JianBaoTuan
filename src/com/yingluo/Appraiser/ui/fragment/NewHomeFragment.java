@@ -18,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnItemClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -197,6 +199,20 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 		mAdapter = new NewHomeListAdapter(RadioType,list,mActivity,this);
 		lvHome.setAdapter(mAdapter);
 		
+		lvHome.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				
+				Intent mIntent = new Intent(mActivity, ActivityUserDelails.class);
+				CollectionTreasure col = new CollectionTreasure();
+				col.treasure_id = Long.valueOf(list.get(position).getTreasure_id());
+				mIntent.putExtra(Const.ENTITY, col);
+				mActivity.startActivity(mIntent);
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+				
+			}
+		});
 		NewHomeListAdapter.setListViewHeightBasedOnChildren(lvHome);
 		askNet();
 		askNewWorkBanner = new AskNetWork(this);
@@ -312,7 +328,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 		}
 		mScrollView.onRefreshComplete();
 	}
-
+	
 	//点击了不同的按钮的响应事件
 	@Override
 	public void click(HomeItem item, int type) {
@@ -380,4 +396,5 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 		}
 		
 	}
+
 }
