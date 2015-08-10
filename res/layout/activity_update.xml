@@ -50,6 +50,8 @@
         android:text="@string/update_bt" 
         style="@style/my_title_style1"
         android:gravity="center"
+        android:layout_marginLeft="@dimen/x13"
+        android:layout_marginRight="@dimen/x13"
         android:layout_marginTop="@dimen/y164"
         
         />
