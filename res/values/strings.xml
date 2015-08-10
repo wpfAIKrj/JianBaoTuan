@@ -48,10 +48,10 @@
     <string name="other_identitycollectinfo_text">TA的宝物</string>
     <!-- 个人资料 -->
     <string name="profile_title">个人资料</string>
-    <string name="profile_qq">QQ号:</string>
-    <string name="profile_name">用户昵称:</string>
-    <string name="profile_phone">手机号:</string>
-    <string name="profile_email">邮箱:</string>
+    <string name="profile_qq">QQ号码</string>
+    <string name="profile_name">用户昵称</string>
+    <string name="profile_phone">手机号码</string>
+    <string name="profile_email">电子邮箱</string>
     <string name="profile_bt_save">保存修改</string>
     <string name="profile_set_name">昵称:</string>
     <!-- 修改密码 -->
