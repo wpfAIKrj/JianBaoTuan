@@ -1,8 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.yingluo.Appraiser.view.home.ViewHots xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/other_treasure"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/y20"
-    android:layout_marginLeft="@dimen/x14"
-     />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/wite"
+    android:orientation="vertical" >
+
+    <ImageView 
+        android:id="@+id/iv_home_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y560"
+        android:scaleType="centerCrop"
+        />
+    
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_margin="@dimen/x20"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="巴拉巴拉小魔仙"
+        />
+    
+    <View 
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/y1"
+        android:background="@color/new_line_color"/>
+    
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <com.yingluo.Appraiser.view.NewHomeCommitView
+	        android:id="@+id/hcv_identify"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        app:title="网友鉴定"/>
+        
+        <com.yingluo.Appraiser.view.NewHomeIdentifyView
+            android:id="@+id/nhv_has_identify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+    </FrameLayout>
+    
+    
+    <com.yingluo.Appraiser.view.NewHomeCommitView
+        android:id="@+id/hcv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="网友评论"/>
+    
+</LinearLayout>

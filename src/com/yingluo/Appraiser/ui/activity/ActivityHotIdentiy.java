@@ -17,6 +17,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
@@ -27,6 +28,7 @@ import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.Const;
+import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
@@ -39,12 +41,14 @@ import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
 import com.yingluo.Appraiser.refresh.RefreshLayout;
 import com.yingluo.Appraiser.ui.adapter.MyTreasureAdapter;
 import com.yingluo.Appraiser.ui.adapter.OtherTreasureAdapter;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
+import com.yingluo.Appraiser.view.CircleImageView;
 
 /**
  * 个人详情页面
@@ -52,7 +56,7 @@ import com.yingluo.Appraiser.utils.ToastUtils;
  * @author xy418
  *
  */
-public class ActivityHotIdentiy extends BaseActivity implements OnClickListener {
+public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,ClickTabListener {
 
 	BitmapsUtils bitmapUtils;
 	@ViewInject(R.id.btn_back)
@@ -64,14 +68,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 	@ViewInject(R.id.context)
 	private WebView context;
 
-	@ViewInject(R.id.iv_icon)
-	ImageView iv_icon;
-	@ViewInject(R.id.tv_name)
-	TextView tv_name;
-	@ViewInject(R.id.tv_grade_name)
-	TextView tv_grade_name;
-	@ViewInject(R.id.iv_grade)
-	ImageView iv_grade;
+	
 
 	@ViewInject(R.id.btn_identifing)
 	ViewGroup btn_identifing;
@@ -87,6 +84,30 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 	@ViewInject(R.id.recyclerview)
 	PullRefreshRecyclerView mRecyclerview;
 
+	//专家和平常人不同的布局
+	@ViewInject(R.id.rl_zhuanjia)
+	private RelativeLayout zhuanjia;
+	@ViewInject(R.id.iv_zj_icon)
+	private CircleImageView iv_zj_icon;
+	@ViewInject(R.id.tv_zj_name)
+	private TextView tv_zj_name;
+	@ViewInject(R.id.tv_zj_grade_name)
+	private TextView tv_zj_grade_name;
+	@ViewInject(R.id.iv_zj_grade)
+	private ImageView iv_zj_grade;
+	
+	@ViewInject(R.id.rl_person)
+	private RelativeLayout person;
+	@ViewInject(R.id.iv_icon)
+	private CircleImageView iv_icon;
+	@ViewInject(R.id.tv_name)
+	private TextView tv_name;
+	@ViewInject(R.id.tv_grade_name)
+	private TextView tv_grade_name;
+	@ViewInject(R.id.iv_grade)
+	private ImageView iv_grade;
+	
+	
 	OtherTreasureAdapter mAdapter = null;
 
 	getTreasureByOtherIdModel treasureModel = null;
@@ -117,7 +138,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			// 取消刷新动画
 			mRecyclerview.refreshOver(null);
 			// 先清空数据
@@ -126,7 +146,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 			setIdentifyBackground(v.getId());
 			switch (v.getId()) {
 			case R.id.btn_identifing: {
-
 				if (userinfo != null) {
 					if (userinfo.getIs_system() == 1) {
 						context.setVisibility(View.GONE);
@@ -139,7 +158,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 								public void onSuccess() {
 									isone = false;
 									mRecyclerview.refreshOver(null);
-									mAdapter.setData(treasureModel.getResult());
+//									mAdapter.setData(treasureModel.getResult());
 
 								}
 
@@ -150,7 +169,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 							}, 0, entity.user_id);
 						} else {
 							mRecyclerview.refreshOver(null);
-							mAdapter.setData(treasureModel.getResult());
+//							mAdapter.setData(treasureModel.getResult());
 						}
 					}
 				}
@@ -167,8 +186,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 						public void onSuccess() {
 							istwo = false;
 							mRecyclerview.refreshOver(null);
-							mAdapter.setData(identifyModel.getResult());
-
+//							mAdapter.setData(identifyModel.getResult());
 						}
 
 						@Override
@@ -178,7 +196,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 					}, 0, entity.user_id);
 				} else {
 					mRecyclerview.refreshOver(null);
-					mAdapter.setData(identifyModel.getResult());
+//					mAdapter.setData(identifyModel.getResult());
 				}
 			}
 
@@ -208,25 +226,22 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 	}
 	
 	private void initViews() {
-		// TODO Auto-generated method stub
 		if (entity == null) {
 			return;
 		}
-		bitmapUtils.display(iv_icon, entity.authImage);
-		tv_name.setText(entity.authName);
-		if (!TextUtils.equals(entity.company, "")) {
-			tv_grade_name.setText(entity.company);
-		} else {
-			tv_grade_name.setText("普通用户");
-		}
 		
 		RecyclerView recyclerview = (RecyclerView) mRecyclerview.getRefreshView();
+		
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+		recyclerview.setLayoutManager(layoutManager);
+		recyclerview.setHasFixedSize(true);
+		
 		mRecyclerview.setToRefreshing();
 		mRecyclerview.setOnRefreshListener(new RefreshLayout.OnRefreshListener() {
             @Override
@@ -245,10 +260,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
             }
         });
 		
-		GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-		recyclerview.setLayoutManager(layoutManager);
-		recyclerview.setHasFixedSize(true);
-		mAdapter = new OtherTreasureAdapter();
+		mAdapter = new OtherTreasureAdapter(this,this);
 		recyclerview.setAdapter(mAdapter);
 		context.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		context.getSettings().setDomStorageEnabled(true);
@@ -265,7 +277,6 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.btn_back:
 			onBackPressed();
@@ -304,13 +315,17 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 
 		@Override
 		public void onSucess(UserInfo data) {
-			// TODO Auto-generated method stub
 			mRecyclerview.refreshOver(null);
+			
 			if (data != null) {
 				userinfo = data;
 				SqlDataUtil.getInstance().saveUserInfo(userinfo);
 				if (userinfo.getIs_system() == 1) {
 					tv_text_title.setText(R.string.other_info_text);
+					zhuanjia.setVisibility(View.VISIBLE);
+					bitmapUtils.display(iv_zj_icon, userinfo.getAvatar());
+					tv_zj_name.setText(userinfo.getNickname());
+					//TODO 缺一个名字
 					if (loaddialog != null && loaddialog.isShowing()) {
 						loaddialog.dismiss();
 					}
@@ -323,7 +338,10 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 					}
 				} else {
 					tv_text_title.setText(R.string.other_identitycollectinfo_text);
+					person.setVisibility(View.VISIBLE);
 					context.setVisibility(View.GONE);
+					bitmapUtils.display(iv_icon, userinfo.getAvatar());
+					tv_name.setText(userinfo.getNickname());
 					treasureModel.sendHttp(new CommonCallBack() {
 						@Override
 						public void onSuccess() {
@@ -331,7 +349,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 								loaddialog.dismiss();
 							}
 							isone = false;
-							mAdapter.setData(treasureModel.getResult());
+//							mAdapter.setData(treasureModel.getResult());
 						}
 
 						@Override
@@ -361,5 +379,10 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener 
 			ActivityHotIdentiy.this.finish();
 		}
 	};
+
+	@Override
+	public void click(HomeItem item, int type) {
+		
+	}
 
 }

@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -12,38 +13,34 @@ import android.view.ViewGroup;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
 import com.yingluo.Appraiser.bean.TreasureEntity;
+import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.view.home.ViewHots;
+import com.yingluo.Appraiser.view.viewholder.OtherViewHolder;
 
 /**
  * @author ytmfdw 他的宝贝
  *
  */
-public class OtherTreasureAdapter extends RecyclerView.Adapter<OtherTreasureAdapter.otherViewHolder> {
+public class OtherTreasureAdapter extends RecyclerView.Adapter<OtherViewHolder> {
 
-	private List<CollectionTreasure> hots;
-
-	static class otherViewHolder extends ViewHolder {
-		ViewHots hotsView;
-
-		public otherViewHolder(View itemView) {
-			super(itemView);
-			// TODO Auto-generated constructor stub
-			hotsView = (ViewHots) itemView.findViewById(R.id.other_treasure);
-		}
-
-	}
-
-	public OtherTreasureAdapter(List<CollectionTreasure> list) {
-		// TODO Auto-generated constructor stub
+	private List<HomeItem> hots;
+	private Context context;
+	private ClickTabListener listener;
+	private int type;
+	
+	public OtherTreasureAdapter(Context context,List<HomeItem> list,ClickTabListener listener) {
+		this.context = context;
 		this.hots = list;
+		this.listener = listener;
 	}
 
-	public OtherTreasureAdapter() {
-		// TODO Auto-generated constructor stub
-		hots = new ArrayList<CollectionTreasure>();
+	public OtherTreasureAdapter(Context context,ClickTabListener listener) {
+		this.context = context;
+		hots = new ArrayList<HomeItem>();
 	}
 
-	public void setData(List<CollectionTreasure> list) {
+	public void setData(List<HomeItem> list) {
 		if (this.hots == null) {
 			this.hots = list;
 		} else {
@@ -53,31 +50,28 @@ public class OtherTreasureAdapter extends RecyclerView.Adapter<OtherTreasureAdap
 		notifyDataSetChanged();
 	}
 
-	public List<CollectionTreasure> getData() {
+	public List<HomeItem> getData() {
 		return hots;
 	}
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
 		return hots.size();
 	}
 
 	@Override
-	public void onBindViewHolder(otherViewHolder holder, int position) {
-		// TODO Auto-generated method stub
-		CollectionTreasure entity = hots.get(position);
-		holder.hotsView.setItem(entity);
+	public void onBindViewHolder(OtherViewHolder holder, int position) {
+		HomeItem item = hots.get(position);
+		holder.setItem(type,item);
 
 	}
 
 	@Override
-	public otherViewHolder onCreateViewHolder(ViewGroup viewGroup, int arg1) {
-		// TODO Auto-generated method stub
+	public OtherViewHolder onCreateViewHolder(ViewGroup viewGroup, int arg1) {
 		View view = LayoutInflater.from(viewGroup.getContext()).inflate(
 				R.layout.item_other_treasure, viewGroup, false);
 		// ViewHolder参数一定要是Item的Root节点.
-		return new otherViewHolder(view);
+		return new OtherViewHolder(context,view,listener);
 	}
 
 }
