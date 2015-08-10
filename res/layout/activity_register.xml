@@ -49,7 +49,7 @@
             style="@style/edit_login_style"
             android:layout_width="@dimen/x305"
             android:layout_height="match_parent"
-            android:background="@drawable/shape_login"
+            android:background="@drawable/yzm_input_bak"
             android:layout_alignParentLeft="true"
             android:cursorVisible="true"
             android:ems="10"
@@ -67,7 +67,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x10"
             android:layout_toRightOf="@+id/register_edit_code"
-            android:background="@drawable/bt_code_bg"
+            android:background="@drawable/yzm_bak"
             android:gravity="center"
             android:text="@string/register_code_bt_hint"
             android:textColor="@color/bt_color"
@@ -100,7 +100,7 @@
         android:layout_below="@+id/register_edit_password"
         android:layout_marginLeft="@dimen/x30"
         android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="@dimen/y46" >
+        android:layout_marginTop="@dimen/y16" >
 
         <CheckBox
             android:id="@+id/cb_xieyi"
@@ -118,8 +118,19 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/cb_xieyi"
             android:paddingLeft="@dimen/x10"
-            android:text="用户协议"
-            android:textColor="#ff0000" />
+            android:text="@string/register_yhxy"
+            android:textSize="14sp"
+            android:textColor="@color/black" />
+        
+        <View 
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y1"
+            android:layout_alignLeft="@+id/tv_xieyi"
+            android:layout_alignRight="@+id/tv_xieyi"
+            android:layout_below="@+id/tv_xieyi"
+            android:layout_marginTop="@dimen/y10"
+            android:background="@color/black"
+            />
     </RelativeLayout>
 
     <Button

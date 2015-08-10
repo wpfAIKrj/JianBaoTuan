@@ -6,6 +6,7 @@
     <color name="layout_bg_color">#EEEEEE</color>
     <color name="dialog_bg_color">#D8DAD9</color>
     <color name="dialog_title_color">#5b413c</color>
+    <color name="dialog_new_title_color">#f00000</color>
     <color name="text_color">#333333</color>
     <color name="blacground_color_light">#84BBCA</color>
     <color name="light_blue">#BBE4E7</color>
@@ -27,10 +28,12 @@
     <color name="black_2">#262626</color>
     <color name="tab_line_color">#b2b2b2</color>
     <color name="dialog_bg">#ccffffff</color>
+    <color name="dialog_new_bg">#edecec</color>
 
     <color name="msg_all_bak">#141414</color>
     <color name="hintcolor">#949494</color>
     <color name="new_line_color">#edecec</color>
     <color name="new_time_color">#7f7f7f</color>
     <color name="new_tool_color">#919191</color>
+    <color name="new_dialog_line">#cccccc</color>
 </resources>

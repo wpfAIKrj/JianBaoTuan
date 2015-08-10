@@ -33,7 +33,8 @@
     <string name="regitster_next">下一步</string>
     <string name="register_result_succes_title">注册成功</string>
     <string name="register_result_succes_msg">欢迎您加入鉴定师</string>
-
+	<string name="register_yhxy">同意用户协议</string>
+    
     <!-- 发布 -->
     <string name="button_carme_title">拍照</string>
     <string name="button_ablum_title">从相册选取</string>

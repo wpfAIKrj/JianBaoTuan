@@ -120,6 +120,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 
 	@Override
 	protected View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		return inflater.inflate(R.layout.layout_new_home, container, false);
 	}
 	
