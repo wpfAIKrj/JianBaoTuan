@@ -328,6 +328,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 
 	OnClickListener listenerTab = new OnClickListener() {
 
+		@SuppressLint("NewApi")
 		@Override
 		public void onClick(View v) {
 			if(v.getId() == R.id.tv_info_left) {
@@ -340,6 +341,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 					tvLeft.setTextColor(getResources().getColor(R.color.home_head_color));
 					tvRight.setBackgroundResource(R.drawable.news_normal);
 					tvRight.setTextColor(getResources().getColor(R.color.wite));
+					btn_all.callOnClick();
 				}
 			} else {
 				//点击了右边的按钮
@@ -351,6 +353,7 @@ public class InformationFragment extends BaseFragment implements AskNetWorkCallB
 					tvRight.setTextColor(getResources().getColor(R.color.home_head_color));
 					tvLeft.setBackgroundResource(R.drawable.knowledge_normal);
 					tvLeft.setTextColor(getResources().getColor(R.color.wite));
+					btn_all_news.callOnClick();
 				}
 			}
 		}

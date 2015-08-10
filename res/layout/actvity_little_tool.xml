@@ -17,8 +17,6 @@
             android:layout_centerInParent="true"
             android:text="@string/new_str_midutool" />
     </RelativeLayout>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -284,5 +282,4 @@
                />
             
         </LinearLayout>
-
 </LinearLayout>

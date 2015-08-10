@@ -148,8 +148,8 @@ public class MainActivity extends FragmentActivity implements OnTabSelectedListe
 	private void init() {
 		mFragmentManager = getSupportFragmentManager();
 		mTabWidget = (MyTabWidget) findViewById(R.id.tab_widget);
-		LinearLayout viewSnsLayout = (LinearLayout) findViewById(R.id.viewSnsLayout);
-		viewSnsLayout.setLongClickable(true);
+//		LinearLayout viewSnsLayout = (LinearLayout) findViewById(R.id.viewSnsLayout);
+//		viewSnsLayout.setLongClickable(true);
 		Button bt = (Button) findViewById(R.id.circle_btn);
 		bt.setOnClickListener(new OnClickListener() {
 
