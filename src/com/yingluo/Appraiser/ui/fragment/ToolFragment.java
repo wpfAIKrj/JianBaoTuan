@@ -12,6 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -22,6 +26,11 @@ public class ToolFragment extends BaseFragment {
 
 	@ViewInject(R.id.tv_tool_you_average)
 	private TextView tvResult;
+	@ViewInject(R.id.tv_tool_average_result)
+	private TextView tvZongShu;
+	@ViewInject(R.id.tv_tool_average)
+	private TextView tvShow;
+	
 	@ViewInject(R.id.itv_height)
 	private InputToolView height;
 	@ViewInject(R.id.itv_weight)
@@ -36,6 +45,22 @@ public class ToolFragment extends BaseFragment {
 	@ViewInject(R.id.tv_tool_barrel)
 	private Button zhuClick;
 	
+	//分类
+	@ViewInject(R.id.tv_choose1)
+	private TextView choose1;
+	@ViewInject(R.id.tv_choose2)
+	private TextView choose2;
+	@ViewInject(R.id.tv_choose3)
+	private TextView choose3;
+	@ViewInject(R.id.tv_choose4)
+	private TextView choose4;
+	@ViewInject(R.id.tv_choose5)
+	private TextView choose5;
+	
+	private Map<Integer, TextView> changeMap;
+	private Map<Integer, String> nameMap;
+	
+	private int chooseType;
 	private int type;
 	
 	private int CHOOSE_BALL = 1;
@@ -44,7 +69,8 @@ public class ToolFragment extends BaseFragment {
 	private float res;
 	private String strHeight,strWeight,strCircle,strNumber;
 	
-	@OnClick({R.id.tv_jisuan,R.id.tv_tool_circle,R.id.tv_tool_barrel})
+	@OnClick({R.id.tv_jisuan,R.id.tv_tool_circle,R.id.tv_tool_barrel,
+		R.id.tv_choose1,R.id.tv_choose2,R.id.tv_choose3,R.id.tv_choose4,R.id.tv_choose5})
 	public void doClick(View v) {
 		
 		strHeight = height.getInputText().toString();
@@ -78,7 +104,17 @@ public class ToolFragment extends BaseFragment {
 				//算柱体
 				res = cylinder(Float.valueOf(strHeight),Float.valueOf(strWeight),Float.valueOf(strCircle),Float.valueOf(strNumber));
 			}
-			tvResult.setText(res+"");
+			if(chooseType == R.id.tv_choose5) {
+				tvShow.setVisibility(View.GONE);
+				tvZongShu.setVisibility(View.GONE);
+				tvResult.setText("你的"+nameMap.get(chooseType)+"密度为："+res);
+			} else {
+				tvShow.setVisibility(View.VISIBLE);
+				tvZongShu.setVisibility(View.VISIBLE);
+				tvShow.setText(nameMap.get(chooseType)+"的平均密度为：1000");
+				tvResult.setText("你的"+nameMap.get(chooseType)+"密度为："+res);
+				tvZongShu.setText("你买的啥鸡巴玩意，塑料的吧！");
+			}
 			break;
 		case R.id.tv_tool_circle:
 			if(type == CHOOSE_ZHU)
@@ -99,6 +135,13 @@ public class ToolFragment extends BaseFragment {
 				ballClick.setTextColor(getResources().getColor(R.color.new_tool_color));
 				type = CHOOSE_ZHU;
 			}
+			break;
+		case R.id.tv_choose1:
+		case R.id.tv_choose2:
+		case R.id.tv_choose3:
+		case R.id.tv_choose4:
+		case R.id.tv_choose5:
+			changeBtn(v.getId());
 			break;
 		}
 	}
@@ -126,10 +169,40 @@ public class ToolFragment extends BaseFragment {
 	protected void initViews(View view) {
 		ViewUtils.inject(this, view);
 		type = CHOOSE_BALL;
+		chooseType = R.id.tv_choose1;
+		
+		changeMap = new HashMap<Integer, TextView>();
+		changeMap.put(R.id.tv_choose1, choose1);
+		changeMap.put(R.id.tv_choose2, choose2);
+		changeMap.put(R.id.tv_choose3, choose3);
+		changeMap.put(R.id.tv_choose4, choose4);
+		changeMap.put(R.id.tv_choose5, choose5);
+		
+		nameMap = new HashMap<Integer, String>();
+		nameMap.put(R.id.tv_choose1, "星月菩提");
+		nameMap.put(R.id.tv_choose2, "金刚菩提");
+		nameMap.put(R.id.tv_choose3, "小叶紫檀");
+		nameMap.put(R.id.tv_choose4, "海南黄花梨");
+		
 		mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); 
 		number.getEditView().setInputType(InputType.TYPE_CLASS_NUMBER);
 		number.getEditView().setHint("0");
+	}
+	
+	public void changeBtn(int typeId) {
+		chooseType = typeId;
+		for (int key : changeMap.keySet()) {
+			TextView view = changeMap.get(key);
+			String str = view.getText().toString();
+			if(key == typeId) {
+				view.setBackgroundResource(R.drawable.shape_tool_btn_press);
+				view.setTextColor(getResources().getColor(R.color.wite));
+			} else {
+				view.setBackgroundResource(R.drawable.shape_tool_btn_normal);
+				view.setTextColor(getResources().getColor(R.color.new_tool_color));
+			}
+		}
 	}
 
 	@Override
