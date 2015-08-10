@@ -48,6 +48,7 @@ import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DensityUtil;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.HelpUtils;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 import com.yingluo.Appraiser.view.ViewOtherTreasure;
@@ -138,7 +139,8 @@ public class ActivityUserDelails extends BaseActivity {
 	private ArrayList<String> str;
 
 	public long to_user_id = 0;
-
+	private Long uid;
+	
 	private boolean isRefresh,isLoadMore;
 	
 	@ViewInject(R.id.btn_send_comment)
@@ -239,6 +241,7 @@ public class ActivityUserDelails extends BaseActivity {
 			}
 			loaddialog = DialogUtil.createLoadingDialog(ActivityUserDelails.this, "正在收藏该宝物....");
 			loaddialog.show();
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
 			collectModel.isCollect(new onBasicView<String>() {
 
 				@Override
@@ -247,15 +250,16 @@ public class ActivityUserDelails extends BaseActivity {
 					loaddialog.dismiss();
 					detail_collect.setVisibility(View.GONE);
 					detail_cancle_collect.setVisibility(View.VISIBLE);
+					new ToastUtils(ActivityUserDelails.this, "收藏成功");
 				}
 
 				@Override
 				public void onFail(String errorCode, String errorMsg) {
 					// 收藏失败
 					loaddialog.dismiss();
-					LogUtils.i("ytmfdw==>" + errorMsg);
+					new ToastUtils(ActivityUserDelails.this, errorMsg);
 				}
-			}, entity.treasure_id);
+			}, uid,entity.treasure_id);
 
 		}
 
@@ -276,22 +280,25 @@ public class ActivityUserDelails extends BaseActivity {
 			}
 			loaddialog = DialogUtil.createLoadingDialog(ActivityUserDelails.this, "正在收藏该宝物....");
 			loaddialog.show();
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
 			collectModel.isDelete(new onBasicView<String>() {
 
 				@Override
 				public void onSucess(String data) {
 					loaddialog.dismiss();
-					// 收藏成功
+					// 取消收藏成功
 					detail_collect.setVisibility(View.VISIBLE);
 					detail_cancle_collect.setVisibility(View.GONE);
+					new ToastUtils(ActivityUserDelails.this, "取消收藏成功");
 				}
 
 				@Override
 				public void onFail(String errorCode, String errorMsg) {
 					loaddialog.dismiss();
-					LogUtils.i("ytmfdw==>" + errorMsg);
+					//取消收藏失败
+					new ToastUtils(ActivityUserDelails.this, errorMsg);
 				}
-			}, entity.treasure_id);
+			}, uid,entity.treasure_id);
 
 		}
 
@@ -312,6 +319,7 @@ public class ActivityUserDelails extends BaseActivity {
 		setContentView(R.layout.activity_user_delails);
 		ViewUtils.inject(this);
 		isRefresh = isLoadMore = false;
+		uid = SharedPreferencesUtils.getInstance().getLoginUserID();
 		entity = (CollectionTreasure) getIntent().getSerializableExtra(Const.ENTITY);
 		if (entity == null) {
 			setResult(RESULT_CANCELED, getIntent());
@@ -329,7 +337,7 @@ public class ActivityUserDelails extends BaseActivity {
 			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
 //				Toast.makeText(ActivityUserDelails.this, "下拉刷新了", Toast.LENGTH_SHORT).show();	
 				isRefresh = true;
-				infoModel.getInfoTreasure(entity.treasure_id);
+				infoModel.getInfoTreasure(uid,entity.treasure_id);
 				commentListModel.getInfoTreasure(entity.treasure_id);
 			}
 
@@ -357,7 +365,7 @@ public class ActivityUserDelails extends BaseActivity {
 		if (isFirst) {
 			loaddialog = DialogUtil.createLoadingDialog(this, "正在获取宝物详情...");
 			loaddialog.show();
-			infoModel.getInfoTreasure(entity.treasure_id);
+			infoModel.getInfoTreasure(uid,entity.treasure_id);
 			commentListModel.getInfoTreasure(entity.treasure_id);
 		}
 	}
@@ -410,7 +418,6 @@ public class ActivityUserDelails extends BaseActivity {
 
 		@Override
 		public void onBaseDataLoadErrorHappened(String errorCode, String errorMsg) {
-			// TODO Auto-generated method stub
 			if (loaddialog != null && loaddialog.isShowing()) {
 				loaddialog.dismiss();
 			}
@@ -548,7 +555,7 @@ public class ActivityUserDelails extends BaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == Const.TO_MY_INDENTITY && resultCode == RESULT_OK) {
 			new ToastUtils(this, "发表鉴定成功！");
-			infoModel.getInfoTreasure(entity.getTreasure_id());
+			infoModel.getInfoTreasure(uid,entity.getTreasure_id());
 		}
 
 	};

@@ -40,7 +40,7 @@ public class CollectTreasureByIdModel extends BaseModel {
 	 * @param lis
 	 * @param treasure_id
 	 */
-	public void isCollect(onBasicView<String> lis,long treasure_id){
+	public void isCollect(onBasicView<String> lis,long user_id,long treasure_id){
 		this.lis=lis;
 		this.treasure_id=treasure_id;
 		StringBuffer sb = new StringBuffer(url_collect);
@@ -50,6 +50,7 @@ public class CollectTreasureByIdModel extends BaseModel {
 		} else {
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
+		sb.append("&user_id=").append(user_id);
 		sb.append("&tid=").append(treasure_id);
 		url = sb.toString();
 		httpmodel=HttpMethod.GET;
@@ -62,7 +63,7 @@ public class CollectTreasureByIdModel extends BaseModel {
 	 * @param lis
 	 * @param treasure_id
 	 */
-	public void isDelete(onBasicView<String> lis,long treasure_id){
+	public void isDelete(onBasicView<String> lis,Long uid,long treasure_id){
 		this.lis=lis;
 		this.treasure_id=treasure_id;
 		StringBuffer sb = new StringBuffer(url_delete);
@@ -72,6 +73,7 @@ public class CollectTreasureByIdModel extends BaseModel {
 		} else {
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
+		sb.append("&user_id=").append(uid);
 		sb.append("&ids=").append(treasure_id);
 		url = sb.toString();
 		httpmodel=HttpMethod.GET;

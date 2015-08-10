@@ -33,7 +33,7 @@ public class collectInfoModel extends BaseModel{
 	 * @param cid 文章id
 	 * @param lis 回调
 	 */
-	public void getcollectInfo(long cid,OnStringDataLoadListener lis){
+	public void getcollectInfo(Long user_id,long cid,OnStringDataLoadListener lis){
 		this.lisntenr=lis;
 		this.cid=cid;
 		StringBuffer sb=new StringBuffer(url);
@@ -44,6 +44,7 @@ public class collectInfoModel extends BaseModel{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
 		sb.append("&cid=").append(cid);
+		sb.append("&user_id=").append(user_id);
 		url=sb.toString();
 		setHTTPMODE(HttpMethod.GET);
 		sendHttp();

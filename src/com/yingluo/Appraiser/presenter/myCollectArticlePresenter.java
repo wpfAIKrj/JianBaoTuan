@@ -22,9 +22,9 @@ public class myCollectArticlePresenter implements OnListDataLoadListener<Content
 		this.mView=view;
 	}
 	
-	public void getArticleList(String type,int group_size){
+	public void getArticleList(long uid,int group_size){
 		model=new getCollectArticleModel();
-		model.getArticleList(type, group_size, this);
+		model.getArticleList(uid, group_size, this);
 		model.addRequestParams();
 		model.setHTTPMODE(HttpMethod.GET);
 		model.sendHttp();

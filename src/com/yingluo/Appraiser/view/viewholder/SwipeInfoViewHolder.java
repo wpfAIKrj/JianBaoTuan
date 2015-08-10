@@ -62,7 +62,7 @@ public class SwipeInfoViewHolder extends RecyclerView.ViewHolder {
 			BitmapsUtils.getInstance().display(logo, contentinfo.getImage(),logo.getMeasuredWidth(),logo.getMeasuredHeight());
 			logo.setTag(contentinfo);
 		}	
-		number.setText(""+contentinfo.getView_times());
+		number.setText(contentinfo.getView_times()+"人浏览");
 	}
 
 

@@ -51,8 +51,9 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 		url = sb.toString();
 	}
 
-	public void getInfoTreasure(long treasure_id) {
+	public void getInfoTreasure(Long uid,long treasure_id) {
 		StringBuffer sb = new StringBuffer(url);
+		sb.append("&user_id=").append(uid);
 		sb.append("&id=").append(treasure_id);
 		url = sb.toString();
 		setHTTPMODE(HttpMethod.GET);

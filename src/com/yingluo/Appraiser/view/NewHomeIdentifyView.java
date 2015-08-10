@@ -67,6 +67,8 @@ public class NewHomeIdentifyView extends RelativeLayout {
 			key.name = kind.getName();
 			key.type = i;
 		}
-		tllIdentify.addTag(key);
+		if(length != 0) {
+			tllIdentify.addTag(key);
+		}
 	}
 }

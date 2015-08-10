@@ -41,6 +41,7 @@ import com.yingluo.Appraiser.ui.adapter.MyArticleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ListLoadType;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
 import de.greenrobot.event.EventBus;
@@ -187,7 +188,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 					sb.append(string).append(",");
 				}
 				sb.deleteCharAt(sb.length() - 1);
-				deletePresenter.deleteInfo(String.valueOf(sb.toString()));
+				Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+				deletePresenter.deleteInfo(uid,String.valueOf(sb.toString()));
 				ismodel = false;
 			} else {
 				new ToastUtils(this, "请选择后在点击删除按钮");
@@ -273,7 +275,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 		madapter.setFootType(2);
 		madapter.notifyItemChanged(list.size());
 		int foot = mRecyclerView.getChildCount();
-		myPresenter.getArticleList("0", length);
+		Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+		myPresenter.getArticleList(uid, length);
 	}
 
 	public void onLoadMore() {
@@ -283,7 +286,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 		mRecyclerView.refreshOver(null);
 		madapter.setFootType(1);
 		madapter.notifyDataSetChanged();
-		myPresenter.getArticleList("0", (length + 1));
+		Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+		myPresenter.getArticleList(uid, (length + 1));
 	}
 
 	private deleteItemlistener<ContentInfo> deleteItemlistener = new deleteItemlistener<ContentInfo>() {
@@ -292,7 +296,8 @@ public class FavoriteArticlesActivity extends BaseActivity implements onListView
 		public void ondeleteItem(ContentInfo item, int id) {
 			dialogLoad.show();
 			deleteInfos.put(String.valueOf(item.getId()), id);
-			deletePresenter.deleteInfo(String.valueOf(item.getId()));
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+			deletePresenter.deleteInfo(uid,String.valueOf(item.getId()));
 
 		}
 	};

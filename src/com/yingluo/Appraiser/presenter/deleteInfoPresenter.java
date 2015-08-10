@@ -22,9 +22,9 @@ public class deleteInfoPresenter implements OnStringDataLoadListener{
 	}
 	
 	
-	public void deleteInfo(String cids){
+	public void deleteInfo(Long uid,String cids){
 		model=new deleteInfoModel();
-		model.deletetInfo(cids, this);
+		model.deletetInfo(uid,cids, this);
 		model.addRequestParams();
 		model.setHTTPMODE(HttpMethod.GET);
 		model.sendHttp();

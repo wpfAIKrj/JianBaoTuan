@@ -35,6 +35,7 @@ import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.FileUtils;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
 /**
@@ -53,6 +54,7 @@ public class InformationDetailsActivity extends BaseActivity {
 
 	@ViewInject(R.id.detail_cancle_collect)
 	private ImageView canclecollect;
+	
 	@ViewInject(R.id.title)
 	private TextView title;
 
@@ -103,7 +105,8 @@ public class InformationDetailsActivity extends BaseActivity {
 		super.onStart();
 		if (isFirest) {
 			isFirest = false;
-			getdetailPresenter.getDetailInfo(info.getId());
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+			getdetailPresenter.getDetailInfo(uid,info.getId());
 			loaddialog2 = DialogUtil.createLoadingDialog(this, "获取详细文章中....");
 			loaddialog2.show();
 		}
@@ -182,7 +185,8 @@ public class InformationDetailsActivity extends BaseActivity {
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
-			collectPresenter.collectInfo(info.getId());
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+			collectPresenter.collectInfo(uid,info.getId());
 			loaddialog = DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
 			loaddialog.show();
 		}
@@ -202,7 +206,8 @@ public class InformationDetailsActivity extends BaseActivity {
 			if (dialog1 != null) {
 				dialog1.dismiss();
 			}
-			deletePresenter.deleteInfo(String.valueOf(info.getId()));
+			Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+			deletePresenter.deleteInfo(uid,String.valueOf(info.getId()));
 			loaddialog3 = DialogUtil.createLoadingDialog(InformationDetailsActivity.this, "正在收藏该文章....");
 			loaddialog3.show();
 		}

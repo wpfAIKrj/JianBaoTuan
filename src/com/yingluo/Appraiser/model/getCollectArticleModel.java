@@ -25,12 +25,9 @@ public class getCollectArticleModel extends BaseModel{
 
 	private OnListDataLoadListener<ContentInfo> lisntenr;
 	
-	private String type;
-	private int group_id;
-	public void getArticleList(String type, int group_id ,OnListDataLoadListener<ContentInfo> lis){
+	public void getArticleList(Long uid, int group_size ,OnListDataLoadListener<ContentInfo> lis){
 		this.lisntenr=lis;
-		this.type=type;
-		this.group_id=group_id;
+		
 		StringBuffer sb=new StringBuffer(url);
 		sb.append(NetConst.GETCOLLECTINFO);
 		if(NetConst.SESSIONID!=null){
@@ -38,7 +35,8 @@ public class getCollectArticleModel extends BaseModel{
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
-		sb.append("&length=").append(String.valueOf(group_id));
+		sb.append("&user_id=").append(uid);
+		sb.append("&length=").append(String.valueOf(group_size));
 		url=sb.toString();
 	}
 	

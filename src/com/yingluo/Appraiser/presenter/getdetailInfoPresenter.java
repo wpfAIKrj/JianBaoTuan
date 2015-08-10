@@ -20,9 +20,9 @@ public class getdetailInfoPresenter implements OnBasicDataLoadListener<ContentIn
 		mview=listener1;
 	}
 	
-	public void getDetailInfo(long info_id){
+	public void getDetailInfo(Long user_id,long info_id){
 		model=new getdetailInfoModel();
-		model.getDetailInfo(info_id,this);
+		model.getDetailInfo(user_id,info_id,this);
 	}
 	
 

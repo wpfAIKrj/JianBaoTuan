@@ -49,21 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/imageView2"
+                android:layout_toLeftOf="@+id/article_number"
+                android:layout_marginRight="@dimen/x30"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="何为三界偷拍"
                 android:textColor="@color/ed_login_color"
                 android:textSize="@dimen/x28" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/x10"
-                android:layout_toLeftOf="@+id/article_number"
-                android:src="@drawable/point_bg" />
 
             <TextView
                 android:id="@+id/article_number"

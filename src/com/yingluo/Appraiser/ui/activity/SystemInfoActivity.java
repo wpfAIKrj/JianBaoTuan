@@ -42,6 +42,7 @@ import com.yingluo.Appraiser.ui.adapter.SystemInfoAdapter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
 import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.ListLoadType;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 
@@ -188,7 +189,8 @@ public class SystemInfoActivity extends BaseActivity implements ListviewLoadList
 					sb.append(string).append(",");
 				}
 				sb.deleteCharAt(sb.length() - 1);
-				deletePresenter.deleteInfo(String.valueOf(sb.toString()));
+				Long uid = SharedPreferencesUtils.getInstance().getLoginUserID();
+				deletePresenter.deleteInfo(uid,String.valueOf(sb.toString()));
 			} else {
 				new ToastUtils(this, "请选择后在点击删除按钮");
 			}

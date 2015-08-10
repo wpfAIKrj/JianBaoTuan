@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/y88"
-    android:background="@color/home_head_color"
+    android:background="@color/wite"
     android:orientation="horizontal" >
 
     <ImageView

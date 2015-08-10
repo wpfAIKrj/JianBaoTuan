@@ -44,7 +44,7 @@ public class getdetailInfoModel extends BaseModel {
 		lis.onBaseDataLoadErrorHappened(error, msg);
 	}
 
-	public void getDetailInfo(long info_id,OnBasicDataLoadListener<ContentInfo> lis) {
+	public void getDetailInfo(Long user_id,long info_id,OnBasicDataLoadListener<ContentInfo> lis) {
 		// TODO Auto-generated method stub
 		this.lis=lis;
 		id=info_id;
@@ -55,6 +55,7 @@ public class getdetailInfoModel extends BaseModel {
 		}else{
 			sb.append("?").append(NetConst.SID).append("=").append("");
 		}
+		sb.append("&user_id=").append(user_id);
 		sb.append("&id=").append(id);
 		url=sb.toString();
 		httpmodel=HttpMethod.GET;

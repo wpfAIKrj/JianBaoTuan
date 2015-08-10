@@ -21,9 +21,9 @@ public class collectInfoPresenter implements OnStringDataLoadListener{
 	}
 	
 	
-	public void collectInfo(long cid){
+	public void collectInfo(Long user_id,long cid){
 		model=new collectInfoModel();
-		model.getcollectInfo(cid, this);
+		model.getcollectInfo(user_id,cid, this);
 	}
 	
 	

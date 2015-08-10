@@ -33,7 +33,7 @@ public class deleteInfoModel extends BaseModel{
 	 * @param cids 文章id合计
 	 * @param lis 回调
 	 */
-	public void deletetInfo(String cids,OnStringDataLoadListener lis){
+	public void deletetInfo(Long uid,String cids,OnStringDataLoadListener lis){
 		this.lisntenr=lis;
 		this.cid=cid;
 		StringBuffer sb=new StringBuffer(url);
@@ -43,6 +43,7 @@ public class deleteInfoModel extends BaseModel{
 		}
 		
 		sb.append("&ids=").append(cids);
+		sb.append("&user_id=").append(uid);
 		url=sb.toString();
 		setHTTPMODE(HttpMethod.GET);
 		
