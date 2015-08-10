@@ -3,6 +3,8 @@ package com.yingluo.Appraiser.ui.activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -42,6 +44,9 @@ public class ActivityIdentifyByMe extends BaseActivity {
 	@ViewInject(R.id.tag_layout)
 	private TagLinearLayout taglayout;
 
+	@ViewInject(R.id.tv_number_me)
+	private TextView number;
+	
 	private CollectionTreasure entity;
 	private TreasureType type = null;// 宝贝分类
 	private Dialog loaddialog;
@@ -61,6 +66,28 @@ public class ActivityIdentifyByMe extends BaseActivity {
 		setContentView(R.layout.activity_indentify_by_me);
 		ViewUtils.inject(this);
 		sendModel = new sendTreasureIdentityModel(netlistener);
+		ed_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String themsg = ed_text.getText().toString();
+
+                if (themsg.length() <= 200) {
+                    number.setText(themsg.length() + "/200");
+                } else {
+                	ed_text.setText(themsg.subSequence(0, 200));
+                	ed_text.setSelection(200);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 		initView();
 
 	}
@@ -96,7 +123,14 @@ public class ActivityIdentifyByMe extends BaseActivity {
 			if (type != null) {
 				String comment = ed_text.getText().toString();
 				if (comment != null && !comment.isEmpty()) {
-					sendIdentity(entity.treasure_id, type.id, type.name, comment);
+					if(comment.length()<14) {
+						new ToastUtils(ActivityIdentifyByMe.this, R.string.help_msg_19);
+					} else if(comment.length()>200) {
+						new ToastUtils(ActivityIdentifyByMe.this, R.string.help_msg_20);
+					} else {
+						sendIdentity(entity.treasure_id, type.id, type.name, comment);
+					}
+					
 				} else {
 					new ToastUtils(this, R.string.help_msg_13);
 				}

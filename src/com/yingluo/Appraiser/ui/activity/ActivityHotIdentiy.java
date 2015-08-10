@@ -68,14 +68,14 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 	@ViewInject(R.id.context)
 	private WebView context;
 
-	
-
+	//两个不同的切换
 	@ViewInject(R.id.btn_identifing)
 	ViewGroup btn_identifing;
 	@ViewInject(R.id.btn_identified)
 	ViewGroup btn_identified;
 
 	CollectionTreasure entity;
+	
 	UserInfo userinfo;
 
 	@ViewInject(R.id.btn_msg)
