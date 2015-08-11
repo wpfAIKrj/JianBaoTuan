@@ -12,7 +12,6 @@ import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.GetImageTokenModel;
-import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.model.IdentifyModel;
 import com.yingluo.Appraiser.model.getAllKind_X_Model;
 import com.yingluo.Appraiser.utils.FileUtils;
@@ -36,27 +35,6 @@ public class HomeService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d("server is running", "onStartCommand");
-		final HomeModel homeModel = new HomeModel();
-		homeModel.sendHttp(new CommonCallBack() {
-
-			@Override
-			public void onSuccess() {
-				((ItApplication) getApplication()).setHomeEntity(homeModel.getResult());
-			}
-
-			@Override
-			public void onError() {
-				String str = FileUtils.getInstance().getJsonStringForJson(FileUtils.JSON_HOME);
-				if (str != null) {
-					try {
-						homeModel.analyzeData(str);
-						((ItApplication) getApplication()).setHomeEntity(homeModel.getResult());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
 
 		final IdentifyModel identify = new IdentifyModel();
 		identify.sendHttp(new CommonCallBack() {

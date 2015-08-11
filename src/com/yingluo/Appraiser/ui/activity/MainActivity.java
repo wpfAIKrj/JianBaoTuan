@@ -48,7 +48,6 @@ import com.yingluo.Appraiser.inter.onListView;
 import com.yingluo.Appraiser.presenter.ExitPresenter;
 import com.yingluo.Appraiser.presenter.UploadLogoPresenter;
 import com.yingluo.Appraiser.ui.dialog.SelectPhotoDialog;
-import com.yingluo.Appraiser.ui.fragment.HomeFragment;
 import com.yingluo.Appraiser.ui.fragment.ToolFragment;
 import com.yingluo.Appraiser.ui.fragment.InformationFragment;
 import com.yingluo.Appraiser.ui.fragment.MyFragment;
@@ -75,7 +74,6 @@ import de.greenrobot.event.EventBus;
 public class MainActivity extends FragmentActivity implements OnTabSelectedListener,AskNetWorkCallBack {
 
 	private FragmentManager mFragmentManager;
-	private HomeFragment mHomeFragment;
 	private NewHomeFragment mNewHomeFragment;
 	
 	private ToolFragment mToolFragment;

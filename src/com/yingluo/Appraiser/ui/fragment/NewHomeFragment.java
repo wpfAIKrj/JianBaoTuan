@@ -51,7 +51,6 @@ import com.yingluo.Appraiser.http.ResponseBanner;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.model.CommonCallBack;
-import com.yingluo.Appraiser.model.HomeModel;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivityIdentifyByMe;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
