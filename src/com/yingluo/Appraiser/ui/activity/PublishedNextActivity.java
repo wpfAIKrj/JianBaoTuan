@@ -63,11 +63,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 	@ViewInject(R.id.threed_layout)
 	private LinearLayout threadlayout;
 
-	@ViewInject(R.id.other_layout)
-	private View other_layout;
-	@ViewInject(R.id.checkBox1)
-	private CheckBox otherbox;
-
 	private TreasureType type = null;// 选择的宝物
 
 	private CheckBox[] checkboxs;
@@ -209,7 +204,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 		}
 	};
 
-	@OnCompoundButtonCheckedChange({ R.id.checkBox1 })
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		if (isChecked) {
 			select_user = 4;
@@ -240,7 +234,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 					list.add(each);
 				}
 			}
-			other_layout.setVisibility(View.VISIBLE);
 			threadlayout.removeAllViews();
 			checkboxs = new CheckBox[list.size()];
 			for (int i = 0; i < list.size(); i++) {
@@ -271,7 +264,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 
 		@Override
 		public void onSucess(String data) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}
@@ -283,7 +275,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 
 		@Override
 		public void onFail(String errorCode, String errorMsg) {
-			// TODO 自动生成的方法存根
 			if (dialog != null) {
 				dialog.dismiss();
 			}
@@ -295,7 +286,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
 		ResponseToken rt = new Gson().fromJson(msg, ResponseToken.class);
 		if(rt.getCode()==100000) {
-			Toast.makeText(this, "更新token"+rt.getData().getToken(), Toast.LENGTH_SHORT).show();
 			NetConst.UPTOKEN= rt.getData().getToken();
 		}
 	}

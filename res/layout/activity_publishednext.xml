@@ -82,15 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x14"
             android:layout_marginRight="@dimen/x14"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
         </LinearLayout>
-
-        <include
-            android:id="@+id/other_layout"
-            layout="@layout/item_identy_select"
-            android:paddingLeft="@dimen/detail_text_padd"
-            android:paddingRight="@dimen/detail_text_padd"
-            android:visibility="visible" />
 
         <Button
             android:id="@+id/send_identy"

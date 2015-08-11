@@ -27,19 +27,16 @@ public class identiySelectAdapter extends Adapter {
 	private static final int TYPE_ITEM = 0;
 	private static final int TYPE_FOOTER = 1;
 	public identiySelectAdapter(ArrayList<UserInfo> list) {
-		// TODO Auto-generated constructor stub
 		this.list=list;
 	}
 	
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
-		return list.size()+1;
+		return list.size();
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		// TODO Auto-generated method stub
 		if (position + 1 == getItemCount()) {
 			return TYPE_FOOTER;
 		} else {
@@ -49,7 +46,6 @@ public class identiySelectAdapter extends Adapter {
 	
 	@Override
 	public void onBindViewHolder(ViewHolder arg0, int arg1) {
-		// TODO Auto-generated method stub
 		if(arg0 instanceof IdentiyViewHolder){
 				IdentiyViewHolder iv=(IdentiyViewHolder) arg0;
 				iv.showData(list.get(arg1));
@@ -63,10 +59,7 @@ public class identiySelectAdapter extends Adapter {
 
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup arg0, int arg1) {
-		// TODO Auto-generated method stub
 		if(arg1==TYPE_FOOTER){
-			View view=LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identy_select, arg0, false);
-			return new ChangIdentiyViewHolder(view);
 		}
 		if(arg1==TYPE_ITEM){
 			View view=LayoutInflater.from(arg0.getContext()).inflate(R.layout.item_identy_people, arg0, false);
@@ -76,7 +69,6 @@ public class identiySelectAdapter extends Adapter {
 	}
 
 	public void addListData(ArrayList<UserInfo> data) {
-		// TODO 自动生成的方法存根
 		list=data;
 		notifyDataSetChanged();
 	}

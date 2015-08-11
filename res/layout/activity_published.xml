@@ -24,50 +24,7 @@
         android:layout_height="@dimen/y1"
         android:background="@color/item_space_color" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x14"
-        android:orientation="vertical" >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/y30"
-            android:gravity="center_vertical"
-            android:text="请判断宝贝类型"
-            android:textColor="@color/ed_login_color"
-            android:textSize="@dimen/x30" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/y10"
-            android:paddingTop="@dimen/y10" >
-
-            <ImageView
-                android:id="@+id/published_bt"
-                android:layout_width="@dimen/y70"
-                android:layout_height="@dimen/y70"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/published_bt_bg" />
-
-            <com.yingluo.Appraiser.view.TagLinearLayout
-                android:id="@+id/tag_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/x30" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y1"
-        android:layout_marginTop="@dimen/y30"
-        android:background="@color/item_space_color" />
+   
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -211,13 +168,53 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x14"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y30"
+            android:gravity="center_vertical"
+            android:text="宝贝类别"
+            android:textColor="@color/ed_login_color"
+            android:textSize="@dimen/x30" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/y10"
+            android:background="@color/home_head_color"
+            android:paddingTop="@dimen/y10" >
+
+            <com.yingluo.Appraiser.view.TagLinearLayout
+                android:id="@+id/tag_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/published_bt"
+                android:layout_marginRight="@dimen/x30" />
+            
+            <ImageView
+                android:id="@+id/published_bt"
+                android:layout_width="@dimen/y70"
+                android:layout_height="@dimen/y70"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/x20"
+                android:src="@drawable/published_bt_bg" />
+        </RelativeLayout>
+    </LinearLayout>
+    
     <Button
         android:id="@+id/bt_next"
         style="@style/bt_login_style"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y100"
-        android:layout_marginLeft="@dimen/x14"
-        android:layout_marginRight="@dimen/x14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/y100"
         android:text="下一步" />
 
