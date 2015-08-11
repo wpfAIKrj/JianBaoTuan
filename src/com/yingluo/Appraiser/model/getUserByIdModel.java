@@ -49,7 +49,6 @@ public class getUserByIdModel extends BaseModel {
 
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject(data);
 		if (json != null) {
 			user = new UserInfo();

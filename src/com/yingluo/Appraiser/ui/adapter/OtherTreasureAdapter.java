@@ -5,17 +5,13 @@ import java.util.List;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.yingluo.Appraiser.R;
-import com.yingluo.Appraiser.bean.CollectionTreasure;
-import com.yingluo.Appraiser.bean.TreasureEntity;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
-import com.yingluo.Appraiser.view.home.ViewHots;
 import com.yingluo.Appraiser.view.viewholder.OtherViewHolder;
 
 /**
@@ -27,13 +23,6 @@ public class OtherTreasureAdapter extends RecyclerView.Adapter<OtherViewHolder> 
 	private List<HomeItem> hots;
 	private Context context;
 	private ClickTabListener listener;
-	private int type;
-	
-	public OtherTreasureAdapter(Context context,List<HomeItem> list,ClickTabListener listener) {
-		this.context = context;
-		this.hots = list;
-		this.listener = listener;
-	}
 
 	public OtherTreasureAdapter(Context context,ClickTabListener listener) {
 		this.context = context;
@@ -62,8 +51,7 @@ public class OtherTreasureAdapter extends RecyclerView.Adapter<OtherViewHolder> 
 	@Override
 	public void onBindViewHolder(OtherViewHolder holder, int position) {
 		HomeItem item = hots.get(position);
-		holder.setItem(type,item);
-
+		holder.setItem(item);
 	}
 
 	@Override

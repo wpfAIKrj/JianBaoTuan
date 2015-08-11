@@ -2,9 +2,6 @@ package com.yingluo.Appraiser.view;
 
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
@@ -23,6 +20,7 @@ public class NewHomeIdentifyView extends RelativeLayout {
 	private CircleImageView head;
 	private TextView tvName,tvIntroduction,tvSay;
 	private TagLinearLayout tllIdentify;
+	private RelativeLayout rlIndentify;
 	
 	public NewHomeIdentifyView(Context context) {
 		this(context,null);
@@ -35,6 +33,7 @@ public class NewHomeIdentifyView extends RelativeLayout {
 	public NewHomeIdentifyView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		View view = LayoutInflater.from(context).inflate(R.layout.new_has_identify, this, true); 
+		rlIndentify = (RelativeLayout) view.findViewById(R.id.rl_identify_head);
 		head = (CircleImageView) view.findViewById(R.id.tv_home_arrow);
 		tvName = (TextView) view.findViewById(R.id.tv_identifyer_name);
 		tvIntroduction = (TextView) view.findViewById(R.id.tv_identifyer_introduction);
@@ -42,18 +41,15 @@ public class NewHomeIdentifyView extends RelativeLayout {
 		tllIdentify = (TagLinearLayout) view.findViewById(R.id.tll_identify_tag);	 	 
 	}
 	
-	public void setItem(Appraiser appraiser) {
-		tvName.setText(appraiser.getUser_name());
-		tvIntroduction.setText(appraiser.getUser_description());
-		tvSay.setText(appraiser.getAppraisal_data());
-		
-		//设置头像
-		if(appraiser.getUser_portrait() != null) {
-			String urlArrow = BitmapsUtils.makeQiNiuRrl(appraiser.getUser_portrait() , 80, 80);
-			BitmapsUtils.getInstance().display(head, urlArrow, BitmapsUtils.TYPE_YES);
-		}
-				
-		List<kinds> kinds = appraiser.getKinds();
+	public void setHeadGone() {
+		rlIndentify.setVisibility(View.GONE);
+	}
+	
+	public void setTitle(String title) {
+		tvSay.setText(title);
+	}
+	
+	public void setKinds(List<kinds> kinds) {
 		int length = kinds.size();
 		TreasureType key = new TreasureType();
 		for (int i = 0; i < length; i++) {
@@ -70,5 +66,21 @@ public class NewHomeIdentifyView extends RelativeLayout {
 		if(length != 0) {
 			tllIdentify.addTag(key);
 		}
+	}
+	
+	public void setItem(Appraiser appraiser) {
+		rlIndentify.setVisibility(View.VISIBLE);
+		tvName.setText(appraiser.getUser_name());
+		tvIntroduction.setText(appraiser.getUser_description());
+		tvSay.setText(appraiser.getAppraisal_data());
+		
+		//设置头像
+		if(appraiser.getUser_portrait() != null) {
+			String urlArrow = BitmapsUtils.makeQiNiuRrl(appraiser.getUser_portrait() , 80, 80);
+			BitmapsUtils.getInstance().display(head, urlArrow, BitmapsUtils.TYPE_YES);
+		}
+				
+		List<kinds> kinds = appraiser.getKinds();
+		setKinds(kinds);
 	}
 }

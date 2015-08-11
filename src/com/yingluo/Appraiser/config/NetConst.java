@@ -116,6 +116,9 @@ public class NetConst {
 	
 	public static final String TOKEN = "Home/qiniuTokenAction"; //获取上传图片的token
 	
+	public static final String HES_BABY = "Home/otherTreasuresAction"; //他的宝物列表
+	public static final String HES_IDENTIFY = "Home/otherTreasureListAction"; //他的鉴定列表
+	
 	public static CookieStore COOKIESTORE = null;// 初始化为null
 
 	public static String SESSIONID = null;// 默认为空 注册登陆后赋值

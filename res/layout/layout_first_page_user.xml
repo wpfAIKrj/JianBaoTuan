@@ -76,6 +76,14 @@
             android:layout_height="match_parent"
             android:cacheColorHint="@null"
             android:scrollbars="vertical" />
+        
+        <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
+            android:id="@+id/recyclerview_identify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:visibility="gone"
+            android:scrollbars="vertical" />
 
         <WebView
             android:id="@+id/context"
