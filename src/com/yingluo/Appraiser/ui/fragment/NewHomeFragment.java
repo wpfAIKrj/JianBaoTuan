@@ -48,6 +48,7 @@ import com.yingluo.Appraiser.http.ResponseGood;
 import com.yingluo.Appraiser.http.ResponseNewHome;
 import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.http.ResponseBanner;
+import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.model.HomeModel;
@@ -338,9 +339,6 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 			CollectionTreasure entity = new CollectionTreasure();
 			Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
 			entity.setUser_id(Long.valueOf(item.getUser_id()));
-			entity.setAuthName(item.getUser_name());
-			entity.setAuthImage(item.getUser_portrait());
-			entity.setCompany("");
 			mIntent.putExtra(Const.ENTITY, entity);
 			mActivity.startActivity(mIntent);
 			mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
@@ -372,6 +370,16 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 		}
 	}
 
+	@Override
+	public void click(Appraiser appraiser) {
+		// 点击了权威鉴定的头像
+		CollectionTreasure entity = new CollectionTreasure();
+		Intent mIntent = new Intent(mActivity, ActivityHotIdentiy.class);
+		entity.setUser_id(Long.valueOf(appraiser.getUser_id()));
+		mIntent.putExtra(Const.ENTITY, entity);
+		mActivity.startActivity(mIntent);
+		mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
 	@Override
 	public void sendMessage(String message) {
 		if (ItApplication.getcurrnUser() != null) {

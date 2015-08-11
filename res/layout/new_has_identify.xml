@@ -48,15 +48,7 @@
         android:layout_marginRight="@dimen/x20"
         android:background="@color/new_line_color"/>
     
-    <ImageView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/iv_identify_line"
-        android:layout_marginTop="@dimen/y10"
-        android:layout_marginRight="@dimen/x10"
-        android:src="@drawable/quanwei"
-        />
+    
     <TextView 
         android:id="@+id/tv_identifer_say"
         android:layout_below="@+id/iv_identify_line"
@@ -78,6 +70,17 @@
         android:layout_marginLeft="@dimen/x20"
         android:layout_marginRight="@dimen/y20"
          />
+    
+    <ImageView 
+        android:id="@+id/iv_identify_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/iv_identify_line"
+        android:layout_marginTop="@dimen/y10"
+        android:layout_marginRight="@dimen/x10"
+        android:src="@drawable/quanwei"
+        />
     
     <View 
         android:layout_below="@+id/tll_identify_tag"

@@ -2,16 +2,19 @@ package com.yingluo.Appraiser.view;
 
 import java.util.List;
 
+import com.lidroid.xutils.view.annotation.event.OnChildClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.kinds;
+import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +24,9 @@ public class NewHomeIdentifyView extends RelativeLayout {
 	private TextView tvName,tvIntroduction,tvSay;
 	private TagLinearLayout tllIdentify;
 	private RelativeLayout rlIndentify;
+	private ClickTabListener listener;
+	private Appraiser appraiser;
+	private ImageView icon;
 	
 	public NewHomeIdentifyView(Context context) {
 		this(context,null);
@@ -37,8 +43,24 @@ public class NewHomeIdentifyView extends RelativeLayout {
 		head = (CircleImageView) view.findViewById(R.id.tv_home_arrow);
 		tvName = (TextView) view.findViewById(R.id.tv_identifyer_name);
 		tvIntroduction = (TextView) view.findViewById(R.id.tv_identifyer_introduction);
-		tvSay = (TextView) view.findViewById(R.id.tv_identifer_say);		
-		tllIdentify = (TagLinearLayout) view.findViewById(R.id.tll_identify_tag);	 	 
+		tvSay = (TextView) view.findViewById(R.id.tv_identifer_say);	
+		icon = (ImageView) view.findViewById(R.id.iv_identify_icon);
+		tllIdentify = (TagLinearLayout) view.findViewById(R.id.tll_identify_tag);	
+		head.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				listener.click(appraiser);
+			}
+		});
+	}
+	
+	public void setIconHidden(boolean hiden) {
+		if(hiden) {
+			icon.setVisibility(View.GONE);
+		} else {
+			icon.setVisibility(View.VISIBLE);
+		}
 	}
 	
 	public void setHeadGone() {
@@ -68,7 +90,12 @@ public class NewHomeIdentifyView extends RelativeLayout {
 		}
 	}
 	
+	public void setListener(ClickTabListener listener) {
+		this.listener = listener;
+	}
+	
 	public void setItem(Appraiser appraiser) {
+		this.appraiser = appraiser;
 		rlIndentify.setVisibility(View.VISIBLE);
 		tvName.setText(appraiser.getUser_name());
 		tvIntroduction.setText(appraiser.getUser_description());

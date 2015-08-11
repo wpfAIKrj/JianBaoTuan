@@ -40,6 +40,7 @@ import com.yingluo.Appraiser.http.ResponseNewHome;
 import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.http.ResponseMyIdentify;
 import com.yingluo.Appraiser.http.ResponseMyIdentify.userIdentify;
+import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
@@ -402,6 +403,17 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 		}
 	};
 
+	@Override
+	public void click(Appraiser appraiser) {
+		//点击了权威鉴定的头像
+		CollectionTreasure entity = new CollectionTreasure();
+		Intent mIntent = new Intent(ActivityHotIdentiy.this, ActivityHotIdentiy.class);
+		entity.setUser_id(Long.valueOf(appraiser.getUser_id()));
+		mIntent.putExtra(Const.ENTITY, entity);
+		startActivity(mIntent);
+		overridePendingTransition(R.anim.left_in, R.anim.left_out);
+	}
+	
 	@Override
 	public void click(HomeItem item, int type) {
 

@@ -54,11 +54,6 @@ public class OtherViewHolder extends ViewHolder{
 		commit.clear();
 	}
 	
-	@OnClick({R.id.tv_home_arrow}) 
-	public void clickMyView(View view) {
-		this.listener.click(item, NewHomeListAdapter.TYPE_HEAD);
-	}
-	
 	public void setItem(HomeItem item) {
 		
 		this.item = item;
@@ -88,6 +83,7 @@ public class OtherViewHolder extends ViewHolder{
 			identify.setVisibility(View.GONE);
 			hasIdentify.setVisibility(View.VISIBLE);
 			if(item.getAppraiser() != null) {
+				hasIdentify.setListener(listener);
 				hasIdentify.setItem(item.getAppraiser());
 			}  
 			if(item.getComments().size() == 0) {

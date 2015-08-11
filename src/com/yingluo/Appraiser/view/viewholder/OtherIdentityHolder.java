@@ -54,6 +54,12 @@ public class OtherIdentityHolder extends ViewHolder{
 		hasIdentify.setHeadGone();
 		hasIdentify.setTitle(item.getAppraisal_data());
 		hasIdentify.setKinds(item.getKinds());
+		if(item.getIs_authority().equals("0")) {
+			hasIdentify.setIconHidden(true);
+		} else {
+			hasIdentify.setIconHidden(false);
+		}
+		
 	}
 
 }

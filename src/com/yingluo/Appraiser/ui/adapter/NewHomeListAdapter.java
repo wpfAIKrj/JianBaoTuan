@@ -3,6 +3,7 @@ package com.yingluo.Appraiser.ui.adapter;
 import java.util.List;
 
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.view.viewholder.NewItemViewHolder;
 
@@ -35,12 +36,15 @@ public class NewHomeListAdapter extends BaseAdapter {
 	public static final int TYPE_IDENTIFY = 20;
 	public static final int TYPE_COMMIT = 30;
 	public static final int TYPE_SHARE = 40;
+	public static final int TYPE_IDENTIFY_HEAD = 50;
 	
 	public interface ClickTabListener {
 		/**
 		 * 点击底部的不同的按钮
 		 */
 		public void click(HomeItem item,int type);
+		
+		public void click(Appraiser appraiser);
 		
 	}
 	

@@ -152,6 +152,7 @@ public class NewItemViewHolder extends ViewHolder {
 			identify.setVisibility(View.GONE);
 			hasIdentify.setVisibility(View.VISIBLE);
 			if(item.getAppraiser() != null) {
+				hasIdentify.setListener(listener);
 				hasIdentify.setItem(item.getAppraiser());
 			}  
 			if(item.getComments().size() == 0) {
