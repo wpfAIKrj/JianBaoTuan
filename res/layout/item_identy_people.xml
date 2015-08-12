@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/wite"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/rl_zhuanjia"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <com.yingluo.Appraiser.view.CircleImageView
@@ -24,7 +24,7 @@
             app:border_width="@dimen/x1" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/user_logo"
             android:layout_centerHorizontal="true" >

@@ -45,40 +45,26 @@ public class getRandomInfoModel extends BaseModel{
 	
 	}
 	
-	
-
 	@Override
 	public void onFailureForString(String error, String msg) {
 		lisntenr.onListDataLoadErrorHappened(error, msg);
 	}
 
-
-
-
 	@Override
 	public void setHTTPMODE(HttpMethod httpmodel) {
-		// TODO Auto-generated method stub
 		this.httpmodel=httpmodel;
 	}
 
-
-
-
 	@Override
 	public void analyzeData(String data) throws Exception {
-		// TODO Auto-generated method stub
 		Gson gson=new Gson();
 		ArrayList<UserInfo> users=new ArrayList<UserInfo>();
-			JSONArray array=new JSONArray(data);
-			for (int i = 0; i < array.length(); i++) {
-				UserInfo user=gson.fromJson(array.getString(0), UserInfo.class);
-				users.add(user);
-				lisntenr.onListDataLoaded(users);
-			}
+		JSONArray array=new JSONArray(data);
+		for (int i = 0; i < array.length(); i++) {
+			UserInfo user=gson.fromJson(array.getString(0), UserInfo.class);
+			users.add(user);	
+		}
+		lisntenr.onListDataLoaded(users);
 	}
-
-
-
-	
 	
 }
