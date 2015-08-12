@@ -1,20 +1,24 @@
 package com.yingluo.Appraiser.ui.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,8 +69,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 
 	private TreasureType type = null;// 选择的宝物
 
-	private CheckBox[] checkboxs;
-
 	private ArrayList<UserInfo> list;
 
 	private int select_user = -1;
@@ -84,12 +86,16 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 	
 	private AskNetWork askNet;
 	
+	private List<RelativeLayout> allZhuanJia;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_publishednext);
 		ViewUtils.inject(this);
 		list = new ArrayList<UserInfo>();
+		allZhuanJia = new ArrayList<RelativeLayout>();
+		
 		title.setText(R.string.publish_title);
 		type = (TreasureType) getIntent().getSerializableExtra(Const.KIND_ID);
 		if (type == null) {
@@ -187,35 +193,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 		mypresenter.startSendTreasure(user, type, context, imageAll, imageTest);
 	}
 
-	private OnCheckedChangeListener listener = new OnCheckedChangeListener() {
-
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			if (isChecked) {
-				for (int i = 0; i < checkboxs.length; i++) {
-					CheckBox box = checkboxs[i];
-					if (box == buttonView) {
-						select_user = i;
-					} else {
-						box.setChecked(false);
-					}
-				}
-			}
-		}
-	};
-
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if (isChecked) {
-			select_user = 4;
-			if (checkboxs != null) {
-				for (int i = 0; i < checkboxs.length; i++) {
-					CheckBox box = checkboxs[i];
-					box.setChecked(false);
-				}
-			}
-		}
-	}
-
 	private onListView<UserInfo> lis = new onListView<UserInfo>() {
 
 		@Override
@@ -235,12 +212,29 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 				}
 			}
 			threadlayout.removeAllViews();
-			checkboxs = new CheckBox[list.size()];
 			for (int i = 0; i < list.size(); i++) {
 				UserInfo user = list.get(i);
 				View layout = LinearLayout.inflate(PublishedNextActivity.this, R.layout.item_identy_people, null);
-				checkboxs[i] = (CheckBox) layout.findViewById(R.id.user_checkbox);
-				checkboxs[i].setOnCheckedChangeListener(listener);
+				RelativeLayout wai = (RelativeLayout) layout.findViewById(R.id.rl_zhuanjia);
+				allZhuanJia.add(wai);
+				wai.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						int length = allZhuanJia.size()>4 ? 4:allZhuanJia.size();
+						for(int i=0;i<length;i++) {
+							RelativeLayout each = allZhuanJia.get(i);
+							TextView text = (TextView) each.findViewById(R.id.user_name);
+							if(each.equals(v)) {
+								select_user = i;
+								text.setTextColor(Color.RED);
+							} else {
+								text.setTextColor(Color.GREEN);
+							}
+						}
+					}
+				});
+				
 				TextView tv_name = (TextView) layout.findViewById(R.id.user_name);
 				tv_name.setText(user.getNickname());
 				CircleImageView logo = (CircleImageView) layout.findViewById(R.id.user_logo);

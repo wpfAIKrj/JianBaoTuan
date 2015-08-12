@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y144"
+        android:layout_height="wrap_content"
         android:background="@drawable/item_big_stroke"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
@@ -20,6 +20,8 @@
                 android:id="@+id/iv_icon"
                 android:layout_width="@dimen/x82"
                 android:layout_height="@dimen/y82"
+                android:layout_marginTop="@dimen/y30"
+                android:layout_marginBottom="@dimen/y30"
                 android:layout_marginLeft="@dimen/x14"
                 android:contentDescription="@null"
                 android:scaleType="fitXY" />
@@ -53,14 +55,14 @@
             <com.yingluo.Appraiser.view.TagLinearLayout
                 android:id="@+id/layout_kind"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y40"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y10" />
             
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="@dimen/x162"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x20"
             android:gravity="center_horizontal"
@@ -75,13 +77,14 @@
                 android:textColor="@color/number_color"
                 android:textSize="@dimen/x24" />
 
-            <Button
+            <TextView
                 android:id="@+id/btn_result"
                 android:layout_width="@dimen/x160"
                 android:layout_height="@dimen/y60"
                 android:layout_marginTop="@dimen/y16"
                 android:background="@drawable/result_bg"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="@string/str_result"
                 android:textColor="@color/home_head_color"
                 android:textSize="@dimen/x30" />

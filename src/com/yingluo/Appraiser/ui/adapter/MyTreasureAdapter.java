@@ -42,7 +42,7 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewHolder> {
 	private int load_type = 2;
 
 	private int type;
-
+	
 	public MyTreasureAdapter(Context context, List<TreasureEntity> list, OnClickListener listner,
 			ListviewLoadListener listview) {
 		this.context = context;
@@ -89,7 +89,7 @@ public class MyTreasureAdapter extends RecyclerView.Adapter<ViewHolder> {
 			isDel = false;
 		}
 	}
-
+	
 	public void setData(List<TreasureEntity> list) {
 		hots = list;
 		if(dels == null) {

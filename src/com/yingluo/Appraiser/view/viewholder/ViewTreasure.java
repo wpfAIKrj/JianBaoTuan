@@ -40,7 +40,7 @@ public class ViewTreasure extends ViewHolder {
 	@ViewInject(R.id.tv_status)
 	TextView tv_status;
 	@ViewInject(R.id.btn_result)
-	Button btn_result;
+	TextView btn_result;
 	@ViewInject(R.id.delete_checkbox)
 	CheckBox cbDel;
 	
@@ -105,12 +105,15 @@ public class ViewTreasure extends ViewHolder {
 		switch (item.status) {
 		case 0:
 			tv_status.setText(R.string.identity_isno);
+			btn_result.setVisibility(View.GONE);
 			break;
 		case 1:
 			tv_status.setText(R.string.identity_ing);
+			btn_result.setVisibility(View.GONE);
 			break;
 		case 2:
 			tv_status.setText(R.string.identity_ishava);
+			btn_result.setVisibility(View.VISIBLE);
 			break;
 		}
 		
