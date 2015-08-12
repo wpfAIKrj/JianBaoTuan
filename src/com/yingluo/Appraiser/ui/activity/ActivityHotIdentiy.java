@@ -43,6 +43,7 @@ import com.yingluo.Appraiser.http.ResponseMyIdentify.userIdentify;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
 import com.yingluo.Appraiser.im.RongImUtils;
+import com.yingluo.Appraiser.inter.ListviewLoadListener;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.model.getUserByIdModel;
 import com.yingluo.Appraiser.refresh.PullRefreshRecyclerView;
@@ -64,7 +65,7 @@ import com.yingluo.Appraiser.view.CircleImageView;
  * @author xy418
  *
  */
-public class ActivityHotIdentiy extends BaseActivity implements OnClickListener, ClickTabListener, AskNetWorkCallBack {
+public class ActivityHotIdentiy extends BaseActivity implements OnClickListener, ClickTabListener, AskNetWorkCallBack,ListviewLoadListener {
 
 	BitmapsUtils bitmapUtils;
 	@ViewInject(R.id.btn_back)
@@ -124,7 +125,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 	getUserByIdModel userinfoModel = null;
 
 	private int chooseType;
-	private boolean isRefresh;
+	private boolean isRefresh,isLoadMore;
 	
 	private int treasurePage, identifyPage;
 
@@ -201,7 +202,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 		treasureList = new ArrayList<ResponseNewHome.HomeItem>();
 		identifyList = new ArrayList<userIdentify>();
 		
-		isRefresh = false;
+		isRefresh = isLoadMore = false;
 		
 		bitmapUtils = BitmapsUtils.getInstance();
 		entity = (CollectionTreasure) getIntent().getSerializableExtra(Const.ENTITY);
@@ -247,8 +248,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 
 			@Override
 			public void onRefresh() {
-				isRefresh = true;
-				askNet();
+				ActivityHotIdentiy.this.onRefresh();
 			}
 
 			@Override
@@ -265,8 +265,7 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 
 			@Override
 			public void onRefresh() {
-				isRefresh = true;
-				askNet();
+				ActivityHotIdentiy.this.onRefresh();
 			}
 
 			@Override
@@ -275,8 +274,8 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 			}
 		});
 		
-		mAdapter = new OtherTreasureAdapter(this, this);
-		mIdentifyAdapter = new OtherIdentifyAdapter(this);
+		mAdapter = new OtherTreasureAdapter(this, this,this);
+		mIdentifyAdapter = new OtherIdentifyAdapter(this,this);
 		
 		recyclerview.setAdapter(mAdapter);
 		recyclerviewIdentify.setAdapter(mIdentifyAdapter);
@@ -427,17 +426,27 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 		if (loaddialog != null && loaddialog.isShowing()) {
 			loaddialog.dismiss();
 		}
-		isRefresh = false;
+		
 		if (param.equals(NetConst.HES_BABY)) {
 			//他的宝物
-			mRecyclerview.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				mAdapter.setFootType(0);
+				mRecyclerview.refreshOver(null);
+				treasureList.clear();
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+			}
+			
 			ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);
 			if (rg.getCode() == 100000) {
 				treasurePage = rg.getData().getNextPage();
 				List<HomeItem> res = rg.getData().getList();
 				if(res.size() == 0) {
-					return ;
+					mAdapter.setFootType(2);
 				} else {
+					mAdapter.setFootType(0);
 					treasureList.addAll(res);
 				}
 				mAdapter.setData(treasureList);
@@ -447,14 +456,24 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 			}
 		} else {
 			//他的鉴定
-			mRecyclerviewIdentify.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				mIdentifyAdapter.setFootType(0);
+				mRecyclerviewIdentify.refreshOver(null);
+				identifyList.clear();
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+			}
+			
 			ResponseMyIdentify rg = new Gson().fromJson(msg, ResponseMyIdentify.class);
 			if (rg.getCode() == 100000) {
 				identifyPage = rg.getData().getNextPage();
 				List<userIdentify> res = rg.getData().getList();
 				if(res.size() == 0) {
-					return ;
+					mIdentifyAdapter.setFootType(2);
 				} else {
+					mIdentifyAdapter.setFootType(0);
 					identifyList.addAll(res);
 				}
 				mIdentifyAdapter.setData(identifyList);
@@ -470,10 +489,56 @@ public class ActivityHotIdentiy extends BaseActivity implements OnClickListener,
 	 */
 	@Override
 	public void getNetWorkMsgError(String msg, String param) throws JSONException {
-		isRefresh = false;
 		if (param.equals(NetConst.HES_BABY)) {
-			mRecyclerview.refreshOver(null);
+			if(isRefresh) {
+				isRefresh = false;
+				mRecyclerview.refreshOver(null);
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+				mAdapter.setFootType(0);
+				mAdapter.notifyDataSetChanged();
+			}
+		} else {
+			if(isRefresh) {
+				isRefresh = false;
+				mRecyclerviewIdentify.refreshOver(null);
+			} 
+			if(isLoadMore) {
+				isLoadMore = false;
+				mIdentifyAdapter.setFootType(0);
+				mIdentifyAdapter.notifyDataSetChanged();
+			}
 		}
+	}
+
+	/**
+	 * 刷新的调用
+	 */
+	@Override
+	public void onRefresh() {
+		if(!isLoadMore) {
+			isRefresh = true;
+			if(chooseType == R.id.btn_identifing) {
+				treasurePage = 1;
+			} else {
+				identifyPage = 1;
+			}
+			askNet();
+		}
+		
+	}
+
+	/**
+	 * 点击底部的加载更多
+	 */
+	@Override
+	public void onLoadMore() {
+		if(!isRefresh) {
+			isLoadMore = true;
+			askNet();
+		}
+		
 	}
 
 }

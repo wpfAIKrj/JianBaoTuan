@@ -66,13 +66,13 @@ public class OtherViewHolder extends ViewHolder{
 		//判断是显示专家鉴定还是网友鉴定
 		if(item.getAppraiser() == null) {
 			hasIdentify.setVisibility(View.GONE);
-			if(item.getRecords().size() == 0) {
+			if(item.getRecords() == null || item.getRecords().size() == 0) {
 				identify.setVisibility(View.GONE);
 			} else {
 				identify.setVisibility(View.VISIBLE);
 				identify.setRecord(item.getRecords());
 			}
-			if(item.getComments().size() == 0) {
+			if(item.getComments() == null || item.getComments().size() == 0) {
 				commit.setVisibility(View.GONE);
 			} else {
 				commit.setVisibility(View.VISIBLE);
@@ -86,7 +86,7 @@ public class OtherViewHolder extends ViewHolder{
 				hasIdentify.setListener(listener);
 				hasIdentify.setItem(item.getAppraiser());
 			}  
-			if(item.getComments().size() == 0) {
+			if(item.getComments() == null || item.getComments().size() == 0) {
 				commit.setVisibility(View.GONE);
 			} else {
 				commit.setVisibility(View.VISIBLE);
