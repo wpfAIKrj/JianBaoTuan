@@ -17,6 +17,7 @@
         android:layout_above="@+id/bottom"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrMode="both"
+        ptr:ptrHeaderTextColor="@color/black"
         android:layout_below="@+id/top"
         android:scrollbars="none" >
 

@@ -15,6 +15,7 @@
         android:layout_weight="1"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrMode="both"
+        ptr:ptrHeaderTextColor="@color/black"
         android:scrollbars="none">
 
         <LinearLayout

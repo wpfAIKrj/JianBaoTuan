@@ -63,6 +63,7 @@ public class TagLinearLayout extends ViewGroup {
 		int height = 0;
 		int lines = 0;
 		int maxWidth = (int) (DensityUtil.getScreenWidth(getContext())-getContext().getResources().getDimension(R.dimen.x100));
+//		int maxWidth = widthsize;
 		for (int i = 0; i < count; i++) {
 			View child = this.getChildAt(i);
 			width = width + child.getMeasuredWidth() + 20;
@@ -71,7 +72,7 @@ public class TagLinearLayout extends ViewGroup {
 				width = 0;
 				lines++;
 			}
-			height = Math.max(height, lines*(child.getMeasuredHeight()+20)+child.getMeasuredHeight());
+			height = Math.max(height, (lines+1)*(child.getMeasuredHeight()+20));
 		}
 		if(lines>0) {
 			setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? widthsize : maxWidth,

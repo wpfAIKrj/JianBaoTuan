@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y60"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x30"
             android:layout_toLeftOf="@+id/published_bt" />
 
         <ImageView
@@ -68,6 +67,7 @@
             android:imeOptions="actionGo"
             android:inputType="text"
             android:textColor="@color/black"
+            android:padding="@dimen/x13"
             android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="@dimen/x24" />
 

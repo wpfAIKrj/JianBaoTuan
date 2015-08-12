@@ -195,8 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/published_bt"
-                android:layout_marginRight="@dimen/x30" />
+                android:layout_toLeftOf="@+id/published_bt" />
             
             <ImageView
                 android:id="@+id/published_bt"

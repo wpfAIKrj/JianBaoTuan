@@ -140,6 +140,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	protected void initViews(View view) {
 		isRefresh = isLoadMore = false;
 		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
+		
 		inputMessage = new InputMessageDialog(mActivity, this);
 		scrollView = mScrollView.getRefreshableView();
 		
