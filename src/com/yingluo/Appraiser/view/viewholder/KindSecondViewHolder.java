@@ -2,6 +2,7 @@ package com.yingluo.Appraiser.view.viewholder;
 
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.utils.BitmapsUtils;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -48,6 +49,7 @@ public class KindSecondViewHolder extends ViewHolder {
 
 	public void showData(TreasureType treasureType, TreasureType selectType) {
 		this.type = treasureType;
+		
 		if (!type.isChild) {
 			iv_enter.setVisibility(View.VISIBLE);
 			iv_enter.setImageResource(R.drawable.next_bg);
@@ -64,6 +66,8 @@ public class KindSecondViewHolder extends ViewHolder {
 			}
 		}
 		label.setText(type.getName());
+		String urlArrow = BitmapsUtils.makeQiNiuRrl(treasureType.getImageUrl() ,74 ,74);
+		BitmapsUtils.getInstance().display(iv_icon, urlArrow, BitmapsUtils.TYPE_YES);
 	}
 
 }

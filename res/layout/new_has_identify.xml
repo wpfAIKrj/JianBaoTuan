@@ -68,8 +68,7 @@
         android:layout_marginTop="@dimen/y100"
         android:layout_below="@+id/iv_identify_line"
         android:layout_marginLeft="@dimen/x20"
-        android:layout_marginRight="@dimen/y20"
-         />
+        android:layout_marginRight="@dimen/y20"/>
     
     <ImageView 
         android:id="@+id/iv_identify_icon"

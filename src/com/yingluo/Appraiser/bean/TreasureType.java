@@ -14,6 +14,7 @@ public class TreasureType implements Serializable{
     public long id; 
     public long currnt_id; //宝物id
     public String name;//宝物名字
+    public String imageUrl;//宝物图片
     public Integer type;//宝物级别
     public long parent_id;//父类id
     public Boolean isChild;
@@ -27,10 +28,11 @@ public class TreasureType implements Serializable{
         this.id = id;
     }
 
-    public TreasureType(Long id, Long currnt_id, String name, Integer type, Long parent_id, Boolean isChild) {
+    public TreasureType(Long id, Long currnt_id, String name, Integer type, Long parent_id, Boolean isChild, String imageUrl) {
         this.id = id;
         this.currnt_id = currnt_id;
         this.name = name;
+        this.imageUrl = imageUrl;
         this.type = type;
         this.parent_id = parent_id;
         this.isChild = isChild;
@@ -52,7 +54,15 @@ public class TreasureType implements Serializable{
         this.currnt_id = currnt_id;
     }
 
-    public String getName() {
+    public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getName() {
         return name;
     }
 

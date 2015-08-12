@@ -7,8 +7,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.ContentInfo;
 import com.yingluo.Appraiser.bean.TreasureEntity;
+import com.yingluo.Appraiser.bean.TreasureEntity.Kind;
+import com.yingluo.Appraiser.bean.TreasureType;
+import com.yingluo.Appraiser.http.ResponseNewHome.kinds;
 import com.yingluo.Appraiser.utils.BitmapsUtils;
 import com.yingluo.Appraiser.utils.DensityUtil;
+import com.yingluo.Appraiser.view.TagLinearLayout;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -32,7 +36,7 @@ public class ViewTreasure extends ViewHolder {
 	@ViewInject(R.id.tv_msg)
 	TextView tv_msg;
 	@ViewInject(R.id.layout_kind)
-	LinearLayout layout_kind;
+	TagLinearLayout layout_kind;
 	@ViewInject(R.id.tv_status)
 	TextView tv_status;
 	@ViewInject(R.id.btn_result)
@@ -112,38 +116,29 @@ public class ViewTreasure extends ViewHolder {
 		
 		layout_kind.removeAllViews();
 		List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds = item.kinds;
-
-		if (kinds != null) {
-
-			int size = 0;
-			int width = 0;
-			int onewidth = (int) mContext.getResources().getDimension(R.dimen.x60);
-			int height = (int) mContext.getResources().getDimension(R.dimen.y30);
-			int textsize = DensityUtil.px2sp(mContext, mContext.getResources().getDimension(R.dimen.x20));
-
-			int len = kinds.size();
-			for (int i = 0; i < len; i++) {
-				size = kinds.get(i).name.length();
-				if (size > 8) {
-					size = 7;
-				}
-				width = (size / 2) * onewidth + (size % 2) * onewidth;
-				TextView view = new TextView(mContext);
-				view.setWidth(width);
-				view.setHeight(height);
-				view.setTextSize(textsize);
-				view.setTextColor(mContext.getResources().getColor(R.color.wite));
-				view.setBackgroundResource(R.drawable.seach_bak);
-				// view.setPadding(10, 0, 10, 0);
-				view.setGravity(Gravity.CENTER);
-				view.setText(kinds.get(i).name);
-				view.setTag(kinds.get(i).id);
-				layout_kind.addView(view);
-			}
-
-		}
+		setKinds(kinds);
+		
 	}
 
+	public void setKinds(List<com.yingluo.Appraiser.bean.TreasureEntity.Kind> kinds) {
+		int length = kinds.size();
+		TreasureType key = new TreasureType();
+		for (int i = 0; i < length; i++) {
+			Kind kind = kinds.get(i);
+			if (i >= 1) {
+				key.parent_id = key.id;
+			} else {
+				key.parent_id = 0;
+			}
+			key.id = Long.valueOf(kind.id);
+			key.name = kind.name;
+			key.type = i;
+		}
+		if(length != 0) {
+			layout_kind.addTag(key);
+		}
+	}
+	
 	/**
 	 * 选择删除模式
 	 * @param conInfo

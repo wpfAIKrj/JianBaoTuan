@@ -57,6 +57,7 @@ import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.activity.LoginAcitivity;
+import com.yingluo.Appraiser.ui.activity.PublishedActivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
@@ -180,10 +181,22 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 			public void onClick(View v) {
 				Intent mIntent = new Intent(mActivity, ActivitySearch.class);
 				startActivity(mIntent);
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		});
 		
 		ivCategory = (ImageView) view.findViewById(R.id.iv_category);
+		ivCategory.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mActivity, KindOfPreciousActivity.class);
+				intent.putExtra(Const.SHOW_TYPE, 1);
+				startActivityForResult(intent, Const.TO_PUBLISH_SELECT_TYPE);
+				mActivity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
+			}
+		});
+		
 		lvHome = (ListView) view.findViewById(R.id.comment_listview);
 		
 		RadioType = KNOWLEDGE;

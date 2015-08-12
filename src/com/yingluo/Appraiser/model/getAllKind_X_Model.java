@@ -114,7 +114,7 @@ public class getAllKind_X_Model extends BaseModel {
 			Entity.name = Obj.getString("classify_name");
 			Entity.type = type;
 			Entity.parent_id = Obj.getLong("parent_id");
-			
+			Entity.imageUrl = Obj.getString("img_url");
 			if (Obj.has("children")) {
 				Entity.isChild=false;
 				SqlDataUtil.getInstance().saveContentType(Entity);

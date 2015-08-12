@@ -29,6 +29,7 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         public final static Property Type = new Property(3, Integer.class, "type", false, "TYPE");
         public final static Property Parent_id = new Property(4, Long.class, "parent_id", false, "PARENT_ID");
         public final static Property IsChild = new Property(5, Boolean.class, "isChild", false, "IS_CHILD");
+        public final static Property ImageUrl = new Property(6, String.class, "imageUrl", false, "IMAGEURL");
     };
 
 
@@ -49,7 +50,8 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
                 "'NAME' TEXT," + // 2: name
                 "'TYPE' INTEGER," + // 3: type
                 "'PARENT_ID' INTEGER," + // 4: parent_id
-                "'IS_CHILD' INTEGER);"); // 5: isChild
+                "'IS_CHILD' INTEGER," + // 5: isChild
+                "'IMAGEURL' TEXT);"); //6：imageUrl
     }
 
     /** Drops the underlying database table. */
@@ -92,6 +94,11 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         if (isChild != null) {
             stmt.bindLong(6, isChild ? 1l: 0l);
         }
+        
+        String imageUrl = entity.getImageUrl();
+        if (imageUrl != null) {
+            stmt.bindString(7, imageUrl);
+        }
     }
 
     /** @inheritdoc */
@@ -109,7 +116,8 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // type
             cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4), // parent_id
-            cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0 // isChild
+            cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0, // isChild
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) //imageUrl
         );
         return entity;
     }
@@ -123,6 +131,7 @@ public class TreasureTypeDao extends AbstractDao<TreasureType, Long> {
         entity.setType(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
         entity.setParent_id(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
         entity.setIsChild(cursor.isNull(offset + 5) ? null : cursor.getShort(offset + 5) != 0);
+        entity.setImageUrl(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */
