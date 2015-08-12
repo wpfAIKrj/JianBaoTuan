@@ -88,8 +88,9 @@ public class MyFragment extends BaseFragment {
 	
 	private getUserInfoLPresenter getPresenter;
 
-	private int[] levels = { R.drawable.level01, R.drawable.level02, R.drawable.level03, R.drawable.level04,
-			R.drawable.level05, R.drawable.level06 };
+	private int[] levels = { R.drawable.level01_big, R.drawable.level02_big, R.drawable.level03_big, R.drawable.level04_big,
+			R.drawable.level05_big, R.drawable.level06_big};
+	
 	private OnClickListener onlongListner;
 	private Dialog dialog;
 

@@ -53,23 +53,32 @@
                     android:layout_marginTop="@dimen/y40"
                     android:paddingBottom="@dimen/y40" >
 
-                    <com.yingluo.Appraiser.view.CircleImageView
-                        android:id="@+id/login_user_head"
-                        android:layout_width="@dimen/y200"
-                        android:layout_height="@dimen/y200"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/y2"
-                        android:src="@drawable/user_logo"
-                        app:border_color="@color/cricle_color"
-                        app:border_width="@dimen/x1" />
+             
+                  <com.yingluo.Appraiser.view.CircleImageView
+                     android:id="@+id/login_user_head"
+                     android:layout_width="@dimen/y200"
+                     android:layout_height="@dimen/y200"
+                     android:layout_marginTop="@dimen/y2"
+                     android:layout_centerHorizontal="true"
+                     android:src="@drawable/user_logo"
+                     app:border_color="@color/cricle_color"
+                     app:border_width="@dimen/x1" />
 
-                    <ImageView
-                        android:id="@+id/my_iv_level"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/login_user_head"
-                        android:layout_alignRight="@+id/my_tv_name"
-                        android:src="@drawable/levelicon01" />
+                  <View 
+                      android:id="@+id/user_middle"
+                      android:layout_width="1dp"
+                      android:layout_height="1dp"
+                      android:layout_centerHorizontal="true"
+                      android:layout_alignBottom="@+id/login_user_head"/>
+                  
+                 <ImageView
+                     android:id="@+id/my_iv_level"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_alignBottom="@+id/login_user_head"
+                     android:layout_toRightOf="@+id/user_middle"
+                     android:layout_marginLeft="@dimen/x16"
+                     android:src="@drawable/levelicon01" />
 
                     <TextView
                         android:id="@+id/my_tv_name"
@@ -79,7 +88,6 @@
                         android:layout_below="@+id/login_user_head"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/y20"
-                        android:text="测试名字"
                         android:textSize="14sp" />
 
                     <TextView
@@ -89,8 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/my_tv_name"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/y20"
-                        android:text="新手上路" />
+                        android:layout_marginTop="@dimen/y20" />
 
                     <ImageView
                         android:id="@+id/iv_my_wen"
@@ -118,7 +125,6 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="-1dp"
                         android:gravity="top"
-                        android:text="1/5"
                         android:textColor="@color/home_head_color"
                         android:textSize="7sp" />
                 </RelativeLayout>

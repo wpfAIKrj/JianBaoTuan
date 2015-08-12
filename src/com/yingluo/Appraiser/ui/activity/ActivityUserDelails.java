@@ -381,6 +381,7 @@ public class ActivityUserDelails extends BaseActivity {
 			isFirst = false;
 			if(isRefresh) {
 				isRefresh = true;
+				showimage.removeAllViews();
 				scrollview.onRefreshComplete();
 			}
 			// 加载宝贝详情
