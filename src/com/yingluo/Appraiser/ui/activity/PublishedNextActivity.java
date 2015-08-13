@@ -228,9 +228,9 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 							TextView text = (TextView) each.findViewById(R.id.user_name);
 							if(each.equals(v)) {
 								select_user = i;
-								text.setTextColor(Color.RED);
+								text.setTextColor(getResources().getColor(R.color.new_red1));
 							} else {
-								text.setTextColor(Color.GREEN);
+								text.setTextColor(getResources().getColor(R.color.black));
 							}
 						}
 					}

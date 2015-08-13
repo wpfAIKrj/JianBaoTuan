@@ -31,23 +31,25 @@
 
             <TextView
                 android:id="@+id/user_name"
-                style="@style/my_title_style1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/black"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:paddingTop="@dimen/y20"
+                android:paddingTop="@dimen/y10"
                 android:singleLine="true"
                 android:text="何为三界偷拍" />
 
             <TextView
                 android:id="@+id/user_type"
-                style="@style/detail_title_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/new_time_color"
+                android:textSize="12sp"
                 android:layout_below="@+id/user_name"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/y6"
+                android:layout_marginTop="@dimen/y10"
                 android:singleLine="true"
                 android:text="初级藏家" />
         </RelativeLayout>

@@ -4,6 +4,6 @@
 
     <stroke
         android:width="@dimen/x1"
-        android:color="@color/item_space_color" />
+        android:color="@color/new_dialog_line" />
 
 </shape>

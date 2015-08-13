@@ -37,4 +37,5 @@
     <color name="new_tool_color">#919191</color>
     <color name="new_dialog_line">#cccccc</color>
     <color name="new_red">#f00000</color>
+    <color name="new_red1">#ff0000</color>
 </resources>
