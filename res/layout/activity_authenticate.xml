@@ -2,115 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-   	android:layout_gravity="center_horizontal"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/new_line_color"
     android:fitsSystemWindows="true"
-	android:background="@color/wite"
-    
-     >
+    android:orientation="vertical" >
 
-   	<include layout="@layout/layout_head"/>
+    <include layout="@layout/layout_head" />
 
-    	<RelativeLayout
-    	    android:layout_width="match_parent"
-    	    android:layout_height="match_parent" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-    	    <LinearLayout
-    	        android:id="@+id/attest_agency_layout"
-    	        android:layout_width="@dimen/x500"
-    	        android:layout_height="@dimen/y240"
-    	        android:layout_alignParentTop="true"
-    	        android:layout_centerHorizontal="true"
-    	        android:layout_marginTop="@dimen/y100"
-    	        android:background="@drawable/layout_bg"
-    	        android:orientation="vertical" >
+        <LinearLayout
+            android:id="@+id/attest_agency_layout"
+            android:layout_width="@dimen/x500"
+            android:layout_height="@dimen/y240"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/y100"
+            android:background="@drawable/layout_bg"
+            android:orientation="vertical" >
 
-    	        <LinearLayout
-    	            android:layout_width="match_parent"
-    	            android:layout_height="0dp"
-    	            android:layout_weight="0.37"
-    	            android:gravity="center" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.37"
+                android:gravity="center" >
 
-    	            <TextView
-    	                android:id="@+id/textView1"
-    	                style="@style/my_title_style1"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:text="机构鉴定师认证" />
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/my_title_style1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机构鉴定师认证" />
 
-    	            <ImageView
-    	                android:id="@+id/imageView1"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:layout_marginLeft="@dimen/x10"
-    	                android:src="@drawable/authenticate_group" />
-    	        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:src="@drawable/authenticate_group" />
+            </LinearLayout>
 
-    	        <LinearLayout
-    	            android:layout_width="match_parent"
-    	            android:layout_height="0dp"
-    	            android:layout_weight="0.55" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.55" >
 
-    	            <TextView
-    	                android:id="@+id/textView2"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:text="    如果你是鉴定机构的鉴定师,请在此处进行认证，认证成功后你讲获得权威机构鉴定师的称号及标志哦"
-    	                android:textColor="@color/number_color"
-    	                android:textSize="@dimen/x24"
-    	               android:lineSpacingExtra="@dimen/x6"
-    	                 />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/x6"
+                    android:text="    如果你是鉴定机构的鉴定师,请在此处进行认证，认证成功后你讲获得权威机构鉴定师的称号及标志哦"
+                    android:textColor="@color/number_color"
+                    android:textSize="@dimen/x24" />
+            </LinearLayout>
+        </LinearLayout>
 
-    	        </LinearLayout>
-    	    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/attest_personal_layout"
+            android:layout_width="@dimen/x500"
+            android:layout_height="@dimen/y240"
+            android:layout_alignLeft="@+id/attest_agency_layout"
+            android:layout_below="@+id/attest_agency_layout"
+            android:layout_marginTop="@dimen/y100"
+            android:background="@drawable/layout_bg"
+            android:orientation="vertical" >
 
-    	    <LinearLayout
-    	        android:id="@+id/attest_personal_layout"
-    	          android:layout_width="@dimen/x500"
-    	        android:layout_height="@dimen/y240"
-    	        android:layout_alignLeft="@+id/attest_agency_layout"
-    	        android:layout_below="@+id/attest_agency_layout"
-    	        android:layout_marginTop="@dimen/y100"
-    	        android:background="@drawable/layout_bg"
-    	        android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.37"
+                android:gravity="center" >
 
-    	        <LinearLayout
-    	            android:layout_width="match_parent"
-    	            android:layout_height="0dp"
-    	            android:layout_weight="0.37"
-    	            android:gravity="center" >
+                <TextView
+                    android:id="@+id/TextView02"
+                    style="@style/my_title_style1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="个人鉴定师认证" />
 
-    	            <TextView
-    	                android:id="@+id/TextView02"
-    	                style="@style/my_title_style1"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:text="个人鉴定师认证" />
+                <ImageView
+                    android:id="@+id/ImageView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:src="@drawable/authenticate_persion" />
+            </LinearLayout>
 
-    	            <ImageView
-    	                android:id="@+id/ImageView01"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:layout_marginLeft="@dimen/x10"
-    	                android:src="@drawable/authenticate_persion" />
-    	        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.55" >
 
-    	        <LinearLayout
-    	            android:layout_width="match_parent"
-    	            android:layout_height="0dp"
-    	            android:layout_weight="0.55" >
-
-    	            <TextView
-    	                android:id="@+id/TextView01"
-    	              android:textColor="@color/number_color"
-    	                android:textSize="@dimen/x24"
-    	               android:lineSpacingExtra="@dimen/x6"
-    	                android:layout_width="wrap_content"
-    	                android:layout_height="wrap_content"
-    	                android:text="      如果你是该方面从业者,或者进修过珠宝鉴定专业,请在此处进行认证，认证成功后你讲获得权威机构鉴定师的称号及标志哦" />
-    	        </LinearLayout>
-    	    </LinearLayout>
-
-    	</RelativeLayout>
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="@dimen/x6"
+                    android:text="      如果你是该方面从业者,或者进修过珠宝鉴定专业,请在此处进行认证，认证成功后你讲获得权威机构鉴定师的称号及标志哦"
+                    android:textColor="@color/number_color"
+                    android:textSize="@dimen/x24" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

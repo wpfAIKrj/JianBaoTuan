@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/wite"
+    android:background="@color/new_line_color"
     android:fitsSystemWindows="true"
     android:orientation="vertical" >
 
@@ -33,12 +33,12 @@
         android:id="@+id/bt_save"
         style="@style/bt_login_style"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y94"
-        android:background="@color/wite"
+        android:layout_height="wrap_content"
+        android:background="@drawable/identify_bak"
         android:layout_marginLeft="@dimen/x14"
         android:layout_marginRight="@dimen/x14"
         android:layout_marginTop="@dimen/y100"
         android:text="@string/feednack_bt"
-        android:textColor="@color/home_head_color" />
+        android:textColor="@color/wite" />
 
 </LinearLayout>
