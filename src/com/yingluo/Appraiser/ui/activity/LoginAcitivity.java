@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yingluo.Appraiser.R;
@@ -56,17 +57,18 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	@ViewInject(R.id.login_edit_password)
 	private EditText ed_pwd;
 
-	@ViewInject(R.id.cb_rember_password)
-	private CheckBox cbPassword;
-	@ViewInject(R.id.cb_rember_zhuangtai)
-	private CheckBox cbZhuangTai;
+	@ViewInject(R.id.iv_rember_password)
+	private ImageView ivPassword;
+	@ViewInject(R.id.iv_rember_state)
+	private ImageView ivState;
 	
+	private boolean isChoosePassword,isChooseState;
 	private boolean isShow = false;
 
 	private SelectMoilbWindow popwindow;
 
-//	@ViewInject(R.id.name_layout)
-//	private RelativeLayout namelayout;
+	@ViewInject(R.id.rl_login_edit_name)
+	private RelativeLayout namelayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,8 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		setContentView(R.layout.activity_login);
 		ViewUtils.inject(this);
 		mpresenter = new LoginPresenter(this);
+		isChoosePassword=isChooseState=true;
+		
 		List<UserInfo> list = SqlDataUtil.getInstance().getUserList();
 		if (list == null) {
 			isShow = true;
@@ -83,25 +87,50 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		      
 		    @Override  
 		    public void onFocusChange(View v, boolean hasFocus) {  
-		        if(hasFocus){//获得焦点 
+		        if(hasFocus){
+		        	//获得焦点 
 		        	String phone = ed_name.getText().toString();
 		        	if(phone != null && phone.length()!=0) {
 		        		change(phone);
 		        	}
-		        }else{//失去焦点  
+		        }else{
+		        	//失去焦点  
 		        }  
 		    }             
 		});
 	}
 
+	@OnClick({R.id.ll_rember_password,R.id.ll_rember_state}) 
+	public void clickView(View view) {
+		switch(view.getId()) {
+		case R.id.ll_rember_password:
+			if(isChoosePassword) {
+				isChoosePassword = false;
+				ivPassword.setImageResource(R.drawable.choose_no);
+			} else {
+				isChoosePassword = true;
+				ivPassword.setImageResource(R.drawable.choose_yes);
+			}
+			break;
+		case R.id.ll_rember_state:
+			if(isChooseState) {
+				isChooseState = false;
+				ivState.setImageResource(R.drawable.choose_no);
+			} else {
+				isChooseState = true;
+				ivState.setImageResource(R.drawable.choose_yes);
+			}
+			break;
+		}
+	}
+	
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		overridePendingTransition(R.anim.hold, R.anim.toast_out);
 	}
 
-	@OnClick({ R.id.title_back, R.id.login_bt_login, R.id.login_bt_register,
-			R.id.login_bt_forgot })
+	@OnClick({ R.id.title_back, R.id.login_bt_login,R.id.login_bt_forgot,R.id.iv_edit_name })
 	public void onClick(View v) {
 		Intent intent = null;
 		switch (v.getId()) {
@@ -110,21 +139,19 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 			finish();
 			overridePendingTransition(R.anim.hold, R.anim.toast_out);
 			break;
-//		case R.id.login_bt_clear:// 显示下拉用户框
-//			if (!isShow) {
-//				showPopWinddos();
-//			} else {
-//				disPopWinddos();
-//			}
-//			break;
+		case R.id.iv_edit_name:// 显示下拉用户框
+			if (!isShow) {
+				showPopWinddos();
+			} else {
+				disPopWinddos();
+			}
+			break;
 		case R.id.login_bt_login:// 登陆
 			startLogin();
 			break;
-		case R.id.login_bt_register:// 跳转到注册页面
-			intent = new Intent(LoginAcitivity.this, RegisterActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.left_in, R.anim.left_out);
-			break;
+//			intent = new Intent(LoginAcitivity.this, RegisterActivity.class);
+//			startActivity(intent);
+//			overridePendingTransition(R.anim.left_in, R.anim.left_out);
 		case R.id.login_bt_forgot:// 找回密码界面
 			intent = new Intent(LoginAcitivity.this, ForgotActivity.class);
 			startActivityForResult(intent, Const.TO_FOGOT);
@@ -138,18 +165,18 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 	/**
 	 * 隐藏下拉框
 	 */
-//	private void disPopWinddos() {
-//		isShow = false;
-//		popwindow.showPopupWindow(namelayout);
-//	}
+	private void disPopWinddos() {
+		isShow = false;
+		popwindow.showPopupWindow(namelayout);
+	}
 
 	/**
 	 * 显示本地数据库中的用户
 	 */
-//	private void showPopWinddos() {
-//		isShow = true;
-//		popwindow.showPopupWindow(namelayout);
-//	}
+	private void showPopWinddos() {
+		isShow = true;
+		popwindow.showPopupWindow(namelayout);
+	}
 
 	/**
 	 * 登陆
@@ -190,12 +217,12 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		SharedPreferencesUtils.getInstance().saveLoginUserID(user.getId());
 		
 		// 保存密码，不知道有用没有，看需求吧
-		if(cbPassword.isChecked()) {
+		if(isChoosePassword) {
 			SharedPreferencesUtils.getInstance().saveLoginUserPassword(name+"1", pas);
 		} else {
 			SharedPreferencesUtils.getInstance().saveLoginUserPassword(name+"1", null);
 		}
-		SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, cbZhuangTai.isChecked());
+		SharedPreferencesUtils.getInstance().saveForIsLoginSave(name, isChooseState);
 		
 		if (dialog != null) {
 			dialog.dismiss();
@@ -223,24 +250,27 @@ public class LoginAcitivity extends BaseActivity implements onBasicView<UserInfo
 		ed_name.setText(phone);
 		ed_name.setSelection(phone.length());
 		change(phone);
-//		popwindow.showPopupWindow(namelayout);
-		isShow = false;
+		disPopWinddos();
 	}
 
 	public void change(String phone) {
 		if(SharedPreferencesUtils.getInstance().getIsHaveLoginSave(phone)) {
-			cbZhuangTai.setChecked(true);
+			ivState.setImageResource(R.drawable.choose_yes);
+			isChooseState = true;
 		} else {
-			cbZhuangTai.setChecked(false);
+			ivState.setImageResource(R.drawable.choose_no);
+			isChooseState = false;
 		}
 		
 		String pas = SharedPreferencesUtils.getInstance().getLoginUserPassword(phone+"1");
 		if(pas != null) {
 			ed_pwd.setText(pas);
 			ed_pwd.setSelection(pas.length());
-			cbPassword.setChecked(true);
+			isChoosePassword = true;
+			ivPassword.setImageResource(R.drawable.choose_yes);
 		} else {
-			cbPassword.setChecked(false);
+			isChoosePassword = false;
+			ivPassword.setImageResource(R.drawable.choose_no);
 		}
 	}
 	
