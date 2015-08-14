@@ -43,9 +43,9 @@ public class NetConst {
 	/**
 	 * 短信
 	 */
-	public static final String SMS_KEY = "7375281b92eb";
+	public static final String SMS_KEY = "9a03c75ea398";
 
-	public static final String SMS_SECRET = "a2cb90086e053cc677fac8ddcf8d10cb";
+	public static final String SMS_SECRET = "44556c097aa2912d7745ab656f2491d4";
 
 	/**
 	 * 聊天

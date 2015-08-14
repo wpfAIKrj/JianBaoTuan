@@ -22,6 +22,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import cn.smssdk.SMSSDK;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -256,12 +257,14 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 				String s = String.format(send_help, (millisUntilFinished / 1000));
 				System.out.println(s);
 				send_code.setText(s);
+				send_code.setTextColor(getResources().getColor(R.color.new_tool_color));
 			}
 
 			@Override
 			public void onFinish() {
 				send_code.setEnabled(true);
 				send_code.setText(R.string.register_code_bt_hint);
+				send_code.setTextColor(getResources().getColor(R.color.home_head_color));
 			}
 		};
 		timer.start();

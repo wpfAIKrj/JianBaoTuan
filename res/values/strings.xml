@@ -28,7 +28,7 @@
     <string name="register_name_hint">请输入手机号</string>
     <string name="register_code_ed_hint">验证码</string>
     <string name="register_code_bt_hint">获取验证码</string>
-    <string name="register_code_bt_text">%1$s s后重新发送验证码</string>
+    <string name="register_code_bt_text">%1$s 秒后重新获取</string>
     <string name="regitster_bt">确定</string>
     <string name="regitster_next">下一步</string>
     <string name="register_result_succes_title">注册成功</string>
