@@ -1,22 +1,16 @@
 package com.yingluo.Appraiser.ui.activity;
 
-import io.rong.imkit.RongIM;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract.DataUsageFeedback;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import cn.smssdk.SMSSDK;
 import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
 
 import com.yingluo.Appraiser.R;
 import com.lidroid.xutils.ViewUtils;
@@ -33,7 +26,6 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.UserInfo;
 import com.yingluo.Appraiser.config.NetConst;
-import com.yingluo.Appraiser.im.RongImUtils;
 import com.yingluo.Appraiser.inter.onBasicView;
 import com.yingluo.Appraiser.presenter.RegisterPresenter;
 import com.yingluo.Appraiser.ui.base.BaseActivity;
@@ -67,7 +59,9 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 	@ViewInject(R.id.tv_xieyi)
 	private TextView tvXieYi;
 	@ViewInject(R.id.cb_xieyi)
-	private CheckBox cbXieYi;
+	private ImageView cbXieYi;
+	
+	private boolean isChoose;
 	
 	private RegisterPresenter mpresenter;
 
@@ -110,6 +104,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		ViewUtils.inject(this);
+		isChoose = true;
 		mpresenter = new RegisterPresenter(this);
 		SMSSDK.initSDK(this, NetConst.SMS_KEY, NetConst.SMS_SECRET);
 		SMSSDK.registerEventHandler(eh); // 注册短信回调
@@ -128,7 +123,7 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		super.onDestroy();
 	}
 
-	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back,R.id.tv_xieyi})
+	@OnClick({ R.id.register_button, R.id.register_send_code, R.id.title_back,R.id.tv_xieyi,R.id.cb_xieyi})
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.title_back:// 返回登陆页面
@@ -145,16 +140,33 @@ public class RegisterActivity extends BaseActivity implements onBasicView<UserIn
 		case R.id.tv_xieyi:// 查看协议
 			seeXieYi();
 			break;
+		case R.id.cb_xieyi:// 点击对号
+			changeXieYi();
+			break;	
 		default:
 			break;
 		}
 	}
 
 	/**
+	 * 修改对号
+	 */
+	private void changeXieYi() {
+		
+		if(isChoose) {
+			isChoose = false;
+			cbXieYi.setImageResource(R.drawable.choose_no);
+		} else {
+			isChoose = true;
+			cbXieYi.setImageResource(R.drawable.choose_yes);
+		}
+	}
+	
+	/**
 	 * 验证手机码是否正确
 	 */
 	private void checkSms() {
-		if(!cbXieYi.isChecked()) {
+		if(!isChoose) {
 			new ToastUtils(this, "请同意用户协议");
 			return;
 		}

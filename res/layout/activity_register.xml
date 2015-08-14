@@ -5,28 +5,52 @@
     android:background="@drawable/login_bak"
     android:fitsSystemWindows="true" >
 
-    <include
-        android:id="@+id/include1"
-        layout="@layout/layout_activity_head" />
+    <RelativeLayout
+        android:id="@+id/login_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88">
+
+        <ImageView
+            android:id="@+id/title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/y10"
+            android:paddingLeft="@dimen/x30"
+            android:paddingRight="@dimen/x30"
+            android:paddingTop="@dimen/y10"
+            android:src="@drawable/select_login_back" />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/home_head_color"
+            android:textSize="16sp"
+            android:text="注册"
+            />
+    </RelativeLayout>
 
     <ImageView
+        android:id="@+id/res_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/register_edit_phone"
-        android:layout_marginBottom="@dimen/y87"
-        android:src="@drawable/login_logo"
-        />
+        android:layout_marginTop="@dimen/y88"
+        android:layout_below="@+id/login_head"
+        android:src="@drawable/login_logo"/>
     
     <EditText
         android:id="@+id/register_edit_phone"
         style="@style/edit_login_style"
-        android:layout_width="@dimen/x600"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ll_yanzhengma"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:layout_below="@+id/res_logo"
         android:background="@drawable/logo_input_bak"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/y30"
+        android:layout_marginTop="@dimen/y87"
         android:cursorVisible="true"
         android:ems="10"
         android:hint="请输入手机号"
@@ -34,15 +58,21 @@
         android:imeOptions="actionNext"
         android:inputType="phone"
         android:singleLine="true"
+        android:layout_marginLeft="@dimen/x75"
+        android:layout_marginRight="@dimen/x75"
         android:textCursorDrawable="@drawable/color_cursor" >
         <requestFocus />
     </EditText>
 
     <RelativeLayout
         android:id="@+id/ll_yanzhengma"
-        android:layout_width="@dimen/x600"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/x75"
+        android:layout_marginRight="@dimen/x75"
         android:layout_height="@dimen/y88"
-        android:layout_centerInParent="true" >
+        android:layout_below="@+id/register_edit_phone"
+        android:layout_marginTop="@dimen/y30"
+        >
 
         <EditText
             android:id="@+id/register_edit_code"
@@ -77,8 +107,8 @@
     <EditText
         android:id="@+id/register_edit_password"
         style="@style/edit_login_style"
-        android:layout_width="@dimen/x600"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
         android:layout_below="@+id/ll_yanzhengma"
         android:background="@drawable/logo_input_bak"
         android:cursorVisible="true"
@@ -90,6 +120,8 @@
         android:singleLine="true"
         android:layout_marginTop="@dimen/y30"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/x75"
+        android:layout_marginRight="@dimen/y75"
         android:textCursorDrawable="@drawable/color_cursor" >
     </EditText>
 
@@ -98,18 +130,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/register_edit_password"
-        android:layout_marginLeft="@dimen/x30"
-        android:layout_marginRight="@dimen/x30"
-        android:layout_marginTop="@dimen/y16" >
+        android:layout_marginLeft="@dimen/x115"
+        android:layout_marginTop="@dimen/y20" >
 
-        <CheckBox
-            android:id="@+id/cb_xieyi"
-            style="@style/delete_checkbox_all_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:checked="true"
-            android:gravity="center" />
+        <ImageView
+	          android:id="@+id/cb_xieyi"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_gravity="left|center_vertical"
+	          android:src="@drawable/choose_yes"
+	          android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/tv_xieyi"
@@ -127,8 +157,9 @@
             android:layout_height="@dimen/y1"
             android:layout_alignLeft="@+id/tv_xieyi"
             android:layout_alignRight="@+id/tv_xieyi"
+            android:layout_marginLeft="@dimen/x12"
+            android:layout_marginRight="@dimen/x5"
             android:layout_below="@+id/tv_xieyi"
-            android:layout_marginTop="@dimen/y10"
             android:background="@color/black"
             />
     </RelativeLayout>
@@ -136,13 +167,15 @@
     <Button
         android:id="@+id/register_button"
         style="@style/bt_login_style"
-        android:layout_width="@dimen/x600"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
         android:layout_below="@+id/rl_yhxy"
         android:background="@drawable/logo_btn_bak"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/y30"
+        android:layout_marginTop="@dimen/y120"
         android:text="@string/regitster_next"
+        android:layout_marginLeft="@dimen/x75"
+        android:layout_marginRight="@dimen/y75"
         android:textColor="@color/home_head_color" />
 
 </RelativeLayout>
