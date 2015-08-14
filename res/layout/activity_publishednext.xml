@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dialog_new_bg"
@@ -25,8 +26,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y336" 
-            android:layout_marginTop="@dimen/y30">
+            android:layout_height="@dimen/y336"
+            android:layout_marginTop="@dimen/y30" >
+
             <EditText
                 android:id="@+id/ed_info"
                 android:layout_width="match_parent"
@@ -43,18 +45,18 @@
                 android:paddingRight="@dimen/x20"
                 android:paddingTop="@dimen/y20"
                 android:singleLine="false"
-                android:textSize="14sp"
                 android:textColor="@color/new_time_color"
-                android:textCursorDrawable="@drawable/color_cursor" />
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-            	android:layout_marginRight="@dimen/x28"
-            	android:layout_marginBottom="@dimen/y20"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_marginRight="@dimen/x28"
                 android:text="0/200"
                 android:textColor="@color/ed_login_color"
                 android:textSize="@dimen/x30" />
@@ -76,19 +78,231 @@
             android:layout_marginLeft="@dimen/x14"
             android:layout_marginRight="@dimen/x14"
             android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_zhuanjia1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:clickable="false"
+                android:layout_gravity="center_horizontal" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/user_logo1"
+                    android:layout_width="@dimen/x100"
+                    android:layout_height="@dimen/x100"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_marginTop="@dimen/y10"
+                    android:src="@drawable/loading_bg"
+                    app:border_color="@color/cricle_color"
+                    app:border_width="@dimen/x1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_logo1"
+                    android:layout_centerHorizontal="true" >
+
+                    <TextView
+                        android:id="@+id/user_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="何为三界偷拍"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/user_type1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="初级藏家"
+                        android:textColor="@color/new_time_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_zhuanjia2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:clickable="false"
+                android:layout_gravity="center_horizontal" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/user_logo2"
+                    android:layout_width="@dimen/x100"
+                    android:layout_height="@dimen/x100"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_marginTop="@dimen/y10"
+                    android:src="@drawable/loading_bg"
+                    app:border_color="@color/cricle_color"
+                    app:border_width="@dimen/x1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_logo2"
+                    android:layout_centerHorizontal="true" >
+
+                    <TextView
+                        android:id="@+id/user_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="何为三界偷拍"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/user_type2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="初级藏家"
+                        android:textColor="@color/new_time_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_zhuanjia3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:clickable="false"
+                android:layout_gravity="center_horizontal" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/user_logo3"
+                    android:layout_width="@dimen/x100"
+                    android:layout_height="@dimen/x100"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_marginTop="@dimen/y10"
+                    android:src="@drawable/loading_bg"
+                    app:border_color="@color/cricle_color"
+                    app:border_width="@dimen/x1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_logo3"
+                    android:layout_centerHorizontal="true" >
+
+                    <TextView
+                        android:id="@+id/user_name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="何为三界偷拍"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/user_type3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="初级藏家"
+                        android:textColor="@color/new_time_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_zhuanjia4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:clickable="false"
+                android:layout_gravity="center_horizontal" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/user_logo4"
+                    android:layout_width="@dimen/x100"
+                    android:layout_height="@dimen/x100"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/y10"
+                    android:layout_marginTop="@dimen/y10"
+                    android:src="@drawable/loading_bg"
+                    app:border_color="@color/cricle_color"
+                    app:border_width="@dimen/x1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_logo4"
+                    android:layout_centerHorizontal="true" >
+
+                    <TextView
+                        android:id="@+id/user_name4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="何为三界偷拍"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/user_type4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/user_name4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/y10"
+                        android:singleLine="true"
+                        android:text="初级藏家"
+                        android:textColor="@color/new_time_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
         </LinearLayout>
 
         <Button
             android:id="@+id/send_identy"
             android:layout_width="@dimen/x260"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y110"
+            android:background="@drawable/identify_bak"
+            android:gravity="center"
+            android:text="@string/feednack_bt"
             android:textColor="@color/wite"
-        	android:background="@drawable/identify_bak"
-        	android:gravity="center"
-        	android:textSize="16sp"
-        	android:layout_gravity="center_horizontal"
-            android:text="@string/feednack_bt" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </ScrollView>
