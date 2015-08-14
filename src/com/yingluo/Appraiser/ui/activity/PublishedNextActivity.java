@@ -202,17 +202,6 @@ public class PublishedNextActivity extends BaseActivity implements AskNetWorkCal
 				dialog.dismiss();
 			}
 			list = data;
-			// for(UserInfo each:data) {
-			// int length = list.size(),i;
-			// for(i=0;i< length;i++) {
-			// if(each.getMobile().equals(list.get(i).getMobile())) {
-			// break;
-			// }
-			// }
-			// if(i==length) {
-			// list.add(each);
-			// }
-			// }
 			threadlayout.removeAllViews();
 			for (int i = 0; i < list.size(); i++) {
 				UserInfo user = list.get(i);
