@@ -119,7 +119,7 @@ public class NewItemViewHolder extends ViewHolder {
 		}
 		//设置等级
 		if(item.getCurrentLevel().equals("0")) {
-			leve.setVisibility(View.GONE);
+			leve.setVisibility(View.INVISIBLE);
 		} else {
 			leve.setVisibility(View.VISIBLE);
 			leve.setImageResource(levels[Integer.valueOf(item.getCurrentLevel())-1]);

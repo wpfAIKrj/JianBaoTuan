@@ -18,10 +18,10 @@
 
             <ImageView
                 android:id="@+id/iv_icon"
-                android:layout_width="@dimen/x82"
-                android:layout_height="@dimen/y82"
-                android:layout_marginTop="@dimen/y30"
-                android:layout_marginBottom="@dimen/y30"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/y120"
+                android:layout_marginTop="@dimen/y20"
+                android:layout_marginBottom="@dimen/y20"
                 android:layout_marginLeft="@dimen/x14"
                 android:contentDescription="@null"
                 android:scaleType="fitXY" />
@@ -38,7 +38,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x10"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y30"
             android:layout_weight="1.0"
             android:orientation="vertical" >
 
@@ -49,14 +51,15 @@
                 android:ellipsize="end"
                 android:maxEms="12"
                 android:singleLine="true"
+                android:text="宝贝描述"
                 android:textColor="@color/black_2"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x32" />
 
             <com.yingluo.Appraiser.view.TagLinearLayout
                 android:id="@+id/layout_kind"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y10" />
+                android:layout_marginTop="@dimen/y30" />
             
         </LinearLayout>
 
@@ -65,6 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y30"
+            android:layout_marginBottom="@dimen/y30"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -72,9 +77,9 @@
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/y20"
+                android:layout_marginTop="@dimen/y6"
                 android:text="已鉴定"
-                android:textColor="@color/number_color"
+                android:textColor="@color/new_tool_color"
                 android:textSize="@dimen/x24" />
 
             <TextView
@@ -87,7 +92,7 @@
                 android:visibility="gone"
                 android:text="@string/str_result"
                 android:textColor="@color/home_head_color"
-                android:textSize="@dimen/x30" />
+                android:textSize="@dimen/x24" />
         </LinearLayout>
     </LinearLayout>
 

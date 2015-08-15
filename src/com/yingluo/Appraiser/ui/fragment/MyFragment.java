@@ -311,8 +311,12 @@ public class MyFragment extends BaseFragment {
 				listView.setAdapter(madapter);
 				if (ItApplication.getcurrnUser().getUser_type() == 0) {
 					my_type_msg.setText(R.string.type_collect);
-					iv_level.setImageResource(levels[currentLevel-1]);
-//					iv_level.setImageResource(levels[ItApplication.getcurrnUser().getUser_level()]);
+					if(currentLevel == 0) {
+						iv_level.setVisibility(View.GONE);
+					} else {
+						iv_level.setImageResource(levels[currentLevel-1]);
+					}
+					
 				} else {
 					my_type_msg.setText(R.string.type_identiy);
 				}
