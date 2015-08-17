@@ -3,6 +3,6 @@
 
     <corners android:radius="200dp" />
 
-    <solid android:color="@color/wite" />
+    <solid android:color="@color/dialog_new_bg" />
 
 </shape>

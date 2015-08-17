@@ -335,15 +335,13 @@ public class ActivityUserDelails extends BaseActivity {
 
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				Toast.makeText(ActivityUserDelails.this, "下拉刷新了", Toast.LENGTH_SHORT).show();	
 				isRefresh = true;
 				infoModel.getInfoTreasure(uid,entity.treasure_id);
 				commentListModel.getInfoTreasure(entity.treasure_id);
 			}
 
 			@Override
-			public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				Toast.makeText(ActivityUserDelails.this, "上拉加载更多了", Toast.LENGTH_SHORT).show();		
+			public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {	
 				isLoadMore = true;
 				
 			}

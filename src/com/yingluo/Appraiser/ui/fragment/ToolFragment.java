@@ -26,10 +26,6 @@ public class ToolFragment extends BaseFragment {
 
 	@ViewInject(R.id.tv_tool_you_average)
 	private TextView tvResult;
-	@ViewInject(R.id.tv_tool_average_result)
-	private TextView tvZongShu;
-	@ViewInject(R.id.tv_tool_average)
-	private TextView tvShow;
 	
 	@ViewInject(R.id.itv_height)
 	private InputToolView height;
@@ -104,17 +100,8 @@ public class ToolFragment extends BaseFragment {
 				//算柱体
 				res = cylinder(Float.valueOf(strHeight),Float.valueOf(strWeight),Float.valueOf(strCircle),Float.valueOf(strNumber));
 			}
-			if(chooseType == R.id.tv_choose5) {
-				tvShow.setVisibility(View.GONE);
-				tvZongShu.setVisibility(View.GONE);
-				tvResult.setText("你的"+nameMap.get(chooseType)+"密度为："+res);
-			} else {
-				tvShow.setVisibility(View.VISIBLE);
-				tvZongShu.setVisibility(View.VISIBLE);
-				tvShow.setText(nameMap.get(chooseType)+"的平均密度为：1000");
-				tvResult.setText("你的"+nameMap.get(chooseType)+"密度为："+res);
-				tvZongShu.setText("你买的啥鸡巴玩意，塑料的吧！");
-			}
+			tvResult.setText("你的"+nameMap.get(chooseType)+"密度为："+res);
+			
 			break;
 		case R.id.tv_tool_circle:
 			if(type == CHOOSE_ZHU)

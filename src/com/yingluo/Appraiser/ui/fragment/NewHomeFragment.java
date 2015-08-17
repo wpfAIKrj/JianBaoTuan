@@ -3,7 +3,6 @@ package com.yingluo.Appraiser.ui.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,13 +11,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,52 +26,32 @@ import org.json.JSONException;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.lidroid.xutils.http.client.HttpRequest;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnItemClick;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
-import com.yingluo.Appraiser.bean.CommentEntity;
-import com.yingluo.Appraiser.bean.ContentInfo;
-import com.yingluo.Appraiser.bean.HomeEntity;
-import com.yingluo.Appraiser.bean.MainEvent;
 import com.yingluo.Appraiser.config.Const;
 import com.yingluo.Appraiser.config.NetConst;
 import com.yingluo.Appraiser.http.AskNetWork;
-import com.yingluo.Appraiser.http.ResponseGood;
 import com.yingluo.Appraiser.http.ResponseNewHome;
 import com.yingluo.Appraiser.http.AskNetWork.AskNetWorkCallBack;
 import com.yingluo.Appraiser.http.ResponseBanner;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.HomeItem;
-import com.yingluo.Appraiser.model.CommonCallBack;
 import com.yingluo.Appraiser.ui.activity.ActivityHotIdentiy;
 import com.yingluo.Appraiser.ui.activity.ActivityIdentifyByMe;
 import com.yingluo.Appraiser.ui.activity.ActivitySearch;
 import com.yingluo.Appraiser.ui.activity.ActivityUserDelails;
 import com.yingluo.Appraiser.ui.activity.KindOfPreciousActivity;
 import com.yingluo.Appraiser.ui.activity.LoginAcitivity;
-import com.yingluo.Appraiser.ui.activity.PublishedActivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
-import com.yingluo.Appraiser.ui.adapter.WellKnowPeopleAdapter;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
-import com.yingluo.Appraiser.utils.DialogUtil;
-import com.yingluo.Appraiser.utils.FileUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.InputMessageDialog;
 import com.yingluo.Appraiser.view.InputMessageDialog.SendMessageCallback;
 import com.yingluo.Appraiser.view.SlideShowView;
-import com.yingluo.Appraiser.view.home.ViewArticles;
-import com.yingluo.Appraiser.view.home.ViewChoices;
-import com.yingluo.Appraiser.view.home.ViewHomeWhoWellKnow;
-import com.yingluo.Appraiser.view.home.ViewHots;
-import com.yingluo.Appraiser.view.listview.HorizontalListView;
-
-import de.greenrobot.event.EventBus;
 
 public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,ClickTabListener,SendMessageCallback  {
 
@@ -115,6 +92,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	private InputMessageDialog inputMessage;
 	private HomeItem item;
 	
+	private int clickPosition;
+	
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -131,16 +110,16 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	@Override
 	public void onResume() {
 		super.onResume();
-		final int[] location = new int[2];   
-		mScrollView.getLocationOnScreen(location);  
-		int y = location[1];
+		if(clickPosition == 1) {
+			scrollView.smoothScrollTo(0,0);
+		}
 	}
 
 	@Override
 	protected void initViews(View view) {
 		isRefresh = isLoadMore = false;
 		mScrollView = (PullToRefreshScrollView)view.findViewById(R.id.scrollview);
-		
+		clickPosition = 1;
 		inputMessage = new InputMessageDialog(mActivity, this);
 		scrollView = mScrollView.getRefreshableView();
 		
@@ -217,7 +196,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				
+				clickPosition = position+1;
 				Intent mIntent = new Intent(mActivity, ActivityUserDelails.class);
 				CollectionTreasure col = new CollectionTreasure();
 				col.treasure_id = Long.valueOf(list.get(position).getTreasure_id());
@@ -311,7 +290,6 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 			if(isLoadMore) {
 				//上拉加载更多了
 				isLoadMore = false;
-				
 			}
 			mScrollView.onRefreshComplete();
 			ResponseNewHome rg = new Gson().fromJson(msg, ResponseNewHome.class);

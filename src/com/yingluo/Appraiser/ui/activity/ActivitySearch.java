@@ -50,11 +50,9 @@ public class ActivitySearch extends BaseActivity implements AskNetWorkCallBack {
 	ListView lv;
 	ArrayList<TreasureType> list;
 	MyAdapter adapter;
-	@ViewInject(R.id.home_title)
-	View home_title;
 
 	@ViewInject(R.id.btn_back)
-	ImageView back;
+	TextView back;
 
 	@ViewInject(R.id.edittext_search)
 	EditText edittext_search;
@@ -159,20 +157,20 @@ public class ActivitySearch extends BaseActivity implements AskNetWorkCallBack {
 			}
 		});
 
-		home_title.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				String name = edittext_search.getText().toString();
-
-				if (name != null && !TextUtils.isEmpty(name)) {
-					adapter.list = SqlDataUtil.getInstance().getSelectTreasureType(name);
-					adapter.notifyDataSetChanged();
-				} else {
-					Toast.makeText(ActivitySearch.this, "输入内容不能为空", Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
+//		home_title.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				String name = edittext_search.getText().toString();
+//
+//				if (name != null && !TextUtils.isEmpty(name)) {
+//					adapter.list = SqlDataUtil.getInstance().getSelectTreasureType(name);
+//					adapter.notifyDataSetChanged();
+//				} else {
+//					Toast.makeText(ActivitySearch.this, "输入内容不能为空", Toast.LENGTH_SHORT).show();
+//				}
+//			}
+//		});
 	}
 
 	OnClickListener listener = new OnClickListener() {
