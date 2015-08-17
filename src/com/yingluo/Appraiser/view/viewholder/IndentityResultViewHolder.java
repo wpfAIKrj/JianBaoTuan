@@ -4,19 +4,12 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.bean.CommentEntity;
-import com.yingluo.Appraiser.utils.BitmapsUtils;
-import com.yingluo.Appraiser.view.CircleImageView;
+import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
+import com.yingluo.Appraiser.view.NewHomeIdentifyView;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * 宝物鉴定结果布局
@@ -25,19 +18,8 @@ import android.widget.TextView;
  */
 public class IndentityResultViewHolder extends ViewHolder{
 
-	@ViewInject(R.id.tv_name)
-	private TextView tv_name;
-	@ViewInject(R.id.tv_grade)
-	private TextView tv_grade;
-	
-	@ViewInject(R.id.tv_msg)
-	private TextView msg;
-	
-	@ViewInject(R.id.iv_grade)
-	private ImageView iv_grade;
-	
-	@ViewInject(R.id.iv_head)
-	private CircleImageView logo;
+	@ViewInject(R.id.nhv_has_identify)
+	private NewHomeIdentifyView nhvIdentify;
 	
 	public CommentEntity currnt;
 
@@ -48,33 +30,19 @@ public class IndentityResultViewHolder extends ViewHolder{
 	
 	public IndentityResultViewHolder(View itemView) {
 		super(itemView);
-		// TODO 自动生成的构造函数存根
 		mContext=itemView.getContext();
 		ViewUtils.inject(this, itemView);
 		
 	}
 
-	
-	
 	public void setItem(CommentEntity commentEntity) {
-		// TODO 自动生成的方法存根
-		currnt=commentEntity;
-		BitmapsUtils.getInstance().display(logo, currnt.authImage);
-		tv_name.setText(currnt.authName);
-		msg.setText(currnt.content);
-		BitmapsUtils.getInstance().display(logo, currnt.authImage);
-		if(currnt.authType==0){
-			tv_grade.setText(R.string.user_type_level1);
-			iv_grade.setImageResource(imagelevel[currnt.authLevel]);	
-		}else{
-			iv_grade.setVisibility(View.GONE);
-			if(currnt.authLevel==1){
-				tv_grade.setText(R.string.user_type_level2);	
-			}
-			if(currnt.authLevel==2){
-				tv_grade.setText(R.string.user_type_level3);	
-			}
-		}
+		Appraiser appraiser = new Appraiser();
+		appraiser.setUser_name(commentEntity.getAuthName());
+		appraiser.setAppraisal_data(commentEntity.getContent());
+		appraiser.setUser_description(commentEntity.getAuthName());
+		appraiser.setUser_portrait(commentEntity.getAuthImage());
+		appraiser.setKinds(commentEntity.getKinds());
+		nhvIdentify.setItem(appraiser);
 
 	}
 

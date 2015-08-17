@@ -32,7 +32,6 @@ public class IndentiyResultAdapter extends BaseAdapter {
 	private List<CommentEntity> list;
 	private Context mContext;
 	public IndentiyResultAdapter(Context context) {
-		// TODO 自动生成的构造函数存根
 		list=new ArrayList<CommentEntity>();
 		this.mContext=context;
 	}
@@ -40,12 +39,10 @@ public class IndentiyResultAdapter extends BaseAdapter {
 
 		
 	public void setData(List<CommentEntity> commentlist) {
-		// TODO 自动生成的方法存根
 		list=commentlist;
 		notifyDataSetChanged();
 	}
 	public static void setListViewHeightBasedOnChildren(ListView listView) {
-        //获取ListView对应的Adapter
     ListAdapter listAdapter = listView.getAdapter();
     if (listAdapter == null) {
         // pre-condition
@@ -68,25 +65,21 @@ public class IndentiyResultAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO 自动生成的方法存根
 		return list.size();
 	}
 
 	@Override
 	public CommentEntity getItem(int position) {
-		// TODO 自动生成的方法存根
 		return list.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO 自动生成的方法存根
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO 自动生成的方法存根
 		IndentityResultViewHolder vh=null;
 		if(convertView==null){
 			convertView=LayoutInflater.from(mContext).inflate(R.layout.item_user_delais_identify_result, parent, false);

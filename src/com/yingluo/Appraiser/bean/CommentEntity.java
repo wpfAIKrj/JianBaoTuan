@@ -1,8 +1,10 @@
 package com.yingluo.Appraiser.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
+import com.yingluo.Appraiser.http.ResponseNewHome.kinds;
 
 /**
  * 评论实体
@@ -37,6 +39,8 @@ public class CommentEntity implements Serializable {
 	@SerializedName("index")
 	public int index;
 
+	public List<kinds> kinds;
+	
 	public CommentEntity() {
 	}
 
@@ -133,6 +137,14 @@ public class CommentEntity implements Serializable {
 
 	public void setAuthImage(String authImage) {
 		this.authImage = authImage;
+	}
+
+	public List<kinds> getKinds() {
+		return kinds;
+	}
+
+	public void setKinds(List<kinds> kinds) {
+		this.kinds = kinds;
 	}
 
 }

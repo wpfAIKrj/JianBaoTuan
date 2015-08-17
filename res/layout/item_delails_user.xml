@@ -6,62 +6,18 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/x30" >
 
-    <com.yingluo.Appraiser.view.TagLinearLayout
-        android:id="@+id/tag_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/x15"
-         />
-
-    <!--android:layout_height="@dimen/y60"-->
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/y20"
-        android:layout_marginTop="@dimen/y20"
+        android:layout_margin="@dimen/y20"
         android:textColor="@color/black_2"
-        android:textSize="@dimen/x24" />
-
-    <View
+        android:text="这必须是真的玉石，亲，5毛钱，保真，妥妥的和田玉"
+        android:textSize="@dimen/x28" />
+    
+    <com.yingluo.Appraiser.view.TagLinearLayout
+        android:id="@+id/tag_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y1"
-        android:background="@color/item_space_color" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y140"
-        android:orientation="horizontal" >
-
-        <com.yingluo.Appraiser.view.CircleImageView
-            android:id="@+id/iv_head"
-            android:layout_width="@dimen/y100"
-            android:layout_height="@dimen/y100"
-            android:layout_centerVertical="true" />
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_toRightOf="@+id/iv_head"
-            android:text="@string/authenticate_title"
-            android:textColor="@color/black_2"
-            android:textSize="@dimen/x30" />
-
-        <TextView
-            android:id="@+id/tv_other_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/x10"
-            android:paddingRight="@dimen/x30"
-            android:text="@string/other_home_title"
-            android:textColor="@color/dialog_title_color"
-            android:textSize="@dimen/x30" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

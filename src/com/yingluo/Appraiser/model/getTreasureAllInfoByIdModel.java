@@ -35,7 +35,6 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 	private OnStringDataLoadListener listener = null;
 
 	public CollectionTreasure curnt = null;
-	public List<CollectionTreasure> otherTreasure = null;
 	public List<CommentEntity> treasureList = null;
 
 	public getTreasureAllInfoByIdModel(OnStringDataLoadListener listener) {
@@ -79,6 +78,7 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 			treasure.authType = json.getInt("authType");
 			treasure.isCollected = json.getBoolean("isCollected");
 			treasure.status = json.getInt("status");
+			treasure.time = json.getLong("insert_time");
 			treasure.authorityData = json.getString("authorityData");
 			ImUserInfo user = new ImUserInfo();
 			user.setId(treasure.user_id);
@@ -112,30 +112,6 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 				treasure.kind = key;
 			}
 			curnt = treasure;
-			// 解析热门宝物
-			JSONArray array1 = json.getJSONArray("others");
-			otherTreasure = new ArrayList<CollectionTreasure>();
-			if (array1.length() > 0) {
-				for (int i = 0; i < array1.length(); i++) {
-					JSONObject obj = array1.getJSONObject(i);
-					CollectionTreasure other = new CollectionTreasure();
-					other.viewTimes = obj.getInt("viewTimes");
-					other.authName = obj.getString("authName");
-					other.authImage = obj.getString("authImage");
-					other.authLevel = obj.getInt("authLevel");
-					other.name = obj.getString("name");
-					other.user_id = obj.getLong("user_id");
-					
-					String otherimages = obj.getString("images");
-					images = gson.fromJson(otherimages, new TypeToken<List<String>>() {
-					}.getType());
-					if (images.size() > 0) {
-						other.images = images.toArray(new String[images.size()]);
-					}
-					other.treasure_id = obj.getLong("treasure_id");
-					otherTreasure.add(other);
-				}
-			}
 
 			// 解析宝贝鉴定结果
 			String array2 = json.getString("treasureList");
@@ -151,13 +127,11 @@ public class getTreasureAllInfoByIdModel extends BaseModel {
 
 	@Override
 	public void addRequestParams() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onFailureForString(String error, String msg) {
-		// TODO Auto-generated method stub
 		listener.onBaseDataLoadErrorHappened(error, msg);
 	}
 

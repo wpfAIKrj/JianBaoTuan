@@ -64,6 +64,8 @@ public class CollectionTreasure implements Serializable {
 
 	@SerializedName("id")
 	public long delete_id;
+	@SerializedName("time")
+	public long time;
 
 	// 删除是否被选择
 	public boolean isSelect = false;
@@ -265,6 +267,14 @@ public class CollectionTreasure implements Serializable {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public long getTime() {
+		return time;
+	}
+
+	public void setTime(long time) {
+		this.time = time;
 	}
 
 }

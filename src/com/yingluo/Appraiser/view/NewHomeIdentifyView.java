@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lidroid.xutils.view.annotation.event.OnChildClick;
 import com.yingluo.Appraiser.R;
+import com.yingluo.Appraiser.bean.CommentEntity;
 import com.yingluo.Appraiser.bean.TreasureType;
 import com.yingluo.Appraiser.http.ResponseNewHome.Appraiser;
 import com.yingluo.Appraiser.http.ResponseNewHome.kinds;

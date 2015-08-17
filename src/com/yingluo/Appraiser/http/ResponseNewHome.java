@@ -136,7 +136,7 @@ public class ResponseNewHome extends ResponseRoot{
 		
     }
     
-    public class Appraiser {
+    public static class Appraiser {
     	private String id;
     	private String user_id;
     	private String user_name;
@@ -149,6 +149,9 @@ public class ResponseNewHome extends ResponseRoot{
     	private String currentLevelName;
     	private List<kinds> kinds;
     	
+    	public Appraiser() {
+    		
+    	}
 		public String getId() {
 			return id;
 		}

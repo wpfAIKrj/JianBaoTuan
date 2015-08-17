@@ -28,6 +28,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
 import com.yingluo.Appraiser.R;
 import com.yingluo.Appraiser.app.ItApplication;
 import com.yingluo.Appraiser.bean.CollectionTreasure;
@@ -48,6 +49,8 @@ import com.yingluo.Appraiser.ui.activity.LoginAcitivity;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter;
 import com.yingluo.Appraiser.ui.adapter.NewHomeListAdapter.ClickTabListener;
 import com.yingluo.Appraiser.ui.base.BaseFragment;
+import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
+import com.yingluo.Appraiser.utils.SqlDataUtil;
 import com.yingluo.Appraiser.utils.ToastUtils;
 import com.yingluo.Appraiser.view.InputMessageDialog;
 import com.yingluo.Appraiser.view.InputMessageDialog.SendMessageCallback;
@@ -93,6 +96,7 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	private HomeItem item;
 	
 	private int clickPosition;
+	private int classifyId;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -218,6 +222,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	private void askNet() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(NetConst.SID, NetConst.SESSIONID);
+		map.put("user_id", SharedPreferencesUtils.getInstance().getLoginUserID());
+		map.put("classify_id", classifyId);
 		map.put("page", page);
 		askNewWork.ask(HttpRequest.HttpMethod.GET, map);
 	}
@@ -273,6 +279,17 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 	};
 
 	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == Const.TO_PUBLISH_SELECT_TYPE) {// 选择宝物
+			if (resultCode == mActivity.RESULT_OK) {
+				classifyId = data.getIntExtra(Const.KIND_ID, 0);
+				LogUtils.d("选择宝物的id" + classifyId);
+				mScrollView.setRefreshing();
+			}
+		}
+	}
+	@Override
 	public void getNetWorkMsg(String msg, String param) throws JSONException {
 		if(param.equals(NetConst.NEW_HOMW_BANNER)) {		
 			ResponseBanner rg = new Gson().fromJson(msg, ResponseBanner.class);
@@ -297,7 +314,8 @@ public class NewHomeFragment extends BaseFragment implements AskNetWorkCallBack,
 				page = rg.getData().getNextPage();
 				List<HomeItem> res = rg.getData().getList();
 				if(res.size() == 0) {
-					return ;
+//					return ;
+					Toast.makeText(mActivity, "没有数据了", Toast.LENGTH_SHORT).show();
 				} else {
 					list.addAll(res);
 				}

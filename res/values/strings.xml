@@ -96,7 +96,7 @@
     <string name="str_my_foot">我的足迹</string>
     <string name="str_similar">同类鉴定</string>
     <string name="str_identify_result">鉴定结果</string>
-    <string name="str_hot_discuss">藏友热议</string>
+    <string name="str_hot_discuss">网友热议</string>
     <string name="comment_list_bt">回复</string>
     <string name="comment_list_tag">回复  ‘%1$s’</string>
     <string name="type_collect">成为网络鉴定师</string>

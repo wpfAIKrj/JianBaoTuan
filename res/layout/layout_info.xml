@@ -257,11 +257,6 @@
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/y10"
-        android:background="@color/hintcolor"/>
     
     <com.yingluo.Appraiser.refresh.PullRefreshRecyclerView
         android:id="@+id/recyclerview1"

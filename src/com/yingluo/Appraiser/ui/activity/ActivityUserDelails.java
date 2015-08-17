@@ -50,6 +50,7 @@ import com.yingluo.Appraiser.utils.DialogUtil;
 import com.yingluo.Appraiser.utils.HelpUtils;
 import com.yingluo.Appraiser.utils.SharedPreferencesUtils;
 import com.yingluo.Appraiser.utils.ToastUtils;
+import com.yingluo.Appraiser.view.CircleImageView;
 import com.yingluo.Appraiser.view.TagLinearLayout;
 import com.yingluo.Appraiser.view.ViewOtherTreasure;
 
@@ -65,17 +66,16 @@ public class ActivityUserDelails extends BaseActivity {
 
 	@ViewInject(R.id.detail_back)
 	private View detail_back;
-	@ViewInject(R.id.btn_goto)
-	private Button btn_goto;
 
-	@ViewInject(R.id.ed_context)
-	private EditText ed_text;
-	@ViewInject(R.id.iv_head)
-	private ImageView iv_head;
+	@ViewInject(R.id.tv_home_arrow)
+	private CircleImageView iv_head;
 
-	@ViewInject(R.id.tv_name)
+	@ViewInject(R.id.tv_home_name)
 	private TextView tv_name;
 
+	@ViewInject(R.id.tv_home_time)
+	private TextView tv_time;
+	
 	@ViewInject(R.id.tv_msg)
 	private TextView tv_msg;
 
@@ -88,14 +88,8 @@ public class ActivityUserDelails extends BaseActivity {
 	@ViewInject(R.id.tag_layout)
 	private TagLinearLayout taglayout;
 
-	@ViewInject(R.id.tv_other_title)
-	private TextView tv_other_title;
-
 	@ViewInject(R.id.ll_show_images)
 	private LinearLayout showimage;
-
-	@ViewInject(R.id.layout_treasure)
-	private LinearLayout treasurelayout;
 
 	@ViewInject(R.id.tv_offer)
 	private TextView tvOffer;
@@ -142,11 +136,8 @@ public class ActivityUserDelails extends BaseActivity {
 	private Long uid;
 	
 	private boolean isRefresh,isLoadMore;
-	
-	@ViewInject(R.id.btn_send_comment)
-	public Button bt_send_comment;
 
-	@OnClick({ R.id.tv_other_title, R.id.btn_send_comment, R.id.detail_back, R.id.btn_goto, R.id.detail_collect,
+	@OnClick({ R.id.tv_home_arrow, R.id.detail_back, R.id.detail_collect,
 			R.id.detail_cancle_collect })
 	public void doClick(View view) {
 		switch (view.getId()) {
@@ -156,46 +147,46 @@ public class ActivityUserDelails extends BaseActivity {
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}
 			break;
-		case R.id.tv_other_title:// 跳转到个人详情
+		case R.id.tv_home_arrow:// 跳转到个人详情
 			Intent mIntent = new Intent(this, ActivityHotIdentiy.class);
 			mIntent.putExtra(Const.ENTITY, entity);
 			startActivity(mIntent);
 			break;
-		case R.id.btn_send_comment:// 发布评论
-			if (ItApplication.getcurrnUser() != null) {
-				String con = ed_text.getText().toString();
-				String content = con.trim();
-				if (content != null && content.length() != 0) {
-					loaddialog = DialogUtil.createLoadingDialog(this, "发表评论中....");
-					loaddialog.show();
-					sendCommentModel.sendTreasureComment(entity.treasure_id, to_user_id, content);
-				} else {
-					new ToastUtils(this, "请输入评论内容！");
-				}
-			} else {
-				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
-				startActivity(intent);
-				overridePendingTransition(R.anim.toast_in, R.anim.hold);
-			}
-			break;
-		case R.id.btn_goto: // 我要鉴定
-		{
-			if (ItApplication.getcurrnUser() != null) {
-				if (entity.status == 2) {
-					new ToastUtils(this, "宝物已经鉴定完毕！");
-					return;
-				}
-				Intent intent = new Intent(ActivityUserDelails.this, ActivityIdentifyByMe.class);
-				intent.putExtra(Const.ENTITY, entity);
-				startActivityForResult(intent, Const.TO_MY_INDENTITY);
-				overridePendingTransition(R.anim.toast_in, R.anim.hold);
-			} else {
-				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
-				startActivity(intent);
-				overridePendingTransition(R.anim.toast_in, R.anim.hold);
-			}
-		}
-			break;
+//		case R.id.btn_send_comment:// 发布评论
+//			if (ItApplication.getcurrnUser() != null) {
+//				String con = ed_text.getText().toString();
+//				String content = con.trim();
+//				if (content != null && content.length() != 0) {
+//					loaddialog = DialogUtil.createLoadingDialog(this, "发表评论中....");
+//					loaddialog.show();
+//					sendCommentModel.sendTreasureComment(entity.treasure_id, to_user_id, content);
+//				} else {
+//					new ToastUtils(this, "请输入评论内容！");
+//				}
+//			} else {
+//				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+//				startActivity(intent);
+//				overridePendingTransition(R.anim.toast_in, R.anim.hold);
+//			}
+//			break;
+//		case R.id.btn_goto: // 我要鉴定
+//		{
+//			if (ItApplication.getcurrnUser() != null) {
+//				if (entity.status == 2) {
+//					new ToastUtils(this, "宝物已经鉴定完毕！");
+//					return;
+//				}
+//				Intent intent = new Intent(ActivityUserDelails.this, ActivityIdentifyByMe.class);
+//				intent.putExtra(Const.ENTITY, entity);
+//				startActivityForResult(intent, Const.TO_MY_INDENTITY);
+//				overridePendingTransition(R.anim.toast_in, R.anim.hold);
+//			} else {
+//				Intent intent = new Intent(ActivityUserDelails.this, LoginAcitivity.class);
+//				startActivity(intent);
+//				overridePendingTransition(R.anim.toast_in, R.anim.hold);
+//			}
+//		}
+//			break;
 		case R.id.detail_collect: {
 			// 收藏宝物
 			if (ItApplication.getcurrnUser() != null) {
@@ -386,6 +377,7 @@ public class ActivityUserDelails extends BaseActivity {
 			entity = infoModel.curnt;
 			bitmapUtils.display(iv_head, entity.authImage);
 			tv_name.setText(entity.authName);
+			tv_time.setText(entity.time+"");
 			tv_msg.setText(entity.name);
 			if(entity.kind != null) {
 				taglayout.addTag(entity.kind);
@@ -407,11 +399,10 @@ public class ActivityUserDelails extends BaseActivity {
 				tag.setVisibility(View.VISIBLE);
 //				tvOffer.setVisibility(View.VISIBLE);
 //				tvOffer.setText(text);
-				btn_goto.setVisibility(View.GONE);
+//				btn_goto.setVisibility(View.GONE);
 			} else {
-				btn_goto.setVisibility(View.VISIBLE);
+//				btn_goto.setVisibility(View.VISIBLE);
 			}
-			addOtherTreasure();
 			addPeopleidentity();
 		}
 
@@ -460,8 +451,8 @@ public class ActivityUserDelails extends BaseActivity {
 			}
 			new ToastUtils(ActivityUserDelails.this, "发表评论成功！");
 			to_user_id = 0;
-			ed_text.setHint("");
-			ed_text.setText("");
+//			ed_text.setHint("");
+//			ed_text.setText("");
 			// 刷新评论
 			commentListModel.getInfoTreasure(entity.treasure_id);
 		}
@@ -496,6 +487,9 @@ public class ActivityUserDelails extends BaseActivity {
 				ImageView image = new ImageView(this);
 				int height = (int) ((DensityUtil.getScreenWidth(this)*3.0)/4);
 				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,height);
+				if(i!=0) {
+					params.setMargins(0, (int) getResources().getDimension(R.dimen.y10), 0, 0);
+				}
 				image.setScaleType(ScaleType.CENTER_CROP);
 				image.setLayoutParams(params);
 				showimage.addView(image);
@@ -516,24 +510,6 @@ public class ActivityUserDelails extends BaseActivity {
 		}
 	}
 
-	// 添加其他宝物
-	protected void addOtherTreasure() {
-		treasurelayout.removeAllViews();
-
-		if (infoModel.otherTreasure != null && infoModel.otherTreasure.size() > 0) {
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(treasurelayout.getMeasuredWidth() / 2,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
-			params.rightMargin = 5;
-			params.leftMargin = 5;
-			for (int i = 0; i < infoModel.otherTreasure.size(); i++) {
-				ViewOtherTreasure view = new ViewOtherTreasure(this);
-				view.setLayoutParams(params);
-				view.setItem(infoModel.otherTreasure.get(i));
-				treasurelayout.addView(view);
-			}
-		}
-	}
-
 	/**
 	 * 发表评论（评论列表中）
 	 */
@@ -544,10 +520,10 @@ public class ActivityUserDelails extends BaseActivity {
 			CommentEntity comment = (CommentEntity) v.getTag();
 			to_user_id = comment.user_id;
 			String str = String.format(getResources().getString(R.string.title_send_comment_hint), comment.authName);
-			ed_text.setHint(str);
-			ed_text.requestFocus();
+//			ed_text.setHint(str);
+//			ed_text.requestFocus();
 			InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-			imm.showSoftInput(ed_text, InputMethodManager.SHOW_FORCED);
+//			imm.showSoftInput(ed_text, InputMethodManager.SHOW_FORCED);
 		}
 	};
 
@@ -567,17 +543,17 @@ public class ActivityUserDelails extends BaseActivity {
 			View v = getCurrentFocus();
 
 			if (HelpUtils.isShouldHideInput(v, ev, bottom)) {
-				ed_text.clearFocus();
+//				ed_text.clearFocus();
 				InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				im.hideSoftInputFromWindow(ed_text.getWindowToken(), 0);
+//				im.hideSoftInputFromWindow(ed_text.getWindowToken(), 0);
 				to_user_id = 0;
-				ed_text.setHint("");
-				ed_text.setText("");
+//				ed_text.setHint("");
+//				ed_text.setText("");
 			}
 
-			if (v == bt_send_comment) {
-				return true;
-			}
+//			if (v == bt_send_comment) {
+//				return true;
+//			}
 		}
 		return super.dispatchTouchEvent(ev);
 	}

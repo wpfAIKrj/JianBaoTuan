@@ -46,9 +46,6 @@ import com.yingluo.Appraiser.utils.ToastUtils;
  */
 public class InformationDetailsActivity extends BaseActivity {
 
-	@ViewInject(R.id.detail_share)
-	private ImageView share;
-
 	@ViewInject(R.id.detail_collect)
 	private ImageView collect;
 
@@ -136,7 +133,7 @@ public class InformationDetailsActivity extends BaseActivity {
 		}
 	}
 
-	@OnClick({ R.id.detail_back, R.id.detail_share, R.id.detail_collect, R.id.detail_cancle_collect })
+	@OnClick({ R.id.detail_back, R.id.detail_collect, R.id.detail_cancle_collect })
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.detail_back:// 返回上层
@@ -144,13 +141,13 @@ public class InformationDetailsActivity extends BaseActivity {
 			finish();
 			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			break;
-		case R.id.detail_share:// 分享
-			if (ItApplication.getcurrnUser() != null) {
-
-			} else {
-				new ToastUtils(this, "请先登陆！");
-			}
-			break;
+//		case R.id.detail_share:// 分享
+//			if (ItApplication.getcurrnUser() != null) {
+//
+//			} else {
+//				new ToastUtils(this, "请先登陆！");
+//			}
+//			break;
 		case R.id.detail_collect:// 收藏
 			if (ItApplication.getcurrnUser() != null) {
 				dialog1 = DialogUtil.createShowDialog(this, "是否收藏该文章？", lis1);

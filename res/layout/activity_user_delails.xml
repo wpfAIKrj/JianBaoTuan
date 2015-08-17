@@ -3,7 +3,7 @@
     xmlns:ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/layout_bg_color"
+    android:background="@color/wite"
     android:orientation="vertical" >
 
     <include
@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom"
-        ptr:ptrAnimationStyle="flip"
-        ptr:ptrMode="both"
-        ptr:ptrHeaderTextColor="@color/black"
         android:layout_below="@+id/top"
-        android:scrollbars="none" >
+        android:scrollbars="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrHeaderTextColor="@color/black"
+        ptr:ptrMode="both" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,12 +27,53 @@
             android:background="@color/wite"
             android:orientation="vertical" >
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y120" >
+
+                <com.yingluo.Appraiser.view.CircleImageView
+                    android:id="@+id/tv_home_arrow"
+                    android:layout_width="@dimen/x80"
+                    android:layout_height="@dimen/y80"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/x20" />
+
+                <ImageView
+                    android:id="@+id/tv_home_leve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_home_arrow"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/x68"
+                    android:src="@drawable/level01" />
+
+                <TextView
+                    android:id="@+id/tv_home_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/y21"
+                    android:layout_toRightOf="@+id/tv_home_leve"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_home_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_home_name"
+                    android:layout_below="@+id/tv_home_name"
+                    android:layout_marginTop="@dimen/y4"
+                    android:textColor="@color/new_time_color"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+            
             <LinearLayout
                 android:id="@+id/ll_show_images"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/hintcolor"
                 android:orientation="vertical" >
-                
             </LinearLayout>
 
             <View
@@ -44,24 +85,15 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y30"
-                android:background="@drawable/item_layout_padd" />
-
-            <include layout="@layout/layout_user_delais_similar_item" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y30"
-                android:layout_marginTop="@dimen/y20"
-                android:background="@drawable/item_layout_padd" />
+                android:layout_height="@dimen/y10"
+                android:background="@color/hintcolor" />
 
             <include layout="@layout/layout_user_delais_identify_result" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y30"
-                android:layout_marginTop="@dimen/y20"
-                android:background="@drawable/item_layout_padd" />
+                android:layout_height="@dimen/y10"
+                android:background="@color/hintcolor" />
 
             <include layout="@layout/layout_treasure__comment" />
 
@@ -77,57 +109,66 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
         android:layout_above="@+id/bottom"
-        android:background="@color/item_space_color" />
+        android:background="@color/new_line_color" />
 
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y134"
+        android:layout_height="@dimen/y88"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center_vertical"
         android:orientation="horizontal" >
 
-        <EditText
-            android:id="@+id/ed_context"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/y94"
-            android:layout_marginLeft="@dimen/x14"
-            android:layout_weight="1.0"
-            android:background="@color/wite"
-            android:gravity="center_vertical"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:paddingLeft="@dimen/x8"
-            android:textSize="@dimen/x30" >
-        </EditText>
+        <RelativeLayout
+            android:id="@+id/rl_home_identify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
 
-        <Button
-            android:id="@+id/btn_send_comment"
-            android:layout_width="@dimen/x128"
-            android:layout_height="@dimen/y94"
-            android:layout_marginLeft="@dimen/x10"
-            android:layout_marginRight="@dimen/x10"
-            android:background="@color/bt_color"
-            android:gravity="center"
-            android:text="评 论"
-            android:textColor="@color/wite"
-            android:textSize="@dimen/x30" />
+            <TextView
+                android:id="@+id/tv_home_identify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/new_str_identify"
+                android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/btn_goto"
-            android:layout_width="@dimen/x168"
-            android:layout_height="@dimen/y94"
-            android:layout_marginRight="@dimen/x14"
-            android:background="@color/dialog_title_color"
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="@dimen/y50"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/new_line_color" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tv_home_commit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/new_str_commit"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="@dimen/y50"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@color/new_line_color" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_home_share"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/identiy_by_me"
-            android:textColor="@color/wite"
-            android:textSize="@dimen/x30"
-            android:visibility="gone" />
+            android:text="@string/new_str_share"
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </RelativeLayout>
